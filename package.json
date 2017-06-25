@@ -9,7 +9,12 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
-  "dependencies": {},
+  "dependencies": {
+    "gzip-size": "^3.0.0",
+    "jest": "^20.0.4",
+    "memory-fs": "^0.4.1",
+    "webpack": "^3.0.0"
+  },
   "devDependencies": {
     "eslint": "^4.1.0",
     "eslint-config-logux": "^14.0.0",
@@ -28,7 +33,7 @@
     "lint-staged": "lint-staged",
     "spellcheck": "yaspeller-ci *.md",
     "lint": "eslint *.js test/{**/,}*.js",
-    "test": "yarn run lint && yarn run spellcheck"
+    "test": "jest && yarn run lint && yarn run spellcheck"
   },
   "engines": {
     "node": ">=4.0.0"
