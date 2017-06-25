@@ -1,0 +1,46 @@
+{
+  "name": "size-limit",
+  "version": "0.0.0",
+  "description": "Show package size and return error if it is bigger than limits allow",
+  "keywords": [
+    "size",
+    "limit"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "ai/size-limit",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.1.0",
+    "eslint-config-logux": "^14.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lint-staged": "^4.0.0",
+    "pre-commit": "^1.2.2",
+    "yaspeller-ci": "^0.4.0"
+  },
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "spellcheck": "yaspeller-ci *.md",
+    "lint": "eslint *.js test/{**/,}*.js",
+    "test": "yarn run lint && yarn run spellcheck"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-logux/node4"
+  },
+  "lint-staged": {
+    "*.md": "yaspeller-ci",
+    "*.js": "eslint"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}
