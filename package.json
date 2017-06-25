@@ -9,11 +9,13 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
+  "bin": "cli.js",
   "dependencies": {
     "gzip-size": "^3.0.0",
     "jest": "^20.0.4",
     "memory-fs": "^0.4.1",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "eslint": "^4.1.0",
