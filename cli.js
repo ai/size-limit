@@ -2,6 +2,7 @@
 'use strict'
 
 const yargs = require('yargs')
+const chalk = require('chalk')
 const path = require('path')
 const fs = require('fs')
 
@@ -23,6 +24,10 @@ function isRoot (dir) {
   } else {
     return dir === '/'
   }
+}
+
+function showError (msg) {
+  process.stderr.write(chalk.red(`${ msg }\n`))
 }
 
 function findPackage (dir) {
@@ -61,13 +66,23 @@ if (argv['_'].length > 0) {
 
 getFiles.then(files => {
   if (files.length === 0) {
-    throw new Error('Specify project files ' +
-                    'or run in project dir with package.json')
+    const error = new Error(
+      'Specify project files or run in project dir with package.json')
+    error.sizeLimit = true
+    throw error
   }
   return getSize.apply({ }, files)
 }).then(size => {
   process.stdout.write(`${ size }\n`)
 }).catch(e => {
-  process.stderr.write(`${ e.stack }\n`)
+  if (e.sizeLimit) {
+    showError(e.message)
+  } else if (e.message.indexOf('Module not found:') !== -1) {
+    const first = e.message.match(/Module not found:[^\n]*/)[0]
+    const filtered = first.replace('Module not found: Error: ', '')
+    showError(filtered)
+  } else {
+    showError(e.stack)
+  }
   process.exit(1)
 })

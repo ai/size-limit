@@ -65,9 +65,19 @@ it('uses index.js by default', () => {
   })
 })
 
-it('shows errors', () => {
+it('shows resolve errors', () => {
   return run(['unknown.js']).then(result => {
     expect(result.code).toEqual(1)
     expect(result.out).toContain('unknown.js')
+    expect(result.out).toMatch(/^Can't resolve/)
+  })
+})
+
+it('shows package.json errors', () => {
+  const cwd = path.dirname(path.dirname(__dirname))
+  return run([], { cwd }).then(result => {
+    expect(result.code).toEqual(1)
+    expect(result.out).toEqual(
+      'Specify project files or run in project dir with package.json\n')
   })
 })

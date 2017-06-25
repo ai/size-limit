@@ -1,5 +1,5 @@
 'use strict'
 
-const gzipSize = require('gzip-size')
+const chalk = require('chalk')
 
-gzipSize('test.js')
+chalk.green('ok')

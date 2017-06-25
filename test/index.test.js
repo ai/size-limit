@@ -16,7 +16,7 @@ it('returns 0 for empty project', () => {
 
 it('shows project size', () => {
   return getSize(project('big')).then(size => {
-    expect(size).toEqual(36097)
+    expect(size).toEqual(1905)
   })
 })
 
