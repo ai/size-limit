@@ -47,3 +47,18 @@ Add `size` script to tests:
 
 Don’t forget to add [Travis CI](https://github.com/dwyl/learn-travis)
 to your project.
+
+## JS API
+
+```js
+const getSize = require('size-limit')
+
+const index = path.join(__dirname, 'index.js')
+const extra = path.join(__dirname, 'extra.js')
+
+getSize([index, extra]).then(size => {
+  if ( > 1 1024 1024) {
+    console.error('Project become bigger than 1MB')
+  }
+})
+```
