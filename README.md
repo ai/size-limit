@@ -5,17 +5,8 @@ Show how many kilobytes your JS library will add to a user bundle.
 You can add this tool to Travis CI and set the limit. If you accidentally
 add a very big dependency, Size Limit will throw an error.
 
-```
-$ npm run size
-
-> size-limit 8KB
-
-  Package was exceeded the size limit
-  Package size: 8.46 KB
-  Size limit:   8 KB
-  With all dependencies, minifier and gzipped
-
-```
+<img src="./example.png" alt="Size Limit example"
+     width="654" height="450" align="center">
 
 <a href="https://evilmartians.com/?utm_source=size-limit">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
@@ -47,7 +38,7 @@ If project size looks to big run
 ./node_modules/bin/size-limit --why
 ```
 
-Add some bytes to current size to get the limit 
+Add some bytes to current size to get the limit
 by adding `npm run` script to `package.json`:
 
 ```diff json
