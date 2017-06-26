@@ -79,7 +79,7 @@ const index = path.join(__dirname, 'index.js')
 const extra = path.join(__dirname, 'extra.js')
 
 getSize([index, extra]).then(size => {
-  if ( > 1 1024 1024) {
+  if (size > 1 * 1024 * 1024) {
     console.error('Project become bigger than 1MB')
   }
 })
