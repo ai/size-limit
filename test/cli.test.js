@@ -91,3 +91,38 @@ it('shows package.json errors', () => {
       'Specify project files or run in project dir with package.json\n')
   })
 })
+
+it('shows limit', () => {
+  return run(['2KB', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2 KB\n')
+  })
+})
+
+it('allows space in limit', () => {
+  return run(['2', 'KB', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2 KB\n')
+  })
+})
+
+it('allows fractional in limit', () => {
+  return run(['2.20KB', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2.2 KB\n')
+  })
+})
+
+it('allows unitless limit', () => {
+  return run(['2048', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2 KB\n')
+  })
+})
+
+it('checks limits', () => {
+  return run(['1KB', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(3)
+    expect(result.out).toContain('exceeded the size limit')
+  })
+})

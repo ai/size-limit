@@ -10,9 +10,17 @@ const fs = require('fs')
 const getSize = require('.')
 
 const argv = yargs
-  .usage('$0 [FILES]')
-  .example('$0 ./index.js ./extra.js')
-  .epilog('If you miss files, size-limit will take main file ' +
+  .usage('$0 [LIMIT] [FILES]')
+  .epilog('Examples:\n' +
+          '  See current project size:\n' +
+          '    $0\n' +
+          '  See specific files size:\n' +
+          '    $0 ./index.js ./extra.js\n' +
+          '  Show error if project become bigger:\n' +
+          '    $0 10KB\n' +
+          '    $0 10KB ./index.js ./extra.js\n' +
+          '\n' +
+          'If you miss files, size-limit will take main file ' +
           'from package.json')
   .locale('en')
   .version()
@@ -33,6 +41,13 @@ function showError (msg) {
   process.stderr.write(chalk.red(`${ msg }\n`))
 }
 
+function formatBytes (size) {
+  const format = bytes
+    .format(size, { unitSeparator: ' ' })
+    .replace('k', 'K')
+  return chalk.bold(format)
+}
+
 function findPackage (dir) {
   if (isRoot(dir)) return Promise.resolve(false)
   const file = path.join(dir, 'package.json')
@@ -48,9 +63,18 @@ function findPackage (dir) {
   })
 }
 
+const args = argv['_'].slice(0)
 let getFiles
-if (argv['_'].length > 0) {
-  getFiles = Promise.resolve(argv['_'].map(i => {
+let limit = false
+
+if (/^\d+(\.\d+|)$/.test(args[0]) && /^[kKMGT]B$/.test(args[1])) {
+  limit = bytes.parse(`${ args.shift() } ${ args.shift() }`)
+} else if (/^\d+(\.\d+|)?([kKMGT]B)?$/.test(args[0])) {
+  limit = bytes.parse(args.shift())
+}
+
+if (args.length > 0) {
+  getFiles = Promise.resolve(args.map(i => {
     if (path.isAbsolute(i)) {
       return i
     } else {
@@ -76,13 +100,26 @@ getFiles.then(files => {
   }
   return getSize.apply({ }, files)
 }).then(size => {
-  const format = bytes
-    .format(size, { unitSeparator: ' ' })
-    .replace('k', 'K')
-  process.stdout.write(`\n` +
-    `  Package size: ${ chalk.bold(format) }\n` +
-    `  ${ chalk.gray('With all dependencies, minifier and gzipped') }\n` +
-    `\n`)
+  const note = chalk.gray('  With all dependencies, minifier and gzipped\n')
+
+  process.stdout.write(`\n`)
+  if (limit && size <= limit) {
+    process.stdout.write(
+      `  Package size: ${ chalk.green(formatBytes(size)) }\n` +
+      `  Size limit:   ${ formatBytes(limit) }\n` +
+      `${ note }\n`)
+  } else if (limit) {
+    process.stdout.write(
+      `  ${ chalk.red('Package was exceeded the size limit') }\n` +
+      `  Package size: ${ chalk.red(formatBytes(size)) }\n` +
+      `  Size limit:   ${ formatBytes(limit) }\n` +
+      `${ note }\n`)
+    process.exit(3)
+  } else {
+    process.stdout.write(
+      `  Package size: ${ formatBytes(size) }\n` +
+      `${ note }\n`)
+  }
 }).catch(e => {
   if (e.sizeLimit) {
     showError(e.message)
