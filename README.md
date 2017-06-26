@@ -25,6 +25,13 @@ $ ./node_modules/bin/size-limit
 
 ```
 
+If project size looks to big run
+[Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer):
+
+```sh
+./node_modules/bin/size-limit --why
+```
+
 Add few bytes to current size to get a limit.
 Add `npm run` script to `package.json`:
 

@@ -8,6 +8,7 @@
     "Versioning",
     "Travis",
     "CI",
-    "JS"
+    "JS",
+    "Webpack"
   ]
 }
