@@ -16,6 +16,8 @@ const argv = yargs
           'from package.json')
   .locale('en')
   .version()
+  .alias('help', 'h')
+  .alias('version', 'v')
   .help()
   .argv
 
