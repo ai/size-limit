@@ -8,8 +8,11 @@ add very big dependency, Size Limit will throw a error.
 ```
 $ npm run size
 
+> size-limit 8KB
+
+  Package was exceeded the size limit
   Package size: 8.46 KB
-  Size limit:   9 KB
+  Size limit:   8 KB
   With all dependencies, minifier and gzipped
 
 ```
