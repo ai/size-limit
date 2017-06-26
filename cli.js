@@ -77,7 +77,10 @@ getFiles.then(files => {
   const format = bytes
     .format(size, { unitSeparator: ' ' })
     .replace('k', 'K')
-  process.stdout.write(`${ format }\n`)
+  process.stdout.write(`\n` +
+    `  Package size: ${ chalk.bold(format) }\n` +
+    `  ${ chalk.gray('With all dependencies, minifier and gzipped') }\n` +
+    `\n`)
 }).catch(e => {
   if (e.sizeLimit) {
     showError(e.message)

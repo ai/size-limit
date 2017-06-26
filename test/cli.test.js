@@ -40,35 +40,38 @@ it('returns version', () => {
 it('returns size', () => {
   return run(['test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toEqual('0 B\n')
+    expect(result.out).toEqual('\n' +
+      '  Package size: 0 B\n' +
+      '  With all dependencies, minifier and gzipped\n' +
+      '\n')
   })
 })
 
 it('uses different units', () => {
   return run(['test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toEqual('1.86 KB\n')
+    expect(result.out).toContain('1.86 KB\n')
   })
 })
 
 it('supports absolute path', () => {
   return run([path.join(__dirname, 'fixtures/empty.js')]).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toEqual('0 B\n')
+    expect(result.out).toContain('0 B\n')
   })
 })
 
 it('reads package.json', () => {
   return run([], { cwd: fixture('main/dir') }).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toEqual('22 B\n')
+    expect(result.out).toContain('22 B\n')
   })
 })
 
 it('uses index.js by default', () => {
   return run([], { cwd: fixture('index/dir') }).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toEqual('20 B\n')
+    expect(result.out).toContain('20 B\n')
   })
 })
 
