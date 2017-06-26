@@ -58,7 +58,7 @@ function runWebpack (config) {
  * Return size of project files with all dependencies and after UglifyJS
  * and gzip.
  *
- * @param {...string} file Files to get size.
+ * @param {string|string[]} files Files to get size.
  *
  * @return {Promise} Promise with size of files
  *
@@ -68,14 +68,15 @@ function runWebpack (config) {
  * const index = path.join(__dirname, 'index.js')
  * const extra = path.join(__dirname, 'extra.js')
  *
- * getSize(index, extra).then(size => {
+ * getSize([index, extra]).then(size => {
  *   if ( > 1 * 1024 * 1024) {
  *     console.error('Project become bigger than 1MB')
  *   }
  * })
  */
-function getSize () {
-  const files = Array.prototype.slice.call(arguments, 0)
+function getSize (files) {
+  if (typeof files === 'string') files = [files]
+
   return runWebpack(getConfig(files)).then(stats => {
     if (stats.hasErrors()) {
       throw new Error(stats.toString('errors-only'))
