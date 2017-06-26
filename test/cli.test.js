@@ -99,6 +99,13 @@ it('shows limit', () => {
   })
 })
 
+it('shows small K', () => {
+  return run(['2kB', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2 KB\n')
+  })
+})
+
 it('allows space in limit', () => {
   return run(['2', 'KB', 'test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
@@ -115,6 +122,20 @@ it('allows fractional in limit', () => {
 
 it('allows unitless limit', () => {
   return run(['2048', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2 KB\n')
+  })
+})
+
+it('allows bytes', () => {
+  return run(['2048B', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Size limit:   2 KB\n')
+  })
+})
+
+it('allows space and bytes', () => {
+  return run(['2048', 'B', 'test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })

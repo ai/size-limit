@@ -73,9 +73,9 @@ const args = argv['_'].slice(0)
 let getFiles
 let limit = false
 
-if (/^\d+(\.\d+|)$/.test(args[0]) && /^[kKMGT]B$/.test(args[1])) {
+if (/^\d+(\.\d+|)$/.test(args[0]) && /^[kKMGT]?B$/.test(args[1])) {
   limit = bytes.parse(`${ args.shift() } ${ args.shift() }`)
-} else if (/^\d+(\.\d+|)?([kKMGT]B)?$/.test(args[0])) {
+} else if (/^\d+(\.\d+|)?([kKMGT]B|B)?$/.test(args[0])) {
   limit = bytes.parse(args.shift())
 }
 
