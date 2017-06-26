@@ -3,6 +3,7 @@
 
 const yargs = require('yargs')
 const chalk = require('chalk')
+const bytes = require('bytes')
 const path = require('path')
 const fs = require('fs')
 
@@ -73,7 +74,10 @@ getFiles.then(files => {
   }
   return getSize.apply({ }, files)
 }).then(size => {
-  process.stdout.write(`${ size }\n`)
+  const format = bytes
+    .format(size, { unitSeparator: ' ' })
+    .replace('k', 'K')
+  process.stdout.write(`${ format }\n`)
 }).catch(e => {
   if (e.sizeLimit) {
     showError(e.message)
