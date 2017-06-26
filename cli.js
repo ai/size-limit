@@ -122,7 +122,7 @@ getFiles.then(files => {
       `${ note }\n`)
   } else if (limit) {
     process.stdout.write(
-      `  ${ chalk.red('Package was exceeded the size limit') }\n` +
+      `  ${ chalk.red('Package has exceeded the size limit') }\n` +
       `  Package size: ${ chalk.red(formatBytes(size)) }\n` +
       `  Size limit:   ${ formatBytes(limit) }\n` +
       `${ note }\n`)
