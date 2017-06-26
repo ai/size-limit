@@ -10,5 +10,6 @@ yarn.lock
 test/
 coverage/
 .travis.yml
+report.html
 
 .yaspellerrc
