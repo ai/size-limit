@@ -3,7 +3,7 @@
 Show how many kilobytes your JS library will be add to users bundle size.
 
 You can add this tool to Travis CI and set limit — if you will accidentally
-add very big dependency, `size-limit` will throw a error.
+add very big dependency, Size Limit will throw a error.
 
 <a href="https://evilmartians.com/?utm_source=size-limit">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
