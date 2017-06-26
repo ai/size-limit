@@ -16,6 +16,7 @@
     "gzip-size": "^3.0.0",
     "memory-fs": "^0.4.1",
     "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "^2.8.2",
     "yargs": "^8.0.2"
   },
   "devDependencies": {

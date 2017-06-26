@@ -11,6 +11,13 @@ const getSize = require('.')
 
 const argv = yargs
   .usage('$0 [LIMIT] [FILES]')
+  .boolean('why')
+  .describe('why', 'Show package content')
+  .version()
+  .help()
+  .alias('why', 'w')
+  .alias('help', 'h')
+  .alias('version', 'v')
   .epilog('Examples:\n' +
           '  See current project size:\n' +
           '    $0\n' +
@@ -19,14 +26,13 @@ const argv = yargs
           '  Show error if project become bigger:\n' +
           '    $0 10KB\n' +
           '    $0 10KB ./index.js ./extra.js\n' +
+          '  Show package content in browser:\n' +
+          '    $0 --why\n' +
+          '    $0 --why ./index.js ./extra.js\n' +
           '\n' +
           'If you miss files, size-limit will take main file ' +
           'from package.json')
   .locale('en')
-  .version()
-  .alias('help', 'h')
-  .alias('version', 'v')
-  .help()
   .argv
 
 function isRoot (dir) {
@@ -98,7 +104,13 @@ getFiles.then(files => {
     error.sizeLimit = true
     throw error
   }
-  return getSize.apply({ }, files)
+  if (argv.why) {
+    return getSize(files, {
+      analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
+    })
+  } else {
+    return getSize(files)
+  }
 }).then(size => {
   const note = chalk.gray('  With all dependencies, minifier and gzipped\n')
 

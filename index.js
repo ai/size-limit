@@ -1,5 +1,6 @@
 'use strict'
 
+const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
 const gzipSize = require('gzip-size')
 const webpack = require('webpack')
@@ -17,8 +18,8 @@ function promisify (callback) {
   })
 }
 
-function getConfig (files) {
-  return {
+function getConfig (files, analyzer) {
+  const config = {
     entry: files,
     output: {
       filename: 'bundle.js'
@@ -44,6 +45,16 @@ function getConfig (files) {
       })
     ]
   }
+
+  if (analyzer) {
+    config.plugins.push(new Analyzer({
+      openAnalyzer: analyzer === 'server',
+      analyzerMode: analyzer,
+      defaultSizes: 'gzip'
+    }))
+  }
+
+  return config
 }
 
 function runWebpack (config) {
@@ -59,6 +70,9 @@ function runWebpack (config) {
  * and gzip.
  *
  * @param {string|string[]} files Files to get size.
+ * @param {object} [opts] Extra options.
+ * @param {"server"|"static"|false} [opts.analyzer] Show package content
+ *                                                  in browser.
  *
  * @return {Promise} Promise with size of files
  *
@@ -74,16 +88,17 @@ function runWebpack (config) {
  *   }
  * })
  */
-function getSize (files) {
+function getSize (files, opts) {
   if (typeof files === 'string') files = [files]
+  if (!opts) opts = { }
 
-  return runWebpack(getConfig(files)).then(stats => {
+  return runWebpack(getConfig(files, opts.analyzer)).then(stats => {
     if (stats.hasErrors()) {
       throw new Error(stats.toString('errors-only'))
     }
 
-    const opts = stats.compilation.outputOptions
-    const file = path.join(opts.path, opts.filename)
+    const out = stats.compilation.outputOptions
+    const file = path.join(out.path, out.filename)
     const fs = stats.compilation.compiler.outputFileSystem
 
     return promisify(done => fs.readFile(file, 'utf8', done))

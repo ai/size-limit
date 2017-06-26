@@ -126,3 +126,10 @@ it('checks limits', () => {
     expect(result.out).toContain('exceeded the size limit')
   })
 })
+
+it('shows analyzer', () => {
+  return run(['--why', 'test/fixtures/big.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('Webpack Bundle Analyzer')
+  })
+})
