@@ -8,6 +8,13 @@ function fixture (file) {
 }
 
 function run (args, options) {
+  if (!options) options = { }
+  if (!options.env) {
+    options.env = {
+      TRAVIS_JOB_NUMBER: '1.1',
+      APPVEYOR_JOB_NUMBER: '1'
+    }
+  }
   const cli = spawn(path.join(__dirname, '../cli.js'), args, options)
   return new Promise(resolve => {
     let out = ''
@@ -159,5 +166,19 @@ it('uses Babili', () => {
   return run(['--babili', 'test/fixtures/es2016.js']).then(result => {
     expect(result.out).toContain('39 B\n')
     expect(result.code).toEqual(0)
+  })
+})
+
+it('runs only on first job', () => {
+  const travis = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
+  const appveyor = { APPVEYOR: '1', APPVEYOR_JOB_NUMBER: '2' }
+  return Promise.all([
+    run([], { env: travis }),
+    run([], { env: appveyor })
+  ]).then(results => {
+    for (const result of results) {
+      expect(result.out).toContain('first CI job')
+      expect(result.code).toEqual(0)
+    }
   })
 })
