@@ -3,8 +3,6 @@
 const spawn = require('cross-spawn')
 const path = require('path')
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
-
 function fixture (file) {
   return path.join(__dirname, 'fixtures', file)
 }
@@ -177,14 +175,6 @@ it('uses Babili', () => {
 
 it('runs only on first job in Travis CI', () => {
   const env = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
-  return run([], { }, env).then(result => {
-    expect(result.out).toContain('first CI job')
-    expect(result.code).toEqual(0)
-  })
-})
-
-it('runs only on first job in AppVeyor', () => {
-  const env = { APPVEYOR: '1', APPVEYOR_JOB_NUMBER: '2' }
   return run([], { }, env).then(result => {
     expect(result.out).toContain('first CI job')
     expect(result.code).toEqual(0)
