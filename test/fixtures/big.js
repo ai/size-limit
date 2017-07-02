@@ -1,5 +1,5 @@
 'use strict'
 
-const bytes = require('bytes')
+const chalk = require('chalk')
 
-bytes.format(300)
+chalk.green('ok')

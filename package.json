@@ -11,11 +11,12 @@
   "repository": "ai/size-limit",
   "bin": "cli.js",
   "dependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.5.2",
     "bytes": "^2.5.0",
     "chalk": "^2.0.1",
     "gzip-size": "^3.0.0",
     "memory-fs": "^0.4.1",
-    "uglify-es-webpack-plugin": "^0.0.2",
     "webpack": "^3.0.0",
     "webpack-bundle-analyzer": "^2.8.2",
     "yargs": "^8.0.2"

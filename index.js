@@ -1,7 +1,6 @@
 'use strict'
 
 const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const UglifyEs = require('uglify-es-webpack-plugin')
 const MemoryFS = require('memory-fs')
 const gzipSize = require('gzip-size')
 const webpack = require('webpack')
@@ -25,11 +24,24 @@ function getConfig (files, analyzer) {
     output: {
       filename: 'bundle.js'
     },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['env']
+            }
+          }
+        }
+      ]
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      new UglifyEs({
+      new webpack.optimize.UglifyJsPlugin({
         sourceMap: false,
         mangle: {
           screw_ie8: true
@@ -106,7 +118,7 @@ function getSize (files, opts) {
   }).then(content => {
     return promisify(done => gzipSize(content, done))
   }).then(size => {
-    return size - 293
+    return size - 302
   })
 }
 

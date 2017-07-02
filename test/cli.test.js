@@ -50,7 +50,7 @@ it('returns size', () => {
 it('uses different units', () => {
   return run(['test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('1.85 KB\n')
+    expect(result.out).toContain('8.02 KB\n')
   })
 })
 
@@ -64,14 +64,14 @@ it('supports absolute path', () => {
 it('reads package.json', () => {
   return run([], { cwd: fixture('main/dir') }).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('22 B\n')
+    expect(result.out).toContain('13 B\n')
   })
 })
 
 it('uses index.js by default', () => {
   return run([], { cwd: fixture('index/dir') }).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('20 B\n')
+    expect(result.out).toContain('11 B\n')
   })
 })
 
@@ -93,63 +93,63 @@ it('shows package.json errors', () => {
 })
 
 it('shows limit', () => {
-  return run(['2KB', 'test/fixtures/big.js']).then(result => {
+  return run(['2KB', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })
 })
 
 it('shows small K', () => {
-  return run(['2kB', 'test/fixtures/big.js']).then(result => {
+  return run(['2kB', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })
 })
 
 it('allows space in limit', () => {
-  return run(['2', 'KB', 'test/fixtures/big.js']).then(result => {
+  return run(['2', 'KB', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })
 })
 
 it('allows fractional in limit', () => {
-  return run(['2.20KB', 'test/fixtures/big.js']).then(result => {
+  return run(['2.20KB', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2.2 KB\n')
   })
 })
 
 it('allows unitless limit', () => {
-  return run(['2048', 'test/fixtures/big.js']).then(result => {
+  return run(['2048', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })
 })
 
 it('allows bytes', () => {
-  return run(['2048B', 'test/fixtures/big.js']).then(result => {
+  return run(['2048B', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })
 })
 
 it('allows space and bytes', () => {
-  return run(['2048', 'B', 'test/fixtures/big.js']).then(result => {
+  return run(['2048', 'B', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Size limit:   2 KB\n')
   })
 })
 
 it('checks limits', () => {
-  return run(['1KB', 'test/fixtures/big.js']).then(result => {
+  return run(['7KB', 'test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(3)
     expect(result.out).toContain('exceeded the size limit')
   })
 })
 
 it('shows analyzer', () => {
-  return run(['--why', 'test/fixtures/big.js']).then(result => {
+  return run(['--why', 'test/fixtures/empty.js']).then(result => {
     expect(result.code).toEqual(0)
     expect(result.out).toContain('Webpack Bundle Analyzer')
   })
