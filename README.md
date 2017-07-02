@@ -94,6 +94,7 @@ getSize([index, extra]).then(size => {
 
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [PostCSS](https://github.com/postcss/postcss)
+* [JSS](https://github.com/cssinjs/jss)
 * [Logux](https://github.com/logux)
 
 ## Comparison with `bundlesize`
