@@ -90,6 +90,12 @@ getSize([index, extra]).then(size => {
 })
 ```
 
+## Who Uses Size Limit
+
+* [Autoprefixer](https://github.com/postcss/autoprefixer)
+* [PostCSS](https://github.com/postcss/postcss)
+* [Logux](https://github.com/logux)
+
 ## Comparison with `bundlesize`
 
 Size Limit is a full-featured library that helps you to get into the detail

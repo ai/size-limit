@@ -18,6 +18,9 @@
     "Markin",
     "Babili",
     "minifier",
-    "ES2016"
+    "ES2016",
+    "Autoprefixer",
+    "PostCSS",
+    "Logux"
   ]
 }
