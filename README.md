@@ -110,4 +110,6 @@ _what_ and _why_ causes the bloat.
 3. You don’t need to specify all your files. Because Size Limit uses webpack
    it will build bundle based on `require()` calls.
 4. It shows result after UglifyJS (or Babili for ES2016+ projects).
-5. Size Limit has JS API, tests and works on Node.js 4.
+5. Size Limit runs only on first CI job, so it is more respectful
+   to CI resources.
+6. Size Limit has JS API, tests and works on Node.js 4.
