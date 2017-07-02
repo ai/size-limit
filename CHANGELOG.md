@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.3
+* Run only on first CI job to save CI resources.
+
 ## 0.2
 * Add `--babili` argument.
 * Use Chalk 2.
