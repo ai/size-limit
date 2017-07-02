@@ -24,19 +24,6 @@ function getConfig (files, analyzer) {
     output: {
       filename: 'bundle.js'
     },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['env']
-            }
-          }
-        }
-      ]
-    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
@@ -118,7 +105,7 @@ function getSize (files, opts) {
   }).then(content => {
     return promisify(done => gzipSize(content, done))
   }).then(size => {
-    return size - 302
+    return size - 293
   })
 }
 

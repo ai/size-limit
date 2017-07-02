@@ -50,7 +50,7 @@ it('returns size', () => {
 it('uses different units', () => {
   return run(['test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('2.65 KB\n')
+    expect(result.out).toContain('2.38 KB\n')
   })
 })
 
@@ -64,14 +64,14 @@ it('supports absolute path', () => {
 it('reads package.json', () => {
   return run([], { cwd: fixture('main/dir') }).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('13 B\n')
+    expect(result.out).toContain('22 B\n')
   })
 })
 
 it('uses index.js by default', () => {
   return run([], { cwd: fixture('index/dir') }).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('11 B\n')
+    expect(result.out).toContain('20 B\n')
   })
 })
 
