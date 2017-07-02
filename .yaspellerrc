@@ -23,6 +23,7 @@
     "PostCSS",
     "Logux",
     "webpack",
-    "polyfills"
+    "polyfills",
+    "js"
   ]
 }
