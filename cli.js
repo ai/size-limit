@@ -112,7 +112,7 @@ getFiles.then(files => {
     return getSize(files)
   }
 }).then(size => {
-  const note = chalk.gray('  With all dependencies, minifier and gzipped\n')
+  const note = chalk.gray('  With all dependencies, minified and gzipped\n')
 
   process.stdout.write(`\n`)
   if (limit && size <= limit) {
