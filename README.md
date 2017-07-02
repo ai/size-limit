@@ -78,3 +78,10 @@ getSize([index, extra]).then(size => {
   }
 })
 ```
+
+## Difference with bundlesize
+
+1. We have `--why` mode to run Webpack Bundle Analyzer.
+2. `size-limit` doesn’t use any external API and works offline.
+3. Setting up is more easy, `size-limit` runs on your CI and doesn’t need to
+   enable any hooks.

@@ -12,6 +12,7 @@
     "Webpack",
     "CLI",
     "Marais",
-    "Rossouw"
+    "Rossouw",
+    "bundlesize"
   ]
 }
