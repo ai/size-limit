@@ -9,7 +9,8 @@ You can add Size Limit to your continuous integration service
 add a massive dependency, Size Limit will throw an error.
 
 <p align="center">
-  <img src="./example.png" alt="Size Limit example" width="654" height="450">
+  <img src="./screenshots/example.png" alt="Size Limit example"
+       width="654" height="450">
 </p>
 
 <p align="center">
@@ -46,7 +47,8 @@ for analysis:
 ```
 
 <p>
-  <img src="./why.png" alt="Bundle Analyzer example" width="650" height="335">
+  <img src="./screenshots/why.png" alt="Bundle Analyzer example"
+       width="650" height="335">
 </p>
 
 Now, let's set the limit. Determine the current size of your library,
