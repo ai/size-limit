@@ -7,13 +7,17 @@ function fixture (file) {
   return path.join(__dirname, 'fixtures', file)
 }
 
-function run (args, options) {
+function run (args, options, env) {
   if (!options) options = { }
-  if (!options.env) {
-    options.env = {
-      TRAVIS_JOB_NUMBER: '1.1',
-      APPVEYOR_JOB_NUMBER: '1'
-    }
+  options.env = {
+    TRAVIS_JOB_NUMBER: '1.1',
+    APPVEYOR_JOB_NUMBER: '1'
+  }
+  for (const i in process.env) {
+    if (!options.env[i]) options.env[i] = process.env[i]
+  }
+  for (const i in env) {
+    options.env[i] = env[i]
   }
   const cli = spawn(path.join(__dirname, '../cli.js'), args, options)
   return new Promise(resolve => {
@@ -169,16 +173,18 @@ it('uses Babili', () => {
   })
 })
 
-it('runs only on first job', () => {
-  const travis = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
-  const appveyor = { APPVEYOR: '1', APPVEYOR_JOB_NUMBER: '2' }
-  return Promise.all([
-    run([], { env: travis }),
-    run([], { env: appveyor })
-  ]).then(results => {
-    for (const result of results) {
-      expect(result.out).toContain('first CI job')
-      expect(result.code).toEqual(0)
-    }
+it('runs only on first job in Travis CI', () => {
+  const env = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
+  return run([], { }, env).then(result => {
+    expect(result.out).toContain('first CI job')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('runs only on first job in AppVeyor', () => {
+  const env = { APPVEYOR: '1', APPVEYOR_JOB_NUMBER: '2' }
+  return run([], { }, env).then(result => {
+    expect(result.out).toContain('first CI job')
+    expect(result.code).toEqual(0)
   })
 })
