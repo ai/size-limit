@@ -45,7 +45,7 @@ for analysis:
 ./node_modules/bin/size-limit --why
 ```
 
-<p align="center">
+<p>
   <img src="./why.png" alt="Bundle Analyzer example" width="650" height="335">
 </p>
 
