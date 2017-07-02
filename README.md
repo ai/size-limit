@@ -100,3 +100,4 @@ In short,
 1. Size Limit has the `--why` mode to run Webpack Bundle Analyzer — this way,
    you can see what went wrong in a nice graphical representation.
 2. Size Limit doesn’t use any external APIs and works offline.
+3. In addition to UglifyJS, you can use Babili minifier for ES2016+ projects.
