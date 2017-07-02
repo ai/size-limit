@@ -3,6 +3,8 @@
 const spawn = require('cross-spawn')
 const path = require('path')
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
+
 function fixture (file) {
   return path.join(__dirname, 'fixtures', file)
 }

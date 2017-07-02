@@ -47,7 +47,10 @@
     "node": ">=4.0.0"
   },
   "eslintConfig": {
-    "extends": "eslint-config-logux/node4"
+    "extends": "eslint-config-logux/node4",
+    "globals": {
+      "jasmine": true
+    }
   },
   "lint-staged": {
     "*.md": "yaspeller-ci",
