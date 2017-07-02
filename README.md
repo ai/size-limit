@@ -1,12 +1,12 @@
 # Size Limit
 
 Size Limit is a tool to prevent JavaScript libraries bloat.
-With it, you know exactly for how many kilobytes your JavaScript
-library increases the user bundle.
+With it, you know exactly for how many kilobytes your JS library
+increases the user bundle.
 
 You can add Size Limit to your continuous integration service
 (such as Travis CI) and set the limit. If you accidentally
-add a massive dependency, Size Limit will throw an error.
+add a massive dependency, Size Limit will throw an error.
 
 <p align="center">
   <img src="./example.png" alt="Size Limit example" width="654" height="450">
@@ -92,5 +92,5 @@ of _what_ and _why_ causes the bloat; it also works offline.
 In short,
 
 1. Size Limit has the `--why` mode to run Webpack Bundle Analyzer — this way,
-   you can see what went wrong in a nice graphical representation.
+   you can see what went wrong in a nice graphical representation.
 2. Size Limit doesn’t use any external APIs and works offline.
