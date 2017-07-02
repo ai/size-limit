@@ -50,7 +50,7 @@ it('returns size', () => {
 it('uses different units', () => {
   return run(['test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('8.02 KB\n')
+    expect(result.out).toContain('2.65 KB\n')
   })
 })
 
@@ -142,7 +142,7 @@ it('allows space and bytes', () => {
 })
 
 it('checks limits', () => {
-  return run(['7KB', 'test/fixtures/big.js']).then(result => {
+  return run(['2KB', 'test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(3)
     expect(result.out).toContain('exceeded the size limit')
   })
