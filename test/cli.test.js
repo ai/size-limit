@@ -42,7 +42,7 @@ it('returns size', () => {
     expect(result.code).toEqual(0)
     expect(result.out).toEqual('\n' +
       '  Package size: 0 B\n' +
-      '  With all dependencies, minifier and gzipped\n' +
+      '  With all dependencies, minified and gzipped\n' +
       '\n')
   })
 })
