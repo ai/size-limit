@@ -50,7 +50,7 @@ it('returns size', () => {
 it('uses different units', () => {
   return run(['test/fixtures/big.js']).then(result => {
     expect(result.code).toEqual(0)
-    expect(result.out).toContain('1.86 KB\n')
+    expect(result.out).toContain('1.85 KB\n')
   })
 })
 
