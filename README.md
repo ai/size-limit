@@ -1,9 +1,12 @@
 # Size Limit
 
-Show how many kilobytes your JS library will add to a user bundle.
+Size Limit is a tool to prevent JavaScript libraries bloat.
+With it, you know exactly for how many kilobytes your JavaScript
+library increases the user bundle.
 
-You can add this tool to Travis CI and set the limit. If you accidentally
-add a very big dependency, Size Limit will throw an error.
+You can add Size Limit to your continuous integration service
+(such as Travis CI) and set the limit. If you accidentally
+add a massive dependency, Size Limit will throw an error.
 
 <p align="center">
   <img src="./example.png" alt="Size Limit example" width="654" height="450">
@@ -18,31 +21,33 @@ add a very big dependency, Size Limit will throw an error.
 
 ## Usage
 
-Install `size-limit`:
+First, install `size-limit`:
 
 ```sh
 $ npm install --save-dev size-limit
 ```
 
-Get current project size:
+Here's how you can get the size for your current project:
 
 ```sh
 $ ./node_modules/bin/size-limit
 
   Package size: 8.46 KB
-  With all dependencies, minifier and gzipped
+  With all dependencies, minified and gzipped
 
 ```
 
-If project size looks to big run
-[Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer):
+If your project size starts to look bloated,
+run [Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
+for analysis:
 
 ```sh
 ./node_modules/bin/size-limit --why
 ```
 
-Add some bytes to current size to get the limit
-by adding `npm run` script to `package.json`:
+Now, let's set the limit. Determine the current size of your library,
+add just a little bit (a kilobyte, maybe) and use that as a limit
+when adding the script to `package.json`:
 
 ```diff json
   "scripts": {
@@ -51,7 +56,7 @@ by adding `npm run` script to `package.json`:
   }
 ```
 
-Add `size` script to tests:
+Add the `size` script to your test suite:
 
 ```diff js
   "scripts": {
@@ -61,10 +66,10 @@ Add `size` script to tests:
   }
 ```
 
-Don’t forget to add [Travis CI](https://github.com/dwyl/learn-travis)
-to your project.
+If you don't have a continuous integration service running, don’t forget
+to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
-## JS API
+## JavaScript API
 
 ```js
 const getSize = require('size-limit')
@@ -74,14 +79,18 @@ const extra = path.join(__dirname, 'extra.js')
 
 getSize([index, extra]).then(size => {
   if (size > 1 * 1024 * 1024) {
-    console.error('Project become bigger than 1MB')
+    console.error('Project is now larger than 1MB!')
   }
 })
 ```
 
-## Difference with bundlesize
+## Comparison with `bundlesize`
 
-1. We have `--why` mode to run Webpack Bundle Analyzer.
-2. `size-limit` doesn’t use any external API and works offline.
-3. Setting up is more easy, `size-limit` runs on your CI and doesn’t need to
-   enable any hooks.
+Size Limit is a full-featured library that helps you to get into the detail
+of _what_ and _why_ causes the bloat; it also works offline.
+
+In short,
+
+1. Size Limit has the `--why` mode to run Webpack Bundle Analyzer — this way,
+   you can see what went wrong in a nice graphical representation.
+2. Size Limit doesn’t use any external APIs and works offline.
