@@ -37,3 +37,9 @@ it('supports Babili', () => {
     expect(size).toEqual(39)
   })
 })
+
+it('removes non-production code', () => {
+  return getSize(fixture('production')).then(size => {
+    expect(size).toEqual(9)
+  })
+})
