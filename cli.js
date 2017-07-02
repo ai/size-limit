@@ -11,11 +11,17 @@ const getSize = require('.')
 
 const argv = yargs
   .usage('$0 [LIMIT] [FILES]')
-  .boolean('why')
-  .describe('why', 'Show package content')
+  .option('why', {
+    alias: 'w',
+    describe: 'Show package content',
+    type: 'boolean'
+  })
+  .option('babili', {
+    describe: 'Babili minifier for ES2016+ projects',
+    type: 'boolean'
+  })
   .version()
   .help()
-  .alias('why', 'w')
   .alias('help', 'h')
   .alias('version', 'v')
   .epilog('Examples:\n' +
@@ -106,10 +112,11 @@ getFiles.then(files => {
   }
   if (argv.why) {
     return getSize(files, {
-      analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
+      analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
+      minifier: argv.babili ? 'babili' : 'uglifyjs'
     })
   } else {
-    return getSize(files)
+    return getSize(files, { minifier: argv.babili ? 'babili' : 'uglifyjs' })
   }
 }).then(size => {
   const note = chalk.gray('  With all dependencies, minified and gzipped\n')

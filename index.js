@@ -4,6 +4,7 @@ const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
 const gzipSize = require('gzip-size')
 const webpack = require('webpack')
+const Babili = require('babili-webpack-plugin')
 const path = require('path')
 
 function promisify (callback) {
@@ -18,7 +19,7 @@ function promisify (callback) {
   })
 }
 
-function getConfig (files, analyzer) {
+function getConfig (files, opts) {
   const config = {
     entry: files,
     output: {
@@ -27,29 +28,34 @@ function getConfig (files, analyzer) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        sourceMap: false,
-        mangle: {
-          screw_ie8: true
-        },
-        compress: {
-          screw_ie8: true
-        },
-        compressor: {
-          warnings: false
-        },
-        output: {
-          comments: false
-        }
       })
     ]
   }
 
-  if (analyzer) {
+  if (opts.minifier === 'babili') {
+    config.plugins.push(new Babili())
+  } else {
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false,
+      mangle: {
+        screw_ie8: true
+      },
+      compress: {
+        screw_ie8: true
+      },
+      compressor: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      }
+    }))
+  }
+
+  if (opts.analyzer) {
     config.plugins.push(new Analyzer({
-      openAnalyzer: analyzer === 'server',
-      analyzerMode: analyzer,
+      openAnalyzer: opts.analyzer === 'server',
+      analyzerMode: opts.analyzer,
       defaultSizes: 'gzip'
     }))
   }
@@ -73,6 +79,7 @@ function runWebpack (config) {
  * @param {object} [opts] Extra options.
  * @param {"server"|"static"|false} [opts.analyzer] Show package content
  *                                                  in browser.
+ * @param {"uglifyjs"|"babili"} [opts.minifier="uglifyjs"] Minifier.
  *
  * @return {Promise} Promise with size of files
  *
@@ -92,7 +99,7 @@ function getSize (files, opts) {
   if (typeof files === 'string') files = [files]
   if (!opts) opts = { }
 
-  return runWebpack(getConfig(files, opts.analyzer)).then(stats => {
+  return runWebpack(getConfig(files, opts)).then(stats => {
     if (stats.hasErrors()) {
       throw new Error(stats.toString('errors-only'))
     }

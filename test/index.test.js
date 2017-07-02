@@ -31,3 +31,9 @@ it('returns error', () => {
     expect(e.message).toContain('Can\'t resolve')
   })
 })
+
+it('supports Babili', () => {
+  return getSize(fixture('es2016'), { minifier: 'babili' }).then(size => {
+    expect(size).toEqual(39)
+  })
+})

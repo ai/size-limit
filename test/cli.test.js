@@ -154,3 +154,10 @@ it('shows analyzer', () => {
     expect(result.out).toContain('Webpack Bundle Analyzer')
   })
 })
+
+it('uses Babili', () => {
+  return run(['--babili', 'test/fixtures/es2016.js']).then(result => {
+    expect(result.code).toEqual(0)
+    expect(result.out).toContain('39 B\n')
+  })
+})

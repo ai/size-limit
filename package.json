@@ -11,6 +11,7 @@
   "repository": "ai/size-limit",
   "bin": "cli.js",
   "dependencies": {
+    "babili-webpack-plugin": "^0.1.2",
     "bytes": "^2.5.0",
     "chalk": "^2.0.1",
     "gzip-size": "^3.0.0",
