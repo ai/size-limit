@@ -21,6 +21,8 @@
     "ES2016",
     "Autoprefixer",
     "PostCSS",
-    "Logux"
+    "Logux",
+    "webpack",
+    "polyfills"
   ]
 }

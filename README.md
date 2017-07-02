@@ -99,12 +99,14 @@ getSize([index, extra]).then(size => {
 
 ## Comparison with `bundlesize`
 
-Size Limit is a full-featured library that helps you to get into the detail
-of _what_ and _why_ causes the bloat; it also works offline.
-
-In short,
+Main difference between Size Limit and `bundlesize`, that Size Limit uses
+webpack to build bundle. It has more accurate result and can show you
+_what_ and _why_ causes the bloat.
 
 1. Size Limit has the `--why` mode to run Webpack Bundle Analyzer — this way,
    you can see what went wrong in a nice graphical representation.
-2. Size Limit doesn’t use any external APIs and works offline.
-3. In addition to UglifyJS, you can use Babili minifier for ES2016+ projects.
+2. It uses webpack to more accurate result. For instance, it will show
+   `process` and other polyfills added by webpack.
+3. You don’t need to specify all your files. Because Size Limit uses webpack
+   it will build bundle based on `require()` calls.
+4. It shows result after UglifyJS (or Babili for ES2016+ projects).
