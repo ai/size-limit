@@ -45,6 +45,10 @@ for analysis:
 ./node_modules/bin/size-limit --why
 ```
 
+<p align="center">
+  <img src="./why.png" alt="Bundle Analyzer example" width="650" height="335">
+</p>
+
 Now, let's set the limit. Determine the current size of your library,
 add just a little bit (a kilobyte, maybe) and use that as a limit
 when adding the script to `package.json`:

@@ -13,4 +13,4 @@ coverage/
 report.html
 
 .yaspellerrc
-example.png
+*.png
