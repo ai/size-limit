@@ -16,14 +16,11 @@
     "bundlesize",
     "Yaroslav",
     "Markin",
-    "Babili",
-    "minifier",
-    "ES2016",
     "Autoprefixer",
     "PostCSS",
     "Logux",
     "webpack",
-    "polyfills",
+    "polyfill",
     "js"
   ]
 }

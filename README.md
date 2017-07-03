@@ -105,11 +105,9 @@ _what_ and _why_ causes the bloat.
 
 1. Size Limit has the `--why` mode to run Webpack Bundle Analyzer — this way,
    you can see what went wrong in a nice graphical representation.
-2. It uses webpack to more accurate result. For instance, it will show
-   `process` and other polyfills added by webpack.
-3. You don’t need to specify all your files. Because Size Limit uses webpack
-   it will build bundle based on `require()` calls.
-4. It shows result after UglifyJS (or Babili for ES2016+ projects).
-5. Size Limit runs only on first CI job, so it is more respectful
+2. Instead of bundlesize, Size Limit prevents the most popular source
+   of libraries bloat — unexpected huge dependency.
+3. Also Size Limit prevents increasing library size because of wrong `process`
+   or `path` usage, when webpack will add big unnecessary polyfill.
+4. Size Limit runs only on first CI job, so it is more respectful
    to CI resources.
-6. Size Limit has JS API, tests and works on Node.js 4.
