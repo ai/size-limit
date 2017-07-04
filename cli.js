@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict'
 
+const readPkg = require('read-pkg-up')
 const yargs = require('yargs')
 const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
-const fs = require('fs')
 
 const getSize = require('.')
 
@@ -41,14 +41,6 @@ const argv = yargs
   .locale('en')
   .argv
 
-function isRoot (dir) {
-  if (process.platform === 'win32') {
-    return /^\w:[\\/]*$/.test(dir)
-  } else {
-    return dir === '/'
-  }
-}
-
 function showError (msg) {
   process.stderr.write(chalk.red(`${ msg }\n`))
 }
@@ -58,21 +50,6 @@ function formatBytes (size) {
     .format(size, { unitSeparator: ' ' })
     .replace('k', 'K')
   return chalk.bold(format)
-}
-
-function findPackage (dir) {
-  if (isRoot(dir)) return Promise.resolve(false)
-  const file = path.join(dir, 'package.json')
-
-  return new Promise(resolve => {
-    fs.readFile(file, (err, data) => {
-      if (err) {
-        resolve(findPackage(path.dirname(dir)))
-      } else {
-        resolve({ package: JSON.parse(data), dir })
-      }
-    })
-  })
 }
 
 function isFirstJob () {
@@ -111,9 +88,10 @@ if (args.length > 0) {
     }
   }))
 } else {
-  getFiles = findPackage(process.cwd()).then(result => {
-    if (result) {
-      return [path.join(result.dir, result.package.main || 'index.js')]
+  getFiles = readPkg().then(result => {
+    if (result.pkg) {
+      const basepath = path.dirname(result.path)
+      return [path.join(basepath, result.pkg.main || 'index.js')]
     } else {
       return []
     }
