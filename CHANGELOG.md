@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.3.1
+* Use `read-pkg-up` to find `package.json`.
+* Use `ci-job-number` to detect CI job number.
+
 ## 0.3
 * Run only on first CI job to save CI resources.
 
