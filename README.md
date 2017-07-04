@@ -13,6 +13,22 @@ add a massive dependency, Size Limit will throw an error.
        width="654" height="450">
 </p>
 
+Size Limit could tell you not only library size. With `--why` argument it can
+tell you *why* your library has this size and show real cost of all your
+internal dependencies.
+
+<p align="center">
+  <p>
+    <img src="./screenshots/why.png" alt="Bundle Analyzer example"
+         width="650" height="335">
+  </p>
+</p>
+
+To be really accurate, Size Limit create empty webpack project in memory.
+Then it adds your library as dependency to this project and calculate
+real cost of your libraries including all dependencies and webpack’s polyfills
+for `process`, etc.
+
 <p align="center">
   <a href="https://evilmartians.com/?utm_source=size-limit">
     <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
@@ -53,11 +69,6 @@ for analysis:
 ```sh
 ./node_modules/bin/size-limit --why
 ```
-
-<p>
-  <img src="./screenshots/why.png" alt="Bundle Analyzer example"
-       width="650" height="335">
-</p>
 
 Now, let's set the limit. Determine the current size of your library,
 add just a little bit (a kilobyte, maybe) and use that as a limit
