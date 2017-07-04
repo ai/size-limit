@@ -20,6 +20,14 @@ add a massive dependency, Size Limit will throw an error.
   </a>
 </p>
 
+## Who Uses Size Limit
+
+* [Autoprefixer](https://github.com/postcss/autoprefixer)
+* [PostCSS](https://github.com/postcss/postcss)
+* [MobX](https://github.com/mobxjs/mobx)
+* [JSS](https://github.com/cssinjs/jss)
+* [Logux](https://github.com/logux)
+
 ## Usage
 
 First, install `size-limit`:
@@ -89,14 +97,6 @@ getSize([index, extra]).then(size => {
   }
 })
 ```
-
-## Who Uses Size Limit
-
-* [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [PostCSS](https://github.com/postcss/postcss)
-* [MobX](https://github.com/mobxjs/mobx)
-* [JSS](https://github.com/cssinjs/jss)
-* [Logux](https://github.com/logux)
 
 ## Comparison with `bundlesize`
 
