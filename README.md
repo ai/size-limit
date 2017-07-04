@@ -18,10 +18,8 @@ tell you *why* your library has this size and show real cost of all your
 internal dependencies.
 
 <p align="center">
-  <p>
-    <img src="./screenshots/why.png" alt="Bundle Analyzer example"
-         width="650" height="335">
-  </p>
+  <img src="./screenshots/why.png" alt="Bundle Analyzer example"
+       width="650" height="335">
 </p>
 
 To be really accurate, Size Limit create empty webpack project in memory.
