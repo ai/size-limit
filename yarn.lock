@@ -775,9 +775,9 @@ ci-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.0.0.tgz#dc5285f2b4e251821683681c381c3388f46ec534"
 
-ci-job-number@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-0.1.0.tgz#271b545126e2aefd459ff20f808bd6181733a2d0"
+ci-job-number@^0.1.0, ci-job-number@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-0.1.1.tgz#aabe28ddf46284b9a4ebafa5a76234570e082832"
 
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.3"
@@ -857,10 +857,8 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
     delayed-stream "~1.0.0"
 
 commander@^2.9.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.10.0.tgz#e1f5d3245de246d1a5ca04702fa1ad1bd7e405fe"
-  dependencies:
-    graceful-readlink ">= 1.0.0"
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
 commander@~2.9.0:
   version "2.9.0"
@@ -1284,9 +1282,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-logux@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-logux/-/eslint-config-logux-15.0.0.tgz#0038ec2f66462faa53f7ecee54d893466ed97f21"
+eslint-config-logux@^15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-logux/-/eslint-config-logux-15.0.1.tgz#b119d67ec1ee0922bb866e8f6217f668c40d5f46"
   dependencies:
     globals "^10.0.0"
 
@@ -4337,13 +4335,14 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-yaspeller-ci@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/yaspeller-ci/-/yaspeller-ci-0.4.0.tgz#7d05a85fdbb3482335296d1c25beb26646857f9e"
+yaspeller-ci@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/yaspeller-ci/-/yaspeller-ci-0.4.1.tgz#6843e1f7e81856be444b6f5708959811d1d0b860"
   dependencies:
-    yaspeller "^3.1.0"
+    ci-job-number "^0.1.0"
+    yaspeller "^3.2.0"
 
-yaspeller@^3.1.0:
+yaspeller@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/yaspeller/-/yaspeller-3.2.0.tgz#9d0ca63b417777a03aada0a935848ce70ec06f0b"
   dependencies:

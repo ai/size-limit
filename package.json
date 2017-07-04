@@ -14,7 +14,7 @@
     "babili-webpack-plugin": "^0.1.2",
     "bytes": "^2.5.0",
     "chalk": "^2.0.1",
-    "ci-job-number": "^0.1.0",
+    "ci-job-number": "^0.1.1",
     "gzip-size": "^3.0.0",
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
@@ -25,7 +25,7 @@
   "devDependencies": {
     "cross-spawn": "^5.1.0",
     "eslint": "^4.1.1",
-    "eslint-config-logux": "^15.0.0",
+    "eslint-config-logux": "^15.0.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-jest": "^20.0.3",
@@ -37,7 +37,7 @@
     "lint-staged": "^4.0.0",
     "pre-commit": "^1.2.2",
     "redux": "^3.7.1",
-    "yaspeller-ci": "^0.4.0"
+    "yaspeller-ci": "^0.4.1"
   },
   "scripts": {
     "lint-staged": "lint-staged",
