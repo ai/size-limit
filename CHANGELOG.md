@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.3.2
+* Fix bundle name in `--why` mode.
+* Move gzip calculation inside webpack.
+
 ## 0.3.1
 * Use `read-pkg-up` to find `package.json`.
 * Use `ci-job-number` to detect CI job number.
