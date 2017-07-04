@@ -7,19 +7,9 @@ const webpack = require('webpack')
 const Babili = require('babili-webpack-plugin')
 const path = require('path')
 
-const WEBPACK_EMPTY_PROJECT = 293
+const promisify = require('./promisify')
 
-function promisify (callback) {
-  return new Promise((resolve, reject) => {
-    callback((err, result) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(result)
-      }
-    })
-  })
-}
+const WEBPACK_EMPTY_PROJECT = 293
 
 function getConfig (files, opts) {
   const config = {
