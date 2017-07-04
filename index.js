@@ -7,6 +7,8 @@ const webpack = require('webpack')
 const Babili = require('babili-webpack-plugin')
 const path = require('path')
 
+const WEBPACK_EMPTY_PROJECT = 293
+
 function promisify (callback) {
   return new Promise((resolve, reject) => {
     callback((err, result) => {
@@ -112,7 +114,7 @@ function getSize (files, opts) {
   }).then(content => {
     return promisify(done => gzipSize(content, done))
   }).then(size => {
-    return size - 293
+    return size - WEBPACK_EMPTY_PROJECT
   })
 }
 
