@@ -1,8 +1,8 @@
 'use strict'
 
+const Compression = require('compression-webpack-plugin')
 const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
-const gzipSize = require('gzip-size')
 const webpack = require('webpack')
 const Babili = require('babili-webpack-plugin')
 const path = require('path')
@@ -11,11 +11,19 @@ const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = 293
 
+function projectName (files) {
+  if (files.length === 1) {
+    return path.basename(files[0])
+  } else {
+    return `${ path.basename(path.dirname(files[0])) }.js`
+  }
+}
+
 function getConfig (files, opts) {
   const config = {
     entry: files,
     output: {
-      filename: 'bundle.js'
+      filename: projectName(files)
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -43,6 +51,10 @@ function getConfig (files, opts) {
       }
     }))
   }
+
+  config.plugins.push(new Compression({
+    asset: '[path]'
+  }))
 
   if (opts.analyzer) {
     config.plugins.push(new Analyzer({
@@ -96,14 +108,10 @@ function getSize (files, opts) {
       throw new Error(stats.toString('errors-only'))
     }
 
-    const out = stats.compilation.outputOptions
-    const file = path.join(out.path, out.filename)
-    const fs = stats.compilation.compiler.outputFileSystem
+    const name = stats.compilation.outputOptions.filename
+    const assets = stats.toJson().assets
+    const size = assets.find(i => i.name === name).size
 
-    return promisify(done => fs.readFile(file, 'utf8', done))
-  }).then(content => {
-    return promisify(done => gzipSize(content, done))
-  }).then(size => {
     return size - WEBPACK_EMPTY_PROJECT
   })
 }
