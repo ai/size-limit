@@ -21,6 +21,7 @@
     "Logux",
     "webpack",
     "polyfill",
-    "js"
+    "js",
+    "MobX"
   ]
 }
