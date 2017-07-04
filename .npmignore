@@ -8,7 +8,6 @@ yarn-error.log
 yarn.lock
 
 test/
-coverage/
 .travis.yml
 report.html
 
