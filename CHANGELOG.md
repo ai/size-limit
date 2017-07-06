@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4
+* Add CircleCI support.
+
 ## 0.3.2
 * Fix bundle name in `--why` mode.
 * Move gzip calculation inside webpack.
