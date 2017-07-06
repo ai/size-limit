@@ -14,7 +14,7 @@
     "babili-webpack-plugin": "^0.1.2",
     "bytes": "^2.5.0",
     "chalk": "^2.0.1",
-    "ci-job-number": "^0.1.1",
+    "ci-job-number": "^0.2.0",
     "compression-webpack-plugin": "^0.4.0",
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
