@@ -6,6 +6,7 @@ const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
 const Babili = require('babili-webpack-plugin')
 const path = require('path')
+const os = require('os')
 
 const promisify = require('./promisify')
 
@@ -52,11 +53,10 @@ function getConfig (files, opts) {
     }))
   }
 
-  config.plugins.push(new Compression({
-    asset: '[path]'
-  }))
+  config.plugins.push(new Compression({ asset: '[path].gz' }))
 
   if (opts.analyzer) {
+    config.output.path = path.join(os.tmpdir(), `size-limit-${ Date.now() }`)
     config.plugins.push(new Analyzer({
       openAnalyzer: opts.analyzer === 'server',
       analyzerMode: opts.analyzer,
@@ -70,7 +70,9 @@ function getConfig (files, opts) {
 function runWebpack (config) {
   return promisify(done => {
     const compiler = webpack(config)
-    compiler.outputFileSystem = new MemoryFS()
+    if (!config.output.path) {
+      compiler.outputFileSystem = new MemoryFS()
+    }
     compiler.run(done)
   })
 }
@@ -108,7 +110,7 @@ function getSize (files, opts) {
       throw new Error(stats.toString('errors-only'))
     }
 
-    const name = stats.compilation.outputOptions.filename
+    const name = `${ stats.compilation.outputOptions.filename }.gz`
     const assets = stats.toJson().assets
     const size = assets.find(i => i.name === name).size
 
