@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "sizeLimit": [
+    {
+      "path": "empty.js"
+    }
+  ]
+}

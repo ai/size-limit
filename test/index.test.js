@@ -9,19 +9,19 @@ function fixture (name) {
 }
 
 it('returns 0 for empty project', () => {
-  return getSize(fixture('empty')).then(size => {
+  return getSize(fixture('unlimit/empty')).then(size => {
     expect(size).toEqual(0)
   })
 })
 
 it('shows project size', () => {
-  return getSize(fixture('big')).then(size => {
+  return getSize(fixture('bad/index')).then(size => {
     expect(size).toEqual(2442)
   })
 })
 
 it('accepts array', () => {
-  return getSize([fixture('big'), fixture('index/index')]).then(size => {
+  return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
     expect(size).toEqual(2460)
   })
 })
@@ -33,13 +33,13 @@ it('returns error', () => {
 })
 
 it('supports Babili', () => {
-  return getSize(fixture('es2016'), { minifier: 'babili' }).then(size => {
+  return getSize(fixture('es2016/index'), { minifier: 'babili' }).then(size => {
     expect(size).toEqual(39)
   })
 })
 
 it('removes non-production code', () => {
-  return getSize(fixture('production')).then(size => {
+  return getSize(fixture('multiple/production')).then(size => {
     expect(size).toEqual(9)
   })
 })

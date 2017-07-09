@@ -8,42 +8,40 @@ const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
 
+const legacyApi = require('./legacy-api')
 const getSize = require('.')
 
 const argv = yargs
-  .usage('$0 [LIMIT] [FILES]')
+  .usage('$0')
   .option('why', {
     alias: 'w',
     describe: 'Show package content',
     type: 'boolean'
   })
   .option('babili', {
-    describe: 'Babili minifier for ES2016+ projects',
     type: 'boolean'
   })
   .version()
   .help()
   .alias('help', 'h')
   .alias('version', 'v')
-  .epilog('Examples:\n' +
-          '  See current project size:\n' +
-          '    $0\n' +
-          '  See specific files size:\n' +
-          '    $0 ./index.js ./extra.js\n' +
-          '  Show error if project become bigger:\n' +
-          '    $0 10KB\n' +
-          '    $0 10KB ./index.js ./extra.js\n' +
-          '  Show package content in browser:\n' +
-          '    $0 --why\n' +
-          '    $0 --why ./index.js ./extra.js\n' +
+  .epilog('Size Limit will read sizeLimit section from package.json.\n' +
+          'Configurtion example:\n' +
           '\n' +
-          'If you miss files, size-limit will take main file ' +
-          'from package.json')
+          '  "sizeLimit": [\n' +
+          '    {\n' +
+          '      "path": "index.js",\n' +
+          '      "limit": "9 KB",\n' +
+          '      "babili": true\n' +
+          '    }\n' +
+          '  ]')
   .locale('en')
   .argv
 
-function showError (msg) {
-  process.stderr.write(chalk.red(`${ msg }\n`))
+function ownError (msg) {
+  const error = new Error(msg)
+  error.sizeLimit = true
+  return error
 }
 
 function formatBytes (size) {
@@ -60,80 +58,86 @@ if (ciJobNumber() !== 1) {
   process.exit(0)
 }
 
-const args = argv['_'].slice(0)
-let getFiles
-let limit = false
-
-if (/^\d+(\.\d+|)$/.test(args[0]) && /^[kKMGT]?B$/.test(args[1])) {
-  limit = bytes.parse(`${ args.shift() } ${ args.shift() }`)
-} else if (/^\d+(\.\d+|)?([kKMGT]B|B)?$/.test(args[0])) {
-  limit = bytes.parse(args.shift())
-}
-
-if (args.length > 0) {
-  getFiles = Promise.resolve(args.map(i => {
-    if (path.isAbsolute(i)) {
-      return i
-    } else {
-      return path.join(process.cwd(), i)
+let getOptions
+if (argv['_'].length === 0) {
+  getOptions = readPkg().then(result => {
+    if (!result.pkg) {
+      throw ownError(
+        'Can not find package.json. ' +
+        'Be sure that your run Size Limit inside project dir.'
+      )
+    } else if (!result.pkg.sizeLimit) {
+      throw ownError(
+        'Can not find sizeLimit section in package.json. ' +
+        'Add it according Size Limit docs.'
+      )
     }
-  }))
-} else {
-  getFiles = readPkg().then(result => {
-    if (result.pkg) {
-      const basepath = path.dirname(result.path)
-      return [path.join(basepath, result.pkg.main || 'index.js')]
-    } else {
-      return []
-    }
-  })
-}
-
-getFiles.then(files => {
-  if (files.length === 0) {
-    const error = new Error(
-      'Specify project files or run in project dir with package.json')
-    error.sizeLimit = true
-    throw error
-  }
-  if (argv.why) {
-    return getSize(files, {
-      analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
-      minifier: argv.babili ? 'babili' : 'uglifyjs'
+    return result.pkg.sizeLimit.map(file => {
+      let files = file.path
+      if (typeof files === 'string') files = [files]
+      return {
+        babili: file.babili,
+        limit: file.limit,
+        path: files,
+        full: files.map(i => path.join(path.dirname(result.path), i))
+      }
     })
-  } else {
-    return getSize(files, { minifier: argv.babili ? 'babili' : 'uglifyjs' })
-  }
-}).then(size => {
-  const note = chalk.gray('  With all dependencies, minified and gzipped\n')
+  })
+} else {
+  getOptions = legacyApi(argv)
+}
 
-  process.stdout.write(`\n`)
-  if (limit && size <= limit) {
-    process.stdout.write(
-      `  Package size: ${ chalk.green(formatBytes(size)) }\n` +
-      `  Size limit:   ${ formatBytes(limit) }\n` +
-      `${ note }\n`)
-  } else if (limit) {
-    process.stdout.write(
-      `  ${ chalk.red('Package has exceeded the size limit') }\n` +
-      `  Package size: ${ chalk.red(formatBytes(size)) }\n` +
-      `  Size limit:   ${ formatBytes(limit) }\n` +
-      `${ note }\n`)
-    process.exit(3)
-  } else {
-    process.stdout.write(
-      `  Package size: ${ formatBytes(size) }\n` +
-      `${ note }\n`)
+getOptions.then(files => {
+  return Promise.all(files.map(file => {
+    const opts = { minifier: file.babili ? 'babili' : 'uglifyjs' }
+    if (argv.why) {
+      opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
+    }
+    return getSize(file.full, opts).then(size => ({
+      limit: bytes.parse(file.limit),
+      path: file.path,
+      size
+    }))
+  }))
+}).then(files => {
+  process.stdout.write('\n')
+
+  let bad = false
+  for (const file of files) {
+    if (files.length > 1) {
+      process.stdout.write(chalk.gray(`  ${ file.path }\n`))
+    }
+    if (file.limit && file.size <= file.limit) {
+      process.stdout.write(
+        `  Package size: ${ chalk.green(formatBytes(file.size)) }\n` +
+        `  Size limit:   ${ formatBytes(file.limit) }\n`)
+    } else if (file.limit) {
+      process.stdout.write(
+        `  ${ chalk.red('Package has exceeded the size limit') }\n` +
+        `  Package size: ${ chalk.red(formatBytes(file.size)) }\n` +
+        `  Size limit:   ${ formatBytes(file.limit) }\n`)
+      bad = true
+    } else {
+      process.stdout.write(
+        `  Package size: ${ formatBytes(file.size) }\n`)
+    }
   }
+
+  process.stdout.write(
+    chalk.gray('  With all dependencies, minified and gzipped\n\n'))
+  if (bad) process.exit(3)
 }).catch(e => {
+  let msg
   if (e.sizeLimit) {
-    showError(e.message)
+    msg = e.message
   } else if (e.message.indexOf('Module not found:') !== -1) {
     const first = e.message.match(/Module not found:[^\n]*/)[0]
     const filtered = first.replace('Module not found: Error: ', '')
-    showError(filtered)
+    msg = filtered
   } else {
-    showError(e.stack)
+    msg = e.stack
   }
+
+  process.stderr.write(chalk.red(`${ msg }\n`))
   process.exit(1)
 })

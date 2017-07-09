@@ -50,10 +50,24 @@ First, install `size-limit`:
 $ npm install --save-dev size-limit
 ```
 
+Add `sizeLimit` section to `package.json` and `size` script:
+
+```diff json
++ "sizeLimit": [
++   {
++     "path": "index.js"
++   }
++ ],
+  "scripts": {
+    "test": "jest && eslint .",
++    "size": "size-limit 9KB"
+  }
+```
+
 Here's how you can get the size for your current project:
 
 ```sh
-$ ./node_modules/bin/size-limit
+$ npm size
 
   Package size: 8.46 KB
   With all dependencies, minified and gzipped
@@ -73,10 +87,12 @@ add just a little bit (a kilobyte, maybe) and use that as a limit
 when adding the script to `package.json`:
 
 ```diff json
-  "scripts": {
-    "test": "jest && eslint .",
-+    "size": "size-limit 9KB"
-  }
+ "sizeLimit": [
+   {
+     "path": "index.js"
++     "limit": "9 KB"
+   }
+ ],
 ```
 
 Add the `size` script to your test suite:

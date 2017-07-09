@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "dependencies": {
+    "redux": "*"
+  },
+  "sizeLimit": [
+    {
+      "path": "index.js",
+      "limit": "2 KB"
+    }
+  ]
+}

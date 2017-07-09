@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "sizeLimit": [
+    {
+      "path": [
+        "production.js",
+        "index.js"
+      ],
+      "limit": "1 KB"
+    }
+  ]
+}
