@@ -38,6 +38,12 @@ it('supports Babili', () => {
   })
 })
 
+it('support images', () => {
+  return getSize(fixture('img/index')).then(size => {
+    expect(size).toEqual(53)
+  })
+})
+
 it('removes non-production code', () => {
   return getSize(fixture('multiple/production')).then(size => {
     expect(size).toEqual(9)

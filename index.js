@@ -26,6 +26,11 @@ function getConfig (files, opts) {
     output: {
       filename: projectName(files)
     },
+    module: {
+      rules: [
+        { test: /\.(png|jpg|svg)$/, use: 'file-loader' }
+      ]
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
