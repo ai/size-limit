@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Show package size and return error if it is bigger than limits allow",
   "keywords": [
     "size",
