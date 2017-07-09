@@ -18,14 +18,14 @@
     "compression-webpack-plugin": "^0.4.0",
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
-    "webpack": "^3.0.0",
+    "webpack": "^3.1.0",
     "webpack-bundle-analyzer": "^2.8.2",
     "yargs": "^8.0.2"
   },
   "devDependencies": {
     "cross-spawn": "^5.1.0",
-    "eslint": "^4.1.1",
-    "eslint-config-logux": "^15.0.1",
+    "eslint": "^4.2.0",
+    "eslint-config-logux": "^16.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^20.0.3",
