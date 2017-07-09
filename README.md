@@ -59,8 +59,8 @@ Add `sizeLimit` section to `package.json` and `size` script:
 +   }
 + ],
   "scripts": {
-    "test": "jest && eslint .",
-+   "size": "size-limit 9KB"
++   "size": "size-limit 9KB",
+    "test": "jest && eslint ."
   }
 ```
 
@@ -99,9 +99,9 @@ Add the `size` script to your test suite:
 
 ```diff js
   "scripts": {
--   "test": "jest && eslint .",
-+   "test": "jest && eslint . && npm run size",
-    "size": "size-limit 9KB"
+    "size": "size-limit 9KB",
+-   "test": "jest && eslint ."
++   "test": "jest && eslint . && npm run size"
   }
 ```
 
