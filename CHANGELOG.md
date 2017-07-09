@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.1
+* Load images by `file-loader`.
+
 ## 0.6
 * Add `sizeLimit` configuration section support.
 
