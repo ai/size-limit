@@ -67,10 +67,10 @@ function getConfig (files, opts) {
   return config
 }
 
-function runWebpack (config) {
+function runWebpack (config, opts) {
   return promisify(done => {
     const compiler = webpack(config)
-    if (!config.output.path) {
+    if (!opts.analyzer) {
       compiler.outputFileSystem = new MemoryFS()
     }
     compiler.run(done)
@@ -105,7 +105,7 @@ function getSize (files, opts) {
   if (typeof files === 'string') files = [files]
   if (!opts) opts = { }
 
-  return runWebpack(getConfig(files, opts)).then(stats => {
+  return runWebpack(getConfig(files, opts), opts).then(stats => {
     if (stats.hasErrors()) {
       throw new Error(stats.toString('errors-only'))
     }
