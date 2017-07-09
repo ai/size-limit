@@ -67,7 +67,7 @@ Add `sizeLimit` section to `package.json` and `size` script:
 Here's how you can get the size for your current project:
 
 ```sh
-$ npm size
+$ npm run size
 
   Package size: 8.46 KB
   With all dependencies, minified and gzipped
@@ -89,9 +89,8 @@ when adding the script to `package.json`:
 ```diff json
  "sizeLimit": [
     {
--     "path": "index.js"
-+     "path": "index.js",
-+     "limit": "9 KB"
++     "limit": "9 KB",
+      "path": "index.js"
     }
  ],
 ```
