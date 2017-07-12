@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.2
+* Better project name in Webpack Bundle Analyzer.
+
 ## 0.6.1
 * Load images by `file-loader`.
 
