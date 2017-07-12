@@ -76,6 +76,7 @@ if (argv['_'].length === 0) {
       let files = file.path
       if (typeof files === 'string') files = [files]
       return {
+        bundle: result.pkg.name,
         babili: file.babili,
         limit: file.limit,
         path: files,
@@ -89,7 +90,10 @@ if (argv['_'].length === 0) {
 
 getOptions.then(files => {
   return Promise.all(files.map(file => {
-    const opts = { minifier: file.babili ? 'babili' : 'uglifyjs' }
+    const opts = {
+      minifier: file.babili ? 'babili' : 'uglifyjs',
+      bundle: file.bundle
+    }
     if (argv.why) {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }

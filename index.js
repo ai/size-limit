@@ -12,8 +12,10 @@ const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = 293
 
-function projectName (files) {
-  if (files.length === 1) {
+function projectName (opts, files) {
+  if (opts.bundle) {
+    return `${ opts.bundle }.js`
+  } else if (files.length === 1) {
     return path.basename(files[0])
   } else {
     return `${ path.basename(path.dirname(files[0])) }.js`
@@ -24,7 +26,7 @@ function getConfig (files, opts) {
   const config = {
     entry: files,
     output: {
-      filename: projectName(files)
+      filename: projectName(opts, files)
     },
     module: {
       rules: [
@@ -91,6 +93,7 @@ function runWebpack (config, opts) {
  * @param {"server"|"static"|false} [opts.analyzer] Show package content
  *                                                  in browser.
  * @param {"uglifyjs"|"babili"} [opts.minifier="uglifyjs"] Minifier.
+ * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  *
  * @return {Promise} Promise with size of files
  *
