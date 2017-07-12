@@ -63,8 +63,8 @@ ajv@^4.7.0, ajv@^4.9.1:
     json-stable-stringify "^1.0.1"
 
 ajv@^5.1.5, ajv@^5.2.0:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.2.1.tgz#dcd03045175883ba1b636e5ae9ec3df9ab85323a"
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.2.2.tgz#47c68d69e86f5d953103b0074a9430dc63da5e39"
   dependencies:
     co "^4.6.0"
     fast-deep-equal "^1.0.0"
@@ -1008,8 +1008,8 @@ cryptiles@2.x.x:
     boom "2.x.x"
 
 crypto-browserify@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.11.0.tgz#3652a0906ab9b2a7e0c3ce66a408e957a2485522"
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.11.1.tgz#948945efc6757a400d6e5e5af47194d10064279f"
   dependencies:
     browserify-cipher "^1.0.0"
     browserify-sign "^4.0.0"
@@ -1227,8 +1227,8 @@ error-ex@^1.2.0:
     is-arrayish "^0.2.1"
 
 es5-ext@^0.10.14, es5-ext@^0.10.9, es5-ext@~0.10.14:
-  version "0.10.23"
-  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.23.tgz#7578b51be974207a5487821b56538c224e4e7b38"
+  version "0.10.24"
+  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.24.tgz#a55877c9924bc0c8d9bd3c2cbe17495ac1709b14"
   dependencies:
     es6-iterator "2"
     es6-symbol "~3.1"
@@ -4137,9 +4137,9 @@ webpack-sources@^1.0.1:
     source-list-map "^2.0.0"
     source-map "~0.5.3"
 
-webpack@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.1.0.tgz#ac0675e500db835f9ab2369d29ba096f51ad0731"
+webpack@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.2.0.tgz#8b0cae0e1a9fd76bfbf0eab61a8c2ada848c312f"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"
