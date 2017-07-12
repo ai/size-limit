@@ -150,7 +150,7 @@ describe('legacy CLI API', () => {
 
   it('uses different units', () => {
     return run(['test/fixtures/bad/index.js']).then(result => {
-      expect(result.out).toContain('2.38 KB\n')
+      expect(result.out).toContain('2.39 KB\n')
       expect(result.code).toEqual(0)
     })
   })
