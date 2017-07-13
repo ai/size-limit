@@ -41,6 +41,7 @@ for `process`, etc.
 * [MobX](https://github.com/mobxjs/mobx)
 * [JSS](https://github.com/cssinjs/jss)
 * [Logux](https://github.com/logux)
+* [Material-UI](https://github.com/callemall/material-ui)
 
 ## Usage
 
