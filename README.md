@@ -36,12 +36,12 @@ for `process`, etc.
 
 ## Who Uses Size Limit
 
-* [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [PostCSS](https://github.com/postcss/postcss)
+* [Material-UI](https://github.com/callemall/material-ui)
 * [MobX](https://github.com/mobxjs/mobx)
+* [PostCSS](https://github.com/postcss/postcss)
+* [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [JSS](https://github.com/cssinjs/jss)
 * [Logux](https://github.com/logux)
-* [Material-UI](https://github.com/callemall/material-ui)
 
 ## Usage
 
