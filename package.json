@@ -17,6 +17,7 @@
     "ci-job-number": "^0.3.0",
     "compression-webpack-plugin": "^0.4.0",
     "file-loader": "^0.11.2",
+    "globby": "^6.1.0",
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
     "webpack": "^3.2.0",

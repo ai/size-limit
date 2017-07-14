@@ -109,6 +109,13 @@ it('shows limit', () => {
   })
 })
 
+it('supports glob patterns', () => {
+  return run([], { cwd: fixture('glob') }).then(result => {
+    expect(result.out).toContain('20 B\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('uses Babili', () => {
   return run([], { cwd: fixture('es2016') }).then(result => {
     expect(result.out).toContain('39 B\n')

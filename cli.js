@@ -3,6 +3,7 @@
 
 const ciJobNumber = require('ci-job-number')
 const readPkg = require('read-pkg-up')
+const globby = require('globby')
 const yargs = require('yargs')
 const chalk = require('chalk')
 const bytes = require('bytes')
@@ -72,17 +73,22 @@ if (argv['_'].length === 0) {
         'Add it according Size Limit docs.'
       )
     }
-    return result.pkg.sizeLimit.map(file => {
-      let files = file.path
-      if (typeof files === 'string') files = [files]
-      return {
-        bundle: result.pkg.name,
-        babili: file.babili,
-        limit: file.limit,
-        path: files,
-        full: files.map(i => path.join(path.dirname(result.path), i))
-      }
-    })
+    return Promise.all(result.pkg.sizeLimit.map(line => {
+      const cwd = path.dirname(result.path)
+      return globby(line.path, { cwd }).then(files => {
+        if (files.length === 0) {
+          files = line.path
+          if (typeof files === 'string') files = [files]
+        }
+        return {
+          bundle: result.pkg.name,
+          babili: line.babili,
+          limit: line.limit,
+          full: files.map(i => path.join(cwd, i)),
+          files
+        }
+      })
+    }))
   })
 } else {
   getOptions = legacyApi(argv)
@@ -99,7 +105,7 @@ getOptions.then(files => {
     }
     return getSize(file.full, opts).then(size => ({
       limit: bytes.parse(file.limit),
-      path: file.path,
+      files: file.files,
       size
     }))
   }))
@@ -109,7 +115,7 @@ getOptions.then(files => {
   let bad = false
   for (const file of files) {
     if (files.length > 1) {
-      process.stdout.write(chalk.gray(`  ${ file.path }\n`))
+      process.stdout.write(chalk.gray(`  ${ file.files }\n`))
     }
     if (file.limit && file.size <= file.limit) {
       process.stdout.write(
