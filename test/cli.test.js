@@ -110,7 +110,7 @@ it('shows limit', () => {
 })
 
 it('supports glob patterns', () => {
-  return run([], { cwd: fixture('glob') }).then(result => {
+  return run(['test/fixtures/glob/index.*.js']).then(result => {
     expect(result.out).toContain('20 B\n')
     expect(result.code).toEqual(0)
   })
