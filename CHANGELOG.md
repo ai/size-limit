@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.7
+* Add glob pattern support to `sizeLimit` section.
+
 ## 0.6.2
 * Better project name in Webpack Bundle Analyzer.
 
