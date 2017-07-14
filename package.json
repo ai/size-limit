@@ -20,7 +20,7 @@
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
     "webpack": "^3.2.0",
-    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-bundle-analyzer": "^2.8.3",
     "yargs": "^8.0.2"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "jest": "^20.0.4",
     "lint-staged": "^4.0.1",
     "pre-commit": "^1.2.2",
-    "redux": "^3.7.1",
+    "redux": "^3.7.2",
     "yaspeller-ci": "^0.6.0"
   },
   "scripts": {
