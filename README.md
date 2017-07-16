@@ -56,11 +56,12 @@ Add `sizeLimit` section to `package.json` and `size` script:
 ```diff json
 + "sizeLimit": [
 +   {
-+     "path": "index.js"
++     "path": "index.js",
++     "limit": "9 KB"
 +   }
 + ],
   "scripts": {
-+   "size": "size-limit 9KB",
++   "size": "size-limit",
     "test": "jest && eslint ."
   }
 ```
