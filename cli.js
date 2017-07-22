@@ -139,7 +139,7 @@ getOptions.then(files => {
 }).catch(e => {
   let msg
   if (e.sizeLimit) {
-    msg = e.message
+    msg = e.message.split('. ').join('.\n')
   } else if (e.message.indexOf('Module not found:') !== -1) {
     const first = e.message.match(/Module not found:[^\n]*/)[0]
     const filtered = first.replace('Module not found: Error: ', '')

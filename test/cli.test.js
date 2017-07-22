@@ -60,7 +60,7 @@ it('shows package.json error', () => {
   const cwd = path.dirname(path.dirname(__dirname))
   return run([], { cwd }).then(result => {
     expect(result.out).toEqual(
-      'Can not find package.json. ' +
+      'Can not find package.json.\n' +
       'Be sure that your run Size Limit inside project dir.\n')
     expect(result.code).toEqual(1)
   })
@@ -68,7 +68,9 @@ it('shows package.json error', () => {
 
 it('shows sizeLimit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
-    expect(result.out).toContain('Can not find sizeLimit section')
+    expect(result.out).toEqual(
+      'Can not find sizeLimit section in package.json.\n' +
+      'Add it according Size Limit docs.\n')
     expect(result.code).toEqual(1)
   })
 })
