@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.7.1
+* Fix multiline error messages in CLI.
+* Do not load `node-zopfli` as loose dependency.
+
 ## 0.7
 * Add glob pattern support to `sizeLimit` section.
 
