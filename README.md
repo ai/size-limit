@@ -81,7 +81,7 @@ run [Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
 for analysis:
 
 ```sh
-./node_modules/bin/size-limit --why
+npx size-limit --why
 ```
 
 Now, let's set the limit. Determine the current size of your library,
