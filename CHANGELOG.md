@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8
+* Add `size-limit` configuration section support.
+
 ## 0.7.1
 * Fix multiline error messages in CLI.
 * Do not load `node-zopfli` as loose dependency.
