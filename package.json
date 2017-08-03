@@ -20,7 +20,7 @@
     "globby": "^6.1.0",
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
-    "webpack": "^3.3.0",
+    "webpack": "^3.4.1",
     "webpack-bundle-analyzer": "^2.8.3",
     "yargs": "^8.0.2"
   },
