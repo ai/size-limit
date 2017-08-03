@@ -51,10 +51,10 @@ First, install `size-limit`:
 $ npm install --save-dev size-limit
 ```
 
-Add `sizeLimit` section to `package.json` and `size` script:
+Add `size-limit` section to `package.json` and `size` script:
 
 ```diff json
-+ "sizeLimit": [
++ "size-limit": [
 +   {
 +     "path": "index.js",
 +     "limit": "9 KB"
@@ -89,7 +89,7 @@ add just a little bit (a kilobyte, maybe) and use that as a limit
 when adding the script to `package.json`:
 
 ```diff json
- "sizeLimit": [
+ "size-limit": [
     {
 +     "limit": "9 KB",
       "path": "index.js"

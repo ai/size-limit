@@ -3,7 +3,7 @@
   "dependencies": {
     "redux": "*"
   },
-  "sizeLimit": [
+  "size-limit": [
     {
       "path": "index.js",
       "limit": "2 KB"

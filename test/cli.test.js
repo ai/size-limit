@@ -66,10 +66,10 @@ it('shows package.json error', () => {
   })
 })
 
-it('shows sizeLimit section error', () => {
+it('shows size-limit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
     expect(result.out).toEqual(
-      'Can not find sizeLimit section in package.json.\n' +
+      'Can not find size-limit section in package.json.\n' +
       'Add it according Size Limit docs.\n')
     expect(result.code).toEqual(1)
   })

@@ -26,10 +26,10 @@ const argv = yargs
   .help()
   .alias('help', 'h')
   .alias('version', 'v')
-  .epilog('Size Limit will read sizeLimit section from package.json.\n' +
+  .epilog('Size Limit will read size-limit section from package.json.\n' +
           'Configurtion example:\n' +
           '\n' +
-          '  "sizeLimit": [\n' +
+          '  "size-limit": [\n' +
           '    {\n' +
           '      "path": "index.js",\n' +
           '      "limit": "9 KB",\n' +
@@ -67,23 +67,25 @@ if (argv['_'].length === 0) {
         'Can not find package.json. ' +
         'Be sure that your run Size Limit inside project dir.'
       )
-    } else if (!result.pkg.sizeLimit) {
+    } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
       throw ownError(
-        'Can not find sizeLimit section in package.json. ' +
+        'Can not find size-limit section in package.json. ' +
         'Add it according Size Limit docs.'
       )
     }
-    return Promise.all(result.pkg.sizeLimit.map(line => {
+
+    const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
+    return Promise.all(limits.map(limit => {
       const cwd = path.dirname(result.path)
-      return globby(line.path, { cwd }).then(files => {
+      return globby(limit.path, { cwd }).then(files => {
         if (files.length === 0) {
-          files = line.path
+          files = limit.path
           if (typeof files === 'string') files = [files]
         }
         return {
           bundle: result.pkg.name,
-          babili: line.babili,
-          limit: line.limit,
+          babili: limit.babili,
+          limit: limit.limit,
           full: files.map(i => path.join(cwd, i)),
           files
         }

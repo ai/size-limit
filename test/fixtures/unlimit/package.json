@@ -1,6 +1,6 @@
 {
   "private": true,
-  "sizeLimit": [
+  "size-limit": [
     {
       "path": "empty.js"
     }

@@ -1,7 +1,7 @@
 {
   "name": "project-name",
   "private": true,
-  "sizeLimit": [
+  "size-limit": [
     {
       "path": [
         "production.js",
