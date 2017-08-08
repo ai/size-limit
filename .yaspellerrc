@@ -21,6 +21,10 @@
     "js",
     "MobX",
     "gzip",
-    "UI"
+    "UI",
+    "ES2016",
+    "Babili",
+    "minifier",
+    "npm"
   ]
 }
