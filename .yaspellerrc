@@ -21,6 +21,7 @@
     "js",
     "MobX",
     "gzip",
-    "UI"
+    "UI",
+    "deHaan"
   ]
 }
