@@ -27,7 +27,15 @@ const argv = yargs
   .help()
   .alias('help', 'h')
   .alias('version', 'v')
-  .epilog('Size Limit will read size-limit section from package.json.\n' +
+  .epilog('Usage:\n' +
+          '  $0\n' +
+          '    Read configuration from package.json and check limit.\n' +
+          '  $0 --why\n' +
+          '    Show reasons why project have this size.\n' +
+          '  $0 index.js\n' +
+          '    Check specific file size with all file dependencies.\n' +
+          '\n' +
+          'Size Limit will read size-limit section from package.json.\n' +
           'Configuration example:\n' +
           '\n' +
           '  "size-limit": [\n' +
