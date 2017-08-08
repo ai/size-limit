@@ -20,7 +20,7 @@ const argv = yargs
     type: 'boolean'
   })
   .option('babili', {
-    describe: 'Use babili minifier',
+    describe: 'Use Babili minifier to support ES2016+ projects',
     type: 'boolean'
   })
   .version()
