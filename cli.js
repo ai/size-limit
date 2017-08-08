@@ -20,6 +20,7 @@ const argv = yargs
     type: 'boolean'
   })
   .option('babili', {
+    describe: 'Use babili minifier',
     type: 'boolean'
   })
   .version()
@@ -27,7 +28,7 @@ const argv = yargs
   .alias('help', 'h')
   .alias('version', 'v')
   .epilog('Size Limit will read size-limit section from package.json.\n' +
-          'Configurtion example:\n' +
+          'Configuration example:\n' +
           '\n' +
           '  "size-limit": [\n' +
           '    {\n' +
