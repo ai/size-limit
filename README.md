@@ -76,7 +76,7 @@ $ npm run size
 
 ```
 
-If you publish ES2016+ JS code to npm use Babili minifier:
+If you publish ES2016+ JS code to npm, use Babili minifier:
 
 ```diff
   "size-limit": [
