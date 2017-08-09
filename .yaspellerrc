@@ -25,6 +25,7 @@
     "ES2016",
     "Babili",
     "minifier",
-    "npm"
+    "npm",
+    "deHaan"
   ]
 }

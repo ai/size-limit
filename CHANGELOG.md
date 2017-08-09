@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.1
+* Improve CLI help (by Peter deHaan).
+
 ## 0.8
 * Add `size-limit` configuration section support.
 
