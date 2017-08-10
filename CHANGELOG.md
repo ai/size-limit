@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.4
+* Fix error messages text (by Alexandr Subbotin).
+
 ## 0.8.3
 * Improve error messages style.
 
