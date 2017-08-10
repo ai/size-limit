@@ -99,12 +99,15 @@ it('shows limit', () => {
     '  index.js\n' +
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
+    '\n' +
     '  index.js\n' +
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
+    '\n' +
     '  index.js\n' +
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
+    '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)

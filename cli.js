@@ -142,6 +142,7 @@ getOptions.then(files => {
       process.stdout.write(
         `  Package size: ${ formatBytes(file.size) }\n`)
     }
+    if (files.length > 1) process.stdout.write('\n')
   }
 
   process.stdout.write(
