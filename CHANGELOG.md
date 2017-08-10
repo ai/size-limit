@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.2
+* Better output for projects with multiple limits.
+* Fix multiple limits support in `--why`.
+
 ## 0.8.1
 * Improve CLI help (by Peter deHaan).
 
