@@ -6,11 +6,11 @@
       "limit": "1 KB"
     },
     {
-      "path": "index.js",
+      "path": "index2.js",
       "limit": "1KB"
     },
     {
-      "path": "index.js",
+      "path": "index3.js",
       "limit": "1024"
     }
   ]

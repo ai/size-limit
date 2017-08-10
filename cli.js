@@ -111,43 +111,62 @@ getOptions.then(files => {
       minifier: file.babili ? 'babili' : 'uglifyjs',
       bundle: file.bundle
     }
-    if (argv.why) {
+    if (argv.why && files.length === 1) {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
-    return getSize(file.full, opts).then(size => ({
-      limit: bytes.parse(file.limit),
-      files: file.files,
-      size
-    }))
+    return getSize(file.full, opts).then(size => {
+      file.size = size
+      return file
+    })
   }))
 }).then(files => {
   process.stdout.write('\n')
 
-  let bad = false
-  for (const file of files) {
+  const checks = files.map(file => {
+    const limit = bytes.parse(file.limit)
+    file.passed = true
+
     if (files.length > 1) {
       process.stdout.write(chalk.gray(`  ${ file.files }\n`))
     }
-    if (file.limit && file.size <= file.limit) {
+
+    if (limit && file.size <= limit) {
       process.stdout.write(
         `  Package size: ${ chalk.green(formatBytes(file.size)) }\n` +
-        `  Size limit:   ${ formatBytes(file.limit) }\n`)
-    } else if (file.limit) {
+        `  Size limit:   ${ formatBytes(limit) }\n`)
+    } else if (limit) {
       process.stdout.write(
         `  ${ chalk.red('Package has exceeded the size limit') }\n` +
         `  Package size: ${ chalk.red(formatBytes(file.size)) }\n` +
-        `  Size limit:   ${ formatBytes(file.limit) }\n`)
-      bad = true
+        `  Size limit:   ${ formatBytes(limit) }\n`)
+      file.passed = false
     } else {
       process.stdout.write(
         `  Package size: ${ formatBytes(file.size) }\n`)
     }
+
     if (files.length > 1) process.stdout.write('\n')
-  }
+    return file
+  })
 
   process.stdout.write(
     chalk.gray('  With all dependencies, minified and gzipped\n\n'))
-  if (bad) process.exit(3)
+
+  return checks
+}).then(files => {
+  if (argv.why && files.length > 1) {
+    const opts = {
+      analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
+      minifier: files.some(i => i.babili) ? 'babili' : 'uglifyjs',
+      bundle: files[0].bundle
+    }
+    const full = files.reduce((all, i) => all.concat(i.full), [])
+    return getSize(full, opts).then(() => files)
+  } else {
+    return files
+  }
+}).then(files => {
+  if (!argv.why && files.some(i => !i.passed)) process.exit(3)
 }).catch(e => {
   let msg
   if (e.sizeLimit) {

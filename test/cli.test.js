@@ -100,11 +100,11 @@ it('shows limit', () => {
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
-    '  index.js\n' +
+    '  index2.js\n' +
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
-    '  index.js\n' +
+    '  index3.js\n' +
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
@@ -145,6 +145,13 @@ it('checks limits', () => {
 it('shows analyzer', () => {
   return run(['--why'], { cwd: fixture('unlimit') }).then(result => {
     expect(result.out).toContain('Webpack Bundle Analyzer')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('shows analyzer for multiple limits', () => {
+  return run(['--why'], { cwd: fixture('good') }).then(result => {
+    expect(result.out.match(/Webpack Bundle Analyzer/g).length).toEqual(1)
     expect(result.code).toEqual(0)
   })
 })
