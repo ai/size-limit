@@ -51,7 +51,7 @@ it('returns version', () => {
 it('shows resolve errors', () => {
   return run([], { cwd: fixture('unknown') }).then(result => {
     expect(result.out).toContain('unknown.js')
-    expect(result.out).toMatch(/^Can't resolve/)
+    expect(result.out).toMatch(/Size Limit can't resolve/)
     expect(result.code).toEqual(1)
   })
 })
@@ -60,8 +60,8 @@ it('shows package.json error', () => {
   const cwd = path.dirname(path.dirname(__dirname))
   return run([], { cwd }).then(result => {
     expect(result.out).toEqual(
-      'Can not find package.json.\n' +
-      'Be sure that your run Size Limit inside project dir.\n')
+      ' ERROR  Can not find package.json.\n' +
+      '        Be sure that your run Size Limit inside project dir.\n')
     expect(result.code).toEqual(1)
   })
 })
@@ -69,8 +69,8 @@ it('shows package.json error', () => {
 it('shows size-limit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
     expect(result.out).toEqual(
-      'Can not find size-limit section in package.json.\n' +
-      'Add it according Size Limit docs.\n')
+      ' ERROR  Can not find size-limit section in package.json.\n' +
+      '        Add it according Size Limit docs.\n')
     expect(result.code).toEqual(1)
   })
 })
