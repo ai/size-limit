@@ -74,7 +74,7 @@ if (argv['_'].length === 0) {
     if (!result.pkg) {
       throw ownError(
         'Can not find package.json. ' +
-        'Be sure that your run Size Limit inside project dir.'
+        'Be sure that you run Size Limit inside project dir.'
       )
     } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
       throw ownError(

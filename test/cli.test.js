@@ -61,7 +61,7 @@ it('shows package.json error', () => {
   return run([], { cwd }).then(result => {
     expect(result.out).toEqual(
       ' ERROR  Can not find package.json.\n' +
-      '        Be sure that your run Size Limit inside project dir.\n')
+      '        Be sure that you run Size Limit inside project dir.\n')
     expect(result.code).toEqual(1)
   })
 })
