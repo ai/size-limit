@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.3
+* Improve error messages style.
+
 ## 0.8.2
 * Better output for projects with multiple limits.
 * Fix multiple limits support in `--why`.
