@@ -1,0 +1,12 @@
+install:
+  - ps: Install-Product node 8
+  - yarn install
+
+test_script:
+  - yarn test
+
+cache:
+ - node_modules
+ - "%LOCALAPPDATA%/Yarn"
+
+build: off
