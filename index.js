@@ -5,7 +5,6 @@ const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
 const Uglify = require('uglifyjs-webpack-plugin')
-const Babili = require('babili-webpack-plugin')
 const path = require('path')
 const os = require('os')
 
@@ -37,14 +36,9 @@ function getConfig (files, opts) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
-      })
+      }),
+      new Uglify({ sourceMap: false })
     ]
-  }
-
-  if (opts.minifier === 'babili') {
-    config.plugins.push(new Babili())
-  } else {
-    config.plugins.push(new Uglify({ sourceMap: false }))
   }
 
   config.plugins.push(new Compression({ asset: '[path].gz' }))
@@ -79,7 +73,6 @@ function runWebpack (config, opts) {
  * @param {object} [opts] Extra options.
  * @param {"server"|"static"|false} [opts.analyzer] Show package content
  *                                                  in browser.
- * @param {"uglifyjs"|"babili"} [opts.minifier="uglifyjs"] Minifier.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  *
  * @return {Promise} Promise with size of files

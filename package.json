@@ -11,7 +11,6 @@
   "repository": "ai/size-limit",
   "bin": "cli.js",
   "dependencies": {
-    "babili-webpack-plugin": "^0.1.2",
     "bytes": "^2.5.0",
     "chalk": "^2.1.0",
     "ci-job-number": "^0.3.0",

@@ -76,18 +76,6 @@ $ npm run size
 
 ```
 
-If you publish ES2016+ JS code to npm, use Babili minifier:
-
-```diff
-  "size-limit": [
-    {
-      "path": "index.js",
-+     "babili": true,
-      "limit": "9 KB"
-    }
-  ],
-```
-
 If your project size starts to look bloated,
 run [Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
 for analysis:

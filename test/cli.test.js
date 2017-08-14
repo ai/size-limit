@@ -121,9 +121,9 @@ it('supports glob patterns', () => {
   })
 })
 
-it('uses Babili', () => {
+it('supports ES2016', () => {
   return run([], { cwd: fixture('es2016') }).then(result => {
-    expect(result.out).toContain('39 B\n')
+    expect(result.out).toContain('34 B\n')
     expect(result.code).toEqual(0)
   })
 })
@@ -177,13 +177,6 @@ it('supports absolute path', () => {
   const file = path.join(__dirname, 'fixtures/unlimit/empty.js')
   return run([file]).then(result => {
     expect(result.out).toContain('0 B\n')
-    expect(result.code).toEqual(0)
-  })
-})
-
-it('supports argument for Babili', () => {
-  return run(['--babili', 'test/fixtures/es2016/index.js']).then(result => {
-    expect(result.out).toContain('39 B\n')
     expect(result.code).toEqual(0)
   })
 })

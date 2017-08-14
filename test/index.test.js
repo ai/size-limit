@@ -32,9 +32,9 @@ it('returns error', () => {
   })
 })
 
-it('supports Babili', () => {
-  return getSize(fixture('es2016/index'), { minifier: 'babili' }).then(size => {
-    expect(size).toEqual(39)
+it('supports ES2016', () => {
+  return getSize(fixture('es2016/index')).then(size => {
+    expect(size).toEqual(34)
   })
 })
 

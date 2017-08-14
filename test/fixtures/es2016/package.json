@@ -2,8 +2,7 @@
   "private": true,
   "size-limit": [
     {
-      "path": "index.js",
-      "babili": true
+      "path": "index.js"
     }
   ]
 }

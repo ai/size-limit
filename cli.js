@@ -18,10 +18,6 @@ const argv = yargs
     describe: 'Show package content',
     type: 'boolean'
   })
-  .option('babili', {
-    describe: 'Use Babili minifier to support ES2016+ projects',
-    type: 'boolean'
-  })
   .version()
   .help()
   .alias('help', 'h')
@@ -40,8 +36,7 @@ const argv = yargs
           '  "size-limit": [\n' +
           '    {\n' +
           '      "path": "index.js",\n' +
-          '      "limit": "9 KB",\n' +
-          '      "babili": true\n' +
+          '      "limit": "9 KB"\n' +
           '    }\n' +
           '  ]')
   .locale('en')
@@ -101,9 +96,15 @@ if (argv['_'].length === 0) {
           files = limit.path
           if (typeof files === 'string') files = [files]
         }
+        if (limit.babili) {
+          warn(
+            'Option "babili": true was deprecated.\n' +
+            'Size Limit now supports ES2016 out of box.\n' +
+            'You can remove this option.\n'
+          )
+        }
         return {
           bundle: result.pkg.name,
-          babili: limit.babili,
           limit: limit.limit,
           full: files.map(i => path.join(cwd, i)),
           files
@@ -127,6 +128,13 @@ if (argv['_'].length === 0) {
       'Use size-limit section in package.json to specify limit.\n'
     )
   }
+  if (argv.babili) {
+    warn(
+      'Argument --babili was deprecated.\n' +
+      'Size Limit now supports ES2016 out of box.\n' +
+      'You can remove this argument.\n'
+    )
+  }
 
   const full = files.map(i => {
     if (path.isAbsolute(i)) {
@@ -136,22 +144,12 @@ if (argv['_'].length === 0) {
     }
   })
 
-  getOptions = Promise.resolve([
-    {
-      babili: argv.babili,
-      limit,
-      path: files,
-      full
-    }
-  ])
+  getOptions = Promise.resolve([{ path: files, limit, full }])
 }
 
 getOptions.then(files => {
   return Promise.all(files.map(file => {
-    const opts = {
-      minifier: file.babili ? 'babili' : 'uglifyjs',
-      bundle: file.bundle
-    }
+    const opts = { bundle: file.bundle }
     if (argv.why && files.length === 1) {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
@@ -198,7 +196,6 @@ getOptions.then(files => {
   if (argv.why && files.length > 1) {
     const opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
-      minifier: files.some(i => i.babili) ? 'babili' : 'uglifyjs',
       bundle: files[0].bundle
     }
     const full = files.reduce((all, i) => all.concat(i.full), [])
