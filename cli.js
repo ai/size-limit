@@ -9,7 +9,6 @@ const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
 
-const legacyApi = require('./legacy-api')
 const getSize = require('.')
 
 const argv = yargs
@@ -61,6 +60,10 @@ function formatBytes (size) {
   return chalk.bold(format)
 }
 
+function warn (message) {
+  process.stderr.write(chalk.yellow(message))
+}
+
 if (ciJobNumber() !== 1) {
   process.stdout.write(
     chalk.yellow('Size Limits run only on first CI job, to save CI resources'))
@@ -83,6 +86,13 @@ if (argv['_'].length === 0) {
       )
     }
 
+    if (result.pkg.sizeLimit) {
+      warn(
+        'Section name "sizeLimit" in package.json was deprecated.\n' +
+        'Use "size-limit" for section name.\n'
+      )
+    }
+
     const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
     return Promise.all(limits.map(limit => {
       const cwd = path.dirname(result.path)
@@ -102,7 +112,38 @@ if (argv['_'].length === 0) {
     }))
   })
 } else {
-  getOptions = legacyApi(argv)
+  const files = argv['_'].slice(0)
+
+  let limit
+  if (/^\d+(\.\d+|)$/.test(files[0]) && /^[kKMGT]?B$/.test(files[1])) {
+    limit = bytes.parse(`${ files.shift() } ${ files.shift() }`)
+  } else if (/^\d+(\.\d+|)?([kKMGT]B|B)?$/.test(files[0])) {
+    limit = bytes.parse(files.shift())
+  }
+
+  if (limit) {
+    warn(
+      'Limit argument in Size Limit CLi was deprecated.\n' +
+      'Use size-limit section in package.json to specify limit.\n'
+    )
+  }
+
+  const full = files.map(i => {
+    if (path.isAbsolute(i)) {
+      return i
+    } else {
+      return path.join(process.cwd(), i)
+    }
+  })
+
+  getOptions = Promise.resolve([
+    {
+      babili: argv.babili,
+      limit,
+      path: files,
+      full
+    }
+  ])
 }
 
 getOptions.then(files => {

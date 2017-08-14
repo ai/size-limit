@@ -156,92 +156,34 @@ it('shows analyzer for multiple limits', () => {
   })
 })
 
-describe('legacy CLI API', () => {
-  it('returns size', () => {
-    return run(['test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toEqual('\n' +
-      '  Package size: 0 B\n' +
-      '  With all dependencies, minified and gzipped\n' +
-      '\n')
-      expect(result.code).toEqual(0)
-    })
+it('returns size', () => {
+  return run(['test/fixtures/unlimit/empty.js']).then(result => {
+    expect(result.out).toEqual('\n' +
+    '  Package size: 0 B\n' +
+    '  With all dependencies, minified and gzipped\n' +
+    '\n')
+    expect(result.code).toEqual(0)
   })
+})
 
-  it('uses different units', () => {
-    return run(['test/fixtures/bad/index.js']).then(result => {
-      expect(result.out).toContain('2.39 KB\n')
-      expect(result.code).toEqual(0)
-    })
+it('uses different units', () => {
+  return run(['test/fixtures/bad/index.js']).then(result => {
+    expect(result.out).toContain('2.39 KB\n')
+    expect(result.code).toEqual(0)
   })
+})
 
-  it('supports absolute path', () => {
-    const file = path.join(__dirname, 'fixtures/unlimit/empty.js')
-    return run([file]).then(result => {
-      expect(result.out).toContain('0 B\n')
-      expect(result.code).toEqual(0)
-    })
+it('supports absolute path', () => {
+  const file = path.join(__dirname, 'fixtures/unlimit/empty.js')
+  return run([file]).then(result => {
+    expect(result.out).toContain('0 B\n')
+    expect(result.code).toEqual(0)
   })
+})
 
-  it('shows limit', () => {
-    return run(['2KB', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('shows small K', () => {
-    return run(['2kB', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('allows space in limit', () => {
-    return run(['2', 'KB', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('allows fractional in limit', () => {
-    return run(['2.20KB', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2.2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('allows unitless limit', () => {
-    return run(['2048', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('allows bytes', () => {
-    return run(['2048B', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('allows space and bytes', () => {
-    return run(['2048', 'B', 'test/fixtures/unlimit/empty.js']).then(result => {
-      expect(result.out).toContain('Size limit:   2 KB\n')
-      expect(result.code).toEqual(0)
-    })
-  })
-
-  it('checks limits', () => {
-    return run(['2KB', 'test/fixtures/bad/index.js']).then(result => {
-      expect(result.out).toContain('exceeded the size limit')
-      expect(result.code).toEqual(3)
-    })
-  })
-
-  it('uses Babili', () => {
-    return run(['--babili', 'test/fixtures/es2016/index.js']).then(result => {
-      expect(result.out).toContain('39 B\n')
-      expect(result.code).toEqual(0)
-    })
+it('supports argument for Babili', () => {
+  return run(['--babili', 'test/fixtures/es2016/index.js']).then(result => {
+    expect(result.out).toContain('39 B\n')
+    expect(result.code).toEqual(0)
   })
 })
