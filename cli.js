@@ -62,7 +62,8 @@ function formatBytes (size) {
 function warn (messages) {
   const prefix = `${ chalk.bgYellow.black(' WARN ') } `
   process.stderr.write(prefix + messages.map((message, index) => {
-    const str = `${ chalk.yellow(message) }\n`
+    const highlighted = message.replace(/`([^`]*)`/g, chalk.bold('$1'))
+    const str = `${ chalk.yellow(highlighted) }\n`
     return index === 0 ? str : `       ${ str }`
   }).join(''))
 }
@@ -79,20 +80,20 @@ if (argv['_'].length === 0) {
   getOptions = readPkg().then(result => {
     if (!result.pkg) {
       throw ownError(
-        'Can not find package.json. ' +
+        'Can not find `package.json`. ' +
         'Be sure that you run Size Limit inside project dir.'
       )
     } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
       throw ownError(
-        'Can not find size-limit section in package.json. ' +
+        'Can not find `"size-limit"` section in `package.json`. ' +
         'Add it according Size Limit docs.'
       )
     }
 
     if (result.pkg.sizeLimit) {
       warn([
-        'Section name "sizeLimit" in package.json was deprecated.',
-        'Use "size-limit" for section name.'
+        'Section name `"sizeLimit"` in package.json was deprecated.',
+        'Use `"size-limit"` for section name.'
       ])
     }
 
@@ -106,7 +107,7 @@ if (argv['_'].length === 0) {
         }
         if (limit.babili) {
           warn([
-            'Option "babili": true was deprecated.',
+            'Option `"babili": true` was deprecated.',
             'Size Limit now supports ES2016 out of box.',
             'You can remove this option.'
           ])
@@ -134,12 +135,12 @@ if (argv['_'].length === 0) {
   if (limit) {
     warn([
       'Limit argument in Size Limit CLi was deprecated.',
-      'Use size-limit section in package.json to specify limit.'
+      'Use `size-limit` section in `package.json` to specify limit.'
     ])
   }
   if (argv.babili) {
     warn([
-      'Argument --babili was deprecated.',
+      'Argument `--babili` was deprecated.',
       'Size Limit now supports ES2016 out of box.',
       'You can remove this argument.'
     ])
@@ -224,7 +225,10 @@ getOptions.then(files => {
 }).catch(e => {
   let msg
   if (e.sizeLimit) {
-    msg = e.message.split('. ').join('.\n        ')
+    msg = e.message
+      .split('. ')
+      .map(i => i.replace(/`([^`]*)`/g, chalk.bold('$1')))
+      .join('.\n        ')
   } else if (e.message.indexOf('Module not found:') !== -1) {
     const first = e.message.match(/Module not found:[^\n]*/)[0]
     msg = `Size Limit c${ first.replace('Module not found: Error: C', '') }`
