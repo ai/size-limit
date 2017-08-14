@@ -49,3 +49,11 @@ it('removes non-production code', () => {
     expect(size).toEqual(9)
   })
 })
+
+it('disables webpack on request', () => {
+  return getSize([
+    fixture('bad/index'), fixture('es2016/index')
+  ], { webpack: false }).then(size => {
+    expect(size).toEqual(142)
+  })
+})

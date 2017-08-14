@@ -3,6 +3,7 @@
 const Compression = require('compression-webpack-plugin')
 const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
+const gzipSize = require('gzip-size')
 const webpack = require('webpack')
 const Uglify = require('uglifyjs-webpack-plugin')
 const path = require('path')
@@ -71,8 +72,9 @@ function runWebpack (config, opts) {
  *
  * @param {string|string[]} files Files to get size.
  * @param {object} [opts] Extra options.
- * @param {"server"|"static"|false} [opts.analyzer] Show package content
- *                                                  in browser.
+ * @param {"server"|"static"|false} [opts.analyzer=false] Show package
+ *                                                        content in browser.
+ * @param {true|false} [opts.webpack=true] Pack files by webpack.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  *
  * @return {Promise} Promise with size of files
@@ -93,17 +95,25 @@ function getSize (files, opts) {
   if (typeof files === 'string') files = [files]
   if (!opts) opts = { }
 
-  return runWebpack(getConfig(files, opts), opts).then(stats => {
-    if (stats.hasErrors()) {
-      throw new Error(stats.toString('errors-only'))
-    }
+  if (opts.webpack === false) {
+    return Promise.all(files.map(file => {
+      return promisify(done => gzipSize(file, done))
+    })).then(sizes => {
+      return sizes.reduce((all, size) => all + size, 0)
+    })
+  } else {
+    return runWebpack(getConfig(files, opts), opts).then(stats => {
+      if (stats.hasErrors()) {
+        throw new Error(stats.toString('errors-only'))
+      }
 
-    const name = `${ stats.compilation.outputOptions.filename }.gz`
-    const assets = stats.toJson().assets
-    const size = assets.find(i => i.name === name).size
+      const name = `${ stats.compilation.outputOptions.filename }.gz`
+      const assets = stats.toJson().assets
+      const size = assets.find(i => i.name === name).size
 
-    return size - WEBPACK_EMPTY_PROJECT
-  })
+      return size - WEBPACK_EMPTY_PROJECT
+    })
+  }
 }
 
 module.exports = getSize
