@@ -110,6 +110,24 @@ Add the `size` script to your test suite:
 If you don't have a continuous integration service running, don’t forget
 to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
+## Applications
+
+Webpack inside Size Limit is very useful for small open source library.
+But if you want to use Size Limit for application, not open source library, you
+could already have webpack to make bundle.
+
+In this case you can disable internal webpack:
+
+```diff
+ "size-limit": [
+    {
+      "limit": "300 KB",
++     "webpack": false,
+      "path": "public/app-*.js"
+    }
+ ],
+```
+
 ## JavaScript API
 
 ```js

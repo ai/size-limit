@@ -180,3 +180,17 @@ it('supports absolute path', () => {
     expect(result.code).toEqual(0)
   })
 })
+
+it('disables webpack by argument', () => {
+  return run(['--no-webpack', 'test/fixtures/bad/index.js']).then(result => {
+    expect(result.out).toContain('51 B\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('disables webpack by option', () => {
+  return run([], { cwd: fixture('bundled') }).then(result => {
+    expect(result.out).toContain('51 B\n')
+    expect(result.code).toEqual(0)
+  })
+})

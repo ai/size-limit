@@ -18,6 +18,10 @@ const argv = yargs
     describe: 'Show package content',
     type: 'boolean'
   })
+  .option('no-webpack', {
+    describe: 'Disable webpack',
+    type: 'boolean'
+  })
   .version()
   .help()
   .alias('help', 'h')
@@ -108,6 +112,7 @@ if (argv['_'].length === 0) {
           ])
         }
         return {
+          webpack: limit.webpack !== false,
           bundle: result.pkg.name,
           limit: limit.limit,
           full: files.map(i => path.join(cwd, i)),
@@ -148,12 +153,19 @@ if (argv['_'].length === 0) {
     }
   })
 
-  getOptions = Promise.resolve([{ path: files, limit, full }])
+  getOptions = Promise.resolve([
+    {
+      webpack: argv.webpack !== false,
+      path: files,
+      limit,
+      full
+    }
+  ])
 }
 
 getOptions.then(files => {
   return Promise.all(files.map(file => {
-    const opts = { bundle: file.bundle }
+    const opts = { bundle: file.bundle, webpack: file.webpack }
     if (argv.why && files.length === 1) {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
