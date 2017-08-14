@@ -20,6 +20,7 @@
     "globby": "^6.1.0",
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^2.0.0",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.2",
     "webpack": "^3.5.3",
     "webpack-bundle-analyzer": "^2.9.0",
     "yargs": "^8.0.2"
