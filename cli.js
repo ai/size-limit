@@ -216,6 +216,10 @@ getOptions.then(files => {
   } else if (e.message.indexOf('Module not found:') !== -1) {
     const first = e.message.match(/Module not found:[^\n]*/)[0]
     msg = `Size Limit c${ first.replace('Module not found: Error: C', '') }`
+      .replace(/resolve '(.*)' in '(.*)'/,
+        `resolve\n        ${ chalk.bold('$1') }` +
+        `\n        in ${ chalk.bold('$2') }`
+      )
   } else {
     msg = e.stack
   }
