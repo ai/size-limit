@@ -7,6 +7,7 @@ const gzipSize = require('gzip-size')
 const webpack = require('webpack')
 const Uglify = require('uglifyjs-webpack-plugin')
 const path = require('path')
+const fs = require('fs')
 const os = require('os')
 
 const promisify = require('./promisify')
@@ -97,7 +98,9 @@ function getSize (files, opts) {
 
   if (opts.webpack === false) {
     return Promise.all(files.map(file => {
-      return promisify(done => gzipSize(file, done))
+      return promisify(done => fs.readFile(file, 'utf8', done)).then(bytes => {
+        return promisify(done => gzipSize(bytes, done))
+      })
     })).then(sizes => {
       return sizes.reduce((all, size) => all + size, 0)
     })
