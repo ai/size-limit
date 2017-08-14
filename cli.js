@@ -55,8 +55,12 @@ function formatBytes (size) {
   return chalk.bold(format)
 }
 
-function warn (message) {
-  process.stderr.write(chalk.yellow(message))
+function warn (messages) {
+  const prefix = `${ chalk.bgYellow.black(' WARN ') } `
+  process.stderr.write(prefix + messages.map((message, index) => {
+    const str = `${ chalk.yellow(message) }\n`
+    return index === 0 ? str : `       ${ str }`
+  }).join(''))
 }
 
 if (ciJobNumber() !== 1) {
@@ -82,10 +86,10 @@ if (argv['_'].length === 0) {
     }
 
     if (result.pkg.sizeLimit) {
-      warn(
-        'Section name "sizeLimit" in package.json was deprecated.\n' +
-        'Use "size-limit" for section name.\n'
-      )
+      warn([
+        'Section name "sizeLimit" in package.json was deprecated.',
+        'Use "size-limit" for section name.'
+      ])
     }
 
     const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
@@ -97,11 +101,11 @@ if (argv['_'].length === 0) {
           if (typeof files === 'string') files = [files]
         }
         if (limit.babili) {
-          warn(
-            'Option "babili": true was deprecated.\n' +
-            'Size Limit now supports ES2016 out of box.\n' +
-            'You can remove this option.\n'
-          )
+          warn([
+            'Option "babili": true was deprecated.',
+            'Size Limit now supports ES2016 out of box.',
+            'You can remove this option.'
+          ])
         }
         return {
           bundle: result.pkg.name,
@@ -123,17 +127,17 @@ if (argv['_'].length === 0) {
   }
 
   if (limit) {
-    warn(
-      'Limit argument in Size Limit CLi was deprecated.\n' +
-      'Use size-limit section in package.json to specify limit.\n'
-    )
+    warn([
+      'Limit argument in Size Limit CLi was deprecated.',
+      'Use size-limit section in package.json to specify limit.'
+    ])
   }
   if (argv.babili) {
-    warn(
-      'Argument --babili was deprecated.\n' +
-      'Size Limit now supports ES2016 out of box.\n' +
-      'You can remove this argument.\n'
-    )
+    warn([
+      'Argument --babili was deprecated.',
+      'Size Limit now supports ES2016 out of box.',
+      'You can remove this argument.'
+    ])
   }
 
   const full = files.map(i => {
