@@ -9,6 +9,7 @@ yarn.lock
 
 test/
 .travis.yml
+appveyor.yml
 report.html
 
 .yaspellerrc
