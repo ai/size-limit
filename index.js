@@ -32,7 +32,34 @@ function getConfig (files, opts) {
     },
     module: {
       rules: [
-        { test: /\.(png|jpg|svg)$/, use: 'file-loader' }
+        { test: /\.(png|jpg|svg)$/, use: 'file-loader' },
+        {
+          test: /\.css$/,
+          exclude: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                modules: false
+              }
+            }
+          ]
+        },
+        {
+          test: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                modules: true
+              }
+            }
+          ]
+        }
       ]
     },
     plugins: [
