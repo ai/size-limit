@@ -14,6 +14,9 @@ const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = 293
 
+const STATIC =
+  /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico)$/
+
 function projectName (opts, files) {
   if (opts.bundle) {
     return `${ opts.bundle }.js`
@@ -33,7 +36,7 @@ function getConfig (files, opts) {
     module: {
       rules: [
         {
-          test: /\.(eot|woff|woff2|ttf|otf|svg|png|jpg|jpeg|jp2|jpx|jxr|gif|webp|mp4|mp3|ogg|pdf|html|ico)$/, // eslint-disable-line
+          test: STATIC,
           use: 'file-loader'
         },
         {
@@ -44,8 +47,7 @@ function getConfig (files, opts) {
             {
               loader: 'css-loader',
               options: {
-                minimize: true,
-                modules: false
+                minimize: true
               }
             }
           ]
