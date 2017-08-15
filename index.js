@@ -32,7 +32,37 @@ function getConfig (files, opts) {
     },
     module: {
       rules: [
-        { test: /\.(png|jpg|svg)$/, use: 'file-loader' }
+        {
+          test: /\.(eot|woff|woff2|ttf|otf|svg|png|jpg|jpeg|jp2|jpx|jxr|gif|webp|mp4|mp3|ogg|pdf|html|ico)$/, // eslint-disable-line
+          use: 'file-loader'
+        },
+        {
+          test: /\.css$/,
+          exclude: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                modules: false
+              }
+            }
+          ]
+        },
+        {
+          test: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                modules: true
+              }
+            }
+          ]
+        }
       ]
     },
     plugins: [

@@ -44,6 +44,18 @@ it('support images', () => {
   })
 })
 
+it('support css', () => {
+  return getSize(fixture('css/index')).then(size => {
+    expect(size).toEqual(2172)
+  })
+})
+
+it('support css modules', () => {
+  return getSize(fixture('cssmodules/index')).then(size => {
+    expect(size).toEqual(2205)
+  })
+})
+
 it('removes non-production code', () => {
   return getSize(fixture('multiple/production')).then(size => {
     expect(size).toEqual(9)
