@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9
+* Use UglifyJS 3 to support ES2016 out of box.
+* Add argument and option to disable webpack.
+* Deprecate argument and option for Babili.
+* Deprecate limit in CLI arguments.
+* Deprecate old `"sizeLimit"` section name.
+* Better error messages style.
+* Clean npm package from test files.
+
 ## 0.8.4
 * Fix error messages text (by Alexandr Subbotin).
 
