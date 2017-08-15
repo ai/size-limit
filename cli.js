@@ -221,7 +221,13 @@ getOptions.then(files => {
     return files
   }
 }).then(files => {
-  if (!argv.why && files.some(i => !i.passed)) process.exit(3)
+  if (!argv.why) {
+    if (files.some(i => !i.passed)) {
+      process.exit(3)
+    } else {
+      process.exit(0)
+    }
+  }
 }).catch(e => {
   let msg
   if (e.sizeLimit) {
