@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.10
+* Add CSS files support (by Sebastian Werner).
+* Add support for more static files types (by Sebastian Werner).
+
 ## 0.9
 * Use UglifyJS 3 to support ES2016 out of box.
 * Add argument and option to disable webpack.
