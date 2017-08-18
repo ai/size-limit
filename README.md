@@ -40,9 +40,12 @@ for `process`, etc.
 * [Material-UI](https://github.com/callemall/material-ui)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [PostCSS](https://github.com/postcss/postcss)
-* [Browserslist](https://github.com/ai/browserslist) reduced 25% of the size.
-* [nanoid](https://github.com/ai/nanoid) reduced 50% of the size.
-* [Logux](https://github.com/logux) reduced 90% of the size.
+* [Browserslist](https://github.com/ai/browserslist) reduced
+  [25% of the size](https://github.com/ai/browserslist/commit/640b62fa83a20897cae75298a9f2715642531623).
+* [nanoid](https://github.com/ai/nanoid) reduced
+  [33% of the size](https://github.com/ai/nanoid/commit/036612e7d6cc5760313a8850a2751a5e95184eab).
+* [Logux](https://github.com/logux) reduced
+  [90% of the size](https://github.com/logux/logux-client/commit/62b258e20e1818b23ae39b9c4cd49e2495781e91).
 
 ## Usage
 
