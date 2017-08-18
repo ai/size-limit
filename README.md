@@ -36,12 +36,13 @@ for `process`, etc.
 
 ## Who Uses Size Limit
 
-* [Material-UI](https://github.com/callemall/material-ui)
 * [MobX](https://github.com/mobxjs/mobx)
-* [PostCSS](https://github.com/postcss/postcss)
+* [Material-UI](https://github.com/callemall/material-ui)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [JSS](https://github.com/cssinjs/jss)
-* [Logux](https://github.com/logux)
+* [PostCSS](https://github.com/postcss/postcss)
+* [Browserslist](https://github.com/ai/browserslist) reduced 25% of the size.
+* [nanoid](https://github.com/ai/nanoid) reduced 50% of the size.
+* [Logux](https://github.com/logux) reduced 90% of the size.
 
 ## Usage
 
