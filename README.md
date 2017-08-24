@@ -39,7 +39,8 @@ for `process`, etc.
 * [MobX](https://github.com/mobxjs/mobx)
 * [Material-UI](https://github.com/callemall/material-ui)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [PostCSS](https://github.com/postcss/postcss)
+* [PostCSS](https://github.com/postcss/postcss) reduced
+  [25% of the size](https://github.com/postcss/postcss/commit/150edaa42f6d7ede73d8c72be9909f0a0f87a70f).
 * [Browserslist](https://github.com/ai/browserslist) reduced
   [25% of the size](https://github.com/ai/browserslist/commit/640b62fa83a20897cae75298a9f2715642531623).
 * [nanoid](https://github.com/ai/nanoid) reduced
