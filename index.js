@@ -1,5 +1,6 @@
 'use strict'
 
+const escapeRegexp = require('escape-string-regexp')
 const Compression = require('compression-webpack-plugin')
 const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
@@ -71,11 +72,17 @@ function getConfig (files, opts) {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      new Uglify({ sourceMap: false })
+      new Uglify({ sourceMap: false }),
+      new Compression({ asset: '[path].gz' })
     ]
   }
 
-  config.plugins.push(new Compression({ asset: '[path].gz' }))
+  if (opts.ignore) {
+    const escaped = opts.ignore.map(i => escapeRegexp(i))
+    // eslint-disable-next-line security/detect-non-literal-regexp
+    const regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
+    config.plugins.push(new webpack.IgnorePlugin(regexp))
+  }
 
   if (opts.analyzer) {
     config.output.path = path.join(os.tmpdir(), `size-limit-${ Date.now() }`)
@@ -109,6 +116,7 @@ function runWebpack (config, opts) {
  *                                                        content in browser.
  * @param {true|false} [opts.webpack=true] Pack files by webpack.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
+ * @param {string[]} [opts.ignore] Dependencies to be ignored.
  *
  * @return {Promise} Promise with size of files
  *

@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "peerDependencies": {
+    "redux": "*"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "2 KB"
+    }
+  ]
+}

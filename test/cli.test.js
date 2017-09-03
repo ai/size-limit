@@ -181,6 +181,13 @@ it('supports absolute path', () => {
   })
 })
 
+it('ignores peerDependencies', () => {
+  return run([], { cwd: fixture('peer') }).then(result => {
+    expect(result.out).toContain('93 B\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('disables webpack by argument', () => {
   return run(['--no-webpack', 'test/fixtures/bad/index.js']).then(result => {
     expect(result.out).toContain('51 B\n')

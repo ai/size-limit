@@ -112,6 +112,7 @@ if (argv['_'].length === 0) {
         return {
           webpack: limit.webpack !== false,
           bundle: result.pkg.name,
+          ignore: result.pkg.peerDependencies,
           limit: limit.limit,
           full: files.map(i => path.join(cwd, i)),
           files
@@ -164,6 +165,9 @@ if (argv['_'].length === 0) {
 getOptions.then(files => {
   return Promise.all(files.map(file => {
     const opts = { bundle: file.bundle, webpack: file.webpack }
+    if (file.ignore) {
+      opts.ignore = Object.keys(file.ignore)
+    }
     if (argv.why && files.length === 1) {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }

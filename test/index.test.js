@@ -62,6 +62,12 @@ it('removes non-production code', () => {
   })
 })
 
+it('ignores dependencies on request', () => {
+  return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
+    expect(size).toEqual(93)
+  })
+})
+
 it('disables webpack on request', () => {
   return getSize([
     fixture('bad/index'), fixture('es2016/index')
