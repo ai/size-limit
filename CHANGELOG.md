@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.11
+* Ignore size of `peerDependencies`.
+
 ## 0.10
 * Add CSS files support (by Sebastian Werner).
 * Add support for more static files types (by Sebastian Werner).
