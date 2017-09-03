@@ -53,10 +53,7 @@ function ownError (msg) {
 }
 
 function formatBytes (size) {
-  const format = bytes
-    .format(size, { unitSeparator: ' ' })
-    .replace('k', 'K')
-  return chalk.bold(format)
+  return chalk.bold(bytes.format(size, { unitSeparator: ' ' }))
 }
 
 function warn (messages) {
