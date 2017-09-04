@@ -1,5 +1,8 @@
 # Size Limit
 
+<img align="right" width="95" height="95"
+     title="Size Limit logo" src="./logo.svg">
+
 Size Limit is a tool to prevent JavaScript libraries bloat.
 With it, you know exactly for how many kilobytes your JS library
 increases the user bundle.
