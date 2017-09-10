@@ -144,22 +144,31 @@ if (argv['_'].length === 0) {
     ])
   }
 
-  const full = files.map(i => {
-    if (path.isAbsolute(i)) {
-      return i
-    } else {
-      return path.join(process.cwd(), i)
-    }
-  })
+  if (files.length === 0) {
+    getOptions = Promise.reject(
+      ownError(
+        'Specify file for Size Limit. ' +
+        `For example, \`size-limit ${ argv['_'] } index.js\`.`
+      )
+    )
+  } else {
+    const full = files.map(i => {
+      if (path.isAbsolute(i)) {
+        return i
+      } else {
+        return path.join(process.cwd(), i)
+      }
+    })
 
-  getOptions = Promise.resolve([
-    {
-      webpack: argv.webpack !== false,
-      path: files,
-      limit,
-      full
-    }
-  ])
+    getOptions = Promise.resolve([
+      {
+        webpack: argv.webpack !== false,
+        path: files,
+        limit,
+        full
+      }
+    ])
+  }
 }
 
 getOptions.then(files => {
