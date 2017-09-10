@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.11.1
+* Better error message on missed file in legacy CLI.
+
 ## 0.11
 * Ignore size of `peerDependencies`.
 
