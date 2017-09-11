@@ -232,8 +232,9 @@ getOptions.then(files => {
         limitString = limit + ' B'
         sizeString = file.size + ' B'
       }
+      const diff = formatBytes(file.size - limit)
       process.stdout.write(
-        `  ${ chalk.red('Package has exceeded the size limit') }\n` +
+        `  ${ chalk.red('Package size limit has exceeded by ' + diff) }\n` +
         `  Package size: ${ chalk.bold(chalk.red(sizeString)) }\n` +
         `  Size limit:   ${ chalk.bold(limitString) }\n`)
       file.passed = false

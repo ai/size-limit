@@ -162,7 +162,7 @@ it('supports multiple files', () => {
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded the size limit')
+    expect(result.out).toContain('exceeded by 384 B')
     expect(result.code).toEqual(3)
   })
 })
