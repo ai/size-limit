@@ -54,6 +54,18 @@ function ownError (msg) {
   return error
 }
 
+function checkConfig (limits) {
+  if (!Array.isArray(limits)) return false
+  if (limits.length === 0) return false
+  for (const limit of limits) {
+    if (typeof limit !== 'object') return false
+    if (typeof limit.path !== 'string' && !Array.isArray(limit.path)) {
+      return false
+    }
+  }
+  return true
+}
+
 function formatBytes (size) {
   return chalk.bold(bytes.format(size, { unitSeparator: ' ' }))
 }
@@ -99,9 +111,10 @@ if (argv['_'].length === 0) {
 
     const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
 
-    if (!Array.isArray(limits)) {
+    if (!checkConfig(limits)) {
       throw ownError(
-        '`"size-limit"` section in `package.json` must be an array.' +
+        '`"size-limit"` section in `package.json` is wrong. ' +
+        'Fix it according Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )
     }
