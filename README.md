@@ -25,6 +25,8 @@ internal dependencies.
        width="650" height="335">
 </p>
 
+You can find more examples in **[Size Limit: Make the Web lighter]** article.
+
 To be really specific, Size Limit creates an empty webpack project in memory.
 Then, it adds your library as a dependency to the project and calculates
 the real cost of your libraries, including all dependencies, webpack’s polyfills
@@ -36,6 +38,8 @@ for process, etc.
          alt="Sponsored by Evil Martians" width="236" height="54">
   </a>
 </p>
+
+[Size Limit: Make the Web lighter]: https://evilmartians.com/chronicles/size-limit-make-the-web-lighter
 
 ## Who Uses Size Limit
 
