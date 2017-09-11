@@ -11,6 +11,14 @@ const path = require('path')
 
 const getSize = require('.')
 
+const EXAMPLE = '\n' +
+                '  "size-limit": [\n' +
+                '    {\n' +
+                '      "path": "index.js",\n' +
+                '      "limit": "9 KB"\n' +
+                '    }\n' +
+                '  ]'
+
 const argv = yargs
   .usage('$0')
   .option('why', {
@@ -36,13 +44,7 @@ const argv = yargs
           '\n' +
           'Size Limit will read size-limit section from package.json.\n' +
           'Configuration example:\n' +
-          '\n' +
-          '  "size-limit": [\n' +
-          '    {\n' +
-          '      "path": "index.js",\n' +
-          '      "limit": "9 KB"\n' +
-          '    }\n' +
-          '  ]')
+          EXAMPLE)
   .locale('en')
   .argv
 
@@ -83,7 +85,8 @@ if (argv['_'].length === 0) {
     } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
       throw ownError(
         'Can not find `"size-limit"` section in `package.json`. ' +
-        'Add it according Size Limit docs.'
+        'Add it according Size Limit docs.' +
+        `\n${ EXAMPLE }\n`
       )
     }
 
@@ -95,6 +98,14 @@ if (argv['_'].length === 0) {
     }
 
     const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
+
+    if (!Array.isArray(limits)) {
+      throw ownError(
+        '`"size-limit"` section in `package.json` must be an array.' +
+        `\n${ EXAMPLE }\n`
+      )
+    }
+
     return Promise.all(limits.map(limit => {
       const cwd = path.dirname(result.path)
       return globby(limit.path, { cwd }).then(files => {

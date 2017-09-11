@@ -68,9 +68,19 @@ it('shows package.json error', () => {
 
 it('shows size-limit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
-    expect(result.out).toEqual(
+    expect(result.out).toContain(
       ' ERROR  Can not find "size-limit" section in package.json.\n' +
       '        Add it according Size Limit docs.\n')
+    expect(result.out).toContain('"size-limit": [')
+    expect(result.code).toEqual(1)
+  })
+})
+
+it('shows size-limit type error', () => {
+  return run([], { cwd: fixture('type') }).then(result => {
+    expect(result.out).toContain(
+      ' ERROR  "size-limit" section in package.json must be an array.\n')
+    expect(result.out).toContain('"size-limit": [')
     expect(result.code).toEqual(1)
   })
 })
