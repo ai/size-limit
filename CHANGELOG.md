@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.11.2
+* Show config example in config error messages.
+* Better error message on wrong config.
+
 ## 0.11.1
 * Better error message on missed file in legacy CLI.
 
