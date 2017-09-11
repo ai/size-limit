@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "dependencies": {
+    "attr-accept": "*"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "1.81 KB"
+    }
+  ]
+}

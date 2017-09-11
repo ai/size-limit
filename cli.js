@@ -67,7 +67,7 @@ function checkConfig (limits) {
 }
 
 function formatBytes (size) {
-  return chalk.bold(bytes.format(size, { unitSeparator: ' ' }))
+  return bytes.format(size, { unitSeparator: ' ' })
 }
 
 function warn (messages) {
@@ -220,19 +220,26 @@ getOptions.then(files => {
       process.stdout.write(chalk.gray(`  ${ file.files }\n`))
     }
 
+    let limitString = formatBytes(limit)
+    let sizeString = formatBytes(file.size)
+
     if (limit && file.size <= limit) {
       process.stdout.write(
-        `  Package size: ${ chalk.green(formatBytes(file.size)) }\n` +
-        `  Size limit:   ${ formatBytes(limit) }\n`)
+        `  Package size: ${ chalk.bold(chalk.green(sizeString)) }\n` +
+        `  Size limit:   ${ chalk.bold(limitString) }\n`)
     } else if (limit) {
+      if (limitString === sizeString) {
+        limitString = limit + ' B'
+        sizeString = file.size + ' B'
+      }
       process.stdout.write(
         `  ${ chalk.red('Package has exceeded the size limit') }\n` +
-        `  Package size: ${ chalk.red(formatBytes(file.size)) }\n` +
-        `  Size limit:   ${ formatBytes(limit) }\n`)
+        `  Package size: ${ chalk.bold(chalk.red(sizeString)) }\n` +
+        `  Size limit:   ${ chalk.bold(limitString) }\n`)
       file.passed = false
     } else {
       process.stdout.write(
-        `  Package size: ${ formatBytes(file.size) }\n`)
+        `  Package size: ${ chalk.bold(sizeString) }\n`)
     }
 
     if (files.length > 1) process.stdout.write('\n')
