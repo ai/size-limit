@@ -97,7 +97,7 @@ if (argv['_'].length === 0) {
     } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
       throw ownError(
         'Can not find `"size-limit"` section in `package.json`. ' +
-        'Add it according Size Limit docs.' +
+        'Add it according to Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )
     }
@@ -114,7 +114,7 @@ if (argv['_'].length === 0) {
     if (!checkConfig(limits)) {
       throw ownError(
         '`"size-limit"` section in `package.json` is wrong. ' +
-        'Fix it according Size Limit docs.' +
+        'Fix it according to Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )
     }
