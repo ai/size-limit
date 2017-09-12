@@ -25,13 +25,6 @@ internal dependencies.
        width="650" height="335">
 </p>
 
-You can find more examples in **[Size Limit: Make the Web lighter]** article.
-
-To be really specific, Size Limit creates an empty webpack project in memory.
-Then, it adds your library as a dependency to the project and calculates
-the real cost of your libraries, including all dependencies, webpack’s polyfills
-for process, etc.
-
 <p align="center">
   <a href="https://evilmartians.com/?utm_source=size-limit">
     <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
@@ -55,6 +48,15 @@ for process, etc.
   [33% of the size](https://github.com/ai/nanoid/commit/036612e7d6cc5760313a8850a2751a5e95184eab).
 * [Logux](https://github.com/logux) reduced
   [90% of the size](https://github.com/logux/logux-client/commit/62b258e20e1818b23ae39b9c4cd49e2495781e91).
+
+## How It Works
+
+You can find more examples in **[Size Limit: Make the Web lighter]** article.
+
+To be really specific, Size Limit creates an empty webpack project in memory.
+Then, it adds your library as a dependency to the project and calculates
+the real cost of your libraries, including all dependencies, webpack’s polyfills
+for process, etc.
 
 ## Usage
 
