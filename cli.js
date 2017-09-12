@@ -54,16 +54,29 @@ function ownError (msg) {
   return error
 }
 
-function checkConfig (limits) {
-  if (!Array.isArray(limits)) return false
-  if (limits.length === 0) return false
+function isStrings (value) {
+  if (!Array.isArray(value)) return false
+  return value.every(i => typeof i === 'string')
+}
+
+function configError (limits) {
+  if (!Array.isArray(limits)) {
+    return 'The `"size-limit"` section of package.json must be `an array`'
+  }
+  if (limits.length === 0) {
+    return 'The `"size-limit"` section of package.json must `not be empty`'
+  }
   for (const limit of limits) {
-    if (typeof limit !== 'object') return false
-    if (typeof limit.path !== 'string' && !Array.isArray(limit.path)) {
-      return false
+    if (typeof limit !== 'object') {
+      return 'The `"size-limit"` array in package.json ' +
+             'should contain only objects'
+    }
+    if (typeof limit.path !== 'string' && !isStrings(limit.path)) {
+      return 'The `path` in Size Limit config must be `a string` ' +
+             'or `an array of strings`'
     }
   }
-  return true
+  return false
 }
 
 function formatBytes (size) {
@@ -111,9 +124,9 @@ if (argv['_'].length === 0) {
 
     const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
 
-    if (!checkConfig(limits)) {
+    if (configError(limits)) {
       throw ownError(
-        '`"size-limit"` section in `package.json` is wrong. ' +
+        configError(limits) + '. ' +
         'Fix it according to Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )

@@ -34,6 +34,13 @@ function run (args, options, env) {
   })
 }
 
+function configError (msg) {
+  return ' ERROR  ' + msg + '\n' +
+         '        Fix it according to Size Limit docs.\n' +
+         '\n' +
+         '  "size-limit": ['
+}
+
 it('returns help', () => {
   return run(['--help']).then(result => {
     expect(result.out).toContain('Options:')
@@ -73,29 +80,24 @@ it('shows size-limit section error', () => {
       '        Add it according to Size Limit docs.\n' +
       '\n' +
       '  "size-limit": [')
-    expect(result.out).toContain('"size-limit": [')
     expect(result.code).toEqual(1)
   })
 })
 
 it('shows size-limit type error', () => {
   return run([], { cwd: fixture('type') }).then(result => {
-    expect(result.out).toContain(
-      ' ERROR  "size-limit" section in package.json is wrong.\n' +
-      '        Fix it according to Size Limit docs.\n' +
-      '\n' +
-      '  "size-limit": [')
+    expect(result.out).toContain(configError(
+      'The "size-limit" section of package.json must be an array.'
+    ))
     expect(result.code).toEqual(1)
   })
 })
 
 it('shows size-limit content error', () => {
   return run([], { cwd: fixture('wrong') }).then(result => {
-    expect(result.out).toContain(
-      ' ERROR  "size-limit" section in package.json is wrong.\n' +
-      '        Fix it according to Size Limit docs.\n' +
-      '\n' +
-      '  "size-limit": [')
+    expect(result.out).toContain(configError(
+      'The path in Size Limit config must be a string or an array of strings.'
+    ))
     expect(result.code).toEqual(1)
   })
 })
