@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.11.4
+* Update `yargs`.
+
 ## 0.11.3
 * Better error message on wrong config.
 * Fix English in config error messages (by Tim Marinin).
