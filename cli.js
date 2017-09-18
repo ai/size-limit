@@ -30,8 +30,6 @@ const argv = yargs
     describe: 'Disable webpack',
     type: 'boolean'
   })
-  .version()
-  .help()
   .alias('help', 'h')
   .alias('version', 'v')
   .epilog('Usage:\n' +
