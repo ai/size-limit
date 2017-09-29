@@ -236,3 +236,10 @@ it('disables webpack by option', () => {
     expect(result.code).toEqual(0)
   })
 })
+
+it('throws on --why with disabled webpack', () => {
+  return run(['--why'], { cwd: fixture('bundled') }).then(result => {
+    expect(result.out).toContain('--why does not work')
+    expect(result.code).toEqual(1)
+  })
+})
