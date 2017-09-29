@@ -263,7 +263,10 @@ getOptions.then(files => {
 
   return checks
 }).then(files => {
-  if (argv.why && files.length > 1) {
+  // Files are array with object which has 'files' key; 
+  // files = [{..., files: [], ...}]
+  // To access it files[0].files.length and when it works
+  if (argv.why && files[0].files.length > 1) {
     const opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
       bundle: files[0].bundle
