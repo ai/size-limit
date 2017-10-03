@@ -211,7 +211,7 @@ getOptions.then(files => {
     if (file.webpack === false && argv.why) {
       throw ownError(
         '`--why` does not work with `"webpack": false`. ' +
-        'Add Webpacak Bundle Analyzer to your Webpack config.'
+        'Add Webpack Bundle Analyzer to your Webpack config.'
       )
     }
     const opts = { bundle: file.bundle, webpack: file.webpack }
