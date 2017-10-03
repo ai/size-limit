@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.11.6
+* Fix CLI messages (by @mute).
+
 ## 0.11.5
 * Better error message on `--why` with `"webpack": false`.
 
