@@ -641,8 +641,8 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000740"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000740.tgz#03fcaaa176e3ed075895f72d46c1a12149bbeac9"
+  version "1.0.30000741"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000741.tgz#0be59111d4221f21f612b50ee5d67871a2c4a7a5"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -828,9 +828,9 @@ commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
 
-compression-webpack-plugin@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-1.0.0.tgz#5c5eb6afd08ca6a5d66006eeef71da17b01bd676"
+compression-webpack-plugin@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-1.0.1.tgz#7f0a2af9f642b4f87b5989516a3b9e9b41bb4b3f"
   dependencies:
     async "2.4.1"
     webpack-sources "^1.0.1"
@@ -1440,9 +1440,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.7.2:
-  version "4.7.2"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.2.tgz#ff6f5f5193848a27ee9b627be3e73fb9cb5e662e"
+eslint@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.8.0.tgz#229ef0e354e0e61d837c7a80fdfba825e199815e"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -1602,8 +1602,8 @@ expect@^21.2.1:
     jest-regex-util "^21.2.0"
 
 express@^4.15.2:
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/express/-/express-4.16.0.tgz#b519638e4eb58e7178c81b498ef22f798cb2e255"
+  version "4.16.1"
+  resolved "https://registry.yarnpkg.com/express/-/express-4.16.1.tgz#6b33b560183c9b253b7b62144df33a4654ac9ed0"
   dependencies:
     accepts "~1.3.4"
     array-flatten "1.1.1"
@@ -1628,8 +1628,8 @@ express@^4.15.2:
     qs "6.5.1"
     range-parser "~1.2.0"
     safe-buffer "5.1.1"
-    send "0.16.0"
-    serve-static "1.13.0"
+    send "0.16.1"
+    serve-static "1.13.1"
     setprototypeof "1.1.0"
     statuses "~1.3.1"
     type-is "~1.6.15"
@@ -1700,11 +1700,12 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
-file-loader@^0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.11.2.tgz#4ff1df28af38719a6098093b88c82c71d1794a34"
+file-loader@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-1.1.4.tgz#5ca9384adfafe008077c3439a435b2781a889ef5"
   dependencies:
     loader-utils "^1.0.2"
+    schema-utils "^0.3.0"
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -4311,9 +4312,9 @@ semver@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
-send@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/send/-/send-0.16.0.tgz#16338dbb9a2ede4ad57b48420ec3b82d8e80a57b"
+send@0.16.1:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/send/-/send-0.16.1.tgz#a70e1ca21d1382c11d0d9f6231deb281080d7ab3"
   dependencies:
     debug "2.6.9"
     depd "~1.1.1"
@@ -4329,14 +4330,14 @@ send@0.16.0:
     range-parser "~1.2.0"
     statuses "~1.3.1"
 
-serve-static@1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.13.0.tgz#810c91db800e94ba287eae6b4e06caab9fdc16f1"
+serve-static@1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.13.1.tgz#4c57d53404a761d8f2e7c1e8a18a47dbf278a719"
   dependencies:
     encodeurl "~1.0.1"
     escape-html "~1.0.3"
     parseurl "~1.3.2"
-    send "0.16.0"
+    send "0.16.1"
 
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
@@ -4380,10 +4381,10 @@ shellwords@^0.1.0:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
 
 showdown@^1.7.1:
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/showdown/-/showdown-1.7.4.tgz#6bbc9dd2cdb1e5fdd749ecdadc6a47b856594ae0"
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/showdown/-/showdown-1.7.5.tgz#08edefd1aa7af35bd6de18a4e30192e2f5e176cb"
   dependencies:
-    yargs "^8.0.1"
+    yargs "^9.0.1"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -4786,8 +4787,8 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 uglify-es@^3.0.24:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.1.2.tgz#b22cfca950f0632092aff42bb46979d83b5ec6f5"
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.1.3.tgz#a21eeb149cb120a1f8302563689e19496550780b"
   dependencies:
     commander "~2.11.0"
     source-map "~0.5.1"
@@ -5127,7 +5128,7 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs@^8.0.1, yargs@^8.0.2:
+yargs@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-8.0.2.tgz#6299a9055b1cefc969ff7e79c1d918dceb22c360"
   dependencies:
