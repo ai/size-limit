@@ -116,7 +116,7 @@ Add the `size` script to your test suite:
 
 ```diff js
   "scripts": {
-    "size": "size-limit 9KB",
+    "size": "size-limit",
 -   "test": "jest && eslint ."
 +   "test": "jest && eslint . && npm run size"
   }
