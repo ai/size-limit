@@ -39,7 +39,8 @@ const argv = yargs
           '    Show reasons why project have this size.\n' +
           '  $0 index.js\n' +
           '    Check specific file size with all file dependencies.\n' +
-          '\n' +
+          '  $0 --config my.custom.webpack.config.js\n' +
+          '    Override built-in webpack configuration with your own\n' +
           'Size Limit will read size-limit section from package.json.\n' +
           'Configuration example:\n' +
           EXAMPLE)
