@@ -214,7 +214,11 @@ getOptions.then(files => {
         'Add Webpack Bundle Analyzer to your Webpack config.'
       )
     }
-    const opts = { bundle: file.bundle, webpack: file.webpack }
+    const opts = {
+      bundle: file.bundle,
+      webpack: file.webpack,
+      config: argv.config
+    }
     if (file.ignore) {
       opts.ignore = Object.keys(file.ignore)
     }
