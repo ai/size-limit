@@ -269,9 +269,13 @@ getOptions.then(files => {
     return file
   })
 
-  process.stdout.write(
-    chalk.gray('  With all dependencies, minified and gzipped\n\n'))
-
+  let message
+  if (argv.config) {
+    message = '  With given webpack configuration\n\n'
+  } else {
+    message = '  With all dependencies, minified and gzipped\n\n'
+  }
+  process.stdout.write(chalk.gray(message))
   return checks
 }).then(files => {
   if (argv.why && files.length > 1) {
