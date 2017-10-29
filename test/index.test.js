@@ -75,3 +75,11 @@ it('disables webpack on request', () => {
     expect(size).toEqual(122)
   })
 })
+
+it('uses custom webpack config', () => {
+  return getSize(fixture('config/index'), {
+    config: fixture('config/webpack.config')
+  }).then(size => {
+    expect(size).toEqual(2252)
+  })
+})

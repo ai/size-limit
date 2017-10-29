@@ -30,8 +30,13 @@ function projectName (opts, files) {
 
 function getConfig (files, opts) {
   if (opts.config) {
-  // eslint-disable-next-line global-require,security/detect-non-literal-require
-    return require(path.join(process.cwd(), opts.config))
+    /* eslint-disable global-require, security/detect-non-literal-require */
+    if (path.isAbsolute(opts.config)) {
+      return require(opts.config)
+    } else {
+      return require(path.join(process.cwd(), opts.config))
+    }
+    /* eslint-enable global-require, security/detect-non-literal-require */
   }
 
   const config = {
