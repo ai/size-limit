@@ -30,6 +30,10 @@ const argv = yargs
     describe: 'Disable webpack',
     type: 'boolean'
   })
+  .option('config', {
+    describe: 'Custom webpack config',
+    type: 'string'
+  })
   .alias('help', 'h')
   .alias('version', 'v')
   .epilog('Usage:\n' +
@@ -39,8 +43,7 @@ const argv = yargs
           '    Show reasons why project have this size.\n' +
           '  $0 index.js\n' +
           '    Check specific file size with all file dependencies.\n' +
-          '  $0 --config my.custom.webpack.config.js\n' +
-          '    Override built-in webpack configuration with your own\n' +
+          '\n' +
           'Size Limit will read size-limit section from package.json.\n' +
           'Configuration example:\n' +
           EXAMPLE)
