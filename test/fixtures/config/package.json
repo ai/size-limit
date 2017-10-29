@@ -1,6 +1,8 @@
 {
   "private": true,
   "size-limit": [
-    { "path": "index.js" }
+    {
+      "path": "index.js"
+    }
   ]
 }
