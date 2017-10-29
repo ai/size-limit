@@ -2,6 +2,7 @@
   "private": true,
   "size-limit": [
     {
+      "config": "./webpack.config.js",
       "path": "index.js"
     }
   ]

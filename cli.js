@@ -151,6 +151,7 @@ if (argv['_'].length === 0) {
         return {
           webpack: limit.webpack !== false,
           bundle: result.pkg.name,
+          config: limit.config,
           ignore: result.pkg.peerDependencies,
           limit: limit.limit,
           full: files.map(i => path.join(cwd, i)),
@@ -221,7 +222,7 @@ getOptions.then(files => {
     const opts = {
       bundle: file.bundle,
       webpack: file.webpack,
-      config: argv.config
+      config: file.config || argv.config
     }
     if (file.ignore) {
       opts.ignore = Object.keys(file.ignore)
