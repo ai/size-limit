@@ -243,3 +243,11 @@ it('throws on --why with disabled webpack', () => {
     expect(result.code).toEqual(1)
   })
 })
+
+it('uses custom webpack when specified via --config', () => {
+  return run(['--config', 'webpack.config.js'],
+    { cwd: fixture('config') }).then(result => {
+    expect(result.out).toContain('Package size: 2.38 KB')
+    expect(result.code).toEqual(0)
+  })
+})

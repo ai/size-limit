@@ -29,6 +29,11 @@ function projectName (opts, files) {
 }
 
 function getConfig (files, opts) {
+  if (opts.config) {
+  // eslint-disable-next-line global-require,security/detect-non-literal-require
+    return require(path.join(process.cwd(), opts.config))
+  }
+
   const config = {
     entry: files,
     output: {
@@ -150,7 +155,8 @@ function getSize (files, opts) {
         throw new Error(stats.toString('errors-only'))
       }
 
-      const name = `${ stats.compilation.outputOptions.filename }.gz`
+      let name = `${ stats.compilation.outputOptions.filename }`
+      name += opts.config ? '' : '.gz'
       const assets = stats.toJson().assets
       const size = assets.find(i => i.name === name).size
 

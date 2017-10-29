@@ -39,7 +39,8 @@ const argv = yargs
           '    Show reasons why project have this size.\n' +
           '  $0 index.js\n' +
           '    Check specific file size with all file dependencies.\n' +
-          '\n' +
+          '  $0 --config my.custom.webpack.config.js\n' +
+          '    Override built-in webpack configuration with your own\n' +
           'Size Limit will read size-limit section from package.json.\n' +
           'Configuration example:\n' +
           EXAMPLE)
@@ -214,7 +215,11 @@ getOptions.then(files => {
         'Add Webpack Bundle Analyzer to your Webpack config.'
       )
     }
-    const opts = { bundle: file.bundle, webpack: file.webpack }
+    const opts = {
+      bundle: file.bundle,
+      webpack: file.webpack,
+      config: argv.config
+    }
     if (file.ignore) {
       opts.ignore = Object.keys(file.ignore)
     }
@@ -264,9 +269,13 @@ getOptions.then(files => {
     return file
   })
 
-  process.stdout.write(
-    chalk.gray('  With all dependencies, minified and gzipped\n\n'))
-
+  let message
+  if (argv.config) {
+    message = '  With given webpack configuration\n\n'
+  } else {
+    message = '  With all dependencies, minified and gzipped\n\n'
+  }
+  process.stdout.write(chalk.gray(message))
   return checks
 }).then(files => {
   if (argv.why && files.length > 1) {
