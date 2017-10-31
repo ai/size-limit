@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.12.1
+* Fix dependency resolving with custom webpack config (by Sivan Mehta).
+
 ## 0.12
 * Add custom webpack config support (by Sivan Mehta).
 
