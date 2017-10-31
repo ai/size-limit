@@ -130,9 +130,7 @@ function extractSize (stat, opts) {
   let name = `${ stat.compilation.outputOptions.filename }`
   name += opts.config ? '' : '.gz'
   const assets = stat.toJson().assets
-  const size = assets.find(i => i.name === name).size
-  console.log(size)
-  return size
+  return assets.find(i => i.name === name).size
 }
 
 /**
