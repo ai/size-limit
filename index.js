@@ -127,7 +127,7 @@ function runWebpack (config, opts) {
 }
 
 function extractSize (stat, opts) {
-  let name = `${ stat.compilation.outputOptions.filename }`
+  let name = stat.compilation.outputOptions.filename
   name += opts.config ? '' : '.gz'
   const assets = stat.toJson().assets
   return assets.find(i => i.name === name).size
