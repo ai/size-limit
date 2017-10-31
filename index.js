@@ -126,6 +126,15 @@ function runWebpack (config, opts) {
   })
 }
 
+function extractSize (stat, opts) {
+  let name = `${ stat.compilation.outputOptions.filename }`
+  name += opts.config ? '' : '.gz'
+  const assets = stat.toJson().assets
+  const size = assets.find(i => i.name === name).size
+  console.log(size)
+  return size
+}
+
 /**
  * Return size of project files with all dependencies and after UglifyJS
  * and gzip.
@@ -170,15 +179,13 @@ function getSize (files, opts) {
         throw new Error(stats.toString('errors-only'))
       }
 
-      // unwrap from resolved
+      let size
+      // unwrap from resolved if configuration requires it
       if (opts.config && stats.stats) {
-        stats = stats.stats[0]
+        size = stats.stats.reduce((pre, cur) => pre + extractSize(cur, opts), 0)
+      } else {
+        size = extractSize(stats, opts)
       }
-
-      let name = `${ stats.compilation.outputOptions.filename }`
-      name += opts.config ? '' : '.gz'
-      const assets = stats.toJson().assets
-      const size = assets.find(i => i.name === name).size
 
       return size - WEBPACK_EMPTY_PROJECT
     })
