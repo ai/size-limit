@@ -30,13 +30,23 @@ function projectName (opts, files) {
 
 function getConfig (files, opts) {
   if (opts.config) {
+    let config
     /* eslint-disable global-require, security/detect-non-literal-require */
     if (path.isAbsolute(opts.config)) {
-      return require(opts.config)
+      config = require(opts.config)
     } else {
-      return require(path.join(process.cwd(), opts.config))
+      config = require(path.join(process.cwd(), opts.config))
     }
     /* eslint-enable global-require, security/detect-non-literal-require */
+
+    // resolve relative node_modules
+    const resolveModulesPaths = [
+      path.join(process.cwd(), 'node_modules')
+    ]
+    config.resolveLoader = { modules: resolveModulesPaths }
+    config.resolve = { modules: resolveModulesPaths }
+
+    return config
   }
 
   const config = {
@@ -158,6 +168,11 @@ function getSize (files, opts) {
     return runWebpack(getConfig(files, opts), opts).then(stats => {
       if (stats.hasErrors()) {
         throw new Error(stats.toString('errors-only'))
+      }
+
+      // unwrap from resolved
+      if (opts.config && stats.stats) {
+        stats = stats.stats[0]
       }
 
       let name = `${ stats.compilation.outputOptions.filename }`
