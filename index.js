@@ -30,13 +30,23 @@ function projectName (opts, files) {
 
 function getConfig (files, opts) {
   if (opts.config) {
+    let config
     /* eslint-disable global-require, security/detect-non-literal-require */
     if (path.isAbsolute(opts.config)) {
-      return require(opts.config)
+      config = require(opts.config)
     } else {
-      return require(path.join(process.cwd(), opts.config))
+      config = require(path.join(process.cwd(), opts.config))
     }
     /* eslint-enable global-require, security/detect-non-literal-require */
+
+    // resolve relative node_modules
+    const resolveModulesPaths = [
+      path.join(process.cwd(), 'node_modules')
+    ]
+    config.resolveLoader = { modules: resolveModulesPaths }
+    config.resolve = { modules: resolveModulesPaths }
+
+    return config
   }
 
   const config = {
@@ -116,6 +126,13 @@ function runWebpack (config, opts) {
   })
 }
 
+function extractSize (stat, opts) {
+  let name = stat.compilation.outputOptions.filename
+  name += opts.config ? '' : '.gz'
+  const assets = stat.toJson().assets
+  return assets.find(i => i.name === name).size
+}
+
 /**
  * Return size of project files with all dependencies and after UglifyJS
  * and gzip.
@@ -160,10 +177,13 @@ function getSize (files, opts) {
         throw new Error(stats.toString('errors-only'))
       }
 
-      let name = `${ stats.compilation.outputOptions.filename }`
-      name += opts.config ? '' : '.gz'
-      const assets = stats.toJson().assets
-      const size = assets.find(i => i.name === name).size
+      let size
+      // unwrap from resolved if configuration requires it
+      if (opts.config && stats.stats) {
+        size = stats.stats.reduce((pre, cur) => pre + extractSize(cur, opts), 0)
+      } else {
+        size = extractSize(stats, opts)
+      }
 
       return size - WEBPACK_EMPTY_PROJECT
     })
