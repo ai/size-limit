@@ -8,7 +8,7 @@ const yargs = require('yargs')
 const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
-
+const cosmiconfig = require('cosmiconfig')
 const getSize = require('.')
 
 const EXAMPLE = '\n' +
@@ -94,6 +94,61 @@ function warn (messages) {
   }).join(''))
 }
 
+function getConfig () {
+  return readPkg().then(packageJson => {
+    if (!packageJson.pkg) {
+      throw ownError(
+        'Can not find `package.json`. ' +
+          'Be sure that you run Size Limit inside project dir.'
+      )
+    }
+
+    if (packageJson.pkg.sizeLimit) {
+      warn([
+        'Section name `"sizeLimit"` in package.json was deprecated.',
+        'Use `"size-limit"` for section name.'
+      ])
+    }
+
+    return packageJson
+  }).then(packageJson => {
+    const limits = packageJson.pkg['size-limit'] || packageJson.pkg['sizeLimit']
+    if (limits) {
+      return {
+        limits,
+        packageJson
+      }
+    }
+    const configExplorer = cosmiconfig('size-limit', {
+      rc: '.size-limit',
+      packageProp: false,
+      js: false
+    })
+    return configExplorer.load(process.cwd())
+      .then(result => {
+        if (result === null) {
+          throw ownError(
+            'Can not find `"size-limit"` config. ' +
+            'Add it according to Size Limit docs.' +
+            `\n${ EXAMPLE }\n`
+          )
+        }
+        return {
+          limits: result.config,
+          packageJson
+        }
+      })
+      .catch(err => {
+        if (err.sizeLimit === true) throw err
+        throw ownError(
+          'Can not parse `"size-limit"` config. ' +
+            'Change it according to Size Limit docs.' +
+            `\n${ EXAMPLE }\n`
+        )
+      })
+  })
+}
+
 if (ciJobNumber() !== 1) {
   process.stdout.write(
     chalk.yellow('Size Limits run only on first CI job, to save CI resources'))
@@ -103,29 +158,9 @@ if (ciJobNumber() !== 1) {
 
 let getOptions
 if (argv['_'].length === 0) {
-  getOptions = readPkg().then(result => {
-    if (!result.pkg) {
-      throw ownError(
-        'Can not find `package.json`. ' +
-        'Be sure that you run Size Limit inside project dir.'
-      )
-    } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
-      throw ownError(
-        'Can not find `"size-limit"` section in `package.json`. ' +
-        'Add it according to Size Limit docs.' +
-        `\n${ EXAMPLE }\n`
-      )
-    }
-
-    if (result.pkg.sizeLimit) {
-      warn([
-        'Section name `"sizeLimit"` in package.json was deprecated.',
-        'Use `"size-limit"` for section name.'
-      ])
-    }
-
-    const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
-
+  getOptions = getConfig().then(config => {
+    const limits = config.limits
+    const packageJson = config.packageJson
     if (configError(limits)) {
       throw ownError(
         configError(limits) + '. ' +
@@ -135,7 +170,7 @@ if (argv['_'].length === 0) {
     }
 
     return Promise.all(limits.map(limit => {
-      const cwd = path.dirname(result.path)
+      const cwd = path.dirname(packageJson.path)
       return globby(limit.path, { cwd }).then(files => {
         if (files.length === 0) {
           files = limit.path
@@ -150,9 +185,9 @@ if (argv['_'].length === 0) {
         }
         return {
           webpack: limit.webpack !== false,
-          bundle: result.pkg.name,
+          bundle: packageJson.pkg.name,
           config: limit.config,
-          ignore: result.pkg.peerDependencies,
+          ignore: packageJson.pkg.peerDependencies,
           limit: limit.limit,
           full: files.map(i => path.join(cwd, i)),
           files

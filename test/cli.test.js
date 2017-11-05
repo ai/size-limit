@@ -76,7 +76,7 @@ it('shows package.json error', () => {
 it('shows size-limit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
     expect(result.out).toContain(
-      ' ERROR  Can not find "size-limit" section in package.json.\n' +
+      ' ERROR  Can not find "size-limit" config.\n' +
       '        Add it according to Size Limit docs.\n' +
       '\n' +
       '  "size-limit": [')
@@ -99,6 +99,19 @@ it('shows size-limit content error', () => {
       'The path in Size Limit config must be a string or an array of strings.'
     ))
     expect(result.code).toEqual(1)
+  })
+})
+
+it('uses ".size-limit" file config', () => {
+  return run([], { cwd: fixture('with-file-config') }).then(result => {
+    expect(result.out).toEqual('\n' +
+    '  index.js\n' +
+    '  Package size: 20 B\n' +
+    '  Size limit:   1 KB\n' +
+    '\n' +
+    '  With all dependencies, minified and gzipped\n' +
+    '\n')
+    expect(result.code).toEqual(0)
   })
 })
 

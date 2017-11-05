@@ -81,6 +81,20 @@ Add `size-limit` section to `package.json` and `size` script:
   }
 ```
 
+or add `.size-limit` config in your root directory:
+
+```json
+  [
+    {
+      "path": "index.js",
+      "limit": "9 KB"
+    }
+  ]
+```
+
+Config from `package.json` will rewrite `.size-limit` config.
+
+
 Here's how you can get the size for your current project:
 
 ```sh
