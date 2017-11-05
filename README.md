@@ -81,20 +81,6 @@ Add `size-limit` section to `package.json` and `size` script:
   }
 ```
 
-or add `.size-limit` config in your root directory:
-
-```json
-  [
-    {
-      "path": "index.js",
-      "limit": "9 KB"
-    }
-  ]
-```
-
-Config from `package.json` will rewrite `.size-limit` config.
-
-
 Here's how you can get the size for your current project:
 
 ```sh
@@ -138,6 +124,20 @@ Add the `size` script to your test suite:
 
 If you don't have a continuous integration service running, don’t forget
 to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
+
+## Config
+You can use config file `.size-limit` instead of `package.json` setting:
+
+```json
+  [
+    {
+      "path": "index.js",
+      "limit": "9 KB"
+    }
+  ]
+```
+
+**NOTE**: setting in `package.json` will rewrite `.size-limit` config.
 
 ## Applications
 
