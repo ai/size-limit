@@ -109,13 +109,13 @@ function getConfig () {
           `\n${ EXAMPLE }\n`
         )
       }
-      return result.config
+      return result
     })
     .catch(err => {
       if (err.sizeLimit === true) throw err
       throw ownError(
-        'Can not parse Size Limit config: \n' +
-        err.message + '\n' +
+        'Can not parse Size Limit config. ' +
+        err.message + '. \n' +
         'Change it according to Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )
@@ -131,19 +131,19 @@ if (ciJobNumber() !== 1) {
 
 let getOptions
 if (argv['_'].length === 0) {
-  getOptions = getConfig().then(limits => {
-    if (configError(limits)) {
+  getOptions = getConfig().then(result => {
+    if (configError(result.config)) {
       throw ownError(
-        configError(limits) + '. ' +
+        configError(result.config) + '. ' +
         'Fix it according to Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )
     }
-    return limits
-  }).then(limits => {
+    return result
+  }).then(result => {
     return readPkg().then(packageJson => {
-      return Promise.all(limits.map(limit => {
-        const cwd = path.dirname(packageJson.path)
+      return Promise.all(result.config.map(limit => {
+        const cwd = path.dirname(result.filepath)
         return globby(limit.path, { cwd }).then(files => {
           if (files.length === 0) {
             files = limit.path

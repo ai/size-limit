@@ -107,8 +107,8 @@ it('uses ".size-limit" file config', () => {
 it('Wrong ".size-limit" file config', () => {
   return run([], { cwd: fixture('wrong-file-config') }).then(result => {
     expect(result.out).toContain(
-      ' ERROR  Can not parse Size Limit config: \n' +
-      'missed comma between flow collection entries'
+      ' ERROR  Can not parse Size Limit config.\n' +
+      '        missed comma between flow collection entries'
     )
     expect(result.code).toEqual(1)
   })
