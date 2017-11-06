@@ -67,7 +67,8 @@ it('shows size-limit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
     expect(result.out).toContain(
       ' ERROR  Can not find settings for "size-limit".\n' +
-      '        Add it according to Size Limit docs.\n' +
+      '        Add it to section "size-limit" in package.json ' +
+      'according to Size Limit docs.\n' +
       '\n' +
       '  "size-limit": [')
     expect(result.code).toEqual(1)
@@ -100,6 +101,16 @@ it('uses ".size-limit" file config', () => {
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)
+  })
+})
+
+it('Wrong ".size-limit" file config', () => {
+  return run([], { cwd: fixture('wrong-file-config') }).then(result => {
+    expect(result.out).toContain(
+      ' ERROR  Can not parse "size-limit" config: \n' +
+      'missed comma between flow collection entries'
+    )
+    expect(result.code).toEqual(1)
   })
 })
 

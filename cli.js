@@ -104,7 +104,8 @@ function getConfig () {
       if (result === null) {
         throw ownError(
           'Can not find settings for `"size-limit"`. ' +
-          'Add it according to Size Limit docs.' +
+          'Add it to section `"size-limit"` in package.json ' +
+          'according to Size Limit docs.' +
           `\n${ EXAMPLE }\n`
         )
       }
@@ -113,9 +114,10 @@ function getConfig () {
     .catch(err => {
       if (err.sizeLimit === true) throw err
       throw ownError(
-        'Can not parse `"size-limit"` config. ' +
-          'Change it according to Size Limit docs.' +
-          `\n${ EXAMPLE }\n`
+        'Can not parse `"size-limit"` config: \n' +
+        err.message + '\n' +
+        'Change it according to Size Limit docs.' +
+        `\n${ EXAMPLE }\n`
       )
     })
 }

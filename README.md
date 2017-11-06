@@ -126,7 +126,22 @@ If you don't have a continuous integration service running, don’t forget
 to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
 ## Config
-You can use config file `.size-limit` instead of `package.json` setting:
+Add `size-limit` section to `package.json` and `size` script:
+
+```json
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "9 KB"
+    }
+  ],
+  "scripts": {
+    "size": "size-limit",
+    "test": "jest && eslint ."
+  }
+```
+
+Also you can use config file `.size-limit` instead of `package.json` setting:
 
 ```json
   [
