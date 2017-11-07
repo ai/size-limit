@@ -127,7 +127,7 @@ to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
 ## Config
 
-There are 2 ways of defining of config for Size Limit
+Size Limits supports 2 ways to define config.
 
 1. `size-limit` section to `package.json`:
 
