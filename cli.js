@@ -2,13 +2,14 @@
 'use strict'
 
 const ciJobNumber = require('ci-job-number')
+const cosmiconfig = require('cosmiconfig')
 const readPkg = require('read-pkg-up')
 const globby = require('globby')
 const yargs = require('yargs')
 const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
-const cosmiconfig = require('cosmiconfig')
+
 const getSize = require('.')
 
 const EXAMPLE = '\n' +
