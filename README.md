@@ -140,7 +140,7 @@ Size Limits supports 2 ways to define config.
      ]
    ```
 
-2. Or separated `.size-limit` config file:
+2. or separated `.size-limit` config file:
 
    ```js
    [
