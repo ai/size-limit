@@ -142,7 +142,7 @@ There are 2 ways of defining of config for Size Limit
 
 2. Or separated `.size-limit` config file:
 
-  ```json
+  ```js
     [
       {
         path: "index.js",
