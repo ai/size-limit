@@ -129,7 +129,7 @@ to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
 There are 2 ways of defining of config for Size Limit
 
-1. Add `size-limit` section to `package.json` and `size` script:
+1. `size-limit` section to `package.json`:
 
   ```json
     "size-limit": [
@@ -137,14 +137,10 @@ There are 2 ways of defining of config for Size Limit
         "path": "index.js",
         "limit": "9 KB"
       }
-    ],
-    "scripts": {
-      "size": "size-limit",
-      "test": "jest && eslint ."
-    }
+    ]
   ```
 
-2. You can use config file `.size-limit` instead of `package.json` setting:
+2. Or separated `.size-limit` config file:
 
   ```json
     [
@@ -153,9 +149,7 @@ There are 2 ways of defining of config for Size Limit
         "limit": "9 KB"
       }
     ]
-```
-
-**NOTE**: setting in `package.json` will rewrite `.size-limit` config.
+  ```
 
 ## Applications
 
