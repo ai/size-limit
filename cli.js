@@ -131,7 +131,7 @@ function getConfig () {
           message = message.match(/JSON Error in [^\n]+:\n([^\n]+)\n/)[1]
         }
         throw ownError(
-          'Can not parse package.json. ' +
+          'Can not parse `package.json`. ' +
           message + '. ' +
           'Change config according to Size Limit docs.\n' +
           PACKAGE_EXAMPLE + '\n'
@@ -140,7 +140,7 @@ function getConfig () {
         const file = path.relative(process.cwd(), err.mark.name)
         const position = err.mark.line + ':' + err.mark.column
         throw ownError(
-          `Can not parse ${ file } at ${ position }. ` +
+          'Can not parse `' + file + '` at ' + position + '. ' +
           capitalize(err.reason) + '. ' +
           'Change config according to Size Limit docs.\n' +
           FILE_EXAMPLE + '\n'
