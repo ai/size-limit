@@ -145,8 +145,8 @@ There are 2 ways of defining of config for Size Limit
   ```json
     [
       {
-        "path": "index.js",
-        "limit": "9 KB"
+        path: "index.js",
+        limit: "9 KB"
       }
     ]
   ```
