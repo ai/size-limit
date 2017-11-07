@@ -178,13 +178,6 @@ if (argv['_'].length === 0) {
             files = limit.path
             if (typeof files === 'string') files = [files]
           }
-          if (limit.babili) {
-            warn([
-              'Option `"babili": true` was deprecated.',
-              'Size Limit now supports ES2016 out of box.',
-              'You can remove this option.'
-            ])
-          }
           return {
             webpack: limit.webpack !== false,
             bundle: packageJson.pkg.name,
@@ -212,13 +205,6 @@ if (argv['_'].length === 0) {
     warn([
       'Limit argument in Size Limit CLi was deprecated.',
       'Use `size-limit` section in `package.json` to specify limit.'
-    ])
-  }
-  if (argv.babili) {
-    warn([
-      'Argument `--babili` was deprecated.',
-      'Size Limit now supports ES2016 out of box.',
-      'You can remove this argument.'
     ])
   }
 
