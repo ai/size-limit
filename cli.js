@@ -12,13 +12,20 @@ const path = require('path')
 
 const getSize = require('.')
 
-const EXAMPLE = '\n' +
-                '  "size-limit": [\n' +
-                '    {\n' +
-                '      "path": "index.js",\n' +
-                '      "limit": "9 KB"\n' +
-                '    }\n' +
-                '  ]'
+const PACKAGE_EXAMPLE = '\n' +
+                        '  "size-limit": [\n' +
+                        '    {\n' +
+                        '      "path": "index.js",\n' +
+                        '      "limit": "9 KB"\n' +
+                        '    }\n' +
+                        '  ]'
+const FILE_EXAMPLE = '\n' +
+                     '  [\n' +
+                     '    {\n' +
+                     '      path: "index.js",\n' +
+                     '      limit: "9 KB"\n' +
+                     '    }\n' +
+                     '  ]'
 
 const argv = yargs
   .usage('$0')
@@ -45,9 +52,10 @@ const argv = yargs
           '  $0 index.js\n' +
           '    Check specific file size with all file dependencies.\n' +
           '\n' +
-          'Size Limit will read size-limit section from package.json.\n' +
-          'Configuration example:\n' +
-          EXAMPLE)
+          'Size Limit will read size-limit section from package.json:\n' +
+          PACKAGE_EXAMPLE + '\n\n' +
+          'or from .size-limit config:\n' +
+          FILE_EXAMPLE)
   .locale('en')
   .argv
 
@@ -107,7 +115,7 @@ function getConfig () {
           'Can not find settings for Size Limit. ' +
           'Add it to section `"size-limit"` in package.json ' +
           'according to Size Limit docs.' +
-          `\n${ EXAMPLE }\n`
+          `\n${ PACKAGE_EXAMPLE }\n`
         )
       }
       return result
@@ -118,7 +126,7 @@ function getConfig () {
         'Can not parse Size Limit config. ' +
         err.message + '. \n' +
         'Change it according to Size Limit docs.' +
-        `\n${ EXAMPLE }\n`
+        `\n${ PACKAGE_EXAMPLE }\n`
       )
     })
 }
@@ -137,7 +145,7 @@ if (argv['_'].length === 0) {
       throw ownError(
         configError(result.config) + '. ' +
         'Fix it according to Size Limit docs.' +
-        `\n${ EXAMPLE }\n`
+        `\n${ PACKAGE_EXAMPLE }\n`
       )
     }
     return result
