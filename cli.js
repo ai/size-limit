@@ -175,10 +175,13 @@ if (ciJobNumber() !== 1) {
 
 let getOptions
 if (argv['_'].length === 0) {
-  getOptions = getConfig().then(result => {
-    const error = configError(result.config)
+  getOptions = Promise.all([getConfig(), readPkg()]).then(all => {
+    const config = all[0]
+    const packageJson = all[1] ? all[1].pkg : { }
+
+    const error = configError(config.config)
     if (error) {
-      if (/package\.json$/.test(result.filepath)) {
+      if (/package\.json$/.test(config.filepath)) {
         throw ownError(
           PACKAGE_ERRORS[error] + '. ' +
           'Fix it according to Size Limit docs.' +
@@ -192,26 +195,25 @@ if (argv['_'].length === 0) {
         )
       }
     }
-    return readPkg().then(packageJson => {
-      return Promise.all(result.config.map(limit => {
-        const cwd = path.dirname(result.filepath)
-        return globby(limit.path, { cwd }).then(files => {
-          if (files.length === 0) {
-            files = limit.path
-            if (typeof files === 'string') files = [files]
-          }
-          return {
-            webpack: limit.webpack !== false,
-            bundle: packageJson.pkg.name,
-            config: limit.config,
-            ignore: packageJson.pkg.peerDependencies,
-            limit: limit.limit,
-            full: files.map(i => path.join(cwd, i)),
-            files
-          }
-        })
-      }))
-    })
+
+    return Promise.all(config.config.map(limit => {
+      const cwd = path.dirname(config.filepath)
+      return globby(limit.path, { cwd }).then(files => {
+        if (files.length === 0) {
+          files = limit.path
+          if (typeof files === 'string') files = [files]
+        }
+        return {
+          webpack: limit.webpack !== false,
+          bundle: packageJson.name,
+          config: limit.config,
+          ignore: packageJson.peerDependencies,
+          limit: limit.limit,
+          full: files.map(i => path.join(cwd, i)),
+          files
+        }
+      })
+    }))
   })
 } else {
   const files = argv['_'].slice(0)
