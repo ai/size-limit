@@ -8,7 +8,7 @@ const yargs = require('yargs')
 const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
-
+const cosmiconfig = require('cosmiconfig')
 const getSize = require('.')
 
 const EXAMPLE = '\n' +
@@ -94,6 +94,34 @@ function warn (messages) {
   }).join(''))
 }
 
+function getConfig () {
+  const configExplorer = cosmiconfig('size-limit', {
+    rc: '.size-limit',
+    js: false
+  })
+  return configExplorer.load(process.cwd())
+    .then(result => {
+      if (result === null) {
+        throw ownError(
+          'Can not find settings for Size Limit. ' +
+          'Add it to section `"size-limit"` in package.json ' +
+          'according to Size Limit docs.' +
+          `\n${ EXAMPLE }\n`
+        )
+      }
+      return result
+    })
+    .catch(err => {
+      if (err.sizeLimit === true) throw err
+      throw ownError(
+        'Can not parse Size Limit config. ' +
+        err.message + '. \n' +
+        'Change it according to Size Limit docs.' +
+        `\n${ EXAMPLE }\n`
+      )
+    })
+}
+
 if (ciJobNumber() !== 1) {
   process.stdout.write(
     chalk.yellow('Size Limits run only on first CI job, to save CI resources'))
@@ -103,62 +131,43 @@ if (ciJobNumber() !== 1) {
 
 let getOptions
 if (argv['_'].length === 0) {
-  getOptions = readPkg().then(result => {
-    if (!result.pkg) {
+  getOptions = getConfig().then(result => {
+    if (configError(result.config)) {
       throw ownError(
-        'Can not find `package.json`. ' +
-        'Be sure that you run Size Limit inside project dir.'
-      )
-    } else if (!result.pkg['size-limit'] && !result.pkg['sizeLimit']) {
-      throw ownError(
-        'Can not find `"size-limit"` section in `package.json`. ' +
-        'Add it according to Size Limit docs.' +
-        `\n${ EXAMPLE }\n`
-      )
-    }
-
-    if (result.pkg.sizeLimit) {
-      warn([
-        'Section name `"sizeLimit"` in package.json was deprecated.',
-        'Use `"size-limit"` for section name.'
-      ])
-    }
-
-    const limits = result.pkg['size-limit'] || result.pkg['sizeLimit']
-
-    if (configError(limits)) {
-      throw ownError(
-        configError(limits) + '. ' +
+        configError(result.config) + '. ' +
         'Fix it according to Size Limit docs.' +
         `\n${ EXAMPLE }\n`
       )
     }
-
-    return Promise.all(limits.map(limit => {
-      const cwd = path.dirname(result.path)
-      return globby(limit.path, { cwd }).then(files => {
-        if (files.length === 0) {
-          files = limit.path
-          if (typeof files === 'string') files = [files]
-        }
-        if (limit.babili) {
-          warn([
-            'Option `"babili": true` was deprecated.',
-            'Size Limit now supports ES2016 out of box.',
-            'You can remove this option.'
-          ])
-        }
-        return {
-          webpack: limit.webpack !== false,
-          bundle: result.pkg.name,
-          config: limit.config,
-          ignore: result.pkg.peerDependencies,
-          limit: limit.limit,
-          full: files.map(i => path.join(cwd, i)),
-          files
-        }
-      })
-    }))
+    return result
+  }).then(result => {
+    return readPkg().then(packageJson => {
+      return Promise.all(result.config.map(limit => {
+        const cwd = path.dirname(result.filepath)
+        return globby(limit.path, { cwd }).then(files => {
+          if (files.length === 0) {
+            files = limit.path
+            if (typeof files === 'string') files = [files]
+          }
+          if (limit.babili) {
+            warn([
+              'Option `"babili": true` was deprecated.',
+              'Size Limit now supports ES2016 out of box.',
+              'You can remove this option.'
+            ])
+          }
+          return {
+            webpack: limit.webpack !== false,
+            bundle: packageJson.pkg.name,
+            config: limit.config,
+            ignore: packageJson.pkg.peerDependencies,
+            limit: limit.limit,
+            full: files.map(i => path.join(cwd, i)),
+            files
+          }
+        })
+      }))
+    })
   })
 } else {
   const files = argv['_'].slice(0)

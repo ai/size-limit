@@ -63,21 +63,12 @@ it('shows resolve errors', () => {
   })
 })
 
-it('shows package.json error', () => {
-  const cwd = path.dirname(path.dirname(__dirname))
-  return run([], { cwd }).then(result => {
-    expect(result.out).toEqual(
-      ' ERROR  Can not find package.json.\n' +
-      '        Be sure that you run Size Limit inside project dir.\n')
-    expect(result.code).toEqual(1)
-  })
-})
-
 it('shows size-limit section error', () => {
   return run([], { cwd: fixture('missed') }).then(result => {
     expect(result.out).toContain(
-      ' ERROR  Can not find "size-limit" section in package.json.\n' +
-      '        Add it according to Size Limit docs.\n' +
+      ' ERROR  Can not find settings for Size Limit.\n' +
+      '        Add it to section "size-limit" in package.json ' +
+      'according to Size Limit docs.\n' +
       '\n' +
       '  "size-limit": [')
     expect(result.code).toEqual(1)
@@ -98,6 +89,27 @@ it('shows size-limit content error', () => {
     expect(result.out).toContain(configError(
       'The path in Size Limit config must be a string or an array of strings.'
     ))
+    expect(result.code).toEqual(1)
+  })
+})
+
+it('uses ".size-limit" file config', () => {
+  return run([], { cwd: fixture('with-file-config') }).then(result => {
+    expect(result.out).toEqual('\n' +
+    '  Package size: 20 B\n' +
+    '  Size limit:   1 KB\n' +
+    '  With all dependencies, minified and gzipped\n' +
+    '\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('Wrong ".size-limit" file config', () => {
+  return run([], { cwd: fixture('wrong-file-config') }).then(result => {
+    expect(result.out).toContain(
+      ' ERROR  Can not parse Size Limit config.\n' +
+      '        missed comma between flow collection entries'
+    )
     expect(result.code).toEqual(1)
   })
 })

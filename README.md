@@ -125,6 +125,38 @@ Add the `size` script to your test suite:
 If you don't have a continuous integration service running, don’t forget
 to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
+## Config
+
+There are 2 ways of defining of config for Size Limit
+
+1. Add `size-limit` section to `package.json` and `size` script:
+
+  ```json
+    "size-limit": [
+      {
+        "path": "index.js",
+        "limit": "9 KB"
+      }
+    ],
+    "scripts": {
+      "size": "size-limit",
+      "test": "jest && eslint ."
+    }
+  ```
+
+2. You can use config file `.size-limit` instead of `package.json` setting:
+
+  ```json
+    [
+      {
+        "path": "index.js",
+        "limit": "9 KB"
+      }
+    ]
+```
+
+**NOTE**: setting in `package.json` will rewrite `.size-limit` config.
+
 ## Applications
 
 Webpack inside Size Limit is very useful for small open source library.
