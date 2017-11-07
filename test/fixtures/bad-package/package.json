@@ -2,6 +2,7 @@
   "private": true,
   "size-limit": [
     {
+      "file": "index.js"
       "limit": "4 KB"
     }
   ]

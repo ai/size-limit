@@ -70,21 +70,36 @@ function isStrings (value) {
   return value.every(i => typeof i === 'string')
 }
 
+const PACKAGE_ERRORS = {
+  notArray: 'The `"size-limit"` section of package.json must be `an array`',
+  empty: 'The `"size-limit"` section of package.json must `not be empty`',
+  notObject: 'The `"size-limit"` array in package.json ' +
+             'should contain only objects',
+  notString: 'The `path` in Size Limit config must be `a string` ' +
+             'or `an array of strings`'
+}
+
+const FILE_ERRORS = {
+  notArray: 'Size Limit config must contain `an array`',
+  empty: 'Size Limit config must `not be empty`',
+  notObject: 'Size Limit config should contain only objects',
+  notString: 'The `path` in Size Limit config must be `a string` ' +
+             'or `an array of strings`'
+}
+
 function configError (limits) {
   if (!Array.isArray(limits)) {
-    return 'The `"size-limit"` section of package.json must be `an array`'
+    return 'notArray'
   }
   if (limits.length === 0) {
-    return 'The `"size-limit"` section of package.json must `not be empty`'
+    return 'empty'
   }
   for (const limit of limits) {
     if (typeof limit !== 'object') {
-      return 'The `"size-limit"` array in package.json ' +
-             'should contain only objects'
+      return 'notObject'
     }
     if (typeof limit.path !== 'string' && !isStrings(limit.path)) {
-      return 'The `path` in Size Limit config must be `a string` ' +
-             'or `an array of strings`'
+      return 'notString'
     }
   }
   return false
@@ -161,15 +176,22 @@ if (ciJobNumber() !== 1) {
 let getOptions
 if (argv['_'].length === 0) {
   getOptions = getConfig().then(result => {
-    if (configError(result.config)) {
-      throw ownError(
-        configError(result.config) + '. ' +
-        'Fix it according to Size Limit docs.' +
-        `\n${ PACKAGE_EXAMPLE }\n`
-      )
+    const error = configError(result.config)
+    if (error) {
+      if (/package\.json$/.test(result.filepath)) {
+        throw ownError(
+          PACKAGE_ERRORS[error] + '. ' +
+          'Fix it according to Size Limit docs.' +
+          `\n${ PACKAGE_EXAMPLE }\n`
+        )
+      } else {
+        throw ownError(
+          FILE_ERRORS[error] + '. ' +
+          'Fix it according to Size Limit docs.' +
+          `\n${ FILE_EXAMPLE }\n`
+        )
+      }
     }
-    return result
-  }).then(result => {
     return readPkg().then(packageJson => {
       return Promise.all(result.config.map(limit => {
         const cwd = path.dirname(result.filepath)

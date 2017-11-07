@@ -84,11 +84,23 @@ it('shows size-limit type error', () => {
   })
 })
 
-it('shows size-limit content error', () => {
-  return run([], { cwd: fixture('wrong') }).then(result => {
+it('shows size-limit section content error', () => {
+  return run([], { cwd: fixture('wrong-package') }).then(result => {
     expect(result.out).toContain(configError(
       'The path in Size Limit config must be a string or an array of strings.'
     ))
+    expect(result.code).toEqual(1)
+  })
+})
+
+it('shows config content error', () => {
+  return run([], { cwd: fixture('wrong-config') }).then(result => {
+    expect(result.out).toContain(
+      ' ERROR  Size Limit config must not be empty.\n' +
+      '        Fix it according to Size Limit docs.\n' +
+      '\n' +
+      '  [\n'
+    )
     expect(result.code).toEqual(1)
   })
 })
@@ -105,7 +117,7 @@ it('uses .size-limit file config', () => {
 })
 
 it('shows .size-limit error', () => {
-  return run([], { cwd: fixture('wrong-config') }).then(result => {
+  return run([], { cwd: fixture('bad-config') }).then(result => {
     expect(result.out).toContain(
       ' ERROR  Can not parse .size-limit at 3:4.\n' +
       '        Missed comma between flow collection entries.'
@@ -115,7 +127,7 @@ it('shows .size-limit error', () => {
 })
 
 it('shows package.json error', () => {
-  return run([], { cwd: fixture('wrong-package') }).then(result => {
+  return run([], { cwd: fixture('bad-package') }).then(result => {
     expect(result.out).toContain(
       ' ERROR  Can not parse package.json.\n' +
       '        Unexpected token \'l\' at 6:8.'
