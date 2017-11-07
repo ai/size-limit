@@ -131,25 +131,25 @@ Size Limits supports 2 ways to define config.
 
 1. `size-limit` section to `package.json`:
 
-  ```json
-    "size-limit": [
-      {
-        "path": "index.js",
-        "limit": "9 KB"
-      }
-    ]
-  ```
+   ```json
+     "size-limit": [
+       {
+         "path": "index.js",
+         "limit": "9 KB"
+       }
+     ]
+   ```
 
 2. Or separated `.size-limit` config file:
 
-  ```js
-    [
-      {
-        path: "index.js",
-        limit: "9 KB"
-      }
-    ]
-  ```
+   ```js
+   [
+     {
+       path: "index.js",
+       limit: "9 KB"
+     }
+   ]
+   ```
 
 ## Applications
 
