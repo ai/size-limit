@@ -104,11 +104,21 @@ it('uses .size-limit file config', () => {
   })
 })
 
-it('Wrong .size-limit file config', () => {
+it('shows .size-limit error', () => {
   return run([], { cwd: fixture('wrong-config') }).then(result => {
     expect(result.out).toContain(
-      ' ERROR  Can not parse Size Limit config.\n' +
-      '        missed comma between flow collection entries'
+      ' ERROR  Can not parse .size-limit at 3:4.\n' +
+      '        Missed comma between flow collection entries.'
+    )
+    expect(result.code).toEqual(1)
+  })
+})
+
+it('shows package.json error', () => {
+  return run([], { cwd: fixture('wrong-package') }).then(result => {
+    expect(result.out).toContain(
+      ' ERROR  Can not parse package.json.\n' +
+      '        Unexpected token \'l\' at 6:8.'
     )
     expect(result.code).toEqual(1)
   })

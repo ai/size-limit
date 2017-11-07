@@ -103,6 +103,10 @@ function warn (messages) {
   }).join(''))
 }
 
+function capitalize (str) {
+  return str[0].toUpperCase() + str.slice(1)
+}
+
 function getConfig () {
   const configExplorer = cosmiconfig('size-limit', {
     rc: '.size-limit',
@@ -121,13 +125,29 @@ function getConfig () {
       return result
     })
     .catch(err => {
-      if (err.sizeLimit === true) throw err
-      throw ownError(
-        'Can not parse Size Limit config. ' +
-        err.message + '. \n' +
-        'Change it according to Size Limit docs.' +
-        `\n${ PACKAGE_EXAMPLE }\n`
-      )
+      if (err.name === 'JSONError') {
+        let message = err.message
+        if (/JSON Error in [^\n]+:\n([^\n]+)\n/.test(message)) {
+          message = message.match(/JSON Error in [^\n]+:\n([^\n]+)\n/)[1]
+        }
+        throw ownError(
+          'Can not parse package.json. ' +
+          message + '. ' +
+          'Change config according to Size Limit docs.\n' +
+          PACKAGE_EXAMPLE + '\n'
+        )
+      } else if (err.reason && err.mark && err.mark.name) {
+        const file = path.relative(process.cwd(), err.mark.name)
+        const position = err.mark.line + ':' + err.mark.column
+        throw ownError(
+          `Can not parse ${ file } at ${ position }. ` +
+          capitalize(err.reason) + '. ' +
+          'Change config according to Size Limit docs.\n' +
+          FILE_EXAMPLE + '\n'
+        )
+      } else {
+        throw err
+      }
     })
 }
 

@@ -66,6 +66,11 @@
       "jasmine": true
     }
   },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "test/fixtures"
+    ]
+  },
   "lint-staged": {
     "*.md": "yaspeller-ci",
     "*.js": "eslint"
