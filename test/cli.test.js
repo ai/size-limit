@@ -93,8 +93,8 @@ it('shows size-limit content error', () => {
   })
 })
 
-it('uses ".size-limit" file config', () => {
-  return run([], { cwd: fixture('with-file-config') }).then(result => {
+it('uses .size-limit file config', () => {
+  return run([], { cwd: fixture('config') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  Package size: 20 B\n' +
     '  Size limit:   1 KB\n' +
@@ -104,8 +104,8 @@ it('uses ".size-limit" file config', () => {
   })
 })
 
-it('Wrong ".size-limit" file config', () => {
-  return run([], { cwd: fixture('wrong-file-config') }).then(result => {
+it('Wrong .size-limit file config', () => {
+  return run([], { cwd: fixture('wrong-config') }).then(result => {
     expect(result.out).toContain(
       ' ERROR  Can not parse Size Limit config.\n' +
       '        missed comma between flow collection entries'
@@ -176,7 +176,7 @@ it('supports multiple files', () => {
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 384 B')
+    expect(result.out).toContain('exceeded by 379 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -207,7 +207,7 @@ it('returns size', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('2.38 KB\n')
+    expect(result.out).toContain('2.37 KB\n')
     expect(result.code).toEqual(0)
   })
 })
@@ -257,7 +257,7 @@ it('throws on --why with disabled webpack', () => {
 })
 
 it('uses custom webpack', () => {
-  return run([], { cwd: fixture('config') }).then(result => {
+  return run([], { cwd: fixture('webpack-config') }).then(result => {
     expect(result.out).toContain('Package size: 2.2 KB')
     expect(result.code).toEqual(0)
   })
@@ -265,7 +265,8 @@ it('uses custom webpack', () => {
 
 it('uses custom webpack when specified via --config', () => {
   return run([
-    '--config', fixture('config/webpack.config.js'), fixture('config/index.js')
+    '--config', fixture('webpack-config/webpack.config.js'),
+    fixture('webpack-config/index.js')
   ]).then(result => {
     expect(result.out).toContain('Package size: 2.2 KB')
     expect(result.code).toEqual(0)
