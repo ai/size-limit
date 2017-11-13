@@ -71,8 +71,7 @@ Add `size-limit` section to `package.json` and `size` script:
 ```diff json
 + "size-limit": [
 +   {
-+     "path": "index.js",
-+     "limit": "9 KB"
++     "path": "index.js"
 +   }
 + ],
   "scripts": {
@@ -80,6 +79,13 @@ Add `size-limit` section to `package.json` and `size` script:
     "test": "jest && eslint ."
   }
 ```
+
+The `path` option:
+
+* For an open source library, specify compiled sources, which will be published
+  to npm (usually the same value as the `main` field in the `package.json`).
+* For an application, specify a bundle file and use `webpack: false` (see the
+  *Applications* section below);
 
 Here's how you can get the size for your current project:
 
@@ -96,12 +102,12 @@ run [Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
 for analysis:
 
 ```sh
-npx size-limit --why
+$ npm run size -- --why
 ```
 
 Now, let's set the limit. Determine the current size of your library,
-add just a little bit (a kilobyte, maybe) and use that as a limit
-when adding the script to `package.json`:
+add just a little bit (a kilobyte, maybe) and use that as a limit in
+your `package.json`:
 
 ```diff json
  "size-limit": [
