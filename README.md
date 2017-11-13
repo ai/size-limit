@@ -68,7 +68,7 @@ $ npm install --save-dev size-limit
 
 Add `size-limit` section to `package.json` and `size` script:
 
-```diff json
+```diff
 + "size-limit": [
 +   {
 +     "path": "index.js"
@@ -109,7 +109,7 @@ Now, let’s set the limit. Determine the current size of your library,
 add just a little bit (a kilobyte, maybe) and use that as a limit in
 your `package.json`:
 
-```diff json
+```diff
  "size-limit": [
     {
 +     "limit": "9 KB",
@@ -120,7 +120,7 @@ your `package.json`:
 
 Add the `size` script to your test suite:
 
-```diff js
+```diff
   "scripts": {
     "size": "size-limit",
 -   "test": "jest && eslint ."

@@ -16,13 +16,13 @@ it('returns 0 for empty project', () => {
 
 it('shows project size', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual(2427)
+    expect(size).toEqual(2446)
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual(2446)
+    expect(size).toEqual(2464)
   })
 })
 
@@ -46,13 +46,13 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(size).toEqual(2319)
+    expect(size).toEqual(2320)
   })
 })
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(size).toEqual(2351)
+    expect(size).toEqual(2353)
   })
 })
 
