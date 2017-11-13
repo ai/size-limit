@@ -85,7 +85,7 @@ The `path` option:
 * For an open source library, specify compiled sources, which will be published
   to npm (usually the same value as the `main` field in the `package.json`);
 * For an application, specify a bundle file and use `webpack: false` (see the
-  [Applications](#аpplications) section).
+  [Applications](#applications) section).
 
 Here’s how you can get the size for your current project:
 
