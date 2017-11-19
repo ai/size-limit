@@ -16,13 +16,13 @@ it('returns 0 for empty project', () => {
 
 it('shows project size', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual(2446)
+    expect(size).toEqual(2431)
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual(2464)
+    expect(size).toEqual(2451)
   })
 })
 

@@ -198,7 +198,7 @@ it('supports multiple files', () => {
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 398 B')
+    expect(result.out).toContain('exceeded by 383 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -229,7 +229,7 @@ it('returns size', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('2.39 KB\n')
+    expect(result.out).toContain('2.37 KB\n')
     expect(result.code).toEqual(0)
   })
 })
