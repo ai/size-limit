@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.13.2
+* Use `globby` 7.0.
+
 ## 0.13.1
 * Allow to use Size Limit without `package.json`.
 
