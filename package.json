@@ -37,6 +37,7 @@
     "attr-accept": "^1.1.0",
     "cross-spawn": "^5.1.0",
     "eslint": "^4.11.0",
+    "eslint-ci": "^0.1.0",
     "eslint-config-logux": "^16.2.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
@@ -54,7 +55,7 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "spellcheck": "yaspeller-ci *.md",
-    "lint": "eslint *.js test/{fixtures/**/,}*.js",
+    "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
     "test": "jest && yarn run lint && yarn run spellcheck"
   },
   "engines": {
