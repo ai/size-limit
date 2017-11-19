@@ -212,7 +212,7 @@ it('shows analyzer', () => {
 
 it('shows analyzer for multiple limits', () => {
   return run(['--why'], { cwd: fixture('good') }).then(result => {
-    expect(result.out.match(/Webpack Bundle Analyzer/g).length).toEqual(1)
+    expect(result.out.match(/Webpack Bundle Analyzer/g)).toHaveLength(1)
     expect(result.code).toEqual(0)
   })
 })
