@@ -46,13 +46,13 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(size).toEqual(2320)
+    expect(size).toEqual(2338)
   })
 })
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(size).toEqual(2353)
+    expect(size).toEqual(2371)
   })
 })
 
