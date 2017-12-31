@@ -51,8 +51,11 @@ it('supports CSS', () => {
 })
 
 it('supports CSS modules', () => {
+  function trim (num) {
+    return Math.floor(num / 10) * 10
+  }
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(size).toBeCloseTo(2370, -1)
+    expect(trim(size)).toEqual(2370)
   })
 })
 
