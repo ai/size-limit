@@ -52,7 +52,7 @@ it('supports CSS', () => {
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(size).toEqual(2371)
+    expect(size).toBeCloseTo(2370, -1)
   })
 })
 
