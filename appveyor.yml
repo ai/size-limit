@@ -1,4 +1,6 @@
 environment:
+  YARN_IGNORE_ENGINES: true
+
   matrix:
     - nodejs_version: "9"
     - nodejs_version: "8"
@@ -17,3 +19,4 @@ cache:
  - "%LOCALAPPDATA%/Yarn"
 
 build: off
+deploy: off
