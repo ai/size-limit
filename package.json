@@ -62,10 +62,7 @@
     "node": ">=4.0.0"
   },
   "eslintConfig": {
-    "extends": "eslint-config-logux/node4",
-    "globals": {
-      "jasmine": true
-    }
+    "extends": "eslint-config-logux/node4"
   },
   "jest": {
     "testEnvironment": "node",
