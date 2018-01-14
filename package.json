@@ -62,7 +62,12 @@
     "node": ">=4.0.0"
   },
   "eslintConfig": {
-    "extends": "eslint-config-logux/node4"
+    "extends": "eslint-config-logux/node4",
+    "rules": {
+      "security/detect-non-literal-require": "off",
+      "security/detect-non-literal-regexp": "off",
+      "global-require": "off"
+    }
   },
   "jest": {
     "testEnvironment": "node",

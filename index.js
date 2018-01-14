@@ -31,15 +31,12 @@ function projectName (opts, files) {
 function getConfig (files, opts) {
   if (opts.config) {
     let config
-    /* eslint-disable global-require, security/detect-non-literal-require */
     if (path.isAbsolute(opts.config)) {
       config = require(opts.config)
     } else {
       config = require(path.join(process.cwd(), opts.config))
     }
-    /* eslint-enable global-require, security/detect-non-literal-require */
 
-    // resolve relative node_modules
     const resolveModulesPaths = [
       path.join(process.cwd(), 'node_modules')
     ]
@@ -99,7 +96,6 @@ function getConfig (files, opts) {
 
   if (opts.ignore) {
     const escaped = opts.ignore.map(i => escapeRegexp(i))
-    // eslint-disable-next-line security/detect-non-literal-regexp
     const regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
     config.plugins.push(new webpack.IgnorePlugin(regexp))
   }
@@ -178,7 +174,6 @@ function getSize (files, opts) {
       }
 
       let size
-      // unwrap from resolved if configuration requires it
       if (opts.config && stats.stats) {
         size = stats.stats.reduce((pre, cur) => pre + extractSize(cur, opts), 0)
       } else {
