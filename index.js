@@ -138,6 +138,7 @@ function extractSize (stat, opts) {
  * @param {"server"|"static"|false} [opts.analyzer=false] Show package
  *                                                        content in browser.
  * @param {true|false} [opts.webpack=true] Pack files by webpack.
+ * @param {string} [opts.config] A path to custom webpack config.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
  *
