@@ -161,6 +161,16 @@ Size Limits supports 2 ways to define config.
    ]
    ```
 
+Each section in config could have options:
+
+* **path**: relative paths to files. The only mandatory option.
+  It could be a path `"index.js"`, a pattern `"dist/app-*.js"`
+  or an array `["index.js", "dist/app-*.js"]`.
+* **limit**: size limit for files from `path` option. It should be a string
+  with a number and unit (`100 B`, `10 KB`, etc).
+* **webpack**: with `false` will disable webpack.
+* **config**: a path to custom webpack config.
+
 
 ## Applications
 
@@ -179,6 +189,7 @@ In this case you can disable internal webpack:
     }
  ],
 ```
+
 
 ## JavaScript API
 
