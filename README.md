@@ -34,6 +34,7 @@ internal dependencies.
 
 [Size Limit: Make the Web lighter]: https://evilmartians.com/chronicles/size-limit-make-the-web-lighter
 
+
 ## Who Uses Size Limit
 
 * [MobX](https://github.com/mobxjs/mobx)
@@ -49,6 +50,7 @@ internal dependencies.
 * [Logux](https://github.com/logux) reduced
   [90% of the size](https://github.com/logux/logux-client/commit/62b258e20e1818b23ae39b9c4cd49e2495781e91).
 
+
 ## How It Works
 
 You can find more examples in **[Size Limit: Make the Web lighter]** article.
@@ -57,6 +59,7 @@ To be really specific, Size Limit creates an empty webpack project in memory.
 Then, it adds your library as a dependency to the project and calculates
 the real cost of your libraries, including all dependencies, webpack’s polyfills
 for process, etc.
+
 
 ## Usage
 
@@ -191,6 +194,7 @@ getSize([index, extra]).then(size => {
   }
 })
 ```
+
 
 ## Comparison with `bundlesize`
 
