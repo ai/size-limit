@@ -203,6 +203,23 @@ it('checks limits', () => {
   })
 })
 
+it('uses names', () => {
+  return run([], { cwd: fixture('named') }).then(result => {
+    expect(result.out).toEqual('\n' +
+    '  First\n' +
+    '  Package size: 19 B\n' +
+    '  Size limit:   1 KB\n' +
+    '\n' +
+    '  Second\n' +
+    '  Package size: 19 B\n' +
+    '  Size limit:   1 KB\n' +
+    '\n' +
+    '  With all dependencies, minified and gzipped\n' +
+    '\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('shows analyzer', () => {
   return run(['--why'], { cwd: fixture('unlimit') }).then(result => {
     expect(result.out).toContain('Webpack Bundle Analyzer')

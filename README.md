@@ -168,6 +168,8 @@ Each section in config could have options:
   or an array `["index.js", "dist/app-*.js"]`.
 * **limit**: size limit for files from `path` option. It should be a string
   with a number and unit (`100 B`, `10 KB`, etc).
+* **name**: the name of this section. It will be useful only
+  if you have multiple sections.
 * **webpack**: with `false` will disable webpack.
 * **config**: a path to custom webpack config.
 

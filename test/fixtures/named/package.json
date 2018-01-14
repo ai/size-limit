@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "size-limit": [
+    {
+      "name": "First",
+      "path": "index1.js",
+      "limit": "1 KB"
+    },
+    {
+      "name": "Second",
+      "path": "index2.js",
+      "limit": "1KB"
+    }
+  ]
+}

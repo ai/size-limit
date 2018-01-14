@@ -209,6 +209,7 @@ if (argv['_'].length === 0) {
           config: limit.config,
           ignore: packageJson.peerDependencies,
           limit: limit.limit,
+          name: limit.name,
           full: files.map(i => path.join(cwd, i)),
           files
         }
@@ -291,7 +292,7 @@ getOptions.then(files => {
     file.passed = true
 
     if (files.length > 1) {
-      process.stdout.write(chalk.gray(`  ${ file.files }\n`))
+      process.stdout.write(chalk.gray(`  ${ file.name || file.files }\n`))
     }
 
     let limitString = formatBytes(limit)
