@@ -108,7 +108,7 @@ it('shows config content error', () => {
 it('uses .size-limit file config', () => {
   return run([], { cwd: fixture('config') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 20 B\n' +
+    '  Package size: 19 B\n' +
     '  Size limit:   1 KB\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -158,15 +158,15 @@ it('shows limit', () => {
   return run([], { cwd: fixture('good') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index.js\n' +
-    '  Package size: 20 B\n' +
+    '  Package size: 19 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  index2.js\n' +
-    '  Package size: 20 B\n' +
+    '  Package size: 19 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  index3.js\n' +
-    '  Package size: 20 B\n' +
+    '  Package size: 19 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
@@ -177,28 +177,28 @@ it('shows limit', () => {
 
 it('supports glob patterns', () => {
   return run([], { cwd: fixture('glob') }).then(result => {
-    expect(result.out).toContain('20 B\n')
+    expect(result.out).toContain('19 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports ES2016', () => {
   return run([], { cwd: fixture('es2016') }).then(result => {
-    expect(result.out).toContain('34 B\n')
+    expect(result.out).toContain('33 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports multiple files', () => {
   return run([], { cwd: fixture('multiple') }).then(result => {
-    expect(result.out).toContain('25 B\n')
+    expect(result.out).toContain('24 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 383 B')
+    expect(result.out).toContain('exceeded by 426 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -229,15 +229,15 @@ it('returns size', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('2.37 KB\n')
+    expect(result.out).toContain('2.42 KB\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('shows bytes if value is same in different units', () => {
   return run([], { cwd: fixture('exact') }).then(result => {
-    expect(result.out).toContain('Package size: 1854 B')
-    expect(result.out).toContain('Size limit:   1853 B')
+    expect(result.out).toContain('Package size: 1878 B')
+    expect(result.out).toContain('Size limit:   1873 B')
     expect(result.code).toEqual(3)
   })
 })

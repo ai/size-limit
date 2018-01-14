@@ -16,13 +16,13 @@ it('returns 0 for empty project', () => {
 
 it('shows project size', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual(2431)
+    expect(size).toEqual(2474)
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual(2451)
+    expect(size).toEqual(2492)
   })
 })
 
@@ -34,19 +34,19 @@ it('returns error', () => {
 
 it('supports ES2016', () => {
   return getSize(fixture('es2016/index')).then(size => {
-    expect(size).toEqual(34)
+    expect(size).toEqual(33)
   })
 })
 
 it('support images', () => {
   return getSize(fixture('img/index')).then(size => {
-    expect(size).toEqual(53)
+    expect(size).toEqual(52)
   })
 })
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(size).toEqual(2338)
+    expect(size).toEqual(2337)
   })
 })
 
@@ -61,7 +61,7 @@ it('supports CSS modules', () => {
 
 it('removes non-production code', () => {
   return getSize(fixture('multiple/production')).then(size => {
-    expect(size).toEqual(9)
+    expect(size).toEqual(8)
   })
 })
 
@@ -83,6 +83,6 @@ it('uses custom webpack config', () => {
   return getSize(fixture('webpack-config/index'), {
     config: fixture('webpack-config/webpack.config')
   }).then(size => {
-    expect(size).toEqual(2252)
+    expect(size).toEqual(2254)
   })
 })
