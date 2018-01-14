@@ -38,6 +38,10 @@ const argv = yargs
     describe: 'Disable webpack',
     type: 'boolean'
   })
+  .option('no-gzip', {
+    describe: 'Disable gzip',
+    type: 'boolean'
+  })
   .option('config', {
     describe: 'Custom webpack config',
     type: 'string'
@@ -209,6 +213,7 @@ if (argv['_'].length === 0) {
           config: limit.config,
           ignore: packageJson.peerDependencies,
           limit: limit.limit,
+          gzip: limit.gzip !== false,
           name: limit.name,
           full: files.map(i => path.join(cwd, i)),
           files
@@ -252,6 +257,7 @@ if (argv['_'].length === 0) {
     getOptions = Promise.resolve([
       {
         webpack: argv.webpack !== false,
+        gzip: argv.gzip !== false,
         path: files,
         limit,
         full
@@ -269,9 +275,10 @@ getOptions.then(files => {
       )
     }
     const opts = {
-      bundle: file.bundle,
       webpack: file.webpack,
-      config: file.config || argv.config
+      bundle: file.bundle,
+      config: file.config || argv.config,
+      gzip: file.gzip
     }
     if (file.ignore) {
       opts.ignore = Object.keys(file.ignore)

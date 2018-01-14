@@ -94,6 +94,10 @@ function getConfig (files, opts) {
     ]
   }
 
+  if (opts.gzip !== false) {
+    config.plugins.push(new Compression({ asset: '[path].gz' }))
+  }
+
   if (opts.ignore) {
     const escaped = opts.ignore.map(i => escapeRegexp(i))
     const regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
@@ -105,7 +109,7 @@ function getConfig (files, opts) {
     config.plugins.push(new Analyzer({
       openAnalyzer: opts.analyzer === 'server',
       analyzerMode: opts.analyzer,
-      defaultSizes: 'gzip'
+      defaultSizes: opts.gzip === false ? 'parsed' : 'gzip'
     }))
   }
 
@@ -124,7 +128,7 @@ function runWebpack (config, opts) {
 
 function extractSize (stat, opts) {
   let name = stat.compilation.outputOptions.filename
-  name += opts.config ? '' : '.gz'
+  name += opts.config || opts.gzip === false ? '' : '.gz'
   const assets = stat.toJson().assets
   return assets.find(i => i.name === name).size
 }
@@ -137,7 +141,8 @@ function extractSize (stat, opts) {
  * @param {object} [opts] Extra options.
  * @param {"server"|"static"|false} [opts.analyzer=false] Show package
  *                                                        content in browser.
- * @param {true|false} [opts.webpack=true] Pack files by webpack.
+ * @param {boolean} [opts.webpack=true] Pack files by webpack.
+ * @param {boolean} [opts.gzip=true] Compress files by gzip.
  * @param {string} [opts.config] A path to custom webpack config.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
@@ -163,7 +168,11 @@ function getSize (files, opts) {
   if (opts.webpack === false) {
     return Promise.all(files.map(file => {
       return promisify(done => fs.readFile(file, 'utf8', done)).then(bytes => {
-        return gzipSize(bytes)
+        if (opts.gzip === false) {
+          return bytes.length
+        } else {
+          return gzipSize(bytes)
+        }
       })
     })).then(sizes => {
       return sizes.reduce((all, size) => all + size, 0)

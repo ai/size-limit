@@ -288,6 +288,20 @@ it('disables webpack by option', () => {
   })
 })
 
+it('disables gzip by argument', () => {
+  return run(['--no-gzip', 'test/fixtures/bad/index.js']).then(result => {
+    expect(result.out).toContain('7.5 KB\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('disables gzip by option', () => {
+  return run([], { cwd: fixture('gzip') }).then(result => {
+    expect(result.out).toContain('249 B\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('throws on --why with disabled webpack', () => {
   return run(['--why'], { cwd: fixture('bundled') }).then(result => {
     expect(result.out).toContain('--why does not work')

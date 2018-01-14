@@ -79,6 +79,20 @@ it('disables webpack on request', () => {
   })
 })
 
+it('disables gzip on request', () => {
+  return getSize([fixture('bad/index')], { gzip: false }).then(size => {
+    expect(size).toEqual(7684)
+  })
+})
+
+it('disables gzip and webpack on request', () => {
+  return getSize([
+    fixture('bad/index')
+  ], { webpack: false, gzip: false }).then(size => {
+    expect(size).toEqual(31)
+  })
+})
+
 it('uses custom webpack config', () => {
   return getSize(fixture('webpack-config/index'), {
     config: fixture('webpack-config/webpack.config')

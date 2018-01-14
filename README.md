@@ -171,6 +171,7 @@ Each section in config could have options:
 * **name**: the name of this section. It will be useful only
   if you have multiple sections.
 * **webpack**: with `false` will disable webpack.
+* **gzip**: with `false` will disable gzip compression.
 * **config**: a path to custom webpack config.
 
 
