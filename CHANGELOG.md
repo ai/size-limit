@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.14
+* Add `name` option to config.
+* Add `gzip` option to config.
+
 ## 0.13.2
 * Use `globby` 7.0.
 
