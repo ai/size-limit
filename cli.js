@@ -145,9 +145,10 @@ function getConfig () {
     })
     .catch(err => {
       if (err.name === 'JSONError') {
+        const regexp = /JSON Error in [^\n]+:\s+([^\n]+)( while parsing)/
         let message = err.message
-        if (/JSON Error in [^\n]+:\n([^\n]+)\n/.test(message)) {
-          message = message.match(/JSON Error in [^\n]+:\n([^\n]+)\n/)[1]
+        if (regexp.test(message)) {
+          message = message.match(regexp)[1]
         }
         throw ownError(
           'Can not parse `package.json`. ' +

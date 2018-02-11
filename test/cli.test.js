@@ -130,7 +130,7 @@ it('shows package.json error', () => {
   return run([], { cwd: fixture('bad-package') }).then(result => {
     expect(result.out).toContain(
       ' ERROR  Can not parse package.json.\n' +
-      '        Unexpected token \'l\' at 6:8.'
+      '        Unexpected string in JSON at position 76.'
     )
     expect(result.code).toEqual(1)
   })
@@ -198,7 +198,7 @@ it('supports multiple files', () => {
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 426 B')
+    expect(result.out).toContain('exceeded by 367 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -246,14 +246,14 @@ it('returns size', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('2.42 KB\n')
+    expect(result.out).toContain('2.36 KB\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('shows bytes if value is same in different units', () => {
   return run([], { cwd: fixture('exact') }).then(result => {
-    expect(result.out).toContain('Package size: 1878 B')
+    expect(result.out).toContain('Package size: 1876 B')
     expect(result.out).toContain('Size limit:   1873 B')
     expect(result.code).toEqual(3)
   })
@@ -290,7 +290,7 @@ it('disables webpack by option', () => {
 
 it('disables gzip by argument', () => {
   return run(['--no-gzip', 'test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('7.5 KB\n')
+    expect(result.out).toContain('7.36 KB\n')
     expect(result.code).toEqual(0)
   })
 })
