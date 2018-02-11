@@ -145,7 +145,7 @@ function getConfig () {
     })
     .catch(err => {
       if (err.name === 'JSONError') {
-        const regexp = /JSON Error in [^\n]+:\s+([^\n]+)( while parsing)/
+        const regexp = /JSON\s?Error in [^\n]+:\s+([^\n]+)( while parsing)/
         let message = err.message
         if (regexp.test(message)) {
           message = message.match(regexp)[1]
