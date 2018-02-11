@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.14.1
+* Use `cosmiconfig` 4.0.
+* Use `yargs` 11.0.
+
 ## 0.14
 * Add `name` option to config.
 * Add `gzip` option to config.
