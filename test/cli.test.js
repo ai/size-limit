@@ -130,7 +130,7 @@ it('shows package.json error', () => {
   return run([], { cwd: fixture('bad-package') }).then(result => {
     expect(result.out).toContain(
       ' ERROR  Can not parse package.json.\n' +
-      '        Unexpected string in JSON at position 76.'
+      '        Unexpected string'
     )
     expect(result.code).toEqual(1)
   })
