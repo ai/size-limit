@@ -29,7 +29,7 @@
     "read-pkg-up": "^3.0.0",
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
-    "webpack": "^3.11.0",
+    "webpack": "^4.0.0-beta.2",
     "webpack-bundle-analyzer": "^2.10.0",
     "yargs": "^11.0.0"
   },
