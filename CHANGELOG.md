@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Next
 
-* Use `webpack` 4.0.0-beta.2.
+* Use `webpack` 4.0.0-beta.2; fixes [#41](https://github.com/ai/size-limit/issues/41) via [#42](https://github.com/ai/size-limit/pull/42).
 
 ## 0.14.1
 
