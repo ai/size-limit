@@ -8,6 +8,10 @@ function fixture (name) {
   return path.join(__dirname, 'fixtures', `${ name }.js`)
 }
 
+function trim (num) {
+  return Math.floor(num / 10) * 10
+}
+
 it('returns 0 for empty project', () => {
   return getSize(fixture('unlimit/empty')).then(size => {
     expect(size).toEqual(0)
@@ -46,14 +50,11 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(size).toEqual(2341)
+    expect(trim(size)).toEqual(2340)
   })
 })
 
 it('supports CSS modules', () => {
-  function trim (num) {
-    return Math.floor(num / 10) * 10
-  }
   return getSize(fixture('cssmodules/index')).then(size => {
     expect(trim(size)).toEqual(2370)
   })
