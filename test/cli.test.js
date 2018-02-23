@@ -251,14 +251,6 @@ it('uses different units', () => {
   })
 })
 
-it('shows bytes if value is same in different units', () => {
-  return run([], { cwd: fixture('exact') }).then(result => {
-    expect(result.out).toContain('Package size: 2287 B')
-    expect(result.out).toContain('Size limit:   2283 B')
-    expect(result.code).toEqual(3)
-  })
-})
-
 it('supports absolute path', () => {
   const file = path.join(__dirname, 'fixtures/unlimit/empty.js')
   return run([file]).then(result => {

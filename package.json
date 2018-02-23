@@ -34,7 +34,6 @@
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "attr-accept": "^1.1.2",
     "cross-spawn": "^6.0.4",
     "eslint": "^4.18.1",
     "eslint-ci": "^0.1.1",
