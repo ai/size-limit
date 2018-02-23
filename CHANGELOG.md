@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.1
+* Allow to use Size Limit in CI with Node.js 4.
+
 ## 0.15
 * Remove Node.js 4 support.
 * Use `webpack` 4.0 (by Jayden Seric).
