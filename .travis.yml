@@ -4,6 +4,3 @@ node_js:
   - stable
   - "8"
   - "6"
-  - "4"
-install:
-  - YARN_IGNORE_ENGINES=true yarn

@@ -58,14 +58,15 @@
     "test": "jest && yarn run lint && yarn run spellcheck"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.11.5"
   },
   "eslintConfig": {
     "extends": "eslint-config-logux/node4",
     "rules": {
       "security/detect-non-literal-require": "off",
       "security/detect-non-literal-regexp": "off",
-      "global-require": "off"
+      "global-require": "off",
+      "strict": "off"
     }
   },
   "jest": {

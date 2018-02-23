@@ -1,5 +1,3 @@
-'use strict'
-
 const escapeRegexp = require('escape-string-regexp')
 const Compression = require('compression-webpack-plugin')
 const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
