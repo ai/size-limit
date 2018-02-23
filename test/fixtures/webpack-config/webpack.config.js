@@ -6,5 +6,6 @@ module.exports = {
   entry: path.join(__dirname, 'index.js'),
   output: {
     filename: 'out.js'
-  }
+  },
+  mode: 'development'
 }

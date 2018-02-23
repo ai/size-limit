@@ -13,7 +13,7 @@ const os = require('os')
 
 const promisify = require('./promisify')
 
-const WEBPACK_EMPTY_PROJECT = 291
+const WEBPACK_EMPTY_PROJECT = 310
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico)$/

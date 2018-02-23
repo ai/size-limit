@@ -18,7 +18,7 @@
     "bytes": "^3.0.0",
     "chalk": "^2.3.1",
     "ci-job-number": "^0.3.0",
-    "compression-webpack-plugin": "^1.1.7",
+    "compression-webpack-plugin": "^1.1.8",
     "cosmiconfig": "^4.0.0",
     "css-loader": "^0.28.10",
     "escape-string-regexp": "^1.0.5",
@@ -28,9 +28,9 @@
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^3.0.0",
     "style-loader": "^0.20.2",
-    "uglifyjs-webpack-plugin": "^1.2.0",
-    "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.10.0",
+    "uglifyjs-webpack-plugin": "^1.2.1",
+    "webpack": "^4.0.0-beta.2",
+    "webpack-bundle-analyzer": "^2.10.1",
     "yargs": "^11.0.0"
   },
   "devDependencies": {

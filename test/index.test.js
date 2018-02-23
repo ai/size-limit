@@ -20,13 +20,13 @@ it('returns 0 for empty project', () => {
 
 it('shows project size', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual(2415)
+    expect(size).toEqual(2252)
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual(2432)
+    expect(size).toEqual(2267)
   })
 })
 
@@ -38,25 +38,25 @@ it('returns error', () => {
 
 it('supports ES2016', () => {
   return getSize(fixture('es2016/index')).then(size => {
-    expect(size).toEqual(33)
+    expect(size).toEqual(34)
   })
 })
 
 it('support images', () => {
   return getSize(fixture('img/index')).then(size => {
-    expect(size).toEqual(52)
+    expect(size).toEqual(53)
   })
 })
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size)).toEqual(2340)
+    expect(trim(size)).toEqual(2320)
   })
 })
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(trim(size)).toEqual(2370)
+    expect(trim(size)).toEqual(2360)
   })
 })
 
@@ -68,7 +68,7 @@ it('removes non-production code', () => {
 
 it('ignores dependencies on request', () => {
   return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
-    expect(size).toEqual(93)
+    expect(size).toEqual(97)
   })
 })
 
@@ -82,7 +82,7 @@ it('disables webpack on request', () => {
 
 it('disables gzip on request', () => {
   return getSize([fixture('bad/index')], { gzip: false }).then(size => {
-    expect(size).toEqual(7541)
+    expect(size).toEqual(6674)
   })
 })
 
@@ -98,6 +98,6 @@ it('uses custom webpack config', () => {
   return getSize(fixture('webpack-config/index'), {
     config: fixture('webpack-config/webpack.config')
   }).then(size => {
-    expect(size).toEqual(2254)
+    expect(size).toEqual(2790)
   })
 })
