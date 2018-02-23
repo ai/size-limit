@@ -1,11 +1,20 @@
 #!/usr/bin/env node
+'use strict'
 
 const ciJobNumber = require('ci-job-number')
+const chalk = require('chalk')
+
+if (ciJobNumber() !== 1) {
+  process.stdout.write(
+    chalk.yellow('Size Limits run only on first CI job, to save CI resources'))
+  process.stdout.write('\n')
+  process.exit(0)
+}
+
 const cosmiconfig = require('cosmiconfig')
 const readPkg = require('read-pkg-up')
 const globby = require('globby')
 const yargs = require('yargs')
-const chalk = require('chalk')
 const bytes = require('bytes')
 const path = require('path')
 
@@ -168,13 +177,6 @@ function getConfig () {
         throw err
       }
     })
-}
-
-if (ciJobNumber() !== 1) {
-  process.stdout.write(
-    chalk.yellow('Size Limits run only on first CI job, to save CI resources'))
-  process.stdout.write('\n')
-  process.exit(0)
 }
 
 let getOptions
