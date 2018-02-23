@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15
+* Remove Node.js 4 support.
+* Use `webpack` 4.0 (by Jayden Seric).
+* Use `globby` 8.0.
+
 ## 0.14.1
 * Use `cosmiconfig` 4.0.
 * Use `yargs` 11.0.
