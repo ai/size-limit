@@ -1,4 +1,4 @@
-# Size Limit
+# Size Limit [![Cult Of Martians][cult-img]][cult]
 
 <img align="right" width="120" height="178"
      title="Size Limit logo" src="./logo.svg">
@@ -33,7 +33,8 @@ internal dependencies.
 </p>
 
 [Size Limit: Make the Web lighter]: https://evilmartians.com/chronicles/size-limit-make-the-web-lighter
-
+[cult-img]:                         http://cultofmartians.com/assets/badges/badge.svg
+[cult]:                             http://cultofmartians.com/tasks/size-limit-config.html
 
 ## Who Uses Size Limit
 
