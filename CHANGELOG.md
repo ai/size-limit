@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.2
+* Improve performance (by Bogdan Chadkin).
+
 ## 0.15.1
 * Allow to use Size Limit in CI with Node.js 4.
 
