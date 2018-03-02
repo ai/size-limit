@@ -87,8 +87,7 @@ function getConfig (files, opts) {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      new Uglify({ sourceMap: false }),
-      new Compression({ asset: '[path].gz' })
+      new Uglify({ sourceMap: false })
     ]
   }
 
