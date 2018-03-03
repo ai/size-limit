@@ -196,7 +196,7 @@ it('supports multiple files', () => {
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 204 B')
+    expect(result.out).toContain('exceeded by 234 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -244,7 +244,7 @@ it('returns size', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('Package size: 2.2 KB\n')
+    expect(result.out).toContain('Package size: 2.23 KB\n')
     expect(result.code).toEqual(0)
   })
 })
@@ -280,7 +280,7 @@ it('disables webpack by option', () => {
 
 it('disables gzip by argument', () => {
   return run(['--no-gzip', 'test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('Package size: 6.26 KB\n')
+    expect(result.out).toContain('Package size: 6.31 KB\n')
     expect(result.code).toEqual(0)
   })
 })
