@@ -10,7 +10,13 @@ function trim (num) {
   return Math.floor(num / 10) * 10
 }
 
-it('returns 0 for empty project', () => {
+it('returns 0 for minified empty project', () => {
+  return getSize(fixture('unlimit/empty'), { gzip: false }).then(size => {
+    expect(size).toEqual(0)
+  })
+})
+
+it('returns 0 for gziped empty project', () => {
   return getSize(fixture('unlimit/empty')).then(size => {
     expect(size).toEqual(0)
   })
@@ -80,7 +86,7 @@ it('disables webpack on request', () => {
 
 it('disables gzip on request', () => {
   return getSize([fixture('bad/index')], { gzip: false }).then(size => {
-    expect(size).toEqual(6674)
+    expect(size).toEqual(6407)
   })
 })
 
@@ -96,6 +102,6 @@ it('uses custom webpack config', () => {
   return getSize(fixture('webpack-config/index'), {
     config: fixture('webpack-config/webpack.config')
   }).then(size => {
-    expect(size).toEqual(2790)
+    expect(size).toEqual(2523)
   })
 })
