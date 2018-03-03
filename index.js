@@ -4,7 +4,6 @@ const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MemoryFS = require('memory-fs')
 const gzipSize = require('gzip-size')
 const webpack = require('webpack')
-const Uglify = require('uglifyjs-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
@@ -86,12 +85,7 @@ function getConfig (files, opts) {
         }
       ]
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
-      }),
-      new Uglify({ sourceMap: false })
-    ]
+    plugins: []
   }
 
   if (opts.gzip !== false) {

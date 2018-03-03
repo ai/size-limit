@@ -24,13 +24,13 @@ it('returns 0 for gziped empty project', () => {
 
 it('shows project size', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual(2252)
+    expect(size).toEqual(2282)
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual(2267)
+    expect(size).toEqual(2296)
   })
 })
 
@@ -54,7 +54,7 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size)).toEqual(2320)
+    expect(trim(size)).toEqual(2330)
   })
 })
 
@@ -86,7 +86,7 @@ it('disables webpack on request', () => {
 
 it('disables gzip on request', () => {
   return getSize([fixture('bad/index')], { gzip: false }).then(size => {
-    expect(size).toEqual(6407)
+    expect(size).toEqual(6462)
   })
 })
 
