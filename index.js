@@ -11,7 +11,10 @@ const os = require('os')
 
 const promisify = require('./promisify')
 
-const WEBPACK_EMPTY_PROJECT = 310
+const WEBPACK_EMPTY_PROJECT = {
+  minified: 577,
+  gziped: 310
+}
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico)$/
@@ -187,7 +190,14 @@ function getSize (files, opts) {
         size = extractSize(stats, opts)
       }
 
-      return size - WEBPACK_EMPTY_PROJECT
+      let emptySize
+      if (opts.config || opts.gzip === false) {
+        emptySize = WEBPACK_EMPTY_PROJECT.minified
+      } else {
+        emptySize = WEBPACK_EMPTY_PROJECT.gziped
+      }
+
+      return size - emptySize
     })
   }
 }
