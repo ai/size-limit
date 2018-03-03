@@ -7,7 +7,8 @@ function fixture (name) {
 }
 
 function trim (num) {
-  return Math.floor(num / 10) * 10
+  // round number with assumption
+  return Math.floor(num / 20) * 20
 }
 
 it('returns 0 for bundle and gzip empty project', () => {
@@ -48,7 +49,7 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2330)
+    expect(trim(size.gzip)).toEqual(2320)
   })
 })
 
