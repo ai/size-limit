@@ -11,7 +11,7 @@ const os = require('os')
 const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = {
-  bundle: 577,
+  parsed: 577,
   gzip: 310
 }
 
@@ -122,19 +122,19 @@ function runWebpack (config, opts) {
 
 function sumSize (s1, s2) {
   return {
-    bundle: s1.bundle + s2.bundle,
+    parsed: s1.parsed + s2.parsed,
     gzip: s1.gzip + s2.gzip
   }
 }
 
 function extractSize (stat) {
-  const bundleName = stat.compilation.outputOptions.filename
-  const gzipName = bundleName + '.gz'
+  const parsedName = stat.compilation.outputOptions.filename
+  const gzipName = parsedName + '.gz'
   const assets = stat.toJson().assets
-  const bundleAsset = assets.find(i => i.name === bundleName)
+  const parsedAsset = assets.find(i => i.name === parsedName)
   const gzipAsset = assets.find(i => i.name === gzipName)
   return {
-    bundle: bundleAsset ? bundleAsset.size : 0,
+    parsed: parsedAsset ? parsedAsset.size : 0,
     gzip: gzipAsset ? gzipAsset.size : 0
   }
 }
@@ -153,7 +153,7 @@ function extractSize (stat) {
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
  *
- * @return {Promise} Promise with bundle and gzip size of files
+ * @return {Promise} Promise with parsed and gzip size of files
  *
  * @example
  * const getSize = require('size-limit')
@@ -175,15 +175,15 @@ function getSize (files, opts) {
     return Promise.all(files.map(file => {
       return promisify(done => fs.readFile(file, 'utf8', done)).then(bytes => {
         if (opts.gzip === false) {
-          return { bundle: bytes.length, gzip: 0 }
+          return { parsed: bytes.length, gzip: 0 }
         } else {
-          return gzipSize(bytes).then(gzip => ({ bundle: bytes.length, gzip }))
+          return gzipSize(bytes).then(gzip => ({ parsed: bytes.length, gzip }))
         }
       })
     })).then(sizes => {
       const size = sizes.reduce(sumSize)
       if (opts.gzip === false) {
-        return { bundle: size.bundle }
+        return { parsed: size.parsed }
       } else {
         return size
       }
@@ -205,11 +205,11 @@ function getSize (files, opts) {
 
       if (opts.config || opts.gzip === false) {
         return {
-          bundle: size.bundle - WEBPACK_EMPTY_PROJECT.bundle
+          parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed
         }
       } else {
         return {
-          bundle: size.bundle - WEBPACK_EMPTY_PROJECT.bundle,
+          parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed,
           gzip: size.gzip - WEBPACK_EMPTY_PROJECT.gzip
         }
       }

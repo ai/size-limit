@@ -292,7 +292,7 @@ getOptions.then(files => {
       if (typeof size.gzip === 'number') {
         file.size = size.gzip
       } else {
-        file.size = size.bundle
+        file.size = size.parsed
       }
       return file
     })
