@@ -173,6 +173,21 @@ it('shows limit', () => {
   })
 })
 
+it('accepts array for path', () => {
+  return run([], { cwd: fixture('array-path') }).then(result => {
+    expect(result.out).toEqual('\n' +
+    '  index1.js\n' +
+    '  Package size: 13 B\n' +
+    '\n' +
+    '  index1.js, index2.js\n' +
+    '  Package size: 22 B\n' +
+    '\n' +
+    '  With all dependencies, minified and gzipped\n' +
+    '\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('supports glob patterns', () => {
   return run([], { cwd: fixture('glob') }).then(result => {
     expect(result.out).toContain('Package size: 19 B\n')

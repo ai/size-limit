@@ -134,6 +134,49 @@ function capitalize (str) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
+function renderSize ({ name, limit, size }, i, array) {
+  const rows = []
+  const passed = limit && size <= limit
+  const failed = limit && limit < size
+  const unlimited = !limit
+
+  if (array.length > 1 && name) {
+    rows.push(name)
+  }
+
+  let limitString = formatBytes(limit)
+  let sizeString = formatBytes(size)
+
+  if (passed) {
+    rows.push(
+      `Package size: ${ chalk.bold(chalk.green(sizeString)) }`,
+      `Size limit:   ${ chalk.bold(limitString) }`
+    )
+  }
+
+  if (failed) {
+    if (limitString === sizeString) {
+      limitString = limit + ' B'
+      sizeString = size + ' B'
+    }
+    const diff = formatBytes(size - limit)
+    rows.push(
+      chalk.red('Package size limit has exceeded by ' + diff),
+      `Package size: ${ chalk.bold(chalk.red(sizeString)) }`,
+      `Size limit:   ${ chalk.bold(limitString) }`
+    )
+  }
+
+  if (unlimited) {
+    rows.push(`Package size: ${ chalk.bold(sizeString) }`)
+  }
+
+  return {
+    output: rows.map(row => `  ${ row }\n`).join(''),
+    failed
+  }
+}
+
 function getConfig () {
   const configExplorer = cosmiconfig('size-limit', {
     rc: '.size-limit',
@@ -214,11 +257,10 @@ if (argv['_'].length === 0) {
           bundle: packageJson.name,
           config: limit.config,
           ignore: packageJson.peerDependencies,
-          limit: limit.limit,
+          limit: bytes.parse(limit.limit),
           gzip: limit.gzip !== false,
-          name: limit.name,
-          full: files.map(i => path.join(cwd, i)),
-          files
+          name: limit.name || files.join(', '),
+          full: files.map(i => path.join(cwd, i))
         }
       })
     }))
@@ -260,7 +302,6 @@ if (argv['_'].length === 0) {
       {
         webpack: argv.webpack !== false,
         gzip: argv.gzip !== false,
-        path: files,
         limit,
         full
       }
@@ -298,42 +339,11 @@ getOptions.then(files => {
     })
   }))
 }).then(files => {
-  process.stdout.write('\n')
+  const results = files.map(renderSize)
 
-  const checks = files.map(file => {
-    const limit = bytes.parse(file.limit)
-    file.passed = true
+  const output = results.map(i => i.output).join('\n')
 
-    if (files.length > 1) {
-      process.stdout.write(chalk.gray(`  ${ file.name || file.files }\n`))
-    }
-
-    let limitString = formatBytes(limit)
-    let sizeString = formatBytes(file.size)
-
-    if (limit && file.size <= limit) {
-      process.stdout.write(
-        `  Package size: ${ chalk.bold(chalk.green(sizeString)) }\n` +
-        `  Size limit:   ${ chalk.bold(limitString) }\n`)
-    } else if (limit) {
-      if (limitString === sizeString) {
-        limitString = limit + ' B'
-        sizeString = file.size + ' B'
-      }
-      const diff = formatBytes(file.size - limit)
-      process.stdout.write(
-        `  ${ chalk.red('Package size limit has exceeded by ' + diff) }\n` +
-        `  Package size: ${ chalk.bold(chalk.red(sizeString)) }\n` +
-        `  Size limit:   ${ chalk.bold(limitString) }\n`)
-      file.passed = false
-    } else {
-      process.stdout.write(
-        `  Package size: ${ chalk.bold(sizeString) }\n`)
-    }
-
-    if (files.length > 1) process.stdout.write('\n')
-    return file
-  })
+  process.stdout.write('\n' + output + (files.length > 1 ? '\n' : ''))
 
   let message
   if (argv.config) {
@@ -341,9 +351,9 @@ getOptions.then(files => {
   } else {
     message = '  With all dependencies, minified and gzipped\n\n'
   }
+
   process.stdout.write(chalk.gray(message))
-  return checks
-}).then(files => {
+
   if (argv.why && files.length > 1) {
     const opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
@@ -351,17 +361,17 @@ getOptions.then(files => {
     }
     const full = files.reduce((all, i) => all.concat(i.full), [])
     return getSize(full, opts).then(() => files)
-  } else {
-    return files
   }
-}).then(files => {
+
   if (!argv.why) {
-    if (files.some(i => !i.passed)) {
+    if (results.some(i => i.failed)) {
       process.exit(3)
     } else {
       process.exit(0)
     }
   }
+
+  return files
 }).catch(e => {
   let msg
   if (e.sizeLimit) {
