@@ -289,7 +289,11 @@ getOptions.then(files => {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
     return getSize(file.full, opts).then(size => {
-      file.size = size
+      if (typeof size.gzip === 'number') {
+        file.size = size.gzip
+      } else {
+        file.size = size.bundle
+      }
       return file
     })
   }))

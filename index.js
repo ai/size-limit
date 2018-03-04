@@ -11,8 +11,8 @@ const os = require('os')
 const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = {
-  minified: 577,
-  gziped: 310
+  bundle: 577,
+  gzip: 310
 }
 
 const STATIC =
@@ -120,11 +120,23 @@ function runWebpack (config, opts) {
   })
 }
 
-function extractSize (stat, opts) {
-  let name = stat.compilation.outputOptions.filename
-  name += opts.config || opts.gzip === false ? '' : '.gz'
+function sumSize (s1, s2) {
+  return {
+    bundle: s1.bundle + s2.bundle,
+    gzip: s1.gzip + s2.gzip
+  }
+}
+
+function extractSize (stat) {
+  const bundleName = stat.compilation.outputOptions.filename
+  const gzipName = bundleName + '.gz'
   const assets = stat.toJson().assets
-  return assets.find(i => i.name === name).size
+  const bundleAsset = assets.find(i => i.name === bundleName)
+  const gzipAsset = assets.find(i => i.name === gzipName)
+  return {
+    bundle: bundleAsset ? bundleAsset.size : 0,
+    gzip: gzipAsset ? gzipAsset.size : 0
+  }
 }
 
 /**
@@ -141,7 +153,7 @@ function extractSize (stat, opts) {
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
  *
- * @return {Promise} Promise with size of files
+ * @return {Promise} Promise with bundle and gzip size of files
  *
  * @example
  * const getSize = require('size-limit')
@@ -150,7 +162,7 @@ function extractSize (stat, opts) {
  * const extra = path.join(__dirname, 'extra.js')
  *
  * getSize([index, extra]).then(size => {
- *   if (size > 1 * 1024 * 1024) {
+ *   if (size.gzip > 1 * 1024 * 1024) {
  *     console.error('Project become bigger than 1MB')
  *   }
  * })
@@ -163,13 +175,18 @@ function getSize (files, opts) {
     return Promise.all(files.map(file => {
       return promisify(done => fs.readFile(file, 'utf8', done)).then(bytes => {
         if (opts.gzip === false) {
-          return bytes.length
+          return { bundle: bytes.length, gzip: 0 }
         } else {
-          return gzipSize(bytes)
+          return gzipSize(bytes).then(gzip => ({ bundle: bytes.length, gzip }))
         }
       })
     })).then(sizes => {
-      return sizes.reduce((all, size) => all + size, 0)
+      const size = sizes.reduce(sumSize)
+      if (opts.gzip === false) {
+        return { bundle: size.bundle }
+      } else {
+        return size
+      }
     })
   } else {
     return runWebpack(getConfig(files, opts), opts).then(stats => {
@@ -179,19 +196,23 @@ function getSize (files, opts) {
 
       let size
       if (opts.config && stats.stats) {
-        size = stats.stats.reduce((pre, cur) => pre + extractSize(cur, opts), 0)
+        size = stats.stats
+          .map(stat => extractSize(stat, opts))
+          .reduce(sumSize)
       } else {
         size = extractSize(stats, opts)
       }
 
-      let emptySize
       if (opts.config || opts.gzip === false) {
-        emptySize = WEBPACK_EMPTY_PROJECT.minified
+        return {
+          bundle: size.bundle - WEBPACK_EMPTY_PROJECT.bundle
+        }
       } else {
-        emptySize = WEBPACK_EMPTY_PROJECT.gziped
+        return {
+          bundle: size.bundle - WEBPACK_EMPTY_PROJECT.bundle,
+          gzip: size.gzip - WEBPACK_EMPTY_PROJECT.gzip
+        }
       }
-
-      return size - emptySize
     })
   }
 }
