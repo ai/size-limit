@@ -134,18 +134,18 @@ function capitalize (str) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-function renderSize ({ name, limit, size }, i, array) {
+function renderSize (item, i, array) {
   const rows = []
-  const passed = limit && size <= limit
-  const failed = limit && limit < size
-  const unlimited = !limit
+  const passed = item.limit && item.size <= item.limit
+  const failed = item.limit && item.limit < item.size
+  const unlimited = !item.limit
 
-  if (array.length > 1 && name) {
-    rows.push(name)
+  if (array.length > 1 && item.name) {
+    rows.push(item.name)
   }
 
-  let limitString = formatBytes(limit)
-  let sizeString = formatBytes(size)
+  let limitString = formatBytes(item.limit)
+  let sizeString = formatBytes(item.size)
 
   if (passed) {
     rows.push(
@@ -156,10 +156,10 @@ function renderSize ({ name, limit, size }, i, array) {
 
   if (failed) {
     if (limitString === sizeString) {
-      limitString = limit + ' B'
-      sizeString = size + ' B'
+      limitString = item.limit + ' B'
+      sizeString = item.size + ' B'
     }
-    const diff = formatBytes(size - limit)
+    const diff = formatBytes(item.size - item.limit)
     rows.push(
       chalk.red('Package size limit has exceeded by ' + diff),
       `Package size: ${ chalk.bold(chalk.red(sizeString)) }`,
@@ -196,7 +196,7 @@ function getConfig () {
     })
     .catch(err => {
       if (err.name === 'JSONError') {
-        const regexp = /JSON\s?Error in [^\n]+:\s+([^\n]+)( while parsing)/
+        const regexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
         let message = err.message
         if (regexp.test(message)) {
           message = message.match(regexp)[1]
