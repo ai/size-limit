@@ -136,39 +136,65 @@ function capitalize (str) {
 
 function renderSize (item, i, array) {
   const rows = []
-  const passed = item.limit && item.size <= item.limit
-  const failed = item.limit && item.limit < item.size
-  const unlimited = !item.limit
+  const limit = item.limit
+  const parsed = item.size.parsed
+  const gzip = item.size.gzip
+  const size = typeof gzip === 'number' ? gzip : parsed
+  const passed = limit && size <= limit
+  const failed = limit && limit < size
+  const unlimited = !limit
 
   if (array.length > 1 && item.name) {
     rows.push(item.name)
   }
 
-  let limitString = formatBytes(item.limit)
-  let sizeString = formatBytes(item.size)
+  let limitString = formatBytes(limit)
+  let parsedString = formatBytes(parsed)
+  let gzipString = typeof gzip === 'number' ? formatBytes(gzip) : null
+  const sizeString = gzipString || parsedString
 
   if (passed) {
-    rows.push(
-      `Package size: ${ chalk.bold(chalk.green(sizeString)) }`,
-      `Size limit:   ${ chalk.bold(limitString) }`
-    )
+    if (gzipString) {
+      rows.push(
+        `Package parsed size: ${ chalk.bold(chalk.grey(parsedString)) }`,
+        `Package gzip size:   ${ chalk.bold(chalk.green(gzipString)) }`
+      )
+    } else {
+      rows.push(
+        `Package parsed size: ${ chalk.bold(chalk.green(parsedString)) }`
+      )
+    }
+    rows.push(`Size limit:          ${ chalk.bold(limitString) }`)
   }
 
   if (failed) {
     if (limitString === sizeString) {
-      limitString = item.limit + ' B'
-      sizeString = item.size + ' B'
+      limitString = limit + ' B'
+      parsedString = parsed + ' B'
+      if (gzipString) {
+        gzipString = gzip + ' B'
+      }
     }
-    const diff = formatBytes(item.size - item.limit)
-    rows.push(
-      chalk.red('Package size limit has exceeded by ' + diff),
-      `Package size: ${ chalk.bold(chalk.red(sizeString)) }`,
-      `Size limit:   ${ chalk.bold(limitString) }`
-    )
+    const diff = formatBytes(size - limit)
+    rows.push(chalk.red(`Package size limit has exceeded by ${ diff }`))
+    if (gzipString) {
+      rows.push(
+        `Package parsed size: ${ chalk.bold(chalk.grey(parsedString)) }`,
+        `Package gzip size:   ${ chalk.bold(chalk.red(gzipString)) }`
+      )
+    } else {
+      rows.push(
+        `Package parsed size: ${ chalk.bold(chalk.red(parsedString)) }`
+      )
+    }
+    rows.push(`Size limit:          ${ chalk.bold(limitString) }`)
   }
 
   if (unlimited) {
-    rows.push(`Package size: ${ chalk.bold(sizeString) }`)
+    rows.push(`Package parsed size: ${ chalk.bold(parsedString) }`)
+    if (gzipString) {
+      rows.push(`Package gzip size:   ${ chalk.bold(gzipString) }`)
+    }
   }
 
   return {
@@ -330,11 +356,7 @@ getOptions.then(files => {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
     return getSize(file.full, opts).then(size => {
-      if (typeof size.gzip === 'number') {
-        file.size = size.gzip
-      } else {
-        file.size = size.parsed
-      }
+      file.size = size
       return file
     })
   }))
