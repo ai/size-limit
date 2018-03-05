@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.16
+* `getSize()` now returns `{ gzip, parsed }` (by Bogdan Chadkin).
+* Improve size calculation accuracy (by Bogdan Chadkin).
+* Array support in the `path` (by Bogdan Chadkin).
+
 ## 0.15.2
 * Improve performance (by Bogdan Chadkin).
 
