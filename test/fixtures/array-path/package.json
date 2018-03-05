@@ -1,0 +1,10 @@
+{
+  "size-limit": [
+    {
+      "path": "index1.js"
+    },
+    {
+      "path": ["index1.js", "index2.js"]
+    }
+  ]
+}
