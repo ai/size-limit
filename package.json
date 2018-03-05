@@ -28,7 +28,7 @@
     "memory-fs": "^0.4.1",
     "read-pkg-up": "^3.0.0",
     "style-loader": "^0.20.2",
-    "webpack": "^4.0.1",
+    "webpack": "^4.1.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "yargs": "^11.0.0"
   },
