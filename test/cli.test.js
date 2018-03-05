@@ -174,7 +174,7 @@ it('shows limit', () => {
 })
 
 it('accepts array for path', () => {
-  return run([], { cwd: fixture('array-path') }).then(result => {
+  return run([], { cwd: fixture('array') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index1.js\n' +
     '  Package size: 13 B\n' +
