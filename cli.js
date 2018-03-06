@@ -245,25 +245,29 @@ if (argv['_'].length === 0) {
       }
     }
 
-    return Promise.all(config.config.map(limit => {
+    return Promise.all(config.config.map(entry => {
       const cwd = path.dirname(config.filepath)
-      return globby(limit.path, { cwd }).then(files => {
+      return globby(entry.path, { cwd }).then(files => {
         if (files.length === 0) {
-          files = limit.path
+          files = entry.path
           if (typeof files === 'string') files = [files]
         }
         return {
-          webpack: limit.webpack !== false,
-          bundle: packageJson.name,
-          config: limit.config,
-          ignore: packageJson.peerDependencies,
-          limit: bytes.parse(limit.limit),
-          gzip: limit.gzip !== false,
-          name: limit.name || files.join(', '),
+          webpack: entry.webpack !== false,
+          config: entry.config,
+          limit: bytes.parse(entry.limit),
+          gzip: entry.gzip !== false,
+          name: entry.name || files.join(', '),
           full: files.map(i => path.join(cwd, i))
         }
       })
-    }))
+    })).then(files => {
+      return {
+        bundle: packageJson.name,
+        ignore: Object.keys(packageJson.peerDependencies || {}),
+        files
+      }
+    })
   })
 } else {
   const files = argv['_'].slice(0)
@@ -298,37 +302,41 @@ if (argv['_'].length === 0) {
       }
     })
 
-    getOptions = Promise.resolve([
-      {
-        webpack: argv.webpack !== false,
-        gzip: argv.gzip !== false,
-        limit,
-        full
-      }
-    ])
+    getOptions = Promise.resolve({
+      bundle: undefined,
+      ignore: [],
+      files: [
+        {
+          webpack: argv.webpack !== false,
+          gzip: argv.gzip !== false,
+          limit,
+          full
+        }
+      ]
+    })
   }
 }
 
-getOptions.then(files => {
-  return Promise.all(files.map(file => {
+getOptions.then(config => {
+  return Promise.all(config.files.map(file => {
     if (file.webpack === false && argv.why) {
       throw ownError(
         '`--why` does not work with `"webpack": false`. ' +
         'Add Webpack Bundle Analyzer to your Webpack config.'
       )
     }
+
     const opts = {
+      bundle: config.bundle,
+      ignore: config.ignore,
       webpack: file.webpack,
-      bundle: file.bundle,
       config: file.config || argv.config,
       gzip: file.gzip
     }
-    if (file.ignore) {
-      opts.ignore = Object.keys(file.ignore)
-    }
-    if (argv.why && files.length === 1) {
+    if (argv.why && config.files.length === 1) {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
+
     return getSize(file.full, opts).then(size => {
       if (typeof size.gzip === 'number') {
         file.size = size.gzip
@@ -337,8 +345,9 @@ getOptions.then(files => {
       }
       return file
     })
-  }))
-}).then(files => {
+  })).then(() => config)
+}).then(config => {
+  const files = config.files
   const results = files.map(renderSize)
 
   const output = results.map(i => i.output).join('\n')
@@ -357,7 +366,8 @@ getOptions.then(files => {
   if (argv.why && files.length > 1) {
     const opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
-      bundle: files[0].bundle
+      bundle: config.bundle,
+      ignore: config.ignore
     }
     const full = files.reduce((all, i) => all.concat(i.full), [])
     return getSize(full, opts).then(() => files)
