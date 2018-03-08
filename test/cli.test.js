@@ -106,8 +106,9 @@ it('shows config content error', () => {
 it('uses .size-limit file config', () => {
   return run([], { cwd: fixture('config') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 19 B\n' +
-    '  Size limit:   1 KB\n' +
+    '  Package parsed size: 29 B\n' +
+    '  Package gzip size:   19 B\n' +
+    '  Size limit:          1 KB\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)
@@ -145,7 +146,8 @@ it('runs only on first job in Travis CI', () => {
 it('shows size without limit', () => {
   return run([], { cwd: fixture('unlimit') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 0 B\n' +
+    '  Package parsed size: 0 B\n' +
+    '  Package gzip size:   0 B\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)
@@ -156,16 +158,19 @@ it('shows limit', () => {
   return run([], { cwd: fixture('good') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index.js\n' +
-    '  Package size: 19 B\n' +
-    '  Size limit:   1 KB\n' +
+    '  Package parsed size: 29 B\n' +
+    '  Package gzip size:   19 B\n' +
+    '  Size limit:          1 KB\n' +
     '\n' +
     '  index2.js\n' +
-    '  Package size: 19 B\n' +
-    '  Size limit:   1 KB\n' +
+    '  Package parsed size: 29 B\n' +
+    '  Package gzip size:   19 B\n' +
+    '  Size limit:          1 KB\n' +
     '\n' +
     '  index3.js\n' +
-    '  Package size: 19 B\n' +
-    '  Size limit:   1 KB\n' +
+    '  Package parsed size: 29 B\n' +
+    '  Package gzip size:   19 B\n' +
+    '  Size limit:          1 KB\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -177,10 +182,12 @@ it('accepts array for path', () => {
   return run([], { cwd: fixture('array') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index1.js\n' +
-    '  Package size: 13 B\n' +
+    '  Package parsed size: 21 B\n' +
+    '  Package gzip size:   13 B\n' +
     '\n' +
     '  index1.js, index2.js\n' +
-    '  Package size: 22 B\n' +
+    '  Package parsed size: 63 B\n' +
+    '  Package gzip size:   22 B\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -190,21 +197,35 @@ it('accepts array for path', () => {
 
 it('supports glob patterns', () => {
   return run([], { cwd: fixture('glob') }).then(result => {
-    expect(result.out).toContain('Package size: 19 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 29 B\n' +
+      '  Package gzip size:   19 B\n' +
+      '  Size limit:          1 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports ES2016', () => {
   return run([], { cwd: fixture('es2016') }).then(result => {
-    expect(result.out).toContain('Package size: 34 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 47 B\n' +
+      '  Package gzip size:   34 B\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports multiple files', () => {
   return run([], { cwd: fixture('multiple') }).then(result => {
-    expect(result.out).toContain('Package size: 25 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 64 B\n' +
+      '  Package gzip size:   25 B\n' +
+      '  Size limit:          1 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
@@ -220,12 +241,14 @@ it('uses names', () => {
   return run([], { cwd: fixture('named') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  First\n' +
-    '  Package size: 19 B\n' +
-    '  Size limit:   1 KB\n' +
+    '  Package parsed size: 29 B\n' +
+    '  Package gzip size:   19 B\n' +
+    '  Size limit:          1 KB\n' +
     '\n' +
     '  Second\n' +
-    '  Package size: 19 B\n' +
-    '  Size limit:   1 KB\n' +
+    '  Package parsed size: 29 B\n' +
+    '  Package gzip size:   19 B\n' +
+    '  Size limit:          1 KB\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -250,7 +273,8 @@ it('shows analyzer for multiple limits', () => {
 it('returns size', () => {
   return run(['test/fixtures/unlimit/empty.js']).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 0 B\n' +
+    '  Package parsed size: 0 B\n' +
+    '  Package gzip size:   0 B\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)
@@ -259,7 +283,11 @@ it('returns size', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('Package size: 2.23 KB\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 6.31 KB\n' +
+      '  Package gzip size:   2.23 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
@@ -267,42 +295,67 @@ it('uses different units', () => {
 it('supports absolute path', () => {
   const file = path.join(__dirname, 'fixtures/unlimit/empty.js')
   return run([file]).then(result => {
-    expect(result.out).toContain('Package size: 0 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 0 B\n' +
+      '  Package gzip size:   0 B\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('ignores peerDependencies', () => {
   return run([], { cwd: fixture('peer') }).then(result => {
-    expect(result.out).toContain('Package size: 97 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 222 B\n' +
+      '  Package gzip size:   97 B\n' +
+      '  Size limit:          2 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('disables webpack by argument', () => {
   return run(['--no-webpack', 'test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('Package size: 51 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 31 B\n' +
+      '  Package gzip size:   51 B\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('disables webpack by option', () => {
   return run([], { cwd: fixture('bundled') }).then(result => {
-    expect(result.out).toContain('Package size: 51 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 31 B\n' +
+      '  Package gzip size:   51 B\n' +
+      '  Size limit:          51 B\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('disables gzip by argument', () => {
   return run(['--no-gzip', 'test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('Package size: 6.31 KB\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 6.31 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
 
 it('disables gzip by option', () => {
   return run([], { cwd: fixture('gzip') }).then(result => {
-    expect(result.out).toContain('Package size: 29 B\n')
+    expect(result.out).toContain(
+      '  Package parsed size: 29 B\n' +
+      '  Size limit:          1 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
@@ -316,7 +369,10 @@ it('throws on --why with disabled webpack', () => {
 
 it('uses custom webpack', () => {
   return run([], { cwd: fixture('webpack-config') }).then(result => {
-    expect(result.out).toContain('Package size: 2.29 KB')
+    expect(result.out).toContain(
+      '  Package parsed size: 2.29 KB\n' +
+      '  With all dependencies, minified and gzipped\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
@@ -326,7 +382,10 @@ it('uses custom webpack when specified via --config', () => {
     '--config', fixture('webpack-config/webpack.config.js'),
     fixture('webpack-config/index.js')
   ]).then(result => {
-    expect(result.out).toContain('Package size: 2.46 KB')
+    expect(result.out).toContain(
+      '  Package parsed size: 2.46 KB\n' +
+      '  With given webpack configuration\n'
+    )
     expect(result.code).toEqual(0)
   })
 })
