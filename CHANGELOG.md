@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.16.2
+* Fix `peerDependencies` and `--why` (by Bogdan Chadkin).
+
 ## 0.16.1
 * Allow to use Size Limit in CI with Node.js 4.
 
