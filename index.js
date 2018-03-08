@@ -92,7 +92,7 @@ function getConfig (files, opts) {
     config.plugins.push(new Compression({ asset: '[path].gz' }))
   }
 
-  if (opts.ignore) {
+  if (opts.ignore && opts.ignore.length !== 0) {
     const escaped = opts.ignore.map(i => escapeRegexp(i))
     const regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
     config.plugins.push(new webpack.IgnorePlugin(regexp))
