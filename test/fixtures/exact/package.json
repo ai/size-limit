@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "redux": "*"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "2280 B"
+    }
+  ]
+}
