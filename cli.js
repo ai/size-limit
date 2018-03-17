@@ -37,6 +37,10 @@ const FILE_EXAMPLE = '\n' +
 
 const argv = yargs
   .usage('$0')
+  .option('limit', {
+    describe: 'Size limit for passed files',
+    type: 'string'
+  })
   .option('why', {
     alias: 'w',
     describe: 'Show package content',
@@ -119,15 +123,6 @@ function configError (limits) {
 
 function formatBytes (size) {
   return bytes.format(size, { unitSeparator: ' ' })
-}
-
-function warn (messages) {
-  const prefix = `${ chalk.bgYellow.black(' WARN ') } `
-  process.stderr.write(prefix + messages.map((message, index) => {
-    const highlighted = message.replace(/`([^`]*)`/g, chalk.bold('$1'))
-    const str = `${ chalk.yellow(highlighted) }\n`
-    return index === 0 ? str : `       ${ str }`
-  }).join(''))
 }
 
 function capitalize (str) {
@@ -255,7 +250,7 @@ if (argv['_'].length === 0) {
         return {
           webpack: entry.webpack !== false,
           config: entry.config,
-          limit: bytes.parse(entry.limit),
+          limit: bytes.parse(argv.limit || entry.limit),
           gzip: entry.gzip !== false,
           name: entry.name || files.join(', '),
           full: files.map(i => path.join(cwd, i))
@@ -271,20 +266,6 @@ if (argv['_'].length === 0) {
   })
 } else {
   const files = argv['_'].slice(0)
-
-  let limit
-  if (/^\d+(\.\d+|)$/.test(files[0]) && /^[kKMGT]?B$/.test(files[1])) {
-    limit = bytes.parse(`${ files.shift() } ${ files.shift() }`)
-  } else if (/^\d+(\.\d+|)?([kKMGT]B|B)?$/.test(files[0])) {
-    limit = bytes.parse(files.shift())
-  }
-
-  if (limit) {
-    warn([
-      'Limit argument in Size Limit CLi was deprecated.',
-      'Use `size-limit` section in `package.json` to specify limit.'
-    ])
-  }
 
   if (files.length === 0) {
     getOptions = Promise.reject(
@@ -308,8 +289,8 @@ if (argv['_'].length === 0) {
       files: [
         {
           webpack: argv.webpack !== false,
+          limit: bytes.parse(argv.limit),
           gzip: argv.gzip !== false,
-          limit,
           full
         }
       ]

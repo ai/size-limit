@@ -114,6 +114,13 @@ it('uses .size-limit file config', () => {
   })
 })
 
+it('overrides config by limit argument', () => {
+  return run(['--limit', '18B'], { cwd: fixture('config') }).then(result => {
+    expect(result.out).toContain('Size limit:   18 B\n')
+    expect(result.code).toEqual(3)
+  })
+})
+
 it('shows .size-limit error', () => {
   return run([], { cwd: fixture('bad-config') }).then(result => {
     expect(result.out).toContain(
@@ -253,6 +260,14 @@ it('returns size', () => {
     '  Package size: 0 B\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('uses limit in non-config mode', () => {
+  const file = 'test/fixtures/unlimit/empty.js'
+  return run(['--limit', '10 KB', file]).then(result => {
+    expect(result.out).toContain('Size limit:   10 KB\n')
     expect(result.code).toEqual(0)
   })
 })
