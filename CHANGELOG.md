@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17
+* Remove deprecated limit CLI API and add `--limit` argument.
+
 ## 0.16.2
 * Fix `peerDependencies` and `--why` (by Bogdan Chadkin).
 
