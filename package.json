@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "Prevent JS libraries bloat. If you accidentally add a massive dependency, Size Limit will throw an error.",
   "keywords": [
     "size",

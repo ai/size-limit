@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.1
+* Use `cosmiconfig` 5.x.
+* Improve CI (by Daniel Ruf).
+
 ## 0.17
 * Remove deprecated limit CLI API and add `--limit` argument.
 
