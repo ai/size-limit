@@ -19,13 +19,13 @@ it('returns 0 for parsed and gzip empty project', () => {
 
 it('shows project parsed and gzip sizes', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual({ parsed: 6462, gzip: 2282 })
+    expect(size).toEqual({ parsed: 7031, gzip: 2405 })
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual({ parsed: 6512, gzip: 2296 })
+    expect(size).toEqual({ parsed: 7081, gzip: 2422 })
   })
 })
 
@@ -49,7 +49,7 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2320)
+    expect(trim(size.gzip)).toEqual(2340)
   })
 })
 
@@ -67,7 +67,7 @@ it('removes non-production code', () => {
 
 it('ignores dependencies on request', () => {
   return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
-    expect(size).toEqual({ parsed: 222, gzip: 97 })
+    expect(size).toEqual({ parsed: 220, gzip: 92 })
   })
 })
 
@@ -81,7 +81,7 @@ it('disables webpack on request', () => {
 
 it('disables gzip on request', () => {
   return getSize([fixture('bad/index')], { gzip: false }).then(size => {
-    expect(size).toEqual({ parsed: 6462 })
+    expect(size).toEqual({ parsed: 7031 })
   })
 })
 

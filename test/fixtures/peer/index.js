@@ -1,4 +1,4 @@
 'use strict'
 
 require('redux')
-require('redux/lib/compose')
+require('redux/lib/redux')

@@ -173,11 +173,14 @@ function renderSize (item, i, array) {
 }
 
 function getConfig () {
-  const configExplorer = cosmiconfig('size-limit', {
-    rc: '.size-limit',
-    js: false
+  const explorer = cosmiconfig('size-limit', {
+    searchPlaces: [
+      'package.json',
+      '.size-limit'
+    ]
   })
-  return configExplorer.load(process.cwd())
+  return explorer
+    .search()
     .then(result => {
       if (result === null) {
         throw ownError(
