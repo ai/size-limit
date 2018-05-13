@@ -177,7 +177,7 @@ function getConfig () {
     searchPlaces: [
       'package.json',
       '.size-limit',
-      'size-limit.config.js'
+      '.size-limit.js'
     ]
   })
   return explorer

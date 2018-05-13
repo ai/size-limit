@@ -114,6 +114,17 @@ it('uses .size-limit file config', () => {
   })
 })
 
+it('uses .size-limit.js file config', () => {
+  return run([], { cwd: fixture('js') }).then(result => {
+    expect(result.out).toEqual('\n' +
+    '  Package size: 19 B\n' +
+    '  Size limit:   1 KB\n' +
+    '  With all dependencies, minified and gzipped\n' +
+    '\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('overrides config by limit argument', () => {
   return run(['--limit', '18B'], { cwd: fixture('config') }).then(result => {
     expect(result.out).toContain('Size limit:   18 B\n')

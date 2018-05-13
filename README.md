@@ -138,7 +138,7 @@ to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
 
 ## Config
 
-Size Limits supports 2 ways to define config.
+Size Limits supports 3 ways to define config.
 
 1. `size-limit` section to `package.json`:
 
@@ -155,6 +155,17 @@ Size Limits supports 2 ways to define config.
 
    ```js
    [
+     {
+       path: "index.js",
+       limit: "9 KB"
+     }
+   ]
+   ```
+
+3. or more flexible `.size-limit.js` config file:
+
+   ```js
+   module.exports = [
      {
        path: "index.js",
        limit: "9 KB"
