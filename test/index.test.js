@@ -8,7 +8,7 @@ function fixture (name) {
 
 function trim (num) {
   // round number with assumption
-  return Math.floor(num / 20) * 20
+  return Math.floor(num / 50) * 50
 }
 
 it('returns 0 for parsed and gzip empty project', () => {
@@ -49,13 +49,13 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2340)
+    expect(trim(size.gzip)).toEqual(2300)
   })
 })
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2360)
+    expect(trim(size.gzip)).toEqual(2350)
   })
 })
 
