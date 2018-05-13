@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18
+* Add `.size-limit.js` config support (by Olivier Tassinari).
+
 ## 0.17.1
 * Use `cosmiconfig` 5.x.
 * Improve CI (by Daniel Ruf).
