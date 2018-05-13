@@ -176,7 +176,8 @@ function getConfig () {
   const explorer = cosmiconfig('size-limit', {
     searchPlaces: [
       'package.json',
-      '.size-limit'
+      '.size-limit',
+      'size-limit.config.js'
     ]
   })
   return explorer
