@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict'
 
 const ciJobNumber = require('ci-job-number')
 const chalk = require('chalk')

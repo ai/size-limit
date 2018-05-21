@@ -19,13 +19,13 @@ it('returns 0 for parsed and gzip empty project', () => {
 
 it('shows project parsed and gzip sizes', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual({ parsed: 7031, gzip: 2405 })
+    expect(size).toEqual({ parsed: 7018, gzip: 2405 })
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual({ parsed: 7081, gzip: 2422 })
+    expect(size).toEqual({ parsed: 7053, gzip: 2418 })
   })
 })
 
@@ -37,13 +37,13 @@ it('returns error', () => {
 
 it('supports ES2016', () => {
   return getSize(fixture('es2016/index')).then(size => {
-    expect(size).toEqual({ parsed: 47, gzip: 34 })
+    expect(size).toEqual({ parsed: 32, gzip: 24 })
   })
 })
 
 it('support images', () => {
   return getSize(fixture('img/index')).then(size => {
-    expect(size).toEqual({ parsed: 89, gzip: 53 })
+    expect(size).toEqual({ parsed: 76, gzip: 44 })
   })
 })
 
@@ -61,13 +61,13 @@ it('supports CSS modules', () => {
 
 it('removes non-production code', () => {
   return getSize(fixture('multiple/production')).then(size => {
-    expect(size).toEqual({ parsed: 14, gzip: 8 })
+    expect(size).toEqual({ parsed: 3, gzip: 1 })
   })
 })
 
 it('ignores dependencies on request', () => {
   return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
-    expect(size).toEqual({ parsed: 220, gzip: 92 })
+    expect(size).toEqual({ parsed: 207, gzip: 80 })
   })
 })
 
@@ -75,13 +75,13 @@ it('disables webpack on request', () => {
   return getSize([
     fixture('bad/index'), fixture('es2016/index')
   ], { webpack: false }).then(size => {
-    expect(size).toEqual({ parsed: 82, gzip: 122 })
+    expect(size).toEqual({ parsed: 53, gzip: 93 })
   })
 })
 
 it('disables gzip on request', () => {
   return getSize([fixture('bad/index')], { gzip: false }).then(size => {
-    expect(size).toEqual({ parsed: 7031 })
+    expect(size).toEqual({ parsed: 7018 })
   })
 })
 
@@ -89,7 +89,7 @@ it('disables gzip and webpack on request', () => {
   return getSize([
     fixture('bad/index')
   ], { webpack: false, gzip: false }).then(size => {
-    expect(size).toEqual({ parsed: 31 })
+    expect(size).toEqual({ parsed: 17 })
   })
 })
 
@@ -97,6 +97,6 @@ it('uses custom webpack config', () => {
   return getSize(fixture('webpack-config/index'), {
     config: fixture('webpack-config/webpack.config')
   }).then(size => {
-    expect(size).toEqual({ parsed: 2523 })
+    expect(size).toEqual({ parsed: 2484 })
   })
 })

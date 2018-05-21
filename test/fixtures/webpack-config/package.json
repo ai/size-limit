@@ -1,5 +1,8 @@
 {
   "private": true,
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "size-limit": [
     {
       "config": "./webpack.config.js",
