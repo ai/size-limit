@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.1
+* Move development config files from npm package.
+
 ## 0.18
 * Add `.size-limit.js` config support (by Olivier Tassinari).
 
