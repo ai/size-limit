@@ -59,23 +59,11 @@
   "engines": {
     "node": ">=6.11.5"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-logux/node",
-    "rules": {
-      "security/detect-non-literal-require": "off",
-      "security/detect-non-literal-regexp": "off",
-      "global-require": "off"
-    }
-  },
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
       "<rootDir>/test/fixtures"
     ]
-  },
-  "lint-staged": {
-    "*.md": "yaspeller-ci",
-    "*.js": "eslint"
   },
   "pre-commit": [
     "lint-staged"

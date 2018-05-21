@@ -1,0 +1,8 @@
+{
+  "extends": "eslint-config-logux/node",
+  "rules": {
+    "security/detect-non-literal-require": "off",
+    "security/detect-non-literal-regexp": "off",
+    "global-require": "off"
+  }
+}
