@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.2
+* Fix size with new webpack.
+
 ## 0.18.1
 * Move development config files from npm package.
 
