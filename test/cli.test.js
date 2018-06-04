@@ -229,7 +229,7 @@ it('supports multiple files', () => {
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 357 B')
+    expect(result.out).toContain('exceeded by 316 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -285,7 +285,7 @@ it('uses limit in non-config mode', () => {
 
 it('uses different units', () => {
   return run(['test/fixtures/bad/index.js']).then(result => {
-    expect(result.out).toContain('Package size: 2.35 KB\n')
+    expect(result.out).toContain('Package size: 2.31 KB\n')
     expect(result.code).toEqual(0)
   })
 })
@@ -300,7 +300,7 @@ it('supports absolute path', () => {
 
 it('ignores peerDependencies', () => {
   return run([], { cwd: fixture('peer') }).then(result => {
-    expect(result.out).toContain('Package size: 80 B\n')
+    expect(result.out).toContain('Package size: 81 B\n')
     expect(result.code).toEqual(0)
   })
 })
@@ -342,7 +342,7 @@ it('throws on --why with disabled webpack', () => {
 
 it('uses custom webpack', () => {
   return run([], { cwd: fixture('webpack-config') }).then(result => {
-    expect(result.out).toContain('Package size: 2.26 KB')
+    expect(result.out).toContain('Package size: 2.84 KB')
     expect(result.code).toEqual(0)
   })
 })
@@ -352,7 +352,7 @@ it('uses custom webpack when specified via --config', () => {
     '--config', fixture('webpack-config/webpack.config.js'),
     fixture('webpack-config/index.js')
   ]).then(result => {
-    expect(result.out).toContain('Package size: 2.43 KB')
+    expect(result.out).toContain('Package size: 3.01 KB')
     expect(result.code).toEqual(0)
   })
 })

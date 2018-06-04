@@ -11,8 +11,8 @@ const os = require('os')
 const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = {
-  parsed: 577,
-  gzip: 310
+  parsed: 962,
+  gzip: 462
 }
 
 const STATIC =
