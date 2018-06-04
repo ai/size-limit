@@ -13,19 +13,19 @@ function trim (num) {
 
 it('returns 0 for parsed and gzip empty project', () => {
   return getSize(fixture('unlimit/empty')).then(size => {
-    expect(size).toEqual({ parsed: 0, gzip: 0 })
+    expect(size).toEqual({ gzip: 0, parsed: 0 })
   })
 })
 
 it('shows project parsed and gzip sizes', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual({ parsed: 7018, gzip: 2405 })
+    expect(size).toEqual({ gzip: 2405, parsed: 7018 })
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual({ parsed: 7053, gzip: 2418 })
+    expect(size).toEqual({ gzip: 2418, parsed: 7053 })
   })
 })
 
@@ -37,13 +37,13 @@ it('returns error', () => {
 
 it('supports ES2016', () => {
   return getSize(fixture('es2016/index')).then(size => {
-    expect(size).toEqual({ parsed: 32, gzip: 24 })
+    expect(size).toEqual({ gzip: 24, parsed: 32 })
   })
 })
 
 it('support images', () => {
   return getSize(fixture('img/index')).then(size => {
-    expect(size).toEqual({ parsed: 76, gzip: 44 })
+    expect(size).toEqual({ gzip: 44, parsed: 76 })
   })
 })
 
@@ -61,13 +61,13 @@ it('supports CSS modules', () => {
 
 it('removes non-production code', () => {
   return getSize(fixture('multiple/production')).then(size => {
-    expect(size).toEqual({ parsed: 3, gzip: 1 })
+    expect(size).toEqual({ gzip: 1, parsed: 3 })
   })
 })
 
 it('ignores dependencies on request', () => {
   return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
-    expect(size).toEqual({ parsed: 207, gzip: 80 })
+    expect(size).toEqual({ gzip: 80, parsed: 207 })
   })
 })
 
@@ -75,7 +75,7 @@ it('disables webpack on request', () => {
   return getSize([
     fixture('bad/index'), fixture('es2016/index')
   ], { webpack: false }).then(size => {
-    expect(size).toEqual({ parsed: 53, gzip: 93 })
+    expect(size).toEqual({ gzip: 93, parsed: 53 })
   })
 })
 
