@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.3
+* Use `read-pkg-up` 4.x.
+* Remove development config from `package.json`.
+
 ## 0.18.2
 * Fix size with new webpack.
 
