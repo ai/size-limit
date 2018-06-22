@@ -14,6 +14,9 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "bin": "cli.js",
+  "engines": {
+    "node": ">=6.11.5"
+  },
   "dependencies": {
     "bytes": "^3.0.0",
     "chalk": "^2.4.1",
@@ -55,15 +58,6 @@
     "spellcheck": "yaspeller-ci *.md",
     "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
     "test": "jest && yarn run lint && yarn run spellcheck"
-  },
-  "engines": {
-    "node": ">=6.11.5"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/test/fixtures"
-    ]
   },
   "pre-commit": [
     "lint-staged"
