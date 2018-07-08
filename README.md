@@ -1,7 +1,7 @@
 # Size Limit [![Cult Of Martians][cult-img]][cult]
 
-<img align="right" width="120" height="178"
-     title="Size Limit logo" src="https://ai.github.io/size-limit/logo.svg">
+<img src="https://ai.github.io/size-limit/logo.svg" align="right"
+     title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
 Size Limit is a tool to prevent JavaScript libraries bloat.
 With it, you know exactly for how many kilobytes your JS library
