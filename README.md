@@ -1,7 +1,7 @@
 # Size Limit [![Cult Of Martians][cult-img]][cult]
 
 <img align="right" width="120" height="178"
-     title="Size Limit logo" src="./logo.svg">
+     title="Size Limit logo" src="./img/logo.svg">
 
 Size Limit is a tool to prevent JavaScript libraries bloat.
 With it, you know exactly for how many kilobytes your JS library
@@ -12,7 +12,7 @@ You can add Size Limit to your continuous integration service
 add a massive dependency, Size Limit will throw an error.
 
 <p align="center">
-  <img src="./screenshots/example.png" alt="Size Limit example"
+  <img src="./img/example.png" alt="Size Limit example"
        width="654" height="450">
 </p>
 
@@ -21,7 +21,7 @@ tell you *why* your library has this size and show real cost of all your
 internal dependencies.
 
 <p align="center">
-  <img src="./screenshots/why.png" alt="Bundle Analyzer example"
+  <img src="./img/why.png" alt="Bundle Analyzer example"
        width="650" height="335">
 </p>
 

@@ -15,5 +15,4 @@ report.html
 
 CONTRIBUTING.md
 .yaspellerrc
-*.png
-*.svg
+img/
