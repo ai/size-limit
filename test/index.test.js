@@ -49,7 +49,7 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2250)
+    expect(trim(size.gzip)).toEqual(2300)
   })
 })
 
