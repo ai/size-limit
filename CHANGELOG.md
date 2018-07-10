@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.5
+* Fix absolute path support.
+
 ## 0.18.4
 * Update dependencies.
 * Fix documentation.
