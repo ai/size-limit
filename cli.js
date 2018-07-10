@@ -256,7 +256,13 @@ if (argv['_'].length === 0) {
           limit: bytes.parse(argv.limit || entry.limit),
           gzip: entry.gzip !== false,
           name: entry.name || files.join(', '),
-          full: files.map(i => path.join(cwd, i))
+          full: files.map(i => {
+            if (path.isAbsolute(i)) {
+              return i
+            } else {
+              return path.join(cwd, i)
+            }
+          })
         }
       })
     })).then(files => {

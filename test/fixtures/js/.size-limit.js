@@ -1,6 +1,8 @@
+const path = require('path')
+
 module.exports = [
   {
-    path: "index.js",
-    limit: "1 KB"
+    path: path.join(__dirname, 'index.js'),
+    limit: '1 KB'
   }
 ]
