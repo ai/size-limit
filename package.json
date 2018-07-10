@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "cross-spawn": "^6.0.5",
-    "eslint": "^5.0.1",
+    "eslint": "^5.1.0",
     "eslint-ci": "^0.1.1",
     "eslint-config-logux": "^23.0.2",
     "eslint-config-standard": "^11.0.0",
