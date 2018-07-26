@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.19
+* Add `ignore` option to config.
+
 ## 0.18.5
 * Fix absolute path support.
 
