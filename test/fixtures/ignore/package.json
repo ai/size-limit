@@ -6,7 +6,9 @@
   "size-limit": [
     {
       "path": "index.js",
-      "ignore": "redux",
+      "ignore": [
+        "redux"
+      ],
       "limit": "2 KB"
     }
   ]
