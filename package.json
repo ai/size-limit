@@ -36,6 +36,7 @@
     "yargs": "^12.0.1"
   },
   "devDependencies": {
+    "clean-publish": "^1.0.7",
     "cross-spawn": "^6.0.5",
     "eslint": "^5.2.0",
     "eslint-ci": "^0.1.1",
@@ -61,5 +62,71 @@
   },
   "pre-commit": [
     "lint-staged"
-  ]
+  ],
+  "lint-staged": {
+    "*.md": "yaspeller-ci",
+    "*.js": "eslint"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/test/fixtures"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-logux/node",
+    "rules": {
+      "security/detect-non-literal-require": "off",
+      "security/detect-non-literal-regexp": "off",
+      "global-require": "off"
+    }
+  },
+  "yaspeller": {
+    "lang": "en",
+    "ignoreCapitalization": true,
+    "dictionary": [
+      "Versioning",
+      "Travis",
+      "CI",
+      "JS",
+      "Webpack",
+      "CLI",
+      "Marais",
+      "Rossouw",
+      "bundlesize",
+      "Yaroslav",
+      "Markin",
+      "Autoprefixer",
+      "PostCSS",
+      "Logux",
+      "webpack",
+      "polyfill",
+      "js",
+      "MobX",
+      "gzip",
+      "UI",
+      "ES2016",
+      "Babili",
+      "minifier",
+      "npm",
+      "deHaan",
+      "Alexandr",
+      "Subbotin",
+      "Werner",
+      "Browserslist",
+      "nanoid",
+      "EmojiMart",
+      "Marinin",
+      "Sivan",
+      "Mehta",
+      "Borovik",
+      "Jayden",
+      "Seric",
+      "Bogdan",
+      "Chadkin",
+      "Ruf",
+      "Olivier",
+      "Tassinari"
+    ]
+  }
 }

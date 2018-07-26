@@ -1,7 +1,4 @@
 .editorconfig
-.eslintrc
-.lintstagedrc
-jest.config.js
 
 node_modules/
 npm-debug.log
@@ -14,5 +11,4 @@ appveyor.yml
 report.html
 
 CONTRIBUTING.md
-.yaspellerrc
 img/
