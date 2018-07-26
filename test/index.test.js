@@ -19,13 +19,13 @@ it('returns 0 for parsed and gzip empty project', () => {
 
 it('shows project parsed and gzip sizes', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual({ gzip: 2364, parsed: 7018 })
+    expect(size).toEqual({ gzip: 2368, parsed: 7018 })
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual({ gzip: 2378, parsed: 7053 })
+    expect(size).toEqual({ gzip: 2383, parsed: 7053 })
   })
 })
 
@@ -37,13 +37,13 @@ it('returns error', () => {
 
 it('supports ES2016', () => {
   return getSize(fixture('es2016/index')).then(size => {
-    expect(size).toEqual({ gzip: 24, parsed: 32 })
+    expect(size).toEqual({ gzip: 25, parsed: 32 })
   })
 })
 
 it('support images', () => {
   return getSize(fixture('img/index')).then(size => {
-    expect(size).toEqual({ gzip: 42, parsed: 76 })
+    expect(size).toEqual({ gzip: 43, parsed: 76 })
   })
 })
 
@@ -67,7 +67,7 @@ it('removes non-production code', () => {
 
 it('ignores dependencies on request', () => {
   return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
-    expect(size).toEqual({ gzip: 81, parsed: 207 })
+    expect(size).toEqual({ gzip: 82, parsed: 207 })
   })
 })
 

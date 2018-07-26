@@ -106,7 +106,7 @@ it('shows config content error', () => {
 it('uses .size-limit file config', () => {
   return run([], { cwd: fixture('config') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -117,7 +117,7 @@ it('uses .size-limit file config', () => {
 it('uses .size-limit.js file config', () => {
   return run([], { cwd: fixture('js') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -174,15 +174,15 @@ it('shows limit', () => {
   return run([], { cwd: fixture('good') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index.js\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  index2.js\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  index3.js\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
@@ -195,10 +195,10 @@ it('accepts array for path', () => {
   return run([], { cwd: fixture('array') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index1.js\n' +
-    '  Package size: 13 B\n' +
+    '  Package size: 14 B\n' +
     '\n' +
     '  index1.js, index2.js\n' +
-    '  Package size: 22 B\n' +
+    '  Package size: 23 B\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -208,28 +208,28 @@ it('accepts array for path', () => {
 
 it('supports glob patterns', () => {
   return run([], { cwd: fixture('glob') }).then(result => {
-    expect(result.out).toContain('Package size: 9 B\n')
+    expect(result.out).toContain('Package size: 10 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports ES2016', () => {
   return run([], { cwd: fixture('es2016') }).then(result => {
-    expect(result.out).toContain('Package size: 24 B\n')
+    expect(result.out).toContain('Package size: 25 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports multiple files', () => {
   return run([], { cwd: fixture('multiple') }).then(result => {
-    expect(result.out).toContain('Package size: 15 B\n')
+    expect(result.out).toContain('Package size: 16 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('checks limits', () => {
   return run([], { cwd: fixture('bad') }).then(result => {
-    expect(result.out).toContain('exceeded by 316 B')
+    expect(result.out).toContain('exceeded by 320 B')
     expect(result.code).toEqual(3)
   })
 })
@@ -238,11 +238,11 @@ it('uses names', () => {
   return run([], { cwd: fixture('named') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  First\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  Second\n' +
-    '  Package size: 9 B\n' +
+    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
@@ -300,7 +300,7 @@ it('supports absolute path', () => {
 
 it('ignores peerDependencies', () => {
   return run([], { cwd: fixture('peer') }).then(result => {
-    expect(result.out).toContain('Package size: 81 B\n')
+    expect(result.out).toContain('Package size: 82 B\n')
     expect(result.code).toEqual(0)
   })
 })
