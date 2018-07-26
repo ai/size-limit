@@ -12,7 +12,7 @@ const promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = {
   parsed: 962,
-  gzip: 462
+  gzip: 461
 }
 
 const STATIC =

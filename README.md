@@ -185,6 +185,7 @@ Each section in config could have options:
 * **webpack**: with `false` will disable webpack.
 * **gzip**: with `false` will disable gzip compression.
 * **config**: a path to custom webpack config.
+* **ignore**: an array of files and dependencies to ignore from project size.
 
 
 ## Applications

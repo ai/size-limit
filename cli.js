@@ -245,6 +245,7 @@ if (argv['_'].length === 0) {
 
     return Promise.all(config.config.map(entry => {
       const cwd = path.dirname(config.filepath)
+      const peer = Object.keys(packageJson.peerDependencies || { })
       return globby(entry.path, { cwd }).then(files => {
         if (files.length === 0) {
           files = entry.path
@@ -253,6 +254,7 @@ if (argv['_'].length === 0) {
         return {
           webpack: entry.webpack !== false,
           config: entry.config,
+          ignore: peer.concat(entry.ignore || []),
           limit: bytes.parse(argv.limit || entry.limit),
           gzip: entry.gzip !== false,
           name: entry.name || files.join(', '),
@@ -268,7 +270,6 @@ if (argv['_'].length === 0) {
     })).then(files => {
       return {
         bundle: packageJson.name,
-        ignore: Object.keys(packageJson.peerDependencies || {}),
         files
       }
     })
@@ -317,9 +318,9 @@ getOptions.then(config => {
     }
 
     const opts = {
-      bundle: config.bundle,
-      ignore: config.ignore,
       webpack: file.webpack,
+      bundle: config.bundle,
+      ignore: file.ignore,
       config: file.config || argv.config,
       gzip: file.gzip
     }
@@ -354,10 +355,11 @@ getOptions.then(config => {
   process.stdout.write(chalk.gray(message))
 
   if (argv.why && files.length > 1) {
+    const ignore = files.reduce((all, i) => all.concat(i.ignore), [])
     const opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
       bundle: config.bundle,
-      ignore: config.ignore
+      ignore
     }
     const full = files.reduce((all, i) => all.concat(i.full), [])
     return getSize(full, opts).then(() => files)

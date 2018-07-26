@@ -305,6 +305,13 @@ it('ignores peerDependencies', () => {
   })
 })
 
+it('supports ignore option', () => {
+  return run([], { cwd: fixture('ignore') }).then(result => {
+    expect(result.out).toContain('Package size: 82 B\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
 it('disables webpack by argument', () => {
   return run(['--no-webpack', 'test/fixtures/bad/index.js']).then(result => {
     expect(result.out).toContain('Package size: 37 B\n')
