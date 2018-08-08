@@ -1,14 +1,14 @@
-const escapeRegexp = require('escape-string-regexp')
-const Compression = require('compression-webpack-plugin')
-const Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const MemoryFS = require('memory-fs')
-const gzipSize = require('gzip-size')
-const webpack = require('webpack')
-const path = require('path')
-const fs = require('fs')
-const os = require('os')
+let escapeRegexp = require('escape-string-regexp')
+let Compression = require('compression-webpack-plugin')
+let Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+let MemoryFS = require('memory-fs')
+let gzipSize = require('gzip-size')
+let webpack = require('webpack')
+let path = require('path')
+let fs = require('fs')
+let os = require('os')
 
-const promisify = require('./promisify')
+let promisify = require('./promisify')
 
 const WEBPACK_EMPTY_PROJECT = {
   parsed: 962,
@@ -37,7 +37,7 @@ function getConfig (files, opts) {
       config = require(path.join(process.cwd(), opts.config))
     }
 
-    const resolveModulesPaths = [
+    let resolveModulesPaths = [
       path.join(process.cwd(), 'node_modules')
     ]
     config.resolveLoader = { modules: resolveModulesPaths }
@@ -46,7 +46,7 @@ function getConfig (files, opts) {
     return config
   }
 
-  const config = {
+  let config = {
     entry: files,
     output: {
       filename: projectName(opts, files)
@@ -93,8 +93,8 @@ function getConfig (files, opts) {
   }
 
   if (opts.ignore && opts.ignore.length !== 0) {
-    const escaped = opts.ignore.map(i => escapeRegexp(i))
-    const regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
+    let escaped = opts.ignore.map(i => escapeRegexp(i))
+    let regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
     config.plugins.push(new webpack.IgnorePlugin(regexp))
   }
 
@@ -112,7 +112,7 @@ function getConfig (files, opts) {
 
 function runWebpack (config, opts) {
   return promisify(done => {
-    const compiler = webpack(config)
+    let compiler = webpack(config)
     if (!opts.analyzer) {
       compiler.outputFileSystem = new MemoryFS()
     }
@@ -128,11 +128,11 @@ function sumSize (s1, s2) {
 }
 
 function extractSize (stat) {
-  const parsedName = stat.compilation.outputOptions.filename
-  const gzipName = parsedName + '.gz'
-  const assets = stat.toJson().assets
-  const parsedAsset = assets.find(i => i.name === parsedName)
-  const gzipAsset = assets.find(i => i.name === gzipName)
+  let parsedName = stat.compilation.outputOptions.filename
+  let gzipName = parsedName + '.gz'
+  let assets = stat.toJson().assets
+  let parsedAsset = assets.find(i => i.name === parsedName)
+  let gzipAsset = assets.find(i => i.name === gzipName)
   return {
     parsed: parsedAsset ? parsedAsset.size : 0,
     gzip: gzipAsset ? gzipAsset.size : 0
@@ -181,7 +181,7 @@ function getSize (files, opts) {
         }
       })
     })).then(sizes => {
-      const size = sizes.reduce(sumSize)
+      let size = sizes.reduce(sumSize)
       if (opts.gzip === false) {
         return { parsed: size.parsed }
       } else {

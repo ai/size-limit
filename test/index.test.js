@@ -1,6 +1,6 @@
-const path = require('path')
+let path = require('path')
 
-const getSize = require('../')
+let getSize = require('../')
 
 function fixture (name) {
   return path.join(__dirname, 'fixtures', `${ name }.js`)
@@ -55,7 +55,7 @@ it('supports CSS', () => {
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2300)
+    expect(trim(size.gzip)).toEqual(2350)
   })
 })
 

@@ -1,5 +1,5 @@
-const spawn = require('cross-spawn')
-const path = require('path')
+let spawn = require('cross-spawn')
+let path = require('path')
 
 function fixture (file) {
   return path.join(__dirname, 'fixtures', file)
@@ -11,13 +11,13 @@ function run (args, options, env) {
     TRAVIS_JOB_NUMBER: '1.1',
     APPVEYOR_JOB_NUMBER: '1'
   }
-  for (const i in process.env) {
+  for (let i in process.env) {
     if (!options.env[i]) options.env[i] = process.env[i]
   }
-  for (const i in env) {
+  for (let i in env) {
     options.env[i] = env[i]
   }
-  const cli = spawn(path.join(__dirname, '../cli.js'), args, options)
+  let cli = spawn(path.join(__dirname, '../cli.js'), args, options)
   return new Promise(resolve => {
     let out = ''
     cli.stdout.on('data', data => {
@@ -153,7 +153,7 @@ it('shows package.json error', () => {
 })
 
 it('runs only on first job in Travis CI', () => {
-  const env = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
+  let env = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
   return run([], { }, env).then(result => {
     expect(result.out).toContain('first CI job')
     expect(result.code).toEqual(0)
@@ -276,7 +276,7 @@ it('returns size', () => {
 })
 
 it('uses limit in non-config mode', () => {
-  const file = 'test/fixtures/unlimit/empty.js'
+  let file = 'test/fixtures/unlimit/empty.js'
   return run(['--limit', '10 KB', file]).then(result => {
     expect(result.out).toContain('Size limit:   10 KB\n')
     expect(result.code).toEqual(0)
@@ -291,7 +291,7 @@ it('uses different units', () => {
 })
 
 it('supports absolute path', () => {
-  const file = path.join(__dirname, 'fixtures/unlimit/empty.js')
+  let file = path.join(__dirname, 'fixtures/unlimit/empty.js')
   return run([file]).then(result => {
     expect(result.out).toContain('Package size: 0 B\n')
     expect(result.code).toEqual(0)

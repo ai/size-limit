@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const ciJobNumber = require('ci-job-number')
-const chalk = require('chalk')
+let ciJobNumber = require('ci-job-number')
+let chalk = require('chalk')
 
 if (ciJobNumber() !== 1) {
   process.stdout.write(
@@ -10,14 +10,14 @@ if (ciJobNumber() !== 1) {
   process.exit(0)
 }
 
-const cosmiconfig = require('cosmiconfig')
-const readPkg = require('read-pkg-up')
-const globby = require('globby')
-const yargs = require('yargs')
-const bytes = require('bytes')
-const path = require('path')
+let cosmiconfig = require('cosmiconfig')
+let readPkg = require('read-pkg-up')
+let globby = require('globby')
+let yargs = require('yargs')
+let bytes = require('bytes')
+let path = require('path')
 
-const getSize = require('.')
+let getSize = require('.')
 
 const PACKAGE_EXAMPLE = '\n' +
                         '  "size-limit": [\n' +
@@ -34,7 +34,7 @@ const FILE_EXAMPLE = '\n' +
                      '    }\n' +
                      '  ]'
 
-const argv = yargs
+let argv = yargs
   .usage('$0')
   .option('limit', {
     describe: 'Size limit for passed files',
@@ -75,7 +75,7 @@ const argv = yargs
   .argv
 
 function ownError (msg) {
-  const error = new Error(msg)
+  let error = new Error(msg)
   error.sizeLimit = true
   return error
 }
@@ -85,7 +85,7 @@ function isStrings (value) {
   return value.every(i => typeof i === 'string')
 }
 
-const PACKAGE_ERRORS = {
+let PACKAGE_ERRORS = {
   notArray: 'The `"size-limit"` section of package.json must be `an array`',
   empty: 'The `"size-limit"` section of package.json must `not be empty`',
   notObject: 'The `"size-limit"` array in package.json ' +
@@ -94,7 +94,7 @@ const PACKAGE_ERRORS = {
              'or `an array of strings`'
 }
 
-const FILE_ERRORS = {
+let FILE_ERRORS = {
   notArray: 'Size Limit config must contain `an array`',
   empty: 'Size Limit config must `not be empty`',
   notObject: 'Size Limit config should contain only objects',
@@ -109,7 +109,7 @@ function configError (limits) {
   if (limits.length === 0) {
     return 'empty'
   }
-  for (const limit of limits) {
+  for (let limit of limits) {
     if (typeof limit !== 'object') {
       return 'notObject'
     }
@@ -129,10 +129,10 @@ function capitalize (str) {
 }
 
 function renderSize (item, i, array) {
-  const rows = []
-  const passed = item.limit && item.size <= item.limit
-  const failed = item.limit && item.limit < item.size
-  const unlimited = !item.limit
+  let rows = []
+  let passed = item.limit && item.size <= item.limit
+  let failed = item.limit && item.limit < item.size
+  let unlimited = !item.limit
 
   if (array.length > 1 && item.name) {
     rows.push(item.name)
@@ -153,7 +153,7 @@ function renderSize (item, i, array) {
       limitString = item.limit + ' B'
       sizeString = item.size + ' B'
     }
-    const diff = formatBytes(item.size - item.limit)
+    let diff = formatBytes(item.size - item.limit)
     rows.push(
       chalk.red('Package size limit has exceeded by ' + diff),
       `Package size: ${ chalk.bold(chalk.red(sizeString)) }`,
@@ -172,7 +172,7 @@ function renderSize (item, i, array) {
 }
 
 function getConfig () {
-  const explorer = cosmiconfig('size-limit', {
+  let explorer = cosmiconfig('size-limit', {
     searchPlaces: [
       'package.json',
       '.size-limit',
@@ -194,7 +194,7 @@ function getConfig () {
     })
     .catch(err => {
       if (err.name === 'JSONError') {
-        const regexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
+        let regexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
         let message = err.message
         if (regexp.test(message)) {
           message = message.match(regexp)[1]
@@ -206,8 +206,8 @@ function getConfig () {
           PACKAGE_EXAMPLE + '\n'
         )
       } else if (err.reason && err.mark && err.mark.name) {
-        const file = path.relative(process.cwd(), err.mark.name)
-        const position = err.mark.line + ':' + err.mark.column
+        let file = path.relative(process.cwd(), err.mark.name)
+        let position = err.mark.line + ':' + err.mark.column
         throw ownError(
           'Can not parse `' + file + '` at ' + position + '. ' +
           capitalize(err.reason) + '. ' +
@@ -223,10 +223,10 @@ function getConfig () {
 let getOptions
 if (argv['_'].length === 0) {
   getOptions = Promise.all([getConfig(), readPkg()]).then(all => {
-    const config = all[0]
-    const packageJson = all[1] ? all[1].pkg : { }
+    let config = all[0]
+    let packageJson = all[1] ? all[1].pkg : { }
 
-    const error = configError(config.config)
+    let error = configError(config.config)
     if (error) {
       if (/package\.json$/.test(config.filepath)) {
         throw ownError(
@@ -244,8 +244,8 @@ if (argv['_'].length === 0) {
     }
 
     return Promise.all(config.config.map(entry => {
-      const cwd = path.dirname(config.filepath)
-      const peer = Object.keys(packageJson.peerDependencies || { })
+      let cwd = path.dirname(config.filepath)
+      let peer = Object.keys(packageJson.peerDependencies || { })
       return globby(entry.path, { cwd }).then(files => {
         if (files.length === 0) {
           files = entry.path
@@ -275,7 +275,7 @@ if (argv['_'].length === 0) {
     })
   })
 } else {
-  const files = argv['_'].slice(0)
+  let files = argv['_'].slice(0)
 
   if (files.length === 0) {
     getOptions = Promise.reject(
@@ -285,7 +285,7 @@ if (argv['_'].length === 0) {
       )
     )
   } else {
-    const full = files.map(i => {
+    let full = files.map(i => {
       if (path.isAbsolute(i)) {
         return i
       } else {
@@ -317,7 +317,7 @@ getOptions.then(config => {
       )
     }
 
-    const opts = {
+    let opts = {
       webpack: file.webpack,
       bundle: config.bundle,
       ignore: file.ignore,
@@ -338,10 +338,10 @@ getOptions.then(config => {
     })
   })).then(() => config)
 }).then(config => {
-  const files = config.files
-  const results = files.map(renderSize)
+  let files = config.files
+  let results = files.map(renderSize)
 
-  const output = results.map(i => i.output).join('\n')
+  let output = results.map(i => i.output).join('\n')
 
   process.stdout.write('\n' + output + (files.length > 1 ? '\n' : ''))
 
@@ -355,13 +355,13 @@ getOptions.then(config => {
   process.stdout.write(chalk.gray(message))
 
   if (argv.why && files.length > 1) {
-    const ignore = files.reduce((all, i) => all.concat(i.ignore), [])
-    const opts = {
+    let ignore = files.reduce((all, i) => all.concat(i.ignore), [])
+    let opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
       bundle: config.bundle,
       ignore
     }
-    const full = files.reduce((all, i) => all.concat(i.full), [])
+    let full = files.reduce((all, i) => all.concat(i.full), [])
     return getSize(full, opts).then(() => files)
   }
 
@@ -382,7 +382,7 @@ getOptions.then(config => {
       .map(i => i.replace(/`([^`]*)`/g, chalk.bold('$1')))
       .join('.\n        ')
   } else if (e.message.indexOf('Module not found:') !== -1) {
-    const first = e.message.match(/Module not found:[^\n]*/)[0]
+    let first = e.message.match(/Module not found:[^\n]*/)[0]
     msg = `Size Limit c${ first.replace('Module not found: Error: C', '') }`
       .replace(/resolve '(.*)' in '(.*)'/,
         `resolve\n        ${ chalk.bold('$1') }` +
