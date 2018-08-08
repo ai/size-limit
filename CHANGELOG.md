@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.19.1
+* Use `style-loader` 0.22.
+
 ## 0.19
 * Add `ignore` option to config.
 
