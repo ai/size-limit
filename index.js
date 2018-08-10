@@ -94,8 +94,7 @@ function getConfig (files, opts) {
 
   if (opts.ignore && opts.ignore.length !== 0) {
     let escaped = opts.ignore.map(i => escapeRegexp(i))
-    let regexp = new RegExp(`^(${ escaped.join('|') })($|/)`)
-    config.plugins.push(new webpack.IgnorePlugin(regexp))
+    config.externals = new RegExp(`^(${ escaped.join('|') })($|/)`)
   }
 
   if (opts.analyzer) {
