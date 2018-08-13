@@ -300,14 +300,14 @@ it('supports absolute path', () => {
 
 it('ignores peerDependencies', () => {
   return run([], { cwd: fixture('peer') }).then(result => {
-    expect(result.out).toContain('Package size: 82 B\n')
+    expect(result.out).toContain('Package size: 22 B\n')
     expect(result.code).toEqual(0)
   })
 })
 
 it('supports ignore option', () => {
   return run([], { cwd: fixture('ignore') }).then(result => {
-    expect(result.out).toContain('Package size: 82 B\n')
+    expect(result.out).toContain('Package size: 22 B\n')
     expect(result.code).toEqual(0)
   })
 })

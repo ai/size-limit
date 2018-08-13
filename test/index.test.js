@@ -67,7 +67,7 @@ it('removes non-production code', () => {
 
 it('ignores dependencies on request', () => {
   return getSize(fixture('peer/index'), { ignore: ['redux'] }).then(size => {
-    expect(size).toEqual({ gzip: 82, parsed: 207 })
+    expect(size).toEqual({ gzip: 22, parsed: 83 })
   })
 })
 
