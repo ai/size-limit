@@ -1,8 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-# Next
-* Fix [#68](https://github.com/ai/size-limit/issues/68) (by Jayden Seric).
+# 0.19.2
+* Fix `ignore` option (by Jayden Seric).
 
 # 0.19.1
 * Use `style-loader` 0.22.
