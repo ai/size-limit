@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.19.3
+* Update `file-loader` and `style-loader`.
+
 ## 0.19.2
 * Fix `ignore` option (by Jayden Seric).
 
