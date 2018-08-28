@@ -1,10 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-# 0.19.2
+## 0.19.2
 * Fix `ignore` option (by Jayden Seric).
 
-# 0.19.1
+## 0.19.1
 * Use `style-loader` 0.22.
 
 ## 0.19
