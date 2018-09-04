@@ -363,3 +363,17 @@ it('uses custom webpack when specified via --config', () => {
     expect(result.code).toEqual(0)
   })
 })
+
+it('uses main from package.json', () => {
+  return run([], { cwd: fixture('main') }).then(result => {
+    expect(result.out).toContain('Package size: 10 B\n')
+    expect(result.code).toEqual(0)
+  })
+})
+
+it('uses index.js by default', () => {
+  return run([], { cwd: fixture('defaults') }).then(result => {
+    expect(result.out).toContain('Package size: 10 B\n')
+    expect(result.code).toEqual(0)
+  })
+})

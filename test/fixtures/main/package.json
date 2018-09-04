@@ -2,8 +2,8 @@
   "private": true,
   "size-limit": [
     {
-      "path": true,
-      "limit": "4 KB"
+      "limit": "1 KB"
     }
-  ]
+  ],
+  "main": "app.js"
 }

@@ -113,8 +113,10 @@ function configError (limits) {
     if (typeof limit !== 'object') {
       return 'notObject'
     }
-    if (typeof limit.path !== 'string' && !isStrings(limit.path)) {
-      return 'notString'
+    if (typeof limit.path !== 'undefined') {
+      if (typeof limit.path !== 'string' && !isStrings(limit.path)) {
+        return 'notString'
+      }
     }
   }
   return false
@@ -224,6 +226,7 @@ let getOptions
 if (argv['_'].length === 0) {
   getOptions = Promise.all([getConfig(), readPkg()]).then(all => {
     let config = all[0]
+    let packagePath = all[1] ? all[1].path : false
     let packageJson = all[1] ? all[1].pkg : { }
 
     let error = configError(config.config)
@@ -244,9 +247,18 @@ if (argv['_'].length === 0) {
     }
 
     return Promise.all(config.config.map(entry => {
-      let cwd = path.dirname(config.filepath)
       let peer = Object.keys(packageJson.peerDependencies || { })
-      return globby(entry.path, { cwd }).then(files => {
+
+      let globbing, cwd
+      if (entry.path) {
+        cwd = path.dirname(config.filepath)
+        globbing = globby(entry.path || packageJson.main, { cwd })
+      } else {
+        cwd = path.dirname(packagePath || '.')
+        globbing = globby(packageJson.main || 'index.js', { cwd })
+      }
+
+      return globbing.then(files => {
         if (files.length === 0) {
           files = entry.path
           if (typeof files === 'string') files = [files]
