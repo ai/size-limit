@@ -40,8 +40,10 @@ function getConfig (files, opts) {
     let resolveModulesPaths = [
       path.join(process.cwd(), 'node_modules')
     ]
-    config.resolveLoader = { modules: resolveModulesPaths }
-    config.resolve = { modules: resolveModulesPaths }
+    if (!config.resolveLoader) config.resolveLoader = { }
+    if (!config.resolve) config.resolve = { }
+    config.resolveLoader.modules = resolveModulesPaths
+    config.resolve.modules = resolveModulesPaths
 
     return config
   }
