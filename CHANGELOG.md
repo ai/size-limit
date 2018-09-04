@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.20
+* Use `package.json#main` as default path for limit.
+* Fix custom webpack config support with `resolve` or `resolveLoader` options.
+
 ## 0.19.3
 * Update `file-loader` and `style-loader`.
 
