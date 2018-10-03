@@ -91,7 +91,7 @@ function getConfig (files, opts) {
   }
 
   if (opts.gzip !== false) {
-    config.plugins.push(new Compression({ asset: '[path].gz' }))
+    config.plugins.push(new Compression())
   }
 
   if (opts.ignore && opts.ignore.length !== 0) {
