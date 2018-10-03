@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.20.1
+* Use `compression-webpack-plugin` 2.0.
+* Use `webpack-bundle-analyzer` 3.0.
+
 ## 0.20
 * Use `package.json#main` as default path for limit.
 * Fix custom webpack config support with `resolve` or `resolveLoader` options.
