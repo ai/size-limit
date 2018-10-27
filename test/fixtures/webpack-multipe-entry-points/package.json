@@ -2,8 +2,7 @@
   "private": true,
   "size-limit": [
     {
-      "config": "./webpack.config.js",
-      "path": ["moduleA.js", "moduleB.js"]
+      "config": "./webpack.config.js"
     }
   ]
 }
