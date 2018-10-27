@@ -6,7 +6,7 @@ module.exports = {
     moduleB: path.join(__dirname, 'moduleB.js')
   },
   output: {
-    filename: '[name].js'
+    filename: '[name]-[hash].js'
   },
   optimization: {
     splitChunks: {
