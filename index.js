@@ -128,16 +128,37 @@ function sumSize (s1, s2) {
   }
 }
 
-function extractSize (stat) {
-  let parsedName = stat.compilation.outputOptions.filename
-  let gzipName = parsedName + '.gz'
-  let assets = stat.toJson().assets
-  let parsedAsset = assets.find(i => i.name === parsedName)
-  let gzipAsset = assets.find(i => i.name === gzipName)
-  return {
-    parsed: parsedAsset ? parsedAsset.size : 0,
-    gzip: gzipAsset ? gzipAsset.size : 0
+function objectValues (obj) {
+  // eslint-disable-next-line node/no-unsupported-features/es-builtins
+  if (Object.values) { return Object.values(obj) }
+
+  if (obj !== Object(obj)) {
+    throw new TypeError('Object.values called on a non-object')
   }
+  let val = []
+  let key
+  for (key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      val.push(obj[key])
+    }
+  }
+  return val
+}
+
+function extractSize (stat) {
+  let { assets, entrypoints } = stat.toJson()
+
+  let entryPointsAssetNames = objectValues(entrypoints).map(ep => ep.assets)
+    .reduce((all, entryAssets) => all.concat(entryAssets))
+
+  return entryPointsAssetNames.reduce((sizeInfo, assetName) => {
+    let parsedAsset = assets.find(({ name }) => name === assetName)
+    let gzipAsset = assets.find(({ name }) => name === `${ assetName }.gz`)
+    return {
+      parsed: sizeInfo.parsed + (parsedAsset ? parsedAsset.size : 0),
+      gzip: sizeInfo.gzip + (gzipAsset ? gzipAsset.size : 0)
+    }
+  }, { parsed: 0, gzip: 0 })
 }
 
 /**
