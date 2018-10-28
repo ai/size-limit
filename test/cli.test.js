@@ -396,6 +396,14 @@ it('uses custom webpack when specified via --config', () => {
   })
 })
 
+it('uses entry to support webpack multiple entry points', () => {
+  return run([], { cwd: fixture('webpack-multipe-entry-points') })
+    .then(result => {
+      expect(result.out).toContain('Package size: 12.65')
+      expect(result.code).toEqual(0)
+    })
+})
+
 it('uses main from package.json', () => {
   return run([], { cwd: fixture('main') }).then(result => {
     expect(result.out).toContain('Package size: 10 B\n')

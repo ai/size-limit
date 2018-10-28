@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "size-limit": [
+    {
+      "entry": ["moduleA", "moduleB"],
+      "config": "./webpack.config.js"
+    }
+  ]
+}

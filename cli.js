@@ -271,7 +271,7 @@ if (argv['_'].length === 0) {
       }
 
       return globbing.then(files => {
-        if (files.length === 0) {
+        if (files.length === 0 && entry.path) {
           files = entry.path
           if (typeof files === 'string') files = [files]
         }
@@ -288,7 +288,8 @@ if (argv['_'].length === 0) {
             } else {
               return path.join(cwd, i)
             }
-          })
+          }),
+          entry: entry.entry
         }
       })
     })).then(files => {
@@ -346,6 +347,7 @@ getOptions.then(config => {
       bundle: config.bundle,
       ignore: file.ignore,
       config: file.config || argv.config,
+      entry: file.entry,
       gzip: file.gzip
     }
     if (argv.why && config.files.length === 1) {
