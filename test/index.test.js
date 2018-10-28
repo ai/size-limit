@@ -139,7 +139,7 @@ describe('webpack multiple entry points', () => {
       ).catch(error =>
         expect(error.message).toBe(
           'Cannot find entry points moduleBad, ' +
-          'available entry points are moduleA,moduleB,moduleC')
+          'available entry points are moduleA, moduleB, moduleC')
       )
     })
 

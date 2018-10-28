@@ -157,8 +157,8 @@ function getSpecifiedEntryPoints (entrypoints, opts) {
         !allEntryPointNames.includes(entryName))
       if (notExistingEntryNames.length) {
         throw new Error(
-          `Cannot find entry points ${ notExistingEntryNames }, ` +
-          `available entry points are ${ allEntryPointNames }`
+          `Cannot find entry points ${ notExistingEntryNames.join(', ') }, ` +
+          `available entry points are ${ allEntryPointNames.join(', ') }`
         )
       }
       return entry.map(entryName => entrypoints[entryName])
