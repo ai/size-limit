@@ -1,2 +1,4 @@
+const { log } = require('./common')
+
 const name = 'Module A'
-console.log(name)
+log(name)

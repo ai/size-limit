@@ -1,4 +1,4 @@
 const { log } = require('./common')
 
-const name = 'Module B'
+const name = 'Module C'
 log(name)

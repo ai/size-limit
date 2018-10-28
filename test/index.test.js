@@ -101,10 +101,12 @@ it('uses custom webpack config', () => {
   })
 })
 
-it('sums up the size of multiple entry points assets', () => {
-  return getSize(null, {
-    config: fixture(`webpack-multipe-entry-points/webpack.config`)
-  }).then(totalSize => {
-    expect(totalSize).toEqual({ parsed: 12728 })
+describe('webpack multiple entry points', () => {
+  it('sums up the size of all multiple entry points assets', () => {
+    return getSize(null, {
+      config: fixture(`webpack-multipe-entry-points/webpack.config`)
+    }).then(totalSize => {
+      expect(totalSize).toEqual({ parsed: 21466 })
+    })
   })
 })
