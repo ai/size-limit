@@ -187,7 +187,7 @@ Each section in config could have options:
 * **gzip**: with `false` will disable gzip compression.
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
-
+* **entry**: when using a custom webpack config, a webpack entry could be given to check the size for those entry points only. Its value could be either a string or an array of strings which should be part of webpack entry points. By default the total size of all entry points will be checked.
 
 ## Applications
 
