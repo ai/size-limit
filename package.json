@@ -50,21 +50,22 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.1.2",
     "jest": "^23.6.0",
-    "lint-staged": "^8.0.0",
-    "pre-commit": "^1.2.2",
+    "lint-staged": "^8.0.2",
     "redux": "^4.0.1",
     "yaspeller-ci": "^1.0.0"
   },
   "scripts": {
-    "lint-staged": "lint-staged",
     "spellcheck": "yaspeller-ci *.md",
     "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
     "test": "jest --forceExit && yarn run lint && yarn run spellcheck"
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.md": "yaspeller-ci",
     "*.js": "eslint"
