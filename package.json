@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "0.20.1",
+  "version": "0.21.0",
   "description": "Prevent JS libraries bloat. If you accidentally add a massive dependency, Size Limit will throw an error.",
   "keywords": [
     "size",
@@ -134,7 +134,9 @@
       "polyfills",
       "CircleCI",
       "UglifyJS",
-      "in CI"
+      "in CI",
+      "Naijia",
+      "Liu"
     ]
   }
 }
