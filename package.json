@@ -60,7 +60,7 @@
     "lint-staged": "lint-staged",
     "spellcheck": "yaspeller-ci *.md",
     "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
-    "test": "jest && yarn run lint && yarn run spellcheck"
+    "test": "jest"
   },
   "pre-commit": [
     "lint-staged"
