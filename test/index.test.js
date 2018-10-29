@@ -134,20 +134,7 @@ it('throws error when specified entry points do not exist', () => {
     entry: 'moduleBad'
   }).catch(error =>
     expect(error.message).toEqual(
-      'Cannot find entry points moduleBad, ' +
-      'available entry points are moduleA, moduleB, moduleC'
-    )
-  )
-})
-
-it('throws error when specified entry is not a string nor an array', () => {
-  expect.assertions(1)
-  return getSize(null, {
-    config: fixture(`webpack-multipe-entry-points/webpack.config`),
-    entry: 123
-  }).catch(error =>
-    expect(error.message).toEqual(
-      'entry must be either a string or an array of strings'
+      'Cannot find entry point moduleBad from moduleA, moduleB, moduleC'
     )
   )
 })

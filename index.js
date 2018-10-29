@@ -128,59 +128,35 @@ function sumSize (s1, s2) {
   }
 }
 
-function objectValues (obj) {
-  // eslint-disable-next-line node/no-unsupported-features/es-builtins
-  if (Object.values) { return Object.values(obj) }
-
-  if (obj !== Object(obj)) {
-    throw new TypeError('Object.values called on a non-object')
-  }
-  let val = []
-  let key
-  for (key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      val.push(obj[key])
-    }
-  }
-  return val
-}
-
-function getSpecifiedEntryPoints (entrypoints, opts) {
-  if (opts && opts.entry) {
-    let entry = opts.entry
-    if (typeof entry === 'string') {
-      entry = [entry]
-    }
-    if (Array.isArray(entry)) {
-      let allEntryPointNames = Object.keys(entrypoints)
-      let notExistingEntryNames = entry.filter(entryName =>
-        !allEntryPointNames.includes(entryName))
-      if (notExistingEntryNames.length) {
+function filterEntries (obj, filter) {
+  if (!filter) {
+    return obj
+  } else {
+    if (!Array.isArray(filter)) filter = [filter]
+    let result = { }
+    for (let i of filter) {
+      if (!obj[i]) {
         throw new Error(
-          `Cannot find entry points ${ notExistingEntryNames.join(', ') }, ` +
-          `available entry points are ${ allEntryPointNames.join(', ') }`
+          `Cannot find entry point ${ i } from ${ Object.keys(obj).join(', ') }`
         )
       }
-      return entry.map(entryName => entrypoints[entryName])
+      result[i] = obj[i]
     }
-
-    throw new Error('entry must be either a string or an array of strings')
+    return result
   }
-
-  // return all entry points when entry is not defined
-  return entrypoints
 }
 
 function extractSize (stat, opts) {
-  let { assets, entrypoints: allEntrypoints } = stat.toJson()
+  let entries = filterEntries(stat.entrypoints, opts.entry)
 
-  let entrypoints = getSpecifiedEntryPoints(allEntrypoints, opts)
-  let entryPointsAssetNames = objectValues(entrypoints).map(ep => ep.assets)
-    .reduce((all, entryAssets) => all.concat(entryAssets))
+  let assets = []
+  Object.keys(entries).forEach(i => {
+    assets = assets.concat(entries[i].assets)
+  })
 
-  return entryPointsAssetNames.reduce((sizeInfo, assetName) => {
-    let parsedAsset = assets.find(({ name }) => name === assetName)
-    let gzipAsset = assets.find(({ name }) => name === `${ assetName }.gz`)
+  return assets.reduce((sizeInfo, assetName) => {
+    let parsedAsset = stat.assets.find(({ name }) => name === assetName)
+    let gzipAsset = stat.assets.find(({ name }) => name === `${ assetName }.gz`)
     return {
       parsed: sizeInfo.parsed + (parsedAsset ? parsedAsset.size : 0),
       gzip: sizeInfo.gzip + (gzipAsset ? gzipAsset.size : 0)
@@ -247,10 +223,10 @@ function getSize (files, opts) {
       let size
       if (opts.config && stats.stats) {
         size = stats.stats
-          .map(stat => extractSize(stat, opts))
+          .map(stat => extractSize(stat.toJson(), opts))
           .reduce(sumSize)
       } else {
-        size = extractSize(stats, opts)
+        size = extractSize(stats.toJson(), opts)
       }
 
       if (opts.config || opts.gzip === false) {
