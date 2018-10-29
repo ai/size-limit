@@ -17,10 +17,18 @@ function run (args, options, env) {
   for (let i in env) {
     options.env[i] = env[i]
   }
-  let result = spawn.sync(path.join(__dirname, '../cli.js'), args, options)
-  return Promise.resolve({
-    code: result.status,
-    out: result.stdout.toString() + result.stderr.toString()
+  let cli = spawn(path.join(__dirname, '../cli.js'), args, options)
+  return new Promise(resolve => {
+    let out = ''
+    cli.stdout.on('data', data => {
+      out += data.toString()
+    })
+    cli.stderr.on('data', data => {
+      out += data.toString()
+    })
+    cli.on('close', code => {
+      resolve({ code, out })
+    })
   })
 }
 
