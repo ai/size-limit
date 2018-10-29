@@ -1,0 +1,6 @@
+[
+  {
+    path: true,
+    config: "./webpack.config.js"
+  }
+]

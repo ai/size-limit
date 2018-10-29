@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "size-limit": [
+    {
+      "entry": true,
+      "limit": "4 KB"
+    }
+  ]
+}

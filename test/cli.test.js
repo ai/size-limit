@@ -32,13 +32,6 @@ function run (args, options, env) {
   })
 }
 
-function configError (msg) {
-  return ' ERROR  ' + msg + '\n' +
-         '        Fix it according to Size Limit docs.\n' +
-         '\n' +
-         '  "size-limit": ['
-}
-
 it('returns help', () => {
   return run(['--help']).then(result => {
     expect(result.out).toContain('Options:')
@@ -73,33 +66,72 @@ it('shows size-limit section error', () => {
   })
 })
 
-it('shows size-limit type error', () => {
-  return run([], { cwd: fixture('type') }).then(result => {
-    expect(result.out).toContain(configError(
-      'The "size-limit" section of package.json must be an array.'
-    ))
-    expect(result.code).toEqual(1)
+describe('wrong size-limit section content in package.json', () => {
+  function configErrorInPackage (msg) {
+    return ' ERROR  ' + msg + '\n' +
+           '        Fix it according to Size Limit docs.\n' +
+           '\n' +
+           '  "size-limit": ['
+  }
+
+  it('shows size-limit type error', () => {
+    return run([], { cwd: fixture('type') }).then(result => {
+      expect(result.out).toContain(configErrorInPackage(
+        'The "size-limit" section of package.json must be an array.'
+      ))
+      expect(result.code).toEqual(1)
+    })
+  })
+
+  it('shows size-limit section content error with wrong path', () => {
+    return run([], { cwd: fixture('wrong-package/notString-path') })
+      .then(result => {
+        expect(result.out).toContain(configErrorInPackage(
+          'The path in the "size-limit" section of package.json must be ' +
+          'a string or an array of strings.'
+        ))
+        expect(result.code).toEqual(1)
+      })
+  })
+
+  it('shows size-limit section content error with wrong entry', () => {
+    return run([], { cwd: fixture('wrong-package/notString-entry') })
+      .then(result => {
+        expect(result.out).toContain(configErrorInPackage(
+          'The entry in the "size-limit" section of package.json must be ' +
+          'a string or an array of strings.'
+        ))
+        expect(result.code).toEqual(1)
+      })
   })
 })
 
-it('shows size-limit section content error', () => {
-  return run([], { cwd: fixture('wrong-package') }).then(result => {
-    expect(result.out).toContain(configError(
-      'The path in Size Limit config must be a string or an array of strings.'
-    ))
-    expect(result.code).toEqual(1)
-  })
-})
+describe('wrong config content in size-limit config file', () => {
+  function configErrorInConfig (msg) {
+    return ' ERROR  ' + msg + '\n' +
+           '        Fix it according to Size Limit docs.\n' +
+           '\n' +
+           '  [\n'
+  }
 
-it('shows config content error', () => {
-  return run([], { cwd: fixture('wrong-config') }).then(result => {
-    expect(result.out).toContain(
-      ' ERROR  Size Limit config must not be empty.\n' +
-      '        Fix it according to Size Limit docs.\n' +
-      '\n' +
-      '  [\n'
-    )
-    expect(result.code).toEqual(1)
+  it('shows empty content error', () => {
+    return run([], { cwd: fixture('wrong-config/empty') }).then(result => {
+      expect(result.out).toContain(configErrorInConfig(
+        'Size Limit config must not be empty.'
+      ))
+      expect(result.code).toEqual(1)
+    })
+  })
+
+  it('shows not string error with wrong entry', () => {
+    return run([], { cwd: fixture('wrong-config/notString-entry') })
+      .then(result => {
+        expect(result.out).toContain(configErrorInConfig(
+          'The entry in Size Limit config must be a string or an array of ' +
+          'strings.'
+        ))
+        expect(result.code).toEqual(1)
+      })
   })
 })
 
@@ -362,6 +394,14 @@ it('uses custom webpack when specified via --config', () => {
     expect(result.out).toContain('Package size: 3.01 KB')
     expect(result.code).toEqual(0)
   })
+})
+
+it('uses entry to support webpack multiple entry points', () => {
+  return run([], { cwd: fixture('webpack-multipe-entry-points') })
+    .then(result => {
+      expect(result.out).toContain('Package size: 12.65')
+      expect(result.code).toEqual(0)
+    })
 })
 
 it('uses main from package.json', () => {

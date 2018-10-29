@@ -128,16 +128,64 @@ function sumSize (s1, s2) {
   }
 }
 
-function extractSize (stat) {
-  let parsedName = stat.compilation.outputOptions.filename
-  let gzipName = parsedName + '.gz'
-  let assets = stat.toJson().assets
-  let parsedAsset = assets.find(i => i.name === parsedName)
-  let gzipAsset = assets.find(i => i.name === gzipName)
-  return {
-    parsed: parsedAsset ? parsedAsset.size : 0,
-    gzip: gzipAsset ? gzipAsset.size : 0
+function objectValues (obj) {
+  // eslint-disable-next-line node/no-unsupported-features/es-builtins
+  if (Object.values) { return Object.values(obj) }
+
+  if (obj !== Object(obj)) {
+    throw new TypeError('Object.values called on a non-object')
   }
+  let val = []
+  let key
+  for (key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      val.push(obj[key])
+    }
+  }
+  return val
+}
+
+function getSpecifiedEntryPoints (entrypoints, opts) {
+  if (opts && opts.entry) {
+    let entry = opts.entry
+    if (typeof entry === 'string') {
+      entry = [entry]
+    }
+    if (Array.isArray(entry)) {
+      let allEntryPointNames = Object.keys(entrypoints)
+      let notExistingEntryNames = entry.filter(entryName =>
+        !allEntryPointNames.includes(entryName))
+      if (notExistingEntryNames.length) {
+        throw new Error(
+          `Cannot find entry points ${ notExistingEntryNames.join(', ') }, ` +
+          `available entry points are ${ allEntryPointNames.join(', ') }`
+        )
+      }
+      return entry.map(entryName => entrypoints[entryName])
+    }
+
+    throw new Error('entry must be either a string or an array of strings')
+  }
+
+  // return all entry points when entry is not defined
+  return entrypoints
+}
+
+function extractSize (stat, opts) {
+  let { assets, entrypoints: allEntrypoints } = stat.toJson()
+
+  let entrypoints = getSpecifiedEntryPoints(allEntrypoints, opts)
+  let entryPointsAssetNames = objectValues(entrypoints).map(ep => ep.assets)
+    .reduce((all, entryAssets) => all.concat(entryAssets))
+
+  return entryPointsAssetNames.reduce((sizeInfo, assetName) => {
+    let parsedAsset = assets.find(({ name }) => name === assetName)
+    let gzipAsset = assets.find(({ name }) => name === `${ assetName }.gz`)
+    return {
+      parsed: sizeInfo.parsed + (parsedAsset ? parsedAsset.size : 0),
+      gzip: sizeInfo.gzip + (gzipAsset ? gzipAsset.size : 0)
+    }
+  }, { parsed: 0, gzip: 0 })
 }
 
 /**
@@ -153,6 +201,7 @@ function extractSize (stat) {
  * @param {string} [opts.config] A path to custom webpack config.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
+ * @param {string[]} [opts.entry] Webpack entry whose size will be checked.
  *
  * @return {Promise} Promise with parsed and gzip size of files
  *

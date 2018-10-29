@@ -100,3 +100,60 @@ it('uses custom webpack config', () => {
     expect(size).toEqual({ parsed: 3085 })
   })
 })
+
+describe('webpack multiple entry points', () => {
+  it('sums up the size of all multiple entry points assets', () => {
+    return getSize(null, {
+      config: fixture(`webpack-multipe-entry-points/webpack.config`)
+    }).then(totalSize => {
+      expect(totalSize).toEqual({ parsed: 21466 })
+    })
+  })
+
+  describe('entry config', () => {
+    it('sums up the size of assets from specified entry array', () => {
+      return getSize(null, {
+        config: fixture(`webpack-multipe-entry-points/webpack.config`),
+        entry: ['moduleA', 'moduleB']
+      }).then(totalSize => {
+        expect(totalSize).toEqual({ parsed: 13990 })
+      })
+    })
+
+    it('sums up the size of assets from specified entry name', () => {
+      return getSize(null, {
+        config: fixture(`webpack-multipe-entry-points/webpack.config`),
+        entry: 'moduleA'
+      }).then(totalSize => {
+        expect(totalSize).toEqual({ parsed: 6514 })
+      })
+    })
+
+    it('throws error when specified entry points do not exist', () => {
+      expect.assertions(1)
+      return getSize(null, {
+        config: fixture(`webpack-multipe-entry-points/webpack.config`),
+        entry: 'moduleBad'
+      }).then(() =>
+        expect(true).toBe(false)
+      ).catch(error =>
+        expect(error.message).toBe(
+          'Cannot find entry points moduleBad, ' +
+          'available entry points are moduleA, moduleB, moduleC')
+      )
+    })
+
+    it('throws error when specified entry is not a string nor an array', () => {
+      expect.assertions(1)
+      return getSize(null, {
+        config: fixture(`webpack-multipe-entry-points/webpack.config`),
+        entry: 123
+      }).then(() =>
+        expect(true).toBe(false)
+      ).catch(error =>
+        expect(error.message).toBe(
+          'entry must be either a string or an array of strings')
+      )
+    })
+  })
+})
