@@ -179,6 +179,9 @@ Each section in config could have options:
 * **path**: relative paths to files. The only mandatory option.
   It could be a path `"index.js"`, a pattern `"dist/app-*.js"`
   or an array `["index.js", "dist/app-*.js"]`.
+* **entry**: when using a custom webpack config, a webpack entry could be given.
+  It could be a string or an array of strings.
+  By default the total size of all entry points will be checked.
 * **limit**: size limit for files from `path` option. It should be a string
   with a number and unit (`100 B`, `10 KB`, etc).
 * **name**: the name of this section. It will be useful only
@@ -187,7 +190,6 @@ Each section in config could have options:
 * **gzip**: with `false` will disable gzip compression.
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
-* **entry**: when using a custom webpack config, a webpack entry could be given to check the size for those entry points only. Its value could be either a string or an array of strings which should be part of webpack entry points. By default the total size of all entry points will be checked.
 
 ## Applications
 
