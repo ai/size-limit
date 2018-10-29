@@ -90,38 +90,46 @@ let PACKAGE_ERRORS = {
   empty: 'The `"size-limit"` section of package.json must `not be empty`',
   notObject: 'The `"size-limit"` array in package.json ' +
              'should contain only objects',
-  notString: field => `The \`${ field }\` in the \`"size-limit"\` section ` +
-              'of package.json must be `a string` or `an array of strings`'
+  pathNotString: 'The `path` in the `"size-limit"` section ' +
+              'of package.json must be `a string` or `an array of strings`',
+  entryNotString: 'The `entry` in the `"size-limit"` section ' +
+                  'of package.json must be `a string` or `an array of strings`'
 }
 
 let FILE_ERRORS = {
   notArray: 'Size Limit config must contain `an array`',
   empty: 'Size Limit config must `not be empty`',
   notObject: 'Size Limit config should contain only objects',
-  notString: field => `The \`${ field }\` in Size Limit config ` +
-             'must be `a string` or `an array of strings`'
+  pathNotString: 'The `path` in Size Limit config ' +
+                 'must be `a string` or `an array of strings`',
+  entryNotString: 'The `entry` in Size Limit config ' +
+                  'must be `a string` or `an array of strings`'
+}
+
+function isStringOrUndefined (value) {
+  let type = typeof value
+  return type !== 'undefined' && type !== 'string' && !isStrings(value)
 }
 
 function configError (limits) {
   if (!Array.isArray(limits)) {
-    return ['notArray']
+    return 'notArray'
   }
   if (limits.length === 0) {
-    return ['empty']
+    return 'empty'
   }
   for (let limit of limits) {
     if (typeof limit !== 'object') {
-      return ['notObject']
+      return 'notObject'
     }
-    let stringFields = ['path', 'entry']
-    for (let field of stringFields) {
-      if (typeof limit[field] !== 'undefined' &&
-        typeof limit[field] !== 'string' && !isStrings(limit[field])) {
-        return ['notString', field]
-      }
+    if (isStringOrUndefined(limit.path)) {
+      return 'pathNotString'
+    }
+    if (isStringOrUndefined(limit.entry)) {
+      return 'entryNotString'
     }
   }
-  return null
+  return false
 }
 
 function formatBytes (size) {
@@ -224,16 +232,6 @@ function getConfig () {
     })
 }
 
-function getConfigErrorMessage (errors, error) {
-  let [key, ...params] = error
-  let errorMessage = errors[key]
-  if (typeof errorMessage === 'function') {
-    return errorMessage(...params)
-  }
-
-  return errorMessage
-}
-
 let getOptions
 if (argv['_'].length === 0) {
   getOptions = Promise.all([getConfig(), readPkg()]).then(all => {
@@ -245,13 +243,13 @@ if (argv['_'].length === 0) {
     if (error) {
       if (/package\.json$/.test(config.filepath)) {
         throw ownError(
-          getConfigErrorMessage(PACKAGE_ERRORS, error) + '. ' +
+          PACKAGE_ERRORS[error] + '. ' +
           'Fix it according to Size Limit docs.' +
           `\n${ PACKAGE_EXAMPLE }\n`
         )
       } else {
         throw ownError(
-          getConfigErrorMessage(FILE_ERRORS, error) + '. ' +
+          FILE_ERRORS[error] + '. ' +
           'Fix it according to Size Limit docs.' +
           `\n${ FILE_EXAMPLE }\n`
         )
