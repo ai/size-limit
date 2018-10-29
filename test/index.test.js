@@ -6,8 +6,7 @@ function fixture (name) {
   return path.join(__dirname, 'fixtures', `${ name }.js`)
 }
 
-function trim (num) {
-  // round number with assumption
+function round (num) {
   return Math.floor(num / 50) * 50
 }
 
@@ -49,13 +48,13 @@ it('support images', () => {
 
 it('supports CSS', () => {
   return getSize(fixture('css/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2350)
+    expect(round(size.gzip)).toEqual(2350)
   })
 })
 
 it('supports CSS modules', () => {
   return getSize(fixture('cssmodules/index')).then(size => {
-    expect(trim(size.gzip)).toEqual(2350)
+    expect(round(size.gzip)).toEqual(2350)
   })
 })
 
