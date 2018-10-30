@@ -52,7 +52,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
-    "lint-staged": "^8.0.2",
+    "lint-staged": "^8.0.3",
     "redux": "^4.0.1",
     "yaspeller-ci": "^1.0.0"
   },
