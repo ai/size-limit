@@ -74,9 +74,8 @@ $ npm install --save-dev size-limit
 or install with yarn:
 
 ```sh
-$ yarn add size-limit -D
+$ yarn add --dev size-limit
 ```
-
 
 Add `size-limit` section to `package.json` and `size` script:
 
