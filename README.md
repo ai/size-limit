@@ -71,6 +71,13 @@ First, install `size-limit`:
 $ npm install --save-dev size-limit
 ```
 
+or install with yarn:
+
+```sh
+$ yarn add size-limit -D
+```
+
+
 Add `size-limit` section to `package.json` and `size` script:
 
 ```diff
