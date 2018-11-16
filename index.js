@@ -16,7 +16,7 @@ const WEBPACK_EMPTY_PROJECT = {
 }
 
 const STATIC =
-  /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico)$/
+  /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
 function projectName (opts, files) {
   if (opts.bundle) {
