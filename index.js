@@ -65,9 +65,16 @@ function getConfig (files, opts) {
           use: [
             'style-loader',
             {
-              loader: 'css-loader',
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader',
               options: {
-                minimize: true
+                plugins: [
+                  require('cssnano')({
+                    preset: 'default'
+                  })
+                ]
               }
             }
           ]
@@ -79,8 +86,17 @@ function getConfig (files, opts) {
             {
               loader: 'css-loader',
               options: {
-                minimize: true,
                 modules: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [
+                  require('cssnano')({
+                    preset: 'default'
+                  })
+                ]
               }
             }
           ]
