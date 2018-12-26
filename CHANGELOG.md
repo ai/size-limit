@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.21.1
+* Use `css-loader` 2.0 (by Redmond Tran).
+* Use `file-loader` 3.0.
+
 ## 0.21
 * Add support for dynamic filename in custom Webpack config (by Naijia Liu).
 * Add `entry` option (by Naijia Liu).

@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "0.21.0",
+  "version": "0.21.1",
   "description": "Prevent JS libraries bloat. If you accidentally add a massive dependency, Size Limit will throw an error.",
   "keywords": [
     "size",
@@ -137,7 +137,9 @@
       "UglifyJS",
       "in CI",
       "Naijia",
-      "Liu"
+      "Liu",
+      "Redmond",
+      "Tran"
     ]
   }
 }
