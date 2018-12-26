@@ -1,4 +1,5 @@
 let escapeRegexp = require('escape-string-regexp')
+let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let Compression = require('compression-webpack-plugin')
 let Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 let MemoryFS = require('memory-fs')
@@ -62,22 +63,7 @@ function getConfig (files, opts) {
         {
           test: /\.css$/,
           exclude: /\.module\.css$/,
-          use: [
-            'style-loader',
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  require('cssnano')({
-                    preset: 'default'
-                  })
-                ]
-              }
-            }
-          ]
+          use: ['style-loader', 'css-loader']
         },
         {
           test: /\.module\.css$/,
@@ -88,22 +74,14 @@ function getConfig (files, opts) {
               options: {
                 modules: true
               }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  require('cssnano')({
-                    preset: 'default'
-                  })
-                ]
-              }
             }
           ]
         }
       ]
     },
-    plugins: []
+    plugins: [
+      new OptimizeCss()
+    ]
   }
 
   if (opts.gzip !== false) {

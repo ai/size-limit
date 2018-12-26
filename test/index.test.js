@@ -18,13 +18,13 @@ it('returns 0 for parsed and gzip empty project', () => {
 
 it('shows project parsed and gzip sizes', () => {
   return getSize(fixture('bad/index')).then(size => {
-    expect(size).toEqual({ gzip: 2439, parsed: 7127 })
+    expect(size).toEqual({ gzip: 2431, parsed: 7113 })
   })
 })
 
 it('accepts array', () => {
   return getSize([fixture('bad/index'), fixture('good/index')]).then(size => {
-    expect(size).toEqual({ gzip: 2454, parsed: 7162 })
+    expect(size).toEqual({ gzip: 2447, parsed: 7148 })
   })
 })
 
@@ -80,7 +80,7 @@ it('disables webpack on request', () => {
 
 it('disables gzip on request', () => {
   return getSize([fixture('bad/index')], { gzip: false }).then(size => {
-    expect(size).toEqual({ parsed: 7127 })
+    expect(size).toEqual({ parsed: 7113 })
   })
 })
 
