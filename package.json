@@ -23,12 +23,14 @@
     "ci-job-number": "^0.3.0",
     "compression-webpack-plugin": "^2.0.0",
     "cosmiconfig": "^5.0.6",
-    "css-loader": "^1.0.1",
+    "css-loader": "^2.1.0",
+    "cssnano": "^4.1.8",
     "escape-string-regexp": "^1.0.5",
     "file-loader": "^2.0.0",
     "globby": "^8.0.1",
     "gzip-size": "^5.0.0",
     "memory-fs": "^0.4.1",
+    "postcss-loader": "^3.0.0",
     "read-pkg-up": "^4.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.23.1",
@@ -59,6 +61,7 @@
   "scripts": {
     "spellcheck": "yaspeller-ci *.md",
     "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
+    "lint-fix": "eslint --fix *.js test/{fixtures/**/,}*.js",
     "test": "jest --forceExit && yarn run lint && yarn run spellcheck"
   },
   "husky": {
