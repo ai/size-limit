@@ -61,7 +61,6 @@
   "scripts": {
     "spellcheck": "yaspeller-ci *.md",
     "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
-    "lint-fix": "eslint --fix *.js test/{fixtures/**/,}*.js",
     "test": "jest --forceExit && yarn run lint && yarn run spellcheck"
   },
   "husky": {
