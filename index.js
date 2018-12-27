@@ -88,9 +88,12 @@ function getConfig (files, opts) {
     config.plugins.push(new Compression())
   }
 
-  if (opts.ignore && opts.ignore.length !== 0) {
+  if (opts.ignore && opts.ignore.length > 0) {
     let escaped = opts.ignore.map(i => escapeRegexp(i))
-    config.externals = new RegExp(`^(${ escaped.join('|') })($|/)`)
+    config.module.rules.push({
+      test: new RegExp(`/(${ escaped.join('|') })($|/)`),
+      use: 'ignore-loader'
+    })
   }
 
   if (opts.analyzer) {

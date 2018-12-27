@@ -28,6 +28,7 @@
     "file-loader": "^3.0.1",
     "globby": "^8.0.1",
     "gzip-size": "^5.0.0",
+    "ignore-loader": "^0.1.2",
     "memory-fs": "^0.4.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "read-pkg-up": "^4.0.0",
