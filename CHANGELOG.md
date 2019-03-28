@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.22
+* Drop Node.js 6 support.
+* Update inner CLI tools.
+
 ## 0.21.1
 * Use `css-loader` 2.0 (by Redmond Tran).
 * Use `file-loader` 3.0.
