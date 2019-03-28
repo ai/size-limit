@@ -205,15 +205,12 @@ function getConfig () {
       return result
     })
     .catch(err => {
-      if (err.name === 'JSONError') {
+      let msg = err.message
+      if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
         let regexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
-        let message = err.message
-        if (regexp.test(message)) {
-          message = message.match(regexp)[1]
-        }
+        if (regexp.test(msg)) msg = msg.match(regexp)[1]
         throw ownError(
-          'Can not parse `package.json`. ' +
-          message + '. ' +
+          'Can not parse `package.json`. ' + msg + '. ' +
           'Change config according to Size Limit docs.\n' +
           PACKAGE_EXAMPLE + '\n'
         )
