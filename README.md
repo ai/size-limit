@@ -215,10 +215,9 @@ In this case you can disable internal webpack:
  ],
 ```
 
-Also you should disable `webpack` option when you use Size Limit for tracking 
-size of CSS files. Otherwise you will get wrong numbers, because webpack inserts 
-`style-loader` runtime into the bundle, and this loader adds ≈2 KB 
-to the calculated size.
+If you use Size Limit to track size of CSS files only, you should set `webpack: false`.
+Otherwise you will get wrong numbers, because webpack inserts `style-loader` runtime 
+into the bundle, and this loader adds ≈2 KB to the calculated size.
 
 
 ## JavaScript API
