@@ -136,7 +136,7 @@ it('shows not string error with wrong path', () => {
   })
 })
 
-it('uses .size-limit file config', () => {
+it('uses .size-limit.json file config', () => {
   return run([], { cwd: fixture('config') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  Package size: 10 B\n' +
@@ -165,11 +165,11 @@ it('overrides config by limit argument', () => {
   })
 })
 
-it('shows .size-limit error', () => {
+it('shows .size-limit.json error', () => {
   return run([], { cwd: fixture('bad-config') }).then(result => {
     expect(result.out).toContain(
-      ' ERROR  Can not parse .size-limit at 3:4.\n' +
-      '        Missed comma between flow collection entries.'
+      ' ERROR  Can not parse .size-limit.json.\n' +
+      '        Unexpected string in JSON at position 33.'
     )
     expect(result.code).toEqual(1)
   })

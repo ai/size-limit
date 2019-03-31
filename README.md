@@ -158,13 +158,13 @@ Size Limits supports 3 ways to define config.
      ]
    ```
 
-2. or separated `.size-limit` config file:
+2. or separated `.size-limit.json` config file:
 
    ```js
    [
      {
-       path: "index.js",
-       limit: "9 KB"
+       "path": "index.js",
+       "limit": "9 KB"
      }
    ]
    ```
@@ -216,7 +216,7 @@ In this case you can disable internal webpack:
 ```
 
 If you use Size Limit to track size of CSS files only, you should set `webpack: false`.
-Otherwise you will get wrong numbers, because webpack inserts `style-loader` runtime 
+Otherwise you will get wrong numbers, because webpack inserts `style-loader` runtime
 into the bundle, and this loader adds ≈2 KB to the calculated size.
 
 

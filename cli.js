@@ -187,6 +187,7 @@ function getConfig () {
   let explorer = cosmiconfig('size-limit', {
     searchPlaces: [
       'package.json',
+      '.size-limit.json',
       '.size-limit',
       '.size-limit.js'
     ]
@@ -206,16 +207,23 @@ function getConfig () {
     })
     .catch(err => {
       let msg = err.message
+      let file = 'config'
       if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
-        let regexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
-        if (regexp.test(msg)) msg = msg.match(regexp)[1]
+        let errorRegexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
+        let pathRegexp = / in ([^\n]+):\n/
+        if (pathRegexp.test(msg)) {
+          file = msg.match(pathRegexp)[1]
+          file = path.relative(process.cwd(), file)
+          file = '`' + file + '`'
+        }
+        if (errorRegexp.test(msg)) msg = msg.match(errorRegexp)[1]
         throw ownError(
-          'Can not parse `package.json`. ' + msg + '. ' +
+          'Can not parse ' + file + '. ' + msg + '. ' +
           'Change config according to Size Limit docs.\n' +
           PACKAGE_EXAMPLE + '\n'
         )
       } else if (err.reason && err.mark && err.mark.name) {
-        let file = path.relative(process.cwd(), err.mark.name)
+        file = path.relative(process.cwd(), err.mark.name)
         let position = err.mark.line + ':' + err.mark.column
         throw ownError(
           'Can not parse `' + file + '` at ' + position + '. ' +
