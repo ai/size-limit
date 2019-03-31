@@ -165,15 +165,17 @@ it('overrides config by limit argument', () => {
   })
 })
 
-it('shows .size-limit.json error', () => {
-  return run([], { cwd: fixture('bad-config') }).then(result => {
-    expect(result.out).toContain(
-      ' ERROR  Can not parse .size-limit.json.\n' +
-      '        Unexpected string in JSON at position 33.'
-    )
-    expect(result.code).toEqual(1)
+if (process.version.indexOf('v8.') !== 0) {
+  it('shows .size-limit.json error', () => {
+    return run([], { cwd: fixture('bad-config') }).then(result => {
+      expect(result.out).toContain(
+        ' ERROR  Can not parse .size-limit.json.\n' +
+        '        Unexpected string in JSON at position 33.'
+      )
+      expect(result.code).toEqual(1)
+    })
   })
-})
+}
 
 it('shows package.json error', () => {
   return run([], { cwd: fixture('bad-package') }).then(result => {

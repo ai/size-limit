@@ -208,7 +208,6 @@ function getConfig () {
     .catch(err => {
       let msg = err.message
       let file = 'config'
-      console.log(msg)
       if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
         let pathRegexp = / in ([^\n]+):\n/
         if (pathRegexp.test(msg)) {
