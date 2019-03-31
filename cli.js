@@ -209,7 +209,7 @@ function getConfig () {
       let msg = err.message
       let file = 'config'
       if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
-        let errorRegexp = /JSON\s?Error\sin\s[^\n]+:\s+([^\n]+)( while parsing)/
+        let errorRegexp = /JSON\s?Error([^:]*):\s+([^\n]+)( while parsing)/
         let pathRegexp = / in ([^\n]+):\n/
         if (pathRegexp.test(msg)) {
           file = msg.match(pathRegexp)[1]
