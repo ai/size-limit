@@ -209,14 +209,14 @@ function getConfig () {
       let msg = err.message
       let file = 'config'
       if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
-        let errorRegexp = /JSON\s?Error([^:]*):\s+([^\n]+)( while parsing)/
         let pathRegexp = / in ([^\n]+):\n/
         if (pathRegexp.test(msg)) {
           file = msg.match(pathRegexp)[1]
           file = path.relative(process.cwd(), file)
           file = '`' + file + '`'
         }
-        if (errorRegexp.test(msg)) msg = msg.match(errorRegexp)[1]
+        let errorRegexp = /JSON\s?Error([^:]*):\s+([^\n]+)( while parsing)/
+        if (errorRegexp.test(msg)) msg = msg.match(errorRegexp)[2]
         throw ownError(
           'Can not parse ' + file + '. ' + msg + '. ' +
           'Change config according to Size Limit docs.\n' +
