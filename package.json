@@ -41,7 +41,7 @@
     "@logux/eslint-config": "^28.0.0",
     "clean-publish": "^1.1.0",
     "cross-spawn": "^6.0.5",
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
