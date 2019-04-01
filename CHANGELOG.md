@@ -2,7 +2,7 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0
-* Add `size-limit.json` config name support.
+* Add `.size-limit.json` config name support.
 
 ## 0.22
 * Drop Node.js 6 support.
