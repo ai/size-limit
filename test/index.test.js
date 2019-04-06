@@ -58,6 +58,12 @@ it('supports CSS modules', () => {
   })
 })
 
+it('supports markdown', () => {
+  return getSize(fixture('markdown/index')).then(size => {
+    expect(size).toEqual({ gzip: 43, parsed: 75 })
+  })
+})
+
 it('removes non-production code', () => {
   return getSize(fixture('multiple/production')).then(size => {
     expect(size).toEqual({ gzip: 1, parsed: 3 })
