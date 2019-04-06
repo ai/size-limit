@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Prevent JS libraries bloat. If you accidentally add a massive dependency, Size Limit will throw an error.",
   "keywords": [
     "size",
@@ -142,7 +142,12 @@
       "Liu",
       "Redmond",
       "Tran",
-      "KB"
+      "KB",
+      "Markdown",
+      "Scaria",
+      "Arun",
+      "Kiryl",
+      "Misachenka"
     ]
   }
 }

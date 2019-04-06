@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.1
+* Fix Markdown files support (by Scaria Rex Arun and Kiryl Misachenka).
+
 ## 1.0
 * Add `.size-limit.json` config name support.
 
