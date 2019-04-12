@@ -165,28 +165,6 @@ it('overrides config by limit argument', () => {
   })
 })
 
-if (process.version.indexOf('v8.') !== 0) {
-  it('shows .size-limit.json error', () => {
-    return run([], { cwd: fixture('bad-config') }).then(result => {
-      expect(result.out).toContain(
-        ' ERROR  Can not parse .size-limit.json.\n' +
-        '        Unexpected string in JSON at position 33.'
-      )
-      expect(result.code).toEqual(1)
-    })
-  })
-}
-
-it('shows package.json error', () => {
-  return run([], { cwd: fixture('bad-package') }).then(result => {
-    expect(result.out).toContain(
-      ' ERROR  Can not parse package.json.\n' +
-      '        Unexpected string'
-    )
-    expect(result.code).toEqual(1)
-  })
-})
-
 it('runs only on first job in Travis CI', () => {
   let env = { TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2' }
   return run([], { }, env).then(result => {
