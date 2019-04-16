@@ -140,8 +140,8 @@ it('shows not string error with wrong path', () => {
 it('uses .size-limit.json file config', () => {
   return run([], { cwd: fixture('config') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)
@@ -151,8 +151,8 @@ it('uses .size-limit.json file config', () => {
 it('uses .size-limit.js file config', () => {
   return run([], { cwd: fixture('js') }).then(result => {
     expect(result.out).toEqual('\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
     expect(result.code).toEqual(0)
@@ -188,16 +188,16 @@ it('shows limit', () => {
   return run([], { cwd: fixture('good') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  index.js\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '\n' +
     '  index2.js\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '\n' +
     '  index3.js\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')
@@ -252,12 +252,12 @@ it('uses names', () => {
   return run([], { cwd: fixture('named') }).then(result => {
     expect(result.out).toEqual('\n' +
     '  First\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '\n' +
     '  Second\n' +
-    '  Package size: 10 B\n' +
     '  Size limit:   1 KB\n' +
+    '  Package size: 10 B\n' +
     '\n' +
     '  With all dependencies, minified and gzipped\n' +
     '\n')

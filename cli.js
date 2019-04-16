@@ -155,8 +155,8 @@ function renderSize (item, i, array) {
 
   if (passed) {
     rows.push(
-      `Package size: ${ chalk.bold(chalk.green(sizeString)) }`,
-      `Size limit:   ${ chalk.bold(limitString) }`
+      `Size limit:   ${ chalk.bold(limitString) }`,
+      `Package size: ${ chalk.bold(chalk.green(sizeString)) }`
     )
   } else if (failed) {
     if (limitString === sizeString) {
@@ -166,8 +166,8 @@ function renderSize (item, i, array) {
     let diff = formatBytes(item.size - item.limit)
     rows.push(
       chalk.red('Package size limit has exceeded by ' + diff),
-      `Package size: ${ chalk.bold(chalk.red(sizeString)) }`,
-      `Size limit:   ${ chalk.bold(limitString) }`
+      `Size limit:   ${ chalk.bold(limitString) }`,
+      `Package size: ${ chalk.bold(chalk.red(sizeString)) }`
     )
   } else if (unlimited) {
     rows.push(`Package size: ${ chalk.bold(sizeString) }`)
