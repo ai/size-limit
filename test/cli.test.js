@@ -9,7 +9,8 @@ function run (args, options, env) {
   if (!options) options = { }
   options.env = {
     TRAVIS_JOB_NUMBER: '1.1',
-    APPVEYOR_JOB_NUMBER: '1'
+    APPVEYOR_JOB_NUMBER: '1',
+    FORCE_COLOR: '0'
   }
   for (let i in process.env) {
     if (!options.env[i]) options.env[i] = process.env[i]
