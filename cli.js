@@ -158,9 +158,7 @@ function renderSize (item, i, array) {
       `Package size: ${ chalk.bold(chalk.green(sizeString)) }`,
       `Size limit:   ${ chalk.bold(limitString) }`
     )
-  }
-
-  if (failed) {
+  } else if (failed) {
     if (limitString === sizeString) {
       limitString = item.limit + ' B'
       sizeString = item.size + ' B'
@@ -171,9 +169,7 @@ function renderSize (item, i, array) {
       `Package size: ${ chalk.bold(chalk.red(sizeString)) }`,
       `Size limit:   ${ chalk.bold(limitString) }`
     )
-  }
-
-  if (unlimited) {
+  } else if (unlimited) {
     rows.push(`Package size: ${ chalk.bold(sizeString) }`)
   }
 
