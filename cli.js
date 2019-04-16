@@ -179,7 +179,11 @@ function renderSize (item, i, array) {
   }
 }
 
-function getConfig () {
+function printNote (note) {
+  process.stdout.write(chalk.gray(`  ${ note }\n\n`))
+}
+
+async function getConfig () {
   let explorer = cosmiconfig('size-limit', {
     searchPlaces: [
       'package.json',
@@ -188,61 +192,60 @@ function getConfig () {
       '.size-limit.js'
     ]
   })
-  return explorer
-    .search()
-    .then(result => {
-      if (result === null) {
-        throw ownError(
-          'Can not find settings for Size Limit. ' +
-          'Add it to section `"size-limit"` in package.json ' +
-          'according to Size Limit docs.' +
-          `\n${ PACKAGE_EXAMPLE }\n`
-        )
+  try {
+    let result = await explorer.search()
+    if (result === null) {
+      throw ownError(
+        'Can not find settings for Size Limit. ' +
+        'Add it to section `"size-limit"` in package.json ' +
+        'according to Size Limit docs.' +
+        `\n${ PACKAGE_EXAMPLE }\n`
+      )
+    }
+    return result
+  } catch (err) {
+    let msg = err.message
+    let file = 'config'
+    if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
+      let pathRegexp = / in ([^\n]+):\n/
+      if (pathRegexp.test(msg)) {
+        file = msg.match(pathRegexp)[1]
+        file = path.relative(process.cwd(), file)
+        file = '`' + file + '`'
       }
-      return result
-    })
-    .catch(err => {
-      let msg = err.message
-      let file = 'config'
-      if (msg.indexOf('JSONError') !== -1 || msg.indexOf('JSON Error') !== -1) {
-        let pathRegexp = / in ([^\n]+):\n/
-        if (pathRegexp.test(msg)) {
-          file = msg.match(pathRegexp)[1]
-          file = path.relative(process.cwd(), file)
-          file = '`' + file + '`'
-        }
-        let errorRegexp = /JSON\s?Error([^:]*):\s+([^\n]+)( while parsing)/
-        if (errorRegexp.test(msg)) msg = msg.match(errorRegexp)[2]
-        throw ownError(
-          'Can not parse ' + file + '. ' + msg + '. ' +
-          'Change config according to Size Limit docs.\n' +
-          PACKAGE_EXAMPLE + '\n'
-        )
-      } else if (err.reason && err.mark && err.mark.name) {
-        file = path.relative(process.cwd(), err.mark.name)
-        let position = err.mark.line + ':' + err.mark.column
-        throw ownError(
-          'Can not parse `' + file + '` at ' + position + '. ' +
-          capitalize(err.reason) + '. ' +
-          'Change config according to Size Limit docs.\n' +
-          FILE_EXAMPLE + '\n'
-        )
-      } else {
-        throw err
-      }
-    })
+      let errorRegexp = /JSON\s?Error([^:]*):\s+([^\n]+)( while parsing)/
+      if (errorRegexp.test(msg)) msg = msg.match(errorRegexp)[2]
+      throw ownError(
+        'Can not parse ' + file + '. ' + msg + '. ' +
+        'Change config according to Size Limit docs.\n' +
+        PACKAGE_EXAMPLE + '\n'
+      )
+    } else if (err.reason && err.mark && err.mark.name) {
+      file = path.relative(process.cwd(), err.mark.name)
+      let position = err.mark.line + ':' + err.mark.column
+      throw ownError(
+        'Can not parse `' + file + '` at ' + position + '. ' +
+        capitalize(err.reason) + '. ' +
+        'Change config according to Size Limit docs.\n' +
+        FILE_EXAMPLE + '\n'
+      )
+    } else {
+      throw err
+    }
+  }
 }
 
-let getOptions
-if (argv['_'].length === 0) {
-  getOptions = Promise.all([getConfig(), readPkg()]).then(all => {
-    let config = all[0]
-    let packagePath = all[1] ? all[1].path : false
-    let packageJson = all[1] ? all[1].pkg : { }
+async function main () {
+  let config
+  if (argv['_'].length === 0) {
+    let [configFile, package] = await Promise.all([
+      getConfig(),
+      readPkg()
+    ])
 
-    let error = configError(config.config)
+    let error = configError(configFile.config)
     if (error) {
-      if (/package\.json$/.test(config.filepath)) {
+      if (/package\.json$/.test(configFile.filepath)) {
         throw ownError(
           PACKAGE_ERRORS[error] + '. ' +
           'Fix it according to Size Limit docs.' +
@@ -257,83 +260,75 @@ if (argv['_'].length === 0) {
       }
     }
 
-    return Promise.all(config.config.map(entry => {
-      let peer = Object.keys(packageJson.peerDependencies || { })
+    let result = await Promise.all(configFile.config.map(async entry => {
+      let peer = Object.keys(package.pkg.peerDependencies || { })
 
       let globbing, cwd
       if (entry.path) {
-        cwd = path.dirname(config.filepath)
-        globbing = globby(entry.path || packageJson.main, { cwd })
+        cwd = path.dirname(configFile.filepath)
+        globbing = globby(entry.path || package.pkg.main, { cwd })
       } else {
-        cwd = path.dirname(packagePath || '.')
-        globbing = globby(packageJson.main || 'index.js', { cwd })
+        cwd = path.dirname(package.path || '.')
+        globbing = globby(package.pkg.main || 'index.js', { cwd })
       }
 
-      return globbing.then(files => {
-        if (files.length === 0 && entry.path) {
-          files = entry.path
-          if (typeof files === 'string') files = [files]
-        }
-        return {
-          webpack: entry.webpack !== false,
-          config: entry.config,
-          ignore: peer.concat(entry.ignore || []),
-          limit: bytes.parse(argv.limit || entry.limit),
-          gzip: entry.gzip !== false,
-          name: entry.name || files.join(', '),
-          full: files.map(i => {
-            if (path.isAbsolute(i)) {
-              return i
-            } else {
-              return path.join(cwd, i)
-            }
-          }),
-          entry: entry.entry
-        }
-      })
-    })).then(files => {
+      let files = await globbing
+      if (files.length === 0 && entry.path) {
+        files = entry.path
+        if (typeof files === 'string') files = [files]
+      }
       return {
-        bundle: packageJson.name,
-        files
+        webpack: entry.webpack !== false,
+        config: entry.config,
+        ignore: peer.concat(entry.ignore || []),
+        limit: bytes.parse(argv.limit || entry.limit),
+        gzip: entry.gzip !== false,
+        name: entry.name || files.join(', '),
+        full: files.map(i => {
+          if (path.isAbsolute(i)) {
+            return i
+          } else {
+            return path.join(cwd, i)
+          }
+        }),
+        entry: entry.entry
       }
-    })
-  })
-} else {
-  let files = argv['_'].slice(0)
+    }))
 
-  if (files.length === 0) {
-    getOptions = Promise.reject(
-      ownError(
+    config = { bundle: package.pkg.name, files: result }
+  } else {
+    let files = argv['_'].slice(0)
+
+    if (files.length === 0) {
+      throw ownError(
         'Specify file for Size Limit. ' +
         `For example, \`size-limit ${ argv['_'] } index.js\`.`
       )
-    )
-  } else {
-    let full = files.map(i => {
-      if (path.isAbsolute(i)) {
-        return i
-      } else {
-        return path.join(process.cwd(), i)
-      }
-    })
-
-    getOptions = Promise.resolve({
-      bundle: undefined,
-      ignore: [],
-      files: [
-        {
-          webpack: argv.webpack !== false,
-          limit: bytes.parse(argv.limit),
-          gzip: argv.gzip !== false,
-          full
+    } else {
+      let full = files.map(i => {
+        if (path.isAbsolute(i)) {
+          return i
+        } else {
+          return path.join(process.cwd(), i)
         }
-      ]
-    })
-  }
-}
+      })
 
-getOptions.then(config => {
-  return Promise.all(config.files.map(file => {
+      config = {
+        bundle: undefined,
+        ignore: [],
+        files: [
+          {
+            webpack: argv.webpack !== false,
+            limit: bytes.parse(argv.limit),
+            gzip: argv.gzip !== false,
+            full
+          }
+        ]
+      }
+    }
+  }
+
+  await Promise.all(config.files.map(async file => {
     if (file.webpack === false && argv.why) {
       throw ownError(
         '`--why` does not work with `"webpack": false`. ' +
@@ -353,31 +348,25 @@ getOptions.then(config => {
       opts.analyzer = process.env['NODE_ENV'] === 'test' ? 'static' : 'server'
     }
 
-    return getSize(file.full, opts).then(size => {
-      if (typeof size.gzip === 'number') {
-        file.size = size.gzip
-      } else {
-        file.size = size.parsed
-      }
-      return file
-    })
-  })).then(() => config)
-}).then(config => {
+    let size = await getSize(file.full, opts)
+    if (typeof size.gzip === 'number') {
+      file.size = size.gzip
+    } else {
+      file.size = size.parsed
+    }
+    return file
+  }))
+
   let files = config.files
   let results = files.map(renderSize)
-
   let output = results.map(i => i.output).join('\n')
 
   process.stdout.write('\n' + output + (files.length > 1 ? '\n' : ''))
-
-  let message
   if (argv.config) {
-    message = '  With given webpack configuration\n\n'
+    printNote('With given webpack configuration')
   } else {
-    message = '  With all dependencies, minified and gzipped\n\n'
+    printNote('With all dependencies, minified and gzipped')
   }
-
-  process.stdout.write(chalk.gray(message))
 
   if (argv.why && files.length > 1) {
     let ignore = files.reduce((all, i) => all.concat(i.ignore), [])
@@ -387,10 +376,8 @@ getOptions.then(config => {
       ignore
     }
     let full = files.reduce((all, i) => all.concat(i.full), [])
-    return getSize(full, opts).then(() => files)
-  }
-
-  if (!argv.why) {
+    await getSize(full, opts)
+  } else if (!argv.why) {
     if (results.some(i => i.failed)) {
       process.exit(3)
     } else {
@@ -399,7 +386,9 @@ getOptions.then(config => {
   }
 
   return files
-}).catch(e => {
+}
+
+main().catch(e => {
   let msg
   if (e.sizeLimit) {
     msg = e.message
@@ -410,8 +399,9 @@ getOptions.then(config => {
     let first = e.message.match(/Module not found:[^\n]*/)[0]
     msg = `Size Limit c${ first.replace('Module not found: Error: C', '') }`
       .replace(/resolve '(.*)' in '(.*)'/,
-        `resolve\n        ${ chalk.bold('$1') }` +
-        `\n        in ${ chalk.bold('$2') }`
+        `resolve\n` +
+        `        ${ chalk.bold('$1') }\n` +
+        `        in ${ chalk.bold('$2') }`
       )
   } else {
     msg = e.stack
