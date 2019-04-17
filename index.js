@@ -6,10 +6,10 @@ let MemoryFS = require('memory-fs')
 let gzipSize = require('gzip-size')
 let webpack = require('webpack')
 let path = require('path')
-let fs = require('fs')
+let util = require('util')
 let os = require('os')
 
-let promisify = require('./promisify')
+let readFile = util.promisify(require('fs').readFile)
 
 const WEBPACK_EMPTY_PROJECT = {
   parsed: 962,
@@ -106,12 +106,18 @@ function getConfig (files, opts) {
 }
 
 function runWebpack (config, opts) {
-  return promisify(done => {
+  return new Promise((resolve, reject) => {
     let compiler = webpack(config)
     if (!opts.analyzer) {
       compiler.outputFileSystem = new MemoryFS()
     }
-    compiler.run(done)
+    compiler.run((err, result) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(result)
+      }
+    })
   })
 }
 
@@ -187,53 +193,51 @@ function extractSize (stat, opts) {
  *   }
  * })
  */
-function getSize (files, opts) {
+async function getSize (files, opts) {
   if (typeof files === 'string') files = [files]
   if (!opts) opts = { }
 
   if (opts.webpack === false) {
-    return Promise.all(files.map(file => {
-      return promisify(done => fs.readFile(file, 'utf8', done)).then(bytes => {
-        if (opts.gzip === false) {
-          return { parsed: bytes.length, gzip: 0 }
-        } else {
-          return gzipSize(bytes).then(gzip => ({ parsed: bytes.length, gzip }))
-        }
-      })
-    })).then(sizes => {
-      let size = sizes.reduce(sumSize)
+    let sizes = await Promise.all(files.map(async file => {
+      let bytes = await readFile(file, 'utf8')
       if (opts.gzip === false) {
-        return { parsed: size.parsed }
+        return { parsed: bytes.length, gzip: 0 }
       } else {
-        return size
+        let gzip = await gzipSize(bytes)
+        return { parsed: bytes.length, gzip }
       }
-    })
+    }))
+    let size = sizes.reduce(sumSize)
+    if (opts.gzip === false) {
+      return { parsed: size.parsed }
+    } else {
+      return size
+    }
   } else {
-    return runWebpack(getConfig(files, opts), opts).then(stats => {
-      if (stats.hasErrors()) {
-        throw new Error(stats.toString('errors-only'))
-      }
+    let stats = await runWebpack(getConfig(files, opts), opts)
+    if (stats.hasErrors()) {
+      throw new Error(stats.toString('errors-only'))
+    }
 
-      let size
-      if (opts.config && stats.stats) {
-        size = stats.stats
-          .map(stat => extractSize(stat.toJson(), opts))
-          .reduce(sumSize)
-      } else {
-        size = extractSize(stats.toJson(), opts)
-      }
+    let size
+    if (opts.config && stats.stats) {
+      size = stats.stats
+        .map(stat => extractSize(stat.toJson(), opts))
+        .reduce(sumSize)
+    } else {
+      size = extractSize(stats.toJson(), opts)
+    }
 
-      if (opts.config || opts.gzip === false) {
-        return {
-          parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed
-        }
-      } else {
-        return {
-          parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed,
-          gzip: size.gzip - WEBPACK_EMPTY_PROJECT.gzip
-        }
+    if (opts.config || opts.gzip === false) {
+      return {
+        parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed
       }
-    })
+    } else {
+      return {
+        parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed,
+        gzip: size.gzip - WEBPACK_EMPTY_PROJECT.gzip
+      }
+    }
   }
 }
 
