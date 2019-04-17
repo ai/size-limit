@@ -1,12 +1,14 @@
 {
   "private": true,
   "dependencies": {
-    "redux": "*"
+    "chalk": "*",
+    "redux": "*",
+    "memory-fs": "*"
   },
   "size-limit": [
     {
       "path": "index.js",
-      "limit": "2 KB"
+      "limit": "30 KB"
     }
   ]
 }

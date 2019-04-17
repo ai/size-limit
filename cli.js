@@ -140,6 +140,14 @@ function capitalize (str) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
+function formatTime (seconds) {
+  if (seconds >= 1) {
+    return (Math.ceil(seconds * 10) / 10) + ' s'
+  } else {
+    return (Math.ceil(seconds * 100) * 10) + ' ms'
+  }
+}
+
 function renderSize (item, i, array) {
   let rows = []
   let passed = item.limit && item.size <= item.limit
@@ -150,6 +158,7 @@ function renderSize (item, i, array) {
     rows.push(item.name)
   }
 
+  let loadingString = formatTime(item.loading)
   let limitString = formatBytes(item.limit)
   let sizeString = formatBytes(item.size)
 
@@ -172,6 +181,7 @@ function renderSize (item, i, array) {
   } else if (unlimited) {
     rows.push(`Package size: ${ chalk.bold(sizeString) }`)
   }
+  rows.push(`Loading time: ${ chalk.bold(loadingString) }`)
 
   return {
     output: rows.map(row => `  ${ row }\n`).join(''),
@@ -349,11 +359,8 @@ async function main () {
     }
 
     let size = await getSize(file.full, opts)
-    if (typeof size.gzip === 'number') {
-      file.size = size.gzip
-    } else {
-      file.size = size.parsed
-    }
+    file.size = typeof size.gzip === 'number' ? size.gzip : size.parsed
+    file.loading = size.loading
     return file
   }))
 

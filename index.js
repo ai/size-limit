@@ -11,10 +11,9 @@ let os = require('os')
 
 let readFile = util.promisify(require('fs').readFile)
 
-const WEBPACK_EMPTY_PROJECT = {
-  parsed: 962,
-  gzip: 461
-}
+const WEBPACK_EMPTY_PROJECT_PARSED = 962
+const WEBPACK_EMPTY_PROJECT_GZIP = 461
+const SLOW_3G = 50 * 1024
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
@@ -122,10 +121,11 @@ function runWebpack (config, opts) {
 }
 
 function sumSize (s1, s2) {
-  return {
-    parsed: s1.parsed + s2.parsed,
-    gzip: s1.gzip + s2.gzip
+  let result = { }
+  for (let i in s1) {
+    result[i] = s1[i] + s2[i]
   }
+  return result
 }
 
 function filterEntries (obj, filter) {
@@ -200,19 +200,15 @@ async function getSize (files, opts) {
   if (opts.webpack === false) {
     let sizes = await Promise.all(files.map(async file => {
       let bytes = await readFile(file, 'utf8')
+      let parsed = bytes.length
       if (opts.gzip === false) {
-        return { parsed: bytes.length, gzip: 0 }
+        return { loading: parsed / SLOW_3G, parsed }
       } else {
         let gzip = await gzipSize(bytes)
-        return { parsed: bytes.length, gzip }
+        return { loading: gzip / SLOW_3G, parsed, gzip }
       }
     }))
-    let size = sizes.reduce(sumSize)
-    if (opts.gzip === false) {
-      return { parsed: size.parsed }
-    } else {
-      return size
-    }
+    return sizes.reduce(sumSize)
   } else {
     let stats = await runWebpack(getConfig(files, opts), opts)
     if (stats.hasErrors()) {
@@ -228,14 +224,19 @@ async function getSize (files, opts) {
       size = extractSize(stats.toJson(), opts)
     }
 
+    let parsed = size.parsed - WEBPACK_EMPTY_PROJECT_PARSED
+
     if (opts.config || opts.gzip === false) {
       return {
-        parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed
+        loading: parsed / SLOW_3G,
+        parsed
       }
     } else {
+      let gzip = size.gzip - WEBPACK_EMPTY_PROJECT_GZIP
       return {
-        parsed: size.parsed - WEBPACK_EMPTY_PROJECT.parsed,
-        gzip: size.gzip - WEBPACK_EMPTY_PROJECT.gzip
+        loading: gzip / SLOW_3G,
+        parsed,
+        gzip
       }
     }
   }
