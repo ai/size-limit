@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "size-limit": [
+    {
+      "path": "index.js",
+      "running": false,
+      "limit": "1 KB"
+    }
+  ]
+}

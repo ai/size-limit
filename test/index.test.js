@@ -86,23 +86,47 @@ it('disables webpack on request', async () => {
   let size = await getSize([
     fixture('bad/index'), fixture('es2016/index')
   ], { webpack: false })
-  expect(size.parsed).toEqual(91)
+  expect(size).toEqual({ parsed: 91, gzip: 113, loading: 0.02, running: 2 })
 })
 
 it('disables gzip on request', async () => {
-  let size = await getSize([fixture('bad/index')], { gzip: false })
+  let size = await getSize(fixture('bad/index'), { gzip: false })
   expect(size).toEqual({
     parsed: 100575, loading: 100575 / SLOW_3G, running: 1
   })
 })
 
 it('disables gzip and webpack on request', async () => {
-  let size = await getSize([
-    fixture('bad/index')
-  ], { webpack: false, gzip: false })
-  expect(size).toEqual({
-    parsed: 55, loading: 0.01, running: 1
+  let size = await getSize(fixture('bad/index'), {
+    webpack: false, gzip: false
   })
+  expect(size).toEqual({ parsed: 55, loading: 0.01, running: 1 })
+})
+
+it('disables running on request', async () => {
+  let size = await getSize(fixture('good/index'), { running: false })
+  expect(size).toEqual({ gzip: 10, parsed: 14, loading: 0.01 })
+})
+
+it('disables gzip and running on request', async () => {
+  let size = await getSize(fixture('good/index'), {
+    gzip: false, running: false
+  })
+  expect(size).toEqual({ parsed: 14, loading: 0.01 })
+})
+
+it('disables webpack and running on request', async () => {
+  let size = await getSize(fixture('bad/index'), {
+    webpack: false, running: false
+  })
+  expect(size).toEqual({ gzip: 57, parsed: 55, loading: 0.01 })
+})
+
+it('disables gzip, webpack and running on request', async () => {
+  let size = await getSize(fixture('bad/index'), {
+    webpack: false, gzip: false, running: false
+  })
+  expect(size).toEqual({ parsed: 55, loading: 0.01 })
 })
 
 it('uses custom webpack config', async () => {

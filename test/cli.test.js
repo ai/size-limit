@@ -308,11 +308,22 @@ it('disables gzip by option', async () => {
   expect(code).toEqual(0)
 })
 
-it('disables webpack and gzip by argument', async () => {
+it('disables running by option', async () => {
+  let { out, code } = await run([], { cwd: fixture('running') })
+  expect(out).not.toContain('Running time')
+  expect(out).not.toContain('Total time')
+  expect(code).toEqual(0)
+})
+
+it('disables webpack, gzip and running by argument', async () => {
   let { out, code } = await run([
-    '--no-webpack', '--no-gzip', 'test/fixtures/bad/index.js'
+    '--no-webpack',
+    '--no-gzip',
+    '--no-running-time',
+    'test/fixtures/bad/index.js'
   ])
   expect(out).toContain('Package size: 55 B  minified\n')
+  expect(out).not.toContain('Running time')
   expect(code).toEqual(0)
 })
 

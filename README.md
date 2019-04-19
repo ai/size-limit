@@ -193,9 +193,11 @@ Each section in config could have options:
 * **name**: the name of this section. It will be useful only
   if you have multiple sections.
 * **webpack**: with `false` will disable webpack.
+* **running**: with `false` will disable calculating running time.
 * **gzip**: with `false` will disable gzip compression.
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
+
 
 ## Applications
 

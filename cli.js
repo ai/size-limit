@@ -53,6 +53,10 @@ let argv = yargs
     describe: 'Disable gzip',
     type: 'boolean'
   })
+  .option('no-running-time', {
+    describe: 'Do not calculate running time',
+    type: 'boolean'
+  })
   .option('config', {
     describe: 'Custom webpack config',
     type: 'string'
@@ -191,10 +195,14 @@ function renderSize (item, i, array) {
   }
   rows.push(
     ['Package size:', sizeString, sizeNote],
-    ['Loading time:', formatTime(item.loading), 'on slow 3G'],
-    ['Running time:', formatTime(item.running), 'on Snapdragon 410'],
-    ['Total time:', formatTime(item.running + item.loading)]
+    ['Loading time:', formatTime(item.loading), 'on slow 3G']
   )
+  if (typeof item.running === 'number') {
+    rows.push(
+      ['Running time:', formatTime(item.running), 'on Snapdragon 410'],
+      ['Total time:', formatTime(item.running + item.loading)]
+    )
+  }
 
   let multiline = rows.filter(row => row.length > 1)
   let max0 = Math.max(...multiline.map(row => row[0].length))
@@ -323,7 +331,8 @@ async function main () {
         if (typeof files === 'string') files = [files]
       }
       return {
-        webpack: entry.webpack !== false,
+        running: entry.running !== false && argv.runningTime !== false,
+        webpack: entry.webpack !== false && argv.webpack !== false,
         config: entry.config || argv.config,
         ignore: peer.concat(entry.ignore || []),
         limit: bytes.parse(argv.limit || entry.limit),
@@ -363,6 +372,7 @@ async function main () {
         ignore: [],
         files: [
           {
+            running: argv.runningTime !== false,
             webpack: argv.webpack !== false,
             config: argv.config,
             limit: bytes.parse(argv.limit),
@@ -384,6 +394,7 @@ async function main () {
 
     let opts = {
       webpack: file.webpack,
+      running: file.running,
       bundle: config.bundle,
       ignore: file.ignore,
       config: file.config,

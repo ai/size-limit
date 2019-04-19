@@ -175,6 +175,7 @@ function getLoadingTime (size) {
  * @param {"server"|"static"|false} [opts.analyzer=false] Show package
  *                                                        content in browser.
  * @param {boolean} [opts.webpack=true] Pack files by webpack.
+ * @param {boolean} [opts.running=true] Calculate running time.
  * @param {boolean} [opts.gzip=true] Compress files by gzip.
  * @param {string} [opts.config] A path to custom webpack config.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
@@ -201,17 +202,16 @@ async function getSize (files, opts) {
 
   if (opts.webpack === false) {
     let sizes = await Promise.all(files.map(async file => {
-      let [bytes, running] = await Promise.all([
-        readFile(file, 'utf8'),
-        getRunningTime(file)
-      ])
-      let parsed = bytes.length
+      let bytes = await readFile(file, 'utf8')
+      let result = { parsed: bytes.length }
+      if (opts.running !== false) result.running = getRunningTime(file)
       if (opts.gzip === false) {
-        return { loading: getLoadingTime(parsed), running, parsed }
+        result.loading = getLoadingTime(result.parsed)
       } else {
-        let gzip = await gzipSize(bytes)
-        return { loading: getLoadingTime(gzip), running, parsed, gzip }
+        result.gzip = await gzipSize(bytes)
+        result.loading = getLoadingTime(result.gzip)
       }
+      return result
     }))
     return sizes.reduce(sumSize)
   } else {
@@ -221,7 +221,7 @@ async function getSize (files, opts) {
     let size, running
     try {
       let stats = await runWebpack(config)
-      running = await getRunningTime(output)
+      if (opts.running !== false) running = await getRunningTime(output)
 
       if (stats.hasErrors()) {
         throw new Error(stats.toString('errors-only'))
@@ -240,23 +240,15 @@ async function getSize (files, opts) {
       }
     }
 
-    let parsed = size.parsed - WEBPACK_EMPTY_PROJECT_PARSED
-
+    let result = { parsed: size.parsed - WEBPACK_EMPTY_PROJECT_PARSED }
+    if (opts.running !== false) result.running = running
     if (opts.config || opts.gzip === false) {
-      return {
-        loading: getLoadingTime(parsed),
-        running,
-        parsed
-      }
+      result.loading = getLoadingTime(result.parsed)
     } else {
-      let gzip = size.gzip - WEBPACK_EMPTY_PROJECT_GZIP
-      return {
-        loading: getLoadingTime(gzip),
-        running,
-        parsed,
-        gzip
-      }
+      result.gzip = size.gzip - WEBPACK_EMPTY_PROJECT_GZIP
+      result.loading = getLoadingTime(result.gzip)
     }
+    return result
   }
 }
 
