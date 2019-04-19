@@ -1,8 +1,8 @@
+let { existsSync } = require('fs')
 let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let Compression = require('compression-webpack-plugin')
 let Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-let MemoryFS = require('memory-fs')
 let gzipSize = require('gzip-size')
 let webpack = require('webpack')
 let path = require('path')
@@ -10,10 +10,12 @@ let util = require('util')
 let os = require('os')
 
 let readFile = util.promisify(require('fs').readFile)
+let rimraf = util.promisify(require('rimraf'))
+
+let getRunningTime = require('./running')
 
 const WEBPACK_EMPTY_PROJECT_PARSED = 962
 const WEBPACK_EMPTY_PROJECT_GZIP = 461
-const SLOW_3G = 50 * 1024
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
@@ -30,12 +32,9 @@ function projectName (opts, files) {
 
 function getConfig (files, opts) {
   if (opts.config) {
-    let config
-    if (path.isAbsolute(opts.config)) {
-      config = require(opts.config)
-    } else {
-      config = require(path.join(process.cwd(), opts.config))
-    }
+    let file = opts.config
+    if (!path.isAbsolute(file)) file = path.join(process.cwd(), opts.config)
+    let config = require(file)
 
     let resolveModulesPaths = [
       path.join(process.cwd(), 'node_modules')
@@ -51,7 +50,8 @@ function getConfig (files, opts) {
   let config = {
     entry: files,
     output: {
-      filename: projectName(opts, files)
+      filename: projectName(opts, files),
+      path: path.join(os.tmpdir(), `size-limit-${ Date.now() }`)
     },
     module: {
       rules: [
@@ -93,7 +93,6 @@ function getConfig (files, opts) {
   }
 
   if (opts.analyzer) {
-    config.output.path = path.join(os.tmpdir(), `size-limit-${ Date.now() }`)
     config.plugins.push(new Analyzer({
       openAnalyzer: opts.analyzer === 'server',
       analyzerMode: opts.analyzer,
@@ -104,12 +103,9 @@ function getConfig (files, opts) {
   return config
 }
 
-function runWebpack (config, opts) {
+function runWebpack (config) {
   return new Promise((resolve, reject) => {
     let compiler = webpack(config)
-    if (!opts.analyzer) {
-      compiler.outputFileSystem = new MemoryFS()
-    }
     compiler.run((err, result) => {
       if (err) {
         reject(err)
@@ -164,6 +160,13 @@ function extractSize (stat, opts) {
   }, { parsed: 0, gzip: 0 })
 }
 
+function getLoadingTime (size) {
+  if (size === 0) return 0
+  let time = size / (50 * 1024)
+  if (time < 0.01) time = 0.01
+  return time
+}
+
 /**
  * Return size of project files with all dependencies and after UglifyJS
  * and gzip.
@@ -199,42 +202,58 @@ async function getSize (files, opts) {
 
   if (opts.webpack === false) {
     let sizes = await Promise.all(files.map(async file => {
-      let bytes = await readFile(file, 'utf8')
+      let [bytes, running] = await Promise.all([
+        readFile(file, 'utf8'),
+        getRunningTime(file)
+      ])
       let parsed = bytes.length
       if (opts.gzip === false) {
-        return { loading: parsed / SLOW_3G, parsed }
+        return { loading: getLoadingTime(parsed), running, parsed }
       } else {
         let gzip = await gzipSize(bytes)
-        return { loading: gzip / SLOW_3G, parsed, gzip }
+        return { loading: getLoadingTime(gzip), running, parsed, gzip }
       }
     }))
     return sizes.reduce(sumSize)
   } else {
-    let stats = await runWebpack(getConfig(files, opts), opts)
-    if (stats.hasErrors()) {
-      throw new Error(stats.toString('errors-only'))
-    }
+    let config = getConfig(files, opts)
+    let output = path.join(
+      config.output.path || process.cwd(), config.output.filename)
+    let size, running
+    try {
+      let stats = await runWebpack(config)
+      running = await getRunningTime(output)
 
-    let size
-    if (opts.config && stats.stats) {
-      size = stats.stats
-        .map(stat => extractSize(stat.toJson(), opts))
-        .reduce(sumSize)
-    } else {
-      size = extractSize(stats.toJson(), opts)
+      if (stats.hasErrors()) {
+        throw new Error(stats.toString('errors-only'))
+      }
+
+      if (opts.config && stats.stats) {
+        size = stats.stats
+          .map(stat => extractSize(stat.toJson(), opts))
+          .reduce(sumSize)
+      } else {
+        size = extractSize(stats.toJson(), opts)
+      }
+    } finally {
+      if (!opts.config && existsSync(config.output.path)) {
+        await rimraf(config.output.path)
+      }
     }
 
     let parsed = size.parsed - WEBPACK_EMPTY_PROJECT_PARSED
 
     if (opts.config || opts.gzip === false) {
       return {
-        loading: parsed / SLOW_3G,
+        loading: getLoadingTime(parsed),
+        running,
         parsed
       }
     } else {
       let gzip = size.gzip - WEBPACK_EMPTY_PROJECT_GZIP
       return {
-        loading: gzip / SLOW_3G,
+        loading: getLoadingTime(gzip),
+        running,
         parsed,
         gzip
       }
