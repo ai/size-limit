@@ -1,4 +1,3 @@
-let { existsSync } = require('fs')
 let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let Compression = require('compression-webpack-plugin')
@@ -7,10 +6,10 @@ let gzipSize = require('gzip-size')
 let webpack = require('webpack')
 let path = require('path')
 let util = require('util')
+let del = require('del')
 let os = require('os')
 
 let readFile = util.promisify(require('fs').readFile)
-let rimraf = util.promisify(require('rimraf'))
 
 let getRunningTime = require('./running')
 
@@ -236,8 +235,8 @@ async function getSize (files, opts) {
         size = extractSize(stats.toJson(), opts)
       }
     } finally {
-      if (!opts.config && existsSync(config.output.path)) {
-        await rimraf(config.output.path)
+      if (config.output.path) {
+        await del(config.output.path, { force: true })
       }
     }
 

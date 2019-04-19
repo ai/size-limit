@@ -144,7 +144,7 @@ function formatTime (seconds) {
   if (seconds >= 1) {
     return (Math.ceil(seconds * 10) / 10) + ' s'
   } else {
-    return (Math.ceil(seconds * 100) * 10) + ' ms'
+    return Math.ceil(seconds * 1000) + ' ms'
   }
 }
 
@@ -155,17 +155,28 @@ function renderSize (item, i, array) {
   let unlimited = !item.limit
 
   if (array.length > 1 && item.name) {
-    rows.push(item.name)
+    rows.push([chalk.bold(item.name)])
   }
 
-  let loadingString = formatTime(item.loading)
   let limitString = formatBytes(item.limit)
   let sizeString = formatBytes(item.size)
 
+  let sizeNote
+  if (item.config) {
+    sizeNote = 'with given webpack configuration'
+  } else if (item.gzip && item.webpack) {
+    sizeNote = 'with all dependencies, minified and gzipped'
+  } else if (!item.gzip && item.webpack) {
+    sizeNote = 'with all dependencies and minified'
+  } else if (item.gzip && !item.webpack) {
+    sizeNote = 'minified and gzipped'
+  } else {
+    sizeNote = 'minified'
+  }
+
   if (passed) {
     rows.push(
-      `Size limit:   ${ chalk.bold(limitString) }`,
-      `Package size: ${ chalk.bold(chalk.green(sizeString)) }`
+      ['Size limit:', limitString]
     )
   } else if (failed) {
     if (limitString === sizeString) {
@@ -174,23 +185,47 @@ function renderSize (item, i, array) {
     }
     let diff = formatBytes(item.size - item.limit)
     rows.push(
-      chalk.red('Package size limit has exceeded by ' + diff),
-      `Size limit:   ${ chalk.bold(limitString) }`,
-      `Package size: ${ chalk.bold(chalk.red(sizeString)) }`
+      [chalk.red('Package size limit has exceeded by ' + diff)],
+      ['Size limit:', limitString]
     )
-  } else if (unlimited) {
-    rows.push(`Package size: ${ chalk.bold(sizeString) }`)
   }
-  rows.push(`Loading time: ${ chalk.bold(loadingString) }`)
+  rows.push(
+    ['Package size:', sizeString, sizeNote],
+    ['Loading time:', formatTime(item.loading), 'on slow 3G'],
+    ['Running time:', formatTime(item.running), 'on Snapdragon 410'],
+    ['Total time:', formatTime(item.running + item.loading)]
+  )
+
+  let multiline = rows.filter(row => row.length > 1)
+  let max0 = Math.max(...multiline.map(row => row[0].length))
+  let max1 = Math.max(...multiline.map(row => row[1].length))
+
+  let strings = rows.map(row => {
+    if (row.length === 1) {
+      return row[0]
+    } else {
+      let str = row[0].padEnd(max0) + ' '
+      let second = row[1]
+      if (row.length === 3) second = second.padEnd(max1)
+      second = chalk.bold(second)
+      if (unlimited || row[0] === 'Size limit:') {
+        str += second
+      } else if (failed) {
+        str += chalk.red(second)
+      } else {
+        str += chalk.green(second)
+      }
+      if (row.length === 3) {
+        str += ' ' + chalk.gray(row[2])
+      }
+      return str
+    }
+  })
 
   return {
-    output: rows.map(row => `  ${ row }\n`).join(''),
+    output: strings.map(str => `  ${ str }\n`).join(''),
     failed
   }
-}
-
-function printNote (note) {
-  process.stdout.write(chalk.gray(`  ${ note }\n\n`))
 }
 
 async function getConfig () {
@@ -289,7 +324,7 @@ async function main () {
       }
       return {
         webpack: entry.webpack !== false,
-        config: entry.config,
+        config: entry.config || argv.config,
         ignore: peer.concat(entry.ignore || []),
         limit: bytes.parse(argv.limit || entry.limit),
         gzip: entry.gzip !== false,
@@ -329,6 +364,7 @@ async function main () {
         files: [
           {
             webpack: argv.webpack !== false,
+            config: argv.config,
             limit: bytes.parse(argv.limit),
             gzip: argv.gzip !== false,
             full
@@ -350,7 +386,7 @@ async function main () {
       webpack: file.webpack,
       bundle: config.bundle,
       ignore: file.ignore,
-      config: file.config || argv.config,
+      config: file.config,
       entry: file.entry,
       gzip: file.gzip
     }
@@ -361,6 +397,7 @@ async function main () {
     let size = await getSize(file.full, opts)
     file.size = typeof size.gzip === 'number' ? size.gzip : size.parsed
     file.loading = size.loading
+    file.running = size.running
     return file
   }))
 
@@ -368,12 +405,7 @@ async function main () {
   let results = files.map(renderSize)
   let output = results.map(i => i.output).join('\n')
 
-  process.stdout.write('\n' + output + (files.length > 1 ? '\n' : ''))
-  if (argv.config) {
-    printNote('With given webpack configuration')
-  } else {
-    printNote('With all dependencies, minified and gzipped')
-  }
+  process.stdout.write('\n' + output + '\n')
 
   if (argv.why && files.length > 1) {
     let ignore = files.reduce((all, i) => all.concat(i.ignore), [])

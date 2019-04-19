@@ -1,8 +1,9 @@
+let { join } = require('path')
 let spawn = require('cross-spawn')
-let path = require('path')
+let del = require('del')
 
 function fixture (file) {
-  return path.join(__dirname, 'fixtures', file)
+  return join(__dirname, 'fixtures', file)
 }
 
 function run (args, options, env) {
@@ -18,7 +19,7 @@ function run (args, options, env) {
   for (let i in env) {
     options.env[i] = env[i]
   }
-  let cli = spawn(path.join(__dirname, '../cli.js'), args, options)
+  let cli = spawn(join(__dirname, '../cli.js'), args, options)
   return new Promise(resolve => {
     let out = ''
     cli.stdout.on('data', data => {
@@ -46,6 +47,18 @@ function configError (msg) {
          '\n' +
          '  [\n'
 }
+
+beforeAll(() => {
+  process.env.FAKE_SIZE_LIMIT_RUNNING = 1
+})
+
+afterAll(async () => {
+  await Promise.all([
+    del(join(__dirname, '../dist')),
+    del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist')),
+    del(join(__dirname, 'fixtures/webpack-config/dist'))
+  ])
+})
 
 it('returns help', async () => {
   let { out, code } = await run(['--help'])
@@ -130,27 +143,13 @@ it('shows not string error with wrong path', async () => {
 
 it('uses .size-limit.json file config', async () => {
   let { out, code } = await run([], { cwd: fixture('config') })
-  expect(out).toEqual(
-    '\n' +
-    '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
-    '  With all dependencies, minified and gzipped\n' +
-    '\n'
-  )
+  expect(out).toContain('Size limit:   1 KB')
   expect(code).toEqual(0)
 })
 
 it('uses .size-limit.js file config', async () => {
   let { out, code } = await run([], { cwd: fixture('js') })
-  expect(out).toEqual(
-    '\n' +
-    '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
-    '  With all dependencies, minified and gzipped\n' +
-    '\n'
-  )
+  expect(out).toContain('Size limit:   1 KB')
   expect(code).toEqual(0)
 })
 
@@ -172,9 +171,10 @@ it('shows size without limit', async () => {
   let { out, code } = await run([], { cwd: fixture('unlimit') })
   expect(out).toEqual(
     '\n' +
-    '  Package size: 0 B\n' +
-    '  Loading time: 0 ms\n' +
-    '  With all dependencies, minified and gzipped\n' +
+    '  Package size: 0 B  with all dependencies, minified and gzipped\n' +
+    '  Loading time: 0 ms on slow 3G\n' +
+    '  Running time: 1 s  on Snapdragon 410\n' +
+    '  Total time:   1 s\n' +
     '\n'
   )
   expect(code).toEqual(0)
@@ -186,20 +186,24 @@ it('shows limit', async () => {
     '\n' +
     '  index.js\n' +
     '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
+    '  Package size: 10 B  with all dependencies, minified and gzipped\n' +
+    '  Loading time: 10 ms on slow 3G\n' +
+    '  Running time: 1 s   on Snapdragon 410\n' +
+    '  Total time:   1.1 s\n' +
     '\n' +
     '  index2.js\n' +
     '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
+    '  Package size: 10 B  with all dependencies, minified and gzipped\n' +
+    '  Loading time: 10 ms on slow 3G\n' +
+    '  Running time: 1 s   on Snapdragon 410\n' +
+    '  Total time:   1.1 s\n' +
     '\n' +
     '  index3.js\n' +
     '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
-    '\n' +
-    '  With all dependencies, minified and gzipped\n' +
+    '  Package size: 10 B  with all dependencies, minified and gzipped\n' +
+    '  Loading time: 10 ms on slow 3G\n' +
+    '  Running time: 1 s   on Snapdragon 410\n' +
+    '  Total time:   1.1 s\n' +
     '\n'
   )
   expect(code).toEqual(0)
@@ -207,63 +211,48 @@ it('shows limit', async () => {
 
 it('accepts array for path', async () => {
   let { out, code } = await run([], { cwd: fixture('array') })
-  expect(out).toEqual(
-    '\n' +
-    '  index1.js\n' +
-    '  Package size: 14 B\n' +
-    '  Loading time: 10 ms\n' +
-    '\n' +
-    '  index1.js, index2.js\n' +
-    '  Package size: 23 B\n' +
-    '  Loading time: 10 ms\n' +
-    '\n' +
-    '  With all dependencies, minified and gzipped\n' +
-    '\n'
-  )
+  expect(out).toContain('index1.js\n  Package size: 14 B')
+  expect(out).toContain('index1.js, index2.js\n  Package size: 23 B')
   expect(code).toEqual(0)
 })
 
 it('supports glob patterns', async () => {
   let { out, code } = await run([], { cwd: fixture('glob') })
-  expect(out).toContain('Package size: 10 B\n')
+  expect(out).toContain('Package size: 10 B')
   expect(code).toEqual(0)
 })
 
 it('supports ES2016', async () => {
   let { out, code } = await run([], { cwd: fixture('es2016') })
-  expect(out).toContain('Package size: 25 B\n')
+  expect(out).toContain('Package size: 25 B')
   expect(code).toEqual(0)
 })
 
 it('supports multiple files', async () => {
   let { out, code } = await run([], { cwd: fixture('multiple') })
-  expect(out).toContain('Package size: 16 B\n')
+  expect(out).toContain('Package size: 16 B')
   expect(code).toEqual(0)
 })
 
 it('checks limits', async () => {
   let { out, code } = await run([], { cwd: fixture('bad') })
-  expect(out).toContain('exceeded by 84 B')
+  expect(out).toEqual(
+    '\n' +
+    '  Package size limit has exceeded by 84 B\n' +
+    '  Size limit:   30 KB\n' +
+    '  Package size: 30.08 KB with all dependencies, minified and gzipped\n' +
+    '  Loading time: 602 ms   on slow 3G\n' +
+    '  Running time: 1 s      on Snapdragon 410\n' +
+    '  Total time:   1.7 s\n' +
+    '\n'
+  )
   expect(code).toEqual(3)
 })
 
 it('uses names', async () => {
   let { out, code } = await run([], { cwd: fixture('named') })
-  expect(out).toEqual(
-    '\n' +
-    '  First\n' +
-    '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
-    '\n' +
-    '  Second\n' +
-    '  Size limit:   1 KB\n' +
-    '  Package size: 10 B\n' +
-    '  Loading time: 10 ms\n' +
-    '\n' +
-    '  With all dependencies, minified and gzipped\n' +
-    '\n'
-  )
+  expect(out).toContain('  First\n  Size limit:   1 KB')
+  expect(out).toContain('  Second\n  Size limit:   1 KB')
   expect(code).toEqual(0)
 })
 
@@ -279,18 +268,6 @@ it('shows analyzer for multiple limits', async () => {
   expect(code).toEqual(0)
 })
 
-it('returns size', async () => {
-  let { out, code } = await run(['test/fixtures/unlimit/empty.js'])
-  expect(out).toEqual(
-    '\n' +
-    '  Package size: 0 B\n' +
-    '  Loading time: 0 ms\n' +
-    '  With all dependencies, minified and gzipped\n' +
-    '\n'
-  )
-  expect(code).toEqual(0)
-})
-
 it('uses limit in non-config mode', async () => {
   let file = 'test/fixtures/unlimit/empty.js'
   let { out, code } = await run(['--limit', '10 KB', file])
@@ -298,53 +275,44 @@ it('uses limit in non-config mode', async () => {
   expect(code).toEqual(0)
 })
 
-it('uses different units', async () => {
-  let { out, code } = await run(['test/fixtures/bad/index.js'])
-  expect(out).toContain('Package size: 30.08 KB\n')
-  expect(code).toEqual(0)
-})
-
 it('supports absolute path', async () => {
-  let file = path.join(__dirname, 'fixtures/unlimit/empty.js')
+  let file = join(__dirname, 'fixtures/unlimit/empty.js')
   let { out, code } = await run([file])
-  expect(out).toContain('Package size: 0 B\n')
+  expect(out).toContain('Package size: 0 B')
   expect(code).toEqual(0)
 })
 
 it('ignores peerDependencies', async () => {
   let { out, code } = await run([], { cwd: fixture('peer') })
-  expect(out).toContain('Package size: 22 B\n')
+  expect(out).toContain('Package size: 22 B')
   expect(code).toEqual(0)
 })
 
 it('supports ignore option', async () => {
   let { out, code } = await run([], { cwd: fixture('ignore') })
-  expect(out).toContain('Package size: 22 B\n')
-  expect(code).toEqual(0)
-})
-
-it('disables webpack by argument', async () => {
-  let { out, code } = await run(['--no-webpack', 'test/fixtures/bad/index.js'])
-  expect(out).toContain('Package size: 57 B\n')
+  expect(out).toContain('Package size: 22 B')
   expect(code).toEqual(0)
 })
 
 it('disables webpack by option', async () => {
   let { out, code } = await run([], { cwd: fixture('bundled') })
-  expect(out).toContain('Package size: 37 B\n')
-  expect(code).toEqual(0)
-})
-
-it('disables gzip by argument', async () => {
-  let { out, code } = await run(['--no-gzip', 'test/fixtures/bad/index.js'])
-  expect(out).toContain('Package size: 98.22 KB\n')
-  expect(out).toContain('Loading time: 2 s\n')
+  expect(out).toContain('Package size: 37 B  minified and gzipped\n')
   expect(code).toEqual(0)
 })
 
 it('disables gzip by option', async () => {
   let { out, code } = await run([], { cwd: fixture('gzip') })
-  expect(out).toContain('Package size: 14 B\n')
+  expect(out).toContain(
+    'Package size: 14 B  with all dependencies and minified\n'
+  )
+  expect(code).toEqual(0)
+})
+
+it('disables webpack and gzip by argument', async () => {
+  let { out, code } = await run([
+    '--no-webpack', '--no-gzip', 'test/fixtures/bad/index.js'
+  ])
+  expect(out).toContain('Package size: 55 B  minified\n')
   expect(code).toEqual(0)
 })
 
@@ -356,7 +324,9 @@ it('throws on --why with disabled webpack', async () => {
 
 it('uses custom webpack', async () => {
   let { out, code } = await run([], { cwd: fixture('webpack-config') })
-  expect(out).toContain('Package size: 2.84 KB')
+  expect(out).toContain(
+    'Package size: 2.84 KB with given webpack configuration'
+  )
   expect(code).toEqual(0)
 })
 
@@ -365,7 +335,9 @@ it('uses custom webpack when specified via --config', async () => {
     '--config', fixture('webpack-config/webpack.config.js'),
     fixture('webpack-config/index.js')
   ])
-  expect(out).toContain('Package size: 3.01 KB')
+  expect(out).toContain(
+    'Package size: 3.01 KB with given webpack configuration'
+  )
   expect(code).toEqual(0)
 })
 
@@ -373,18 +345,20 @@ it('uses entry to support webpack multiple entry points', async () => {
   let { out, code } = await run([], {
     cwd: fixture('webpack-multipe-entry-points')
   })
-  expect(out).toContain('Package size: 12.65')
+  expect(out).toContain(
+    'Package size: 12.65 KB with given webpack configuration'
+  )
   expect(code).toEqual(0)
 })
 
 it('uses main from package.json', async () => {
   let { out, code } = await run([], { cwd: fixture('main') })
-  expect(out).toContain('Package size: 10 B\n')
+  expect(out).toContain('Package size: 10 B')
   expect(code).toEqual(0)
 })
 
 it('uses index.js by default', async () => {
   let { out, code } = await run([], { cwd: fixture('defaults') })
-  expect(out).toContain('Package size: 10 B\n')
+  expect(out).toContain('Package size: 10 B')
   expect(code).toEqual(0)
 })

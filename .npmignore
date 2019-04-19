@@ -11,3 +11,4 @@ appveyor.yml
 report.html
 
 img/
+dist/

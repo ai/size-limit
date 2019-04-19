@@ -59,5 +59,8 @@ async function getThrottling () {
 }
 
 module.exports = async function getRunningTime (file) {
+  if (process.env.FAKE_SIZE_LIMIT_RUNNING) {
+    return parseFloat(process.env.FAKE_SIZE_LIMIT_RUNNING)
+  }
   return getTime(file, await getThrottling())
 }
