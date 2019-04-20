@@ -153,7 +153,7 @@ Size Limits supports 3 ways to define config.
      "size-limit": [
        {
          "path": "index.js",
-         "limit": "9 KB"
+         "limit": "500 ms"
        }
      ]
    ```
@@ -164,7 +164,7 @@ Size Limits supports 3 ways to define config.
    [
      {
        "path": "index.js",
-       "limit": "9 KB"
+       "limit": "500 ms"
      }
    ]
    ```
@@ -175,7 +175,7 @@ Size Limits supports 3 ways to define config.
    module.exports = [
      {
        path: "index.js",
-       limit: "9 KB"
+       limit: "500 ms"
      }
    ]
    ```
@@ -189,7 +189,8 @@ Each section in config could have options:
   It could be a string or an array of strings.
   By default the total size of all entry points will be checked.
 * **limit**: size limit for files from `path` option. It should be a string
-  with a number and unit (`100 B`, `10 KB`, etc).
+  with a number and unit. You can use bytes (`100 B`, `10 KB`) or total time
+  (`500 ms`, `1 s`) as limit.
 * **name**: the name of this section. It will be useful only
   if you have multiple sections.
 * **webpack**: with `false` will disable webpack.
@@ -210,7 +211,7 @@ In this case you can disable internal webpack:
 ```diff
  "size-limit": [
     {
-      "limit": "300 KB",
+      "limit": "300 ms",
 +     "webpack": false,
       "path": "public/app-*.js"
     }

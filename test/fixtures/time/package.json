@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "500 ms"
+    }
+  ]
+}

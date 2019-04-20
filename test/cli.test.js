@@ -249,6 +249,34 @@ it('checks limits', async () => {
   expect(code).toEqual(3)
 })
 
+it('checks time limits', async () => {
+  let { out, code } = await run([], { cwd: fixture('time') })
+  expect(out).toEqual(
+    '\n' +
+    '  Total time limit has exceeded\n' +
+    '  Time limit:   500 ms\n' +
+    '  Package size: 10 B   with all dependencies, minified and gzipped\n' +
+    '  Loading time: 10 ms  on slow 3G\n' +
+    '  Running time: 1 s    on Snapdragon 410\n' +
+    '  Total time:   1.1 s\n' +
+    '\n'
+  )
+  expect(code).toEqual(3)
+})
+
+it('takes time limit from argument', async () => {
+  let file = 'test/fixtures/unlimit/empty.js'
+  let { out, code } = await run(['--limit', '1 s', file])
+  expect(out).toContain('Time limit:   1 s')
+  expect(code).toEqual(0)
+})
+
+it('allows to avoid space in time', async () => {
+  let { out, code } = await run(['--limit', '1s'], { cwd: fixture('unlimit') })
+  expect(out).toContain('Time limit:   1 s')
+  expect(code).toEqual(0)
+})
+
 it('uses names', async () => {
   let { out, code } = await run([], { cwd: fixture('named') })
   expect(out).toContain('  First\n  Size limit:   1 KB')

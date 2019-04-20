@@ -23,21 +23,21 @@ const PACKAGE_EXAMPLE = '\n' +
                         '  "size-limit": [\n' +
                         '    {\n' +
                         '      "path": "index.js",\n' +
-                        '      "limit": "9 KB"\n' +
+                        '      "limit": "500 ms"\n' +
                         '    }\n' +
                         '  ]'
 const FILE_EXAMPLE = '\n' +
                      '  [\n' +
                      '    {\n' +
                      '      path: "index.js",\n' +
-                     '      limit: "9 KB"\n' +
+                     '      limit: "500 ms"\n' +
                      '    }\n' +
                      '  ]'
 
 let argv = yargs
   .usage('$0')
   .option('limit', {
-    describe: 'Size limit for passed files',
+    describe: 'Size or time limit for passed files',
     type: 'string'
   })
   .option('why', {
@@ -154,16 +154,23 @@ function formatTime (seconds) {
 
 function renderSize (item, i, array) {
   let rows = []
-  let passed = item.limit && item.size <= item.limit
-  let failed = item.limit && item.limit < item.size
   let unlimited = !item.limit
+
+  let time = item.loading
+  if (item.running) time += item.running
+
+  let passed = true
+  if (!unlimited) {
+    if (item.limit[0] === 'size') {
+      passed = item.limit[1] >= item.size
+    } else if (item.limit[0] === 'time') {
+      passed = item.limit[1] >= time
+    }
+  }
 
   if (array.length > 1 && item.name) {
     rows.push([chalk.bold(item.name)])
   }
-
-  let limitString = formatBytes(item.limit)
-  let sizeString = formatBytes(item.size)
 
   let sizeNote
   if (item.config) {
@@ -178,21 +185,32 @@ function renderSize (item, i, array) {
     sizeNote = 'minified'
   }
 
-  if (passed) {
-    rows.push(
-      ['Size limit:', limitString]
-    )
-  } else if (failed) {
-    if (limitString === sizeString) {
-      limitString = item.limit + ' B'
-      sizeString = item.size + ' B'
+  let limitString
+  let sizeString = formatBytes(item.size)
+
+  if (!unlimited) limitString = formatBytes(item.limit[1])
+
+  if (!passed && !unlimited) {
+    if (item.limit[0] === 'size') {
+      if (limitString === sizeString) {
+        limitString = item.limit[1] + ' B'
+        sizeString = item.size + ' B'
+      }
+      let diff = formatBytes(item.size - item.limit[1])
+      rows.push([chalk.red('Package size limit has exceeded by ' + diff)])
+    } else {
+      rows.push([chalk.red('Total time limit has exceeded')])
     }
-    let diff = formatBytes(item.size - item.limit)
-    rows.push(
-      [chalk.red('Package size limit has exceeded by ' + diff)],
-      ['Size limit:', limitString]
-    )
   }
+
+  if (!unlimited) {
+    if (item.limit[0] === 'size') {
+      rows.push(['Size limit:', limitString])
+    } else if (item.limit[0] === 'time') {
+      rows.push(['Time limit:', formatTime(item.limit[1])])
+    }
+  }
+
   rows.push(
     ['Package size:', sizeString, sizeNote],
     ['Loading time:', formatTime(item.loading), 'on slow 3G']
@@ -218,10 +236,10 @@ function renderSize (item, i, array) {
       second = chalk.bold(second)
       if (unlimited || row[0] === 'Size limit:') {
         str += second
-      } else if (failed) {
-        str += chalk.red(second)
-      } else {
+      } else if (passed) {
         str += chalk.green(second)
+      } else {
+        str += chalk.red(second)
       }
       if (row.length === 3) {
         str += ' ' + chalk.gray(row[2])
@@ -232,7 +250,7 @@ function renderSize (item, i, array) {
 
   return {
     output: strings.map(str => `  ${ str }\n`).join(''),
-    failed
+    failed: !passed
   }
 }
 
@@ -335,7 +353,7 @@ async function main () {
         webpack: entry.webpack !== false && argv.webpack !== false,
         config: entry.config || argv.config,
         ignore: peer.concat(entry.ignore || []),
-        limit: bytes.parse(argv.limit || entry.limit),
+        limit: argv.limit || entry.limit,
         gzip: entry.gzip !== false,
         name: entry.name || files.join(', '),
         full: files.map(i => {
@@ -375,7 +393,7 @@ async function main () {
             running: argv.runningTime !== false,
             webpack: argv.webpack !== false,
             config: argv.config,
-            limit: bytes.parse(argv.limit),
+            limit: argv.limit,
             gzip: argv.gzip !== false,
             full
           }
@@ -390,6 +408,14 @@ async function main () {
         '`--why` does not work with `"webpack": false`. ' +
         'Add Webpack Bundle Analyzer to your Webpack config.'
       )
+    }
+
+    if (/ ?ms/i.test(file.limit)) {
+      file.limit = ['time', parseFloat(file.limit) / 1000]
+    } else if (/ ?s/i.test(file.limit)) {
+      file.limit = ['time', parseFloat(file.limit)]
+    } else if (file.limit) {
+      file.limit = ['size', bytes.parse(file.limit)]
     }
 
     let opts = {
