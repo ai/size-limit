@@ -53,11 +53,9 @@ beforeAll(() => {
 })
 
 afterAll(async () => {
-  await Promise.all([
-    del(join(__dirname, '../dist')),
-    del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist')),
-    del(join(__dirname, 'fixtures/webpack-config/dist'))
-  ])
+  await del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist'))
+  await del(join(__dirname, 'fixtures/webpack-config/dist'))
+  await del(join(__dirname, '../dist'))
 })
 
 it('returns help', async () => {
