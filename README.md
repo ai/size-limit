@@ -59,15 +59,15 @@ and show real cost of all your internal dependencies.
 
 1. Applications bundles JS files into the single file. Otherwise, many small
    JS libraries have many small separated files. For this libraries Size Limit
-   creates an empty webpack project Then, it adds your library as a dependency
-   to the project and calculates the real cost of your libraries, including all
-   dependencies and webpack’s polyfills. Size Limit doesn’t run webpack
-   for application, which already have JS bundle.
+   **creates an empty webpack** project Then, it adds your library
+   as a dependency to the project and calculates the real cost
+   of your libraries, including all dependencies and webpack’s polyfills.
+   Size Limit doesn’t run webpack for application, which already have JS bundle.
 2. Size Limit compare current machine performance with low-price Android devices
-   to calculate CPU throttling rate.
-3. To be really specific, Size Limit runs headless Chrome with CPU throttling
-   rate from step 2. Then it loads your JS code there and track the time using
-   by Chrome to compile and execute JS.
+   to calculate **CPU throttling rate**.
+3. To be really specific, Size Limit runs **headless Chrome**
+   with CPU throttling rate. Then it loads your JS code there and track the time
+   using by Chrome to compile and execute JS.
 
 
 ## Usage
