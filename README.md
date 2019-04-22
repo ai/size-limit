@@ -62,7 +62,7 @@ and show real cost of all your internal dependencies.
    **creates an empty webpack** project Then, it adds your library
    as a dependency to the project and calculates the real cost
    of your libraries, including all dependencies and webpack’s polyfills.
-   Size Limit doesn’t run webpack for application, which already have JS bundle.
+   Size Limit doesn’t run webpack for application, which already have JS bundle.
 2. Size Limit compare current machine performance with low-price Android devices
    to calculate **CPU throttling rate**.
 3. To be really specific, Size Limit runs **headless Chrome**
@@ -262,8 +262,7 @@ Each section in config could have options:
   It could be a string or an array of strings.
   By default the total size of all entry points will be checked.
 * **limit**: size or time limit for files from `path` option. It should be
-  a string with a number and unit. You can use bytes (`100 B`, `10 KB`)
-  or total time (`500 ms`, `1 s`) as limit.
+  a string with a number and unit. Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
 * **name**: the name of this section. It will be useful only
   if you have multiple sections.
 * **webpack**: with `false` will disable webpack.
