@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1
+* Calculate time to download and execute JS.
+* Improve CLI UI.
+
 ## 1.0.1
 * Fix Markdown files support (by Scaria Rex Arun and Kiryl Misachenka).
 
