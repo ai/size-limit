@@ -204,7 +204,7 @@ async function getSize (files, opts) {
     let sizes = await Promise.all(files.map(async file => {
       let bytes = await readFile(file, 'utf8')
       let result = { parsed: bytes.length }
-      if (opts.running !== false) result.running = getRunningTime(file)
+      if (opts.running !== false) result.running = await getRunningTime(file)
       if (opts.gzip === false) {
         result.loading = getLoadingTime(result.parsed)
       } else {

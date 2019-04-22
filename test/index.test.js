@@ -3,7 +3,7 @@ let { join } = require('path')
 let getSize = require('../')
 
 jest.mock('../running', () => {
-  return () => 1
+  return () => Promise.resolve(1)
 })
 
 function fixture (name) {
