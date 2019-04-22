@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.1
+* Allow to use Size Limit on CI with Node.js <8 tasks.
+
 ## 1.1
 * Calculate time to download and execute JS.
 * Improve CLI UI.
