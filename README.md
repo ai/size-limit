@@ -70,84 +70,147 @@ and show real cost of all your internal dependencies.
    using by Chrome to compile and execute JS.
 
 
-## Usage
+## Usage for Applications and Big Libraries
 
-First, install `size-limit`:
+This guide if for 2 use cases:
 
-```sh
-$ npm install --save-dev size-limit
-```
+* Application with bundler (like webpack or Parcel). Any React or Vue.js
+  application is this use case.
+* JS libraries, which use webpack or Rollup to build
+  `dist/umd/lib.produciton.js`-kind file to put it to npm package.
+  [React] is a good example.
 
-or install with yarn:
+1. First, install `size-limit`:
 
-```sh
-$ yarn add --dev size-limit
-```
+    ```sh
+    $ npm install --save-dev size-limit
+    ```
 
-Add `size-limit` section to `package.json` and `size` script:
+2. Add `size-limit` section to `package.json` and `size` script:
 
-```diff
-+ "size-limit": [
-+   {
-+     "path": "index.js"
-+   }
-+ ],
-  "scripts": {
-+   "size": "size-limit",
-    "test": "jest && eslint ."
-  }
-```
+    ```diff
+    + "size-limit": [
+    +   {
+    +     "webpack": false,
+    +     "path": "dist/app-*.js"
+    +   }
+    + ],
+      "scripts": {
+        "build": "webpack ./webpack.config.js",
+    +   "size": "npm run build && size-limit",
+        "test": "jest && eslint ."
+      }
+    ```
 
-The `path` option:
+3. Here’s how you can get the size for your current project:
 
-* For an open source library, specify compiled sources, which will be published
-  to npm (usually the same value as the `main` field in the `package.json`);
-* For an application, specify a bundle file and use `webpack: false` (see the
-  [Applications](#applications) section).
+    ```sh
+    $ npm run size
 
-Here’s how you can get the size for your current project:
+      Package size: 30.08 KB with all dependencies, minified and gzipped
+      Loading time: 602 ms   on slow 3G
+      Running time: 214 ms   on Snapdragon 410
+      Total time:   815 ms
+    ```
+4. Now, let’s set the limit. Add 25% for current total time and use that as
+   a limit in your `package.json`:
 
-```sh
-$ npm run size
+    ```diff
+     "size-limit": [
+        {
+      +   "limit": "1 s",
+          "webpack": false,
+          "path": "dist/app-*.js"
+        }
+     ],
+    ```
 
-  Package size: 8.46 KB
-  With all dependencies, minified and gzipped
+5. Add the `size` script to your test suite:
 
-```
+    ```diff
+      "scripts": {
+        "build": "webpack ./webpack.config.js",
+        "size": "npm run build && size-limit",
+    -   "test": "jest && eslint ."
+    +   "test": "jest && eslint . && npm run size"
+      }
+    ```
 
-If your project size starts to look bloated,
-run [Webpack Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
-for analysis:
+6. If you don’t have a continuous integration service running, don’t forget
+   to add one — start with [Travis CI].
 
-```sh
-$ npm run size -- --why
-```
+## Usage for Small Libraries
 
-Now, let’s set the limit. Determine the current size of your library,
-add just a little bit (a kilobyte, maybe) and use that as a limit in
-your `package.json`:
+This guide is for small JS libraries with many small separated files
+in their npm package. [Nano ID] or [Storeon] could be a good example.
 
-```diff
- "size-limit": [
-    {
-+     "limit": "9 KB",
-      "path": "index.js"
-    }
- ],
-```
+1. First, install `size-limit`:
 
-Add the `size` script to your test suite:
+    ```sh
+    $ npm install --save-dev size-limit
+    ```
 
-```diff
-  "scripts": {
-    "size": "size-limit",
--   "test": "jest && eslint ."
-+   "test": "jest && eslint . && npm run size"
-  }
-```
+2. Add `size-limit` section to `package.json` and `size` script:
 
-If you don’t have a continuous integration service running, don’t forget
-to add one — start with [Travis CI](https://github.com/dwyl/learn-travis).
+    ```diff
+    + "size-limit": [
+    +   {
+    +     "path": "index.js"
+    +   }
+    + ],
+      "scripts": {
+    +   "size": "size-limit",
+        "test": "jest && eslint ."
+      }
+    ```
+
+3. Here’s how you can get the size for your current project:
+
+    ```sh
+    $ npm run size
+
+      Package size: 177 B with all dependencies, minified and gzipped
+      Loading time: 10 ms on slow 3G
+      Running time: 49 ms on Snapdragon 410
+      Total time:   59 ms
+    ```
+
+4. If your project size starts to look bloated, run `--why` for analysis:
+
+    ```sh
+    $ npm run size -- --why
+    ```
+
+5. Now, let’s set the limit. Determine the current size of your library,
+   add just a little bit (a kilobyte, maybe) and use that as a limit in
+   your `package.json`:
+
+    ```diff
+     "size-limit": [
+        {
+    +     "limit": "9 KB",
+          "path": "index.js"
+        }
+     ],
+    ```
+
+6. Add the `size` script to your test suite:
+
+    ```diff
+      "scripts": {
+        "size": "size-limit",
+    -   "test": "jest && eslint ."
+    +   "test": "jest && eslint . && npm run size"
+      }
+    ```
+
+7. If you don’t have a continuous integration service running, don’t forget
+   to add one — start with [Travis CI].
+
+[Travis CI]: https://github.com/dwyl/learn-travis
+[Storeon]: https://github.com/ai/storeon/
+[Nano ID]: https://github.com/ai/nanoid/
+[React]: https://github.com/facebook/react/
 
 
 ## Config
@@ -206,32 +269,13 @@ Each section in config could have options:
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
 
-
-## Applications
-
-Webpack inside Size Limit is very useful for small open source library.
-But if you want to use Size Limit for application, not open source library,
-you could already have webpack to make bundle.
-
-In this case you can disable internal webpack:
-
-```diff
- "size-limit": [
-    {
-      "limit": "300 ms",
-+     "webpack": false,
-      "path": "public/app-*.js"
-    }
- ],
-```
-
 If you use Size Limit to track size of CSS files only,
 you should set `webpack: false`. Otherwise you will get wrong numbers,
 because webpack inserts `style-loader` runtime into the bundle,
 and this loader adds ≈2 KB to the calculated size.
 
 
-## JavaScript API
+## API
 
 ```js
 const getSize = require('size-limit')

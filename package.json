@@ -151,7 +151,11 @@
       "Arun",
       "Kiryl",
       "Misachenka",
-      "linter"
+      "linter",
+      "bundler",
+      "Vue",
+      "Rollup",
+      "Storeon"
     ]
   }
 }
