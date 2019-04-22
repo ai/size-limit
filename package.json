@@ -1,7 +1,7 @@
 {
   "name": "size-limit",
   "version": "1.0.1",
-  "description": "Prevent JS libraries bloat. If you accidentally add a massive dependency, Size Limit will throw an error.",
+  "description": "Calculate the real cost to run your JS app or lib to keep good performance. Show error in pull request if the cost exceeds the limit.",
   "keywords": [
     "size",
     "limit",
