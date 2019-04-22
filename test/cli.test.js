@@ -242,7 +242,9 @@ it('checks limits', async () => {
     '  Loading time: 602 ms   on slow 3G\n' +
     '  Running time: 1 s      on Snapdragon 410\n' +
     '  Total time:   1.7 s\n' +
-    '\n'
+    '\n' +
+    '  Try to reduce size or increase limit in "size-limit" section ' +
+      'of package.json\n'
   )
   expect(code).toEqual(3)
 })
@@ -257,7 +259,8 @@ it('checks time limits', async () => {
     '  Loading time: 10 ms  on slow 3G\n' +
     '  Running time: 1 s    on Snapdragon 410\n' +
     '  Total time:   1.1 s\n' +
-    '\n'
+    '\n' +
+    '  Try to reduce size or increase limit in .size-limit.json\n'
   )
   expect(code).toEqual(3)
 })

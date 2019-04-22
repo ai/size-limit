@@ -307,9 +307,9 @@ async function getConfig () {
 }
 
 async function main () {
-  let config
+  let config, configFile, package
   if (argv['_'].length === 0) {
-    let [configFile, package] = await Promise.all([
+    [configFile, package] = await Promise.all([
       getConfig(),
       readPkg()
     ])
@@ -440,7 +440,21 @@ async function main () {
 
   let files = config.files
   let results = files.map(renderSize)
+  let failed = results.some(i => i.failed)
   let output = results.map(i => i.output).join('\n')
+
+  if (failed) {
+    let fix = 'Try to reduce size or increase limit'
+    if (configFile) {
+      fix += ' in '
+      let configPath = path.relative(process.cwd(), configFile.filepath)
+      if (configPath.endsWith('package.json')) {
+        fix += chalk.bold('"size-limit"') + ' section of '
+      }
+      fix += chalk.bold(configPath)
+    }
+    output += '\n  ' + chalk.yellow(fix)
+  }
 
   process.stdout.write('\n' + output + '\n')
 
@@ -454,7 +468,7 @@ async function main () {
     let full = files.reduce((all, i) => all.concat(i.full), [])
     await getSize(full, opts)
   } else if (!argv.why) {
-    if (results.some(i => i.failed)) {
+    if (failed) {
       process.exit(3)
     } else {
       process.exit(0)
