@@ -6,7 +6,7 @@ function fixture (name) {
   return join(__dirname, 'fixtures', `${ name }.js`)
 }
 
-jest.setTimeout(10000)
+jest.setTimeout(20000)
 
 it('calculates running time', async () => {
   let size = await getSize(fixture('bad/index'))
