@@ -13,7 +13,7 @@ add a massive dependency, Size Limit will throw an error.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit example"
-       width="654" height="450">
+       width="738" height="434">
 </p>
 
 Size Limit could tell you not only library size. With `--why` argument it can
