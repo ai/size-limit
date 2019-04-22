@@ -4,8 +4,8 @@
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
 Size Limit is a linter for your JS application or library performance.
-It calculates the real cost of your JS for end-users and throw an error
-if cost exceeds the limit.
+It calculates the real cost of your JS for end-users and throws an error
+if the cost exceeds the limit.
 
 * Size Limit calculate the **time**, which browser need to
   **download** and **execute** your JS. It’s much more accurate
@@ -21,7 +21,7 @@ if cost exceeds the limit.
 </p>
 
 With `--why` Size Limit can tell you *why* your library has this size
-and show real cost of all your internal dependencies.
+and show the real cost of all your internal dependencies.
 
 <p align="center">
   <img src="./img/why.png" alt="Bundle Analyzer example"
@@ -62,17 +62,17 @@ and show real cost of all your internal dependencies.
    **creates an empty webpack** project Then, it adds your library
    as a dependency to the project and calculates the real cost
    of your libraries, including all dependencies and webpack’s polyfills.
-   Size Limit doesn’t run webpack for application, which already have JS bundle.
-2. Size Limit compare current machine performance with low-price Android devices
+   Size Limit doesn’t run webpack for application, which already has JS bundle.
+2. Size Limit compare current machine performance with low-priced Android devices
    to calculate **CPU throttling rate**.
-3. To be really specific, Size Limit runs **headless Chrome**
-   with CPU throttling rate. Then it loads your JS code there and track the time
+3. To be specific, Size Limit runs **headless Chrome**
+   with CPU throttling rate. Then it loads your JS code there and tracks the time
    using by Chrome to compile and execute JS.
 
 
 ## Usage for Applications and Big Libraries
 
-This guide if for 2 use cases:
+This guide is for two use cases:
 
 * Application with bundler (like webpack or Parcel). Any React or Vue.js
   application is this use case.
@@ -80,8 +80,8 @@ This guide if for 2 use cases:
   `dist/umd/lib.produciton.js`-kind file to put it to npm package.
   [React] is a good example.
 
-If you have small JS library with many separated files in npm package,
-see next section.
+If you have a small JS library with many separated files in npm package,
+see the next section.
 
 1. First, install `size-limit`:
 
@@ -218,7 +218,7 @@ in their npm package. [Nano ID] or [Storeon] could be a good example.
 
 ## Config
 
-Size Limits supports 3 ways to define config.
+Size Limits supports three ways to define config.
 
 1. `size-limit` section to `package.json`:
 
@@ -253,14 +253,14 @@ Size Limits supports 3 ways to define config.
    ]
    ```
 
-Each section in config could have options:
+Each section in the config could have options:
 
 * **path**: relative paths to files. The only mandatory option.
   It could be a path `"index.js"`, a pattern `"dist/app-*.js"`
   or an array `["index.js", "dist/app-*.js"]`.
 * **entry**: when using a custom webpack config, a webpack entry could be given.
   It could be a string or an array of strings.
-  By default the total size of all entry points will be checked.
+  By default, the total size of all entry points will be checked.
 * **limit**: size or time limit for files from `path` option. It should be
   a string with a number and unit. Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
 * **name**: the name of this section. It will be useful only
@@ -271,10 +271,9 @@ Each section in config could have options:
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
 
-If you use Size Limit to track size of CSS files only,
-you should set `webpack: false`. Otherwise you will get wrong numbers,
-because webpack inserts `style-loader` runtime into the bundle,
-and this loader adds ≈2 KB to the calculated size.
+If you use Size Limit to track the size of CSS files only,
+you should set `webpack: false`. Otherwise, you will get wrong numbers,
+because webpack inserts `style-loader` runtime into the bundle and this loader adds ≈2 KB to the calculated size.
 
 
 ## API
