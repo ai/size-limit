@@ -203,8 +203,8 @@ Each section in config could have options:
 ## Applications
 
 Webpack inside Size Limit is very useful for small open source library.
-But if you want to use Size Limit for application, not open source library, you
-could already have webpack to make bundle.
+But if you want to use Size Limit for application, not open source library,
+you could already have webpack to make bundle.
 
 In this case you can disable internal webpack:
 
@@ -218,9 +218,10 @@ In this case you can disable internal webpack:
  ],
 ```
 
-If you use Size Limit to track size of CSS files only, you should set `webpack: false`.
-Otherwise you will get wrong numbers, because webpack inserts `style-loader` runtime
-into the bundle, and this loader adds ≈2 KB to the calculated size.
+If you use Size Limit to track size of CSS files only,
+you should set `webpack: false`. Otherwise you will get wrong numbers,
+because webpack inserts `style-loader` runtime into the bundle,
+and this loader adds ≈2 KB to the calculated size.
 
 
 ## JavaScript API
@@ -232,24 +233,9 @@ const index = path.join(__dirname, 'index.js')
 const extra = path.join(__dirname, 'extra.js')
 
 getSize([index, extra]).then(size => {
+  // size => { gzip, parsed, running, loading }
   if (size.gzip > 1 * 1024 * 1024) {
     console.error('Project is now larger than 1MB!')
   }
 })
 ```
-
-
-## Comparison with `bundlesize`
-
-Main difference between Size Limit and `bundlesize`, that Size Limit uses
-webpack to build bundle. It has more accurate result and can show you
-_what_ and _why_ causes the bloat.
-
-1. Size Limit has the `--why` mode to run Webpack Bundle Analyzer — this way,
-   you can see what went wrong in a nice graphical representation.
-2. Instead of bundlesize, Size Limit prevents the most popular source
-   of libraries bloat — unexpected huge dependency.
-3. Also Size Limit prevents increasing library size because of wrong `process`
-   or `path` usage, when webpack will add big unnecessary polyfill.
-4. Size Limit runs only on first CI job, so it is more respectful
-   to CI resources.
