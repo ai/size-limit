@@ -271,9 +271,9 @@ Each section in the config could have options:
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
 
-If you use Size Limit to track the size of CSS files only,
-you should set `webpack: false`. Otherwise, you will get wrong numbers,
-because webpack inserts `style-loader` runtime into the bundle and this loader adds ≈2 KB to the calculated size.
+If you use Size Limit to track the size of CSS files only set `webpack: false`.
+Otherwise, you will get wrong numbers, because webpack inserts `style-loader`
+runtime (≈2 KB) into the bundle.
 
 
 ## API
