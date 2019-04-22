@@ -3,22 +3,25 @@
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
-Size Limit is a tool to prevent JavaScript libraries bloat.
-With it, you know exactly for how many kilobytes your JS library
-increases the user bundle.
+Size Limit is a linter for your JS application or library performance.
+It calculates the real cost of your JS for end-users and throw an error
+if cost exceeds the limit.
 
-You can add Size Limit to your continuous integration service
-(such as Travis CI) and set the limit. If you accidentally
-add a massive dependency, Size Limit will throw an error.
+* Size Limit calculate the **time**, which browser need to
+  **download** and **execute** your JS. It is much more accurate and understandable
+  metric compare to size in bytes.
+* Size Limit counts the cost including **all dependencies and polyfills**
+  which is used in your JS.
+* You can add Size Limit to **Travis CI**, **Circle CI**, etc and set the limit.
+  If you accidentally add a massive dependency, Size Limit will throw an error.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit example"
        width="738" height="434">
 </p>
 
-Size Limit could tell you not only library size. With `--why` argument it can
-tell you *why* your library has this size and show real cost of all your
-internal dependencies.
+With `--why` argument Size Limit can tell you *why* your library has this size
+and show real cost of all your internal dependencies.
 
 <p align="center">
   <img src="./img/why.png" alt="Bundle Analyzer example"
