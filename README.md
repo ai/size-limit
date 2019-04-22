@@ -116,13 +116,13 @@ This guide if for 2 use cases:
    a limit in your `package.json`:
 
     ```diff
-     "size-limit": [
+      "size-limit": [
         {
-      +   "limit": "1 s",
+    +     "limit": "1 s",
           "webpack": false,
           "path": "dist/app-*.js"
         }
-     ],
+      ],
     ```
 
 5. Add the `size` script to your test suite:
