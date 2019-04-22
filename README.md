@@ -60,13 +60,13 @@ and show real cost of all your internal dependencies.
 1. Applications bundles JS files into the single file. Otherwise, many small
    JS libraries have many small separated files. For this libraries Size Limit
    **creates an empty webpack** project Then, it adds your library
-   as a dependency to the project and calculates the real cost
+   as a dependency to the project and calculates the real cost
    of your libraries, including all dependencies and webpack’s polyfills.
    Size Limit doesn’t run webpack for application, which already have JS bundle.
 2. Size Limit compare current machine performance with low-price Android devices
    to calculate **CPU throttling rate**.
 3. To be really specific, Size Limit runs **headless Chrome**
-   with CPU throttling rate. Then it loads your JS code there and track the time
+   with CPU throttling rate. Then it loads your JS code there and track the time
    using by Chrome to compile and execute JS.
 
 
@@ -79,6 +79,9 @@ This guide if for 2 use cases:
 * JS libraries, which use webpack or Rollup to build
   `dist/umd/lib.produciton.js`-kind file to put it to npm package.
   [React] is a good example.
+
+If you have small JS library with many separated files in npm package,
+see next section.
 
 1. First, install `size-limit`:
 
@@ -142,7 +145,7 @@ This guide if for 2 use cases:
 ## Usage for Small Libraries
 
 This guide is for small JS libraries with many small separated files
-in their npm package. [Nano ID] or [Storeon] could be a good example.
+in their npm package. [Nano ID] or [Storeon] could be a good example.
 
 1. First, install `size-limit`:
 
@@ -182,8 +185,8 @@ in their npm package. [Nano ID] or [Storeon] could be a good example.
     ```
 
 5. Now, let’s set the limit. Determine the current size of your library,
-   add just a little bit (a kilobyte, maybe) and use that as a limit in
-   your `package.json`:
+   add just a little bit (a kilobyte, maybe) and use that as a limit
+   in your `package.json`:
 
     ```diff
      "size-limit": [
@@ -209,7 +212,7 @@ in their npm package. [Nano ID] or [Storeon] could be a good example.
 
 [Travis CI]: https://github.com/dwyl/learn-travis
 [Storeon]: https://github.com/ai/storeon/
-[Nano ID]: https://github.com/ai/nanoid/
+[Nano ID]: https://github.com/ai/nanoid/
 [React]: https://github.com/facebook/react/
 
 
@@ -254,13 +257,13 @@ Each section in config could have options:
 
 * **path**: relative paths to files. The only mandatory option.
   It could be a path `"index.js"`, a pattern `"dist/app-*.js"`
-  or an array `["index.js", "dist/app-*.js"]`.
+  or an array `["index.js", "dist/app-*.js"]`.
 * **entry**: when using a custom webpack config, a webpack entry could be given.
   It could be a string or an array of strings.
   By default the total size of all entry points will be checked.
-* **limit**: size limit for files from `path` option. It should be a string
-  with a number and unit. You can use bytes (`100 B`, `10 KB`) or total time
-  (`500 ms`, `1 s`) as limit.
+* **limit**: size or time limit for files from `path` option. It should be
+  a string with a number and unit. You can use bytes (`100 B`, `10 KB`)
+  or total time (`500 ms`, `1 s`) as limit.
 * **name**: the name of this section. It will be useful only
   if you have multiple sections.
 * **webpack**: with `false` will disable webpack.
