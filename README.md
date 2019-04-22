@@ -8,8 +8,8 @@ It calculates the real cost of your JS for end-users and throw an error
 if cost exceeds the limit.
 
 * Size Limit calculate the **time**, which browser need to
-  **download** and **execute** your JS. It is much more accurate and understandable
-  metric compare to size in bytes.
+  **download** and **execute** your JS. It’s much more accurate
+  and understandable metric compare to size in bytes.
 * Size Limit counts the cost including **all dependencies and polyfills**
   which is used in your JS.
 * You can add Size Limit to **Travis CI**, **Circle CI**, etc and set the limit.
@@ -20,7 +20,7 @@ if cost exceeds the limit.
        width="738" height="434">
 </p>
 
-With `--why` argument Size Limit can tell you *why* your library has this size
+With `--why` Size Limit can tell you *why* your library has this size
 and show real cost of all your internal dependencies.
 
 <p align="center">
