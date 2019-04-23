@@ -13,7 +13,7 @@ if the cost exceeds the limit.
 * Size Limit counts the cost including **all dependencies and polyfills**
   which is used in your JS.
 * You can add Size Limit to **Travis CI**, **Circle CI**, etc and set the limit.
-  If you accidentally add a massive dependency, Size Limit will throw an error.
+  If pull added a massive dependency, CI will show an error.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit example"
