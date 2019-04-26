@@ -50,6 +50,11 @@ let argv = yargs
     describe: 'Custom webpack config',
     type: 'string'
   })
+  .option('json', {
+    alias: 'j',
+    describe: 'Output to JSON',
+    type: 'boolean'
+  })
   .alias('help', 'h')
   .alias('version', 'v')
   .epilog('Usage:\n' +
@@ -139,6 +144,10 @@ function formatTime (seconds) {
   } else {
     return Math.ceil(seconds * 1000) + ' ms'
   }
+}
+
+function formatTimeForJSON (seconds) {
+  return Math.ceil(seconds * 100) / 100
 }
 
 function renderSize (item, i, array) {
@@ -239,6 +248,42 @@ function renderSize (item, i, array) {
 
   return {
     output: strings.map(str => `  ${ str }\n`).join(''),
+    failed: !passed
+  }
+}
+
+function renderSizeJSON (item) {
+  let unlimited = !item.limit
+  let time = item.loading
+  if (item.running) {
+    time += item.running
+  }
+
+  let passed = true
+  if (!unlimited) {
+    if (item.limit[0] === 'size') {
+      passed = item.limit[1] >= item.size
+    } else if (item.limit[0] === 'time') {
+      passed = item.limit[1] >= time
+    }
+  }
+
+  let output = {
+    passed,
+    size: Math.ceil(item.size),
+    loading: formatTimeForJSON(item.loading)
+  }
+
+  if (item.name) {
+    output.name = item.name
+  }
+
+  if (argv.runningTime !== false) {
+    output.running = formatTimeForJSON(item.running)
+  }
+
+  return {
+    output,
     failed: !passed
   }
 }
@@ -428,21 +473,28 @@ async function main () {
   }))
 
   let files = config.files
-  let results = files.map(renderSize)
+  let results = files.map(argv.json ? renderSizeJSON : renderSize)
   let failed = results.some(i => i.failed)
-  let output = results.map(i => i.output).join('\n')
+  let preparedResults = results.map(i => i.output)
+  let output
 
-  if (failed) {
-    let fix = 'Try to reduce size or increase limit'
-    if (configFile) {
-      fix += ' in '
-      let configPath = path.relative(process.cwd(), configFile.filepath)
-      if (configPath.endsWith('package.json')) {
-        fix += chalk.bold('"size-limit"') + ' section of '
+  if (argv.json) {
+    output = JSON.stringify(preparedResults, null, 4)
+  } else {
+    output = preparedResults.join('\n')
+
+    if (failed) {
+      let fix = 'Try to reduce size or increase limit'
+      if (configFile) {
+        fix += ' in '
+        let configPath = path.relative(process.cwd(), configFile.filepath)
+        if (configPath.endsWith('package.json')) {
+          fix += chalk.bold('"size-limit"') + ' section of '
+        }
+        fix += chalk.bold(configPath)
       }
-      fix += chalk.bold(configPath)
+      output += '\n  ' + chalk.yellow(fix)
     }
-    output += '\n  ' + chalk.yellow(fix)
   }
 
   process.stdout.write('\n' + output + '\n')

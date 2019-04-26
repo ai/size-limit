@@ -402,3 +402,35 @@ it('uses index.js by default', async () => {
   expect(out).toContain('Package size: 10 B')
   expect(code).toEqual(0)
 })
+
+it('checks output at JSON', async () => {
+  let { out, code } = await run(['--json'], { cwd: fixture('json') })
+  let data = JSON.parse(out)[0]
+
+  expect(data.size).toEqual(10)
+  expect(code).toEqual(0)
+})
+
+it('checks output at JSON and disable running by arguments', async () => {
+  let { out, code } = await run([
+    '--json',
+    '--no-running-time',
+    'test/fixtures/json/index.js'
+  ])
+  let data = JSON.parse(out)[0]
+
+  expect(data).not.toHaveProperty('running')
+  expect(code).toEqual(0)
+})
+
+it('checks output at JSON and limit of size', async () => {
+  let { out, code } = await run([
+    '--json',
+    '--limit', '1 B',
+    'test/fixtures/json/index.js'
+  ])
+  let data = JSON.parse(out)[0]
+
+  expect(data.passed).toEqual(false)
+  expect(code).toEqual(3)
+})
