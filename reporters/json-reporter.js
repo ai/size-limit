@@ -8,12 +8,17 @@ module.exports = {
   },
 
   results (results) {
-    print(results.map(result => ({
-      name: result.file.name,
-      passed: !result.failed,
-      size: result.file.size,
-      loading: result.file.loading,
-      running: result.file.running
-    })))
+    print(results.map(result => {
+      let out = {
+        name: result.file.name,
+        passed: !result.failed,
+        size: result.file.size,
+        loading: result.file.loading
+      }
+      if (typeof result.file.running === 'number') {
+        out.running = result.file.running
+      }
+      return out
+    }))
   }
 }

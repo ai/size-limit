@@ -440,6 +440,14 @@ it('shows errors as JSON with --json argument', async () => {
   expect(code).toEqual(1)
 })
 
+it('does not print running in JSON on request', async () => {
+  let { out, code } = await run(['--json', '--no-running-time'], {
+    cwd: fixture('good')
+  })
+  expect(Object.keys(JSON.parse(out)[0])).not.toContain('running')
+  expect(code).toEqual(0)
+})
+
 it('shows "on first job" warn as text with --json argument', async () => {
   let { out, code } = await run(['--json'], {}, {
     TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2'
