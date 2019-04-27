@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2
+* Add `--json` argument (by Pavel Vostrikov).
+
 ## 1.1.2
 * Fix running time calculation on `webpack: false`.
 
