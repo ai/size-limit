@@ -6,6 +6,7 @@ let bytes = require('bytes')
 let chalk = require('chalk')
 let path = require('path')
 
+let { getReporter } = require('./reporters')
 let getSize = require('.')
 
 const PACKAGE_EXAMPLE = '\n' +
@@ -50,6 +51,10 @@ let argv = yargs
     describe: 'Custom webpack config',
     type: 'string'
   })
+  .option('json', {
+    describe: 'Show results in JSON format',
+    type: 'boolean'
+  })
   .alias('help', 'h')
   .alias('version', 'v')
   .epilog('Usage:\n' +
@@ -66,6 +71,8 @@ let argv = yargs
           FILE_EXAMPLE)
   .locale('en')
   .argv
+
+const reporter = getReporter({ argv })
 
 function ownError (msg) {
   let error = new Error(msg)
@@ -239,6 +246,7 @@ function renderSize (item, i, array) {
 
   return {
     output: strings.map(str => `  ${ str }\n`).join(''),
+    file: item,
     failed: !passed
   }
 }
@@ -430,7 +438,7 @@ async function main () {
   let files = config.files
   let results = files.map(renderSize)
   let failed = results.some(i => i.failed)
-  let output = results.map(i => i.output).join('\n')
+  let hint = ''
 
   if (failed) {
     let fix = 'Try to reduce size or increase limit'
@@ -442,10 +450,10 @@ async function main () {
       }
       fix += chalk.bold(configPath)
     }
-    output += '\n  ' + chalk.yellow(fix)
+    hint = chalk.yellow(fix)
   }
 
-  process.stdout.write('\n' + output + '\n')
+  reporter.logResults({ results, hint })
 
   if (argv.why && files.length > 1) {
     let ignore = files.reduce((all, i) => all.concat(i.ignore), [])
@@ -486,6 +494,8 @@ main().catch(e => {
     msg = e.stack
   }
 
-  process.stderr.write(`${ chalk.bgRed(' ERROR ') } ${ chalk.red(msg) }\n`)
+  reporter.error({
+    message: `${ chalk.bgRed(' ERROR ') } ${ chalk.red(msg) }\n`
+  })
   process.exit(1)
 })
