@@ -2,7 +2,7 @@ let { join } = require('path')
 
 let getSize = require('../')
 
-jest.mock('../running', () => {
+jest.mock('../get-running-time', () => {
   return () => Promise.resolve(1)
 })
 

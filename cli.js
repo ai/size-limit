@@ -11,4 +11,4 @@ if (ciJobNumber() !== 1) {
   process.exit(0)
 }
 
-require('./runner.js')
+require('./cli-body.js')

@@ -11,7 +11,7 @@ let os = require('os')
 
 let readFile = util.promisify(require('fs').readFile)
 
-let getRunningTime = require('./running')
+let getRunningTime = require('./get-running-time')
 
 const WEBPACK_EMPTY_PROJECT_PARSED = 962
 const WEBPACK_EMPTY_PROJECT_GZIP = 461
