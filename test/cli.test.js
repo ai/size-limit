@@ -402,3 +402,50 @@ it('uses index.js by default', async () => {
   expect(out).toContain('Package size: 10 B')
   expect(code).toEqual(0)
 })
+
+it('shows results as JSON with --json argument', async () => {
+  let { out, code } = await run(['--json'], { cwd: fixture('good') })
+  let results = [
+    {
+      loading: 0.01,
+      name: 'index.js',
+      passed: true,
+      running: 1,
+      size: 10
+    },
+    {
+      loading: 0.01,
+      name: 'index2.js',
+      passed: true,
+      running: 1,
+      size: 10
+    },
+    {
+      loading: 0.01,
+      name: 'index3.js',
+      passed: true,
+      running: 1,
+      size: 10
+    }
+  ]
+  JSON.parse(out).forEach((result, i) => {
+    expect(result).toMatchObject(results[i])
+  })
+  expect(code).toEqual(0)
+})
+
+it('shows errors as JSON with --json argument', async () => {
+  let { out, code } = await run(['--json'], { cwd: fixture('unknown') })
+  expect(JSON.parse(out).error).toContain('Size Limit can\'t resolve')
+  expect(code).toEqual(1)
+})
+
+it('shows "on first job" warn as text with --json argument', async () => {
+  let { out, code } = await run(['--json'], {}, {
+    TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2'
+  })
+  expect(out).toEqual(
+    '\n WARNING  Size Limits run only on first CI job, to save CI resources\n'
+  )
+  expect(code).toEqual(0)
+})
