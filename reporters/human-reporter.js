@@ -1,17 +1,17 @@
 let chalk = require('chalk')
 
-class HumanReporter {
+module.exports = {
   log (msg) {
     process.stdout.write(`\n${ msg }\n`)
-  }
+  },
 
   warn (msg) {
     this.log(`${ chalk.bgYellow(' WARNING ') } ${ chalk.yellow(msg) }`)
-  }
+  },
 
   error (msg) {
     process.stderr.write(`${ chalk.bgRed(' ERROR ') } ${ chalk.red(msg) }\n`)
-  }
+  },
 
   logResults (results, hint = '') {
     let output = results.map(i => i.output).join('\n')
@@ -21,5 +21,3 @@ class HumanReporter {
     this.log(output)
   }
 }
-
-module.exports = HumanReporter

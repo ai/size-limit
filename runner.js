@@ -72,7 +72,7 @@ let argv = yargs
   .locale('en')
   .argv
 
-const reporter = getReporter({ argv })
+const reporter = getReporter(argv)
 
 function ownError (msg) {
   let error = new Error(msg)

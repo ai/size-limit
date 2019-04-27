@@ -1,9 +1,6 @@
-const HumanReporter = require('./human-reporter')
-const JsonReporter = require('./json-reporter')
+let humanReporter = require('./human-reporter')
+let jsonReporter = require('./json-reporter')
 
-function getReporter ({ argv = {} } = {}) {
-  let Reporter = argv.json ? JsonReporter : HumanReporter
-  return new Reporter()
+module.exports = function getReporter (argv = { }) {
+  return argv.json ? jsonReporter : humanReporter
 }
-
-module.exports = getReporter
