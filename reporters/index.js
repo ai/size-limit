@@ -1,11 +1,9 @@
-const { StdMultilineReporter } = require('./std-multiline-reporter')
-const { StdJsonReporter } = require('./std-json-reporter')
+const HumanReporter = require('./human-reporter')
+const JsonReporter = require('./json-reporter')
 
 function getReporter ({ argv = {} } = {}) {
-  let Reporter = argv.json ? StdJsonReporter : StdMultilineReporter
+  let Reporter = argv.json ? JsonReporter : HumanReporter
   return new Reporter()
 }
 
-module.exports = {
-  getReporter
-}
+module.exports = getReporter

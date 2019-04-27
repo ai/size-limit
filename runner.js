@@ -6,7 +6,7 @@ let bytes = require('bytes')
 let chalk = require('chalk')
 let path = require('path')
 
-let { getReporter } = require('./reporters')
+let getReporter = require('./reporters')
 let getSize = require('.')
 
 const PACKAGE_EXAMPLE = '\n' +
@@ -453,7 +453,7 @@ async function main () {
     hint = chalk.yellow(fix)
   }
 
-  reporter.logResults({ results, hint })
+  reporter.logResults(results, hint)
 
   if (argv.why && files.length > 1) {
     let ignore = files.reduce((all, i) => all.concat(i.ignore), [])
@@ -494,8 +494,6 @@ main().catch(e => {
     msg = e.stack
   }
 
-  reporter.error({
-    message: `${ chalk.bgRed(' ERROR ') } ${ chalk.red(msg) }\n`
-  })
+  reporter.error(msg)
   process.exit(1)
 })
