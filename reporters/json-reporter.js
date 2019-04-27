@@ -1,22 +1,14 @@
+function print (data) {
+  process.stdout.write(`${ JSON.stringify(data, null, 2) }\n`)
+}
+
 module.exports = {
-  log (msg) {
-    process.stdout.write(`\n${ this.format(msg) }\n`)
-  },
-
-  warn (msg) {
-    process.stdout.write(`\n${ this.format({ warning: msg }) }\n`)
-  },
-
   error (msg) {
-    process.stderr.write(`\n${ this.format({ error: msg }) }\n`)
+    print({ error: msg })
   },
 
-  format (msg) {
-    return JSON.stringify(msg, null, 2)
-  },
-
-  logResults (results) {
-    this.log(results.map(result => ({
+  results (results) {
+    print(results.map(result => ({
       name: result.file.name,
       passed: !result.failed,
       size: result.file.size,

@@ -453,7 +453,7 @@ async function main () {
     hint = chalk.yellow(fix)
   }
 
-  reporter.logResults(results, hint)
+  reporter.results(results, hint)
 
   if (argv.why && files.length > 1) {
     let ignore = files.reduce((all, i) => all.concat(i.ignore), [])
