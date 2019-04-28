@@ -7,3 +7,5 @@ yarn-error.log
 
 report.html
 dist/
+
+output-test/

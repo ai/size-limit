@@ -59,7 +59,7 @@ afterAll(async () => {
   await del(join(__dirname, 'fixtures/webpack-config/dist'))
   await del(join(__dirname, '../dist'))
   await del(join(os.tmpdir(), 'size-limit-bundle'), { force: true })
-  await del(join(__dirname, 'build'))
+  await del(join(__dirname, 'output-test'))
 })
 
 it('returns help', async () => {
@@ -477,10 +477,10 @@ it('save output bundle to absolute path', async () => {
 
 it('save output bundle to relative path', async () => {
   let { code } = await run(
-    ['--save-bundle', '../../build'],
+    ['--save-bundle', '../../output-test'],
     { cwd: fixture('defaults') }
   )
 
-  expect(fs.existsSync(join(__dirname, 'build'))).toEqual(true)
+  expect(fs.existsSync(join(__dirname, 'output-test'))).toEqual(true)
   expect(code).toEqual(0)
 })
