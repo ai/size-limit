@@ -58,6 +58,7 @@ afterAll(async () => {
   await del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist'))
   await del(join(__dirname, 'fixtures/webpack-config/dist'))
   await del(join(__dirname, '../dist'))
+  await del(join(os.tmpdir(), 'size-limit-bundle'), { force: true })
   await del(join(__dirname, 'build'))
 })
 
@@ -462,14 +463,16 @@ it('shows "on first job" warn as text with --json argument', async () => {
 })
 
 it('save output bundle to absolute path', async () => {
-  let testDir = os.tmpdir()
+  let testDir = join(os.tmpdir(), 'size-limit-bundle')
   let { code } = await run(
     ['--save-bundle', testDir],
     { cwd: fixture('defaults') }
   )
 
-  expect(fs.existsSync(join(testDir, 'index.js'))).toEqual(true)
+  expect(fs.existsSync(testDir)).toEqual(true)
   expect(code).toEqual(0)
+
+  await del(join(os.tmpdir(), 'size-limit-bundle'), { force: true })
 })
 
 it('save output bundle to relative path', async () => {
@@ -478,6 +481,6 @@ it('save output bundle to relative path', async () => {
     { cwd: fixture('defaults') }
   )
 
-  expect(fs.existsSync(join(__dirname, 'build', 'index.js'))).toEqual(true)
+  expect(fs.existsSync(join(__dirname, 'build'))).toEqual(true)
   expect(code).toEqual(0)
 })
