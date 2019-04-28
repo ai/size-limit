@@ -1,6 +1,8 @@
 let { join } = require('path')
 let spawn = require('cross-spawn')
 let del = require('del')
+let fs = require('fs')
+let os = require('os')
 
 function fixture (file) {
   return join(__dirname, 'fixtures', file)
@@ -56,6 +58,7 @@ afterAll(async () => {
   await del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist'))
   await del(join(__dirname, 'fixtures/webpack-config/dist'))
   await del(join(__dirname, '../dist'))
+  await del(join(__dirname, 'build'))
 })
 
 it('returns help', async () => {
@@ -455,5 +458,26 @@ it('shows "on first job" warn as text with --json argument', async () => {
   expect(out).toEqual(
     '\n WARNING  Size Limits run only on first CI job, to save CI resources\n'
   )
+  expect(code).toEqual(0)
+})
+
+it('save output bundle to absolute path', async () => {
+  let testDir = os.tmpdir()
+  let { code } = await run(
+    ['--save-bundle', testDir],
+    { cwd: fixture('defaults') }
+  )
+
+  expect(fs.existsSync(join(testDir, 'index.js'))).toEqual(true)
+  expect(code).toEqual(0)
+})
+
+it('save output bundle to relative path', async () => {
+  let { code } = await run(
+    ['--save-bundle', '../../build'],
+    { cwd: fixture('defaults') }
+  )
+
+  expect(fs.existsSync(join(__dirname, 'build', 'index.js'))).toEqual(true)
   expect(code).toEqual(0)
 })
