@@ -29,7 +29,7 @@ function projectName (opts, files) {
   }
 }
 
-function getPathBundle (opts) {
+function getBundlePath (opts) {
   if (opts.output) {
     if (path.isAbsolute(opts.output)) {
       return opts.output
@@ -62,7 +62,7 @@ function getConfig (files, opts) {
     entry: files,
     output: {
       filename: projectName(opts, files),
-      path: getPathBundle(opts)
+      path: getBundlePath(opts)
     },
     module: {
       rules: [
