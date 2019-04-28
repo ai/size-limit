@@ -1,4 +1,6 @@
 let { join } = require('path')
+let fs = require('fs')
+let os = require('os')
 
 let getSize = require('../')
 
@@ -171,4 +173,14 @@ it('throws error when specified entry points do not exist', async () => {
       'Cannot find entry point moduleBad from moduleA, moduleB, moduleC'
     )
   }
+})
+
+it('save output bundle to absolute path', async () => {
+  let testDir = os.tmpdir()
+
+  await getSize(fixture('unlimit/empty'), {
+    output: testDir
+  })
+
+  expect(fs.existsSync(join(testDir, 'index.js'))).toEqual(true)
 })
