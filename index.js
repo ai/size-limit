@@ -30,12 +30,12 @@ function projectName (opts, files) {
 }
 
 function getPathBundle (opts) {
-  if (opts.directory) {
-    if (path.isAbsolute(opts.directory)) {
-      return opts.directory
+  if (opts.output) {
+    if (path.isAbsolute(opts.output)) {
+      return opts.output
     }
 
-    return path.join(process.cwd(), opts.directory)
+    return path.join(process.cwd(), opts.output)
   }
 
   return path.join(os.tmpdir(), `size-limit-${ Date.now() }`)
@@ -191,7 +191,7 @@ function getLoadingTime (size) {
  * @param {boolean} [opts.gzip=true] Compress files by gzip.
  * @param {string} [opts.config] A path to custom webpack config.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
- * @param {string} [opts.directory] A path for output bundle.
+ * @param {string} [opts.output] A path for output bundle.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
  * @param {string[]} [opts.entry] Webpack entry whose size will be checked.
  *
@@ -248,7 +248,7 @@ async function getSize (files, opts) {
         size = extractSize(stats.toJson(), opts)
       }
     } finally {
-      if (config.output.path && !opts.directory) {
+      if (config.output.path && !opts.output) {
         await del(config.output.path, { force: true })
       }
     }

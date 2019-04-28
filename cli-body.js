@@ -423,7 +423,7 @@ async function main () {
       webpack: file.webpack,
       running: file.running,
       bundle: config.bundle,
-      directory: argv.saveBundle,
+      output: argv.saveBundle,
       ignore: file.ignore,
       config: file.config,
       entry: file.entry,
@@ -465,7 +465,7 @@ async function main () {
     let opts = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
       bundle: config.bundle,
-      directory: argv.saveBundle,
+      output: argv.saveBundle,
       ignore
     }
     let full = files.reduce((all, i) => all.concat(i.full), [])
