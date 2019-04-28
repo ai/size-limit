@@ -31,6 +31,10 @@ function projectName (opts, files) {
 
 function getPathBundle (opts) {
   if (opts.directory) {
+    if (path.isAbsolute(opts.directory)) {
+      return opts.directory
+    }
+
     return path.join(process.cwd(), opts.directory)
   }
 
