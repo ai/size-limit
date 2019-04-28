@@ -1,8 +1,11 @@
+let { existsSync } = require('fs')
+let { tmpdir } = require('os')
 let { join } = require('path')
 let spawn = require('cross-spawn')
 let del = require('del')
-let fs = require('fs')
-let os = require('os')
+
+const ABSOLUTE_OUTPUT = join(tmpdir(), 'size-limit-bundle')
+const RELATIVE_OUTPUT = join(__dirname, 'output-test')
 
 function fixture (file) {
   return join(__dirname, 'fixtures', file)
@@ -50,17 +53,15 @@ function configError (msg) {
          '  [\n'
 }
 
-beforeAll(() => {
-  process.env.FAKE_SIZE_LIMIT_RUNNING = 1
-})
+process.env.FAKE_SIZE_LIMIT_RUNNING = 1
 
-afterAll(async () => {
-  await del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist'))
-  await del(join(__dirname, 'fixtures/webpack-config/dist'))
-  await del(join(__dirname, '../dist'))
-  await del(join(os.tmpdir(), 'size-limit-bundle'), { force: true })
-  await del(join(__dirname, 'output-test'))
-})
+afterEach(() => Promise.all([
+  del(join(__dirname, 'fixtures/webpack-multipe-entry-points/dist')),
+  del(join(__dirname, 'fixtures/webpack-config/dist')),
+  del(join(__dirname, '../dist')),
+  del(ABSOLUTE_OUTPUT, { force: true }),
+  del(RELATIVE_OUTPUT)
+]))
 
 it('returns help', async () => {
   let { out, code } = await run(['--help'])
@@ -463,16 +464,12 @@ it('shows "on first job" warn as text with --json argument', async () => {
 })
 
 it('save output bundle to absolute path', async () => {
-  let testDir = join(os.tmpdir(), 'size-limit-bundle')
   let { code } = await run(
-    ['--save-bundle', testDir],
+    ['--save-bundle', ABSOLUTE_OUTPUT],
     { cwd: fixture('defaults') }
   )
-
-  expect(fs.existsSync(testDir)).toEqual(true)
+  expect(existsSync(ABSOLUTE_OUTPUT)).toBeTruthy()
   expect(code).toEqual(0)
-
-  await del(join(os.tmpdir(), 'size-limit-bundle'), { force: true })
 })
 
 it('save output bundle to relative path', async () => {
@@ -480,7 +477,6 @@ it('save output bundle to relative path', async () => {
     ['--save-bundle', '../../output-test'],
     { cwd: fixture('defaults') }
   )
-
-  expect(fs.existsSync(join(__dirname, 'output-test'))).toEqual(true)
+  expect(existsSync(RELATIVE_OUTPUT)).toBeTruthy()
   expect(code).toEqual(0)
 })

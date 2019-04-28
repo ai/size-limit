@@ -1,7 +1,7 @@
+let { existsSync } = require('fs')
+let { tmpdir } = require('os')
 let { join } = require('path')
 let del = require('del')
-let fs = require('fs')
-let os = require('os')
 
 let getSize = require('../')
 
@@ -17,11 +17,10 @@ function round (num) {
   return Math.floor(num / 50) * 50
 }
 
+const TEST_DIR = join(tmpdir(), 'size-limit-bundle-index')
 const SLOW_3G = 50 * 1024
 
-afterAll(async () => {
-  await del(join(os.tmpdir(), 'size-limit-bundle-index'), { force: true })
-})
+afterEach(() => del(TEST_DIR, { force: true }))
 
 it('returns 0 for parsed and gzip empty project', async () => {
   let size = await getSize(fixture('unlimit/empty'))
@@ -181,11 +180,6 @@ it('throws error when specified entry points do not exist', async () => {
 })
 
 it('save output bundle to absolute path', async () => {
-  let testDir = join(os.tmpdir(), 'size-limit-bundle-index')
-
-  await getSize(fixture('unlimit/empty'), {
-    output: testDir
-  })
-
-  expect(fs.existsSync(testDir)).toEqual(true)
+  await getSize(fixture('unlimit/empty'), { output: TEST_DIR })
+  expect(existsSync(TEST_DIR)).toBeTruthy()
 })
