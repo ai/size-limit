@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3
+* Add `--save-bundle` argument (by Ivan Solovev).
+
 ## 1.2
 * Add `--json` argument (by Pavel Vostrikov).
 
