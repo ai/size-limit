@@ -32,18 +32,13 @@ async function saveCache (throttling) {
   }
 }
 
-async function getTime (file, throttling) {
-  let opts = !throttling ? undefined : [
-    '--set-cpu-throttling-rate',
-    '--rate',
-    throttling
-  ]
+async function getTime (file, throttling = 1) {
   let value = 0
   for (let i = 0; i < 3; i++) {
-    let perf = await estimo(file, opts)
+    let perf = await estimo(file)
     value += (perf.javaScript + perf.javaScriptCompile) / 1000
   }
-  return value / 3
+  return throttling * value / 3
 }
 
 async function getThrottling () {
