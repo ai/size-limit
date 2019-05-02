@@ -182,7 +182,12 @@ in their npm package. [Nano ID] or [Storeon] could be a good example.
     $ npm run size -- --why
     ```
 
-5. Now, let’s set the limit. Determine the current size of your library,
+5. You can also specify json output format, add `--json` option
+    ```sh
+    $ npm run size -- --json
+    ```
+
+6. Now, let’s set the limit. Determine the current size of your library,
    add just a little bit (a kilobyte, maybe) and use that as a limit
    in your `package.json`:
 
@@ -195,7 +200,7 @@ in their npm package. [Nano ID] or [Storeon] could be a good example.
      ],
     ```
 
-6. Add the `size` script to your test suite:
+7. Add the `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -205,7 +210,7 @@ in their npm package. [Nano ID] or [Storeon] could be a good example.
       }
     ```
 
-7. If you don’t have a continuous integration service running, don’t forget
+8. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
 
 [Travis CI]: https://github.com/dwyl/learn-travis
