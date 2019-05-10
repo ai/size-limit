@@ -254,8 +254,8 @@ Size Limits supports three ways to define config.
 Each section in the config could have options:
 
 * **path**: relative paths to files. The only mandatory option.
-  It could be a path `"index.js"`, a pattern `"dist/app-*.js"`
-  or an array `["index.js", "dist/app-*.js"]`.
+  It could be a path `"index.js"`, a [pattern] `"dist/app-*.js"`
+  or an array `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
 * **entry**: when using a custom webpack config, a webpack entry could be given.
   It could be a string or an array of strings.
   By default, the total size of all entry points will be checked.
@@ -272,6 +272,8 @@ Each section in the config could have options:
 If you use Size Limit to track the size of CSS files only set `webpack: false`.
 Otherwise, you will get wrong numbers, because webpack inserts `style-loader`
 runtime (≈2 KB) into the bundle.
+
+[pattern]: https://github.com/sindresorhus/globby#globbing-patterns
 
 
 ## API
