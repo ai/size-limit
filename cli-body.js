@@ -335,16 +335,15 @@ async function main () {
     let result = await Promise.all(configFile.config.map(async entry => {
       let peer = Object.keys(package.pkg.peerDependencies || { })
 
-      let globbing, cwd
+      let files, cwd
       if (entry.path) {
         cwd = path.dirname(configFile.filepath)
-        globbing = globby(entry.path || package.pkg.main, { cwd })
+        files = await globby(entry.path || package.pkg.main, { cwd })
       } else {
         cwd = path.dirname(package.path || '.')
-        globbing = globby(package.pkg.main || 'index.js', { cwd })
+        files = getPackageMain(cwd, package.pkg.main)
       }
 
-      let files = await globbing
       if (files.length === 0 && entry.path) {
         files = entry.path
         if (typeof files === 'string') files = [files]
@@ -479,6 +478,14 @@ async function main () {
   }
 
   return files
+}
+
+function getPackageMain (cwd, mainFile = 'index.js') {
+  try {
+    return [path.relative(cwd, require.resolve(path.join(cwd, mainFile)))]
+  } catch (e) {
+    return []
+  }
 }
 
 main().catch(e => {
