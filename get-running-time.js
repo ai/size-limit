@@ -7,10 +7,11 @@ let util = require('util')
 let writeFile = util.promisify(require('fs').writeFile)
 let readFile = util.promisify(require('fs').readFile)
 
-let VERSION = 1
-let CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')
-let EXAMPLE = require.resolve('react/umd/react.production.min.js')
-let EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
+const VERSION = 1
+const CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')
+const EXAMPLE = require.resolve('react/umd/react.production.min.js')
+const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
+const URL = 'https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650'
 
 async function getCache () {
   try {
@@ -35,7 +36,18 @@ async function saveCache (throttling) {
 async function getTime (file, throttling = 1) {
   let value = 0
   for (let i = 0; i < 3; i++) {
-    let perf = await estimo(file)
+    let perf
+    try {
+      perf = await estimo(file)
+    } catch (e) {
+      if (process.env.CIRCLECI) {
+        process.stdout.write(
+          `Check that you use circleci/node:latest-browsers Docker image.\n` +
+          `More details: ${ URL }\n`
+        )
+      }
+      throw e
+    }
     value += (perf.javaScript + perf.javaScriptCompile) / 1000
   }
   return throttling * value / 3
