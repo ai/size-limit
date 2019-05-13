@@ -333,15 +333,15 @@ async function main () {
     }
 
     let result = await Promise.all(configFile.config.map(async entry => {
-      let peer = Object.keys(package.pkg.peerDependencies || { })
+      let peer = Object.keys(package.package.peerDependencies || { })
 
       let files, cwd
       if (entry.path) {
         cwd = path.dirname(configFile.filepath)
-        files = await globby(entry.path || package.pkg.main, { cwd })
+        files = await globby(entry.path || package.package.main, { cwd })
       } else {
         cwd = path.dirname(package.path || '.')
-        files = getPackageMain(cwd, package.pkg.main)
+        files = getPackageMain(cwd, package.package.main)
       }
 
       if (files.length === 0 && entry.path) {
@@ -367,7 +367,7 @@ async function main () {
       }
     }))
 
-    config = { bundle: package.pkg.name, files: result }
+    config = { bundle: package.package.name, files: result }
   } else {
     let files = argv['_'].slice(0)
 

@@ -33,11 +33,11 @@
     "make-dir": "^3.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "react": "16.8.6",
-    "read-pkg-up": "^5.0.0",
+    "read-pkg-up": "^6.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.31.0",
     "webpack-bundle-analyzer": "^3.3.2",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
     "@babel/runtime": "^7.4.4",
