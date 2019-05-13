@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.2
+* Fix support extension-less `package.main` (by Homa Wong).
+* Add warning or Circle CI.
+
 ## 1.3.1
 * Speed up running time calculation.
 
