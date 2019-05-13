@@ -1,10 +1,10 @@
+let { isAbsolute, relative, join, dirname } = require('path')
 let cosmiconfig = require('cosmiconfig')
 let readPkg = require('read-pkg-up')
 let globby = require('globby')
 let yargs = require('yargs')
 let bytes = require('bytes')
 let chalk = require('chalk')
-let path = require('path')
 
 let getReporter = require('./reporters')
 let getSize = require('.')
@@ -282,7 +282,7 @@ async function getConfig () {
       let pathRegexp = / in ([^\n]+):\n/
       if (pathRegexp.test(msg)) {
         file = msg.match(pathRegexp)[1]
-        file = path.relative(process.cwd(), file)
+        file = relative(process.cwd(), file)
         file = '`' + file + '`'
       }
       let errorRegexp = /JSON\s?Error([^:]*):\s+([^\n]+)( while parsing)/
@@ -293,7 +293,7 @@ async function getConfig () {
         PACKAGE_EXAMPLE + '\n'
       )
     } else if (err.reason && err.mark && err.mark.name) {
-      file = path.relative(process.cwd(), err.mark.name)
+      file = relative(process.cwd(), err.mark.name)
       let position = err.mark.line + ':' + err.mark.column
       throw ownError(
         'Can not parse `' + file + '` at ' + position + '. ' +
@@ -307,7 +307,7 @@ async function getConfig () {
   }
 }
 
-async function main () {
+async function run () {
   let config, configFile, package
   if (argv['_'].length === 0) {
     [configFile, package] = await Promise.all([
@@ -335,16 +335,17 @@ async function main () {
     let result = await Promise.all(configFile.config.map(async entry => {
       let peer = Object.keys(package.package.peerDependencies || { })
 
-      let files, cwd
+      let files = []
+      let cwd = process.cwd()
       if (entry.path) {
-        cwd = path.dirname(configFile.filepath)
-        files = await globby(entry.path || package.package.main, { cwd })
-      } else {
-        cwd = path.dirname(package.path || '.')
-        files = getPackageMain(cwd, package.package.main)
+        cwd = dirname(configFile.filepath)
+        files = await globby(entry.path, { cwd })
+      } else if (!entry.entry) {
+        cwd = dirname(package.path || '.')
+        files = [require.resolve(join(cwd, package.package.main || 'index.js'))]
       }
 
-      if (files.length === 0 && entry.path) {
+      if (entry.path && files.length === 0) {
         files = entry.path
         if (typeof files === 'string') files = [files]
       }
@@ -355,12 +356,12 @@ async function main () {
         ignore: peer.concat(entry.ignore || []),
         limit: argv.limit || entry.limit,
         gzip: entry.gzip !== false,
-        name: entry.name || files.join(', '),
+        name: entry.name || entry.entry || files.join(', '),
         full: files.map(i => {
-          if (path.isAbsolute(i)) {
+          if (isAbsolute(i)) {
             return i
           } else {
-            return path.join(cwd, i)
+            return join(cwd, i)
           }
         }),
         entry: entry.entry
@@ -378,10 +379,10 @@ async function main () {
       )
     } else {
       let full = files.map(i => {
-        if (path.isAbsolute(i)) {
+        if (isAbsolute(i)) {
           return i
         } else {
-          return path.join(process.cwd(), i)
+          return join(process.cwd(), i)
         }
       })
 
@@ -448,7 +449,7 @@ async function main () {
     let fix = 'Try to reduce size or increase limit'
     if (configFile) {
       fix += ' in '
-      let configPath = path.relative(process.cwd(), configFile.filepath)
+      let configPath = relative(process.cwd(), configFile.filepath)
       if (configPath.endsWith('package.json')) {
         fix += chalk.bold('"size-limit"') + ' section of '
       }
@@ -480,15 +481,7 @@ async function main () {
   return files
 }
 
-function getPackageMain (cwd, mainFile = 'index.js') {
-  try {
-    return [path.relative(cwd, require.resolve(path.join(cwd, mainFile)))]
-  } catch (e) {
-    return []
-  }
-}
-
-main().catch(e => {
+run().catch(e => {
   let msg
   if (e.sizeLimit) {
     msg = e.message
