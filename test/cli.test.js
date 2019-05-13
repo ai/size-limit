@@ -402,6 +402,12 @@ it('uses main from package.json', async () => {
   expect(code).toEqual(0)
 })
 
+it('uses main from package.json which as no file extension', async () => {
+  let { out, code } = await run([], { cwd: fixture('main-no-extension') })
+  expect(out).toContain('Package size: 10 B')
+  expect(code).toEqual(0)
+})
+
 it('uses index.js by default', async () => {
   let { out, code } = await run([], { cwd: fixture('defaults') })
   expect(out).toContain('Package size: 10 B')
