@@ -39,6 +39,7 @@ and show the real cost of all your internal dependencies.
 ## Who Uses Size Limit
 
 * [MobX](https://github.com/mobxjs/mobx)
+* [MobX-state-tree](https://github.com/mobxjs/mobx-state-tree)
 * [Material-UI](https://github.com/callemall/material-ui)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [PostCSS](https://github.com/postcss/postcss) reduced
