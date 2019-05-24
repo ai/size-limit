@@ -148,7 +148,7 @@ it('sums up the size of all multiple entry points assets', async () => {
   let size = await getSize(null, {
     config: fixture(`webpack-multipe-entry-points/webpack.config`)
   })
-  expect(size).toEqual({ parsed: 21466, loading: 21466 / SLOW_3G, running: 1 })
+  expect(size).toEqual({ parsed: 21493, loading: 21493 / SLOW_3G, running: 1 })
 })
 
 it('sums up the size of assets from specified entry array', async () => {
@@ -156,7 +156,7 @@ it('sums up the size of assets from specified entry array', async () => {
     config: fixture(`webpack-multipe-entry-points/webpack.config`),
     entry: ['moduleA', 'moduleB']
   })
-  expect(size.parsed).toEqual(13990)
+  expect(size.parsed).toEqual(14008)
 })
 
 it('sums up the size of assets from specified entry name', async () => {
@@ -164,7 +164,7 @@ it('sums up the size of assets from specified entry name', async () => {
     config: fixture(`webpack-multipe-entry-points/webpack.config`),
     entry: 'moduleA'
   })
-  expect(size.parsed).toEqual(6514)
+  expect(size.parsed).toEqual(6523)
 })
 
 it('throws error when specified entry points do not exist', async () => {
