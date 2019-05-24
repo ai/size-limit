@@ -328,6 +328,11 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@storeon/crosstab@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-0.4.0.tgz#bf2eecf6c420bd111a0519c47c863f86cccf8736"
+  integrity sha512-GkENg8YbWIYpEom54ChvZNSTd9T60evGF5NbSkpYNWTogUbj7TjAISrjT+fEY9RYF5NANcDZOReocMx1wzj38w==
+
 "@types/babel__core@^7.1.0":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.1.tgz#ce9a9e5d92b7031421e1d0d74ae59f572ba48be6"
@@ -2301,11 +2306,6 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
-
-escape-string-regexp@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
-  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
 escodegen@^1.9.1:
   version "1.11.1"

@@ -84,8 +84,10 @@ it('removes non-production code', async () => {
 })
 
 it('ignores dependencies on request', async () => {
-  let size = await getSize(fixture('peer/index'), { ignore: ['redux'] })
-  expect(size.parsed).toEqual(83)
+  let size = await getSize(fixture('peer/index'), {
+    ignore: ['redux', '@storeon/crosstab']
+  })
+  expect(size.parsed).toEqual(43)
 })
 
 it('disables webpack on request', async () => {

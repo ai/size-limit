@@ -1,7 +1,8 @@
 {
   "private": true,
   "peerDependencies": {
-    "redux": "*"
+    "redux": "*",
+    "@storeon/crosstab": "*"
   },
   "size-limit": [
     {
