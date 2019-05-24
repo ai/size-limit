@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.3
+* Fix ignoring scoped packages.
+
 ## 1.3.2
 * Fix support extension-less `package.main` (by Homa Wong).
 * Add warning or Circle CI.
