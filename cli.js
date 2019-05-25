@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
 let ciJobNumber = require('ci-job-number')
-
-let getReporter = require('./reporters')
+let chalk = require('chalk')
 
 if (ciJobNumber() !== 1) {
-  getReporter().warn(
-    'Size Limits run only on first CI job, to save CI resources'
+  process.stdout.write(
+    chalk.yellow('Size Limits run only on first CI job, to save CI resources\n')
   )
   process.exit(0)
 }

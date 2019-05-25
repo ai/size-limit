@@ -464,7 +464,7 @@ it('shows "on first job" warn as text with --json argument', async () => {
     TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2'
   })
   expect(out).toEqual(
-    '\n WARNING  Size Limits run only on first CI job, to save CI resources\n'
+    'Size Limits run only on first CI job, to save CI resources\n'
   )
   expect(code).toEqual(0)
 })

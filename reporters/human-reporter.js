@@ -6,11 +6,11 @@ function print (msg) {
 
 module.exports = {
   warn (msg) {
-    print(`${ chalk.bgYellow(' WARNING ') } ${ chalk.yellow(msg) }`)
+    print(`${ chalk.bgYellow.black(' WARNING ') } ${ chalk.yellow(msg) }`)
   },
 
   error (msg) {
-    print(`${ chalk.bgRed(' ERROR ') } ${ chalk.red(msg) }\n`)
+    print(`${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(msg) }\n`)
   },
 
   results (results, hint = '') {
