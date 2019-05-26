@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.5
+* Fix CI warning text.
+
 ## 1.3.4
 * Fix CI warning style.
 
