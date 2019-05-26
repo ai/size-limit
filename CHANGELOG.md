@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.4
+* Fix CI warning style.
+
 ## 1.3.3
 * Fix ignoring scoped packages.
 
