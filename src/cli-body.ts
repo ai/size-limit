@@ -1,13 +1,19 @@
-let { isAbsolute, relative, join, dirname } = require('path')
-let cosmiconfig = require('cosmiconfig')
-let readPkg = require('read-pkg-up')
-let globby = require('globby')
-let yargs = require('yargs')
-let bytes = require('bytes')
-let chalk = require('chalk')
+import {
+  SizeLimitConfigOptions,
+  SizeLimitNodeOptions,
+  OutputFileEntry,
+  InputFileEntry
+} from './interfaces'
+import { isAbsolute, relative, join, dirname } from 'path'
+import cosmiconfig from 'cosmiconfig'
+import readPkg from 'read-pkg-up'
+import globby from 'globby'
+import yargs from 'yargs'
+import bytes from 'bytes'
+import chalk from 'chalk'
 
-let getReporter = require('./reporters')
-let getSize = require('.')
+import getReporter from './reporters'
+import getSize from '.'
 
 const PACKAGE_EXAMPLE = '\n' +
                         '  "size-limit": [\n' +
@@ -78,13 +84,17 @@ let argv = yargs
 
 const reporter = getReporter(argv)
 
-function ownError (msg) {
-  let error = new Error(msg)
+interface SizeLimitError extends Error {
+  sizeLimit: boolean
+}
+
+function ownError (msg: string): SizeLimitError {
+  let error = new Error(msg) as SizeLimitError
   error.sizeLimit = true
   return error
 }
 
-function isStrings (value) {
+function isStrings (value: any): value is string[] {
   if (!Array.isArray(value)) return false
   return value.every(i => typeof i === 'string')
 }
@@ -110,12 +120,14 @@ let FILE_ERRORS = {
                   'must be `a string` or `an array of strings`'
 }
 
-function isStringOrUndefined (value) {
+function isStringOrUndefined (value: any): value is string | undefined {
   let type = typeof value
   return type !== 'undefined' && type !== 'string' && !isStrings(value)
 }
 
-function configError (limits) {
+function configError (
+  limits: SizeLimitConfigOptions[] | undefined
+): keyof typeof PACKAGE_ERRORS | false {
   if (!Array.isArray(limits)) {
     return 'notArray'
   }
@@ -136,15 +148,15 @@ function configError (limits) {
   return false
 }
 
-function formatBytes (size) {
+function formatBytes (size: number) {
   return bytes.format(size, { unitSeparator: ' ' })
 }
 
-function capitalize (str) {
+function capitalize (str: string) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-function formatTime (seconds) {
+function formatTime (seconds: number) {
   if (seconds >= 1) {
     return (Math.ceil(seconds * 10) / 10) + ' s'
   } else {
@@ -152,8 +164,12 @@ function formatTime (seconds) {
   }
 }
 
-function renderSize (item, i, array) {
-  let rows = []
+function renderSize (
+  item: OutputFileEntry,
+  i: number,
+  array: OutputFileEntry[]
+) {
+  let rows: string[][] = []
   let unlimited = !item.limit
 
   let time = item.loading
@@ -169,7 +185,7 @@ function renderSize (item, i, array) {
   }
 
   if (array.length > 1 && item.name) {
-    rows.push([chalk.bold(item.name)])
+    rows.push([chalk.bold(item.name + '')])
   }
 
   let sizeNote
@@ -185,7 +201,7 @@ function renderSize (item, i, array) {
     sizeNote = 'minified'
   }
 
-  let limitString
+  let limitString: string = ''
   let sizeString = formatBytes(item.size)
 
   if (!unlimited) limitString = formatBytes(item.limit[1])
@@ -255,6 +271,12 @@ function renderSize (item, i, array) {
   }
 }
 
+interface CosmiconfigResult<T> {
+  config: T;
+  filepath: string;
+  isEmpty?: boolean;
+}
+
 async function getConfig () {
   let explorer = cosmiconfig('size-limit', {
     searchPlaces: [
@@ -265,7 +287,7 @@ async function getConfig () {
     ]
   })
   try {
-    let result = await explorer.search()
+    let result = await explorer.search() as unknown as CosmiconfigResult<SizeLimitConfigOptions[]> | null //eslint-disable-line
     if (result === null) {
       throw ownError(
         'Can not find settings for Size Limit. ' +
@@ -307,13 +329,25 @@ async function getConfig () {
   }
 }
 
+async function ensurePkg (): Promise<readPkg.NormalizedReadResult> {
+  let pkg = await readPkg()
+  if (!pkg) {
+    throw new Error('cannot find package.json')
+  }
+  return pkg
+}
+
 async function run () {
-  let config, configFile, package
+  let config: { bundle?: string, files: InputFileEntry[] }
+  let maybeConfigFile: CosmiconfigResult<SizeLimitConfigOptions[]> | undefined
+  let pkg: readPkg.NormalizedReadResult
   if (argv['_'].length === 0) {
-    [configFile, package] = await Promise.all([
+    let configFile: CosmiconfigResult<SizeLimitConfigOptions[]>
+    [configFile, pkg] = await Promise.all([
       getConfig(),
-      readPkg()
+      ensurePkg()
     ])
+    maybeConfigFile = configFile
 
     let error = configError(configFile.config)
     if (error) {
@@ -333,16 +367,16 @@ async function run () {
     }
 
     let result = await Promise.all(configFile.config.map(async entry => {
-      let peer = Object.keys(package.package.peerDependencies || { })
+      let peer = Object.keys(pkg!.package.peerDependencies || { })
 
-      let files = []
+      let files: string[] | string = []
       let cwd = process.cwd()
       if (entry.path) {
         cwd = dirname(configFile.filepath)
         files = await globby(entry.path, { cwd })
       } else if (!entry.entry) {
-        cwd = dirname(package.path || '.')
-        files = [require.resolve(join(cwd, package.package.main || 'index.js'))]
+        cwd = dirname(pkg.path || '.')
+        files = [require.resolve(join(cwd, pkg.package.main || 'index.js'))]
       }
 
       if (entry.path && files.length === 0) {
@@ -368,7 +402,7 @@ async function run () {
       }
     }))
 
-    config = { bundle: package.package.name, files: result }
+    config = { bundle: pkg.package.name, files: result }
   } else {
     let files = argv['_'].slice(0)
 
@@ -388,7 +422,6 @@ async function run () {
 
       config = {
         bundle: undefined,
-        ignore: [],
         files: [
           {
             running: argv.runningTime !== false,
@@ -403,27 +436,30 @@ async function run () {
     }
   }
 
-  await Promise.all(config.files.map(async file => {
+  let files = await Promise.all(config.files.map(async file => {
+    let { limit, running, ...rest } = file // eslint-disable-line
+    let result: Partial<OutputFileEntry> = rest
     if (file.webpack === false && argv.why) {
       throw ownError(
         '`--why` does not work with `"webpack": false`. ' +
         'Add Webpack Bundle Analyzer to your Webpack config.'
       )
     }
-
-    if (/ ?ms/i.test(file.limit)) {
-      file.limit = ['time', parseFloat(file.limit) / 1000]
+    if (file.limit === undefined) {
+      // do nothing
+    } else if (/ ?ms/i.test(file.limit)) {
+      result.limit = ['time', parseFloat(file.limit) / 1000]
     } else if (/ ?s/i.test(file.limit)) {
-      file.limit = ['time', parseFloat(file.limit)]
+      result.limit = ['time', parseFloat(file.limit)]
     } else if (file.limit) {
-      file.limit = ['size', bytes.parse(file.limit)]
+      result.limit = ['size', bytes.parse(file.limit)]
     }
 
-    let opts = {
+    let opts: SizeLimitNodeOptions = {
       webpack: file.webpack,
       running: file.running,
       bundle: config.bundle,
-      output: argv.saveBundle,
+      output: argv['save-bundle'],
       ignore: file.ignore,
       config: file.config,
       entry: file.entry,
@@ -434,22 +470,21 @@ async function run () {
     }
 
     let size = await getSize(file.full, opts)
-    file.size = typeof size.gzip === 'number' ? size.gzip : size.parsed
-    file.loading = size.loading
-    file.running = size.running
-    return file
+    result.size = typeof size.gzip === 'number' ? size.gzip : size.parsed
+    result.loading = size.loading
+    result.running = size.running
+    return result as OutputFileEntry
   }))
 
-  let files = config.files
   let results = files.map(renderSize)
   let failed = results.some(i => i.failed)
   let hint = ''
 
   if (failed) {
     let fix = 'Try to reduce size or increase limit'
-    if (configFile) {
+    if (maybeConfigFile) {
       fix += ' in '
-      let configPath = relative(process.cwd(), configFile.filepath)
+      let configPath = relative(process.cwd(), maybeConfigFile.filepath)
       if (configPath.endsWith('package.json')) {
         fix += chalk.bold('"size-limit"') + ' section of '
       }
@@ -461,14 +496,17 @@ async function run () {
   reporter.results(results, hint)
 
   if (argv.why && files.length > 1) {
-    let ignore = files.reduce((all, i) => all.concat(i.ignore), [])
-    let opts = {
+    let ignore = files.reduce(
+      (all, i) => all.concat(i.ignore || []),
+      [] as string[]
+    )
+    let opts: SizeLimitNodeOptions = {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
       bundle: config.bundle,
-      output: argv.saveBundle,
+      output: argv['save-bundle'],
       ignore
     }
-    let full = files.reduce((all, i) => all.concat(i.full), [])
+    let full = files.reduce((all, i) => all.concat(i.full), [] as string[])
     await getSize(full, opts)
   } else if (!argv.why) {
     if (failed) {
@@ -481,7 +519,7 @@ async function run () {
   return files
 }
 
-run().catch(e => {
+run().catch((e: SizeLimitError) => {
   let msg
   if (e.sizeLimit) {
     msg = e.message
@@ -489,7 +527,7 @@ run().catch(e => {
       .map(i => i.replace(/`([^`]*)`/g, chalk.bold('$1')))
       .join('.\n        ')
   } else if (e.message.indexOf('Module not found:') !== -1) {
-    let first = e.message.match(/Module not found:[^\n]*/)[0]
+    let first = e.message.match(/Module not found:[^\n]*/)![0]
     msg = `Size Limit c${ first.replace('Module not found: Error: C', '') }`
       .replace(/resolve '(.*)' in '(.*)'/,
         `resolve\n` +
@@ -500,6 +538,6 @@ run().catch(e => {
     msg = e.stack
   }
 
-  reporter.error(msg)
+  reporter.error(msg!)
   process.exit(1)
 })

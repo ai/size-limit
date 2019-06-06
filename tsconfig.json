@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "*": ["types/*"] },
+    "outDir": "lib",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true
+  }
+}

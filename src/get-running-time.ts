@@ -1,11 +1,11 @@
-let { join, basename, dirname } = require('path')
-let { existsSync } = require('fs')
-let makeDir = require('make-dir')
-let estimo = require('estimo')
-let util = require('util')
+import { join, basename, dirname } from 'path'
+import makeDir from 'make-dir'
+import estimo from 'estimo'
+import util from 'util'
+import fs from 'fs'
 
-let writeFile = util.promisify(require('fs').writeFile)
-let readFile = util.promisify(require('fs').readFile)
+let writeFile = util.promisify(fs.writeFile)
+let readFile = util.promisify(fs.readFile)
 
 const VERSION = 1
 const CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')
@@ -13,27 +13,33 @@ const EXAMPLE = require.resolve('react/umd/react.production.min.js')
 const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
 const URL = 'https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650'
 
+interface CacheData {
+  version: number;
+  throttling: number;
+}
+
 async function getCache () {
   try {
-    let cache = false
-    if (existsSync(CACHE)) {
-      cache = JSON.parse(await readFile(CACHE, 'utf-8'))
-      if (typeof cache !== 'object' || cache.version !== VERSION) cache = false
+    if (fs.existsSync(CACHE)) {
+      let cache: CacheData = JSON.parse(await readFile(CACHE, 'utf-8'))
+      if (typeof cache === 'object' && cache.version === VERSION) {
+        return cache
+      }
     }
-    return cache
+    return false
   } catch (e) {
     return false
   }
 }
 
-async function saveCache (throttling) {
+async function saveCache (throttling: number) {
   if (basename(dirname(__dirname)) === 'node_modules') {
     await makeDir(dirname(CACHE))
     await writeFile(CACHE, JSON.stringify({ throttling, version: VERSION }))
   }
 }
 
-async function getTime (file, throttling = 1) {
+async function getTime (file: string, throttling = 1) {
   let value = 0
   for (let i = 0; i < 3; i++) {
     let perf
@@ -65,7 +71,7 @@ async function getThrottling () {
   }
 }
 
-module.exports = async function getRunningTime (file) {
+export default async function getRunningTime (file: string) {
   if (process.env.FAKE_SIZE_LIMIT_RUNNING) {
     return parseFloat(process.env.FAKE_SIZE_LIMIT_RUNNING)
   }

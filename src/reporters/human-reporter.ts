@@ -1,19 +1,20 @@
+import { ReporterResult } from './../interfaces'
 let chalk = require('chalk')
 
-function print (msg) {
+function print (msg: string) {
   process.stdout.write(`\n${ msg }\n`)
 }
 
-module.exports = {
-  warn (msg) {
+export default {
+  warn (msg: string) {
     print(`${ chalk.bgYellow.black(' WARNING ') } ${ chalk.yellow(msg) }`)
   },
 
-  error (msg) {
+  error (msg: string) {
     print(`${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(msg) }\n`)
   },
 
-  results (results, hint = '') {
+  results (results: ReporterResult[], hint = '') {
     let output = results.map(i => i.output).join('\n')
     if (hint) {
       output += '\n  ' + hint

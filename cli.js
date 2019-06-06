@@ -10,4 +10,4 @@ if (ciJobNumber() !== 1) {
   process.exit(0)
 }
 
-require('./cli-body.js')
+require('./lib/cli-body.js')

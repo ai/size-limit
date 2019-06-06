@@ -5,7 +5,7 @@ let del = require('del')
 
 let getSize = require('../')
 
-jest.mock('../get-running-time', () => {
+jest.mock('../lib/get-running-time', () => {
   return () => Promise.resolve(1)
 })
 

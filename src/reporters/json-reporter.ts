@@ -1,15 +1,25 @@
-function print (data) {
+import { ReporterResult } from './../interfaces'
+
+function print (data: any) {
   process.stdout.write(JSON.stringify(data, null, 2) + '\n')
 }
 
-module.exports = {
-  error (msg) {
+interface JSONReportEntry {
+  name: string | string[] | undefined
+  running?: number
+  passed: boolean
+  size: number
+  loading: number
+}
+
+export default {
+  error (msg: string) {
     print({ error: msg })
   },
 
-  results (results) {
+  results (results: ReporterResult[]) {
     print(results.map(result => {
-      let out = {
+      let out: JSONReportEntry = {
         name: result.file.name,
         passed: !result.failed,
         size: result.file.size,

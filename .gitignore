@@ -6,6 +6,7 @@ npm-debug.log
 yarn-error.log
 
 report.html
+lib/
 dist/
 
 output-test/
