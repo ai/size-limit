@@ -388,12 +388,12 @@ async function run () {
 
       config = {
         bundle: undefined,
-        ignore: [],
         files: [
           {
             running: argv.runningTime !== false,
             webpack: argv.webpack !== false,
             config: argv.config,
+            ignore: [],
             limit: argv.limit,
             gzip: argv.gzip !== false,
             full
