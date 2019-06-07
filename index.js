@@ -197,7 +197,7 @@ function getLoadingTime (size) {
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string} [opts.output] A path for output bundle.
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
- * @param {string[]} [opts.entry] Webpack entry whose size will be checked.
+ * @param {string|string[]} [opts.entry] Webpack entry to check the size.
  *
  * @return {Promise} Promise with parsed and gzip size of files
  *
