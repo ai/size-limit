@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.6
+* Fix `package.json`-less project support.
+* Improve error message on wrong `getSize()` call.
+* Fix JSDoc.
+
 ## 1.3.5
 * Fix CI warning text.
 
