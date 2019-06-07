@@ -181,7 +181,16 @@ it('throws error when specified entry points do not exist', async () => {
   }
 })
 
-it('save output bundle to absolute path', async () => {
+it('saves output bundle to absolute path', async () => {
   await getSize(fixture('unlimit/empty'), { output: TEST_DIR })
   expect(existsSync(TEST_DIR)).toBeTruthy()
+})
+
+it('shows error on empty array', async () => {
+  expect.assertions(1)
+  try {
+    await getSize([])
+  } catch (e) {
+    expect(e.message).toContain('Pass a files or webpack config to Size Limit')
+  }
 })

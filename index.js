@@ -186,7 +186,7 @@ function getLoadingTime (size) {
  * Return size of project files with all dependencies and after UglifyJS
  * and gzip.
  *
- * @param {string|string[]} files Files to get size.
+ * @param {string|string[]|undefined} files Files to get size.
  * @param {object} [opts] Extra options.
  * @param {"server"|"static"|false} [opts.analyzer=false] Show package
  *                                                        content in browser.
@@ -213,9 +213,11 @@ function getLoadingTime (size) {
  *   }
  * })
  */
-async function getSize (files, opts) {
+async function getSize (files, opts = { }) {
   if (typeof files === 'string') files = [files]
-  if (!opts) opts = { }
+  if ((!files || files.length === 0) && !opts.config) {
+    throw new Error('Pass a files or webpack config to Size Limit')
+  }
 
   if (opts.webpack === false) {
     let sizes = await Promise.all(files.map(async file => {
