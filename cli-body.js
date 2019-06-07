@@ -333,6 +333,7 @@ async function run () {
     }
 
     let result = await Promise.all(configFile.config.map(async entry => {
+      if (!package) package = { package: { } }
       let peer = Object.keys(package.package.peerDependencies || { })
 
       let files = []
