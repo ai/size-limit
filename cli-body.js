@@ -356,7 +356,7 @@ async function run () {
         config: entry.config || argv.config,
         ignore: peer.concat(entry.ignore || []),
         limit: argv.limit || entry.limit,
-        gzip: entry.gzip !== false,
+        gzip: entry.gzip !== false && argv.gzip !== false,
         name: entry.name || entry.entry || files.join(', '),
         full: files.map(i => {
           if (isAbsolute(i)) {
