@@ -70,7 +70,7 @@ it('supports CSS', async () => {
 
 it('supports CSS modules', async () => {
   let size = await getSize(fixture('cssmodules/index'))
-  expect(round(size.gzip)).toEqual(2350)
+  expect(round(size.gzip)).toEqual(2400)
 })
 
 it('supports markdown', async () => {
