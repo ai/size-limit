@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.7
+* More accurate `--why` (by Anton Korzunov).
+* Fix `ignore` and `peerDependencies` (by Anton Korzunov).
+* Fix `--no-gzip` argument.
+
 ## 1.3.6
 * Fix `package.json`-less project support.
 * Improve error message on wrong `getSize()` call.
