@@ -467,6 +467,7 @@ async function run () {
       analyzer: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
       bundle: config.bundle,
       output: argv.saveBundle,
+      disableModuleConcatenation: true,
       ignore
     }
     let full = files.reduce((all, i) => all.concat(i.full), [])
