@@ -64,6 +64,9 @@ function getConfig (files, opts) {
       filename: projectName(opts, files),
       path: getBundlePath(opts)
     },
+    optimization: {
+      concatenateModules: !opts.disableModuleConcatenation
+    },
     module: {
       rules: [
         {
@@ -199,6 +202,8 @@ function getLoadingTime (size) {
  * @param {string} [opts.config] A path to custom webpack config.
  * @param {string} [opts.bundle] Bundle name for Analyzer mode.
  * @param {string} [opts.output] A path for output bundle.
+ * @param {boolean} [opts.disableModuleConcatenation=false] Module concatenation
+ *                                                          optimization
  * @param {string[]} [opts.ignore] Dependencies to be ignored.
  * @param {string|string[]} [opts.entry] Webpack entry to check the size.
  *
