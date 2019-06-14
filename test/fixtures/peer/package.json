@@ -4,6 +4,9 @@
     "redux": "*",
     "@storeon/crosstab": "*"
   },
+  "dependencies": {
+    "redux-thunk": "*"
+  },
   "size-limit": [
     {
       "path": "index.js",

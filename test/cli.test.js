@@ -318,7 +318,7 @@ it('supports absolute path', async () => {
 
 it('ignores peerDependencies', async () => {
   let { out, code } = await run([], { cwd: fixture('peer') })
-  expect(out).toContain('Package size: 9 B')
+  expect(out).toContain('Package size: 105 B')
   expect(code).toEqual(0)
 })
 

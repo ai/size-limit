@@ -25,6 +25,7 @@
     "cosmiconfig": "^5.2.1",
     "css-loader": "^3.0.0",
     "del": "^4.1.1",
+    "escape-string-regexp": "^2.0.0",
     "estimo": "^0.1.9",
     "file-loader": "^4.0.0",
     "globby": "^9.2.0",
@@ -59,6 +60,7 @@
     "jest": "^24.8.0",
     "lint-staged": "^8.2.0",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "yaspeller-ci": "^1.0.1"
   },
   "scripts": {
