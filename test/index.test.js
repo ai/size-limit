@@ -87,7 +87,7 @@ it('ignores dependencies on request', async () => {
   let size = await getSize(fixture('peer/index'), {
     ignore: ['redux', '@storeon/crosstab']
   })
-  expect(size.parsed).toEqual(43)
+  expect(size.parsed).toEqual(274)
 })
 
 it('disables webpack on request', async () => {

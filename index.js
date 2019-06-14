@@ -1,3 +1,4 @@
+let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let Compression = require('compression-webpack-plugin')
 let Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -98,8 +99,10 @@ function getConfig (files, opts) {
   }
 
   if (opts.ignore && opts.ignore.length !== 0) {
+    let escaped = opts.ignore.map(i => escapeRegexp(i))
+    let ignorePattern = new RegExp(`^(${ escaped.join('|') })($|/)`)
     config.externals = (context, request, callback) => {
-      if (opts.ignore.some(i => request.startsWith(i))) {
+      if (ignorePattern.test(request)) {
         callback(null, 'root a')
       } else {
         callback()
