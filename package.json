@@ -35,7 +35,7 @@
     "react": "16.8.6",
     "read-pkg-up": "^6.0.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.33.0",
+    "webpack": "^4.34.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "yargs": "^13.2.4"
   },
@@ -58,7 +58,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^2.4.1",
     "jest": "^24.8.0",
-    "lint-staged": "^8.2.0",
+    "lint-staged": "^8.2.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "yaspeller-ci": "^1.0.1"
