@@ -241,9 +241,9 @@ it('checks limits', async () => {
   let { out, code } = await run([], { cwd: fixture('bad') })
   expect(out).toEqual(
     '\n' +
-    '  Package size limit has exceeded by 82 B\n' +
+    '  Package size limit has exceeded by 95 B\n' +
     '  Size limit:   30 KB\n' +
-    '  Package size: 30.08 KB with all dependencies, minified and gzipped\n' +
+    '  Package size: 30.09 KB with all dependencies, minified and gzipped\n' +
     '  Loading time: 602 ms   on slow 3G\n' +
     '  Running time: 1 s      on Snapdragon 410\n' +
     '  Total time:   1.7 s\n' +

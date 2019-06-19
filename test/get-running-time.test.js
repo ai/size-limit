@@ -10,6 +10,7 @@ jest.setTimeout(20000)
 
 it('calculates running time', async () => {
   let size = await getSize(fixture('bad/index'))
-  expect(size.running > 0.4).toBeTruthy()
-  expect(size.running < 1).toBeTruthy()
+  console.log(size.running)
+  expect(size.running > 0.2).toBeTruthy()
+  expect(size.running < 0.8).toBeTruthy()
 })
