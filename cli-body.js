@@ -8,6 +8,11 @@ let chalk = require('chalk')
 
 let getReporter = require('./reporters')
 let getSize = require('.')
+let {
+  formatTime,
+  formatBytes,
+  capitalize
+} = require('./common')
 
 const PACKAGE_EXAMPLE = '\n' +
                         '  "size-limit": [\n' +
@@ -134,22 +139,6 @@ function configError (limits) {
     }
   }
   return false
-}
-
-function formatBytes (size) {
-  return bytes.format(size, { unitSeparator: ' ' })
-}
-
-function capitalize (str) {
-  return str[0].toUpperCase() + str.slice(1)
-}
-
-function formatTime (seconds) {
-  if (seconds >= 1) {
-    return (Math.ceil(seconds * 10) / 10) + ' s'
-  } else {
-    return Math.ceil(seconds * 1000) + ' ms'
-  }
 }
 
 function renderSize (item, i, array) {
