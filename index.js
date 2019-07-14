@@ -1,5 +1,5 @@
-let escapeRegexp = require('escape-string-regexp')
 let { promisify } = require('util')
+let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let Compression = require('compression-webpack-plugin')
 let Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
