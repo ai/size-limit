@@ -65,7 +65,7 @@
   },
   "scripts": {
     "spell": "yaspeller-ci *.md",
-    "lint": "eslint-ci *.js test/{fixtures/**/,}*.js",
+    "lint": "eslint-ci *.js test/*.js",
     "test": "jest -i && yarn run lint && yarn run spell"
   },
   "husky": {
