@@ -1,11 +1,10 @@
 let { join, basename, dirname } = require('path')
 let { existsSync } = require('fs')
+let { promisify } = require('util')
+let writeFile = promisify(require('fs').writeFile)
+let readFile = promisify(require('fs').readFile)
 let makeDir = require('make-dir')
 let estimo = require('estimo')
-let util = require('util')
-
-let writeFile = util.promisify(require('fs').writeFile)
-let readFile = util.promisify(require('fs').readFile)
 
 const VERSION = 1
 const CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')

@@ -1,15 +1,14 @@
 let escapeRegexp = require('escape-string-regexp')
+let { promisify } = require('util')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let Compression = require('compression-webpack-plugin')
 let Analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+let readFile = promisify(require('fs').readFile)
 let gzipSize = require('gzip-size')
 let webpack = require('webpack')
 let path = require('path')
-let util = require('util')
 let del = require('del')
 let os = require('os')
-
-let readFile = util.promisify(require('fs').readFile)
 
 let getRunningTime = require('./get-running-time')
 

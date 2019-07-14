@@ -30,13 +30,13 @@ it('returns 0 for parsed and gzip empty project', async () => {
 it('shows project parsed and gzip sizes', async () => {
   let size = await getSize(fixture('bad/index'))
   expect(size).toEqual({
-    gzip: 30802, parsed: 100573, loading: 30802 / SLOW_3G, running: 1
+    gzip: 31032, parsed: 101546, loading: 31032 / SLOW_3G, running: 1
   })
 })
 
 it('accepts array', async () => {
   let size = await getSize([fixture('bad/index'), fixture('good/index')])
-  expect(size.parsed).toEqual(100609)
+  expect(size.parsed).toEqual(101582)
 })
 
 it('returns error', async () => {
@@ -100,7 +100,7 @@ it('disables webpack on request', async () => {
 it('disables gzip on request', async () => {
   let size = await getSize(fixture('bad/index'), { gzip: false })
   expect(size).toEqual({
-    parsed: 100573, loading: 100573 / SLOW_3G, running: 1
+    parsed: 101546, loading: 101546 / SLOW_3G, running: 1
   })
 })
 
