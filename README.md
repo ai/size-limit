@@ -61,12 +61,11 @@ and show the real cost of all your internal dependencies.
    as a dependency to the project and calculates the real cost
    of your libraries, including all dependencies and webpack’s polyfills.
    Size Limit doesn’t run webpack for application, which already has JS bundle.
-2. Size Limit compare current machine performance with low-priced Android
-   devices to calculate **CPU throttling rate**.
-3. To be specific, Size Limit runs **headless Chrome** (or desktop Chrome
-   if you already have in your system) with CPU throttling rate.
-   Then it loads your JS code there and tracks the time using by Chrome
-   to compile and execute JS.
+2. Size Limit compare current machine performance with low-priced Android devices
+   to calculate **CPU throttling rate**.
+3. To be specific, Size Limit runs **headless Chrome**
+   with CPU throttling rate. Then it loads your JS code there and tracks the time
+   using by Chrome to compile and execute JS.
 
 
 ## Usage for Applications and Big Libraries
