@@ -26,7 +26,7 @@
     "css-loader": "^3.0.0",
     "del": "^5.0.0",
     "escape-string-regexp": "^2.0.0",
-    "estimo": "^1.0.0",
+    "estimo": "^0.1.9",
     "file-loader": "^4.0.0",
     "globby": "^10.0.1",
     "gzip-size": "^5.1.1",
