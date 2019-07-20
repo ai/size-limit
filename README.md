@@ -75,7 +75,7 @@ This guide is for two use cases:
 * Application with bundler (like webpack or Parcel). Any React or Vue.js
   application is this use case.
 * JS libraries, which use webpack or Rollup to build
-  `dist/umd/lib.produciton.js`-kind file to put it to npm package.
+  `dist/umd/lib.production.js`-kind file to put it to npm package.
   [React] is a good example.
 
 If you have a small JS library with many separated files in npm package,
