@@ -2070,9 +2070,9 @@ ejs@^2.6.1:
   integrity sha512-PcW2a0tyTuPHz3tWyYqtK6r1fZ3gp+3Sop8Ph+ZYN81Ob5rwmbHEzaqs10N3BEsaGTkh/ooniXK+WwszGlc2+Q==
 
 electron-to-chromium@^1.3.191:
-  version "1.3.200"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.200.tgz#78fb858b466269e8eb46d31a52562f00c865127f"
-  integrity sha512-PUurrpyDA74MuAjJRD+79ss5BqJlU3mdArRbuu4wO/dt6jc3Ic/6BDmFJxkdwbfq39cHf/XKm2vW98XSvut9Dg==
+  version "1.3.201"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.201.tgz#b516e941baf01a7cf8abd33af537a39e1e0096db"
+  integrity sha512-aCTPIfY1Jvuam5b6vuWRjt1F8i4kY7zX0Qtpu5SNd6l1zjuxU9fDNpbM4o6+oJsra+TMD2o7D20GnkSIgpTr9w==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -2402,10 +2402,10 @@ esrecurse@^4.1.0:
   dependencies:
     estraverse "^4.1.0"
 
-estimo@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/estimo/-/estimo-1.1.2.tgz#2ce2c80b345437cbeb4a5c3ee50df47497347f28"
-  integrity sha512-YKoYC9lvbPUNG90H2yAAx6g+oM4Ign23cwm79Zi0js5a1QYepCJxLZaD6AesmWOFjZHTYon11L4kVxoEJVNU+w==
+estimo@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/estimo/-/estimo-1.1.3.tgz#aff3307cadea3780e6b142814d338bdef4555087"
+  integrity sha512-U7qSoX/jHv+9KT73BuBG9YjMK+0GAlTpSOQ2Qi57ZRN3YK0G3BJuxsw7LbDyJ6PqP5hI/azg6qesU8E8H+pXSA==
   dependencies:
     nanoid "^2.0.3"
     puppeteer-core "^1.17.0"
