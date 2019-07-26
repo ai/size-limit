@@ -4,8 +4,8 @@
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
 Size Limit is a linter for your JS application or library performance.
-It calculates the real cost of your JS for end users and throws an error
-if the cost exceeds the limit.
+It calculates the real cost of your JS for end users and throws an error
+if the cost exceeds the limit.
 
 * Size Limit calculates **the time** it would take a browser
   **to download and execute** your JS. Time is a much more accurate
