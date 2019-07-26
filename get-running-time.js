@@ -47,7 +47,7 @@ async function getTime (file, throttling = 1) {
       }
       throw e
     }
-    value += (perf.javaScript + perf.javaScriptCompile) / 1000
+    value += perf[0].javaScript / 1000
   }
   return throttling * value / 3
 }
