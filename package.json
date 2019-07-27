@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "Calculate the real cost to run your JS app or lib to keep good performance. Show error in pull request if the cost exceeds the limit.",
   "keywords": [
     "size",
