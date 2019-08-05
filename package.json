@@ -4,11 +4,13 @@
     "clean": "rimraf api.md",
     "api": "documentation build packages/*/*.js -f md -o api.md",
     "spell": "yarn api && yaspeller-ci *.md",
-    "test": "eslint-ci . && yarn spell"
+    "unit": "jest --coverage packages/*/test/*.test.js",
+    "test": "yarn unit && eslint-ci . && yarn spell"
   },
   "devDependencies": {
     "@logux/eslint-config": "^30.0.2",
     "@logux/sharec-config": "^0.3.5",
+    "cross-spawn": "^6.0.5",
     "documentation": "^12.1.1",
     "eslint": "^6.1.0",
     "eslint-ci": "^1.0.0",
@@ -22,6 +24,7 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^3.0.2",
+    "jest": "^24.8.0",
     "lint-staged": "^9.2.1",
     "rimraf": "^2.6.3",
     "yaspeller-ci": "^1.0.1"
@@ -33,11 +36,26 @@
       "security/detect-non-literal-regexp": "off",
       "require-atomic-updates": "off",
       "global-require": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": "*.test.js",
+        "rules": {
+          "node/no-extraneous-require": "off"
+        }
+      }
+    ]
   },
   "eslintIgnore": [
-    "node_modules"
+    "node_modules",
+    "old"
   ],
+  "jest": {
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/old/test/fixtures"
+    ]
+  },
   "yaspeller": {
     "lang": "en",
     "ignoreCapitalization": true,

@@ -162,14 +162,6 @@ it('overrides config by limit argument', async () => {
   expect(code).toEqual(3)
 })
 
-it('runs only on first job in Travis CI', async () => {
-  let { out, code } = await run([], { }, {
-    TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2'
-  })
-  expect(out).toContain('first CI job')
-  expect(code).toEqual(0)
-})
-
 it('shows size without limit', async () => {
   let { out, code } = await run([], { cwd: fixture('unlimit') })
   expect(out).toEqual(
@@ -456,16 +448,6 @@ it('does not print running in JSON on request', async () => {
     cwd: fixture('good')
   })
   expect(Object.keys(JSON.parse(out)[0])).not.toContain('running')
-  expect(code).toEqual(0)
-})
-
-it('shows "on first job" warn as text with --json argument', async () => {
-  let { out, code } = await run(['--json'], {}, {
-    TRAVIS: '1', TRAVIS_JOB_NUMBER: '1.2'
-  })
-  expect(out).toEqual(
-    'Size Limit runs only on first CI job, to save CI resources\n'
-  )
   expect(code).toEqual(0)
 })
 

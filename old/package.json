@@ -82,11 +82,11 @@
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
-      "<rootDir>/test/fixtures"
+      "<rootDir>/old/test/fixtures"
     ]
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.3.0"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config/node",

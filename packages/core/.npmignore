@@ -1,5 +1,5 @@
 node_modules/
 yarn-error.log
+yarn.lock
 
-coverage/
-api.md
+test/
