@@ -30,22 +30,23 @@ it('returns 0 for parsed and gzip empty project', async () => {
 it('shows project parsed and gzip sizes', async () => {
   let size = await getSize(fixture('bad/index'))
   expect(size).toEqual({
-    gzip: 31032, parsed: 101546, loading: 31032 / SLOW_3G, running: 1
+    gzip: 31032, parsed: 101554, loading: 31032 / SLOW_3G, running: 1
   })
 })
 
 it('accepts array', async () => {
   let size = await getSize([fixture('bad/index'), fixture('good/index')])
-  expect(size.parsed).toEqual(101582)
+  expect(size.parsed).toEqual(101590)
 })
 
 it('returns error', async () => {
-  expect.assertions(1)
+  let err
   try {
     await getSize(fixture('unknown'))
   } catch (e) {
-    expect(e.message).toMatch(/Can't resolve/)
+    err = e
   }
+  expect(err.message).toMatch(/Can't resolve/)
 })
 
 it('supports ES2016', async () => {
@@ -100,7 +101,7 @@ it('disables webpack on request', async () => {
 it('disables gzip on request', async () => {
   let size = await getSize(fixture('bad/index'), { gzip: false })
   expect(size).toEqual({
-    parsed: 101546, loading: 101546 / SLOW_3G, running: 1
+    parsed: 101554, loading: 101554 / SLOW_3G, running: 1
   })
 })
 
@@ -148,7 +149,7 @@ it('sums up the size of all multiple entry points assets', async () => {
   let size = await getSize(null, {
     config: fixture(`webpack-multipe-entry-points/webpack.config`)
   })
-  expect(size).toEqual({ parsed: 21493, loading: 21493 / SLOW_3G, running: 1 })
+  expect(size).toEqual({ parsed: 21691, loading: 21691 / SLOW_3G, running: 1 })
 })
 
 it('sums up the size of assets from specified entry array', async () => {
@@ -156,7 +157,7 @@ it('sums up the size of assets from specified entry array', async () => {
     config: fixture(`webpack-multipe-entry-points/webpack.config`),
     entry: ['moduleA', 'moduleB']
   })
-  expect(size.parsed).toEqual(14008)
+  expect(size.parsed).toEqual(14140)
 })
 
 it('sums up the size of assets from specified entry name', async () => {
@@ -164,21 +165,22 @@ it('sums up the size of assets from specified entry name', async () => {
     config: fixture(`webpack-multipe-entry-points/webpack.config`),
     entry: 'moduleA'
   })
-  expect(size.parsed).toEqual(6523)
+  expect(size.parsed).toEqual(6589)
 })
 
 it('throws error when specified entry points do not exist', async () => {
-  expect.assertions(1)
+  let err
   try {
     await getSize(null, {
       config: fixture(`webpack-multipe-entry-points/webpack.config`),
       entry: 'moduleBad'
     })
   } catch (e) {
-    expect(e.message).toContain(
-      'Cannot find entry point moduleBad from moduleA, moduleB, moduleC'
-    )
+    err = e
   }
+  expect(err.message).toContain(
+    'Cannot find entry point moduleBad from moduleA, moduleB, moduleC'
+  )
 })
 
 it('saves output bundle to absolute path', async () => {
@@ -187,10 +189,11 @@ it('saves output bundle to absolute path', async () => {
 })
 
 it('shows error on empty array', async () => {
-  expect.assertions(1)
+  let err
   try {
     await getSize([])
   } catch (e) {
-    expect(e.message).toContain('Pass a files or webpack config to Size Limit')
+    err = e
   }
+  expect(err.message).toContain('Pass a files or webpack config to Size Limit')
 })

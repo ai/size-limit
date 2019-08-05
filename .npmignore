@@ -1,13 +1,12 @@
-.editorconfig
-
 node_modules/
-npm-debug.log
 yarn-error.log
 yarn.lock
 
+.editorconfig
 test/
 .travis.yml
-report.html
+api.md
 
+report.html
 img/
 dist/

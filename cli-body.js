@@ -308,9 +308,9 @@ async function getConfig () {
 }
 
 async function run () {
-  let config, configFile, package
+  let config, configFile, pkg
   if (argv['_'].length === 0) {
-    [configFile, package] = await Promise.all([
+    [configFile, pkg] = await Promise.all([
       getConfig(),
       readPkg()
     ])
@@ -333,8 +333,8 @@ async function run () {
     }
 
     let result = await Promise.all(configFile.config.map(async entry => {
-      if (!package) package = { package: { } }
-      let peer = Object.keys(package.package.peerDependencies || { })
+      if (!pkg) pkg = { package: { } }
+      let peer = Object.keys(pkg.package.peerDependencies || { })
 
       let files = []
       let cwd = process.cwd()
@@ -342,8 +342,8 @@ async function run () {
         cwd = dirname(configFile.filepath)
         files = await globby(entry.path, { cwd })
       } else if (!entry.entry) {
-        cwd = dirname(package.path || '.')
-        files = [require.resolve(join(cwd, package.package.main || 'index.js'))]
+        cwd = dirname(pkg.path || '.')
+        files = [require.resolve(join(cwd, pkg.package.main || 'index.js'))]
       }
 
       if (entry.path && files.length === 0) {
@@ -369,7 +369,7 @@ async function run () {
       }
     }))
 
-    config = { bundle: package.package.name, files: result }
+    config = { bundle: pkg.package.name, files: result }
   } else {
     let files = argv['_'].slice(0)
 

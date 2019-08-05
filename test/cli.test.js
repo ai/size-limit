@@ -391,7 +391,7 @@ it('uses entry to support webpack multiple entry points', async () => {
     cwd: fixture('webpack-multipe-entry-points')
   })
   expect(out).toContain(
-    'Package size: 12.67 KB with given webpack configuration'
+    'Package size: 12.8 KB with given webpack configuration'
   )
   expect(code).toEqual(0)
 })
