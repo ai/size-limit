@@ -2,7 +2,3 @@ node_modules/
 yarn-error.log
 
 api.md
-
-report.html
-dist/
-output-test/
