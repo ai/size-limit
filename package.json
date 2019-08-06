@@ -59,13 +59,13 @@
   "eslintIgnore": [
     "node_modules",
     "old",
-    "packages/core/test/fixtures"
+    "packages/size-limit/test/fixtures"
   ],
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
       "<rootDir>/old",
-      "<rootDir>/packages/core/test/fixtures"
+      "<rootDir>/packages/size-limit/test/fixtures"
     ],
     "coverageThreshold": {
       "global": {
