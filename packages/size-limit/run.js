@@ -9,6 +9,7 @@ function list (obj) {
 
 function loadModules (pkg) {
   if (!pkg || !pkg.package) return []
+  console.log(pkg)
   return list(pkg.package.dependencies)
     .concat(list(pkg.package.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
