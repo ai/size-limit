@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+let { readdirSync } = require('fs')
+let { spawn } = require('child_process')
+let { join } = require('path')
+
+const PACKAGES = join(__dirname, 'packages')
+
+let command = process.argv[2]
+let args = process.argv.slice(3)
+
+let dirs = readdirSync(PACKAGES)
+
+function nextTick () {
+  if (dirs.length === 0) return
+  let dir = dirs.pop()
+
+  process.stdout.write(`$ cd packages/${ dir }\n`)
+  process.stdout.write(`$ ${ command } ${ args.join(' ') }\n`)
+  let run = spawn(command, args, {
+    stdio: 'inherit',
+    cwd: join(PACKAGES, dir)
+  })
+  run.on('close', exitCode => {
+    if (exitCode === 0) {
+      nextTick()
+    } else {
+      process.exit(exitCode)
+    }
+  })
+}
+
+nextTick()

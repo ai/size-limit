@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "postinstall": "./each yarn",
     "clean": "rimraf api.md",
     "api": "documentation build packages/*/*.js -f md -o api.md",
     "spell": "yarn api && yaspeller-ci *.md",
