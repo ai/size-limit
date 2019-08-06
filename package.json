@@ -4,9 +4,13 @@
     "clean": "rimraf api.md",
     "api": "documentation build packages/*/*.js -f md -o api.md",
     "spell": "yarn api && yaspeller-ci *.md",
-    "unit": "jest --coverage packages/*/test/*.test.js",
-    "test": "yarn unit && eslint-ci . && yarn spell"
+    "test": "jest --coverage && eslint-ci . && yarn spell"
   },
+  "workspaces": [
+    "packages/core",
+    "packages/webpack",
+    "packages/file"
+  ],
   "devDependencies": {
     "@logux/eslint-config": "^30.0.2",
     "@logux/sharec-config": "^0.3.5",
@@ -43,18 +47,31 @@
         "rules": {
           "node/no-extraneous-require": "off"
         }
+      },
+      {
+        "files": "packages/core/run.js",
+        "rules": {
+          "consistent-return": "off"
+        }
       }
     ]
   },
   "eslintIgnore": [
     "node_modules",
-    "old"
+    "old",
+    "packages/core/test/fixtures"
   ],
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
-      "<rootDir>/old/test/fixtures"
-    ]
+      "<rootDir>/old",
+      "<rootDir>/packages/core/test/fixtures"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 88
+      }
+    }
   },
   "yaspeller": {
     "lang": "en",

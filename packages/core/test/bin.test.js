@@ -27,6 +27,6 @@ it('runs only on first job in Travis CI', async () => {
 
 it('passes process to runner', async () => {
   let { out, code } = await run(['--version'])
-  expect(out).toMatch(/^\d+.\d+.\d+\n$/)
+  expect(out).toMatch(/size-limit \d+.\d+.\d+/)
   expect(code).toEqual(0)
 })

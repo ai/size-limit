@@ -1,7 +1,67 @@
-let ownPackage = require('./package.json')
+let readPkgUp = require('read-pkg-up')
 
-module.exports = process => {
-  if (process.argv[2] === '--version') {
-    process.stdout.write(ownPackage.version + '\n')
+let createReporter = require('./create-reporter')
+let createHelp = require('./create-help')
+
+function list (obj) {
+  return typeof obj === 'object' ? Object.keys(obj) : []
+}
+
+function loadModules ({ dependencies, devDependencies }) {
+  return list(dependencies)
+    .concat(list(devDependencies))
+    .filter(i => i.startsWith('@size-limit/'))
+    .reduce((modules, i) => modules.concat(require(i)), [])
+}
+
+function parseArgs () {
+  // TODO
+  return { }
+}
+
+async function findConfig () {
+  // TODO
+}
+
+async function run () {
+  // TODO
+}
+
+module.exports = async process => {
+  function hasArg (arg) {
+    return process.argv.some(i => i === arg)
+  }
+  let reporter = createReporter(process, hasArg('--json'))
+  let help = createHelp(process)
+
+  try {
+    if (hasArg('--version')) {
+      return help.showVersion()
+    }
+
+    let pkg = await readPkgUp({ cwd: process.cwd() })
+    let modules = pkg ? loadModules(pkg.package) : []
+
+    if (hasArg('--help')) {
+      return help.showHelp(modules)
+    }
+
+    if (!pkg) {
+      throw help.errors.noPackage()
+    }
+
+    if (modules.length === 0) {
+      help.showMigrationGuide(process)
+      return process.exit(1)
+    }
+
+    let args = parseArgs(modules, process.argv)
+    let config = await findConfig(args, pkg.path)
+
+    let results = await run(modules, config)
+    reporter.results(results)
+  } catch (e) {
+    reporter.error(e)
+    process.exit(1)
   }
 }

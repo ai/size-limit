@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "@size-limit/webpack": ">= 0.0.0"
+  }
+}

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "ci-job-number": "^0.3.0"
+    "ci-job-number": "^0.3.0",
+    "read-pkg-up": "^6.0.0"
   }
 }

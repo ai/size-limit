@@ -63,18 +63,6 @@ afterEach(() => Promise.all([
   del(RELATIVE_OUTPUT)
 ]))
 
-it('returns help', async () => {
-  let { out, code } = await run(['--help'])
-  expect(out).toContain('Options:')
-  expect(code).toEqual(0)
-})
-
-it('returns version', async () => {
-  let { out, code } = await run(['--version'])
-  expect(out).toMatch(/\d+\.\d+\.\d+/)
-  expect(code).toEqual(0)
-})
-
 it('shows resolve errors', async () => {
   let { out, code } = await run([], { cwd: fixture('unknown') })
   expect(out).toContain('unknown.js')
@@ -435,12 +423,6 @@ it('shows results as JSON with --json argument', async () => {
     expect(result).toMatchObject(results[i])
   })
   expect(code).toEqual(0)
-})
-
-it('shows errors as JSON with --json argument', async () => {
-  let { out, code } = await run(['--json'], { cwd: fixture('unknown') })
-  expect(JSON.parse(out).error).toContain('Size Limit can\'t resolve')
-  expect(code).toEqual(1)
 })
 
 it('does not print running in JSON on request', async () => {
