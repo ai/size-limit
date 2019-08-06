@@ -9,7 +9,6 @@ function list (obj) {
 
 function loadModules (pkg) {
   if (!pkg || !pkg.package) return []
-  console.log(pkg)
   return list(pkg.package.dependencies)
     .concat(list(pkg.package.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
@@ -42,6 +41,7 @@ module.exports = async process => {
     }
 
     let pkg = await readPkgUp({ cwd: process.cwd() })
+    console.log(process.cwd(), pkg)
     let modules = loadModules(pkg)
 
     if (hasArg('--help')) {
