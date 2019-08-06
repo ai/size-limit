@@ -7,9 +7,10 @@ function list (obj) {
   return typeof obj === 'object' ? Object.keys(obj) : []
 }
 
-function loadModules ({ dependencies, devDependencies }) {
-  return list(dependencies)
-    .concat(list(devDependencies))
+function loadModules (pkg) {
+  console.log(pkg)
+  return list(pkg.package.dependencies)
+    .concat(list(pkg.package.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
     .reduce((modules, i) => modules.concat(require(i)), [])
 }
@@ -40,7 +41,7 @@ module.exports = async process => {
     }
 
     let pkg = await readPkgUp({ cwd: process.cwd() })
-    let modules = pkg ? loadModules(pkg.package) : []
+    let modules = pkg ? loadModules(pkg) : []
 
     if (hasArg('--help')) {
       return help.showHelp(modules)
