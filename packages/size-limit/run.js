@@ -1,50 +1,11 @@
 let readPkgUp = require('read-pkg-up')
 
 let createReporter = require('./create-reporter')
+let loadModules = require('./load-modules')
 let createHelp = require('./create-help')
-
-function list (obj) {
-  return typeof obj === 'object' ? Object.keys(obj) : []
-}
-
-function loadModules (pkg) {
-  if (!pkg || !pkg.package) return []
-  return list(pkg.package.dependencies)
-    .concat(list(pkg.package.devDependencies))
-    .filter(i => i.startsWith('@size-limit/'))
-    .reduce((modules, i) => modules.concat(require(i)), [])
-}
-
-function parseArgs (modules, help, argv) {
-  let isWebpack = modules.some(i => i.name === '@size-limit/webpack')
-  let ignore = { '--help': true, '--version': true, '--json': true }
-  let args = { }
-  for (let i = 2; i < argv.length; i++) {
-    let arg = argv[i]
-    if (arg === '--limit') {
-      args.limit = argv[++i]
-    } else if (arg === '--save-build') {
-      args.saveBuild = argv[++i]
-    } else if (arg === '--why') {
-      if (!isWebpack) throw help.errors.webpackArg('--why')
-      args.why = true
-    } else if (arg === '--webpack-config') {
-      if (!isWebpack) throw help.errors.webpackArg('--webpack-config')
-      args.webpackConfig = argv[++i]
-    } else if (!ignore[arg]) {
-      throw help.errors.unknownArg(arg)
-    }
-  }
-  return args
-}
-
-async function findConfig () {
-  // TODO
-}
-
-async function calc () {
-  // TODO
-}
+let getConfig = require('./get-config')
+let parseArgs = require('./parse-args')
+let calc = require('./calc')
 
 module.exports = async process => {
   function hasArg (arg) {
@@ -74,7 +35,7 @@ module.exports = async process => {
       help.showMigrationGuide(pkg)
       return process.exit(1)
     }
-    let config = await findConfig(args, pkg.path)
+    let config = await getConfig(args, pkg.path)
 
     let results = await calc(modules, config)
     reporter.results(results)
