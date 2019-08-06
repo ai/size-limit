@@ -41,8 +41,8 @@ module.exports = async process => {
     }
 
     let pkg = await readPkgUp({ cwd: process.cwd() })
-    console.log(process.cwd(), pkg)
     let modules = loadModules(pkg)
+    console.log(process.cwd(), pkg, modules)
 
     if (hasArg('--help')) {
       return help.showHelp(modules)
