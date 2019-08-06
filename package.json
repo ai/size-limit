@@ -49,7 +49,7 @@
         }
       },
       {
-        "files": "packages/core/run.js",
+        "files": "packages/size-limit/run.js",
         "rules": {
           "consistent-return": "off"
         }
