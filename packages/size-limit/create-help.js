@@ -7,8 +7,8 @@ let ownPackage = require('./package.json')
 let b = chalk.bold
 let y = chalk.yellow
 
-function error (message) {
-  let err = new Error(message)
+function error (...lines) {
+  let err = new Error(lines.filter(i => i !== false).join('. ') + '.')
   err.sizeLimit = true
   return err
 }
@@ -28,11 +28,11 @@ module.exports = process => {
       'Check the real performance cost of your front-end project to users',
       '',
       b('Core options:'),
-      `  ${ y('--limit LIMIT') }      Set size or running time limit for files`,
-      `  ${ y('--json') }             Show results in JSON format`,
-      `  ${ y('--save-bundle DIR') }  Put build files to check them by hand`,
-      `  ${ y('--help') }             Display this help`,
-      `  ${ y('--version') }          Display version`
+      `  ${ y('--limit LIMIT') }     Set size or running time limit for files`,
+      `  ${ y('--json') }            Show results in JSON format`,
+      `  ${ y('--save-build DIR') }  Put build files to check them by hand`,
+      `  ${ y('--help') }            Display this help`,
+      `  ${ y('--version') }         Display version`
     )
     if (isWebpack) {
       print(
@@ -96,8 +96,17 @@ module.exports = process => {
 
   let errors = {
     noPackage: () => error(
-      'Size Limit did’t find `package.json`. ' +
-      'Create npm package and run Size Limit there.'
+      'Size Limit did’t find `package.json`',
+      'Create npm package and run Size Limit there'
+    ),
+    webpackArg: arg => error(
+      'Argument `' + arg + '` works only with `@size-limit/webpack` module',
+      arg === '--why' &&
+        'You can add Bundle Analyzer to you own bundler'
+    ),
+    unknownArg: arg => error(
+      'Uknown argument `' + arg + '`',
+      'Check command for typo and read docs'
     )
   }
 

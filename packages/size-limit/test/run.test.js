@@ -107,3 +107,15 @@ it('shows migration guide for npm users', async () => {
 it('shows migration guide for yarn users', async () => {
   expect(await error('legacy-yarn')).toMatchSnapshot()
 })
+
+it('throws on unknown argument', async () => {
+  expect(await error('file', ['--unknown'])).toMatchSnapshot()
+})
+
+it('throws on --why argument without webpack', async () => {
+  expect(await error('file', ['--why'])).toMatchSnapshot()
+})
+
+it('throws on other webpack arguments without webpack', async () => {
+  expect(await error('file', ['--webpack-config', 'a'])).toMatchSnapshot()
+})

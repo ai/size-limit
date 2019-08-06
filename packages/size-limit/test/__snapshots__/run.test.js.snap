@@ -42,3 +42,20 @@ exports[`shows own error in JSON format 1`] = `
 }
 "
 `;
+
+exports[`throws on --why argument without webpack 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m module.[39m
+[31m        You can add Bundle Analyzer to you own bundler.[39m
+"
+`;
+
+exports[`throws on other webpack arguments without webpack 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [33m--webpack-config[31m works only with [33m@size-limit/webpack[31m module.[39m
+"
+`;
+
+exports[`throws on unknown argument 1`] = `
+"[41m[30m ERROR [39m[49m [31mUknown argument [33m--unknown[31m.[39m
+[31m        Check command for typo and read docs.[39m
+"
+`;
