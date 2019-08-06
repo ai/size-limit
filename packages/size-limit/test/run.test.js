@@ -89,7 +89,9 @@ it('shows error in JSON format', async () => {
   await run(process)
   expect(history.exitCode).toEqual(1)
   expect(history.stderr).toEqual('')
-  expect(history.stdout).toMatchSnapshot()
+  let output = JSON.parse(history.stdout)
+  expect(Object.keys(output)).toEqual(['error'])
+  expect(output.error).toContain('SizeLimitError: Size Limit did’t find')
 })
 
 it('shows migration guide for npm users', async () => {

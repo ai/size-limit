@@ -15,7 +15,7 @@ class SizeLimitError extends Error {
       }
     }
     super(message)
-    this.sizeLimit = true
+    this.name = 'SizeLimitError'
   }
 }
 

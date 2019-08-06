@@ -2,7 +2,7 @@ let SizeLimitError = require('../size-limit-error')
 
 it('has mark', () => {
   let err = new SizeLimitError('noPackage')
-  expect(err.sizeLimit).toBeTruthy()
+  expect(err.name).toEqual('SizeLimitError')
 })
 
 it('has start', () => {

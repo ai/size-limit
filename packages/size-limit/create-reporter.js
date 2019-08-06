@@ -20,7 +20,7 @@ function createHumanReporter (process) {
   return {
     error (err) {
       let msg
-      if (err.sizeLimit) {
+      if (err.name === 'SizeLimitError') {
         msg = err.message
           .split('. ')
           .map(i => i.replace(/`([^`]*)`/g, chalk.yellow('$1')))
