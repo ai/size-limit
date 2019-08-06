@@ -81,7 +81,8 @@ it('shows error on missed package.json', async () => {
 
 it('shows syntax errors in package.json', async () => {
   let stderr = await error('package-syntax')
-  expect(stderr).toMatchSnapshot()
+  expect(stderr).toContain('ERROR')
+  expect(stderr).toContain('JSONError')
 })
 
 it('shows own error in JSON format', async () => {
@@ -97,5 +98,5 @@ it('shows external error in JSON format', async () => {
   await run(process)
   expect(history.exitCode).toEqual(1)
   expect(history.stderr).toEqual('')
-  expect(history.stdout).toMatchSnapshot()
+  expect(history.stdout).toContain('"error": "JSONError:')
 })
