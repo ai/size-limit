@@ -7,10 +7,18 @@ function list (obj) {
   return typeof obj === 'object' ? Object.keys(obj) : []
 }
 
-console.log(require('@size-limit/webpack'))
-
 function loadModules (pkg) {
   if (!pkg || !pkg.package) return []
+  console.log(
+    pkg,
+    list(pkg.package.dependencies)
+      .concat(list(pkg.package.devDependencies))
+      .filter(i => i.startsWith('@size-limit/')),
+    list(pkg.package.dependencies)
+      .concat(list(pkg.package.devDependencies))
+      .filter(i => i.startsWith('@size-limit/'))
+      .map(i => require(i))
+  )
   return list(pkg.package.dependencies)
     .concat(list(pkg.package.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
