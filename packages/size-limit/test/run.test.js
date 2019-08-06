@@ -84,20 +84,12 @@ it('shows syntax errors in package.json', async () => {
   expect(stderr).toContain('JSONError')
 })
 
-it('shows own error in JSON format', async () => {
+it('shows error in JSON format', async () => {
   let [process, history] = createProcess('/', ['--json'])
   await run(process)
   expect(history.exitCode).toEqual(1)
   expect(history.stderr).toEqual('')
   expect(history.stdout).toMatchSnapshot()
-})
-
-it('shows external error in JSON format', async () => {
-  let [process, history] = createProcess('package-syntax', ['--json'])
-  await run(process)
-  expect(history.exitCode).toEqual(1)
-  expect(history.stderr).toEqual('')
-  expect(history.stdout).toContain('"error": "JSONError:')
 })
 
 it('shows migration guide for npm users', async () => {

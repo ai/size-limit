@@ -7,11 +7,7 @@ function createJsonReporter (process) {
 
   return {
     error (err) {
-      if (err.sizeLimit) {
-        print({ error: err.message })
-      } else {
-        print({ error: err.stack })
-      }
+      print({ error: err.stack })
     },
 
     results () {

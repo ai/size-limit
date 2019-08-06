@@ -1,5 +1,6 @@
 let readPkgUp = require('read-pkg-up')
 
+let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
 let loadModules = require('./load-modules')
 let createHelp = require('./create-help')
@@ -27,10 +28,10 @@ module.exports = async process => {
     }
 
     if (!pkg || !pkg.package) {
-      throw help.errors.noPackage()
+      throw new SizeLimitError('noPackage')
     }
 
-    let args = parseArgs(modules, help, process.argv)
+    let args = parseArgs(modules, process.argv)
     if (modules.length === 0) {
       help.showMigrationGuide(pkg)
       return process.exit(1)

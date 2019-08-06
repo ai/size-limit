@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`shows error in JSON format 1`] = `
+"{
+  \\"error\\": \\"Error: Size Limit did’t find \`package.json\`. Create npm package and run Size Limit there.\\\\n    at Object.<anonymous>.module.exports (/packages/size-limit/run.js:31:13)\\\\n    at Object.<anonymous> (/packages/size-limit/test/run.test.js:89:3)\\"
+}
+"
+`;
+
 exports[`shows error on missed package.json 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit did’t find [33mpackage.json[31m.[39m
 [31m        Create npm package and run Size Limit there.[39m
@@ -36,13 +43,6 @@ You can remove size-limit dependency: [33myarn remove size-limit[39m
 "
 `;
 
-exports[`shows own error in JSON format 1`] = `
-"{
-  \\"error\\": \\"Size Limit did’t find \`package.json\`. Create npm package and run Size Limit there.\\"
-}
-"
-`;
-
 exports[`throws on --why argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m module.[39m
 [31m        You can add Bundle Analyzer to you own bundler.[39m
@@ -50,7 +50,7 @@ exports[`throws on --why argument without webpack 1`] = `
 `;
 
 exports[`throws on other webpack arguments without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--webpack-config[31m works only with [33m@size-limit/webpack[31m module.[39m
+"[41m[30m ERROR [39m[49m [31mArgument [33m--webpack-config[31m works only with [33m@size-limit/webpack[31m module[39m
 "
 `;
 

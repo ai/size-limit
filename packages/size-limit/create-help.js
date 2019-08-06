@@ -7,12 +7,6 @@ let ownPackage = require('./package.json')
 let b = chalk.bold
 let y = chalk.yellow
 
-function error (...lines) {
-  let err = new Error(lines.filter(i => i !== false).join('. ') + '.')
-  err.sizeLimit = true
-  return err
-}
-
 module.exports = process => {
   function print (...lines) {
     process.stdout.write(lines.join('\n') + '\n')
@@ -94,21 +88,5 @@ module.exports = process => {
     }
   }
 
-  let errors = {
-    noPackage: () => error(
-      'Size Limit did’t find `package.json`',
-      'Create npm package and run Size Limit there'
-    ),
-    webpackArg: arg => error(
-      'Argument `' + arg + '` works only with `@size-limit/webpack` module',
-      arg === '--why' &&
-        'You can add Bundle Analyzer to you own bundler'
-    ),
-    unknownArg: arg => error(
-      'Uknown argument `' + arg + '`',
-      'Check command for typo and read docs'
-    )
-  }
-
-  return { showVersion, showHelp, showMigrationGuide, errors }
+  return { showVersion, showHelp, showMigrationGuide }
 }

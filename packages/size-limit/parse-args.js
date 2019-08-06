@@ -1,4 +1,6 @@
-module.exports = function parseArgs (modules, help, argv) {
+let SizeLimitError = require('./size-limit-error')
+
+module.exports = function parseArgs (modules, argv) {
   let isWebpack = modules.some(i => i.name === '@size-limit/webpack')
   let ignore = { '--help': true, '--version': true, '--json': true }
   let args = { }
@@ -9,13 +11,13 @@ module.exports = function parseArgs (modules, help, argv) {
     } else if (arg === '--save-build') {
       args.saveBuild = argv[++i]
     } else if (arg === '--why') {
-      if (!isWebpack) throw help.errors.webpackArg('--why')
+      if (!isWebpack) throw new SizeLimitError('webpackArg', '--why')
       args.why = true
     } else if (arg === '--webpack-config') {
-      if (!isWebpack) throw help.errors.webpackArg('--webpack-config')
+      if (!isWebpack) throw new SizeLimitError('webpackArg', '--webpack-config')
       args.webpackConfig = argv[++i]
     } else if (!ignore[arg]) {
-      throw help.errors.unknownArg(arg)
+      throw new SizeLimitError('unknownArg', arg)
     }
   }
   return args
