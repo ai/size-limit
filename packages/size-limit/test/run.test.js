@@ -75,8 +75,7 @@ it('uses dependencies to detect modules', async () => {
 })
 
 it('shows error on missed package.json', async () => {
-  let stderr = await error('/')
-  expect(stderr).toMatchSnapshot()
+  expect(await error('/')).toMatchSnapshot()
 })
 
 it('shows syntax errors in package.json', async () => {
@@ -99,4 +98,12 @@ it('shows external error in JSON format', async () => {
   expect(history.exitCode).toEqual(1)
   expect(history.stderr).toEqual('')
   expect(history.stdout).toContain('"error": "JSONError:')
+})
+
+it('shows migration guide for npm users', async () => {
+  expect(await error('legacy-npm')).toMatchSnapshot()
+})
+
+it('shows migration guide for yarn users', async () => {
+  expect(await error('legacy-yarn')).toMatchSnapshot()
 })

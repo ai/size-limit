@@ -1,3 +1,5 @@
+let { existsSync } = require('fs')
+let { join } = require('path')
 let chalk = require('chalk')
 
 let ownPackage = require('./package.json')
@@ -14,6 +16,9 @@ function error (message) {
 module.exports = process => {
   function print (...lines) {
     process.stdout.write(lines.join('\n') + '\n')
+  }
+  function printError (...lines) {
+    process.stderr.write(lines.join('\n') + '\n')
   }
 
   function showHelp (modules) {
@@ -61,8 +66,32 @@ module.exports = process => {
     print(`size-limit ${ ownPackage.version }`)
   }
 
-  function showMigrationGuide () {
-    // TODO
+  function showMigrationGuide (pkg) {
+    let add = 'npm install --save-dev '
+    let rm = 'npm remove '
+    if (existsSync(join(pkg.path, '..', 'yarn.lock'))) {
+      add = 'yarn add --dev '
+      rm = 'yarn remove '
+    }
+    printError(
+      chalk.red('Install Size Limit preset depends on type of the project'),
+      '',
+      'For application, where you send JS bundle directly to users',
+      '  ' + y(add + '@size-limit/preset-app'),
+      'For frameworks, components and big libraries',
+      '  ' + y(add + '@size-limit/preset-big-lib'),
+      'For small (< 10 KB) libraries',
+      '  ' + y(add + '@size-limit/preset-small-lib'),
+      'Check out docs for more comlicated cases',
+      '  ' + y('https://github.com/ai/size-limit/')
+    )
+    let devDependencies = pkg.package.devDependencies
+    if (devDependencies && devDependencies['size-limit']) {
+      printError(
+        '',
+        `You can remove size-limit dependency: ${ y(rm + 'size-limit') }`
+      )
+    }
   }
 
   let errors = {

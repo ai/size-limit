@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "devDependencies": {
+    "size-limit": ">= 0.0.0"
+  }
+}

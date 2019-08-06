@@ -52,7 +52,7 @@ module.exports = async process => {
     }
 
     if (modules.length === 0) {
-      help.showMigrationGuide(process)
+      help.showMigrationGuide(pkg)
       return process.exit(1)
     }
 
