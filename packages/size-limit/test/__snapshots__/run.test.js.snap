@@ -8,7 +8,7 @@ exports[`shows error on missed package.json 1`] = `
 
 exports[`shows external error in JSON format 1`] = `
 "{
-  \\"error\\": \\"JSONError: Unexpected end of JSON input while parsing near '{  \\\\\\"private\\\\\\": true,'\\\\n    at Object.<anonymous>.module.exports (/node_modules/read-pkg/node_modules/parse-json/index.js:29:21)\\\\n    at Object.<anonymous>.module.exports (/home/ai/Dev/size-limit/node_modules/read-pkg/index.js:17:15)\\\\n    at Object.<anonymous>.module.exports (/home/ai/Dev/size-limit/packages/core/node_modules/read-pkg-up/index.js:14:12)\\\\n    at Object.<anonymous>.module.exports (/home/ai/Dev/size-limit/packages/core/run.js:42:15)\\\\n    at Object.<anonymous> (/home/ai/Dev/size-limit/packages/core/test/run.test.js:97:3)\\"
+  \\"error\\": \\"JSONError: Unexpected end of JSON input while parsing near '{  \\\\\\"private\\\\\\": true,'\\\\n    at Object.<anonymous>.module.exports (/node_modules/read-pkg/node_modules/parse-json/index.js:29:21)\\\\n    at Object.<anonymous>.module.exports (/node_modules/read-pkg/index.js:17:15)\\\\n    at Object.<anonymous>.module.exports (/packages/size-limit/node_modules/read-pkg-up/index.js:14:12)\\\\n    at Object.<anonymous>.module.exports (/packages/size-limit/run.js:42:15)\\\\n    at Object.<anonymous> (/packages/size-limit/test/run.test.js:97:3)\\"
 }
 "
 `;
@@ -23,10 +23,10 @@ exports[`shows own error in JSON format 1`] = `
 exports[`shows syntax errors in package.json 1`] = `
 "[41m[30m ERROR [39m[49m [31mJSONError: Unexpected end of JSON input while parsing near '{  \\"private\\": true,'[39m
 [31m    at Object.<anonymous>.module.exports (/node_modules/read-pkg/node_modules/parse-json/index.js:29:21)[39m
-[31m    at Object.<anonymous>.module.exports (/home/ai/Dev/size-limit/node_modules/read-pkg/index.js:17:15)[39m
-[31m    at Object.<anonymous>.module.exports (/home/ai/Dev/size-limit/packages/core/node_modules/read-pkg-up/index.js:14:12)[39m
-[31m    at Object.<anonymous>.module.exports (/home/ai/Dev/size-limit/packages/core/run.js:42:15)[39m
-[31m    at error (/home/ai/Dev/size-limit/packages/core/test/run.test.js:49:3)[39m
-[31m    at Object.<anonymous> (/home/ai/Dev/size-limit/packages/core/test/run.test.js:83:16)[39m
+[31m    at Object.<anonymous>.module.exports (/node_modules/read-pkg/index.js:17:15)[39m
+[31m    at Object.<anonymous>.module.exports (/packages/size-limit/node_modules/read-pkg-up/index.js:14:12)[39m
+[31m    at Object.<anonymous>.module.exports (/packages/size-limit/run.js:42:15)[39m
+[31m    at error (/packages/size-limit/test/run.test.js:49:3)[39m
+[31m    at Object.<anonymous> (/packages/size-limit/test/run.test.js:83:16)[39m
 "
 `;

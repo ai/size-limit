@@ -24,12 +24,12 @@ function createProcess (fixture, args = []) {
     },
     stdout: {
       write (str) {
-        history.stdout += str.replace(ROOT, '')
+        history.stdout += str.split(ROOT).join('')
       }
     },
     stderr: {
       write (str) {
-        history.stderr += str.replace(ROOT, '')
+        history.stderr += str.split(ROOT).join('')
       }
     }
   }
