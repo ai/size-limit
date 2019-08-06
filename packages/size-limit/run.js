@@ -7,6 +7,8 @@ function list (obj) {
   return typeof obj === 'object' ? Object.keys(obj) : []
 }
 
+console.log(require('@size-limit/webpack'))
+
 function loadModules (pkg) {
   if (!pkg || !pkg.package) return []
   return list(pkg.package.dependencies)
@@ -24,7 +26,7 @@ async function findConfig () {
   // TODO
 }
 
-async function run () {
+async function calc () {
   // TODO
 }
 
@@ -42,7 +44,6 @@ module.exports = async process => {
 
     let pkg = await readPkgUp({ cwd: process.cwd() })
     let modules = loadModules(pkg)
-    console.log(process.cwd(), pkg, modules)
 
     if (hasArg('--help')) {
       return help.showHelp(modules)
@@ -60,7 +61,7 @@ module.exports = async process => {
     let args = parseArgs(modules, process.argv)
     let config = await findConfig(args, pkg.path)
 
-    let results = await run(modules, config)
+    let results = await calc(modules, config)
     reporter.results(results)
   } catch (e) {
     reporter.error(e)
