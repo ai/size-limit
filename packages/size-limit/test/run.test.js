@@ -1,5 +1,6 @@
 let sizeLimitWebpack = require('@size-limit/webpack')
 let sizeLimitFile = require('@size-limit/file')
+let sizeLimitTime = require('@size-limit/time')
 let { join } = require('path')
 
 let calc = require('../calc')
@@ -159,12 +160,13 @@ it('throws on running option without time module', async () => {
 
 it('creates config by CLI arguments', async () => {
   calc.mockImplementation(() => [])
-  await check('file', ['--limit', '1 s', 'a.js', '/b.js'])
+  await check('file', ['--limit', '10', 'a.js', '/b.js'])
   expect(calc).toHaveBeenCalledWith(sizeLimitFile, {
     checks: [
       {
         name: 'a.js, /b.js',
-        limit: '1 s',
+        limit: '10',
+        limitSize: 10,
         path: [fixture('file', 'a.js'), '/b.js']
       }
     ]
@@ -179,6 +181,7 @@ it('supports globby and main field', async () => {
       {
         name: 'a',
         limit: '1 KB',
+        limitSize: 1024,
         path: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
       },
       {
@@ -197,7 +200,8 @@ it('uses index.js by default', async () => {
       {
         name: 'index',
         path: [fixture('simple', 'index.js')],
-        limit: '1 KB'
+        limit: '1 KB',
+        limitSize: 1024
       }
     ]
   })
@@ -211,7 +215,8 @@ it('overrides limit by CLI arg', async () => {
       {
         name: 'index',
         path: [fixture('simple', 'index.js')],
-        limit: '10 KB'
+        limit: '10 KB',
+        limitSize: 10240
       }
     ]
   })
@@ -242,6 +247,44 @@ it('uses peerDependencies as ignore option', async () => {
         name: 'index.js',
         ignore: ['a', 'b'],
         path: [fixture('peer', 'index.js')]
+      }
+    ]
+  })
+})
+
+it('throws on time limit without time module', async () => {
+  expect(await error('simple', ['--limit', '1 s'])).toMatchSnapshot()
+})
+
+it('normalizes time limits', async () => {
+  calc.mockImplementation(() => [])
+  await check('time')
+  expect(calc).toHaveBeenCalledWith(sizeLimitTime, {
+    checks: [
+      {
+        limit: '1 s',
+        limitTime: 1,
+        name: 'index.js',
+        path: [fixture('time', 'index.js')]
+      },
+      {
+        limit: '1 ms',
+        limitTime: 0.001,
+        name: 'index.js',
+        path: [fixture('time', 'index.js')],
+        running: false
+      },
+      {
+        limit: '10ms',
+        limitTime: 0.01,
+        name: 'index.js',
+        path: [fixture('time', 'index.js')]
+      },
+      {
+        limit: '10s',
+        limitTime: 10,
+        name: 'index.js',
+        path: [fixture('time', 'index.js')]
       }
     ]
   })

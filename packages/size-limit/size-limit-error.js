@@ -15,7 +15,8 @@ const MESSAGES = {
   entryNotString: () => `The *entry* in Size Limit config ` +
                         `must be *a string* or *an array of strings*`,
   modulelessConfig: (opt, mod) => `Config option *${ opt }* needs ` +
-                                  `*@size-limit/${ mod }* module`
+                                  `*@size-limit/${ mod }* module`,
+  timeWithoutModule: () => 'Add *@size-limit/time* module to use time limit'
 }
 
 const ADD_CONFIG_EXAMPLE = {

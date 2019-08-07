@@ -1,0 +1,26 @@
+{
+  "name": "file",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/time": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "1 s"
+    },
+    {
+      "path": "index.js",
+      "limit": "1 ms",
+      "running": false
+    },
+    {
+      "path": "index.js",
+      "limit": "10ms"
+    },
+    {
+      "path": "index.js",
+      "limit": "10s"
+    }
+  ]
+}

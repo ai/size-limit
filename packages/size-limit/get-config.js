@@ -1,6 +1,7 @@
 let { isAbsolute, dirname, join } = require('path')
 let cosmiconfig = require('cosmiconfig')
 let globby = require('globby')
+let bytes = require('bytes')
 
 let SizeLimitError = require('./size-limit-error')
 
@@ -101,11 +102,24 @@ module.exports = async function getConfig (modules, process, args, pkg) {
     }))
   }
 
+  let isTime = modules.some(i => i.name === '@size-limit/time')
   let peer = Object.keys(pkg.package.peerDependencies || { })
   for (let check of config.checks) {
     if (peer.length > 0) check.ignore = peer.concat(check.ignore || [])
     if (!check.name) check.name = check.entry || check.path.join(', ')
     if (args.limit) check.limit = args.limit
+    if (check.limit) {
+      if (/ ?ms/i.test(check.limit)) {
+        check.limitTime = parseFloat(check.limit) / 1000
+      } else if (/ ?s/i.test(check.limit)) {
+        check.limitTime = parseFloat(check.limit)
+      } else {
+        check.limitSize = bytes.parse(check.limit)
+      }
+      if (check.limitTime && !isTime) {
+        throw new SizeLimitError('timeWithoutModule')
+      }
+    }
     check.path = check.path.map(i => makeAbsolute(i, cwd))
   }
 
