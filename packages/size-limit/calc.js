@@ -1,1 +1,1 @@
-module.exports = function calc () { }
+module.exports = async function calc () { }

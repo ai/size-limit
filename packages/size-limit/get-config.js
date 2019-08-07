@@ -1,4 +1,4 @@
-let { isAbsolute, dirname, join } = require('path')
+let { isAbsolute, dirname, join, relative } = require('path')
 let cosmiconfig = require('cosmiconfig')
 let globby = require('globby')
 let bytes = require('bytes')
@@ -58,7 +58,7 @@ function makeAbsolute (file, cwd) {
 }
 
 module.exports = async function getConfig (modules, process, args, pkg) {
-  let config = { }
+  let config = { results: [] }
   if (args.why) {
     config.project = pkg.package.name
     config.why = args.why
@@ -85,6 +85,7 @@ module.exports = async function getConfig (modules, process, args, pkg) {
     if (result === null) throw new SizeLimitError('noConfig')
     checkChecks(modules, result.config)
 
+    config.configPath = relative(process.cwd(), result.filepath)
     cwd = dirname(result.filepath)
     config.checks = await Promise.all(result.config.map(async check => {
       if (check.path) {
