@@ -1,5 +1,4 @@
 {
-  "name": "file",
   "private": true,
   "devDependencies": {
     "@size-limit/file": ">= 0.0.0"

@@ -42,13 +42,98 @@ exports[`throws on --why argument without webpack 1`] = `
 "
 `;
 
-exports[`throws on other webpack arguments without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--webpack-config[31m works only with [33m@size-limit/webpack[31m module[39m
+exports[`throws on empty config 1`] = `
+"[41m[30m ERROR [39m[49m [31mSize Limit config must [33mnot be empty[31m[39m
+
+  [32m\\"size-limit\\"[39m: [
+    {
+      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
+      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+    }
+  ]
+"
+`;
+
+exports[`throws on gzip option without gzip module 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/gzip[31m module[39m
+"
+`;
+
+exports[`throws on no config 1`] = `
+"[41m[30m ERROR [39m[49m [31mCreate Size Limit config in [33mpackage.json[31m[39m
+
+  [32m\\"size-limit\\"[39m: [
+    {
+      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
+      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+    }
+  ]
+"
+`;
+
+exports[`throws on non-array config 1`] = `
+"[41m[30m ERROR [39m[49m [31mSize Limit config must contain [33man array[31m[39m
+
+  [32m\\"size-limit\\"[39m: [
+    {
+      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
+      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+    }
+  ]
+"
+`;
+
+exports[`throws on non-object check 1`] = `
+"[41m[30m ERROR [39m[49m [31mSize Limit config array should contain [33monly objects[31m[39m
+
+  [32m\\"size-limit\\"[39m: [
+    {
+      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
+      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+    }
+  ]
+"
+`;
+
+exports[`throws on non-string entry 1`] = `
+"[41m[30m ERROR [39m[49m [31mThe [33mentry[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
+"
+`;
+
+exports[`throws on non-string path 1`] = `
+"[41m[30m ERROR [39m[49m [31mThe [33mpath[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
+
+  [32m\\"size-limit\\"[39m: [
+    {
+      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
+      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+    }
+  ]
+"
+`;
+
+exports[`throws on running option without time module 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mrunning[31m needs [33m@size-limit/time[31m module[39m
 "
 `;
 
 exports[`throws on unknown argument 1`] = `
 "[41m[30m ERROR [39m[49m [31mUknown argument [33m--unknown[31m.[39m
 [31m        Check command for typo and read docs.[39m
+"
+`;
+
+exports[`throws on webpack option without webpack module 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mwebpack[31m needs [33m@size-limit/webpack[31m module[39m
+"
+`;
+
+exports[`throws on webpack option without webpack module 2`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mignore[31m needs [33m@size-limit/webpack[31m module[39m
+"
+`;
+
+exports[`throws on webpack option without webpack module 3`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mwebpackConfig[31m needs [33m@size-limit/webpack[31m module[39m
 "
 `;

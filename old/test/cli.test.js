@@ -70,86 +70,6 @@ it('shows resolve errors', async () => {
   expect(code).toEqual(1)
 })
 
-it('shows size-limit section error', async () => {
-  let { out, code } = await run([], { cwd: fixture('missed') })
-  expect(out).toContain(
-    ' ERROR  Can not find settings for Size Limit.\n' +
-    '        Add it to section "size-limit" in package.json ' +
-    'according to Size Limit docs.\n' +
-    '\n' +
-    '  "size-limit": ['
-  )
-  expect(code).toEqual(1)
-})
-
-it('shows size-limit type error', async () => {
-  let { out, code } = await run([], { cwd: fixture('type') })
-  expect(out).toContain(packageError(
-    'The "size-limit" section of package.json must be an array.'
-  ))
-  expect(code).toEqual(1)
-})
-
-it('shows size-limit section content error with wrong path', async () => {
-  let { out, code } = await run([], { cwd: fixture('wrong-package-path') })
-  expect(out).toContain(packageError(
-    'The path in the "size-limit" section of package.json must be ' +
-    'a string or an array of strings.'
-  ))
-  expect(code).toEqual(1)
-})
-
-it('shows size-limit section content error with wrong entry', async () => {
-  let { out, code } = await run([], { cwd: fixture('wrong-package-entry') })
-  expect(out).toContain(packageError(
-    'The entry in the "size-limit" section of package.json must be ' +
-    'a string or an array of strings.'
-  ))
-  expect(code).toEqual(1)
-})
-
-it('shows empty content error', async () => {
-  let { out, code } = await run([], { cwd: fixture('empty-config') })
-  expect(out).toContain(configError(
-    'Size Limit config must not be empty.'
-  ))
-  expect(code).toEqual(1)
-})
-
-it('shows not string error with wrong entry', async () => {
-  let { out, code } = await run([], { cwd: fixture('wrong-config-entry') })
-  expect(out).toContain(configError(
-    'The entry in Size Limit config must be a string or an array of strings.'
-  ))
-  expect(code).toEqual(1)
-})
-
-it('shows not string error with wrong path', async () => {
-  let { out, code } = await run([], { cwd: fixture('wrong-config-path') })
-  expect(out).toContain(configError(
-    'The path in Size Limit config must be a string or an array of strings.'
-  ))
-  expect(code).toEqual(1)
-})
-
-it('uses .size-limit.json file config', async () => {
-  let { out, code } = await run([], { cwd: fixture('config') })
-  expect(out).toContain('Size limit:   1 KB')
-  expect(code).toEqual(0)
-})
-
-it('uses .size-limit.js file config', async () => {
-  let { out, code } = await run([], { cwd: fixture('js') })
-  expect(out).toContain('Size limit:   1 KB')
-  expect(code).toEqual(0)
-})
-
-it('overrides config by limit argument', async () => {
-  let { out, code } = await run(['--limit', '1B'], { cwd: fixture('config') })
-  expect(out).toContain('Size limit:   1 B\n')
-  expect(code).toEqual(3)
-})
-
 it('shows size without limit', async () => {
   let { out, code } = await run([], { cwd: fixture('unlimit') })
   expect(out).toEqual(
@@ -199,12 +119,6 @@ it('accepts array for path', async () => {
   expect(code).toEqual(0)
 })
 
-it('supports glob patterns', async () => {
-  let { out, code } = await run([], { cwd: fixture('glob') })
-  expect(out).toContain('Package size: 10 B')
-  expect(code).toEqual(0)
-})
-
 it('supports ES2016', async () => {
   let { out, code } = await run([], { cwd: fixture('es2016') })
   expect(out).toContain('Package size: 25 B')
@@ -248,13 +162,6 @@ it('checks time limits', async () => {
     '  Try to reduce size or increase limit in .size-limit.json\n'
   )
   expect(code).toEqual(3)
-})
-
-it('takes time limit from argument', async () => {
-  let file = 'test/fixtures/unlimit/empty.js'
-  let { out, code } = await run(['--limit', '1 s', file])
-  expect(out).toContain('Time limit:   1 s')
-  expect(code).toEqual(0)
 })
 
 it('allows to avoid space in time', async () => {

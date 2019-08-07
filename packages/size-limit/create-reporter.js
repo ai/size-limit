@@ -19,18 +19,26 @@ function createJsonReporter (process) {
 function createHumanReporter (process) {
   return {
     error (err) {
-      let msg
       if (err.name === 'SizeLimitError') {
-        msg = err.message
+        let msg = err.message
           .split('. ')
-          .map(i => i.replace(/`([^`]*)`/g, chalk.yellow('$1')))
+          .map(i => i.replace(/\*([^*]+)\*/g, chalk.yellow('$1')))
           .join('.\n        ')
+        process.stderr.write(
+          `${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(msg) }\n`
+        )
+        if (err.example) {
+          process.stderr.write(
+            '\n' + err.example
+              .replace(/("[^"]+"):/g, chalk.green('$1') + ':')
+              .replace(/: ("[^"]+")/g, ': ' + chalk.yellow('$1'))
+          )
+        }
       } else {
-        msg = err.stack
+        process.stderr.write(
+          `${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(err.stack) }\n`
+        )
       }
-      process.stderr.write(
-        `${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(msg) }\n`
-      )
     },
 
     results () {

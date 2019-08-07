@@ -1,10 +1,19 @@
+let sizeLimitWebpack = require('@size-limit/webpack')
+let sizeLimitFile = require('@size-limit/file')
 let { join } = require('path')
 
+let calc = require('../calc')
 let run = require('../run')
+
+jest.mock('../calc')
 
 const ROOT = join(__dirname, '..', '..', '..')
 
-function createProcess (fixture, args = []) {
+function fixture (...files) {
+  return join(__dirname, 'fixtures', ...files)
+}
+
+function createProcess (cwd, args = []) {
   let history = {
     exitCode: 0,
     stdout: '',
@@ -13,10 +22,10 @@ function createProcess (fixture, args = []) {
   let process = {
     argv: ['node', 'size-limit', ...args],
     cwd () {
-      if (fixture.includes('/')) {
-        return fixture
+      if (cwd.includes('/')) {
+        return cwd
       } else {
-        return join(__dirname, 'fixtures', fixture)
+        return fixture(cwd)
       }
     },
     exit (code) {
@@ -36,16 +45,16 @@ function createProcess (fixture, args = []) {
   return [process, history]
 }
 
-async function check (fixture, args) {
-  let [process, history] = createProcess(fixture, args)
+async function check (cwd, args) {
+  let [process, history] = createProcess(cwd, args)
   await run(process)
   expect(history.stderr).toEqual('')
   expect(history.exitCode).toEqual(0)
   return history.stdout
 }
 
-async function error (fixture, args) {
-  let [process, history] = createProcess(fixture, args)
+async function error (cwd, args) {
+  let [process, history] = createProcess(cwd, args)
   await run(process)
   expect(history.stdout).toEqual('')
   expect(history.exitCode).toEqual(1)
@@ -110,6 +119,116 @@ it('throws on --why argument without webpack', async () => {
   expect(await error('file', ['--why'])).toMatchSnapshot()
 })
 
-it('throws on other webpack arguments without webpack', async () => {
-  expect(await error('file', ['--webpack-config', 'a'])).toMatchSnapshot()
+it('throws on no config', async () => {
+  expect(await error('file')).toMatchSnapshot()
+})
+
+it('throws on non-array config', async () => {
+  expect(await error('non-array')).toMatchSnapshot()
+})
+
+it('throws on empty config', async () => {
+  expect(await error('empty')).toMatchSnapshot()
+})
+
+it('throws on non-object check', async () => {
+  expect(await error('non-object')).toMatchSnapshot()
+})
+
+it('throws on non-string path', async () => {
+  expect(await error('non-string')).toMatchSnapshot()
+})
+
+it('throws on non-string entry', async () => {
+  expect(await error('non-string-entry')).toMatchSnapshot()
+})
+
+it('throws on webpack option without webpack module', async () => {
+  expect(await error('non-webpack')).toMatchSnapshot()
+  expect(await error('non-webpack-ignore')).toMatchSnapshot()
+  expect(await error('non-webpack-config')).toMatchSnapshot()
+})
+
+it('throws on gzip option without gzip module', async () => {
+  expect(await error('non-gzip')).toMatchSnapshot()
+})
+
+it('throws on running option without time module', async () => {
+  expect(await error('non-time')).toMatchSnapshot()
+})
+
+it('creates config by CLI arguments', async () => {
+  calc.mockImplementation(() => [])
+  await check('file', ['--limit', '1 s', 'a.js', '/b.js'])
+  expect(calc).toHaveBeenCalledWith(sizeLimitFile, {
+    checks: [
+      {
+        name: 'a.js, /b.js',
+        limit: '1 s',
+        path: [fixture('file', 'a.js'), '/b.js']
+      }
+    ]
+  })
+})
+
+it('supports globby and main field', async () => {
+  calc.mockImplementation(() => [])
+  await check('globby')
+  expect(calc).toHaveBeenCalledWith(sizeLimitFile, {
+    checks: [
+      {
+        name: 'a',
+        limit: '1 KB',
+        path: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
+      },
+      {
+        name: 'b',
+        path: [fixture('globby', 'b1.js')]
+      }
+    ]
+  })
+})
+
+it('uses index.js by default', async () => {
+  calc.mockImplementation(() => [])
+  await check('simple')
+  expect(calc).toHaveBeenCalledWith(sizeLimitFile, {
+    checks: [
+      {
+        name: 'index',
+        path: [fixture('simple', 'index.js')],
+        limit: '1 KB'
+      }
+    ]
+  })
+})
+
+it('overrides limit by CLI arg', async () => {
+  calc.mockImplementation(() => [])
+  await check('simple', ['--limit', '10 KB'])
+  expect(calc).toHaveBeenCalledWith(sizeLimitFile, {
+    checks: [
+      {
+        name: 'index',
+        path: [fixture('simple', 'index.js')],
+        limit: '10 KB'
+      }
+    ]
+  })
+})
+
+it('normalizes bundle and webpack arguments', async () => {
+  calc.mockImplementation(() => [])
+  await check('webpack', ['--why', '--save-build', 'out'])
+  expect(calc).toHaveBeenCalledWith(sizeLimitWebpack, {
+    why: true,
+    project: 'webpack',
+    saveBuild: fixture('webpack', 'out'),
+    checks: [
+      {
+        name: 'index.js',
+        path: [fixture('webpack', 'index.js')]
+      }
+    ]
+  })
 })

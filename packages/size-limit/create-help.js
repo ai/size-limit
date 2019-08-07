@@ -18,7 +18,7 @@ module.exports = process => {
   function showHelp (modules) {
     let isWebpack = modules.some(i => i.name === '@size-limit/webpack')
     print(
-      y('size-limit [OPTION]… [FILE]'),
+      y('size-limit [OPTION]… [FILE]…'),
       'Check the real performance cost of your front-end project to users',
       '',
       b('Core options:'),
@@ -45,13 +45,13 @@ module.exports = process => {
     )
     if (isWebpack) {
       print(
-        '    Check the size of specific files with all file dependencies',
+        '    Show the size of specific files with all file dependencies',
         y('  size-limit --why'),
         '    Show reasons why project have this size'
       )
     } else {
       print(
-        '    Check the size of specific files'
+        '    Show the size of specific files'
       )
     }
   }

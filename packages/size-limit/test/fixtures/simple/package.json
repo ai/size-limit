@@ -3,5 +3,11 @@
   "private": true,
   "devDependencies": {
     "@size-limit/file": ">= 0.0.0"
-  }
+  },
+  "size-limit": [
+    {
+      "name": "index",
+      "limit": "1 KB"
+    }
+  ]
 }

@@ -16,6 +16,8 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "ci-job-number": "^0.3.0",
+    "cosmiconfig": "^5.2.1",
+    "globby": "^10.0.1",
     "read-pkg-up": "^6.0.0"
   }
 }

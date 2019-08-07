@@ -36,7 +36,7 @@ module.exports = async process => {
       help.showMigrationGuide(pkg)
       return process.exit(1)
     }
-    let config = await getConfig(args, pkg.path)
+    let config = await getConfig(modules, process, args, pkg)
 
     let results = await calc(modules, config)
     reporter.results(results)
