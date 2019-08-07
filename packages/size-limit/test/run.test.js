@@ -232,3 +232,17 @@ it('normalizes bundle and webpack arguments', async () => {
     ]
   })
 })
+
+it('uses peerDependencies as ignore option', async () => {
+  calc.mockImplementation(() => [])
+  await check('peer')
+  expect(calc).toHaveBeenCalledWith(sizeLimitWebpack, {
+    checks: [
+      {
+        name: 'index.js',
+        ignore: ['a', 'b'],
+        path: [fixture('peer', 'index.js')]
+      }
+    ]
+  })
+})
