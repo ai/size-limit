@@ -6,13 +6,5 @@
   },
   "peerDependencies": {
     "a": ">= 0.0.0"
-  },
-  "size-limit": [
-    {
-      "path": "index.js",
-      "ignore": [
-        "b"
-      ]
-    }
-  ]
+  }
 }

@@ -120,7 +120,7 @@ it('normalizes bundle and webpack arguments', async () => {
 
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
-    configPath: 'package.json',
+    configPath: '.size-limit.json',
     results: [],
     checks: [
       {
