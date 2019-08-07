@@ -16,9 +16,6 @@ function isStringsOrUndefined (value) {
 }
 
 function checkChecks (modules, checks) {
-  let isWebpack = modules.some(i => i.name === '@size-limit/webpack')
-  let isGzip = modules.some(i => i.name === '@size-limit/gzip')
-  let isTime = modules.some(i => i.name === '@size-limit/time')
   if (!Array.isArray(checks)) {
     throw new SizeLimitError('noArrayConfig')
   }
@@ -35,19 +32,19 @@ function checkChecks (modules, checks) {
     if (!isStringsOrUndefined(check.entry)) {
       throw new SizeLimitError('entryNotString')
     }
-    if (typeof check.webpack !== 'undefined' && !isWebpack) {
+    if (typeof check.webpack !== 'undefined' && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'webpack', 'webpack')
     }
-    if (typeof check.webpackConfig !== 'undefined' && !isWebpack) {
+    if (typeof check.webpackConfig !== 'undefined' && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'webpackConfig', 'webpack')
     }
-    if (typeof check.ignore !== 'undefined' && !isWebpack) {
+    if (typeof check.ignore !== 'undefined' && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'ignore', 'webpack')
     }
-    if (typeof check.gzip !== 'undefined' && !isGzip) {
+    if (typeof check.gzip !== 'undefined' && !modules.has('gzip')) {
       throw new SizeLimitError('modulelessConfig', 'gzip', 'gzip')
     }
-    if (typeof check.running !== 'undefined' && !isTime) {
+    if (typeof check.running !== 'undefined' && !modules.has('time')) {
       throw new SizeLimitError('modulelessConfig', 'running', 'time')
     }
   }
@@ -103,7 +100,6 @@ module.exports = async function getConfig (modules, process, args, pkg) {
     }))
   }
 
-  let isTime = modules.some(i => i.name === '@size-limit/time')
   let peer = Object.keys(pkg.package.peerDependencies || { })
   for (let check of config.checks) {
     if (peer.length > 0) check.ignore = peer.concat(check.ignore || [])
@@ -117,7 +113,7 @@ module.exports = async function getConfig (modules, process, args, pkg) {
       } else {
         check.limitSize = bytes.parse(check.limit)
       }
-      if (check.limitTime && !isTime) {
+      if (check.limitTime && !modules.has('time')) {
         throw new SizeLimitError('timeWithoutModule')
       }
     }

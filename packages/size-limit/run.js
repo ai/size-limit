@@ -32,7 +32,7 @@ module.exports = async process => {
     }
 
     let args = parseArgs(modules, process.argv)
-    if (modules.length === 0) {
+    if (modules.isEmpty) {
       help.showMigrationGuide(pkg)
       return process.exit(1)
     }
