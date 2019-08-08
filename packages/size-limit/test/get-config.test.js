@@ -41,7 +41,7 @@ it('creates config by CLI arguments', async () => {
       {
         name: 'a.js, /b.js',
         limit: '10',
-        limitSize: 10,
+        sizeLimit: 10,
         path: [fixture('file', 'a.js'), '/b.js']
       }
     ]
@@ -55,7 +55,7 @@ it('supports globby and main field', async () => {
       {
         name: 'a',
         limit: '1 KB',
-        limitSize: 1024,
+        sizeLimit: 1024,
         path: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
       },
       {
@@ -74,7 +74,7 @@ it('uses index.js by default', async () => {
         name: 'index',
         path: [fixture('simple', 'index.js')],
         limit: '1 KB',
-        limitSize: 1024
+        sizeLimit: 1024
       }
     ]
   })
@@ -88,7 +88,7 @@ it('overrides limit by CLI arg', async () => {
         name: 'index',
         path: [fixture('simple', 'index.js')],
         limit: '10 KB',
-        limitSize: 10240
+        sizeLimit: 10240
       }
     ]
   })
@@ -128,26 +128,26 @@ it('normalizes time limits', async () => {
     checks: [
       {
         limit: '1 s',
-        limitTime: 1,
+        timeLimit: 1,
         name: 'index.js',
         path: [fixture('time', 'index.js')]
       },
       {
         limit: '1 ms',
-        limitTime: 0.001,
+        timeLimit: 0.001,
         name: 'index.js',
         path: [fixture('time', 'index.js')],
         running: false
       },
       {
         limit: '10ms',
-        limitTime: 0.01,
+        timeLimit: 0.01,
         name: 'index.js',
         path: [fixture('time', 'index.js')]
       },
       {
         limit: '10s',
-        limitTime: 10,
+        timeLimit: 10,
         name: 'index.js',
         path: [fixture('time', 'index.js')]
       }

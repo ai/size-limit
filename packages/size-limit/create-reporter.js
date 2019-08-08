@@ -16,8 +16,8 @@ function createJsonReporter (process) {
         let result = { name: i.name }
         if (typeof i.passed !== 'undefined') result.passed = i.passed
         if (typeof i.size !== 'undefined') result.size = i.size
-        if (typeof i.timeRun !== 'undefined') result.running = i.timeRun
-        if (typeof i.timeLoad !== 'undefined') result.loading = i.timeLoad
+        if (typeof i.runTime !== 'undefined') result.running = i.runTime
+        if (typeof i.loadTime !== 'undefined') result.loading = i.loadTime
         return result
       }))
     }
@@ -85,20 +85,20 @@ function createHumanReporter (process) {
         }
         let sizeString = formatBytes(check.size)
 
-        if (check.limitTime) {
+        if (check.timeLimit) {
           if (check.passed === false) {
             print(chalk.red('Total time limit has exceeded'))
           }
-          rows.push(['Time limit', formatTime(check.limitTime)])
+          rows.push(['Time limit', formatTime(check.timeLimit)])
         }
-        if (check.limitSize) {
-          let sizeLimitString = formatBytes(check.limitSize)
+        if (check.sizeLimit) {
+          let sizeLimitString = formatBytes(check.sizeLimit)
           if (check.passed === false) {
             if (sizeLimitString === sizeString) {
-              sizeLimitString = check.limitSize + ' B'
+              sizeLimitString = check.sizeLimit + ' B'
               sizeString = check.size + ' B'
             }
-            let diff = formatBytes(check.size - check.limitSize)
+            let diff = formatBytes(check.size - check.sizeLimit)
             print(chalk.red(`Package size limit has exceeded by ${ diff }`))
           }
           rows.push(['Size limit', sizeLimitString])
@@ -107,13 +107,13 @@ function createHumanReporter (process) {
         if (check.size) {
           rows.push(['Size', sizeString, sizeNote])
         }
-        if (check.timeLoad) {
-          rows.push(['Loading time', formatTime(check.timeLoad), 'on slow 3G'])
+        if (check.loadTime) {
+          rows.push(['Loading time', formatTime(check.loadTime), 'on slow 3G'])
         }
-        if (check.timeRun) {
+        if (check.runTime) {
           rows.push(
-            ['Running time', formatTime(check.timeRun), 'on Snapdragon 410'],
-            ['Total time', formatTime(check.timeRun + check.timeLoad)]
+            ['Running time', formatTime(check.runTime), 'on Snapdragon 410'],
+            ['Total time', formatTime(check.runTime + check.loadTime)]
           )
         }
 

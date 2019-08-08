@@ -107,13 +107,13 @@ module.exports = async function getConfig (modules, process, args, pkg) {
     if (args.limit) check.limit = args.limit
     if (check.limit) {
       if (/ ?ms/i.test(check.limit)) {
-        check.limitTime = parseFloat(check.limit) / 1000
+        check.timeLimit = parseFloat(check.limit) / 1000
       } else if (/ ?s/i.test(check.limit)) {
-        check.limitTime = parseFloat(check.limit)
+        check.timeLimit = parseFloat(check.limit)
       } else {
-        check.limitSize = bytes.parse(check.limit)
+        check.sizeLimit = bytes.parse(check.limit)
       }
-      if (check.limitTime && !modules.has('time')) {
+      if (check.timeLimit && !modules.has('time')) {
         throw new SizeLimitError('timeWithoutModule')
       }
     }

@@ -26,23 +26,23 @@ it('renders results', () => {
         name: 'limitless',
         size: 10,
         webpackConfig: 'a',
-        timeLoad: 0.01,
-        timeRun: 0.05
+        loadTime: 0.01,
+        runTime: 0.05
       },
       {
         name: 'size',
         size: 102400,
-        limitSize: 102400,
-        timeLoad: 1,
-        timeRun: 2,
+        sizeLimit: 102400,
+        loadTime: 1,
+        runTime: 2,
         passed: true
       },
       {
         name: 'time',
         size: 102400,
-        limitTime: 4,
-        timeLoad: 1,
-        timeRun: 2,
+        timeLimit: 4,
+        loadTime: 1,
+        runTime: 2,
         passed: true
       }
     ]
@@ -55,19 +55,19 @@ it('renders failed results', () => {
       {
         name: 'ok',
         size: 102400,
-        limitSize: 102400,
+        sizeLimit: 102400,
         passed: true
       },
       {
         name: 'small fail',
         size: 102401,
-        limitSize: 102400,
+        sizeLimit: 102400,
         passed: false
       },
       {
         name: 'big fail',
         size: 102500,
-        limitSize: 102400,
+        sizeLimit: 102400,
         passed: false
       }
     ],
@@ -82,7 +82,7 @@ it('renders single result', () => {
       {
         name: 'big fail',
         size: 101,
-        limitSize: 100,
+        sizeLimit: 100,
         passed: false
       }
     ],
@@ -97,9 +97,9 @@ it('renders config-less result', () => {
       {
         name: 'big fail',
         size: 1000,
-        limitTime: 0.5,
-        timeLoad: 0.2,
-        timeRun: 0.3,
+        timeLimit: 0.5,
+        loadTime: 0.2,
+        runTime: 0.3,
         passed: false
       }
     ],
@@ -117,9 +117,9 @@ it('renders JSON results', () => {
       {
         name: 'big fail',
         size: 1000,
-        limitTime: 10,
-        timeLoad: 0.2,
-        timeRun: 0.3,
+        timeLimit: 10,
+        loadTime: 0.2,
+        runTime: 0.3,
         passed: false,
         path: '/b'
       }
