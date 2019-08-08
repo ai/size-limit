@@ -62,20 +62,15 @@ it('shows version', async () => {
 })
 
 it('shows help', async () => {
-  let out = await check('file', ['--help'])
-  expect(out).toContain('Core options:')
-  expect(out).not.toContain('Webpack options:')
+  expect(await check('file', ['--help'])).toMatchSnapshot()
 })
 
 it('shows webpack-related help', async () => {
-  let out = await check('webpack', ['--help'])
-  expect(out).toContain('Core options:')
-  expect(out).toContain('Webpack options:')
+  expect(await check('webpack', ['--help'])).toMatchSnapshot()
 })
 
 it('uses dependencies to detect modules', async () => {
-  let out = await check('dependencies', ['--help'])
-  expect(out).toContain('Webpack options:')
+  expect(await check('dependencies', ['--help'])).toMatchSnapshot()
 })
 
 it('shows error on missed package.json', async () => {

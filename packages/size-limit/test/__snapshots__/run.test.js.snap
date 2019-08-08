@@ -6,6 +6,25 @@ exports[`shows error on missed package.json 1`] = `
 "
 `;
 
+exports[`shows help 1`] = `
+"[33msize-limit [OPTION]… [FILE]…[39m
+Check the real performance cost of your front-end project to users
+
+[1mCore options:[22m
+  [33m--limit LIMIT[39m     Set size or running time limit for files
+  [33m--json[39m            Show results in JSON format
+  [33m--save-build DIR[39m  Put build files to check them by hand
+  [33m--help[39m            Display this help
+  [33m--version[39m         Display version
+
+[1mExamples:[22m
+[33m  size-limit[39m
+    Read configuration from package.json or .size-limit and check limit
+[33m  size-limit index.js[39m
+    Show the size of specific files
+"
+`;
+
 exports[`shows migration guide for npm users 1`] = `
 "[31mInstall Size Limit preset depends on type of the project[39m
 
@@ -33,6 +52,31 @@ Check out docs for more comlicated cases
   [33mhttps://github.com/ai/size-limit/[39m
 
 You can remove size-limit dependency: [33myarn remove size-limit[39m
+"
+`;
+
+exports[`shows webpack-related help 1`] = `
+"[33msize-limit [OPTION]… [FILE]…[39m
+Check the real performance cost of your front-end project to users
+
+[1mCore options:[22m
+  [33m--limit LIMIT[39m     Set size or running time limit for files
+  [33m--json[39m            Show results in JSON format
+  [33m--save-build DIR[39m  Put build files to check them by hand
+  [33m--help[39m            Display this help
+  [33m--version[39m         Display version
+
+[1mWebpack options:[22m
+  [33m--why[39m                  Show package content
+  [33m--webpack-config FILE[39m  Set custom webpack config
+
+[1mExamples:[22m
+[33m  size-limit[39m
+    Read configuration from package.json or .size-limit and check limit
+[33m  size-limit index.js[39m
+    Show the size of specific files with all file dependencies
+[33m  size-limit --why[39m
+    Show reasons why project have this size
 "
 `;
 
@@ -140,5 +184,30 @@ exports[`throws on webpack option without webpack module 2`] = `
 
 exports[`throws on webpack option without webpack module 3`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mwebpackConfig[31m needs [33m@size-limit/webpack[31m module[39m
+"
+`;
+
+exports[`uses dependencies to detect modules 1`] = `
+"[33msize-limit [OPTION]… [FILE]…[39m
+Check the real performance cost of your front-end project to users
+
+[1mCore options:[22m
+  [33m--limit LIMIT[39m     Set size or running time limit for files
+  [33m--json[39m            Show results in JSON format
+  [33m--save-build DIR[39m  Put build files to check them by hand
+  [33m--help[39m            Display this help
+  [33m--version[39m         Display version
+
+[1mWebpack options:[22m
+  [33m--why[39m                  Show package content
+  [33m--webpack-config FILE[39m  Set custom webpack config
+
+[1mExamples:[22m
+[33m  size-limit[39m
+    Read configuration from package.json or .size-limit and check limit
+[33m  size-limit index.js[39m
+    Show the size of specific files with all file dependencies
+[33m  size-limit --why[39m
+    Show reasons why project have this size
 "
 `;
