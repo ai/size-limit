@@ -41,7 +41,6 @@ beforeEach(() => {
 
 it('creates config by CLI arguments', async () => {
   expect(await check('file', ['--limit', '10', 'a.js', '/b.js'])).toEqual({
-    results: [],
     checks: [
       {
         name: 'a.js, /b.js',
@@ -56,7 +55,6 @@ it('creates config by CLI arguments', async () => {
 it('supports globby and main field', async () => {
   expect(await check('globby')).toEqual({
     configPath: 'package.json',
-    results: [],
     checks: [
       {
         name: 'a',
@@ -75,7 +73,6 @@ it('supports globby and main field', async () => {
 it('uses index.js by default', async () => {
   expect(await check('simple')).toEqual({
     configPath: 'package.json',
-    results: [],
     checks: [
       {
         name: 'index',
@@ -90,7 +87,6 @@ it('uses index.js by default', async () => {
 it('overrides limit by CLI arg', async () => {
   expect(await check('simple', ['--limit', '10 KB'])).toEqual({
     configPath: 'package.json',
-    results: [],
     checks: [
       {
         name: 'index',
@@ -105,7 +101,6 @@ it('overrides limit by CLI arg', async () => {
 it('normalizes bundle and webpack arguments', async () => {
   expect(await check('webpack', ['--why', '--save-build', 'out'])).toEqual({
     configPath: 'package.json',
-    results: [],
     why: true,
     project: 'webpack',
     saveBuild: fixture('webpack', 'out'),
@@ -121,7 +116,6 @@ it('normalizes bundle and webpack arguments', async () => {
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
     configPath: '.size-limit.json',
-    results: [],
     checks: [
       {
         name: 'index.js',
@@ -135,7 +129,6 @@ it('uses peerDependencies as ignore option', async () => {
 it('normalizes time limits', async () => {
   expect(await check('time')).toEqual({
     configPath: 'package.json',
-    results: [],
     checks: [
       {
         limit: '1 s',

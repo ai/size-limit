@@ -55,7 +55,7 @@ function makeAbsolute (file, cwd) {
 }
 
 module.exports = async function getConfig (modules, process, args, pkg) {
-  let config = { results: [] }
+  let config = { }
   if (args.why) {
     config.project = pkg.package.name
     config.why = args.why
