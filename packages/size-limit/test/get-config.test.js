@@ -15,7 +15,7 @@ function fixture (...files) {
   return join(__dirname, 'fixtures', ...files)
 }
 
-function createProcess (cwd, args = []) {
+async function check (cwd, args = []) {
   let process = {
     argv: ['node', 'size-limit', ...args],
     cwd () {
@@ -27,11 +27,7 @@ function createProcess (cwd, args = []) {
       }
     }
   }
-  return process
-}
-
-async function check (cwd, args) {
-  await run(createProcess(cwd, args))
+  await run(process)
   return calc.mock.calls[0][1]
 }
 

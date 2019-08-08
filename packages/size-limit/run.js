@@ -38,8 +38,9 @@ module.exports = async process => {
     }
     let config = await getConfig(modules, process, args, pkg)
 
-    let results = await calc(modules, config)
-    reporter.results(results)
+    await calc(modules, config)
+    reporter.results(modules, config)
+    if (config.failed) process.exit(1)
   } catch (e) {
     reporter.error(e)
     process.exit(1)
