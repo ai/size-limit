@@ -105,6 +105,10 @@ it('throws on unknown argument', async () => {
   expect(await error('file', ['--unknown'])).toMatchSnapshot()
 })
 
+it('throws on --save-bundle argument without webpack', async () => {
+  expect(await error('file', ['--save-bundle'])).toMatchSnapshot()
+})
+
 it('throws on --why argument without webpack', async () => {
   expect(await error('file', ['--why'])).toMatchSnapshot()
 })

@@ -15,6 +15,10 @@ function isStringsOrUndefined (value) {
   return type === 'undefined' || type === 'string' || isStrings(value)
 }
 
+function has (value) {
+  return typeof value !== 'undefined'
+}
+
 function checkChecks (modules, checks) {
   if (!Array.isArray(checks)) {
     throw new SizeLimitError('noArrayConfig')
@@ -32,19 +36,19 @@ function checkChecks (modules, checks) {
     if (!isStringsOrUndefined(check.entry)) {
       throw new SizeLimitError('entryNotString')
     }
-    if (typeof check.webpack !== 'undefined' && !modules.has('webpack')) {
+    if (has(check.webpack) && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'webpack', 'webpack')
     }
-    if (typeof check.webpackConfig !== 'undefined' && !modules.has('webpack')) {
+    if (has(check.webpackConfig) && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'webpackConfig', 'webpack')
     }
-    if (typeof check.ignore !== 'undefined' && !modules.has('webpack')) {
+    if (has(check.ignore) && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'ignore', 'webpack')
     }
-    if (typeof check.gzip !== 'undefined' && !modules.has('gzip')) {
-      throw new SizeLimitError('modulelessConfig', 'gzip', 'gzip')
+    if (has(check.gzip) && !modules.has('gzip') && !modules.has('webpack')) {
+      throw new SizeLimitError('modulelessConfig', 'gzip', 'gzip', 'webpack')
     }
-    if (typeof check.running !== 'undefined' && !modules.has('time')) {
+    if (has(check.running) && !modules.has('time')) {
       throw new SizeLimitError('modulelessConfig', 'running', 'time')
     }
   }
@@ -60,8 +64,8 @@ module.exports = async function getConfig (modules, process, args, pkg) {
     config.project = pkg.package.name
     config.why = args.why
   }
-  if (args.saveBuild) {
-    config.saveBuild = makeAbsolute(args.saveBuild, process.cwd())
+  if (args.saveBundle) {
+    config.saveBundle = makeAbsolute(args.saveBundle, process.cwd())
   }
 
   let cwd

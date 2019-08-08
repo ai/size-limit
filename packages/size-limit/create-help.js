@@ -21,18 +21,17 @@ module.exports = process => {
       'Check the real performance cost of your front-end project to users',
       '',
       b('Core options:'),
-      `  ${ y('--limit LIMIT') }     Set size or running time limit for files`,
-      `  ${ y('--json') }            Show results in JSON format`,
-      `  ${ y('--save-build DIR') }  Put build files to check them by hand`,
-      `  ${ y('--help') }            Display this help`,
-      `  ${ y('--version') }         Display version`
+      `  ${ y('--limit LIMIT') }  Set size or running time limit for files`,
+      `  ${ y('--json') }         Show results in JSON format`,
+      `  ${ y('--help') }         Display this help`,
+      `  ${ y('--version') }      Display version`
     )
     if (modules.has('webpack')) {
       print(
         '',
         b('Webpack options:'),
-        `  ${ y('--why') }                  Show package content`,
-        `  ${ y('--webpack-config FILE') }  Set custom webpack config`
+        `  ${ y('--why') }              Show package content`,
+        `  ${ y('--save-bundle DIR') }  Put build files to check them by hand`
       )
     }
     print(

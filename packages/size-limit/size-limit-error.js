@@ -1,22 +1,42 @@
 const MESSAGES = {
-  noPackage: () => `Size Limit did’t find *package.json*. ` +
-                   `Create npm package and run Size Limit there.`,
-  unknownArg: arg => `Uknown argument *${ arg }*. ` +
-                     `Check command for typo and read docs.`,
-  whyWithoutWebpack: () => `Argument *--why* works only with ` +
-                           `*@size-limit/webpack* module. ` +
-                           `You can add Bundle Analyzer to you own bundler.`,
-  noConfig: () => `Create Size Limit config in *package.json*`,
-  noArrayConfig: () => `Size Limit config must contain *an array*`,
-  emptyConfig: () => `Size Limit config must *not be empty*`,
-  noObjectCheck: () => `Size Limit config array should contain *only objects*`,
-  pathNotString: () => `The *path* in Size Limit config ` +
-                       `must be *a string* or *an array of strings*`,
-  entryNotString: () => `The *entry* in Size Limit config ` +
-                        `must be *a string* or *an array of strings*`,
-  modulelessConfig: (opt, mod) => `Config option *${ opt }* needs ` +
-                                  `*@size-limit/${ mod }* module`,
-  timeWithoutModule: () => 'Add *@size-limit/time* module to use time limit'
+  noPackage: () => (
+    `Size Limit did’t find *package.json*. ` +
+    `Create npm package and run Size Limit there.`
+  ),
+  unknownArg: arg => (
+    `Uknown argument *${ arg }*. Check command for typo and read docs.`
+  ),
+  argWithoutWebpack: arg => (
+    `Argument *--${ arg }* works only with *@size-limit/webpack* module` +
+    (arg === 'why' ? `. You can add Bundle Analyzer to you own bundler.` : '')
+  ),
+  noConfig: () => (
+    `Create Size Limit config in *package.json*`
+  ),
+  noArrayConfig: () => (
+    `Size Limit config must contain *an array*`
+  ),
+  emptyConfig: () => (
+    `Size Limit config must *not be empty*`
+  ),
+  noObjectCheck: () => (
+    `Size Limit config array should contain *only objects*`
+  ),
+  pathNotString: () => (
+    `The *path* in Size Limit config ` +
+    `must be *a string* or *an array of strings*`
+  ),
+  entryNotString: () => (
+    `The *entry* in Size Limit config ` +
+    `must be *a string* or *an array of strings*`
+  ),
+  modulelessConfig: (opt, mod, other) => (
+    `Config option *${ opt }* needs *@size-limit/${ mod }*` +
+    (other ? ` or *@size-limit/${ other }* module` : ` module`)
+  ),
+  timeWithoutModule: () => (
+    'Add *@size-limit/time* module to use time limit'
+  )
 }
 
 const ADD_CONFIG_EXAMPLE = {

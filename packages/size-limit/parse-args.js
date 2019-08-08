@@ -6,11 +6,14 @@ module.exports = function parseArgs (modules, argv) {
     let arg = argv[i]
     if (arg === '--limit') {
       args.limit = argv[++i]
-    } else if (arg === '--save-build') {
-      args.saveBuild = argv[++i]
+    } else if (arg === '--save-bundle') {
+      if (!modules.has('webpack')) {
+        throw new SizeLimitError('argWithoutWebpack', 'save-bundle')
+      }
+      args.saveBundle = argv[++i]
     } else if (arg === '--why') {
       if (!modules.has('webpack')) {
-        throw new SizeLimitError('whyWithoutWebpack')
+        throw new SizeLimitError('argWithoutWebpack', 'why')
       }
       args.why = true
     } else if (arg[0] !== '-') {
