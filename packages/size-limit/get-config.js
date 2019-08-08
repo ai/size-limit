@@ -39,8 +39,8 @@ function checkChecks (modules, checks) {
     if (has(check.webpack) && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'webpack', 'webpack')
     }
-    if (has(check.webpackConfig) && !modules.has('webpack')) {
-      throw new SizeLimitError('modulelessConfig', 'webpackConfig', 'webpack')
+    if (has(check.config) && !modules.has('webpack')) {
+      throw new SizeLimitError('modulelessConfig', 'config', 'webpack')
     }
     if (has(check.ignore) && !modules.has('webpack')) {
       throw new SizeLimitError('modulelessConfig', 'ignore', 'webpack')

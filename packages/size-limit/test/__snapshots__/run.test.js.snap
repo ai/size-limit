@@ -186,7 +186,7 @@ exports[`throws on webpack option without webpack module 2`] = `
 `;
 
 exports[`throws on webpack option without webpack module 3`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mwebpackConfig[31m needs [33m@size-limit/webpack[31m module[39m
+"[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[31m needs [33m@size-limit/webpack[31m module[39m
 "
 `;
 
