@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "postinstall": "./each yarn",
-    "clean": "rimraf api.md",
+    "clean": "rimraf api.md coverage/",
     "api": "documentation build packages/*/*.js -f md -o api.md",
     "spell": "yarn api && yaspeller-ci *.md",
     "test": "jest --coverage && eslint-ci . && yarn spell"
