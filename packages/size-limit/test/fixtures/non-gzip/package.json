@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "@size-limit/file": ">= 0.0.0"
+    "@size-limit/time": ">= 0.0.0"
   },
   "size-limit": [
     {

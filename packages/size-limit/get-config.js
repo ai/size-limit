@@ -14,7 +14,7 @@ let OPTIONS = {
   config: ['webpack'],
   webpack: ['webpack'],
   ignore: ['webpack'],
-  gzip: ['webpack', 'gzip'],
+  gzip: ['webpack', 'file'],
   running: ['time']
 }
 
