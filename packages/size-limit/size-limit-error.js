@@ -36,6 +36,9 @@ const MESSAGES = {
   ),
   timeWithoutModule: () => (
     'Add *@size-limit/time* module to use time limit'
+  ),
+  unknownOption: opt => (
+    `Unknown option *${ opt }* in config. Check Size Limit docs and version.`
   )
 }
 

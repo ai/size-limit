@@ -154,3 +154,7 @@ it('throws on running option without time module', async () => {
 it('throws on time limit without time module', async () => {
   expect(await error('simple', ['--limit', '1 s'])).toMatchSnapshot()
 })
+
+it('throws on unknown option', async () => {
+  expect(await error('unknown')).toMatchSnapshot()
+})

@@ -5,6 +5,19 @@ let bytes = require('bytes')
 
 let SizeLimitError = require('./size-limit-error')
 
+let OPTIONS = {
+  name: true,
+  path: true,
+  entry: true,
+  limit: true,
+  module: true,
+  config: ['webpack'],
+  webpack: ['webpack'],
+  ignore: ['webpack'],
+  gzip: ['webpack', 'gzip'],
+  running: ['time']
+}
+
 function isStrings (value) {
   if (!Array.isArray(value)) return false
   return value.every(i => typeof i === 'string')
@@ -13,10 +26,6 @@ function isStrings (value) {
 function isStringsOrUndefined (value) {
   let type = typeof value
   return type === 'undefined' || type === 'string' || isStrings(value)
-}
-
-function has (value) {
-  return typeof value !== 'undefined'
 }
 
 function checkChecks (modules, checks) {
@@ -36,20 +45,15 @@ function checkChecks (modules, checks) {
     if (!isStringsOrUndefined(check.entry)) {
       throw new SizeLimitError('entryNotString')
     }
-    if (has(check.webpack) && !modules.has('webpack')) {
-      throw new SizeLimitError('modulelessConfig', 'webpack', 'webpack')
-    }
-    if (has(check.config) && !modules.has('webpack')) {
-      throw new SizeLimitError('modulelessConfig', 'config', 'webpack')
-    }
-    if (has(check.ignore) && !modules.has('webpack')) {
-      throw new SizeLimitError('modulelessConfig', 'ignore', 'webpack')
-    }
-    if (has(check.gzip) && !modules.has('gzip') && !modules.has('webpack')) {
-      throw new SizeLimitError('modulelessConfig', 'gzip', 'gzip', 'webpack')
-    }
-    if (has(check.running) && !modules.has('time')) {
-      throw new SizeLimitError('modulelessConfig', 'running', 'time')
+    for (let opt in check) {
+      let available = OPTIONS[opt]
+      if (Array.isArray(available)) {
+        if (!available.some(i => modules.has(i))) {
+          throw new SizeLimitError('modulelessConfig', opt, ...available)
+        }
+      } else if (available !== true) {
+        throw new SizeLimitError('unknownOption', opt)
+      }
     }
   }
 }
