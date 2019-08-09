@@ -17,8 +17,8 @@ Check the real performance cost of your front-end project to users
   [33m--version[39m      Display version
 
 [1mExamples:[22m
-[33m  size-limit[39m
-    Read configuration from package.json or .size-limit and check limit
+  [33msize-limit[39m
+    Read configuration from [1mpackage.json[22m or [1m.size-limit.json[22m and check limit
 [33m  size-limit index.js[39m
     Show the size of specific files
 "
@@ -69,11 +69,11 @@ Check the real performance cost of your front-end project to users
   [33m--save-bundle DIR[39m  Put build files to check them by hand
 
 [1mExamples:[22m
-[33m  size-limit[39m
-    Read configuration from package.json or .size-limit and check limit
+  [33msize-limit[39m
+    Read configuration from [1mpackage.json[22m or [1m.size-limit.json[22m and check limit
 [33m  size-limit index.js[39m
     Show the size of specific files with all file dependencies
-[33m  size-limit --why[39m
+  [33msize-limit --why[39m
     Show reasons why project have this size
 "
 `;
@@ -205,11 +205,11 @@ Check the real performance cost of your front-end project to users
   [33m--save-bundle DIR[39m  Put build files to check them by hand
 
 [1mExamples:[22m
-[33m  size-limit[39m
-    Read configuration from package.json or .size-limit and check limit
+  [33msize-limit[39m
+    Read configuration from [1mpackage.json[22m or [1m.size-limit.json[22m and check limit
 [33m  size-limit index.js[39m
     Show the size of specific files with all file dependencies
-[33m  size-limit --why[39m
+  [33msize-limit --why[39m
     Show reasons why project have this size
 "
 `;

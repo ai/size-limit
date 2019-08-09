@@ -37,14 +37,15 @@ module.exports = process => {
     print(
       '',
       b('Examples:'),
-      y('  size-limit'),
-      '    Read configuration from package.json or .size-limit and check limit',
+      '  ' + y('size-limit'),
+      `    Read configuration from ${ b('package.json') } or ` +
+        `${ b('.size-limit.json') } and check limit`,
       y('  size-limit index.js')
     )
     if (modules.has('webpack')) {
       print(
         '    Show the size of specific files with all file dependencies',
-        y('  size-limit --why'),
+        '  ' + y('size-limit --why'),
         '    Show reasons why project have this size'
       )
     } else {
