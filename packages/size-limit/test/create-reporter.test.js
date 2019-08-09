@@ -25,7 +25,7 @@ it('renders results', () => {
       {
         name: 'limitless',
         size: 10,
-        webpackConfig: 'a',
+        config: 'a',
         loadTime: 0.01,
         runTime: 0.05
       },
@@ -40,6 +40,7 @@ it('renders results', () => {
       {
         name: 'time',
         size: 102400,
+        gzip: false,
         timeLimit: 4,
         loadTime: 1,
         runTime: 2,

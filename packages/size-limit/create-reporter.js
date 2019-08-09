@@ -76,8 +76,10 @@ function createHumanReporter (process) {
         }
 
         let sizeNote
-        if (check.webpackConfig) {
+        if (check.config) {
           sizeNote = 'with given webpack configuration'
+        } else if (modules.has('webpack') && check.gzip === false) {
+          sizeNote = 'with all dependencies and minified'
         } else if (modules.has('webpack')) {
           sizeNote = 'with all dependencies, minified and gzipped'
         } else if (modules.has('gzip')) {
