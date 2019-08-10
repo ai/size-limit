@@ -51,6 +51,12 @@
         }
       },
       {
+        "files": "packages/*/test/**/*.js",
+        "rules": {
+          "node/no-unpublished-require": "off"
+        }
+      },
+      {
         "files": "packages/size-limit/run.js",
         "rules": {
           "consistent-return": "off"
@@ -71,7 +77,7 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 99.64
+        "statements": 99.78
       }
     }
   },

@@ -70,12 +70,6 @@ it('shows resolve errors', async () => {
   expect(code).toEqual(1)
 })
 
-it('supports ES2016', async () => {
-  let { out, code } = await run([], { cwd: fixture('es2016') })
-  expect(out).toContain('Package size: 25 B')
-  expect(code).toEqual(0)
-})
-
 it('shows analyzer', async () => {
   let { out, code } = await run(['--why'], { cwd: fixture('unlimit') })
   expect(out).toContain('Webpack Bundle Analyzer')
@@ -85,12 +79,6 @@ it('shows analyzer', async () => {
 it('shows analyzer for multiple limits', async () => {
   let { out, code } = await run(['--why'], { cwd: fixture('good') })
   expect(out.match(/Webpack Bundle Analyzer/g)).toHaveLength(1)
-  expect(code).toEqual(0)
-})
-
-it('supports ignore option', async () => {
-  let { out, code } = await run([], { cwd: fixture('ignore') })
-  expect(out).toContain('Package size: 9 B')
   expect(code).toEqual(0)
 })
 

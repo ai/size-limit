@@ -5,3 +5,4 @@ coverage/
 api.md
 
 .cache
+dist/
