@@ -2,9 +2,7 @@
   "name": "intergration",
   "private": true,
   "devDependencies": {
-    "@size-limit/webpack": ">= 0.0.0",
-    "@size-limit/time": ">= 0.0.0",
-    "@size-limit/file": ">= 0.0.0"
+    "@size-limit/preset-big-lib": ">= 0.0.0"
   },
   "size-limit": [
     {
