@@ -4,7 +4,10 @@
   "description": "CLI tool for Size Limit",
   "keywords": [
     "size-limit",
-    "cli"
+    "cli",
+    "performance",
+    "budget",
+    "performance budget"
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",

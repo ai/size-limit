@@ -1,6 +1,14 @@
 {
   "name": "@size-limit/time",
   "version": "0.0.0",
+  "description": "Downloading and running time plugin for Size Limit",
+  "keywords": [
+    "size-limit",
+    "plugin",
+    "performance",
+    "budget",
+    "performance budget"
+  ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",

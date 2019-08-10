@@ -1,6 +1,15 @@
 {
   "name": "@size-limit/webpack",
   "version": "0.0.0",
+  "description": "Webpack plugin for Size Limit",
+  "keywords": [
+    "size-limit",
+    "plugin",
+    "performance",
+    "budget",
+    "performance budget",
+    "webpack"
+  ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
