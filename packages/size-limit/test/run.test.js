@@ -2,6 +2,14 @@ let { join } = require('path')
 
 let run = require('../run')
 
+jest.mock('../../time/get-running-time', () => () => 1)
+jest.mock('../../time/cache', () => ({
+  getCache () {
+    return false
+  },
+  saveCache () { }
+}))
+
 const ROOT = join(__dirname, '..', '..', '..')
 
 function fixture (...files) {
@@ -157,4 +165,16 @@ it('throws on time limit without time plugin', async () => {
 
 it('throws on unknown option', async () => {
   expect(await error('unknown')).toMatchSnapshot()
+})
+
+it('works in intergration test with size', async () => {
+  expect(await check('integration')).toMatchSnapshot()
+})
+
+it('works in intergration test with time', async () => {
+  let [process, history] = createProcess('integration', ['--limit', '1 s'])
+  await run(process)
+  expect(history.exitCode).toEqual(1)
+  expect(history.stderr).toEqual('')
+  expect(history.stdout).toMatchSnapshot()
 })

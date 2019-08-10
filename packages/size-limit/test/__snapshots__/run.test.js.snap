@@ -219,3 +219,27 @@ Check the real performance cost of your front-end project to users
     Show reasons why project have this size
 "
 `;
+
+exports[`works in intergration test with size 1`] = `
+"  
+  Size limit:   [32m[1m200 B[22m[39m
+  Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1.1 s[22m[39m
+  
+"
+`;
+
+exports[`works in intergration test with time 1`] = `
+"  
+  [31mTotal time limit has exceeded[39m
+  Time limit:   [31m[1m1 s[22m[39m
+  Size:         [31m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
+  Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [31m[1m1.1 s[22m[39m
+  
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+"
+`;

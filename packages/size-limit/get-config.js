@@ -63,6 +63,10 @@ function makeAbsolute (file, cwd) {
   return isAbsolute(file) ? file : join(cwd, file)
 }
 
+function toName (files, cwd) {
+  return files.map(i => i.startsWith(cwd) ? relative(cwd, i) : i).join(', ')
+}
+
 module.exports = async function getConfig (plugins, process, args, pkg) {
   let config = { }
   if (args.why) {
@@ -112,7 +116,8 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
   let peer = Object.keys(pkg.package.peerDependencies || { })
   for (let check of config.checks) {
     if (peer.length > 0) check.ignore = peer.concat(check.ignore || [])
-    if (!check.name) check.name = check.entry || check.path.join(', ')
+    if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]
+    if (!check.name) check.name = toName(check.entry || check.path, cwd)
     if (args.limit) check.limit = args.limit
     if (check.limit) {
       if (/ ?ms/i.test(check.limit)) {
@@ -128,7 +133,6 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
     }
     if (check.path) check.path = check.path.map(i => makeAbsolute(i, cwd))
     if (check.config) check.config = makeAbsolute(check.config, cwd)
-    if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]
   }
 
   return config
