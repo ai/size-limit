@@ -9,6 +9,8 @@
   },
   "workspaces": [
     "packages/preset-small-lib",
+    "packages/preset-big-lib",
+    "packages/preset-app",
     "packages/size-limit",
     "packages/webpack",
     "packages/time",
