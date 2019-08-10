@@ -17,7 +17,7 @@ it('has name', () => {
 it('calculates time to download and run', async () => {
   let config = {
     checks: [
-      { path: ['/a'], bundle: '/tmp/a.js', size: 1024 * 1024 },
+      { path: ['/a'], bundles: ['/tmp/a.js'], size: 1024 * 1024 },
       { path: ['/b'], size: 1024 * 1024 }
     ]
   }
@@ -28,7 +28,7 @@ it('calculates time to download and run', async () => {
       {
         path: ['/a'],
         size: 1024 * 1024,
-        bundle: '/tmp/a.js',
+        bundles: ['/tmp/a.js'],
         runTime: 10,
         loadTime: 20.48
       },
