@@ -1,5 +1,5 @@
 {
-  "name": "@size-limit/preset-small-lib",
+  "name": "@size-limit/preset-app",
   "version": "0.0.0",
   "description": "Size Limit preset for applications",
   "keywords": [
