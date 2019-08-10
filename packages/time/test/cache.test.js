@@ -5,8 +5,14 @@ let rimraf = promisify(require('rimraf'))
 
 let { saveCache, getCache } = require('../cache')
 
+const CACHE = join(__dirname, '..', '..', '.cache')
+
+beforeAll(async () => {
+  await rimraf(CACHE)
+})
+
 afterEach(async () => {
-  await rimraf(join(__dirname, '..', '..', '.cache'))
+  await rimraf(CACHE)
 })
 
 it('returns false by default', async () => {
