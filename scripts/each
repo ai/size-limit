@@ -4,7 +4,7 @@ let { readdirSync } = require('fs')
 let { spawn } = require('child_process')
 let { join } = require('path')
 
-const PACKAGES = join(__dirname, 'packages')
+const PACKAGES = join(__dirname, '..', 'packages')
 
 let command = process.argv[2]
 let args = process.argv.slice(3)
