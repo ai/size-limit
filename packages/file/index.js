@@ -24,7 +24,7 @@ function gzipSize (path) {
 
 let self = {
   name: '@size-limit/file',
-  async step50 (modules, config, check) {
+  async step60 (modules, config, check) {
     if (check.gzip === false) {
       check.size = await sum(check.path, async i => (await stat(i)).size)
     } else {

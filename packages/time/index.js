@@ -17,7 +17,7 @@ function getLoadingTime (size) {
 
 let self = {
   name: '@size-limit/time',
-  async step70 (modules, config, check) {
+  async step80 (modules, config, check) {
     if (typeof check.size === 'undefined') {
       throw new SizeLimitError('missedModule', 'webpack')
     }
