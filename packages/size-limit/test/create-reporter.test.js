@@ -26,8 +26,9 @@ it('renders results', () => {
         name: 'limitless',
         size: 10,
         config: 'a',
-        loadTime: 0.01,
-        runTime: 0.05
+        loadTime: 0.1,
+        runTime: 0.5,
+        time: 0.6
       },
       {
         name: 'size',
@@ -35,6 +36,7 @@ it('renders results', () => {
         sizeLimit: 102400,
         loadTime: 1,
         runTime: 2,
+        time: 3,
         passed: true
       },
       {
@@ -44,6 +46,7 @@ it('renders results', () => {
         timeLimit: 4,
         loadTime: 1,
         runTime: 2,
+        time: 3,
         passed: true
       }
     ]
@@ -101,6 +104,7 @@ it('renders config-less result', () => {
         timeLimit: 0.5,
         loadTime: 0.2,
         runTime: 0.3,
+        time: 0.5,
         passed: false
       }
     ],
@@ -121,6 +125,7 @@ it('renders JSON results', () => {
         timeLimit: 10,
         loadTime: 0.2,
         runTime: 0.3,
+        time: 0.5,
         passed: false,
         path: '/b'
       }

@@ -30,7 +30,8 @@ it('calculates time to download and run', async () => {
         size: 1024 * 1024,
         bundles: ['/tmp/a.js'],
         runTime: 10,
-        loadTime: 20.48
+        loadTime: 20.48,
+        time: 30.48
       },
       { path: ['/b'], size: 1024 * 1024 }
     ]
@@ -49,7 +50,8 @@ it('avoids run on request', async () => {
     size: 1024 * 1024,
     bundle: '/tmp/a.js',
     loadTime: 20.48,
-    running: false
+    running: false,
+    time: 20.48
   })
 })
 

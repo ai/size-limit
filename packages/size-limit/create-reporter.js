@@ -115,7 +115,7 @@ function createHumanReporter (process) {
         if (check.runTime) {
           rows.push(
             ['Running time', formatTime(check.runTime), 'on Snapdragon 410'],
-            ['Total time', formatTime(check.runTime + check.loadTime)]
+            ['Total time', formatTime(check.time)]
           )
         }
 

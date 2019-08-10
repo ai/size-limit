@@ -52,10 +52,10 @@ exports[`renders failed results 1`] = `
 exports[`renders results 1`] = `
 "  
   [1mlimitless[22m
-  Size:         [1m10 B [22m [90mwith given webpack configuration[39m
-  Loading time: [1m10 ms[22m [90mon slow 3G[39m
-  Running time: [1m50 ms[22m [90mon Snapdragon 410[39m
-  Total time:   [1m61 ms[22m
+  Size:         [1m10 B  [22m [90mwith given webpack configuration[39m
+  Loading time: [1m100 ms[22m [90mon slow 3G[39m
+  Running time: [1m500 ms[22m [90mon Snapdragon 410[39m
+  Total time:   [1m600 ms[22m
   
   [1msize[22m
   Size limit:   [32m[1m100 KB[22m[39m
