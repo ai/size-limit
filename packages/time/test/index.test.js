@@ -96,5 +96,5 @@ it('throws an error on missed size', async () => {
   } catch (e) {
     err = e
   }
-  expect(err).toEqual(new SizeLimitError('missedPlugin', 'webpack', 'file'))
+  expect(err).toEqual(new SizeLimitError('missedPlugin', 'file'))
 })
