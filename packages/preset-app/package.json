@@ -1,0 +1,19 @@
+{
+  "name": "@size-limit/preset-small-lib",
+  "version": "0.0.0",
+  "description": "Size Limit preset for applications",
+  "keywords": [
+    "size-limit",
+    "preset",
+    "performance",
+    "budget",
+    "performance budget"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "ai/size-limit",
+  "dependencies": {
+    "@size-limit/file": "0.0.0",
+    "@size-limit/time": "0.0.0"
+  }
+}

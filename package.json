@@ -8,6 +8,7 @@
     "test": "jest --coverage && eslint-ci . && yarn spell"
   },
   "workspaces": [
+    "packages/preset-small-lib",
     "packages/size-limit",
     "packages/webpack",
     "packages/time",
