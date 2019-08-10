@@ -7,13 +7,8 @@ let { saveCache, getCache } = require('../cache')
 
 const CACHE = join(__dirname, '..', '..', '.cache')
 
-beforeAll(async () => {
-  await rimraf(CACHE)
-})
-
-afterEach(async () => {
-  await rimraf(CACHE)
-})
+beforeAll(() => rimraf(CACHE))
+afterEach(() => rimraf(CACHE))
 
 it('returns false by default', async () => {
   expect(await getCache()).toBeFalsy()
