@@ -15,7 +15,7 @@ module.exports = process => {
     process.stderr.write(lines.join('\n') + '\n')
   }
 
-  function showHelp (modules) {
+  function showHelp (plugins) {
     print(
       y('size-limit [OPTION]… [FILE]…'),
       'Check the real performance cost of your front-end project to users',
@@ -26,7 +26,7 @@ module.exports = process => {
       `  ${ y('--help') }         Display this help`,
       `  ${ y('--version') }      Display version`
     )
-    if (modules.has('webpack')) {
+    if (plugins.has('webpack')) {
       print(
         '',
         b('Webpack options:'),
@@ -42,7 +42,7 @@ module.exports = process => {
         `${ b('.size-limit.json') } and check limit`,
       y('  size-limit index.js')
     )
-    if (modules.has('webpack')) {
+    if (plugins.has('webpack')) {
       print(
         '    Show the size of specific files with all file dependencies',
         '  ' + y('size-limit --why'),

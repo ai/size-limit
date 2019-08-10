@@ -21,7 +21,7 @@ it('calculates time to download and run', async () => {
       { path: ['/b'], size: 1024 * 1024 }
     ]
   }
-  await time.step80([time], config, config.checks[0])
+  await time.step80(config, config.checks[0])
   expect(getRunningTime).toHaveBeenCalledWith('/tmp/a.js')
   expect(config).toEqual({
     checks: [
@@ -43,7 +43,7 @@ it('avoids run on request', async () => {
       { path: ['/a'], bundle: '/tmp/a.js', size: 1024 * 1024, running: false }
     ]
   }
-  await time.step80([time], config, config.checks[0])
+  await time.step80(config, config.checks[0])
   expect(config.checks[0]).toEqual({
     path: ['/a'],
     size: 1024 * 1024,
@@ -53,13 +53,13 @@ it('avoids run on request', async () => {
   })
 })
 
-it('is compatible with file module', async () => {
+it('is compatible with file plugin', async () => {
   let config = {
     checks: [
       { path: ['/a'], size: 1024 * 1024 }
     ]
   }
-  await time.step80([time], config, config.checks[0])
+  await time.step80(config, config.checks[0])
   expect(getRunningTime).toHaveBeenCalledWith('/a')
   expect(config.checks[0].runTime).toEqual(10)
 })
@@ -70,7 +70,7 @@ it('uses 1 ms for download as minimum', async () => {
       { path: ['/a'], size: 1 }
     ]
   }
-  await time.step80([time], config, config.checks[0])
+  await time.step80(config, config.checks[0])
   expect(config.checks[0].loadTime).toEqual(0.01)
 })
 
@@ -80,7 +80,7 @@ it('uses 0 ms for download for 0 bytes', async () => {
       { path: ['/a'], size: 0 }
     ]
   }
-  await time.step80([time], config, config.checks[0])
+  await time.step80(config, config.checks[0])
   expect(config.checks[0].loadTime).toEqual(0)
 })
 
@@ -92,9 +92,9 @@ it('throws an error on missed size', async () => {
   }
   let err
   try {
-    await time.step80([time], config, config.checks[0])
+    await time.step80(config, config.checks[0])
   } catch (e) {
     err = e
   }
-  expect(err).toEqual(new SizeLimitError('missedModule', 'webpack', 'file'))
+  expect(err).toEqual(new SizeLimitError('missedPlugin', 'webpack', 'file'))
 })

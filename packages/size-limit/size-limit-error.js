@@ -7,7 +7,7 @@ const MESSAGES = {
     `Uknown argument *${ arg }*. Check command for typo and read docs.`
   ),
   argWithoutWebpack: arg => (
-    `Argument *--${ arg }* works only with *@size-limit/webpack* module` +
+    `Argument *--${ arg }* works only with *@size-limit/webpack* plugin` +
     (arg === 'why' ? `. You can add Bundle Analyzer to you own bundler.` : '')
   ),
   noConfig: () => (
@@ -30,17 +30,17 @@ const MESSAGES = {
     `The *entry* in Size Limit config ` +
     `must be *a string* or *an array of strings*`
   ),
-  modulelessConfig: (opt, mod) => (
-    `Config option *${ opt }* needs *@size-limit/${ mod }* module`
+  pluginlessConfig: (opt, mod) => (
+    `Config option *${ opt }* needs *@size-limit/${ mod }* plugin`
   ),
-  timeWithoutModule: () => (
-    'Add *@size-limit/time* module to use time limit'
+  timeWithoutPlugin: () => (
+    'Add *@size-limit/time* plugin to use time limit'
   ),
   unknownOption: opt => (
     `Unknown option *${ opt }* in config. Check Size Limit docs and version.`
   ),
-  missedModule: mod => (
-    `Add *@size-limit/${ mod }* module to Size Limit`
+  missedPlugin: mod => (
+    `Add *@size-limit/${ mod }* plugin to Size Limit`
   ),
   unknownEntry: entry => (
     `Size Limit didn’t find *${ entry }* entry in custom Webpack config`

@@ -79,12 +79,12 @@ Check the real performance cost of your front-end project to users
 `;
 
 exports[`throws on --save-bundle argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[31m works only with [33m@size-limit/webpack[31m module[39m
+"[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[31m works only with [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
 exports[`throws on --why argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m module.[39m
+"[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m plugin.[39m
 [31m        You can add Bundle Analyzer to you own bundler.[39m
 "
 `;
@@ -101,8 +101,8 @@ exports[`throws on empty config 1`] = `
 "
 `;
 
-exports[`throws on gzip option without gzip module 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/webpack[31m module[39m
+exports[`throws on gzip option without gzip plugin 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
@@ -159,13 +159,13 @@ exports[`throws on non-string path 1`] = `
 "
 `;
 
-exports[`throws on running option without time module 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mrunning[31m needs [33m@size-limit/time[31m module[39m
+exports[`throws on running option without time plugin 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mrunning[31m needs [33m@size-limit/time[31m plugin[39m
 "
 `;
 
-exports[`throws on time limit without time module 1`] = `
-"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/time[31m module to use time limit[39m
+exports[`throws on time limit without time plugin 1`] = `
+"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/time[31m plugin to use time limit[39m
 "
 `;
 
@@ -181,22 +181,22 @@ exports[`throws on unknown option 1`] = `
 "
 `;
 
-exports[`throws on webpack option without webpack module 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mwebpack[31m needs [33m@size-limit/webpack[31m module[39m
+exports[`throws on webpack option without webpack plugin 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mwebpack[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
-exports[`throws on webpack option without webpack module 2`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mignore[31m needs [33m@size-limit/webpack[31m module[39m
+exports[`throws on webpack option without webpack plugin 2`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mignore[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
-exports[`throws on webpack option without webpack module 3`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[31m needs [33m@size-limit/webpack[31m module[39m
+exports[`throws on webpack option without webpack plugin 3`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
-exports[`uses dependencies to detect modules 1`] = `
+exports[`uses dependencies to detect plugins 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
 Check the real performance cost of your front-end project to users
 

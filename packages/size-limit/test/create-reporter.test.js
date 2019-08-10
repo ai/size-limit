@@ -2,7 +2,7 @@ let createReporter = require('../create-reporter')
 
 function results (types, config, isJSON = false) {
   let stdout = ''
-  let modules = {
+  let plugins = {
     has (type) {
       return types.includes(type)
     }
@@ -15,7 +15,7 @@ function results (types, config, isJSON = false) {
     }
   }
   let reporter = createReporter(process, isJSON)
-  reporter.results(modules, config)
+  reporter.results(plugins, config)
   return stdout
 }
 

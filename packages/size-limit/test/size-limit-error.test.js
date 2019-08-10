@@ -31,7 +31,7 @@ it('has message', () => {
 })
 
 it('has error for unknown option', () => {
-  let err = new SizeLimitError('missedModule', 'webpack', 'file')
+  let err = new SizeLimitError('missedPlugin', 'webpack', 'file')
   expect(print(err)).toMatchSnapshot()
 })
 

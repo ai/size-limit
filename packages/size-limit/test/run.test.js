@@ -69,7 +69,7 @@ it('shows webpack-related help', async () => {
   expect(await check('webpack', ['--help'])).toMatchSnapshot()
 })
 
-it('uses dependencies to detect modules', async () => {
+it('uses dependencies to detect plugins', async () => {
   expect(await check('dependencies', ['--help'])).toMatchSnapshot()
 })
 
@@ -137,21 +137,21 @@ it('throws on non-string entry', async () => {
   expect(await error('non-string-entry')).toMatchSnapshot()
 })
 
-it('throws on webpack option without webpack module', async () => {
+it('throws on webpack option without webpack plugin', async () => {
   expect(await error('non-webpack')).toMatchSnapshot()
   expect(await error('non-webpack-ignore')).toMatchSnapshot()
   expect(await error('non-webpack-config')).toMatchSnapshot()
 })
 
-it('throws on gzip option without gzip module', async () => {
+it('throws on gzip option without gzip plugin', async () => {
   expect(await error('non-gzip')).toMatchSnapshot()
 })
 
-it('throws on running option without time module', async () => {
+it('throws on running option without time plugin', async () => {
   expect(await error('non-time')).toMatchSnapshot()
 })
 
-it('throws on time limit without time module', async () => {
+it('throws on time limit without time plugin', async () => {
   expect(await error('simple', ['--limit', '1 s'])).toMatchSnapshot()
 })
 

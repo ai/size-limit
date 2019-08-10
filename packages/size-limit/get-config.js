@@ -28,7 +28,7 @@ function isStringsOrUndefined (value) {
   return type === 'undefined' || type === 'string' || isStrings(value)
 }
 
-function checkChecks (modules, checks) {
+function checkChecks (plugins, checks) {
   if (!Array.isArray(checks)) {
     throw new SizeLimitError('noArrayConfig')
   }
@@ -48,8 +48,8 @@ function checkChecks (modules, checks) {
     for (let opt in check) {
       let available = OPTIONS[opt]
       if (typeof available === 'string') {
-        if (!modules.has(available)) {
-          throw new SizeLimitError('modulelessConfig', opt, available)
+        if (!plugins.has(available)) {
+          throw new SizeLimitError('pluginlessConfig', opt, available)
         }
       } else if (available !== true) {
         throw new SizeLimitError('unknownOption', opt)
@@ -62,7 +62,7 @@ function makeAbsolute (file, cwd) {
   return isAbsolute(file) ? file : join(cwd, file)
 }
 
-module.exports = async function getConfig (modules, process, args, pkg) {
+module.exports = async function getConfig (plugins, process, args, pkg) {
   let config = { }
   if (args.why) {
     config.project = pkg.package.name
@@ -88,7 +88,7 @@ module.exports = async function getConfig (modules, process, args, pkg) {
     let result = await explorer.search(process.cwd())
 
     if (result === null) throw new SizeLimitError('noConfig')
-    checkChecks(modules, result.config)
+    checkChecks(plugins, result.config)
 
     config.configPath = relative(process.cwd(), result.filepath)
     cwd = dirname(result.filepath)
@@ -121,8 +121,8 @@ module.exports = async function getConfig (modules, process, args, pkg) {
       } else {
         check.sizeLimit = bytes.parse(check.limit)
       }
-      if (check.timeLimit && !modules.has('time')) {
-        throw new SizeLimitError('timeWithoutModule')
+      if (check.timeLimit && !plugins.has('time')) {
+        throw new SizeLimitError('timeWithoutPlugin')
       }
     }
     check.path = check.path.map(i => makeAbsolute(i, cwd))

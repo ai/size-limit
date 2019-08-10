@@ -6,6 +6,6 @@ exports[`has error for unknown entry 1`] = `
 `;
 
 exports[`has error for unknown option 1`] = `
-"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/webpack[31m module to Size Limit[39m
+"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/webpack[31m plugin to Size Limit[39m
 "
 `;

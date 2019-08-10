@@ -2,7 +2,7 @@ let readPkgUp = require('read-pkg-up')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
-let loadModules = require('./load-modules')
+let loadPlugins = require('./load-plugins')
 let createHelp = require('./create-help')
 let getConfig = require('./get-config')
 let parseArgs = require('./parse-args')
@@ -21,25 +21,25 @@ module.exports = async process => {
     }
 
     let pkg = await readPkgUp({ cwd: process.cwd() })
-    let modules = loadModules(pkg)
+    let plugins = loadPlugins(pkg)
 
     if (hasArg('--help')) {
-      return help.showHelp(modules)
+      return help.showHelp(plugins)
     }
 
     if (!pkg || !pkg.package) {
       throw new SizeLimitError('noPackage')
     }
 
-    let args = parseArgs(modules, process.argv)
-    if (modules.isEmpty) {
+    let args = parseArgs(plugins, process.argv)
+    if (plugins.isEmpty) {
       help.showMigrationGuide(pkg)
       return process.exit(1)
     }
-    let config = await getConfig(modules, process, args, pkg)
+    let config = await getConfig(plugins, process, args, pkg)
 
-    await calc(modules, config)
-    reporter.results(modules, config)
+    await calc(plugins, config)
+    reporter.results(plugins, config)
     if (config.failed) process.exit(1)
   } catch (e) {
     reporter.error(e)

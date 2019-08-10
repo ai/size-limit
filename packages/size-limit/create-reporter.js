@@ -11,7 +11,7 @@ function createJsonReporter (process) {
       print({ error: err.stack })
     },
 
-    results (modules, config) {
+    results (plugins, config) {
       print(config.checks.map(i => {
         let result = { name: i.name }
         if (typeof i.passed !== 'undefined') result.passed = i.passed
@@ -65,7 +65,7 @@ function createHumanReporter (process) {
       }
     },
 
-    results (modules, config) {
+    results (plugins, config) {
       print('')
       for (let check of config.checks) {
         let unlimited = typeof check.passed === 'undefined'
@@ -78,11 +78,11 @@ function createHumanReporter (process) {
         let sizeNote
         if (check.config) {
           sizeNote = 'with given webpack configuration'
-        } else if (modules.has('webpack') && check.gzip === false) {
+        } else if (plugins.has('webpack') && check.gzip === false) {
           sizeNote = 'with all dependencies and minified'
-        } else if (modules.has('webpack')) {
+        } else if (plugins.has('webpack')) {
           sizeNote = 'with all dependencies, minified and gzipped'
-        } else if (modules.has('gzip')) {
+        } else if (plugins.has('gzip')) {
           sizeNote = 'gzipped'
         }
         let sizeString = formatBytes(check.size)
