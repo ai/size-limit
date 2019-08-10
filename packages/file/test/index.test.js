@@ -15,6 +15,7 @@ it('calculates file size with gzip by default', async () => {
     checks: [
       { path: [fixture('a.txt'), fixture('b.txt')] },
       { path: [fixture('a.txt')] },
+      { path: [fixture('b.txt')] },
       { path: [fixture('b.txt')] }
     ]
   }
@@ -27,7 +28,8 @@ it('calculates file size with gzip by default', async () => {
     checks: [
       { path: [fixture('a.txt'), fixture('b.txt')], size: 51 },
       { path: [fixture('a.txt')], size: 22 },
-      { path: [fixture('b.txt')], size: 29 }
+      { path: [fixture('b.txt')], size: 29 },
+      { path: [fixture('b.txt')] }
     ]
   })
 })
