@@ -10,18 +10,44 @@ it('has name', () => {
   expect(file.name).toEqual('@size-limit/file')
 })
 
-it('calculates file size', async () => {
+it('calculates file size with gzip by default', async () => {
   let config = {
     checks: [
       { path: [fixture('a.txt'), fixture('b.txt')] },
-      { path: [fixture('a.txt')] }
+      { path: [fixture('a.txt')] },
+      { path: [fixture('b.txt')] }
+    ]
+  }
+  await Promise.all([
+    file.step50([file], config, config.checks[0]),
+    file.step50([file], config, config.checks[1]),
+    file.step50([file], config, config.checks[2])
+  ])
+  expect(config).toEqual({
+    checks: [
+      { path: [fixture('a.txt'), fixture('b.txt')], size: 51 },
+      { path: [fixture('a.txt')], size: 22 },
+      { path: [fixture('b.txt')], size: 29 }
+    ]
+  })
+})
+
+it('calculates file size with gzip by true value', async () => {
+  let config = {
+    checks: [
+      { path: [fixture('b.txt')], gzip: true }
     ]
   }
   await file.step50([file], config, config.checks[0])
-  expect(config).toEqual({
+  expect(config.checks[0].size).toEqual(29)
+})
+
+it('calculates file size without gzip', async () => {
+  let config = {
     checks: [
-      { path: [fixture('a.txt'), fixture('b.txt')], size: 8 },
-      { path: [fixture('a.txt')] }
+      { path: [fixture('b.txt')], gzip: false }
     ]
-  })
+  }
+  await file.step50([file], config, config.checks[0])
+  expect(config.checks[0].size).toEqual(144)
 })
