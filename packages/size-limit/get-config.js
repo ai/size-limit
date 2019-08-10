@@ -125,7 +125,8 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
         throw new SizeLimitError('timeWithoutPlugin')
       }
     }
-    check.path = check.path.map(i => makeAbsolute(i, cwd))
+    if (check.path) check.path = check.path.map(i => makeAbsolute(i, cwd))
+    if (check.config) check.config = makeAbsolute(check.config, cwd)
     if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]
   }
 

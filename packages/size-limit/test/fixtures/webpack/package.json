@@ -6,8 +6,8 @@
   },
   "size-limit": [
     {
-      "path": "index.js",
-      "entry": "a"
+      "entry": "a",
+      "config": "./webpack.config.js"
     }
   ]
 }

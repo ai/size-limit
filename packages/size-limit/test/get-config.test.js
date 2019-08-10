@@ -103,7 +103,7 @@ it('normalizes bundle and webpack arguments', async () => {
     checks: [
       {
         name: 'a',
-        path: [fixture('webpack', 'index.js')],
+        config: fixture('webpack', 'webpack.config.js'),
         entry: ['a']
       }
     ]
