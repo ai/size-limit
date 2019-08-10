@@ -1,6 +1,0 @@
-[
-  {
-    entry: true,
-    config: "./webpack.config.js"
-  }
-]

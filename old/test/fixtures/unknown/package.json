@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "size-limit": [
-    {
-      "path": "unknown.js",
-      "limit": "1 KB"
-    }
-  ]
-}

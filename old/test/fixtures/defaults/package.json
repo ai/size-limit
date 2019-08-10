@@ -1,8 +1,0 @@
-{
-  "private": true,
-  "size-limit": [
-    {
-      "limit": "1 KB"
-    }
-  ]
-}
