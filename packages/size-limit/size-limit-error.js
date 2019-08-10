@@ -39,6 +39,10 @@ const MESSAGES = {
   ),
   unknownOption: opt => (
     `Unknown option *${ opt }* in config. Check Size Limit docs and version.`
+  ),
+  missedModule: (...list) => (
+    `Add one of these modules to Size Limit: ` +
+    list.map(i => `*@size-limit/${ i }*`).join(', ')
   )
 }
 

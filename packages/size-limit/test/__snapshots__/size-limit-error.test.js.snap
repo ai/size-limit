@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`throws on unknown option 1`] = `
+"[41m[30m ERROR [39m[49m [31mAdd one of these modules to Size Limit: [33m@size-limit/webpack[31m, [33m@size-limit/file[31m[39m
+"
+`;
