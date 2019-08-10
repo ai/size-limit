@@ -41,6 +41,9 @@ const MESSAGES = {
   ),
   missedModule: mod => (
     `Add *@size-limit/${ mod }* module to Size Limit`
+  ),
+  unknownEntry: entry => (
+    `Size Limit didn’t find *${ entry }* entry in custom Webpack config`
   )
 }
 

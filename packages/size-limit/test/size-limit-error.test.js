@@ -30,7 +30,12 @@ it('has message', () => {
   expect(err.message).toContain('Create npm package')
 })
 
-it('throws on unknown option', () => {
+it('has error for unknown option', () => {
   let err = new SizeLimitError('missedModule', 'webpack', 'file')
+  expect(print(err)).toMatchSnapshot()
+})
+
+it('has error for unknown entry', () => {
+  let err = new SizeLimitError('unknownEntry', 'admin')
   expect(print(err)).toMatchSnapshot()
 })
