@@ -167,6 +167,10 @@ it('throws on unknown option', async () => {
   expect(await error('unknown')).toMatchSnapshot()
 })
 
+it('works in intergration test with JSON', async () => {
+  expect(await check('integration', ['--json'])).toMatchSnapshot()
+})
+
 it('works in intergration test with size', async () => {
   expect(await check('integration')).toMatchSnapshot()
 })
@@ -177,4 +181,12 @@ it('works in intergration test with time', async () => {
   expect(history.exitCode).toEqual(1)
   expect(history.stderr).toEqual('')
   expect(history.stdout).toMatchSnapshot()
+})
+
+it('returns zero bytes for empty file', async () => {
+  expect(await check('zero')).toMatchSnapshot()
+})
+
+it('returns zero bytes for empty file without gzip', async () => {
+  expect(await check('zero-non-gzip')).toMatchSnapshot()
 })

@@ -87,13 +87,13 @@ function createHumanReporter (process) {
         }
         let sizeString = formatBytes(check.size)
 
-        if (check.timeLimit) {
+        if (typeof check.timeLimit !== 'undefined') {
           if (check.passed === false) {
             print(chalk.red('Total time limit has exceeded'))
           }
           rows.push(['Time limit', formatTime(check.timeLimit)])
         }
-        if (check.sizeLimit) {
+        if (typeof check.sizeLimit !== 'undefined') {
           let sizeLimitString = formatBytes(check.sizeLimit)
           if (check.passed === false) {
             if (sizeLimitString === sizeString) {
@@ -106,13 +106,13 @@ function createHumanReporter (process) {
           rows.push(['Size limit', sizeLimitString])
         }
 
-        if (check.size) {
+        if (typeof check.size !== 'undefined') {
           rows.push(['Size', sizeString, sizeNote])
         }
-        if (check.loadTime) {
+        if (typeof check.loadTime !== 'undefined') {
           rows.push(['Loading time', formatTime(check.loadTime), 'on slow 3G'])
         }
-        if (check.runTime) {
+        if (typeof check.runTime !== 'undefined') {
           rows.push(
             ['Running time', formatTime(check.runTime), 'on Snapdragon 410'],
             ['Total time', formatTime(check.time)]

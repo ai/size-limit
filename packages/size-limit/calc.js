@@ -13,10 +13,10 @@ module.exports = async function calc (plugins, config) {
     exec('finally')
   }
   for (let check of config.checks) {
-    if (check.sizeLimit) {
+    if (typeof check.sizeLimit !== 'undefined') {
       check.passed = check.sizeLimit >= check.size
     }
-    if (check.timeLimit) {
+    if (typeof check.timeLimit !== 'undefined') {
       check.passed = check.timeLimit >= check.size
     }
   }

@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`returns zero bytes for empty file 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
+exports[`returns zero bytes for empty file without gzip 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
+  
+"
+`;
+
 exports[`shows error on missed package.json 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit did’t find [33mpackage.json[31m.[39m
 [31m        Create npm package and run Size Limit there.[39m
