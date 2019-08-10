@@ -102,7 +102,7 @@ exports[`throws on empty config 1`] = `
 `;
 
 exports[`throws on gzip option without gzip module 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/webpack[31m or [33m@size-limit/file[31m module[39m
+"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/webpack[31m module[39m
 "
 `;
 
