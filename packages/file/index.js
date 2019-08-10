@@ -25,10 +25,11 @@ function gzipSize (path) {
 let self = {
   name: '@size-limit/file',
   async step60 (modules, config, check) {
+    let files = check.bundle ? [check.bundle] : check.path
     if (check.gzip === false) {
-      check.size = await sum(check.path, async i => (await stat(i)).size)
+      check.size = await sum(files, async i => (await stat(i)).size)
     } else {
-      check.size = await sum(check.path, async i => gzipSize(i))
+      check.size = await sum(files, async i => gzipSize(i))
     }
   }
 }

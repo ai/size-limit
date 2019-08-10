@@ -44,6 +44,16 @@ it('calculates file size with gzip by true value', async () => {
   expect(config.checks[0].size).toEqual(29)
 })
 
+it('uses webpack bundle if available', async () => {
+  let config = {
+    checks: [
+      { path: [fixture('b.txt')], bundle: fixture('a.txt') }
+    ]
+  }
+  await file.step60([file], config, config.checks[0])
+  expect(config.checks[0].size).toEqual(22)
+})
+
 it('calculates file size without gzip', async () => {
   let config = {
     checks: [
