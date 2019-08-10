@@ -15,7 +15,8 @@ let OPTIONS = {
   webpack: 'webpack',
   ignore: 'webpack',
   gzip: 'webpack',
-  running: 'time'
+  running: 'time',
+  disableModuleConcatenation: 'webpack'
 }
 
 function isStrings (value) {
