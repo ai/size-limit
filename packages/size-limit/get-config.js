@@ -8,9 +8,9 @@ let SizeLimitError = require('./size-limit-error')
 let OPTIONS = {
   name: true,
   path: true,
-  entry: true,
   limit: true,
   module: true,
+  entry: 'webpack',
   config: 'webpack',
   webpack: 'webpack',
   ignore: 'webpack',
@@ -126,6 +126,7 @@ module.exports = async function getConfig (modules, process, args, pkg) {
       }
     }
     check.path = check.path.map(i => makeAbsolute(i, cwd))
+    if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]
   }
 
   return config

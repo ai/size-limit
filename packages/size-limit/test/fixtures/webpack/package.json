@@ -6,7 +6,8 @@
   },
   "size-limit": [
     {
-      "path": "index.js"
+      "path": "index.js",
+      "entry": "a"
     }
   ]
 }

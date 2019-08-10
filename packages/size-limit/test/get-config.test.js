@@ -102,8 +102,9 @@ it('normalizes bundle and webpack arguments', async () => {
     saveBundle: fixture('webpack', 'out'),
     checks: [
       {
-        name: 'index.js',
-        path: [fixture('webpack', 'index.js')]
+        name: 'a',
+        path: [fixture('webpack', 'index.js')],
+        entry: ['a']
       }
     ]
   })
