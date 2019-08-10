@@ -11,11 +11,11 @@ let OPTIONS = {
   entry: true,
   limit: true,
   module: true,
-  config: ['webpack'],
-  webpack: ['webpack'],
-  ignore: ['webpack'],
-  gzip: ['webpack', 'file'],
-  running: ['time']
+  config: 'webpack',
+  webpack: 'webpack',
+  ignore: 'webpack',
+  gzip: 'webpack',
+  running: 'time'
 }
 
 function isStrings (value) {
@@ -47,9 +47,9 @@ function checkChecks (modules, checks) {
     }
     for (let opt in check) {
       let available = OPTIONS[opt]
-      if (Array.isArray(available)) {
-        if (!available.some(i => modules.has(i))) {
-          throw new SizeLimitError('modulelessConfig', opt, ...available)
+      if (typeof available === 'string') {
+        if (!modules.has(available)) {
+          throw new SizeLimitError('modulelessConfig', opt, available)
         }
       } else if (available !== true) {
         throw new SizeLimitError('unknownOption', opt)

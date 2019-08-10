@@ -19,7 +19,7 @@ let self = {
   name: '@size-limit/time',
   async step70 (modules, config, check) {
     if (typeof check.size === 'undefined') {
-      throw new SizeLimitError('missedModule', 'webpack', 'file')
+      throw new SizeLimitError('missedModule', 'webpack')
     }
     check.loadTime = getLoadingTime(check.size)
     if (check.running !== false) {

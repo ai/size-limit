@@ -30,9 +30,8 @@ const MESSAGES = {
     `The *entry* in Size Limit config ` +
     `must be *a string* or *an array of strings*`
   ),
-  modulelessConfig: (opt, mod, other) => (
-    `Config option *${ opt }* needs *@size-limit/${ mod }*` +
-    (other ? ` or *@size-limit/${ other }* module` : ` module`)
+  modulelessConfig: (opt, mod) => (
+    `Config option *${ opt }* needs *@size-limit/${ mod }* module`
   ),
   timeWithoutModule: () => (
     'Add *@size-limit/time* module to use time limit'
@@ -40,9 +39,8 @@ const MESSAGES = {
   unknownOption: opt => (
     `Unknown option *${ opt }* in config. Check Size Limit docs and version.`
   ),
-  missedModule: (...list) => (
-    `Add one of these modules to Size Limit: ` +
-    list.map(i => `*@size-limit/${ i }*`).join(', ')
+  missedModule: mod => (
+    `Add *@size-limit/${ mod }* module to Size Limit`
   )
 }
 
