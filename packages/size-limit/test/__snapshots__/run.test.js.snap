@@ -220,6 +220,19 @@ Check the real performance cost of your front-end project to users
 "
 `;
 
+exports[`works in intergration test with JSON 1`] = `
+"[
+  {
+    \\"name\\": \\"index.js\\",
+    \\"passed\\": true,
+    \\"size\\": 31,
+    \\"running\\": 1,
+    \\"loading\\": 0.01
+  }
+]
+"
+`;
+
 exports[`works in intergration test with size 1`] = `
 "  
   Size limit:   [32m[1m200 B[22m[39m

@@ -18,7 +18,7 @@ module.exports = function parseArgs (plugins, argv) {
       args.why = true
     } else if (arg[0] !== '-') {
       args.files.push(arg)
-    } else {
+    } else if (arg !== '--json') {
       throw new SizeLimitError('unknownArg', arg)
     }
   }
