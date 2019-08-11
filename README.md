@@ -8,14 +8,14 @@ calculates the real cost of your JS for end users and throws an error
 if the cost exceeds the limit.
 
 * Size Limit calculates **the time** it would take a browser
-  **to download and execute** your JS. Time is a much more accurate
+  to download and **execute** your JS. Time is a much more accurate
   and understandable metric compared to the size in bytes.
 * Size Limit calculations include **all dependencies and polyfills**
   used in your JS.
 * Add Size Limit to **Travis CI**, **Circle CI**, or another CI system
-  to know if a pull request adds a massive dependency.
+  to know if a pull request adds a massive dependency.
 * Size Limit is **modular** to fits different use cases like big JS application
-  with own bundler or small npm libraries with many files.
+  with own bundler or small npm libraries with many files.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
