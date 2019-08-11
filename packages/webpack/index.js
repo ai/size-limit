@@ -3,6 +3,7 @@ let { promisify } = require('util')
 let { tmpdir } = require('os')
 let { join } = require('path')
 let rimraf = promisify(require('rimraf'))
+let nanoid = require('nanoid')
 
 let convertConfig = require('./convert-config')
 let runWebpack = require('./run-webpack')
@@ -43,7 +44,7 @@ let self = {
     if (check.webpack === false) return
     check.webpackOutput = config.saveBundle
     if (!check.webpackOutput) {
-      check.webpackOutput = join(tmpdir(), `size-limit-${ Date.now() }`)
+      check.webpackOutput = join(tmpdir(), `size-limit-${ nanoid() }`)
     }
     if (check.config) {
       check.webpackConfig = require(check.config)
