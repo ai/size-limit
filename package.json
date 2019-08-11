@@ -119,7 +119,8 @@
       "JSDoc",
       "Puppeter",
       "estimo",
-      "bundlers"
+      "bundlers",
+      "CLI"
     ]
   },
   "husky": {
