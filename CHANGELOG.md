@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.1
+* Fix possible webpack temporal directory name conflict.
+
 ## 2.0
 * Rewrite tool with modular architecture.
 
