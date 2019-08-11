@@ -19,7 +19,8 @@ function nextTick () {
   process.stdout.write(`$ ${ command } ${ args.join(' ') }\n`)
   let run = spawn(command, args, {
     stdio: 'inherit',
-    cwd: join(PACKAGES, dir)
+    cwd: join(PACKAGES, dir),
+    env: process.env
   })
   run.on('close', exitCode => {
     if (exitCode === 0) {
