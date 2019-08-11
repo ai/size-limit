@@ -3,8 +3,8 @@
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
-Size Limit is performance budget tool for JS. It checks every commit on CI,
-calculates the real cost of your JS for end users and throws an error
+Size Limit is a performance budget tool for JS. It checks every commit on CI,
+calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
 * Size Limit calculates **the time** it would take a browser
@@ -15,7 +15,7 @@ if the cost exceeds the limit.
 * Add Size Limit to **Travis CI**, **Circle CI**, or another CI system
   to know if a pull request adds a massive dependency.
 * Size Limit is **modular** to fits different use cases like big JS application
-  with own bundler or small npm libraries with many files.
+  with own bundler or small npm libraries with many files.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
@@ -58,15 +58,15 @@ and show the real cost of all your internal dependencies.
 ## How It Works
 
 1. Size Limit contains CLI tool, 3 plugins (`file`, `webpack`, `time`)
-   and 3 plugin presets for popular cases (`prese-app`, `preset-big-lib`,
+   and 3 plugin presets for popular cases (`preset-app`, `preset-big-lib`,
    `preset-small-lib`). CLI tool finds plugins in `package.json`
-   and load config.
+   and load the config.
 2. If you use `webpack` plugin, Size Limit bundles JS files into
    the single file. It is important to track dependencies and webpack polyfills.
    It is also useful for small libraries with many small files and without
    bundler.
 3. With `webpack` plugin Size Limit creates an empty webpack project.
-   Then it adds your library and look for bundle size difference.
+   Then it adds your library and looks for the bundle size difference.
 4. If you use `time` plugin, compare current machine performance
    with low-priced Android devices to calculate CPU throttling rate.
 5. With `time` plugin Size Limit runs headless Chrome (or desktop Chrome
@@ -78,7 +78,7 @@ and show the real cost of all your internal dependencies.
 
 ### JS Applications
 
-Application has own bundler and send JS bundle directly to client
+Application has its  own bundler and sends JS bundle directly to a client
 (without publish it to npm).
 
 <details><summary><b>Show instructions</b></summary>
@@ -214,7 +214,6 @@ JS libraries > 10 KB. [React] is a good example.
 ### Small Libraries
 
 JS libraries < 10 KB. [Nano ID] or [Storeon] could be a good example.
-is a good example.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -341,8 +340,8 @@ Each section in the config could have options:
 * **config**: a path to custom webpack config.
 * **ignore**: an array of files and dependencies to ignore from project size.
 
-If you use Size Limit to track the size of CSS files only set `webpack: false`.
-Otherwise, you will get wrong numbers, because webpack inserts `style-loader`
+If you use Size Limit to track the size of CSS files, only set `webpack: false`.
+Otherwise, you will get wrong numbers, because of webpack inserts `style-loader`
 runtime (≈2 KB) into the bundle.
 
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
