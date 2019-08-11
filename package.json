@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "bump": "./scripts/bump",
     "release": "./scripts/each clean-publish",
     "postinstall": "./scripts/each yarn",
     "clean": "rimraf api.md coverage/",

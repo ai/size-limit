@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+let { readdirSync, readFileSync, writeFileSync } = require('fs')
+let { join } = require('path')
+
+const PACKAGES = join(__dirname, '..', 'packages')
+
+let version = process.argv[2]
+if (!version) {
+  console.error('Pass version')
+  process.exit(1)
+}
+
+for (let dir of readdirSync(PACKAGES)) {
+  let pkgPath = join(PACKAGES, dir, 'package.json')
+  let pkg = readFileSync(pkgPath).toString()
+  writeFileSync(pkgPath, pkg
+    .replace(/("@size-limit\/[^"]+": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
+    .replace(/("size-limit": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
+    .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${ version }"`))
+}
