@@ -20,7 +20,7 @@
   ],
   "devDependencies": {
     "@logux/eslint-config": "^30.0.2",
-    "@logux/sharec-config": "^0.3.5",
+    "@logux/sharec-config": "^0.4.0",
     "cross-spawn": "^6.0.5",
     "documentation": "^12.1.1",
     "eslint": "^6.1.0",
@@ -132,6 +132,6 @@
     "*.js": "eslint"
   },
   "sharec": {
-    "version": "0.3.5"
+    "version": "0.4.0"
   }
 }
