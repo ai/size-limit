@@ -4,7 +4,7 @@
     "bump": "./scripts/bump",
     "release": "./scripts/each npm publish --access public",
     "postinstall": "./scripts/each yarn",
-    "clean": "rimraf api.md coverage/",
+    "clean": "rimraf api.md coverage/ packages/.cache",
     "api": "documentation build packages/*/*.js -f md -o api.md",
     "spell": "yarn api && yaspeller-ci packages/*/*.md",
     "test": "jest --coverage && eslint-ci . && yarn spell"

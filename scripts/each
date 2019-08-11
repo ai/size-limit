@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-let { readdirSync } = require('fs')
+let { readdirSync, existsSync } = require('fs')
 let { spawn } = require('child_process')
 let { join } = require('path')
 
@@ -14,6 +14,11 @@ let dirs = readdirSync(PACKAGES)
 function nextTick () {
   if (dirs.length === 0) return
   let dir = dirs.pop()
+
+  if (!existsSync(join(PACKAGES, dir, 'package.json'))) {
+    nextTick()
+    return
+  }
 
   process.stdout.write(`$ cd packages/${ dir }\n`)
   process.stdout.write(`$ ${ command } ${ args.join(' ') }\n`)
