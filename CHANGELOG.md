@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.2
+* Fix time limit support.
+
 ## 2.0.1
 * Fix possible webpack temporal directory name conflict.
 
