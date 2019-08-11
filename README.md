@@ -4,7 +4,7 @@
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
 Size Limit is a performance budget tool for JS. It checks every commit on CI,
-calculates the real cost of your JS for end-users and throws an error
+calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
 * Size Limit calculates **the time** it would take a browser
