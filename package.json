@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
-    "release": "./scripts/each npm publish",
+    "release": "./scripts/each npm publish --access public",
     "postinstall": "./scripts/each yarn",
     "clean": "rimraf api.md coverage/",
     "api": "documentation build packages/*/*.js -f md -o api.md",
