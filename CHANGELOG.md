@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0
+* Rewrite tool with modular architecture.
+
 ## 1.3.8
 * Do not download Chrome for Puppeteer if you already have desktop Chrome.
 
