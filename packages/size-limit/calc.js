@@ -17,7 +17,7 @@ module.exports = async function calc (plugins, config) {
       check.passed = check.sizeLimit >= check.size
     }
     if (typeof check.timeLimit !== 'undefined') {
-      check.passed = check.timeLimit >= check.size
+      check.passed = check.timeLimit >= check.time
     }
   }
   config.failed = config.checks.some(i => i.passed === false)

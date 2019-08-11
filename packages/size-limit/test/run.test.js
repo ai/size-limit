@@ -176,6 +176,10 @@ it('works in intergration test with size', async () => {
 })
 
 it('works in intergration test with time', async () => {
+  expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
+})
+
+it('shows error on time bigger than limit', async () => {
   let [process, history] = createProcess('integration', ['--limit', '1 s'])
   await run(process)
   expect(history.exitCode).toEqual(1)
