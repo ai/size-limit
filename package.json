@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
-    "release": "./scripts/each npx clean-publish",
+    "release": "./scripts/each npm publish",
     "postinstall": "./scripts/each yarn",
     "clean": "rimraf api.md coverage/",
     "api": "documentation build packages/*/*.js -f md -o api.md",
@@ -21,7 +21,6 @@
   "devDependencies": {
     "@logux/eslint-config": "^30.0.2",
     "@logux/sharec-config": "^0.3.5",
-    "clean-publish": "^1.1.2",
     "cross-spawn": "^6.0.5",
     "documentation": "^12.1.1",
     "eslint": "^6.1.0",
