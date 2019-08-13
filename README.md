@@ -58,9 +58,8 @@ and show the real cost of all your internal dependencies.
 ## How It Works
 
 1. Size Limit contains CLI tool, 3 plugins (`file`, `webpack`, `time`)
-   and 3 plugin presets for popular cases (`preset-app`, `preset-big-lib`,
-   `preset-small-lib`). CLI tool finds plugins in `package.json`
-   and load the config.
+   and 3 plugin presets for popular cases (`app`, `big-lib`, `small-lib`).
+   CLI tool finds plugins in `package.json` and load the config.
 2. If you use `webpack` plugin, Size Limit bundles JS files into
    the single file. It is important to track dependencies and webpack polyfills.
    It is also useful for small libraries with many small files and without
