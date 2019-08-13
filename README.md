@@ -69,8 +69,8 @@ and show the real cost of all your internal dependencies.
    and looks for the bundle size difference.
 4. `time` plugin compares current machine performance with low-priced Android
    devices to calculate CPU throttling rate.
-5. Then `time` plugin runs headless Chrome (or desktop Chrome if it available)
-   to tracks the time using by browser to compile and execute JS.
+5. Then `time` plugin runs headless Chrome (or desktop Chrome)
+   to tracks the time using by browser to compile and execute JS.
 
 
 ## Usage
