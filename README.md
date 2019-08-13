@@ -62,16 +62,15 @@ and show the real cost of all your internal dependencies.
    `preset-small-lib`). CLI tool finds plugins in `package.json`
    and load the config.
 2. If you use `webpack` plugin, Size Limit bundles JS files into
-   the single file. It is important to track dependencies and webpack polyfills.
+   the single file. It is important to track dependencies and webpack polyfills.
    It is also useful for small libraries with many small files and without
    bundler.
-3. With `webpack` plugin Size Limit creates an empty webpack project.
-   Then it adds your library and looks for the bundle size difference.
-4. If you use `time` plugin, compare current machine performance
-   with low-priced Android devices to calculate CPU throttling rate.
-5. With `time` plugin Size Limit runs headless Chrome (or desktop Chrome
-   in headless mode) with CPU throttling rate to tracks
-   the time using by Chrome to compile and execute JS.
+3. `webpack` plugin creates an empty webpack project, adds your library
+   and looks for the bundle size difference.
+4. `time` plugin compares current machine performance with low-priced Android
+   devices to calculate CPU throttling rate.
+5. Then `time` plugin runs headless Chrome (or desktop Chrome if it available)
+   to tracks the time using by browser to compile and execute JS.
 
 
 ## Usage
