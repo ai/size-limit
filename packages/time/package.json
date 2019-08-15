@@ -21,6 +21,6 @@
     "size-limit": "2.0.2"
   },
   "devDependencies": {
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.0"
   }
 }
