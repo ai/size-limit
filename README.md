@@ -3,7 +3,7 @@
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
-Size Limit is a performance budget tool for JS. It checks every commit on CI,
+Size Limit is a performance budget tool for JavaScript. It checks every commit on CI,
 calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
@@ -14,14 +14,14 @@ if the cost exceeds the limit.
   used in your JS.
 * Add Size Limit to **Travis CI**, **Circle CI**, or another CI system
   to know if a pull request adds a massive dependency.
-* Size Limit is **modular** to fits different use cases like big JS application
-  with own bundler or small npm libraries with many files.
+* Size Limit is **modular** to fit different use cases, like big JS applications
+  that use their own bundler or small npm libraries with many files/dependencies.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
 </p>
 
-With `--why`, Size Limit can tell you *why* your library has this size
+With `--why`, Size Limit can tell you *why* your library is of this size
 and show the real cost of all your internal dependencies.
 
 <p align="center">
@@ -57,37 +57,37 @@ and show the real cost of all your internal dependencies.
 
 ## How It Works
 
-1. Size Limit contains CLI tool, 3 plugins (`file`, `webpack`, `time`)
-   and 3 plugin presets for popular cases (`app`, `big-lib`, `small-lib`).
-   CLI tool finds plugins in `package.json` and load the config.
-2. If you use `webpack` plugin, Size Limit bundles JS files into
-   the single file. It is important to track dependencies and webpack polyfills.
+1. Size Limit contains a CLI tool, 3 plugins (`file`, `webpack`, `time`)
+   and 3 plugin presets for popular use cases (`app`, `big-lib`, `small-lib`).
+   A CLI tool finds plugins in `package.json` and loads the config.
+2. If you use the `webpack` plugin, Size Limit will bundle your JS files into
+   a single file. It is important to track dependencies and webpack polyfills.
    It is also useful for small libraries with many small files and without
-   bundler.
-3. `webpack` plugin creates an empty webpack project, adds your library
+   a bundler.
+3. The `webpack` plugin creates an empty webpack project, adds your library
    and looks for the bundle size difference.
-4. `time` plugin compares current machine performance with low-priced Android
-   devices to calculate CPU throttling rate.
-5. Then `time` plugin runs headless Chrome (or desktop Chrome if it available)
-   to tracks the time using by browser to compile and execute JS.
+4. The `time` plugin compares the current machine performance with that of a low-priced Android
+   devices to calculate the CPU throttling rate.
+5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s available)
+   to track the time a browser takes to compile and execute your JS.
 
 
 ## Usage
 
 ### JS Applications
 
-Application has its  own bundler and sends JS bundle directly to a client
-(without publish it to npm).
+Suiteable for applications that have their own bundler and send the JS bundle directly to a client
+(without publishing it to npm). Think of a user-facing app or website, like an email client, a CRM, a landing page or a blog with interactive elements, using React/Vue/Svelte lib or vanilla JS.
 
 <details><summary><b>Show instructions</b></summary>
 
-1. Install preset:
+1. Install the preset:
 
     ```sh
     $ npm install --save-dev @size-limit/preset-app
     ```
 
-2. Add `size-limit` section to `package.json` and `size` script:
+2. Add the `size-limit` section and the `size` script to your `package.json`:
 
     ```diff
     + "size-limit": [
@@ -113,8 +113,8 @@ Application has its  own bundler and sends JS bundle directly to a client
       Total time:   815 ms
     ```
 
-4. Now, let’s set the limit. Add 25% for current total time and use that as
-   a limit in your `package.json`:
+4. Now, let’s set the limit. Add 25% to the current total time and use that as
+   the limit in your `package.json`:
 
     ```diff
       "size-limit": [
@@ -144,7 +144,12 @@ Application has its  own bundler and sends JS bundle directly to a client
 
 ### Big Libraries
 
-JS libraries > 10 KB. [React] is a good example.
+JS libraries > 10 KB in size.
+
+This preset includes headless Chrome, and will measure your lib’s execution time.
+You likely don’t need this overhead for a small 2KB lib, but for larger ones
+the execution time is a more accurate and understandable metric that the size in bytes.
+Library like [React] is a good example for this preset.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -154,7 +159,7 @@ JS libraries > 10 KB. [React] is a good example.
     $ npm install --save-dev @size-limit/preset-big-lib
     ```
 
-2. Add `size-limit` section to `package.json` and `size` script:
+2. Add the `size-limit` section and the `size` script to your `package.json`:
 
     ```diff
     + "size-limit": [
@@ -180,8 +185,8 @@ JS libraries > 10 KB. [React] is a good example.
       Total time:   815 ms
     ```
 
-4. Now, let’s set the limit. Add 25% for current total time and use that as
-   a limit in your `package.json`:
+4. Now, let’s set the limit. Add 25% to the current total time and use that as
+   the limit in your `package.json`:
 
     ```diff
       "size-limit": [
@@ -192,7 +197,7 @@ JS libraries > 10 KB. [React] is a good example.
       ],
     ```
 
-5. Add the `size` script to your test suite:
+5. Add a `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -211,7 +216,11 @@ JS libraries > 10 KB. [React] is a good example.
 
 ### Small Libraries
 
-JS libraries < 10 KB. [Nano ID] or [Storeon] could be a good example.
+JS libraries < 10 KB in size.
+
+This preset will only measure the size, without the execution time, so it’s suitable for small libraries.
+If your library is larger, you likely want the Big Libraries preset above.
+[Nano ID] or [Storeon] are good examples for this preset.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -221,7 +230,7 @@ JS libraries < 10 KB. [Nano ID] or [Storeon] could be a good example.
     $ npm install --save-dev @size-limit/preset-small-lib
     ```
 
-2. Add `size-limit` section to `package.json` and `size` script:
+2. Add the `size-limit` section and the `size` script to your `package.json`:
 
     ```diff
     + "size-limit": [
@@ -250,7 +259,7 @@ JS libraries < 10 KB. [Nano ID] or [Storeon] could be a good example.
     ```
 
 5. Now, let’s set the limit. Determine the current size of your library,
-   add just a little bit (a kilobyte, maybe) and use that as a limit
+   add just a little bit (a kilobyte, maybe) and use that as the limit
    in your `package.json`:
 
     ```diff
@@ -287,7 +296,7 @@ JS libraries < 10 KB. [Nano ID] or [Storeon] could be a good example.
 
 Size Limits supports three ways to define config.
 
-1. `size-limit` section to `package.json`:
+1. `size-limit` section in `package.json`:
 
    ```json
      "size-limit": [
@@ -298,7 +307,7 @@ Size Limits supports three ways to define config.
      ]
    ```
 
-2. or separated `.size-limit.json` config file:
+2. or a separate `.size-limit.json` config file:
 
    ```js
    [
@@ -309,7 +318,7 @@ Size Limits supports three ways to define config.
    ]
    ```
 
-3. or more flexible `.size-limit.js` config file:
+3. or a more flexible `.size-limit.js` config file:
 
    ```js
    module.exports = [
@@ -320,7 +329,7 @@ Size Limits supports three ways to define config.
    ]
    ```
 
-Each section in the config could have options:
+Each section in the config can have these options:
 
 * **path**: relative paths to files. The only mandatory option.
   It could be a path `"index.js"`, a [pattern] `"dist/app-*.js"`
@@ -328,18 +337,19 @@ Each section in the config could have options:
 * **entry**: when using a custom webpack config, a webpack entry could be given.
   It could be a string or an array of strings.
   By default, the total size of all entry points will be checked.
-* **limit**: size or time limit for files from `path` option. It should be
-  a string with a number and unit. Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
-* **name**: the name of this section. It will be useful only
+* **limit**: size or time limit for files from the `path` option. It should be
+  a string with a number and unit, separated by a space. 
+  Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
+* **name**: the name of the current section. It will only be useful 
   if you have multiple sections.
-* **webpack**: with `false` will disable webpack.
-* **running**: with `false` will disable calculating running time.
-* **gzip**: with `false` will disable gzip compression.
-* **config**: a path to custom webpack config.
-* **ignore**: an array of files and dependencies to ignore from project size.
+* **webpack**: with `false` it will disable webpack.
+* **running**: with `false` it will disable calculating running time.
+* **gzip**: with `false` it will disable gzip compression.
+* **config**: a path to a custom webpack config.
+* **ignore**: an array of files and dependencies to exclude from the project size calculation.
 
-If you use Size Limit to track the size of CSS files, only set `webpack: false`.
-Otherwise, you will get wrong numbers, because of webpack inserts `style-loader`
+If you use Size Limit to track the size of CSS files, make sure to set `webpack: false`.
+Otherwise, you will get wrong numbers, because webpack inserts `style-loader`
 runtime (≈2 KB) into the bundle.
 
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
