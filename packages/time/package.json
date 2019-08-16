@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/time",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Downloading and running time plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -18,7 +18,7 @@
   "dependencies": {
     "estimo": "^1.1.5",
     "react": "^16.9.0",
-    "size-limit": "2.0.2"
+    "size-limit": "2.1.0"
   },
   "devDependencies": {
     "rimraf": "^3.0.0"

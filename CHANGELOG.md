@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1
+* Add `--debug` argument.
+
 ## 2.0.2
 * Fix time limit support.
 
