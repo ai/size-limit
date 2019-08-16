@@ -24,6 +24,7 @@ module.exports = process => {
       `  ${ y('--limit LIMIT') }  Set size or running time limit for files`,
       `  ${ y('--json') }         Show results in JSON format`,
       `  ${ y('--help') }         Display this help`,
+      `  ${ y('--debug') }        Show internal configs for issue report`,
       `  ${ y('--version') }      Display version`
     )
     if (plugins.has('webpack')) {

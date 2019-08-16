@@ -6,6 +6,8 @@ module.exports = function parseArgs (plugins, argv) {
     let arg = argv[i]
     if (arg === '--limit') {
       args.limit = argv[++i]
+    } else if (arg === '--debug') {
+      args.debug = true
     } else if (arg === '--save-bundle') {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'save-bundle')

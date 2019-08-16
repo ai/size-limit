@@ -10,6 +10,7 @@ jest.mock('../../time/cache', () => ({
   saveCache () { }
 }))
 
+const TMP_DIR = /size-limit-[\w\d-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
 
 function fixture (...files) {
@@ -36,12 +37,12 @@ function createProcess (cwd, args = []) {
     },
     stdout: {
       write (str) {
-        history.stdout += str.split(ROOT).join('')
+        history.stdout += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     },
     stderr: {
       write (str) {
-        history.stderr += str.split(ROOT).join('')
+        history.stderr += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     }
   }
@@ -193,4 +194,12 @@ it('returns zero bytes for empty file', async () => {
 
 it('returns zero bytes for empty file without gzip', async () => {
   expect(await check('zero-non-gzip')).toMatchSnapshot()
+})
+
+it('shows debug', async () => {
+  expect(await check('integration', ['--debug'])).toMatchSnapshot()
+})
+
+it('shows debug on error', async () => {
+  expect(await error('interal-error', ['--debug'])).toMatchSnapshot()
 })

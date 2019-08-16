@@ -6,6 +6,7 @@ let loadPlugins = require('./load-plugins')
 let createHelp = require('./create-help')
 let getConfig = require('./get-config')
 let parseArgs = require('./parse-args')
+let debug = require('./debug')
 let calc = require('./calc')
 
 module.exports = async process => {
@@ -14,6 +15,7 @@ module.exports = async process => {
   }
   let reporter = createReporter(process, hasArg('--json'))
   let help = createHelp(process)
+  let config, args
 
   try {
     if (hasArg('--version')) {
@@ -31,17 +33,20 @@ module.exports = async process => {
       throw new SizeLimitError('noPackage')
     }
 
-    let args = parseArgs(plugins, process.argv)
+    args = parseArgs(plugins, process.argv)
     if (plugins.isEmpty) {
       help.showMigrationGuide(pkg)
       return process.exit(1)
     }
-    let config = await getConfig(plugins, process, args, pkg)
+    config = await getConfig(plugins, process, args, pkg)
 
     await calc(plugins, config)
+
+    debug.results(process, args, config)
     reporter.results(plugins, config)
     if (config.failed) process.exit(1)
   } catch (e) {
+    debug.error(process, args, config)
     reporter.error(e)
     process.exit(1)
   }
