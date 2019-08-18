@@ -8,6 +8,9 @@ const URL = 'https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650'
 const JS_FILES = /\.m?js$/i
 
 async function getTime (file, throttling = 1) {
+  if (process.env.SIZE_LIMIT_FAKE_TIME) {
+    return throttling * parseFloat(process.env.SIZE_LIMIT_FAKE_TIME)
+  }
   let value = 0
   for (let i = 0; i < 3; i++) {
     let perf
@@ -33,7 +36,7 @@ async function getThrottling () {
     return cache
   } else {
     let time = await getTime(EXAMPLE)
-    let throttling = Math.round(EXAMPLE_TIME / time)
+    let throttling = Math.ceil(EXAMPLE_TIME / time)
     await saveCache(throttling)
     return throttling
   }
