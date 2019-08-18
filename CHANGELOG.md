@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.1
+* Ignore non `.js` or `.mjs` files in running time.
+* Speed up running time calculation.
+
 ## 2.1
 * Add `--debug` argument.
 
