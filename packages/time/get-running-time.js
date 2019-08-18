@@ -38,6 +38,13 @@ async function getThrottling () {
   }
 }
 
+let throttlingCache
+
 module.exports = async function getRunningTime (file) {
-  return getTime(file, await getThrottling())
+  if (!throttlingCache) throttlingCache = await getThrottling()
+  return getTime(file, throttlingCache)
+}
+
+module.exports.cleanCache = function () {
+  throttlingCache = undefined
 }

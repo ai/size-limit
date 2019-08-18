@@ -8,6 +8,7 @@ let { saveCache, getCache } = require('../cache')
 const EXAMPLE = require.resolve('react/umd/react.production.min.js')
 
 afterEach(async () => {
+  getRunningTime.cleanCache()
   await rimraf(join(__dirname, '..', '..', '.cache'))
 })
 
@@ -21,6 +22,9 @@ it('uses cache', async () => {
   await getRunningTime(EXAMPLE)
   let throttling = await getCache()
   await saveCache(throttling * 100)
-  let runTime = await getRunningTime(EXAMPLE)
-  expect(runTime).toBeGreaterThan(4)
+  let runTime1 = await getRunningTime(EXAMPLE)
+  expect(runTime1).toBeGreaterThan(0.04)
+  getRunningTime.cleanCache()
+  let runTime2 = await getRunningTime(EXAMPLE)
+  expect(runTime2).toBeGreaterThan(4)
 })
