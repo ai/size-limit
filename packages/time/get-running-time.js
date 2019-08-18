@@ -5,6 +5,7 @@ let { saveCache, getCache } = require('./cache')
 const EXAMPLE = require.resolve('react/umd/react.production.min.js')
 const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
 const URL = 'https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650'
+const JS_FILES = /\.m?js$/i
 
 async function getTime (file, throttling = 1) {
   let value = 0
@@ -41,6 +42,7 @@ async function getThrottling () {
 let throttlingCache
 
 module.exports = async function getRunningTime (file) {
+  if (!JS_FILES.test(file)) return 0
   if (!throttlingCache) throttlingCache = await getThrottling()
   return getTime(file, throttlingCache)
 }

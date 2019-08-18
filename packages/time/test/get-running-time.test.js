@@ -28,3 +28,8 @@ it('uses cache', async () => {
   let runTime2 = await getRunningTime(EXAMPLE)
   expect(runTime2).toBeGreaterThan(4)
 })
+
+it('ignores non-JS files', async () => {
+  let runTime = await getRunningTime('/a.jpg')
+  expect(runTime).toEqual(0)
+})
