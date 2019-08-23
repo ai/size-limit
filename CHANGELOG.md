@@ -17,10 +17,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2.0
 * Rewrite tool with modular architecture.
 
-#### Migrating from v1:
-1. Install v2.x in your project
-2. Run `npx size-limit` or `yarn size-limit`
-3. Console will output instructions for installing necessary preset
+Migration:
+1. Update `size-limit` to 2.x version.
+2. Run `npx size-limit`.
+3. Console will output instructions for installing necessary preset.
 
 ## 1.3.8
 * Do not download Chrome for Puppeteer if you already have desktop Chrome.
