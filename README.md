@@ -223,7 +223,7 @@ the size in bytes. Library like [React] is a good example for this preset.
 
       * **Fast.** 10% faster than competitor.
     + * **Small.** 15 KB (minified and gzipped).
-        [Size Limit](https://github.com/ai/size-limit) controls the size.
+    +   [Size Limit](https://github.com/ai/size-limit) controls the size.
     ```
 
 </details>
@@ -308,7 +308,7 @@ for this preset.
 
       * **Fast.** 10% faster than competitor.
     + * **Small.** 500 bytes (minified and gzipped). No dependencies.
-        [Size Limit](https://github.com/ai/size-limit) controls the size.
+    +   [Size Limit](https://github.com/ai/size-limit) controls the size.
     ```
 
 </details>
