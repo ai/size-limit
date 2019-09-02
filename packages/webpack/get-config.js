@@ -61,8 +61,8 @@ module.exports = function getConfig (limitConfig, check, output) {
 
   if (limitConfig.why) {
     config.plugins.push(new BundleAnalyzerPlugin({
-      openAnalyzer: process.env['NODE_ENV'] !== 'test',
-      analyzerMode: process.env['NODE_ENV'] === 'test' ? 'static' : 'server',
+      openAnalyzer: process.env.NODE_ENV !== 'test',
+      analyzerMode: process.env.NODE_ENV === 'test' ? 'static' : 'server',
       defaultSizes: check.gzip === false ? 'parsed' : 'gzip'
     }))
   }

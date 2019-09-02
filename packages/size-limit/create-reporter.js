@@ -147,7 +147,7 @@ function createHumanReporter (process) {
           if (config.configPath.endsWith('package.json')) {
             fix += ` in ${ chalk.bold('"size-limit"') } section of `
           } else {
-            fix += ` at `
+            fix += ' at '
           }
           fix += chalk.bold(config.configPath)
         }

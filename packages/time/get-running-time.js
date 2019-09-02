@@ -19,7 +19,7 @@ async function getTime (file, throttling = 1) {
     } catch (e) {
       if (process.env.CIRCLECI) {
         console.warn(
-          `Check that you use circleci/node:latest-browsers Docker image.\n` +
+          'Check that you use circleci/node:latest-browsers Docker image.\n' +
           `More details: ${ URL }\n`
         )
       }
