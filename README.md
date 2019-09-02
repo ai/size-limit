@@ -3,8 +3,8 @@
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      title="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
-Size Limit is a performance budget tool for JavaScript. It checks every commit on CI,
-calculates the real cost of your JS for end-users and throws an error
+Size Limit is a performance budget tool for JavaScript. It checks every commit
+on CI, calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
 * Size Limit calculates **the time** it would take a browser
@@ -15,7 +15,7 @@ if the cost exceeds the limit.
 * Add Size Limit to **Travis CI**, **Circle CI**, or another CI system
   to know if a pull request adds a massive dependency.
 * Size Limit is **modular** to fit different use cases, like big JS applications
-  that use their own bundler or small npm libraries with many files/dependencies.
+  that use their own bundler or small npm libraries with many files.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
@@ -47,10 +47,12 @@ and show the real cost of all your internal dependencies.
   [25% of the size](https://github.com/postcss/postcss/commit/150edaa42f6d7ede73d8c72be9909f0a0f87a70f).
 * [Browserslist](https://github.com/ai/browserslist) reduced
   [25% of the size](https://github.com/ai/browserslist/commit/640b62fa83a20897cae75298a9f2715642531623).
-* [EmojiMart](https://github.com/missive/emoji-mart) reduced [20% of the size](https://github.com/missive/emoji-mart/pull/111)
+* [EmojiMart](https://github.com/missive/emoji-mart) reduced
+  [20% of the size](https://github.com/missive/emoji-mart/pull/111)
 * [nanoid](https://github.com/ai/nanoid) reduced
   [33% of the size](https://github.com/ai/nanoid/commit/036612e7d6cc5760313a8850a2751a5e95184eab).
-* [React Focus Lock](https://github.com/theKashey/react-focus-lock) reduced [32% of the size](https://github.com/theKashey/react-focus-lock/pull/48).
+* [React Focus Lock](https://github.com/theKashey/react-focus-lock) reduced
+  [32% of the size](https://github.com/theKashey/react-focus-lock/pull/48).
 * [Logux](https://github.com/logux) reduced
   [90% of the size](https://github.com/logux/logux-client/commit/62b258e20e1818b23ae39b9c4cd49e2495781e91).
 
@@ -66,18 +68,20 @@ and show the real cost of all your internal dependencies.
    a bundler.
 3. The `webpack` plugin creates an empty webpack project, adds your library
    and looks for the bundle size difference.
-4. The `time` plugin compares the current machine performance with that of a low-priced Android
-   devices to calculate the CPU throttling rate.
-5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s available)
-   to track the time a browser takes to compile and execute your JS.
+4. The `time` plugin compares the current machine performance with that of
+   a low-priced Android devices to calculate the CPU throttling rate.
+5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s
+   available) to track the time a browser takes to compile and execute your JS.
 
 
 ## Usage
 
 ### JS Applications
 
-Suiteable for applications that have their own bundler and send the JS bundle directly to a client
-(without publishing it to npm). Think of a user-facing app or website, like an email client, a CRM, a landing page or a blog with interactive elements, using React/Vue/Svelte lib or vanilla JS.
+Suitable for applications that have their own bundler and send the JS bundle
+directly to a client (without publishing it to npm). Think of a user-facing app
+or website, like an email client, a CRM, a landing page or a blog with
+interactive elements, using React/Vue/Svelte lib or vanilla JS.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -146,10 +150,10 @@ Suiteable for applications that have their own bundler and send the JS bundle di
 
 JS libraries > 10 KB in size.
 
-This preset includes headless Chrome, and will measure your lib’s execution time.
-You likely don’t need this overhead for a small 2KB lib, but for larger ones
-the execution time is a more accurate and understandable metric that the size in bytes.
-Library like [React] is a good example for this preset.
+This preset includes headless Chrome, and will measure your lib’s execution
+time. You likely don’t need this overhead for a small 2 KB lib, but for larger
+ones the execution time is a more accurate and understandable metric that
+the size in bytes. Library like [React] is a good example for this preset.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -185,8 +189,8 @@ Library like [React] is a good example for this preset.
       Total time:   815 ms
     ```
 
-4. Now, let’s set the limit. Add 25% to the current total time and use that as
-   the limit in your `package.json`:
+4. Now, let’s set the limit. Add 25% to the current total time and use that
+   as the limit in your `package.json`:
 
     ```diff
       "size-limit": [
@@ -218,9 +222,10 @@ Library like [React] is a good example for this preset.
 
 JS libraries < 10 KB in size.
 
-This preset will only measure the size, without the execution time, so it’s suitable for small libraries.
-If your library is larger, you likely want the Big Libraries preset above.
-[Nano ID] or [Storeon] are good examples for this preset.
+This preset will only measure the size, without the execution time, so it’s
+suitable for small libraries. If your library is larger, you likely want
+the Big Libraries preset above. [Nano ID] or [Storeon] are good examples
+for this preset.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -338,18 +343,19 @@ Each section in the config can have these options:
   It could be a string or an array of strings.
   By default, the total size of all entry points will be checked.
 * **limit**: size or time limit for files from the `path` option. It should be
-  a string with a number and unit, separated by a space. 
+  a string with a number and unit, separated by a space.
   Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
-* **name**: the name of the current section. It will only be useful 
+* **name**: the name of the current section. It will only be useful
   if you have multiple sections.
 * **webpack**: with `false` it will disable webpack.
 * **running**: with `false` it will disable calculating running time.
 * **gzip**: with `false` it will disable gzip compression.
 * **config**: a path to a custom webpack config.
-* **ignore**: an array of files and dependencies to exclude from the project size calculation.
+* **ignore**: an array of files and dependencies to exclude from
+  the project size calculation.
 
-If you use Size Limit to track the size of CSS files, make sure to set `webpack: false`.
-Otherwise, you will get wrong numbers, because webpack inserts `style-loader`
-runtime (≈2 KB) into the bundle.
+If you use Size Limit to track the size of CSS files, make sure to set
+`webpack: false`. Otherwise, you will get wrong numbers, because webpack
+inserts `style-loader` runtime (≈2 KB) into the bundle.
 
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns

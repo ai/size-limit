@@ -118,7 +118,8 @@
       "Puppeter",
       "estimo",
       "bundlers",
-      "CLI"
+      "CLI",
+      "CRM"
     ]
   },
   "husky": {
