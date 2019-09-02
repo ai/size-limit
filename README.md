@@ -214,6 +214,17 @@ the size in bytes. Library like [React] is a good example for this preset.
 
 6. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
+7. Add the library size to docs, it will help users to choose your project:
+
+    ```diff
+      # Project Name
+
+      Short project description
+
+      * **Fast.** 10% faster than competitor.
+    + * **Small.** 15 KB (minified and gzipped).
+        [Size Limit](https://github.com/ai/size-limit) controls the size.
+    ```
 
 </details>
 
@@ -288,6 +299,17 @@ for this preset.
 
 7. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
+8. Add the library size to docs, it will help users to choose your project:
+
+    ```diff
+      # Project Name
+
+      Short project description
+
+      * **Fast.** 10% faster than competitor.
+    + * **Small.** 500 bytes (minified and gzipped). No dependencies.
+        [Size Limit](https://github.com/ai/size-limit) controls the size.
+    ```
 
 </details>
 
