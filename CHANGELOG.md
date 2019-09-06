@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.3
+* Fix plugin loading (by Alexandr Antonov).
+
 ## 2.1.2
 * Update dependencies.
 
