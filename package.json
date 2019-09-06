@@ -19,17 +19,17 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^31.0.0",
-    "@logux/sharec-config": "^0.4.3",
-    "cross-spawn": "^6.0.5",
+    "@logux/eslint-config": "^31.0.2",
+    "@logux/sharec-config": "^0.4.4",
+    "cross-spawn": "^7.0.0",
     "documentation": "^12.1.1",
     "eslint": "^6.3.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-es5": "^1.4.1",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.16.0",
-    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prefer-let": "^1.0.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
@@ -128,10 +128,10 @@
     }
   },
   "lint-staged": {
-    "*.md": "yaspeller-ci",
+    "*.md": "yaspeller",
     "*.js": "eslint"
   },
   "sharec": {
-    "version": "0.4.3"
+    "version": "0.4.4"
   }
 }
