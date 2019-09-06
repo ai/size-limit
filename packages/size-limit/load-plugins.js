@@ -8,7 +8,9 @@ module.exports = function loadPlugins (pkg) {
   let list = toArray(pkg.package.dependencies)
     .concat(toArray(pkg.package.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
-    .reduce((all, i) => all.concat(require(i)), [])
+    .reduce((all, i) => all.concat(require(require.resolve(i, {
+      paths: [process.cwd()]
+    }))), [])
 
   return {
     list,
