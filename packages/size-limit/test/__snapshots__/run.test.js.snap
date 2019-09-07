@@ -206,6 +206,14 @@ You can remove size-limit dependency: [33myarn remove size-limit[39m
 "
 `;
 
+exports[`shows size-limit dependency warning 1`] = `
+"[43m[30m WARN [39m[49m You can remove size-limit dependency
+       All plugins and presets already contains it as own dependency
+       [33mnpm remove size-limit[39m
+
+"
+`;
+
 exports[`shows webpack-related help 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
 Check the real performance cost of your front-end project to users

@@ -7,6 +7,16 @@ let ownPackage = require('./package.json')
 let b = chalk.bold
 let y = chalk.yellow
 
+function npmCommands (pkg) {
+  let add = 'npm install --save-dev '
+  let rm = 'npm remove '
+  if (existsSync(join(pkg.path, '..', 'yarn.lock'))) {
+    add = 'yarn add --dev '
+    rm = 'yarn remove '
+  }
+  return { add, rm }
+}
+
 module.exports = process => {
   function print (...lines) {
     process.stdout.write(lines.join('\n') + '\n')
@@ -61,12 +71,7 @@ module.exports = process => {
   }
 
   function showMigrationGuide (pkg) {
-    let add = 'npm install --save-dev '
-    let rm = 'npm remove '
-    if (existsSync(join(pkg.path, '..', 'yarn.lock'))) {
-      add = 'yarn add --dev '
-      rm = 'yarn remove '
-    }
+    let { add, rm } = npmCommands(pkg)
     printError(
       chalk.red('Install Size Limit preset depends on type of the project'),
       '',
@@ -88,5 +93,15 @@ module.exports = process => {
     }
   }
 
-  return { showVersion, showHelp, showMigrationGuide }
+  function warnAboutDep (pkg) {
+    let { rm } = npmCommands(pkg)
+    printError(
+      chalk.bgYellow.black(' WARN ') + ' You can remove size-limit dependency',
+      '       All plugins and presets already contains it as own dependency',
+      '       ' + y(rm + 'size-limit'),
+      ''
+    )
+  }
+
+  return { showVersion, showHelp, showMigrationGuide, warnAboutDep }
 }

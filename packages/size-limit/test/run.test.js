@@ -110,6 +110,13 @@ it('shows migration guide for yarn users', async () => {
   expect(await error('legacy-yarn')).toMatchSnapshot()
 })
 
+it('shows size-limit dependency warning', async () => {
+  let [process, history] = createProcess('warn')
+  await run(process)
+  expect(history.exitCode).toEqual(0)
+  expect(history.stderr).toMatchSnapshot()
+})
+
 it('throws on unknown argument', async () => {
   expect(await error('file', ['--unknown'])).toMatchSnapshot()
 })

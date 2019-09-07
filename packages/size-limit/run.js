@@ -9,6 +9,10 @@ let parseArgs = require('./parse-args')
 let debug = require('./debug')
 let calc = require('./calc')
 
+function devDeps (pkg) {
+  return pkg.package.devDependencies || { }
+}
+
 module.exports = async process => {
   function hasArg (arg) {
     return process.argv.some(i => i === arg)
@@ -34,10 +38,16 @@ module.exports = async process => {
     }
 
     args = parseArgs(plugins, process.argv)
+
     if (plugins.isEmpty) {
       help.showMigrationGuide(pkg)
       return process.exit(1)
     }
+
+    if (devDeps(pkg)['size-limit'] && !hasArg('--json')) {
+      help.warnAboutDep(pkg)
+    }
+
     config = await getConfig(plugins, process, args, pkg)
 
     await calc(plugins, config)
