@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/file",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "File size plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,6 +17,6 @@
     "node": ">=8.3.0"
   },
   "dependencies": {
-    "size-limit": "2.1.3"
+    "size-limit": "2.1.4"
   }
 }

@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.4
+* Add warning for `size-limit` in dependencies.
+
 ## 2.1.3
 * Fix plugin loading (by Alexandr Antonov).
 
