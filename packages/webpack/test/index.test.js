@@ -45,7 +45,7 @@ it('uses webpack to make bundle', async () => {
         webpackOutput: config.checks[0].webpackOutput,
         webpackConfig: config.checks[0].webpackConfig,
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        size: 2827
+        size: 2832
       }
     ]
   })
