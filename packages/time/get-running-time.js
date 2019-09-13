@@ -43,10 +43,15 @@ async function getThrottling () {
 }
 
 let throttlingCache
+let throttlingCalculating
 
 module.exports = async function getRunningTime (file) {
   if (!JS_FILES.test(file)) return 0
-  if (!throttlingCache) throttlingCache = await getThrottling()
+  if (throttlingCalculating) await throttlingCalculating
+  if (!throttlingCache) {
+    throttlingCalculating = getThrottling()
+    throttlingCache = await throttlingCalculating
+  }
   return getTime(file, throttlingCache)
 }
 

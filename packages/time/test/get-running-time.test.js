@@ -34,3 +34,13 @@ it('uses cache', async () => {
 it('ignores non-JS files', async () => {
   expect(await getRunningTime('/a.jpg')).toEqual(0)
 })
+
+it('works in parallel', async () => {
+  let times = await Promise.all([
+    getRunningTime(EXAMPLE),
+    getRunningTime(EXAMPLE),
+    getRunningTime(EXAMPLE),
+    getRunningTime(EXAMPLE)
+  ])
+  expect(times).toHaveLength(5)
+})
