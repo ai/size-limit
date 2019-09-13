@@ -17,9 +17,10 @@ async function getTime (file, throttling = 1) {
     try {
       perf = await estimo(file)
     } catch (e) {
-      if (process.env.CIRCLECI) {
+      if (process.env.CI) {
         console.warn(
-          'Check that you use circleci/node:latest-browsers Docker image.\n' +
+          'Check that you use circleci/node:latest-browsers ' +
+          'or buildkite/puppeteer:latest Docker image.\n' +
           `More details: ${ URL }\n`
         )
       }
