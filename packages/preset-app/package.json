@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-app",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Size Limit preset for applications",
   "keywords": [
     "size-limit",
@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "dependencies": {
-    "@size-limit/file": "2.1.4",
-    "@size-limit/time": "2.1.4"
+    "@size-limit/file": "2.1.5",
+    "@size-limit/time": "2.1.5"
   }
 }

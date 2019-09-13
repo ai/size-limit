@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.5
+* Fix running time calculation on parallel tasks.
+* Fix CI warning text during Puppeteer error.
+
 ## 2.1.4
 * Add warning for `size-limit` in dependencies.
 
