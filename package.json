@@ -22,7 +22,7 @@
     "@logux/eslint-config": "^31.0.2",
     "@logux/sharec-config": "^0.4.4",
     "cross-spawn": "^7.0.0",
-    "documentation": "^12.1.1",
+    "documentation": "^12.1.2",
     "eslint": "^6.3.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.0",
