@@ -50,12 +50,15 @@ module.exports = async function getRunningTime (file) {
   if (!JS_FILES.test(file)) return 0
   if (throttlingCalculating) await throttlingCalculating
   if (!throttlingCache) {
-    throttlingCalculating = getThrottling()
-    throttlingCache = await throttlingCalculating
+    throttlingCalculating = getThrottling().then(time => {
+      throttlingCache = time
+    })
+    await throttlingCalculating
   }
   return getTime(file, throttlingCache)
 }
 
 module.exports.cleanCache = function () {
+  throttlingCalculating = undefined
   throttlingCache = undefined
 }
