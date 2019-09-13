@@ -36,6 +36,7 @@ it('ignores non-JS files', async () => {
 })
 
 it('works in parallel', async () => {
+  process.env.SIZE_LIMIT_FAKE_TIME = 1
   let times = await Promise.all([
     getRunningTime(EXAMPLE),
     getRunningTime(EXAMPLE),
