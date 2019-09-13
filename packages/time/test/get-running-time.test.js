@@ -42,5 +42,5 @@ it('works in parallel', async () => {
     getRunningTime(EXAMPLE),
     getRunningTime(EXAMPLE)
   ])
-  expect(times).toHaveLength(5)
+  expect(times).toHaveLength(4)
 })
