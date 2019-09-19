@@ -25,7 +25,7 @@
     "rimraf": "^3.0.0",
     "size-limit": "2.1.5",
     "style-loader": "^1.0.0",
-    "webpack": "^4.40.1",
+    "webpack": "^4.40.2",
     "webpack-bundle-analyzer": "^3.5.0"
   },
   "devDependencies": {
