@@ -54,7 +54,7 @@ module.exports = async process => {
 
     debug.results(process, args, config)
     reporter.results(plugins, config)
-    if (config.failed) process.exit(1)
+    if (config.failed && !args.why) process.exit(1)
   } catch (e) {
     debug.error(process, args, config)
     reporter.error(e)
