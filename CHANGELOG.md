@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.6
+* Fix `--why` for entries with exceeded limit.
+* Fix `--why` for multiple entries.
+
 ## 2.1.5
 * Fix running time calculation on parallel tasks.
 * Fix CI warning text during Puppeteer error.
