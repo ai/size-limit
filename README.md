@@ -376,6 +376,10 @@ Each section in the config can have these options:
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
 
+Plugin for execution time calculation uses chromium inside.
+If you are using it on CI, you may want to specify your custom chromium binary.
+It's available under `CHROME_EXECUTABLE_PATH` environment variable.
+
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack
 inserts `style-loader` runtime (≈2 KB) into the bundle.
