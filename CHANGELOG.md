@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2
+* Add JS API.
+
 ## 2.1.6
 * Fix `--why` for entries with exceeded limit.
 * Fix `--why` for multiple entries.
