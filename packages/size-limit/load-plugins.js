@@ -2,6 +2,17 @@ function toArray (obj) {
   return typeof obj === 'object' ? Object.keys(obj) : []
 }
 
+class Plugins {
+  constructor (list) {
+    this.list = list
+    this.isEmpty = list.length === 0
+  }
+
+  has (type) {
+    return this.list.some(i => i.name === `@size-limit/${ type }`)
+  }
+}
+
 module.exports = function loadPlugins (pkg) {
   if (!pkg || !pkg.packageJson) return []
 
@@ -12,11 +23,7 @@ module.exports = function loadPlugins (pkg) {
       paths: [process.cwd()]
     }))), [])
 
-  return {
-    list,
-    isEmpty: list.length === 0,
-    has (type) {
-      return this.list.some(i => i.name === `@size-limit/${ type }`)
-    }
-  }
+  return new Plugins(list)
 }
+
+module.exports.Plugins = Plugins
