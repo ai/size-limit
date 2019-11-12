@@ -381,3 +381,16 @@ If you use Size Limit to track the size of CSS files, make sure to set
 inserts `style-loader` runtime (≈2 KB) into the bundle.
 
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
+
+
+## JS API
+
+```js
+const sizeLimit = require('size-limit')
+const filePlugin = require('@size-limit/file')
+const webpackPlugin = require('@size-limit/webpack')
+
+sizeLimit([filePlugin, webpackPlugin], [filePath]).then(result => {
+  result //=> { size: 12480 }
+})
+```
