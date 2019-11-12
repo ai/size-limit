@@ -1,5 +1,5 @@
 let { isAbsolute, dirname, join, relative } = require('path')
-let cosmiconfig = require('cosmiconfig').cosmiconfig
+let { cosmiconfig } = require('cosmiconfig')
 let globby = require('globby')
 let bytes = require('bytes')
 
