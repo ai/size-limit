@@ -1,5 +1,5 @@
 let { isAbsolute, dirname, join, relative } = require('path')
-let cosmiconfig = require('cosmiconfig')
+let cosmiconfig = require('cosmiconfig').cosmiconfig
 let globby = require('globby')
 let bytes = require('bytes')
 
@@ -70,7 +70,7 @@ function toName (files, cwd) {
 module.exports = async function getConfig (plugins, process, args, pkg) {
   let config = { }
   if (args.why) {
-    config.project = pkg.package.name
+    config.project = pkg.packageJson.name
     config.why = args.why
   }
   if (args.saveBundle) {
@@ -101,9 +101,9 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
       if (check.path) {
         check.path = await globby(check.path, { cwd: dirname(result.filepath) })
       } else if (!check.entry) {
-        if (pkg.package.main) {
+        if (pkg.packageJson.main) {
           check.path = [
-            require.resolve(join(dirname(pkg.path), pkg.package.main))
+            require.resolve(join(dirname(pkg.path), pkg.packageJson.main))
           ]
         } else {
           check.path = [join(dirname(pkg.path), 'index.js')]
@@ -113,7 +113,7 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
     }))
   }
 
-  let peer = Object.keys(pkg.package.peerDependencies || { })
+  let peer = Object.keys(pkg.packageJson.peerDependencies || { })
   for (let check of config.checks) {
     if (peer.length > 0) check.ignore = peer.concat(check.ignore || [])
     if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]

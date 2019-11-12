@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`has error for unknown entry 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33madmin[31m entry in custom Webpack config[39m
+"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33madmin[39m[31m entry in custom Webpack config[39m
 "
 `;
 
 exports[`has error for unknown option 1`] = `
-"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/webpack[31m plugin to Size Limit[39m
+"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/webpack[39m[31m plugin to Size Limit[39m
 "
 `;

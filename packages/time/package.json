@@ -16,8 +16,8 @@
     "node": ">=8.3.0"
   },
   "dependencies": {
-    "estimo": "^2.0.0",
-    "react": "^16.9.0",
+    "estimo": "^2.0.1",
+    "react": "^16.11.0",
     "size-limit": "2.1.6"
   },
   "devDependencies": {

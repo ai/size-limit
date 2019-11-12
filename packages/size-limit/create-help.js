@@ -84,7 +84,7 @@ module.exports = process => {
       'Check out docs for more comlicated cases',
       '  ' + y('https://github.com/ai/size-limit/')
     )
-    let devDependencies = pkg.package.devDependencies
+    let devDependencies = pkg.packageJson.devDependencies
     if (devDependencies && devDependencies['size-limit']) {
       printError(
         '',

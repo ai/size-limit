@@ -11,7 +11,7 @@ beforeAll(() => rimraf(CACHE))
 afterEach(() => rimraf(CACHE))
 
 it('returns false by default', async () => {
-  expect(await getCache()).toBeFalsy()
+  expect(await getCache()).toBe(false)
 })
 
 it('writes cache', async () => {
@@ -23,12 +23,12 @@ it('checks version', async () => {
   await saveCache(10)
   let cache = join(__dirname, '..', '..', '.cache', 'size-limit', 'cache.json')
   await writeFile(cache, '{"version":0,"throttling":10}')
-  expect(await getCache()).toBeFalsy()
+  expect(await getCache()).toBe(false)
 })
 
 it('works on broken JSON', async () => {
   await saveCache(10)
   let cache = join(__dirname, '..', '..', '.cache', 'size-limit', 'cache.json')
   await writeFile(cache, '{')
-  expect(await getCache()).toBeFalsy()
+  expect(await getCache()).toBe(false)
 })

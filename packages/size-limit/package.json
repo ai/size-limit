@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "bytes": "^3.1.0",
-    "chalk": "^2.4.2",
-    "ci-job-number": "^0.3.0",
-    "cosmiconfig": "^5.2.1",
+    "chalk": "^3.0.0",
+    "ci-job-number": "^0.3.1",
+    "cosmiconfig": "^6.0.0",
     "globby": "^10.0.1",
-    "read-pkg-up": "^6.0.0"
+    "read-pkg-up": "^7.0.0"
   }
 }

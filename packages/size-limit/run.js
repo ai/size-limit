@@ -10,7 +10,7 @@ let debug = require('./debug')
 let calc = require('./calc')
 
 function devDeps (pkg) {
-  return pkg.package.devDependencies || { }
+  return pkg.packageJson.devDependencies || { }
 }
 
 module.exports = async process => {
@@ -33,7 +33,7 @@ module.exports = async process => {
       return help.showHelp(plugins)
     }
 
-    if (!pkg || !pkg.package) {
+    if (!pkg || !pkg.packageJson) {
       throw new SizeLimitError('noPackage')
     }
 

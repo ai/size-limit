@@ -51,7 +51,7 @@ it('uses webpack to make bundle', async () => {
   })
   expect(config.checks[0].webpackOutput).toContain('size-limit-')
   expect(typeof config.checks[0].webpackConfig).toEqual('object')
-  expect(existsSync(config.checks[0].webpackOutput)).toBeFalsy()
+  expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
 })
 
 it('supports non-JS require', async () => {
@@ -111,7 +111,7 @@ it('throws error on unknown entry', async () => {
     err = e
   }
   expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
-  expect(existsSync(config.checks[0].webpackOutput)).toBeFalsy()
+  expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
 })
 
 it('allows to disable webpack', async () => {
@@ -183,7 +183,7 @@ it('supports --saveBundle', async () => {
     ]
   }
   await run(config)
-  expect(existsSync(join(DIST, 'index.js'))).toBeTruthy()
+  expect(existsSync(join(DIST, 'index.js'))).toBe(true)
 })
 
 it('throws on webpack error', async () => {

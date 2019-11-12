@@ -3,10 +3,10 @@ function toArray (obj) {
 }
 
 module.exports = function loadPlugins (pkg) {
-  if (!pkg || !pkg.package) return []
+  if (!pkg || !pkg.packageJson) return []
 
-  let list = toArray(pkg.package.dependencies)
-    .concat(toArray(pkg.package.devDependencies))
+  let list = toArray(pkg.packageJson.dependencies)
+    .concat(toArray(pkg.packageJson.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
     .reduce((all, i) => all.concat(require(require.resolve(i, {
       paths: [process.cwd()]
