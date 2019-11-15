@@ -208,7 +208,7 @@ You can remove size-limit dependency: [33myarn remove size-limit[39m
 
 exports[`shows size-limit dependency warning 1`] = `
 "[43m[30m WARN [39m[49m You can remove size-limit dependency
-       All plugins and presets already contains it as own dependency
+       All plugins and presets already contain it as own dependency
        [33mnpm remove size-limit[39m
 
 "
