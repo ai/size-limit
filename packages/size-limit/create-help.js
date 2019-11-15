@@ -97,7 +97,7 @@ module.exports = process => {
     let { rm } = npmCommands(pkg)
     printError(
       chalk.bgYellow.black(' WARN ') + ' You can remove size-limit dependency',
-      '       All plugins and presets already contains it as own dependency',
+      '       All plugins and presets already contain it as own dependency',
       '       ' + y(rm + 'size-limit'),
       ''
     )
