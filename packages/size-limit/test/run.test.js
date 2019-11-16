@@ -49,6 +49,10 @@ function createProcess (cwd, args = []) {
   return [process, history]
 }
 
+function normalize (output) {
+  return output.replace(/"webpackOutput": "[^"]+"/, '"webpackOutput": "/tmp/"')
+}
+
 async function check (cwd, args) {
   let [process, history] = createProcess(cwd, args)
   await run(process)
@@ -204,7 +208,7 @@ it('returns zero bytes for empty file without gzip', async () => {
 })
 
 it('shows debug', async () => {
-  expect(await check('integration', ['--debug'])).toMatchSnapshot()
+  expect(normalize(await check('integration', ['--debug']))).toMatchSnapshot()
 })
 
 it('shows debug on error', async () => {
