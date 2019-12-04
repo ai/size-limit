@@ -17,14 +17,14 @@
     "node": ">=8.3.0"
   },
   "dependencies": {
-    "css-loader": "^3.2.0",
+    "css-loader": "^3.2.1",
     "escape-string-regexp": "^2.0.0",
-    "file-loader": "^4.2.0",
-    "nanoid": "^2.1.6",
+    "file-loader": "^5.0.2",
+    "nanoid": "^2.1.7",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.0",
     "size-limit": "2.2.1",
-    "style-loader": "^1.0.0",
+    "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
     "webpack-bundle-analyzer": "^3.6.0"
   },
