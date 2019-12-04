@@ -9,5 +9,13 @@ it('has JS API', async () => {
     [webpackPlugin, filePlugin],
     [join(__dirname, 'fixtures', 'integration', 'index.js')]
   )
-  expect(result).toEqual([{ size: 23 }])
+  expect(result).toEqual([{ size: 31 }])
+})
+
+it('works with file module only', async () => {
+  let result = await sizeLimit(
+    [filePlugin],
+    [join(__dirname, 'fixtures', 'integration', 'index.js')]
+  )
+  expect(result).toEqual([{ size: 37 }])
 })
