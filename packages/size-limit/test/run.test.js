@@ -10,7 +10,7 @@ jest.mock('../../time/cache', () => ({
   saveCache () { }
 }))
 
-const TMP_DIR = /size-limit-[\w\d-]+\/?/g
+const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
 
 function fixture (...files) {
