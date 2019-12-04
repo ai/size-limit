@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2.2
+* Fix JS API.
+
 ## 2.2.1
 * Fix warning message (by Alexey Taktarov).
 
