@@ -2,6 +2,7 @@ module.exports = async function calc (plugins, config) {
   async function exec (step) {
     for (let plugin of plugins.list) {
       if (plugin[step]) {
+        process.setMaxListeners(config.checks.length)
         await Promise.all(config.checks.map(i => plugin[step](config, i)))
       }
     }
