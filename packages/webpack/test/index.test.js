@@ -61,7 +61,7 @@ it('supports non-JS require', async () => {
     ]
   }
   await run(config)
-  expect(config.checks[0].size).toBeGreaterThan(1600)
+  expect(config.checks[0].size).toBeGreaterThan(1550)
   expect(config.checks[0].size).toBeLessThan(1700)
 })
 

@@ -17,10 +17,10 @@
     "node": ">=8.3.0"
   },
   "dependencies": {
-    "css-loader": "^3.2.1",
+    "css-loader": "^3.3.2",
     "escape-string-regexp": "^2.0.0",
     "file-loader": "^4.3.0",
-    "nanoid": "^2.1.7",
+    "nanoid": "^2.1.8",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.0",
     "size-limit": "2.2.2",
