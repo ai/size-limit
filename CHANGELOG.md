@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2.3
+* Fix `MaxListenersExceededWarning` (by Pavel Pustovalov).
+
 ## 2.2.2
 * Fix JS API.
 
