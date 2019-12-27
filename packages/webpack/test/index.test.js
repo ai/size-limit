@@ -45,7 +45,7 @@ it('uses webpack to make bundle', async () => {
         webpackOutput: config.checks[0].webpackOutput,
         webpackConfig: config.checks[0].webpackConfig,
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        size: 2832
+        size: 2847
       }
     ]
   })
@@ -61,7 +61,7 @@ it('supports non-JS require', async () => {
     ]
   }
   await run(config)
-  expect(config.checks[0].size).toBeGreaterThan(1550)
+  expect(config.checks[0].size).toBeGreaterThan(1450)
   expect(config.checks[0].size).toBeLessThan(1700)
 })
 
