@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Webpack plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -23,7 +23,7 @@
     "nanoid": "^2.1.8",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.0",
-    "size-limit": "2.2.3",
+    "size-limit": "2.2.4",
     "style-loader": "^1.1.2",
     "webpack": "^4.41.4",
     "webpack-bundle-analyzer": "^3.6.0"
