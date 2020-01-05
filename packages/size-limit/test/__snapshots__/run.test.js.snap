@@ -35,7 +35,7 @@ exports[`shows debug 1`] = `
           ]
         },
         \\"output\\": {
-          \\"path\\": \\"/tmp/\\"
+          \\"path\\": \\"/var/folders/d7/tqcqcxrx5kd0h9dxn5w_v0680000gn/T/\\"
         },
         \\"optimization\\": {
           \\"concatenateModules\\": true
@@ -99,7 +99,7 @@ exports[`shows debug 1`] = `
         ]
       },
       \\"bundles\\": [
-        \\"/tmp/index.js\\"
+        \\"/var/folders/d7/tqcqcxrx5kd0h9dxn5w_v0680000gn/T/index.js\\"
       ],
       \\"size\\": 31,
       \\"loadTime\\": 0.01,

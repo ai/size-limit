@@ -372,6 +372,7 @@ Each section in the config can have these options:
 * **webpack**: with `false` it will disable webpack.
 * **running**: with `false` it will disable calculating running time.
 * **gzip**: with `false` it will disable gzip compression.
+* **brotli**: with `true` it will use brotli compression and disable gzip compression.
 * **config**: a path to a custom webpack config.
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
