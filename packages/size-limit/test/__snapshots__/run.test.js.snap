@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`returns zero bytes for empty file 1`] = `
-"  
+"
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
-  
+
 "
 `;
 
 exports[`returns zero bytes for empty file without gzip 1`] = `
-"  
+"
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
-  
+
 "
 `;
 
@@ -35,7 +35,7 @@ exports[`shows debug 1`] = `
           ]
         },
         \\"output\\": {
-          \\"path\\": \\"/var/folders/d7/tqcqcxrx5kd0h9dxn5w_v0680000gn/T/\\"
+          \\"path\\": \\"/tmp/\\"
         },
         \\"optimization\\": {
           \\"concatenateModules\\": true
@@ -99,7 +99,7 @@ exports[`shows debug 1`] = `
         ]
       },
       \\"bundles\\": [
-        \\"/var/folders/d7/tqcqcxrx5kd0h9dxn5w_v0680000gn/T/index.js\\"
+        \\"/tmp/index.js\\"
       ],
       \\"size\\": 31,
       \\"loadTime\\": 0.01,
@@ -110,13 +110,13 @@ exports[`shows debug 1`] = `
   ],
   \\"failed\\": false
 }
-  
+
   Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
-  
+
 "
 `;
 
@@ -145,14 +145,14 @@ exports[`shows error on missed package.json 1`] = `
 `;
 
 exports[`shows error on time bigger than limit 1`] = `
-"  
+"
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
   Size:         [31m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
-  
+
   [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
@@ -396,23 +396,23 @@ exports[`works in intergration test with JSON 1`] = `
 `;
 
 exports[`works in intergration test with size 1`] = `
-"  
+"
   Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
-  
+
 "
 `;
 
 exports[`works in intergration test with time 1`] = `
-"  
+"
   Time limit:   [32m[1m2 s[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
-  
+
 "
 `;
