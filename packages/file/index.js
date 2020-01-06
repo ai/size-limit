@@ -5,7 +5,7 @@ let { promisify } = require('util')
 let fs = require('fs')
 
 let stat = promisify(fs.stat)
-let brotliRequiredNodeVersion = 'v11.7.0'
+const BROTLI_NODE_VERSION = 'v11.7.0'
 
 async function sum (array, fn) {
   return (await Promise.all(array.map(fn))).reduce((all, i) => all + i, 0)
@@ -45,20 +45,20 @@ function gzipSize (path) {
 
 let self = {
   name: '@size-limit/file',
-  async step60 (config, check, nodeVersion = process.version) {
+  async step60 (config, check) {
     let files = check.bundles || check.path
 
     if (check.brotli === true) {
-      let isBrotliSupported = gte(nodeVersion, brotliRequiredNodeVersion)
+      let isBrotliSupported = gte(process.version, BROTLI_NODE_VERSION)
 
       if (isBrotliSupported) {
         check.size = await sum(files, async i => brotliSize(i))
-
         return
       }
       process.stderr.write(
-        chalk.yellow(`Brotli required node >= ${ brotliRequiredNodeVersion }\n`)
+        chalk.red(`Brotli required node >= ${ BROTLI_NODE_VERSION }\n`)
       )
+      process.exit(1)
     }
 
     if (check.gzip === false) {

@@ -46,26 +46,34 @@ it('calculates file size with gzip by true value', async () => {
 
 it('calculates file size with brotli by true value and node >= v11.7.0',
   async () => {
+    Object.defineProperty(process, 'version', {
+      value: 'v11.7.0'
+    })
     let config = {
       checks: [
         { path: [fixture('b.txt')], brotli: true }
       ]
     }
-    await file.step60(config, config.checks[0], 'v11.7.0')
+    await file.step60(config, config.checks[0])
 
     expect(config.checks[0].size).toEqual(17)
   })
 
 it('calculates file size with brotli by true value and node < v11.7.0',
   async () => {
+    let mockExit = jest.spyOn(process, 'exit').mockImplementation(() => 1)
+    Object.defineProperty(process, 'version', {
+      value: 'v11.6.0'
+    })
+
     let config = {
       checks: [
         { path: [fixture('b.txt')], brotli: true }
       ]
     }
-    await file.step60(config, config.checks[0], 'v11.6.0')
+    await file.step60(config, config.checks[0])
 
-    expect(config.checks[0].size).toEqual(29)
+    expect(mockExit).toHaveBeenCalledTimes(1)
   })
 
 it('uses webpack bundle if available', async () => {
