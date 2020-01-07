@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0
+* Drop Node.js 8 support.
+* Add Brotli support (by Viktor Pasynok).
+
 ## 2.2.4
 * Improve `MaxListenersExceededWarning` fix (by Pavel Pustovalov).
 

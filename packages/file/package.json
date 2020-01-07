@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/file",
-  "version": "2.2.4",
+  "version": "3.0.0",
   "description": "File size plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "semver": "7.1.1",
-    "size-limit": "2.2.4"
+    "size-limit": "3.0.0"
   }
 }
