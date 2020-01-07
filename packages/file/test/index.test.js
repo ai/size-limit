@@ -1,4 +1,5 @@
 let { join } = require('path')
+let SizeLimitError = require('size-limit/size-limit-error')
 
 let [file] = require('../')
 
@@ -61,7 +62,6 @@ it('calculates file size with brotli by true value and node >= v11.7.0',
 
 it('calculates file size with brotli by true value and node < v11.7.0',
   async () => {
-    let mockExit = jest.spyOn(process, 'exit').mockImplementation(() => 1)
     Object.defineProperty(process, 'version', {
       value: 'v11.6.0'
     })
@@ -71,9 +71,15 @@ it('calculates file size with brotli by true value and node < v11.7.0',
         { path: [fixture('b.txt')], brotli: true }
       ]
     }
-    await file.step60(config, config.checks[0])
 
-    expect(mockExit).toHaveBeenCalledTimes(1)
+    let err
+    try {
+      await file.step60(config, config.checks[0])
+    } catch (e) {
+      err = e
+    }
+
+    expect(err).toEqual(new SizeLimitError('brotliUnsupported'))
   })
 
 it('uses webpack bundle if available', async () => {

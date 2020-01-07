@@ -1,8 +1,8 @@
-let chalk = require('chalk')
 let { gte } = require('semver')
 let { constants, createBrotliCompress, createGzip } = require('zlib')
 let { promisify } = require('util')
 let fs = require('fs')
+let SizeLimitError = require('size-limit/size-limit-error')
 
 let stat = promisify(fs.stat)
 const BROTLI_NODE_VERSION = 'v11.7.0'
@@ -55,10 +55,7 @@ let self = {
         check.size = await sum(files, async i => brotliSize(i))
         return
       }
-      process.stderr.write(
-        chalk.red(`Brotli required node >= ${ BROTLI_NODE_VERSION }\n`)
-      )
-      process.exit(1)
+      throw new SizeLimitError('brotliUnsupported')
     }
 
     if (check.gzip === false) {
