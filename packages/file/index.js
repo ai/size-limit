@@ -49,16 +49,11 @@ let self = {
     let files = check.bundles || check.path
 
     if (check.brotli === true) {
-      let isBrotliSupported = gte(process.version, BROTLI_NODE_VERSION)
-
-      if (isBrotliSupported) {
-        check.size = await sum(files, async i => brotliSize(i))
-        return
+      if (!gte(process.version, BROTLI_NODE_VERSION)) {
+        throw new SizeLimitError('brotliUnsupported')
       }
-      throw new SizeLimitError('brotliUnsupported')
-    }
-
-    if (check.gzip === false) {
+      check.size = await sum(files, async i => brotliSize(i))
+    } else if (check.gzip === false) {
       check.size = await sum(files, async i => (await stat(i)).size)
     } else {
       check.size = await sum(files, async i => gzipSize(i))
