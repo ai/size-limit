@@ -120,7 +120,8 @@
       "estimo",
       "bundlers",
       "CLI",
-      "CRM"
+      "CRM",
+      "brotli"
     ]
   },
   "husky": {

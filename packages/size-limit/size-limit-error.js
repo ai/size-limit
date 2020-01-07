@@ -44,6 +44,9 @@ const MESSAGES = {
   ),
   unknownEntry: entry => (
     `Size Limit didn’t find *${ entry }* entry in custom Webpack config`
+  ),
+  brotliUnsupported: () => (
+    'Update your Node.js to version >= v11.7.0 to use Brotli'
   )
 }
 
