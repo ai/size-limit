@@ -1,6 +1,7 @@
 let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
+let PnpWebpackPlugin = require('pnp-webpack-plugin')
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
@@ -16,6 +17,16 @@ module.exports = function getConfig (limitConfig, check, output) {
     },
     optimization: {
       concatenateModules: !check.disableModuleConcatenation
+    },
+    resolve: {
+      plugins: [
+        PnpWebpackPlugin
+      ]
+    },
+    resolveLoader: {
+      plugins: [
+        PnpWebpackPlugin.moduleLoader(module)
+      ]
     },
     module: {
       rules: [
