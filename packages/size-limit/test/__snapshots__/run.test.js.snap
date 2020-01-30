@@ -40,6 +40,18 @@ exports[`shows debug 1`] = `
         \\"optimization\\": {
           \\"concatenateModules\\": true
         },
+        \\"resolve\\": {
+          \\"plugins\\": [
+            {
+              \\"topLevelLoader\\": {}
+            }
+          ]
+        },
+        \\"resolveLoader\\": {
+          \\"plugins\\": [
+            {}
+          ]
+        },
         \\"module\\": {
           \\"rules\\": [
             {
