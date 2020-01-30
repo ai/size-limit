@@ -1,14 +1,14 @@
 {
-  "name": "webpack",
+  "name": "file",
   "private": true,
   "devDependencies": {
-    "@size-limit/file": ">= 0.0.0",
-    "size-limit": ">= 0.0.0"
+    "@size-limit/preset-big-lib": ">= 0.0.0"
   },
   "size-limit": [
     {
       "path": "index.js",
-      "unknown": true
+      "limit": "1 KB",
+      "running": false
     }
   ]
 }

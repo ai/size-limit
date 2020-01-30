@@ -1,10 +1,10 @@
 const MESSAGES = {
   noPackage: () => (
-    'Size Limit did’t find *package.json*. ' +
+    'Size Limit didn’t find *package.json*. ' +
     'Create npm package and run Size Limit there.'
   ),
   unknownArg: arg => (
-    `Uknown argument *${ arg }*. Check command for typo and read docs.`
+    `Unknown argument *${ arg }*. Check command for typo and read docs.`
   ),
   argWithoutWebpack: arg => (
     `Argument *--${ arg }* works only with *@size-limit/webpack* plugin` +

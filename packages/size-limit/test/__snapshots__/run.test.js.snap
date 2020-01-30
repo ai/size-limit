@@ -139,7 +139,7 @@ exports[`shows debug on error 1`] = `
     {
       \\"limit\\": \\"200 s\\",
       \\"path\\": [
-        \\"/packages/size-limit/test/fixtures/interal-error/index.js\\"
+        \\"/packages/size-limit/test/fixtures/internal-error/index.js\\"
       ],
       \\"name\\": \\"index.js\\",
       \\"timeLimit\\": 200
@@ -151,7 +151,7 @@ exports[`shows debug on error 1`] = `
 `;
 
 exports[`shows error on missed package.json 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit did’t find [33mpackage.json[39m[31m.[39m
+"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33mpackage.json[39m[31m.[39m
 [31m        Create npm package and run Size Limit there.[39m
 "
 `;
@@ -197,8 +197,24 @@ For frameworks, components and big libraries
   [33mnpm install --save-dev @size-limit/preset-big-lib[39m
 For small (< 10 KB) libraries
   [33mnpm install --save-dev @size-limit/preset-small-lib[39m
-Check out docs for more comlicated cases
+Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
+"
+`;
+
+exports[`shows migration guide for npm users, because of yarn 2 1`] = `
+"[43m[30m WARN [39m[49m You need to add size-limit dependency
+       In order for the plugins to work correctly
+       [33mnpm install --save-dev size-limit[39m
+
+"
+`;
+
+exports[`shows migration guide for yarn 2 users 1`] = `
+"[43m[30m WARN [39m[49m You need to add size-limit dependency
+       In order for the plugins to work correctly
+       [33myarn add --dev size-limit[39m
+
 "
 `;
 
@@ -211,20 +227,12 @@ For frameworks, components and big libraries
   [33myarn add --dev @size-limit/preset-big-lib[39m
 For small (< 10 KB) libraries
   [33myarn add --dev @size-limit/preset-small-lib[39m
-Check out docs for more comlicated cases
+Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
-
-You can remove size-limit dependency: [33myarn remove size-limit[39m
 "
 `;
 
-exports[`shows size-limit dependency warning 1`] = `
-"[43m[30m WARN [39m[49m You can remove size-limit dependency
-       All plugins and presets already contain it as own dependency
-       [33mnpm remove size-limit[39m
-
-"
-`;
+exports[`shows size-limit dependency warning 1`] = `""`;
 
 exports[`shows webpack-related help 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
@@ -343,7 +351,7 @@ exports[`throws on time limit without time plugin 1`] = `
 `;
 
 exports[`throws on unknown argument 1`] = `
-"[41m[30m ERROR [39m[49m [31mUknown argument [33m--unknown[39m[31m.[39m
+"[41m[30m ERROR [39m[49m [31mUnknown argument [33m--unknown[39m[31m.[39m
 [31m        Check command for typo and read docs.[39m
 "
 `;
@@ -394,7 +402,7 @@ Check the real performance cost of your front-end project to users
 "
 `;
 
-exports[`works in intergration test with JSON 1`] = `
+exports[`works in integration test with JSON 1`] = `
 "[
   {
     \\"name\\": \\"index.js\\",
@@ -407,7 +415,7 @@ exports[`works in intergration test with JSON 1`] = `
 "
 `;
 
-exports[`works in intergration test with size 1`] = `
+exports[`works in integration test with size 1`] = `
 "  
   Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
@@ -418,7 +426,7 @@ exports[`works in intergration test with size 1`] = `
 "
 `;
 
-exports[`works in intergration test with time 1`] = `
+exports[`works in integration test with time 1`] = `
 "  
   Time limit:   [32m[1m2 s[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
