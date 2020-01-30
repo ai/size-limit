@@ -114,14 +114,28 @@ it('shows migration guide for yarn users', async () => {
   expect(await error('legacy-yarn')).toMatchSnapshot()
 })
 
-it('shows migration guide for yarn 2 users', async () => {
+it('shows migration guide for yarn users: without sl dev dep', async () => {
   let [process, history] = createProcess('yarn-without-dev-dep')
   await run(process)
   expect(history.exitCode).toEqual(0)
   expect(history.stderr).toMatchSnapshot()
 })
 
-it('shows migration guide for npm users, because of yarn 2', async () => {
+it('shows migration guide for yarn users: config 1, dep 0', async () => {
+  let [process, history] = createProcess('yarn-with-config-without-dev')
+  await run(process)
+  expect(history.exitCode).toEqual(1)
+  expect(history.stderr).toMatchSnapshot()
+})
+
+it('shows migration guide for npm users: config 1, dep 0', async () => {
+  let [process, history] = createProcess('npm-with-config-without-dev')
+  await run(process)
+  expect(history.exitCode).toEqual(1)
+  expect(history.stderr).toMatchSnapshot()
+})
+
+it('shows migration guide for npm users: without sl dev dep', async () => {
   let [process, history] = createProcess('npm-without-dev-dep')
   await run(process)
   expect(history.exitCode).toEqual(0)

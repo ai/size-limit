@@ -1,0 +1,12 @@
+{
+  "name": "file",
+  "private": true,
+  "devDependencies": {},
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "1 KB",
+      "running": false
+    }
+  ]
+}
