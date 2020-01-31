@@ -1,6 +1,6 @@
-let { gte } = require('semver')
 let { constants, createBrotliCompress, createGzip } = require('zlib')
 let { promisify } = require('util')
+let { gte } = require('semver')
 let fs = require('fs')
 let SizeLimitError = require('size-limit/size-limit-error')
 
