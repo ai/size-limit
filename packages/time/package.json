@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/time",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Downloading and running time plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "peerDependencies": {
-    "size-limit": "3.0.1"
+    "size-limit": "4.0.0"
   },
   "dependencies": {
     "estimo": "^2.0.1",

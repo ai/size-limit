@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-small-lib",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Size Limit preset for small open source libraries",
   "keywords": [
     "size-limit",
@@ -13,10 +13,10 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "peerDependencies": {
-    "size-limit": "3.0.1"
+    "size-limit": "4.0.0"
   },
   "dependencies": {
-    "@size-limit/webpack": "3.0.1",
-    "@size-limit/file": "3.0.1"
+    "@size-limit/webpack": "4.0.0",
+    "@size-limit/file": "4.0.0"
   }
 }

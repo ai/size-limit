@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0
+* Move `size-limit` from `dependencies` to `peerDependencies`.
+
 ## 3.0.1
 * Add Yarn PnP and Yarn 2 support (by Pavel Pustovalov).
 
