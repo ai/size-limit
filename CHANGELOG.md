@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.1
+* Add Yarn PnP and Yarn 2 support (by Pavel Pustovalov).
+
 ## 3.0
 * Drop Node.js 8 support.
 * Add Brotli support (by Viktor Pasynok).

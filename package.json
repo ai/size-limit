@@ -121,7 +121,8 @@
       "bundlers",
       "CLI",
       "CRM",
-      "brotli"
+      "brotli",
+      "PnP"
     ]
   },
   "husky": {
