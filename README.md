@@ -88,7 +88,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
 1. Install the preset:
 
     ```sh
-    $ npm install --save-dev @size-limit/preset-app
+    $ npm install --save-dev size-limit @size-limit/preset-app
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -160,7 +160,7 @@ the size in bytes. Library like [React] is a good example for this preset.
 1. Install preset:
 
     ```sh
-    $ npm install --save-dev @size-limit/preset-big-lib
+    $ npm install --save-dev size-limit @size-limit/preset-big-lib
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -243,7 +243,7 @@ for this preset.
 1. First, install `size-limit`:
 
     ```sh
-    $ npm install --save-dev @size-limit/preset-small-lib
+    $ npm install --save-dev size-limit @size-limit/preset-small-lib
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
