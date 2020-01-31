@@ -93,15 +93,5 @@ module.exports = process => {
     }
   }
 
-  function warnAboutDep (pkg) {
-    let { add } = npmCommands(pkg)
-    printError(
-      chalk.bgYellow.black(' WARN ') + ' You need to add size-limit dependency',
-      '       In order for the plugins to work correctly',
-      '       ' + y(add + 'size-limit'),
-      ''
-    )
-  }
-
-  return { showVersion, showHelp, showMigrationGuide, warnAboutDep }
+  return { showVersion, showHelp, showMigrationGuide }
 }
