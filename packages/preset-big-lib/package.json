@@ -12,6 +12,9 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
+  "peerDependencies": {
+    "size-limit": "3.0.1"
+  },
   "dependencies": {
     "@size-limit/webpack": "3.0.1",
     "@size-limit/file": "3.0.1",

@@ -16,8 +16,10 @@
   "engines": {
     "node": ">=10.0.0"
   },
-  "dependencies": {
-    "semver": "7.1.1",
+  "peerDependencies": {
     "size-limit": "3.0.1"
+  },
+  "dependencies": {
+    "semver": "7.1.1"
   }
 }

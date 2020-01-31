@@ -12,10 +12,12 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
+  "peerDependencies": {
+    "size-limit": "3.0.1"
+  },
   "dependencies": {
     "estimo": "^2.0.1",
-    "react": "^16.12.0",
-    "size-limit": "3.0.1"
+    "react": "^16.12.0"
   },
   "devDependencies": {
     "rimraf": "^3.0.1"
