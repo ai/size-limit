@@ -44,7 +44,7 @@ module.exports = async process => {
       return process.exit(1)
     }
 
-    if (devDeps(pkg)['size-limit'] && !hasArg('--json')) {
+    if (!devDeps(pkg)['size-limit'] && !hasArg('--json')) {
       help.warnAboutDep(pkg)
     }
 

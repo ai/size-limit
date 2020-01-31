@@ -103,7 +103,7 @@ it('shows error in JSON format', async () => {
   expect(history.stderr).toEqual('')
   let output = JSON.parse(history.stdout)
   expect(Object.keys(output)).toEqual(['error'])
-  expect(output.error).toContain('SizeLimitError: Size Limit did’t find')
+  expect(output.error).toContain('SizeLimitError: Size Limit didn’t find')
 })
 
 it('shows migration guide for npm users', async () => {
@@ -112,6 +112,34 @@ it('shows migration guide for npm users', async () => {
 
 it('shows migration guide for yarn users', async () => {
   expect(await error('legacy-yarn')).toMatchSnapshot()
+})
+
+it('shows migration guide for yarn users: without sl dev dep', async () => {
+  let [process, history] = createProcess('yarn-without-dev-dep')
+  await run(process)
+  expect(history.exitCode).toEqual(0)
+  expect(history.stderr).toMatchSnapshot()
+})
+
+it('shows migration guide for yarn users: config 1, dep 0', async () => {
+  let [process, history] = createProcess('yarn-with-config-without-dev')
+  await run(process)
+  expect(history.exitCode).toEqual(1)
+  expect(history.stderr).toMatchSnapshot()
+})
+
+it('shows migration guide for npm users: config 1, dep 0', async () => {
+  let [process, history] = createProcess('npm-with-config-without-dev')
+  await run(process)
+  expect(history.exitCode).toEqual(1)
+  expect(history.stderr).toMatchSnapshot()
+})
+
+it('shows migration guide for npm users: without sl dev dep', async () => {
+  let [process, history] = createProcess('npm-without-dev-dep')
+  await run(process)
+  expect(history.exitCode).toEqual(0)
+  expect(history.stderr).toMatchSnapshot()
 })
 
 it('shows size-limit dependency warning', async () => {
@@ -179,15 +207,15 @@ it('throws on unknown option', async () => {
   expect(await error('unknown')).toMatchSnapshot()
 })
 
-it('works in intergration test with JSON', async () => {
+it('works in integration test with JSON', async () => {
   expect(await check('integration', ['--json'])).toMatchSnapshot()
 })
 
-it('works in intergration test with size', async () => {
+it('works in integration test with size', async () => {
   expect(await check('integration')).toMatchSnapshot()
 })
 
-it('works in intergration test with time', async () => {
+it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
 })
 
@@ -212,5 +240,5 @@ it('shows debug', async () => {
 })
 
 it('shows debug on error', async () => {
-  expect(await error('interal-error', ['--debug'])).toMatchSnapshot()
+  expect(await error('internal-error', ['--debug'])).toMatchSnapshot()
 })

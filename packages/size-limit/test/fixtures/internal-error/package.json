@@ -2,7 +2,8 @@
   "name": "intergration",
   "private": true,
   "devDependencies": {
-    "@size-limit/time": ">= 0.0.0"
+    "@size-limit/time": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
   },
   "size-limit": [
     {

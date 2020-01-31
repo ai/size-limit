@@ -71,7 +71,7 @@ module.exports = process => {
   }
 
   function showMigrationGuide (pkg) {
-    let { add, rm } = npmCommands(pkg)
+    let { add } = npmCommands(pkg)
     printError(
       chalk.red('Install Size Limit preset depends on type of the project'),
       '',
@@ -81,24 +81,24 @@ module.exports = process => {
       '  ' + y(add + '@size-limit/preset-big-lib'),
       'For small (< 10 KB) libraries',
       '  ' + y(add + '@size-limit/preset-small-lib'),
-      'Check out docs for more comlicated cases',
+      'Check out docs for more complicated cases',
       '  ' + y('https://github.com/ai/size-limit/')
     )
     let devDependencies = pkg.packageJson.devDependencies
-    if (devDependencies && devDependencies['size-limit']) {
+    if (devDependencies && !devDependencies['size-limit']) {
       printError(
         '',
-        `You can remove size-limit dependency: ${ y(rm + 'size-limit') }`
+        `You need to add size-limit dependency: ${ y(add + 'size-limit') }`
       )
     }
   }
 
   function warnAboutDep (pkg) {
-    let { rm } = npmCommands(pkg)
+    let { add } = npmCommands(pkg)
     printError(
-      chalk.bgYellow.black(' WARN ') + ' You can remove size-limit dependency',
-      '       All plugins and presets already contain it as own dependency',
-      '       ' + y(rm + 'size-limit'),
+      chalk.bgYellow.black(' WARN ') + ' You need to add size-limit dependency',
+      '       In order for the plugins to work correctly',
+      '       ' + y(add + 'size-limit'),
       ''
     )
   }
