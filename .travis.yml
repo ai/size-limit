@@ -1,6 +1,16 @@
 language: node_js
-cache: yarn
+cache:
+  directories:
+    - node_modules
+  yarn: true
+
 node_js:
   - node
   - "12"
   - "10"
+
+install:
+  - bash scripts/yarn_frozen_lockfile.sh
+
+script:
+  - yarn test
