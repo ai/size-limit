@@ -190,12 +190,30 @@ it('works in integration test with JSON', async () => {
   expect(await check('integration', ['--json'])).toMatchSnapshot()
 })
 
+it('shows brotli text when only brotli in config', async () => {
+  Object.defineProperty(process, 'version', {
+    value: 'v11.7.0'
+  })
+  expect(await check('brotli')).toMatchSnapshot()
+})
+
+it('shows brotli text when brotli and gzip in config', async () => {
+  Object.defineProperty(process, 'version', {
+    value: 'v11.7.0'
+  })
+  expect(await check('brotli-with-gzip')).toMatchSnapshot()
+})
+
 it('works in integration test with size', async () => {
   expect(await check('integration')).toMatchSnapshot()
 })
 
 it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
+})
+
+it('shows error when using brotli without webpack', async () => {
+  expect(await error('brotli-without-webpack')).toMatchSnapshot()
 })
 
 it('shows error on time bigger than limit', async () => {

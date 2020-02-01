@@ -1,0 +1,15 @@
+{
+  "name": "file",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/preset-big-lib": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "1 KB",
+      "brotli": true
+    }
+  ]
+}

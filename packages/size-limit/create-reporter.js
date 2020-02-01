@@ -78,6 +78,8 @@ function createHumanReporter (process) {
         let sizeNote
         if (check.config) {
           sizeNote = 'with given webpack configuration'
+        } else if (plugins.has('webpack') && check.brotli === true) {
+          sizeNote = 'with all dependencies, minified and brotli'
         } else if (plugins.has('webpack') && check.gzip === false) {
           sizeNote = 'with all dependencies and minified'
         } else if (plugins.has('webpack')) {
