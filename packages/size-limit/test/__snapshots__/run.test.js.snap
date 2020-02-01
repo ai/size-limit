@@ -16,6 +16,28 @@ exports[`returns zero bytes for empty file without gzip 1`] = `
 "
 `;
 
+exports[`shows brotli text when brotli and gzip in config 1`] = `
+"  
+  Size limit:   [32m[1m1 KB[22m[39m
+  Size:         [32m[1m-53 B[22m[39m [90mwith all dependencies, minified and brotli[39m
+  Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1.1 s[22m[39m
+  
+"
+`;
+
+exports[`shows brotli text when only brotli in config 1`] = `
+"  
+  Size limit:   [32m[1m1 KB[22m[39m
+  Size:         [32m[1m-53 B[22m[39m [90mwith all dependencies, minified and brotli[39m
+  Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1.1 s[22m[39m
+  
+"
+`;
+
 exports[`shows debug 1`] = `
 "{
   \\"configPath\\": \\"package.json\\",
@@ -166,6 +188,11 @@ exports[`shows error on time bigger than limit 1`] = `
   Total time:   [31m[1m1.1 s[22m[39m
   
   [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+"
+`;
+
+exports[`shows error when using brotli without webpack 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mbrotli[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
 "
 `;
 
