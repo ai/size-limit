@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0.1
+* Fix note text (by Pavel Pustovalov).
+
 ## 4.0
 * Move `size-limit` from `dependencies` to `peerDependencies`.
 
