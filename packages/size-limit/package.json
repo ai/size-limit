@@ -19,7 +19,7 @@
   "dependencies": {
     "bytes": "^3.1.0",
     "chalk": "^3.0.0",
-    "ci-job-number": "^0.3.1",
+    "ci-job-number": "^1.0.0",
     "cosmiconfig": "^6.0.0",
     "globby": "^11.0.0",
     "read-pkg-up": "^7.0.1"

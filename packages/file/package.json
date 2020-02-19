@@ -20,6 +20,6 @@
     "size-limit": "4.0.1"
   },
   "dependencies": {
-    "semver": "7.1.2"
+    "semver": "7.1.3"
   }
 }

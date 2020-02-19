@@ -19,7 +19,7 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^35.0.4",
+    "@logux/eslint-config": "^36.0.0",
     "@logux/sharec-config": "^0.5.7",
     "cross-spawn": "^7.0.1",
     "documentation": "^12.1.4",
@@ -28,22 +28,22 @@
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prefer-let": "^1.0.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^16.0.0",
-    "husky": "^4.2.1",
+    "eslint-plugin-unicorn": "^16.1.1",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.7",
-    "print-snapshots": "^0.1.0",
-    "rimraf": "^3.0.1",
-    "yaspeller-ci": "^1.0.1"
+    "print-snapshots": "^0.1.4",
+    "rimraf": "^3.0.2",
+    "yaspeller-ci": "^1.0.2"
   },
   "eslintConfig": {
-    "extends": "@logux/eslint-config/node",
+    "extends": "@logux/eslint-config",
     "rules": {
       "security/detect-non-literal-require": "off",
       "security/detect-non-literal-regexp": "off",
