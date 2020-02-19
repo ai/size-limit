@@ -14,7 +14,7 @@ let OPTIONS = {
   config: 'webpack',
   webpack: 'webpack',
   ignore: 'webpack',
-  gzip: 'webpack',
+  gzip: ['webpack', 'file'],
   running: 'time',
   disableModuleConcatenation: 'webpack',
   brotli: 'webpack'
@@ -52,6 +52,10 @@ function checkChecks (plugins, checks) {
       if (typeof available === 'string') {
         if (!plugins.has(available)) {
           throw new SizeLimitError('pluginlessConfig', opt, available)
+        }
+      } else if (Array.isArray(available)) {
+        if (available.every(i => !plugins.has(i))) {
+          throw new SizeLimitError('multiPluginlessConfig', opt, ...available)
         }
       } else if (available !== true) {
         throw new SizeLimitError('unknownOption', opt)

@@ -33,6 +33,10 @@ const MESSAGES = {
   pluginlessConfig: (opt, mod) => (
     `Config option *${ opt }* needs *@size-limit/${ mod }* plugin`
   ),
+  multiPluginlessConfig: (opt, mod1, mod2) => (
+    `Config option *${ opt }* needs *@size-limit/${ mod1 }* ` +
+    `or *@size-limit/${ mod2 }* plugin`
+  ),
   timeWithoutPlugin: () => (
     'Add *@size-limit/time* plugin to use time limit'
   ),
