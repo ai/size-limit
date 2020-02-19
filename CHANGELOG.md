@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0.2
+* Fix `gzip` option plugins test.
+* Update `ci-job-number`.
+
 ## 4.0.1
 * Fix note text (by Pavel Pustovalov).
 
