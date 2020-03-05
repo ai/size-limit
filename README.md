@@ -178,7 +178,19 @@ the size in bytes. Library like [React] is a good example for this preset.
       }
     ```
 
-3. Here’s how you can get the size for your current project:
+3. If you use ES modules you can test the size after tree-shaking with `import`
+   option:
+
+    ```diff
+      "size-limit": [
+        {
+          "path": "dist/react.production-*.js",
+    +     "import": "{ createComponent }"
+        }
+      ],
+    ```
+
+4. Here’s how you can get the size for your current project:
 
     ```sh
     $ npm run size
@@ -189,7 +201,7 @@ the size in bytes. Library like [React] is a good example for this preset.
       Total time:   815 ms
     ```
 
-4. Now, let’s set the limit. Add 25% to the current total time and use that
+5. Now, let’s set the limit. Add 25% to the current total time and use that
    as the limit in your `package.json`:
 
     ```diff
@@ -201,7 +213,7 @@ the size in bytes. Library like [React] is a good example for this preset.
       ],
     ```
 
-5. Add a `size` script to your test suite:
+6. Add a `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -212,9 +224,9 @@ the size in bytes. Library like [React] is a good example for this preset.
       }
     ```
 
-6. If you don’t have a continuous integration service running, don’t forget
+7. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
-7. Add the library size to docs, it will help users to choose your project:
+8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
       # Project Name
@@ -361,14 +373,16 @@ Each section in the config can have these options:
 * **path**: relative paths to files. The only mandatory option.
   It could be a path `"index.js"`, a [pattern] `"dist/app-*.js"`
   or an array `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
-* **entry**: when using a custom webpack config, a webpack entry could be given.
-  It could be a string or an array of strings.
-  By default, the total size of all entry points will be checked.
+* **import**: partial import to test tree-shaking. It could be `"{ lib }"`
+  to test `import { lib } from 'lib'`.
 * **limit**: size or time limit for files from the `path` option. It should be
   a string with a number and unit, separated by a space.
   Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
 * **name**: the name of the current section. It will only be useful
   if you have multiple sections.
+* **entry**: when using a custom webpack config, a webpack entry could be given.
+  It could be a string or an array of strings.
+  By default, the total size of all entry points will be checked.
 * **webpack**: with `false` it will disable webpack.
 * **running**: with `false` it will disable calculating running time.
 * **gzip**: with `false` it will disable gzip compression.

@@ -124,7 +124,8 @@
       "CLI",
       "CRM",
       "brotli",
-      "PnP"
+      "PnP",
+      "ES"
     ]
   },
   "husky": {
