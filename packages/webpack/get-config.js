@@ -15,7 +15,7 @@ module.exports = function getConfig (limitConfig, check, output) {
     let source = path.resolve(check.path)
     mkdirp.sync(output)
     fs.writeFileSync(file,
-      `import { ${ check.import } } from '${ source }'\n` +
+      `import ${ check.import } from '${ source }'\n` +
       `console.log(${ check.import })\n`
     )
     check.path = file

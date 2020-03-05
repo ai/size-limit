@@ -206,21 +206,33 @@ it('supports specifying the import', async () => {
     checks: [
       {
         path: fixture('module.js'),
-        import: 'methodA'
+        import: '{ A }'
       }
     ]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(90)
+  expect(config.checks[0].size).toEqual(1)
 
   config = {
     checks: [
       {
         path: fixture('module.js'),
-        import: 'methodB'
+        import: '{ A }',
+        gzip: false
       }
     ]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(22)
+  expect(config.checks[0].size).toEqual(1)
+
+  config = {
+    checks: [
+      {
+        path: fixture('module.js'),
+        import: '{ methodA }'
+      }
+    ]
+  }
+  await run(config)
+  expect(config.checks[0].size).toEqual(79)
 })

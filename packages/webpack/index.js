@@ -11,6 +11,8 @@ let getConfig = require('./get-config')
 
 const WEBPACK_EMPTY_PROJECT = 962
 const WEBPACK_EMPTY_PROJECT_GZIP = 461
+const WEBPACK_EMPTY_PROJECT_IMPORT = 971
+const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 478
 
 function getFiles (stats, check) {
   let entries = { }
@@ -65,7 +67,11 @@ let self = {
       if (typeof check.size === 'undefined') {
         throw new SizeLimitError('missedPlugin', 'file')
       }
-      if (check.gzip === false) {
+      if (check.import && check.gzip === false) {
+        check.size -= WEBPACK_EMPTY_PROJECT_IMPORT
+      } else if (check.import) {
+        check.size -= WEBPACK_EMPTY_PROJECT_IMPORT_GZIP
+      } else if (check.gzip === false) {
         check.size -= WEBPACK_EMPTY_PROJECT
       } else {
         check.size -= WEBPACK_EMPTY_PROJECT_GZIP

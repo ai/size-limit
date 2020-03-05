@@ -6,6 +6,4 @@ export function methodA () {
   console.log('INBUVYCTXRX')
 }
 
-export function methodB () {
-  console.log('BBBBBBBBBBB')
-}
+export const A = 'A'
