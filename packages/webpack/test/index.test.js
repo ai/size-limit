@@ -211,7 +211,7 @@ it('supports specifying the import', async () => {
     ]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(29)
+  expect(config.checks[0].size).toEqual(90)
 
   config = {
     checks: [

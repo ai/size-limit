@@ -1,9 +1,9 @@
 export function methodA () {
-  console.log('AAAAAAAAAAA')
-  console.log('AAAAAAAAAAA')
-  console.log('AAAAAAAAAAA')
-  console.log('AAAAAAAAAAA')
-  console.log('AAAAAAAAAAA')
+  console.log('AJGLE:SCHEN')
+  console.log('ZWFRRWCLDA_')
+  console.log('HDKLEOPWP{}')
+  console.log('QEWRETEYUIR')
+  console.log('INBUVYCTXRX')
 }
 
 export function methodB () {
