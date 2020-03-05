@@ -2,11 +2,25 @@ let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let PnpWebpackPlugin = require('pnp-webpack-plugin')
+let mkdirp = require('mkdirp')
+let fs = require('fs')
+let path = require('path')
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
 module.exports = function getConfig (limitConfig, check, output) {
+  if (check.import) {
+    let file = path.join(output, 'entry.js')
+    let source = path.resolve(check.path)
+    mkdirp.sync(output)
+    // the `console.log` ensures webpack does not tree shake the import
+    fs.writeFileSync(file,
+`import { ${ check.import } } from '${ source }'
+console.log(${ check.import })`)
+    check.path = file
+  }
+
   let config = {
     entry: {
       index: check.path

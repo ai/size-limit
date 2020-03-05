@@ -200,3 +200,27 @@ it('throws on webpack error', async () => {
   }
   expect(err.message).toContain('unknown.js')
 })
+
+it('supports specifying the import', async () => {
+  let config = {
+    checks: [
+      {
+        path: fixture('module.js'),
+        import: 'methodA'
+      }
+    ]
+  }
+  await run(config)
+  expect(config.checks[0].size).toEqual(29)
+
+  config = {
+    checks: [
+      {
+        path: fixture('module.js'),
+        import: 'methodB'
+      }
+    ]
+  }
+  await run(config)
+  expect(config.checks[0].size).toEqual(22)
+})

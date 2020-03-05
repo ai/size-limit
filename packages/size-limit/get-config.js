@@ -14,6 +14,7 @@ let OPTIONS = {
   config: 'webpack',
   webpack: 'webpack',
   ignore: 'webpack',
+  import: 'webpack',
   gzip: ['webpack', 'file'],
   running: 'time',
   disableModuleConcatenation: 'webpack',
