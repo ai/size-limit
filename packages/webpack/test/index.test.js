@@ -26,6 +26,14 @@ async function run (config) {
   }
 }
 
+async function getSize (check) {
+  let config = {
+    checks: [check]
+  }
+  await run(config)
+  return config.checks[0].size
+}
+
 afterEach(async () => {
   await rimraf(DIST)
   jest.clearAllMocks()
@@ -202,37 +210,25 @@ it('throws on webpack error', async () => {
 })
 
 it('supports specifying the import', async () => {
-  let config = {
-    checks: [
-      {
-        path: fixture('module.js'),
-        import: '{ A }'
-      }
-    ]
-  }
-  await run(config)
-  expect(config.checks[0].size).toEqual(1)
+  expect(
+    await getSize({
+      path: [fixture('module.js')],
+      import: '{ A }'
+    })
+  ).toEqual(1)
 
-  config = {
-    checks: [
-      {
-        path: fixture('module.js'),
-        import: '{ A }',
-        gzip: false
-      }
-    ]
-  }
-  await run(config)
-  expect(config.checks[0].size).toEqual(1)
+  expect(
+    await getSize({
+      path: [fixture('module.js')],
+      import: '{ A }',
+      gzip: false
+    })
+  ).toEqual(1)
 
-  config = {
-    checks: [
-      {
-        path: fixture('module.js'),
-        import: '{ methodA }'
-      }
-    ]
-  }
-  await run(config)
-  expect(config.checks[0].size).toEqual(79)
+  expect(
+    await getSize({
+      path: [fixture('module.js')],
+      import: '{ methodA }'
+    })
+  ).toEqual(79)
 })
