@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.1
+* Fix `import` option.
+
 ## 4.1
 * Add tree-shaking support with `import` option (by Brian Schlenker).
 
