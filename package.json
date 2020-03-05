@@ -7,7 +7,7 @@
     "clean": "rimraf api.md coverage/ packages/.cache",
     "api": "documentation build packages/*/*.js -f md -o api.md",
     "spell": "yarn api && yaspeller-ci packages/*/*.md",
-    "test": "jest --coverage && eslint-ci . && yarn spell"
+    "test": "jest-ci --coverage && eslint-ci . && yarn spell"
   },
   "workspaces": [
     "packages/preset-small-lib",
@@ -37,6 +37,7 @@
     "eslint-plugin-unicorn": "^16.1.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "jest-ci": "^0.1.1",
     "lint-staged": "^10.0.7",
     "print-snapshots": "^0.1.4",
     "rimraf": "^3.0.2",
