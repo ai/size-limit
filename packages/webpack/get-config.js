@@ -13,10 +13,11 @@ module.exports = function getConfig (limitConfig, check, output) {
   if (check.import) {
     let file = path.join(output, 'entry.js')
     let source = path.resolve(check.path[0])
+    let list = check.import.replace(/}|{/g, '')
     mkdirp.sync(output)
     fs.writeFileSync(file,
       `import ${ check.import } from '${ source }'\n` +
-      `console.log(${ check.import })\n`
+      `console.log(${ list })\n`
     )
     check.path = file
   }
