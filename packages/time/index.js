@@ -17,6 +17,7 @@ function getLoadingTime (size) {
 
 let self = {
   name: '@size-limit/time',
+  wait80: 'Running headless Chrome',
   async step80 (config, check) {
     if (typeof check.size === 'undefined') {
       throw new SizeLimitError('missedPlugin', 'file')

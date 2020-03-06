@@ -1,17 +1,31 @@
+let ora = require('ora')
+
 module.exports = async function calc (plugins, config) {
   async function exec (step) {
     for (let plugin of plugins.list) {
-      if (plugin[step]) {
+      let spinner
+      if (plugin['wait' + step]) {
+        spinner = ora(plugin['wait' + step]).start()
+      }
+      if (plugin['step' + step]) {
         process.setMaxListeners(config.checks.reduce((all, check) => {
           return all + check.path.length
         }, 0))
-        await Promise.all(config.checks.map(i => plugin[step](config, i)))
+        try {
+          await Promise.all(config.checks.map(i => {
+            return plugin['step' + step](config, i)
+          }))
+        } catch (e) {
+          if (spinner) spinner.fail()
+          throw e
+        }
       }
+      if (spinner) spinner.succeed()
     }
   }
 
   try {
-    for (let i = 0; i <= 100; i++) await exec(`step${ i }`)
+    for (let i = 0; i <= 100; i++) await exec(i)
   } finally {
     exec('finally')
   }

@@ -22,6 +22,7 @@
     "ci-job-number": "^1.2.1",
     "cosmiconfig": "^6.0.0",
     "globby": "^11.0.0",
+    "ora": "^4.0.3",
     "read-pkg-up": "^7.0.1"
   }
 }

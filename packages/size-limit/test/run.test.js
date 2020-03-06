@@ -3,12 +3,23 @@ let { join } = require('path')
 let run = require('../run')
 
 jest.mock('../../time/get-running-time', () => () => 1)
+
 jest.mock('../../time/cache', () => ({
   getCache () {
     return false
   },
   saveCache () { }
 }))
+
+jest.mock('ora', () => {
+  return () => ({
+    start () {
+      return this
+    },
+    succeed () { },
+    fail () { }
+  })
+})
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
