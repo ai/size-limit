@@ -1,4 +1,5 @@
 let readPkgUp = require('read-pkg-up')
+let ora = require('ora')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
@@ -42,7 +43,7 @@ module.exports = async process => {
 
     config = await getConfig(plugins, process, args, pkg)
 
-    await calc(plugins, config)
+    await calc(plugins, config, ora)
 
     debug.results(process, args, config)
     reporter.results(plugins, config)

@@ -1,11 +1,9 @@
-let ora = require('ora')
-
-module.exports = async function calc (plugins, config) {
+module.exports = async function calc (plugins, config, createSpinner) {
   async function exec (step) {
     for (let plugin of plugins.list) {
       let spinner
-      if (plugin['wait' + step]) {
-        spinner = ora(plugin['wait' + step]).start()
+      if (plugin['wait' + step] && createSpinner) {
+        spinner = createSpinner(plugin['wait' + step]).start()
       }
       if (plugin['step' + step]) {
         process.setMaxListeners(config.checks.reduce((all, check) => {

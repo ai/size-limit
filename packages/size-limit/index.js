@@ -16,7 +16,7 @@ module.exports = async function (plugins, files) {
     }
   }
 
-  await calc(pluginList, files)
+  await calc(pluginList, files, false)
 
   return files.checks.map(i => {
     let value = { }
