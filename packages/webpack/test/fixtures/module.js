@@ -6,4 +6,4 @@ export function methodA () {
   console.log('INBUVYCTXRX')
 }
 
-export const A = 'A'
+export const A = 8

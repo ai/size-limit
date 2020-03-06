@@ -230,5 +230,5 @@ it('supports specifying the import', async () => {
       path: [fixture('module.js')],
       import: '{ methodA }'
     })
-  ).toEqual(77)
+  ).toEqual(79)
 })

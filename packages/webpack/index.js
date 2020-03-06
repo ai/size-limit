@@ -11,8 +11,8 @@ let getConfig = require('./get-config')
 
 const WEBPACK_EMPTY_PROJECT = 962
 const WEBPACK_EMPTY_PROJECT_GZIP = 461
-const WEBPACK_EMPTY_PROJECT_IMPORT = 967
-const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 475
+const WEBPACK_EMPTY_PROJECT_IMPORT = 965
+const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 473
 
 function getFiles (stats, check) {
   let entries = { }
