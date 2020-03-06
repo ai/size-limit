@@ -56,7 +56,7 @@ let self = {
     }
   },
 
-  wait40: 'Adding your library to empty webpack project',
+  wait40: 'Adding to empty webpack project',
   async step40 (config, check) {
     if (check.webpackConfig) {
       check.bundles = getFiles(await runWebpack(check), check)
