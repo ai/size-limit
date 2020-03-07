@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/dual-publish",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "dual-publish plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -19,7 +19,7 @@
     "node": ">=10.0.0"
   },
   "peerDependencies": {
-    "size-limit": "4.1.1"
+    "size-limit": "4.2.0"
   },
   "dependencies": {
     "rimraf": "^3.0.2"

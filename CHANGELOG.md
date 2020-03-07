@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2
+* Add `@size-limit/dual-publish` plugin.
+
 ## 4.1.1
 * Fix `import` option.
 
