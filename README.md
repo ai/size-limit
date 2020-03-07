@@ -398,6 +398,23 @@ inserts `style-loader` runtime (≈2 KB) into the bundle.
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
 
 
+## Plugins and Presets
+
+Plugins:
+
+* `@size-limit/file` checks the size of files with Gzip, Brotli
+  or without compression.
+* `@size-limit/webpack` adds your library to empty webpack project
+  and prepares bundle file for `file` plugin.
+* `@size-limit/time` uses headless Chrome to track time to execute JS.
+
+Plugin presets:
+
+* `@size-limit/preset-app` contains `file` and `time` plugins.
+* `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
+* `@size-limit/preset-small-lib` contains `webpack` and `file` plugins.
+
+
 ## JS API
 
 ```js
