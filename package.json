@@ -24,7 +24,7 @@
     "@logux/sharec-config": "^0.5.7",
     "cross-spawn": "^7.0.1",
     "documentation": "^12.1.4",
-    "dual-publish": "^0.4.1",
+    "dual-publish": "^0.5.0",
     "eslint": "^6.8.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.0",

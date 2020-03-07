@@ -3357,15 +3357,16 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-dual-publish@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/dual-publish/-/dual-publish-0.4.1.tgz#a9f8e888cd2e7011ecda07143bc1cef2770a2683"
-  integrity sha512-2F+bjwaZ6SLfX+aLdcepvfjPlCR/8xAm21wkJ2jvSWEMZ6xNMw08N84/ppRyWnhBcNDZHgwFTVfHzcBlGZ4qpg==
+dual-publish@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/dual-publish/-/dual-publish-0.5.0.tgz#4d48ddc31bb196a365b58dc5dd7af0791c613ea8"
+  integrity sha512-29uYCQi1WhkV2VOCjCx34pizKArM8KLOj/SLOVYEkZOvp+YjmStpoCu1OAWe300DTfuDlVcQWdOiIn9TmmEaXQ==
   dependencies:
     chalk "^3.0.0"
     clean-publish "^1.1.5"
     globby "^11.0.0"
     line-column "^1.0.2"
+    rimraf "^3.0.2"
 
 duplexer2@^0.1.2, duplexer2@~0.1.0:
   version "0.1.4"
