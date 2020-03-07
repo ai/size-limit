@@ -407,12 +407,16 @@ Plugins:
 * `@size-limit/webpack` adds your library to empty webpack project
   and prepares bundle file for `file` plugin.
 * `@size-limit/time` uses headless Chrome to track time to execute JS.
+* `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
+  to check size after tree-shaking.
 
 Plugin presets:
 
 * `@size-limit/preset-app` contains `file` and `time` plugins.
 * `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
 * `@size-limit/preset-small-lib` contains `webpack` and `file` plugins.
+
+[`dual-publish`]: https://github.com/ai/dual-publish
 
 
 ## JS API

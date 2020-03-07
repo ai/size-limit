@@ -40,6 +40,7 @@ exports[`shows brotli text when only brotli in config 1`] = `
 
 exports[`shows debug 1`] = `
 "{
+  \\"cwd\\": \\"/tmp/\\",
   \\"configPath\\": \\"package.json\\",
   \\"checks\\": [
     {
@@ -156,6 +157,7 @@ exports[`shows debug 1`] = `
 
 exports[`shows debug on error 1`] = `
 "{
+  \\"cwd\\": \\"/tmp/\\",
   \\"configPath\\": \\"package.json\\",
   \\"checks\\": [
     {
@@ -426,6 +428,14 @@ Check the real performance cost of your front-end project to users
     Show the size of specific files with all file dependencies
   [33msize-limit --why[39m
     Show reasons why project have this size
+"
+`;
+
+exports[`works in integration test with ESM 1`] = `
+"  
+  Size limit: [32m[1m1 B[22m[39m
+  Size:       [32m[1m1 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
 "
 `;
 

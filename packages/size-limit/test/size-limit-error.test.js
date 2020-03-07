@@ -35,6 +35,20 @@ it('has error for unknown option', () => {
   expect(print(err)).toMatchSnapshot()
 })
 
+it('has error for CLI error', () => {
+  let err = new SizeLimitError(
+    'cmdError',
+    'cli-tool',
+    'Module not found\n  @ multi ./dual-publish-tmp/index.js index[0]'
+  )
+  expect(print(err)).toMatchSnapshot()
+})
+
+it('has error for CLI error without output', () => {
+  let err = new SizeLimitError('cmdError', 'cli-tool')
+  expect(print(err)).toMatchSnapshot()
+})
+
 it('has error for unknown entry', () => {
   let err = new SizeLimitError('unknownEntry', 'admin')
   expect(print(err)).toMatchSnapshot()

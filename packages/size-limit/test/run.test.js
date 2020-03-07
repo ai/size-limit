@@ -60,8 +60,10 @@ function createProcess (cwd, args = []) {
   return [process, history]
 }
 
-function normalize (output) {
-  return output.replace(/"webpackOutput": "[^"]+"/, '"webpackOutput": "/tmp/"')
+function clean (output) {
+  return output
+    .replace(/"cwd": "[^"]+"/, '"cwd": "/tmp/"')
+    .replace(/"webpackOutput": "[^"]+"/, '"webpackOutput": "/tmp/"')
 }
 
 async function check (cwd, args) {
@@ -219,6 +221,10 @@ it('works in integration test with size', async () => {
   expect(await check('integration')).toMatchSnapshot()
 })
 
+it('works in integration test with ESM', async () => {
+  expect(await check('integration-esm')).toMatchSnapshot()
+})
+
 it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
 })
@@ -244,9 +250,9 @@ it('returns zero bytes for empty file without gzip', async () => {
 })
 
 it('shows debug', async () => {
-  expect(normalize(await check('integration', ['--debug']))).toMatchSnapshot()
+  expect(clean(await check('integration', ['--debug']))).toMatchSnapshot()
 })
 
 it('shows debug on error', async () => {
-  expect(await error('internal-error', ['--debug'])).toMatchSnapshot()
+  expect(clean(await error('internal-error', ['--debug']))).toMatchSnapshot()
 })

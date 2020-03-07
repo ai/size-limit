@@ -65,7 +65,7 @@ function checkChecks (plugins, checks) {
   }
 }
 
-function makeAbsolute (file, cwd) {
+function toAbsolute (file, cwd) {
   return isAbsolute(file) ? file : join(cwd, file)
 }
 
@@ -74,18 +74,18 @@ function toName (files, cwd) {
 }
 
 module.exports = async function getConfig (plugins, process, args, pkg) {
-  let config = { }
+  let config = {
+    cwd: process.cwd()
+  }
   if (args.why) {
     config.project = pkg.packageJson.name
     config.why = args.why
   }
   if (args.saveBundle) {
-    config.saveBundle = makeAbsolute(args.saveBundle, process.cwd())
+    config.saveBundle = toAbsolute(args.saveBundle, process.cwd())
   }
 
-  let cwd
   if (args.files.length > 0) {
-    cwd = process.cwd()
     config.checks = [{ path: args.files }]
   } else {
     let explorer = cosmiconfig('size-limit', {
@@ -102,10 +102,10 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
     checkChecks(plugins, result.config)
 
     config.configPath = relative(process.cwd(), result.filepath)
-    cwd = dirname(result.filepath)
+    config.cwd = dirname(result.filepath)
     config.checks = await Promise.all(result.config.map(async check => {
       if (check.path) {
-        check.path = await globby(check.path, { cwd: dirname(result.filepath) })
+        check.path = await globby(check.path, { cwd: config.cwd })
       } else if (!check.entry) {
         if (pkg.packageJson.main) {
           check.path = [
@@ -123,7 +123,7 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
   for (let check of config.checks) {
     if (peer.length > 0) check.ignore = peer.concat(check.ignore || [])
     if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]
-    if (!check.name) check.name = toName(check.entry || check.path, cwd)
+    if (!check.name) check.name = toName(check.entry || check.path, config.cwd)
     if (args.limit) check.limit = args.limit
     if (check.limit) {
       if (/ ?ms/i.test(check.limit)) {
@@ -137,8 +137,8 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
         throw new SizeLimitError('timeWithoutPlugin')
       }
     }
-    if (check.path) check.path = check.path.map(i => makeAbsolute(i, cwd))
-    if (check.config) check.config = makeAbsolute(check.config, cwd)
+    if (check.path) check.path = check.path.map(i => toAbsolute(i, config.cwd))
+    if (check.config) check.config = toAbsolute(check.config, config.cwd)
   }
 
   return config

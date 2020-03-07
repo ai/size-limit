@@ -1,0 +1,7 @@
+{
+  "name": "fixtures",
+  "private": true,
+  "dependencies": {
+    "dual-publish": "> 0.0.0"
+  }
+}

@@ -1,10 +1,12 @@
 {
-  "name": "size-limit",
+  "name": "@size-limit/dual-publish",
   "version": "4.1.1",
-  "description": "CLI tool for Size Limit",
+  "description": "dual-publish plugin for Size Limit",
   "keywords": [
     "size-limit",
-    "cli",
+    "plugin",
+    "dual-publish",
+    "es modules",
     "esm",
     "performance",
     "budget",
@@ -13,17 +15,13 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
-  "bin": "bin.js",
   "engines": {
     "node": ">=10.0.0"
   },
+  "peerDependencies": {
+    "size-limit": "4.1.1"
+  },
   "dependencies": {
-    "bytes": "^3.1.0",
-    "chalk": "^3.0.0",
-    "ci-job-number": "^1.2.1",
-    "cosmiconfig": "^6.0.0",
-    "globby": "^11.0.0",
-    "ora": "^4.0.3",
-    "read-pkg-up": "^7.0.1"
+    "rimraf": "^3.0.2"
   }
 }

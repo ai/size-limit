@@ -1,18 +1,21 @@
 module.exports = async function calc (plugins, config, createSpinner) {
-  async function exec (step) {
+  process.setMaxListeners(config.checks.reduce((a, i) => a + i.path.length, 0))
+
+  async function step (number) {
     for (let plugin of plugins.list) {
       let spinner
-      if (plugin['wait' + step] && createSpinner) {
-        spinner = createSpinner(plugin['wait' + step]).start()
+      if (plugin['wait' + number] && createSpinner) {
+        spinner = createSpinner(plugin['wait' + number]).start()
       }
-      if (plugin['step' + step]) {
-        process.setMaxListeners(config.checks.reduce((all, check) => {
-          return all + check.path.length
-        }, 0))
+      if (plugin['step' + number] || plugin['all' + number]) {
         try {
-          await Promise.all(config.checks.map(i => {
-            return plugin['step' + step](config, i)
-          }))
+          if (plugin['all' + number]) {
+            await plugin['all' + number](config)
+          } else {
+            await Promise.all(config.checks.map(i => {
+              return plugin['step' + number](config, i)
+            }))
+          }
         } catch (e) {
           if (spinner) spinner.fail()
           throw e
@@ -23,9 +26,15 @@ module.exports = async function calc (plugins, config, createSpinner) {
   }
 
   try {
-    for (let i = 0; i <= 100; i++) await exec(i)
+    for (let i = 0; i <= 100; i++) await step(i)
   } finally {
-    exec('finally')
+    for (let plugin of plugins.list) {
+      if (plugin.finally) {
+        await Promise.all(config.checks.map(i => {
+          return plugin.finally(config, i)
+        }))
+      }
+    }
   }
   for (let check of config.checks) {
     if (typeof check.sizeLimit !== 'undefined') {

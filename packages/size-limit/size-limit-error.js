@@ -51,6 +51,9 @@ const MESSAGES = {
   ),
   brotliUnsupported: () => (
     'Update your Node.js to version >= v11.7.0 to use Brotli'
+  ),
+  cmdError: (cmd, error) => (
+    error ? `${ cmd } error: ${ error }` : `${ cmd } error`
   )
 }
 
