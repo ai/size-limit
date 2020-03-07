@@ -8,7 +8,7 @@ jest.mock('child_process', () => ({
     return {
       stderr: {
         on (type, cb) {
-          if (type === 'data' && opts.cwd === '') cb('error')
+          if (type === 'data' && opts.cwd === '') cb(' ERROR  Replace require')
         }
       },
       on (type, cb) {
@@ -55,5 +55,7 @@ it('throws dual-publish error', async () => {
   } catch (e) {
     err = e
   }
-  expect(err).toEqual(new SizeLimitError('cmdError', 'dual-publish', 'error'))
+  expect(err).toEqual(
+    new SizeLimitError('cmdError', 'dual-publish', 'Replace require')
+  )
 })
