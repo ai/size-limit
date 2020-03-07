@@ -16,7 +16,7 @@ let self = {
       }
     )
     cmd.stderr.on('data', data => {
-      stderr += data.toString()
+      stderr += data.toString().replace(/^ ERROR {2}/, '')
     })
     await new Promise((resolve, reject) => {
       cmd.on('close', code => {
