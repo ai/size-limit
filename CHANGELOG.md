@@ -1,7 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.3.1
+* Fix `import` option.
+
 ## 4.3
+* Add multiple files support for `import` option.
 * Add multiple files support for `import` option.
 
 ## 4.2.1
