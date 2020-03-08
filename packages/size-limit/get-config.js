@@ -144,6 +144,13 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
         [check.path[0]]: check.import
       }
     }
+    if (check.import) {
+      let imports = { }
+      for (let i in check.import) {
+        imports[toAbsolute(i, config.cwd)] = check.import[i]
+      }
+      check.import = imports
+    }
   }
 
   return config
