@@ -36,6 +36,18 @@ let self = {
           i.slice(config.cwd.length + 1)
         )
       })
+      if (check.import) {
+        let imports = { }
+        for (let i in check.import) {
+          let changed = join(
+            config.cwd,
+            'dual-publish-tmp',
+            i.slice(config.cwd.length + 1)
+          )
+          imports[changed] = check.import[i]
+        }
+        check.import = imports
+      }
     }
   },
 

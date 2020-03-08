@@ -1,25 +1,29 @@
 let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+let PnpWebpackPlugin = require('pnp-webpack-plugin')
+let { promisify } = require('util')
 let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
-let PnpWebpackPlugin = require('pnp-webpack-plugin')
+let { join } = require('path')
 let mkdirp = require('mkdirp')
-let path = require('path')
 let fs = require('fs')
+
+let writeFile = promisify(fs.writeFile)
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
-module.exports = function getConfig (limitConfig, check, output) {
+module.exports = async function getConfig (limitConfig, check, output) {
   if (check.import) {
-    let file = path.join(output, 'entry.js')
-    let source = path.resolve(check.path[0])
-    let list = check.import.replace(/}|{/g, '')
-    mkdirp.sync(output)
-    fs.writeFileSync(file,
-      `import ${ check.import } from '${ source }'\n` +
-      `console.log(${ list })\n`
-    )
-    check.path = file
+    let loader = ''
+    for (let i in check.import) {
+      let list = check.import[i].replace(/}|{/g, '').trim()
+      loader += `import ${ check.import[i] } from '${ i }'\n` +
+                `console.log(${ list })\n`
+    }
+    await mkdirp(output)
+    let entry = join(output, 'entry.js')
+    await writeFile(entry, loader)
+    check.path = entry
   }
 
   let config = {

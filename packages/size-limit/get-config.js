@@ -139,6 +139,11 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
     }
     if (check.path) check.path = check.path.map(i => toAbsolute(i, config.cwd))
     if (check.config) check.config = toAbsolute(check.config, config.cwd)
+    if (typeof check.import === 'string') {
+      check.import = {
+        [check.path[0]]: check.import
+      }
+    }
   }
 
   return config
