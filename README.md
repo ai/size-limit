@@ -374,7 +374,8 @@ Each section in the config can have these options:
   It could be a path `"index.js"`, a [pattern] `"dist/app-*.js"`
   or an array `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
 * **import**: partial import to test tree-shaking. It could be `"{ lib }"`
-  to test `import { lib } from 'lib'`.
+  to test `import { lib } from 'lib'` or `{ "a.js": "{ a }", "b.js": "{ b }" }`
+  to test multiple files.
 * **limit**: size or time limit for files from the `path` option. It should be
   a string with a number and unit, separated by a space.
   Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
