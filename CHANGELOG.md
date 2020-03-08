@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.3
+* Add multiple files support for `import` option.
+
 ## 4.2.1
 * Fix `dual-publish` error.
 
