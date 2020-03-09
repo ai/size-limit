@@ -342,6 +342,7 @@ Size Limits supports three ways to define config.
      "size-limit": [
        {
          "path": "index.js",
+         "import": "{ createStore }",
          "limit": "500 ms"
        }
      ]
@@ -353,6 +354,7 @@ Size Limits supports three ways to define config.
    [
      {
        "path": "index.js",
+       "import": "{ createStore }",
        "limit": "500 ms"
      }
    ]
