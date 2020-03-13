@@ -1,5 +1,6 @@
 let readPkgUp = require('read-pkg-up')
 let ora = require('ora')
+let chokidar = require('chokidar')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
@@ -17,6 +18,12 @@ module.exports = async process => {
   let reporter = createReporter(process, hasArg('--json'))
   let help = createHelp(process)
   let config, args
+
+  async function mainCalc (plugins, configObj, parsedArgs) {
+    await calc(plugins, configObj, ora)
+    debug.results(process, parsedArgs, configObj)
+    reporter.results(plugins, configObj)
+  }
 
   try {
     if (hasArg('--version')) {
@@ -43,10 +50,20 @@ module.exports = async process => {
 
     config = await getConfig(plugins, process, args, pkg)
 
-    await calc(plugins, config, ora)
+    if (hasArg('--watch')) {
+      let watcher = chokidar.watch([
+        '**/*.js',
+        'package.json'
+      ], {
+        ignored: '**/node_modules/**'
+      })
+      watcher.on('change', async () => {
+        await mainCalc(plugins, config, args)
+      })
+    } else {
+      await mainCalc(plugins, config, args)
+    }
 
-    debug.results(process, args, config)
-    reporter.results(plugins, config)
     if (config.failed && !args.why) process.exit(1)
   } catch (e) {
     debug.error(process, args, config)

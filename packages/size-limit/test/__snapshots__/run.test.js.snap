@@ -206,6 +206,7 @@ Check the real performance cost of your front-end project to users
   [33m--limit LIMIT[39m  Set size or running time limit for files
   [33m--json[39m         Show results in JSON format
   [33m--help[39m         Display this help
+  [33m--watch[39m        Runs in watch mode
   [33m--debug[39m        Show internal configs for issue report
   [33m--version[39m      Display version
 
@@ -271,6 +272,7 @@ Check the real performance cost of your front-end project to users
   [33m--limit LIMIT[39m  Set size or running time limit for files
   [33m--json[39m         Show results in JSON format
   [33m--help[39m         Display this help
+  [33m--watch[39m        Runs in watch mode
   [33m--debug[39m        Show internal configs for issue report
   [33m--version[39m      Display version
 
@@ -414,6 +416,7 @@ Check the real performance cost of your front-end project to users
   [33m--limit LIMIT[39m  Set size or running time limit for files
   [33m--json[39m         Show results in JSON format
   [33m--help[39m         Display this help
+  [33m--watch[39m        Runs in watch mode
   [33m--debug[39m        Show internal configs for issue report
   [33m--version[39m      Display version
 
@@ -430,6 +433,8 @@ Check the real performance cost of your front-end project to users
     Show reasons why project have this size
 "
 `;
+
+exports[`works in integration test in watch 1`] = `""`;
 
 exports[`works in integration test with ESM 1`] = `
 "  
