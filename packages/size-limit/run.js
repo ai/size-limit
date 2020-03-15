@@ -30,12 +30,6 @@ module.exports = async process => {
   let help = createHelp(process)
   let config, args
 
-  async function mainCalc (plugins, configObj, parsedArgs) {
-    await calc(plugins, configObj, ora)
-    debug.results(process, parsedArgs, configObj)
-    reporter.results(plugins, configObj)
-  }
-
   try {
     if (hasArg('--version')) {
       return help.showVersion()
@@ -61,7 +55,13 @@ module.exports = async process => {
 
     config = await getConfig(plugins, process, args, pkg)
 
-    await mainCalc(plugins, config, args)
+    let calcAndShow = async () => {
+      await calc(plugins, config, ora)
+      debug.results(process, args, config)
+      reporter.results(plugins, config)
+    }
+
+    await calcAndShow()
 
     if (hasArg('--watch')) {
       let watcher = chokidar.watch([
@@ -70,7 +70,7 @@ module.exports = async process => {
       ], {
         ignored: '**/node_modules/**'
       })
-      watcher.on('change', throttle(() => mainCalc(plugins, config, args)))
+      watcher.on('change', throttle(calcAndShow))
     }
 
     if (config.failed && !args.why) process.exit(1)
