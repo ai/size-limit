@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.4
+* Add `--watch` support (by @jayhoney).
+
 ## 4.3.1
 * Fix `import` option.
 
