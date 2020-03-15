@@ -13,6 +13,7 @@ let calc = require('./calc')
 
 function throttle (fn) {
   let next, running
+  // istanbul ignore next
   return () => {
     clearTimeout(next)
     next = setTimeout(async () => {
