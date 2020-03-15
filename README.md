@@ -366,6 +366,7 @@ Size Limits supports three ways to define config.
    module.exports = [
      {
        path: "index.js",
+       import: "{ createStore }",
        limit: "500 ms"
      }
    ]
