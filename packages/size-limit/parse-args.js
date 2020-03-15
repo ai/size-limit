@@ -18,6 +18,8 @@ module.exports = function parseArgs (plugins, argv) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
       args.why = true
+    } else if (arg === '--watch') {
+      args.watch = true
     } else if (arg[0] !== '-') {
       args.files.push(arg)
     } else if (arg !== '--json') {
