@@ -213,22 +213,38 @@ it('supports specifying the import', async () => {
   expect(
     await getSize({
       path: [fixture('module.js')],
-      import: '{ A }'
+      import: {
+        [fixture('module.js')]: '{ A }'
+      }
     })
   ).toEqual(1)
 
   expect(
     await getSize({
       path: [fixture('module.js')],
-      import: '{ A }',
+      import: {
+        [fixture('module.js')]: '{ A }'
+      },
       gzip: false
     })
   ).toEqual(1)
 
   expect(
     await getSize({
-      path: [fixture('module.js')],
-      import: '{ methodA }'
+      import: {
+        [fixture('module.js')]: '{ methodA }'
+      }
     })
   ).toEqual(79)
+})
+
+it('supports import with multiple files', async () => {
+  expect(
+    await getSize({
+      import: {
+        [fixture('module.js')]: '{ A }',
+        [fixture('module2.js')]: '{ B }'
+      }
+    })
+  ).toEqual(5)
 })

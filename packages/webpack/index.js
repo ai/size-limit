@@ -42,7 +42,7 @@ function getFiles (stats, check) {
 let self = {
   name: '@size-limit/webpack',
 
-  step20 (config, check) {
+  async step20 (config, check) {
     if (check.webpack === false) return
     check.webpackOutput = config.saveBundle
     if (!check.webpackOutput) {
@@ -52,7 +52,7 @@ let self = {
       check.webpackConfig = require(check.config)
       convertConfig(check.webpackConfig, config.configPath)
     } else {
-      check.webpackConfig = getConfig(config, check, check.webpackOutput)
+      check.webpackConfig = await getConfig(config, check, check.webpackOutput)
     }
   },
 

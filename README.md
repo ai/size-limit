@@ -7,15 +7,16 @@ Size Limit is a performance budget tool for JavaScript. It checks every commit
 on CI, calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
-* Size Limit calculates **the time** it would take a browser
-  to download and **execute** your JS. Time is a much more accurate
-  and understandable metric compared to the size in bytes.
-* Size Limit calculations include **all dependencies and polyfills**
-  used in your JS.
+* **ES modules** and **tree-shaking** support.
 * Add Size Limit to **Travis CI**, **Circle CI**, or another CI system
   to know if a pull request adds a massive dependency.
-* Size Limit is **modular** to fit different use cases, like big JS applications
+* **Modular** to fit different use cases: big JS applications
   that use their own bundler or small npm libraries with many files.
+* Can calculate **the time** it would take a browser
+  to download and **execute** your JS. Time is a much more accurate
+  and understandable metric compared to the size in bytes.
+* Calculations include **all dependencies and polyfills**
+  used in your JS.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
@@ -341,6 +342,7 @@ Size Limits supports three ways to define config.
      "size-limit": [
        {
          "path": "index.js",
+         "import": "{ createStore }",
          "limit": "500 ms"
        }
      ]
@@ -352,6 +354,7 @@ Size Limits supports three ways to define config.
    [
      {
        "path": "index.js",
+       "import": "{ createStore }",
        "limit": "500 ms"
      }
    ]
@@ -374,7 +377,8 @@ Each section in the config can have these options:
   It could be a path `"index.js"`, a [pattern] `"dist/app-*.js"`
   or an array `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
 * **import**: partial import to test tree-shaking. It could be `"{ lib }"`
-  to test `import { lib } from 'lib'`.
+  to test `import { lib } from 'lib'` or `{ "a.js": "{ a }", "b.js": "{ b }" }`
+  to test multiple files.
 * **limit**: size or time limit for files from the `path` option. It should be
   a string with a number and unit, separated by a space.
   Format: `100 B`, `10 KB`, `500 ms`, `1 s`.

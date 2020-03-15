@@ -162,3 +162,22 @@ it('normalizes time limits', async () => {
     ]
   })
 })
+
+it('normalizes import', async () => {
+  expect(await check('integration-esm')).toEqual({
+    cwd: fixture('integration-esm'),
+    configPath: 'package.json',
+    checks: [
+      {
+        import: {
+          [fixture('integration-esm', 'index.js')]:
+            '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
+        },
+        limit: '1 B',
+        name: 'index.js',
+        path: [fixture('integration-esm', 'index.js')],
+        sizeLimit: 1
+      }
+    ]
+  })
+})
