@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
-    "release": "./scripts/each npm publish --access public",
     "postinstall": "./scripts/each yarn",
     "clean": "rimraf coverage/ packages/.cache",
     "spell": "yaspeller-ci *.md packages/*/*.md",
@@ -19,10 +18,10 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^36.1.0",
-    "@logux/sharec-config": "^0.5.7",
+    "@logux/eslint-config": "^36.1.1",
+    "@logux/sharec-config": "^0.6.2",
     "cross-spawn": "^7.0.1",
-    "dual-publish": "^0.5.0",
+    "dual-publish": "^0.5.1",
     "eslint": "^6.8.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.0",
@@ -34,7 +33,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^16.1.1",
+    "eslint-plugin-unicorn": "^17.2.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jest-ci": "^0.1.1",
@@ -139,6 +138,6 @@
   },
   "sharec": {
     "config": "@logux/sharec-config",
-    "version": "0.5.7"
+    "version": "0.6.2"
   }
 }
