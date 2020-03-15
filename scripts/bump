@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-let { readdirSync, readFileSync, writeFileSync } = require('fs')
+let { readdirSync, readFileSync, writeFileSync, existsSync } = require('fs')
 let { join } = require('path')
 
 const PACKAGES = join(__dirname, '..', 'packages')
@@ -13,9 +13,11 @@ if (!version) {
 
 for (let dir of readdirSync(PACKAGES)) {
   let pkgPath = join(PACKAGES, dir, 'package.json')
-  let pkg = readFileSync(pkgPath).toString()
-  writeFileSync(pkgPath, pkg
-    .replace(/("@size-limit\/[^"]+": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
-    .replace(/("size-limit": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
-    .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${ version }"`))
+  if (existsSync(pkgPath)) {
+    let pkg = readFileSync(pkgPath).toString()
+    writeFileSync(pkgPath, pkg
+      .replace(/("@size-limit\/[^"]+": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
+      .replace(/("size-limit": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
+      .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${ version }"`))
+  }
 }
