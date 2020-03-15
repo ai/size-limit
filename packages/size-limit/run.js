@@ -11,6 +11,17 @@ let parseArgs = require('./parse-args')
 let debug = require('./debug')
 let calc = require('./calc')
 
+function throttle (fn) {
+  let next, running
+  return () => {
+    clearTimeout(next)
+    next = setTimeout(async () => {
+      await running
+      running = fn()
+    }, 200)
+  }
+}
+
 module.exports = async process => {
   function hasArg (arg) {
     return process.argv.some(i => i === arg)
@@ -50,6 +61,8 @@ module.exports = async process => {
 
     config = await getConfig(plugins, process, args, pkg)
 
+    await mainCalc(plugins, config, args)
+
     if (hasArg('--watch')) {
       let watcher = chokidar.watch([
         '**/*.js',
@@ -57,11 +70,7 @@ module.exports = async process => {
       ], {
         ignored: '**/node_modules/**'
       })
-      watcher.on('change', async () => {
-        await mainCalc(plugins, config, args)
-      })
-    } else {
-      await mainCalc(plugins, config, args)
+      watcher.on('change', throttle(() => mainCalc(plugins, config, args)))
     }
 
     if (config.failed && !args.why) process.exit(1)
