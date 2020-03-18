@@ -8,10 +8,8 @@ on CI, calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
 * **ES modules** and **tree-shaking** support.
-* Add Size Limit to **Travis CI**, **Circle CI**, or another CI system
-  to know if a pull request adds a massive dependency.
-  It has **[GitHub Action]** support to post bundle size changes as a comment
-  in pull request discussion.
+* Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
+  or another CI system to know if a pull request adds a massive dependency.
 * **Modular** to fit different use cases: big JS applications
   that use their own bundler or small npm libraries with many files.
 * Can calculate **the time** it would take a browser
@@ -22,6 +20,15 @@ if the cost exceeds the limit.
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
+</p>
+
+With **[GitHub action]** Size Limit will post bundle size changes as a comment
+in pull request discussion.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/andresz1/size-limit-action/master/assets/pr.png"
+  alt="Size Limit comment in pull request about bundle size changes"
+  width="686" height="289">
 </p>
 
 With `--why`, Size Limit can tell you *why* your library is of this size
@@ -38,7 +45,7 @@ and show the real cost of all your internal dependencies.
   </a>
 </p>
 
-[GitHub Action]: https://github.com/andresz1/size-limit-action
+[GitHub action]: https://github.com/andresz1/size-limit-action
 [cult-img]:      http://cultofmartians.com/assets/badges/badge.svg
 [cult]:          http://cultofmartians.com/tasks/size-limit-config.html
 
@@ -337,12 +344,8 @@ for this preset.
 
 ## Reports
 
-Size Limit has a [GitHub action](https://github.com/andresz1/size-limit-action)
-that comments and rejects pull requests based on Size Limit output.
-
-<img src="https://raw.githubusercontent.com/andresz1/size-limit-action/master/assets/pr.png"
-  alt="Size Limit comment in pull request about bundle size changes"
-  align="center" width="686" height="289">
+Size Limit has a [GitHub action] that comments and rejects pull requests based
+on Size Limit output.
 
 1. Install and configure Size Limit as shown above.
 2. Add the following action inside `.github/workflows/size-limit.yml`
