@@ -342,7 +342,7 @@ that comments and rejects pull requests based on Size Limit output.
 
 <img src="https://raw.githubusercontent.com/andresz1/size-limit-action/master/assets/pr.png"
   alt="Size Limit comment in pull request about bundle size changes"
-  align="right" width="686" height="289">
+  align="center" width="686" height="289">
 
 1. Install and configure Size Limit as shown above.
 2. Add the following action inside `.github/workflows/size-limit.yml`
