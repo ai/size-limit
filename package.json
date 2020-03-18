@@ -124,7 +124,8 @@
       "CRM",
       "brotli",
       "PnP",
-      "ES"
+      "ES",
+      "GitHub"
     ]
   },
   "husky": {
