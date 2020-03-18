@@ -423,6 +423,45 @@ Plugin presets:
 
 [`dual-publish`]: https://github.com/ai/dual-publish
 
+## Reports
+### [size-limit-action](https://github.com/andresz1/size-limit-action)
+A GitHub action that comments and rejects pull requests based on Size Limit output.
+
+<details><summary><b>Show instructions</b></summary>
+
+  
+1. Install and configure Size Limit as shown above.
+
+2. Add `size-build` script in your `package.json`. This script should perform changes neccessary to run `size-limit`. For example:
+
+```json
+"scripts": {
+  "size-build": "npm run build",
+  "size": "npm run size-build && size-limit"
+},
+```
+
+3. Add the following action inside `.github/workflows/size-limit.yml`
+
+```yaml
+name: "size"
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  size:
+    runs-on: ubuntu-latest
+    env:
+      CI_JOB_NUMBER: 1
+    steps:
+      - uses: actions/checkout@v1
+      - uses: andresz1/size-limit-action@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+```
+4. You are now all set
+</details>
 
 ## JS API
 
