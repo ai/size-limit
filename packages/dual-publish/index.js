@@ -11,7 +11,7 @@ let self = {
   async all10 (config) {
     let stderr = ''
     let cmd = spawn(
-      'npx', ['-q', 'dual-publish', '--without-publish'], {
+      'npx', ['-q', 'dual-publish', '--check'], {
         cwd: config.cwd
       }
     )
