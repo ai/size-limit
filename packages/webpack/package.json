@@ -22,7 +22,7 @@
   "dependencies": {
     "css-loader": "^3.4.2",
     "escape-string-regexp": "^2.0.0",
-    "file-loader": "^5.1.0",
+    "file-loader": "^6.0.0",
     "mkdirp": "^1.0.3",
     "nanoid": "^2.1.11",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

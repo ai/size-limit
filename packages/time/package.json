@@ -16,8 +16,8 @@
     "size-limit": "4.4.0"
   },
   "dependencies": {
-    "estimo": "^2.0.3",
-    "react": "^16.13.0"
+    "estimo": "^2.0.4",
+    "react": "^16.13.1"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
