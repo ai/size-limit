@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.4.1
+* Update `file-loader`.
+* Add peer dependency to `dual-publish` plugin.
+
 ## 4.4
 * Add `--watch` support (by @jayhoney).
 
