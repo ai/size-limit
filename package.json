@@ -5,7 +5,7 @@
     "postinstall": "./scripts/each yarn",
     "clean": "rimraf coverage/ packages/.cache",
     "spell": "yaspeller-ci *.md packages/*/*.md",
-    "test": "jest-ci --coverage && eslint-ci . && yarn spell"
+    "test": "jest-ci --coverage --forceExit && eslint-ci . && yarn spell"
   },
   "workspaces": [
     "packages/preset-small-lib",
