@@ -1,9 +1,9 @@
 let SizeLimitError = require('size-limit/size-limit-error')
 let { promisify } = require('util')
+let { nanoid } = require('nanoid')
 let { tmpdir } = require('os')
 let { join } = require('path')
 let rimraf = promisify(require('rimraf'))
-let nanoid = require('nanoid')
 
 let convertConfig = require('./convert-config')
 let runWebpack = require('./run-webpack')

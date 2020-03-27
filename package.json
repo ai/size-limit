@@ -18,10 +18,10 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^36.1.1",
+    "@logux/eslint-config": "^36.1.2",
     "@logux/sharec-config": "^0.6.2",
     "cross-spawn": "^7.0.1",
-    "dual-publish": "^0.8.4",
+    "dual-publish": "^0.8.6",
     "eslint": "^6.8.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.1",
@@ -33,11 +33,11 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^17.2.0",
+    "eslint-plugin-unicorn": "^18.0.0",
     "husky": "^4.2.3",
-    "jest": "^25.1.0",
+    "jest": "^25.2.3",
     "jest-ci": "^0.1.1",
-    "lint-staged": "^10.0.8",
+    "lint-staged": "^10.0.9",
     "print-snapshots": "^0.3.0",
     "rimraf": "^3.0.2",
     "yaspeller-ci": "^1.0.2"
