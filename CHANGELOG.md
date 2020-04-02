@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.4.5
+* Fix Windows support.
+
 ## 4.4.4
 * Fix Yarn 2 support.
 
