@@ -17,7 +17,7 @@ module.exports = async function getConfig (limitConfig, check, output) {
     let loader = ''
     for (let i in check.import) {
       let list = check.import[i].replace(/}|{/g, '').trim()
-      loader += `import ${ check.import[i] } from '${ i }'\n` +
+      loader += `import ${ check.import[i] } from ${ JSON.stringify(i) }\n` +
                 `console.log(${ list })\n`
     }
     await mkdirp(output)
