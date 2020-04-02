@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.4.3
+* Fix Windows support (by Anton Khlynovskiy).
+
 ## 4.4.2
 * Update `nanoid`.
 
