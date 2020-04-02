@@ -11,9 +11,9 @@ let self = {
   async all10 (config) {
     let stderr = ''
     let cmd = spawn(
-      'npx', ['-q', 'dual-publish', '--check'], {
-        cwd: config.cwd
-      }
+      process.platform === 'win32' ? 'npx.cmd' : 'npx',
+      ['-q', 'dual-publish', '--check'],
+      { cwd: config.cwd }
     )
     cmd.stderr.on('data', data => {
       stderr += data.toString().replace(/^ ERROR {2}/, '')
