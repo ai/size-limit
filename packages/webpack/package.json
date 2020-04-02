@@ -24,7 +24,7 @@
     "escape-string-regexp": "^2.0.0",
     "file-loader": "^6.0.0",
     "mkdirp": "^1.0.3",
-    "nanoid": "^3.0.0",
+    "nanoid": "^3.0.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pnp-webpack-plugin": "^1.6.4",
     "rimraf": "^3.0.2",
