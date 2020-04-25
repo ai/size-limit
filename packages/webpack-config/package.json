@@ -1,0 +1,23 @@
+{
+  "name": "@size-limit/webpack-config",
+  "version": "4.4.5",
+  "description": "Extend @size-limit/webpack configuration",
+  "keywords": [
+    "size-limit",
+    "plugin",
+    "performance",
+    "budget",
+    "performance budget",
+    "webpack"
+  ],
+  "author": "Andrea Carraro <me@andreacarraro.it>",
+  "license": "MIT",
+  "repository": "ai/size-limit",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "peerDependencies": {
+    "size-limit": "4.4.5",
+    "@size-limit/webpack": "4.4.5"
+  }
+}
