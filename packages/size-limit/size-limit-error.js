@@ -19,6 +19,9 @@ const MESSAGES = {
   emptyConfig: () => (
     'Size Limit config must *not be empty*'
   ),
+  noConfigExtender: () => (
+    'Size Limit configExtender must point to an existing file'
+  ),
   noObjectCheck: () => (
     'Size Limit config array should contain *only objects*'
   ),

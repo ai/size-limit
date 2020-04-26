@@ -12,6 +12,7 @@ let OPTIONS = {
   module: true,
   entry: 'webpack',
   config: 'webpack',
+  configExtender: 'webpack',
   webpack: 'webpack',
   ignore: 'webpack',
   import: 'webpack',
