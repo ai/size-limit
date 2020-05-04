@@ -3,6 +3,7 @@ let { promisify } = require('util')
 let { nanoid } = require('nanoid')
 let { tmpdir } = require('os')
 let { join } = require('path')
+let readdir = promisify(require('fs').readdir)
 let rimraf = promisify(require('rimraf'))
 
 let convertConfig = require('./convert-config')
@@ -39,12 +40,29 @@ function getFiles (stats, check) {
     })
 }
 
+async function isDirNotEmpty (dir) {
+  try {
+    let files = await readdir(dir)
+    return !!files.length
+  } catch (e) {
+    if (e.code === 'ENOENT') return false
+    throw e
+  }
+}
+
 let self = {
   name: '@size-limit/webpack',
 
   async before (config) {
     if (config.saveBundle) {
-      await rimraf(config.saveBundle)
+      if (config.cleanDir) {
+        await rimraf(config.saveBundle)
+      } else {
+        let notEmpty = await isDirNotEmpty(config.saveBundle)
+        if (notEmpty) {
+          throw new SizeLimitError('bundleDirNotEmpty', config.saveBundle)
+        }
+      }
     }
   },
 

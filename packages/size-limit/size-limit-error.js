@@ -54,6 +54,10 @@ const MESSAGES = {
   ),
   cmdError: (cmd, error) => (
     error ? `${ cmd } error: ${ error }` : `${ cmd } error`
+  ),
+  bundleDirNotEmpty: dir => (
+    `The directory *${ dir }* is not empty. ` +
+    'Pass *--clean-dir* if you want to remove it'
   )
 }
 
