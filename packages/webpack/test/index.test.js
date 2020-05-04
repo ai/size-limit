@@ -3,6 +3,8 @@ let { existsSync } = require('fs')
 let { promisify } = require('util')
 let { join } = require('path')
 let readFile = promisify(require('fs').readFile)
+let writeFile = promisify(require('fs').writeFile)
+let mkdir = promisify(require('fs').mkdir)
 let rimraf = promisify(require('rimraf'))
 
 let [webpack] = require('../')
@@ -17,6 +19,7 @@ function fixture (name) {
 
 async function run (config) {
   try {
+    await webpack.before(config)
     await webpack.step20(config, config.checks[0])
     await webpack.step40(config, config.checks[0])
     await file.step60(config, config.checks[0])
@@ -183,7 +186,7 @@ it('supports --why', async () => {
   }
 })
 
-it('supports --saveBundle', async () => {
+it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,
     checks: [
@@ -192,6 +195,63 @@ it('supports --saveBundle', async () => {
   }
   await run(config)
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
+})
+
+it('supports --clean-dir', async () => {
+  let dist = join(DIST, 'index.js')
+  let config = {
+    saveBundle: DIST,
+    cleanDir: true,
+    checks: [
+      { path: [fixture('small.js')] }
+    ]
+  }
+  await run(config)
+  expect(existsSync(dist)).toBe(true)
+
+  await webpack.before(config)
+  expect(existsSync(dist)).toBe(false)
+})
+
+it('throws error on not empty bundle dir', async () => {
+  let dist = join(DIST, 'index.js')
+  let config = {
+    saveBundle: DIST,
+    checks: [
+      { path: [fixture('small.js')] }
+    ]
+  }
+  await run(config)
+  expect(existsSync(dist)).toBe(true)
+
+  let err
+  try {
+    await run(config)
+  } catch (e) {
+    err = e
+  }
+
+  expect(err).toEqual(new SizeLimitError('bundleDirNotEmpty', DIST))
+})
+
+it('throws unsupported error --save-bundle', async () => {
+  let distFile = join(DIST, 'index.js')
+  let config = {
+    saveBundle: distFile,
+    checks: [
+      { path: [fixture('small.js')] }
+    ]
+  }
+  await mkdir(DIST)
+  await writeFile(distFile, '')
+
+  let err
+  try {
+    await run(config)
+  } catch (e) {
+    err = e
+  }
+  expect(err.code).toEqual('ENOTDIR')
 })
 
 it('throws on webpack error', async () => {

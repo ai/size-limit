@@ -10,6 +10,9 @@ const MESSAGES = {
     `Argument *--${ arg }* works only with *@size-limit/webpack* plugin` +
     (arg === 'why' ? '. You can add Bundle Analyzer to you own bundler.' : '')
   ),
+  argWithoutAnotherArg: (arg, anotherArg) => (
+    `Argument *--${ arg }* works only with *--${ anotherArg }* argument`
+  ),
   noConfig: () => (
     'Create Size Limit config in *package.json*'
   ),
@@ -54,6 +57,10 @@ const MESSAGES = {
   ),
   cmdError: (cmd, error) => (
     error ? `${ cmd } error: ${ error }` : `${ cmd } error`
+  ),
+  bundleDirNotEmpty: dir => (
+    `The directory *${ dir }* is not empty. ` +
+    'Pass *--clean-dir* if you want to remove it'
   )
 }
 

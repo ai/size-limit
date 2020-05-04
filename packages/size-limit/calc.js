@@ -25,16 +25,21 @@ module.exports = async function calc (plugins, config, createSpinner) {
     }
   }
 
-  try {
-    for (let i = 0; i <= 100; i++) await step(i)
-  } finally {
+  async function callMethodForEachPlugin (methodName) {
     for (let plugin of plugins.list) {
-      if (plugin.finally) {
+      if (plugin[methodName]) {
         await Promise.all(config.checks.map(i => {
-          return plugin.finally(config, i)
+          return plugin[methodName](config, i)
         }))
       }
     }
+  }
+
+  try {
+    await callMethodForEachPlugin('before')
+    for (let i = 0; i <= 100; i++) await step(i)
+  } finally {
+    await callMethodForEachPlugin('finally')
   }
   for (let check of config.checks) {
     if (typeof check.sizeLimit !== 'undefined') {

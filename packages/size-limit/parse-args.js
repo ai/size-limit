@@ -13,6 +13,13 @@ module.exports = function parseArgs (plugins, argv) {
         throw new SizeLimitError('argWithoutWebpack', 'save-bundle')
       }
       args.saveBundle = argv[++i]
+    } else if (arg === '--clean-dir') {
+      if (!argv.includes('--save-bundle')) {
+        throw new SizeLimitError(
+          'argWithoutAnotherArg', 'clean-dir', 'save-bundle'
+        )
+      }
+      args.cleanDir = true
     } else if (arg === '--why') {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'why')

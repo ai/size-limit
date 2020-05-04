@@ -43,7 +43,8 @@ module.exports = process => {
         '',
         b('Webpack options:'),
         `  ${ y('--why') }              Show package content`,
-        `  ${ y('--save-bundle DIR') }  Put build files to check them by hand`
+        `  ${ y('--save-bundle DIR') }  Put build files to check them by hand`,
+        `  ${ y('--clean-dir') }        Remove build files folder before start`
       )
     }
     print(
