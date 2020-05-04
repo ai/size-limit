@@ -17,6 +17,7 @@ function fixture (name) {
 
 async function run (config) {
   try {
+    await webpack.before(config)
     await webpack.step20(config, config.checks[0])
     await webpack.step40(config, config.checks[0])
     await file.step60(config, config.checks[0])
@@ -192,6 +193,22 @@ it('supports --saveBundle', async () => {
   }
   await run(config)
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
+})
+
+it('removes --save-bundle dir/ before call', async () => {
+  let dist = join(DIST, 'index.js')
+  let getConfig = ({ useWebpack }) => ({
+    saveBundle: DIST,
+    checks: [
+      { path: [fixture('small.js')], webpack: useWebpack }
+    ]
+  })
+
+  await run(getConfig({ useWebpack: true }))
+  expect(existsSync(dist)).toBe(true)
+
+  await run(getConfig({ useWebpack: false }))
+  expect(existsSync(dist)).toBe(false)
 })
 
 it('throws on webpack error', async () => {

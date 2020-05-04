@@ -42,6 +42,12 @@ function getFiles (stats, check) {
 let self = {
   name: '@size-limit/webpack',
 
+  async before (config) {
+    if (config.saveBundle) {
+      await rimraf(config.saveBundle)
+    }
+  },
+
   async step20 (config, check) {
     if (check.webpack === false) return
     check.webpackOutput = config.saveBundle
