@@ -3,6 +3,8 @@ let { existsSync } = require('fs')
 let { promisify } = require('util')
 let { join } = require('path')
 let readFile = promisify(require('fs').readFile)
+let writeFile = promisify(require('fs').writeFile)
+let mkdir = promisify(require('fs').mkdir)
 let rimraf = promisify(require('rimraf'))
 
 let [webpack] = require('../')
@@ -184,7 +186,7 @@ it('supports --why', async () => {
   }
 })
 
-it('supports --saveBundle', async () => {
+it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,
     checks: [
@@ -230,6 +232,26 @@ it('throws error on not empty bundle dir', async () => {
   }
 
   expect(err).toEqual(new SizeLimitError('bundleDirNotEmpty', DIST))
+})
+
+it('throws unsupported error --save-bundle', async () => {
+  let distFile = join(DIST, 'index.js')
+  let config = {
+    saveBundle: distFile,
+    checks: [
+      { path: [fixture('small.js')] }
+    ]
+  }
+  await mkdir(DIST)
+  await writeFile(distFile, '')
+
+  let err
+  try {
+    await run(config)
+  } catch (e) {
+    err = e
+  }
+  expect(err.code).toEqual('ENOTDIR')
 })
 
 it('throws on webpack error', async () => {

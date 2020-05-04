@@ -279,6 +279,7 @@ Check the real performance cost of your front-end project to users
 [1mWebpack options:[22m
   [33m--why[39m              Show package content
   [33m--save-bundle DIR[39m  Put build files to check them by hand
+  [33m--clean-dir[39m        Remove build files folder before start
 
 [1mExamples:[22m
   [33msize-limit[39m
@@ -428,6 +429,7 @@ Check the real performance cost of your front-end project to users
 [1mWebpack options:[22m
   [33m--why[39m              Show package content
   [33m--save-bundle DIR[39m  Put build files to check them by hand
+  [33m--clean-dir[39m        Remove build files folder before start
 
 [1mExamples:[22m
   [33msize-limit[39m
