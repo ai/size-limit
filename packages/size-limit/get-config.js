@@ -84,6 +84,9 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
   if (args.saveBundle) {
     config.saveBundle = toAbsolute(args.saveBundle, process.cwd())
   }
+  if (args.cleanDir) {
+    config.cleanDir = args.cleanDir
+  }
 
   if (args.files.length > 0) {
     config.checks = [{ path: args.files }]

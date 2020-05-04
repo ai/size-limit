@@ -290,6 +290,11 @@ Check the real performance cost of your front-end project to users
 "
 `;
 
+exports[`throws on --clean-dir argument without --save-bundle 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [33m--clean-dir[39m[31m works only with [33m--save-bundle[39m[31m argument[39m
+"
+`;
+
 exports[`throws on --save-bundle argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[39m[31m works only with [33m@size-limit/webpack[39m[31m plugin[39m
 "

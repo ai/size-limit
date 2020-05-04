@@ -195,20 +195,41 @@ it('supports --saveBundle', async () => {
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
 })
 
-it('removes --save-bundle dir/ before call', async () => {
+it('supports --clean-dir', async () => {
   let dist = join(DIST, 'index.js')
-  let getConfig = ({ useWebpack }) => ({
+  let config = {
     saveBundle: DIST,
+    cleanDir: true,
     checks: [
-      { path: [fixture('small.js')], webpack: useWebpack }
+      { path: [fixture('small.js')] }
     ]
-  })
-
-  await run(getConfig({ useWebpack: true }))
+  }
+  await run(config)
   expect(existsSync(dist)).toBe(true)
 
-  await run(getConfig({ useWebpack: false }))
+  await webpack.before(config)
   expect(existsSync(dist)).toBe(false)
+})
+
+it('throws error on not empty bundle dir', async () => {
+  let dist = join(DIST, 'index.js')
+  let config = {
+    saveBundle: DIST,
+    checks: [
+      { path: [fixture('small.js')] }
+    ]
+  }
+  await run(config)
+  expect(existsSync(dist)).toBe(true)
+
+  let err
+  try {
+    await run(config)
+  } catch (e) {
+    err = e
+  }
+
+  expect(err).toEqual(new SizeLimitError('bundleDirNotEmpty', DIST))
 })
 
 it('throws on webpack error', async () => {
