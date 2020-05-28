@@ -79,10 +79,13 @@ module.exports = process => {
       '',
       'For application, where you send JS bundle directly to users',
       '  ' + y(add + '@size-limit/preset-app'),
+      '',
       'For frameworks, components and big libraries',
       '  ' + y(add + '@size-limit/preset-big-lib'),
+      '',
       'For small (< 10 KB) libraries',
       '  ' + y(add + '@size-limit/preset-small-lib'),
+      '',
       'Check out docs for more complicated cases',
       '  ' + y('https://github.com/ai/size-limit/')
     )

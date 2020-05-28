@@ -223,10 +223,13 @@ exports[`shows migration guide for npm users 1`] = `
 
 For application, where you send JS bundle directly to users
   [33mnpm install --save-dev @size-limit/preset-app[39m
+
 For frameworks, components and big libraries
   [33mnpm install --save-dev @size-limit/preset-big-lib[39m
+
 For small (< 10 KB) libraries
   [33mnpm install --save-dev @size-limit/preset-small-lib[39m
+
 Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
 "
@@ -237,10 +240,13 @@ exports[`shows migration guide for npm users: config 1, dep 0 1`] = `
 
 For application, where you send JS bundle directly to users
   [33mnpm install --save-dev @size-limit/preset-app[39m
+
 For frameworks, components and big libraries
   [33mnpm install --save-dev @size-limit/preset-big-lib[39m
+
 For small (< 10 KB) libraries
   [33mnpm install --save-dev @size-limit/preset-small-lib[39m
+
 Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
 
@@ -253,10 +259,13 @@ exports[`shows migration guide for yarn users 1`] = `
 
 For application, where you send JS bundle directly to users
   [33myarn add --dev @size-limit/preset-app[39m
+
 For frameworks, components and big libraries
   [33myarn add --dev @size-limit/preset-big-lib[39m
+
 For small (< 10 KB) libraries
   [33myarn add --dev @size-limit/preset-small-lib[39m
+
 Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
 "
