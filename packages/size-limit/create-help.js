@@ -1,11 +1,11 @@
 let { existsSync } = require('fs')
 let { join } = require('path')
-let chalk = require('chalk')
+let kleur = require('kleur')
 
 let ownPackage = require('./package.json')
 
-let b = chalk.bold
-let y = chalk.yellow
+let b = kleur.bold
+let y = kleur.yellow
 
 function npmCommands (pkg) {
   let add = 'npm install --save-dev '
@@ -73,7 +73,7 @@ module.exports = process => {
   function showMigrationGuide (pkg) {
     let { add } = npmCommands(pkg)
     printError(
-      chalk.red('Install Size Limit preset depends on type of the project'),
+      kleur.red('Install Size Limit preset depends on type of the project'),
       '',
       'For application, where you send JS bundle directly to users',
       '  ' + y(add + '@size-limit/preset-app'),

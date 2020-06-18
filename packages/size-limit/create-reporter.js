@@ -1,4 +1,4 @@
-let chalk = require('chalk')
+let kleur = require('kleur')
 let bytes = require('bytes')
 
 function createJsonReporter (process) {
@@ -48,22 +48,22 @@ function createHumanReporter (process) {
       if (err.name === 'SizeLimitError') {
         let msg = err.message
           .split('. ')
-          .map(i => i.replace(/\*([^*]+)\*/g, chalk.yellow('$1')))
+          .map(i => i.replace(/\*([^*]+)\*/g, kleur.yellow('$1')))
           .join('.\n        ')
         process.stderr.write(
-          `${chalk.bgRed.black(' ERROR ')} ${chalk.red(msg)}\n`
+          `${kleur.bgRed().black(' ERROR ')} ${kleur.red(msg)}\n`
         )
         if (err.example) {
           process.stderr.write(
             '\n' +
               err.example
-                .replace(/("[^"]+"):/g, chalk.green('$1') + ':')
-                .replace(/: ("[^"]+")/g, ': ' + chalk.yellow('$1'))
+                .replace(/("[^"]+"):/g, kleur.green('$1') + ':')
+                .replace(/: ("[^"]+")/g, ': ' + kleur.yellow('$1'))
           )
         }
       } else {
         process.stderr.write(
-          `${chalk.bgRed.black(' ERROR ')} ${chalk.red(err.stack)}\n`
+          `${kleur.bgRed().black(' ERROR ')} ${kleur.red(err.stack)}\n`
         )
       }
     },
@@ -75,7 +75,7 @@ function createHumanReporter (process) {
         let rows = []
 
         if (config.checks.length > 1) {
-          print(chalk.bold(check.name))
+          print(kleur.bold(check.name))
         }
 
         let sizeNote
@@ -94,7 +94,7 @@ function createHumanReporter (process) {
 
         if (typeof check.timeLimit !== 'undefined') {
           if (check.passed === false) {
-            print(chalk.red('Total time limit has exceeded'))
+            print(kleur.red('Total time limit has exceeded'))
           }
           rows.push(['Time limit', formatTime(check.timeLimit)])
         }
@@ -106,7 +106,7 @@ function createHumanReporter (process) {
               sizeString = check.size + ' B'
             }
             let diff = formatBytes(check.size - check.sizeLimit)
-            print(chalk.red(`Package size limit has exceeded by ${diff}`))
+            print(kleur.red(`Package size limit has exceeded by ${diff}`))
           }
           rows.push(['Size limit', sizeLimitString])
         }
@@ -130,16 +130,16 @@ function createHumanReporter (process) {
         for (let [name, value, note] of rows) {
           let str = (name + ':').padEnd(max0 + 1) + ' '
           if (note) value = value.padEnd(max1)
-          value = chalk.bold(value)
+          value = kleur.bold(value)
           if (unlimited || name.includes('Limit')) {
             str += value
           } else if (check.passed) {
-            str += chalk.green(value)
+            str += kleur.green(value)
           } else {
-            str += chalk.red(value)
+            str += kleur.red(value)
           }
           if (note) {
-            str += ' ' + chalk.gray(note)
+            str += ' ' + kleur.gray(note)
           }
           print(str)
         }
@@ -150,13 +150,13 @@ function createHumanReporter (process) {
         let fix = 'Try to reduce size or increase limit'
         if (config.configPath) {
           if (config.configPath.endsWith('package.json')) {
-            fix += ` in ${chalk.bold('"size-limit"')} section of `
+            fix += ` in ${kleur.bold('"size-limit"')} section of `
           } else {
             fix += ' at '
           }
-          fix += chalk.bold(config.configPath)
+          fix += kleur.bold(config.configPath)
         }
-        print(chalk.yellow(fix))
+        print(kleur.yellow(fix))
       }
     }
   }

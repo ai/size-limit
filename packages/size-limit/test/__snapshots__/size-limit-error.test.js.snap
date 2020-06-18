@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`has error for CLI error 1`] = `
-"[41m[30m ERROR [39m[49m [31mcli-tool error: Module not found[39m
-[31m  @ multi ./dual-publish-tmp/index.js index[0][39m
+"[41m[30m ERROR [49m[39m [31mcli-tool error: Module not found
+  @ multi ./dual-publish-tmp/index.js index[0][39m
 "
 `;
 
 exports[`has error for CLI error without output 1`] = `
-"[41m[30m ERROR [39m[49m [31mcli-tool error[39m
+"[41m[30m ERROR [49m[39m [31mcli-tool error[39m
 "
 `;
 
 exports[`has error for unknown entry 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33madmin[39m[31m entry in custom Webpack config[39m
+"[41m[30m ERROR [49m[39m [31mSize Limit didn’t find [33madmin[39m[31m entry in custom Webpack config[39m
 "
 `;
 
 exports[`has error for unknown option 1`] = `
-"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/webpack[39m[31m plugin to Size Limit[39m
+"[41m[30m ERROR [49m[39m [31mAdd [33m@size-limit/webpack[39m[31m plugin to Size Limit[39m
 "
 `;

@@ -170,13 +170,13 @@ exports[`shows debug on error 1`] = `
     }
   ]
 }
-[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/file[39m[31m plugin to Size Limit[39m
+[41m[30m ERROR [49m[39m [31mAdd [33m@size-limit/file[39m[31m plugin to Size Limit[39m
 "
 `;
 
 exports[`shows error on missed package.json 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33mpackage.json[39m[31m.[39m
-[31m        Create npm package and run Size Limit there.[39m
+"[41m[30m ERROR [49m[39m [31mSize Limit didn’t find [33mpackage.json[39m[31m.
+        Create npm package and run Size Limit there.[39m
 "
 `;
 
@@ -194,7 +194,7 @@ exports[`shows error on time bigger than limit 1`] = `
 `;
 
 exports[`shows error when using brotli without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mbrotli[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mConfig option [33mbrotli[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
 "
 `;
 
@@ -301,23 +301,23 @@ Check the real performance cost of your front-end project to users
 `;
 
 exports[`throws on --clean-dir argument without --save-bundle 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--clean-dir[39m[31m works only with [33m--save-bundle[39m[31m argument[39m
+"[41m[30m ERROR [49m[39m [31mArgument [33m--clean-dir[39m[31m works only with [33m--save-bundle[39m[31m argument[39m
 "
 `;
 
 exports[`throws on --save-bundle argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[39m[31m works only with [33m@size-limit/webpack[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mArgument [33m--save-bundle[39m[31m works only with [33m@size-limit/webpack[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on --why argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--why[39m[31m works only with [33m@size-limit/webpack[39m[31m plugin.[39m
-[31m        You can add Bundle Analyzer to you own bundler.[39m
+"[41m[30m ERROR [49m[39m [31mArgument [33m--why[39m[31m works only with [33m@size-limit/webpack[39m[31m plugin.
+        You can add Bundle Analyzer to you own bundler.[39m
 "
 `;
 
 exports[`throws on empty config 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit config must [33mnot be empty[39m[31m[39m
+"[41m[30m ERROR [49m[39m [31mSize Limit config must [33mnot be empty[39m[31m[39m
 
   [32m\\"size-limit\\"[39m: [
     {
@@ -329,12 +329,12 @@ exports[`throws on empty config 1`] = `
 `;
 
 exports[`throws on gzip option without gzip plugin 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[39m[31m needs [33m@size-limit/webpack[39m[31m or [33m@size-limit/file[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mConfig option [33mgzip[39m[31m needs [33m@size-limit/webpack[39m[31m or [33m@size-limit/file[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on no config 1`] = `
-"[41m[30m ERROR [39m[49m [31mCreate Size Limit config in [33mpackage.json[39m[31m[39m
+"[41m[30m ERROR [49m[39m [31mCreate Size Limit config in [33mpackage.json[39m[31m[39m
 
   [32m\\"size-limit\\"[39m: [
     {
@@ -346,7 +346,7 @@ exports[`throws on no config 1`] = `
 `;
 
 exports[`throws on non-array config 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit config must contain [33man array[39m[31m[39m
+"[41m[30m ERROR [49m[39m [31mSize Limit config must contain [33man array[39m[31m[39m
 
   [32m\\"size-limit\\"[39m: [
     {
@@ -358,7 +358,7 @@ exports[`throws on non-array config 1`] = `
 `;
 
 exports[`throws on non-object check 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit config array should contain [33monly objects[39m[31m[39m
+"[41m[30m ERROR [49m[39m [31mSize Limit config array should contain [33monly objects[39m[31m[39m
 
   [32m\\"size-limit\\"[39m: [
     {
@@ -370,12 +370,12 @@ exports[`throws on non-object check 1`] = `
 `;
 
 exports[`throws on non-string entry 1`] = `
-"[41m[30m ERROR [39m[49m [31mThe [33mentry[39m[31m in Size Limit config must be [33ma string[39m[31m or [33man array of strings[39m[31m[39m
+"[41m[30m ERROR [49m[39m [31mThe [33mentry[39m[31m in Size Limit config must be [33ma string[39m[31m or [33man array of strings[39m[31m[39m
 "
 `;
 
 exports[`throws on non-string path 1`] = `
-"[41m[30m ERROR [39m[49m [31mThe [33mpath[39m[31m in Size Limit config must be [33ma string[39m[31m or [33man array of strings[39m[31m[39m
+"[41m[30m ERROR [49m[39m [31mThe [33mpath[39m[31m in Size Limit config must be [33ma string[39m[31m or [33man array of strings[39m[31m[39m
 
   [32m\\"size-limit\\"[39m: [
     {
@@ -387,39 +387,39 @@ exports[`throws on non-string path 1`] = `
 `;
 
 exports[`throws on running option without time plugin 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mrunning[39m[31m needs [33m@size-limit/time[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mConfig option [33mrunning[39m[31m needs [33m@size-limit/time[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on time limit without time plugin 1`] = `
-"[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/time[39m[31m plugin to use time limit[39m
+"[41m[30m ERROR [49m[39m [31mAdd [33m@size-limit/time[39m[31m plugin to use time limit[39m
 "
 `;
 
 exports[`throws on unknown argument 1`] = `
-"[41m[30m ERROR [39m[49m [31mUnknown argument [33m--unknown[39m[31m.[39m
-[31m        Check command for typo and read docs.[39m
+"[41m[30m ERROR [49m[39m [31mUnknown argument [33m--unknown[39m[31m.
+        Check command for typo and read docs.[39m
 "
 `;
 
 exports[`throws on unknown option 1`] = `
-"[41m[30m ERROR [39m[49m [31mUnknown option [33munknown[39m[31m in config.[39m
-[31m        Check Size Limit docs and version.[39m
+"[41m[30m ERROR [49m[39m [31mUnknown option [33munknown[39m[31m in config.
+        Check Size Limit docs and version.[39m
 "
 `;
 
 exports[`throws on webpack option without webpack plugin 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mwebpack[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mConfig option [33mwebpack[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on webpack option without webpack plugin 2`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mignore[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mConfig option [33mignore[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on webpack option without webpack plugin 3`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
+"[41m[30m ERROR [49m[39m [31mConfig option [33mconfig[39m[31m needs [33m@size-limit/webpack[39m[31m plugin[39m
 "
 `;
 
