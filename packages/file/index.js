@@ -14,11 +14,13 @@ async function sum (array, fn) {
 function brotliSize (path) {
   return new Promise((resolve, reject) => {
     let size = 0
-    let pipe = fs.createReadStream(path).pipe(createBrotliCompress({
-      params: {
-        [constants.BROTLI_PARAM_QUALITY]: 11
-      }
-    }))
+    let pipe = fs.createReadStream(path).pipe(
+      createBrotliCompress({
+        params: {
+          [constants.BROTLI_PARAM_QUALITY]: 11
+        }
+      })
+    )
     pipe.on('error', reject)
     pipe.on('data', buf => {
       size += buf.length

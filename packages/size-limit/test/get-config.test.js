@@ -4,7 +4,7 @@ let calc = require('../calc')
 let run = require('../run')
 
 jest.mock('../create-reporter', () => () => ({
-  results () { },
+  results () {},
   error (e) {
     throw e
   }
@@ -172,8 +172,10 @@ it('normalizes import', async () => {
     checks: [
       {
         import: {
-          [fixture('integration-esm', 'index.js')]:
-            '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
+          [fixture(
+            'integration-esm',
+            'index.js'
+          )]: '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
         },
         limit: '1 B',
         name: 'index.js',

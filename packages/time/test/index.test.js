@@ -57,9 +57,7 @@ it('avoids run on request', async () => {
 
 it('is compatible with file plugin', async () => {
   let config = {
-    checks: [
-      { path: ['/a'], size: 1024 * 1024 }
-    ]
+    checks: [{ path: ['/a'], size: 1024 * 1024 }]
   }
   await time.step80(config, config.checks[0])
   expect(getRunningTime).toHaveBeenCalledWith('/a')
@@ -68,9 +66,7 @@ it('is compatible with file plugin', async () => {
 
 it('uses 1 ms for download as minimum', async () => {
   let config = {
-    checks: [
-      { path: ['/a'], size: 1 }
-    ]
+    checks: [{ path: ['/a'], size: 1 }]
   }
   await time.step80(config, config.checks[0])
   expect(config.checks[0].loadTime).toEqual(0.01)
@@ -78,9 +74,7 @@ it('uses 1 ms for download as minimum', async () => {
 
 it('uses 0 ms for download for 0 bytes', async () => {
   let config = {
-    checks: [
-      { path: ['/a'], size: 0 }
-    ]
+    checks: [{ path: ['/a'], size: 0 }]
   }
   await time.step80(config, config.checks[0])
   expect(config.checks[0].loadTime).toEqual(0)
@@ -88,9 +82,7 @@ it('uses 0 ms for download for 0 bytes', async () => {
 
 it('throws an error on missed size', async () => {
   let config = {
-    checks: [
-      { path: ['/a'] }
-    ]
+    checks: [{ path: ['/a'] }]
   }
   let err
   try {

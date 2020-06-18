@@ -16,7 +16,7 @@ const WEBPACK_EMPTY_PROJECT_IMPORT = 965
 const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 473
 
 function getFiles (stats, check) {
-  let entries = { }
+  let entries = {}
   if (check.entry) {
     for (let i of check.entry) {
       if (stats.entrypoints[i]) {
@@ -70,7 +70,7 @@ let self = {
     if (check.webpack === false) return
     check.webpackOutput = config.saveBundle
     if (!check.webpackOutput) {
-      check.webpackOutput = join(tmpdir(), `size-limit-${ nanoid() }`)
+      check.webpackOutput = join(tmpdir(), `size-limit-${nanoid()}`)
     }
     if (check.config) {
       check.webpackConfig = require(check.config)

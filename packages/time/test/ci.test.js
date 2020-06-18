@@ -8,7 +8,7 @@ jest.mock('../cache', () => ({
   getCache () {
     return false
   },
-  saveCache () { }
+  saveCache () {}
 }))
 
 beforeEach(() => {

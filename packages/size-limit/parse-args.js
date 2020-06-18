@@ -16,7 +16,9 @@ module.exports = function parseArgs (plugins, argv) {
     } else if (arg === '--clean-dir') {
       if (!argv.includes('--save-bundle')) {
         throw new SizeLimitError(
-          'argWithoutAnotherArg', 'clean-dir', 'save-bundle'
+          'argWithoutAnotherArg',
+          'clean-dir',
+          'save-bundle'
         )
       }
       args.cleanDir = true

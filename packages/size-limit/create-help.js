@@ -31,28 +31,28 @@ module.exports = process => {
       'Check the real performance cost of your front-end project to users',
       '',
       b('Core options:'),
-      `  ${ y('--limit LIMIT') }  Set size or running time limit for files`,
-      `  ${ y('--json') }         Show results in JSON format`,
-      `  ${ y('--help') }         Display this help`,
-      `  ${ y('--watch') }        Runs in watch mode`,
-      `  ${ y('--debug') }        Show internal configs for issue report`,
-      `  ${ y('--version') }      Display version`
+      `  ${y('--limit LIMIT')}  Set size or running time limit for files`,
+      `  ${y('--json')}         Show results in JSON format`,
+      `  ${y('--help')}         Display this help`,
+      `  ${y('--watch')}        Runs in watch mode`,
+      `  ${y('--debug')}        Show internal configs for issue report`,
+      `  ${y('--version')}      Display version`
     )
     if (plugins.has('webpack')) {
       print(
         '',
         b('Webpack options:'),
-        `  ${ y('--why') }              Show package content`,
-        `  ${ y('--save-bundle DIR') }  Put build files to check them by hand`,
-        `  ${ y('--clean-dir') }        Remove build files folder before start`
+        `  ${y('--why')}              Show package content`,
+        `  ${y('--save-bundle DIR')}  Put build files to check them by hand`,
+        `  ${y('--clean-dir')}        Remove build files folder before start`
       )
     }
     print(
       '',
       b('Examples:'),
       '  ' + y('size-limit'),
-      `    Read configuration from ${ b('package.json') } or ` +
-        `${ b('.size-limit.json') } and check limit`,
+      `    Read configuration from ${b('package.json')} or ` +
+        `${b('.size-limit.json')} and check limit`,
       y('  size-limit index.js')
     )
     if (plugins.has('webpack')) {
@@ -62,14 +62,12 @@ module.exports = process => {
         '    Show reasons why project have this size'
       )
     } else {
-      print(
-        '    Show the size of specific files'
-      )
+      print('    Show the size of specific files')
     }
   }
 
   function showVersion () {
-    print(`size-limit ${ ownPackage.version }`)
+    print(`size-limit ${ownPackage.version}`)
   }
 
   function showMigrationGuide (pkg) {
@@ -93,7 +91,7 @@ module.exports = process => {
     if (devDependencies && !devDependencies['size-limit']) {
       printError(
         '',
-        `You need to add size-limit dependency: ${ y(add + 'size-limit') }`
+        `You need to add size-limit dependency: ${y(add + 'size-limit')}`
       )
     }
   }

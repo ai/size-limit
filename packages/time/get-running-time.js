@@ -20,15 +20,15 @@ async function getTime (file, throttling = 1) {
       if (process.env.CI) {
         console.warn(
           'Check that you use circleci/node:latest-browsers ' +
-          'or buildkite/puppeteer:latest Docker image.\n' +
-          `More details: ${ URL }\n`
+            'or buildkite/puppeteer:latest Docker image.\n' +
+            `More details: ${URL}\n`
         )
       }
       throw e
     }
     value += perf[0].javaScript / 1000
   }
-  return throttling * value / 3
+  return (throttling * value) / 3
 }
 
 async function getThrottling () {

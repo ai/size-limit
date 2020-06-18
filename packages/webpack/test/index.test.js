@@ -44,9 +44,7 @@ afterEach(async () => {
 
 it('uses webpack to make bundle', async () => {
   let config = {
-    checks: [
-      { path: [fixture('big.js')] }
-    ]
+    checks: [{ path: [fixture('big.js')] }]
   }
   await run(config)
   expect(config).toEqual({
@@ -67,9 +65,7 @@ it('uses webpack to make bundle', async () => {
 
 it('supports non-JS require', async () => {
   let config = {
-    checks: [
-      { path: [fixture('nonjs.js')] }
-    ]
+    checks: [{ path: [fixture('nonjs.js')] }]
   }
   await run(config)
   expect(config.checks[0].size).toBeGreaterThan(1450)
@@ -78,9 +74,7 @@ it('supports non-JS require', async () => {
 
 it('supports ignore', async () => {
   let config = {
-    checks: [
-      { path: fixture('big.js'), ignore: ['redux'] }
-    ]
+    checks: [{ path: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(27)
@@ -89,9 +83,7 @@ it('supports ignore', async () => {
 it('supports custom webpack config', async () => {
   let config = {
     configPath: ROOT_CONFIG,
-    checks: [
-      { config: fixture('webpack.config.js') }
-    ]
+    checks: [{ config: fixture('webpack.config.js') }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(1840)
@@ -100,9 +92,7 @@ it('supports custom webpack config', async () => {
 it('supports custom entry', async () => {
   let config = {
     configPath: ROOT_CONFIG,
-    checks: [
-      { config: fixture('webpack.config.js'), entry: ['small'] }
-    ]
+    checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(688)
@@ -111,9 +101,7 @@ it('supports custom entry', async () => {
 it('throws error on unknown entry', async () => {
   let config = {
     configPath: ROOT_CONFIG,
-    checks: [
-      { config: fixture('webpack.config.js'), entry: ['unknown'] }
-    ]
+    checks: [{ config: fixture('webpack.config.js'), entry: ['unknown'] }]
   }
   let err
   try {
@@ -127,9 +115,7 @@ it('throws error on unknown entry', async () => {
 
 it('allows to disable webpack', async () => {
   let config = {
-    checks: [
-      { path: [fixture('big.js')], webpack: false }
-    ]
+    checks: [{ path: [fixture('big.js')], webpack: false }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(55)
@@ -137,9 +123,7 @@ it('allows to disable webpack', async () => {
 
 it('allows to disable gzip', async () => {
   let config = {
-    checks: [
-      { path: [fixture('small.js')], gzip: false }
-    ]
+    checks: [{ path: [fixture('small.js')], gzip: false }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(36)
@@ -147,9 +131,7 @@ it('allows to disable gzip', async () => {
 
 it('throws on missed file plugin', async () => {
   let config = {
-    checks: [
-      { path: [fixture('small.js')] }
-    ]
+    checks: [{ path: [fixture('small.js')] }]
   }
   try {
     await webpack.step20(config, config.checks[0])
@@ -171,9 +153,7 @@ it('supports --why', async () => {
   let config = {
     project: 'superProject',
     why: true,
-    checks: [
-      { path: [fixture('big.js')] }
-    ]
+    checks: [{ path: [fixture('big.js')] }]
   }
   try {
     await webpack.step20(config, config.checks[0])
@@ -189,9 +169,7 @@ it('supports --why', async () => {
 it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,
-    checks: [
-      { path: [fixture('small.js')] }
-    ]
+    checks: [{ path: [fixture('small.js')] }]
   }
   await run(config)
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
@@ -202,9 +180,7 @@ it('supports --clean-dir', async () => {
   let config = {
     saveBundle: DIST,
     cleanDir: true,
-    checks: [
-      { path: [fixture('small.js')] }
-    ]
+    checks: [{ path: [fixture('small.js')] }]
   }
   await run(config)
   expect(existsSync(dist)).toBe(true)
@@ -217,9 +193,7 @@ it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
     saveBundle: DIST,
-    checks: [
-      { path: [fixture('small.js')] }
-    ]
+    checks: [{ path: [fixture('small.js')] }]
   }
   await run(config)
   expect(existsSync(dist)).toBe(true)
@@ -238,9 +212,7 @@ it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'index.js')
   let config = {
     saveBundle: distFile,
-    checks: [
-      { path: [fixture('small.js')] }
-    ]
+    checks: [{ path: [fixture('small.js')] }]
   }
   await mkdir(DIST)
   await writeFile(distFile, '')
@@ -256,9 +228,7 @@ it('throws unsupported error --save-bundle', async () => {
 
 it('throws on webpack error', async () => {
   let config = {
-    checks: [
-      { path: [fixture('unknown.js')] }
-    ]
+    checks: [{ path: [fixture('unknown.js')] }]
   }
   let err
   try {

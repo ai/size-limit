@@ -12,14 +12,16 @@ function createJsonReporter (process) {
     },
 
     results (plugins, config) {
-      print(config.checks.map(i => {
-        let result = { name: i.name }
-        if (typeof i.passed !== 'undefined') result.passed = i.passed
-        if (typeof i.size !== 'undefined') result.size = i.size
-        if (typeof i.runTime !== 'undefined') result.running = i.runTime
-        if (typeof i.loadTime !== 'undefined') result.loading = i.loadTime
-        return result
-      }))
+      print(
+        config.checks.map(i => {
+          let result = { name: i.name }
+          if (typeof i.passed !== 'undefined') result.passed = i.passed
+          if (typeof i.size !== 'undefined') result.size = i.size
+          if (typeof i.runTime !== 'undefined') result.running = i.runTime
+          if (typeof i.loadTime !== 'undefined') result.loading = i.loadTime
+          return result
+        })
+      )
     }
   }
 }
@@ -35,7 +37,7 @@ function createHumanReporter (process) {
 
   function formatTime (seconds) {
     if (seconds >= 1) {
-      return (Math.ceil(seconds * 10) / 10) + ' s'
+      return Math.ceil(seconds * 10) / 10 + ' s'
     } else {
       return Math.ceil(seconds * 1000) + ' ms'
     }
@@ -49,18 +51,19 @@ function createHumanReporter (process) {
           .map(i => i.replace(/\*([^*]+)\*/g, chalk.yellow('$1')))
           .join('.\n        ')
         process.stderr.write(
-          `${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(msg) }\n`
+          `${chalk.bgRed.black(' ERROR ')} ${chalk.red(msg)}\n`
         )
         if (err.example) {
           process.stderr.write(
-            '\n' + err.example
-              .replace(/("[^"]+"):/g, chalk.green('$1') + ':')
-              .replace(/: ("[^"]+")/g, ': ' + chalk.yellow('$1'))
+            '\n' +
+              err.example
+                .replace(/("[^"]+"):/g, chalk.green('$1') + ':')
+                .replace(/: ("[^"]+")/g, ': ' + chalk.yellow('$1'))
           )
         }
       } else {
         process.stderr.write(
-          `${ chalk.bgRed.black(' ERROR ') } ${ chalk.red(err.stack) }\n`
+          `${chalk.bgRed.black(' ERROR ')} ${chalk.red(err.stack)}\n`
         )
       }
     },
@@ -103,7 +106,7 @@ function createHumanReporter (process) {
               sizeString = check.size + ' B'
             }
             let diff = formatBytes(check.size - check.sizeLimit)
-            print(chalk.red(`Package size limit has exceeded by ${ diff }`))
+            print(chalk.red(`Package size limit has exceeded by ${diff}`))
           }
           rows.push(['Size limit', sizeLimitString])
         }
@@ -147,7 +150,7 @@ function createHumanReporter (process) {
         let fix = 'Try to reduce size or increase limit'
         if (config.configPath) {
           if (config.configPath.endsWith('package.json')) {
-            fix += ` in ${ chalk.bold('"size-limit"') } section of `
+            fix += ` in ${chalk.bold('"size-limit"')} section of `
           } else {
             fix += ' at '
           }

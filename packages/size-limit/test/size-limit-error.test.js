@@ -5,7 +5,7 @@ function print (err) {
   let stderr = ''
   let process = {
     stderr: {
-      write  (str) {
+      write (str) {
         stderr += str
       }
     }

@@ -8,7 +8,7 @@ jest.mock('../../time/cache', () => ({
   getCache () {
     return false
   },
-  saveCache () { }
+  saveCache () {}
 }))
 
 jest.mock('ora', () => {
@@ -16,8 +16,8 @@ jest.mock('ora', () => {
     start () {
       return this
     },
-    succeed () { },
-    fail () { }
+    succeed () {},
+    fail () {}
   })
 })
 
@@ -48,12 +48,18 @@ function createProcess (cwd, args = []) {
     },
     stdout: {
       write (str) {
-        history.stdout += str.split(ROOT).join('').replace(TMP_DIR, '')
+        history.stdout += str
+          .split(ROOT)
+          .join('')
+          .replace(TMP_DIR, '')
       }
     },
     stderr: {
       write (str) {
-        history.stderr += str.split(ROOT).join('').replace(TMP_DIR, '')
+        history.stderr += str
+          .split(ROOT)
+          .join('')
+          .replace(TMP_DIR, '')
       }
     }
   }

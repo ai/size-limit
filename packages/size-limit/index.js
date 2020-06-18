@@ -19,7 +19,7 @@ module.exports = async function (plugins, files) {
   await calc(pluginList, files, false)
 
   return files.checks.map(i => {
-    let value = { }
+    let value = {}
     for (let prop of ['size', 'time', 'runTime', 'loadTime']) {
       if (typeof i[prop] !== 'undefined') value[prop] = i[prop]
     }

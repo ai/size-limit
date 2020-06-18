@@ -22,7 +22,7 @@ async function getCache () {
     let cache = JSON.parse(await readFile(CACHE))
     if (typeof cache !== 'object' || cache.version !== VERSION) cache = false
     return cache.throttling || false
-  } catch (e) {
+  } catch {
     return false
   }
 }

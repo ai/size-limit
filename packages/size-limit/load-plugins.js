@@ -9,7 +9,7 @@ class Plugins {
   }
 
   has (type) {
-    return this.list.some(i => i.name === `@size-limit/${ type }`)
+    return this.list.some(i => i.name === `@size-limit/${type}`)
   }
 }
 
@@ -19,9 +19,15 @@ module.exports = function loadPlugins (pkg) {
   let list = toArray(pkg.packageJson.dependencies)
     .concat(toArray(pkg.packageJson.devDependencies))
     .filter(i => i.startsWith('@size-limit/'))
-    .reduce((all, i) => all.concat(require(require.resolve(i, {
-      paths: [process.cwd()]
-    }))), [])
+    .reduce(
+      (all, i) =>
+        all.concat(
+          require(require.resolve(i, {
+            paths: [process.cwd()]
+          }))
+        ),
+      []
+    )
 
   return new Plugins(list)
 }

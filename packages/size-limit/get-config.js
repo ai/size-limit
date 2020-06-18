@@ -70,7 +70,7 @@ function toAbsolute (file, cwd) {
 }
 
 function toName (files, cwd) {
-  return files.map(i => i.startsWith(cwd) ? relative(cwd, i) : i).join(', ')
+  return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
 module.exports = async function getConfig (plugins, process, args, pkg) {
@@ -106,23 +106,25 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
 
     config.configPath = relative(process.cwd(), result.filepath)
     config.cwd = dirname(result.filepath)
-    config.checks = await Promise.all(result.config.map(async check => {
-      if (check.path) {
-        check.path = await globby(check.path, { cwd: config.cwd })
-      } else if (!check.entry) {
-        if (pkg.packageJson.main) {
-          check.path = [
-            require.resolve(join(dirname(pkg.path), pkg.packageJson.main))
-          ]
-        } else {
-          check.path = [join(dirname(pkg.path), 'index.js')]
+    config.checks = await Promise.all(
+      result.config.map(async check => {
+        if (check.path) {
+          check.path = await globby(check.path, { cwd: config.cwd })
+        } else if (!check.entry) {
+          if (pkg.packageJson.main) {
+            check.path = [
+              require.resolve(join(dirname(pkg.path), pkg.packageJson.main))
+            ]
+          } else {
+            check.path = [join(dirname(pkg.path), 'index.js')]
+          }
         }
-      }
-      return check
-    }))
+        return check
+      })
+    )
   }
 
-  let peer = Object.keys(pkg.packageJson.peerDependencies || { })
+  let peer = Object.keys(pkg.packageJson.peerDependencies || {})
   for (let check of config.checks) {
     if (peer.length > 0) check.ignore = peer.concat(check.ignore || [])
     if (check.entry && !Array.isArray(check.entry)) check.entry = [check.entry]
@@ -148,7 +150,7 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
       }
     }
     if (check.import) {
-      let imports = { }
+      let imports = {}
       for (let i in check.import) {
         imports[toAbsolute(i, config.cwd)] = check.import[i]
       }

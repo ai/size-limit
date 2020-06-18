@@ -9,16 +9,16 @@ let fs = require('fs')
 
 let writeFile = promisify(fs.writeFile)
 
-const STATIC =
-  /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
+const STATIC = /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
 module.exports = async function getConfig (limitConfig, check, output) {
   if (check.import) {
     let loader = ''
     for (let i in check.import) {
       let list = check.import[i].replace(/}|{/g, '').trim()
-      loader += `import ${ check.import[i] } from ${ JSON.stringify(i) }\n` +
-                `console.log(${ list })\n`
+      loader +=
+        `import ${check.import[i]} from ${JSON.stringify(i)}\n` +
+        `console.log(${list})\n`
     }
     await mkdirp(output)
     let entry = join(output, 'entry.js')
@@ -31,21 +31,17 @@ module.exports = async function getConfig (limitConfig, check, output) {
       index: check.path
     },
     output: {
-      filename: limitConfig.why && `${ limitConfig.project }.js`,
+      filename: limitConfig.why && `${limitConfig.project}.js`,
       path: output
     },
     optimization: {
       concatenateModules: !check.disableModuleConcatenation
     },
     resolve: {
-      plugins: [
-        PnpWebpackPlugin
-      ]
+      plugins: [PnpWebpackPlugin]
     },
     resolveLoader: {
-      plugins: [
-        PnpWebpackPlugin.moduleLoader(module)
-      ]
+      plugins: [PnpWebpackPlugin.moduleLoader(module)]
     },
     module: {
       rules: [
@@ -72,14 +68,12 @@ module.exports = async function getConfig (limitConfig, check, output) {
         }
       ]
     },
-    plugins: [
-      new OptimizeCss()
-    ]
+    plugins: [new OptimizeCss()]
   }
 
   if (check.ignore && check.ignore.length > 0) {
     let escaped = check.ignore.map(i => escapeRegexp(i))
-    let ignorePattern = new RegExp(`^(${ escaped.join('|') })($|/)`)
+    let ignorePattern = new RegExp(`^(${escaped.join('|')})($|/)`)
     config.externals = (context, request, callback) => {
       if (ignorePattern.test(request)) {
         callback(null, 'root a')
@@ -90,12 +84,14 @@ module.exports = async function getConfig (limitConfig, check, output) {
   }
 
   if (limitConfig.why) {
-    config.plugins.push(new BundleAnalyzerPlugin({
-      openAnalyzer: process.env.NODE_ENV !== 'test',
-      analyzerMode: process.env.NODE_ENV === 'test' ? 'static' : 'server',
-      defaultSizes: check.gzip === false ? 'parsed' : 'gzip',
-      analyzerPort: 8888 + limitConfig.checks.findIndex(i => i === check)
-    }))
+    config.plugins.push(
+      new BundleAnalyzerPlugin({
+        openAnalyzer: process.env.NODE_ENV !== 'test',
+        analyzerMode: process.env.NODE_ENV === 'test' ? 'static' : 'server',
+        defaultSizes: check.gzip === false ? 'parsed' : 'gzip',
+        analyzerPort: 8888 + limitConfig.checks.findIndex(i => i === check)
+      })
+    )
   }
 
   return config

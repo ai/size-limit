@@ -37,56 +37,46 @@ it('calculates file size with gzip by default', async () => {
 
 it('calculates file size with gzip by true value', async () => {
   let config = {
-    checks: [
-      { path: [fixture('b.txt')], gzip: true }
-    ]
+    checks: [{ path: [fixture('b.txt')], gzip: true }]
   }
   await file.step60(config, config.checks[0])
   expect(config.checks[0].size).toEqual(29)
 })
 
-it('calculates file size with brotli by true value and node >= v11.7.0',
-  async () => {
-    Object.defineProperty(process, 'version', {
-      value: 'v11.7.0'
-    })
-    let config = {
-      checks: [
-        { path: [fixture('b.txt')], brotli: true }
-      ]
-    }
+it('calculates file size with brotli by true value and node >= v11.7.0', async () => {
+  Object.defineProperty(process, 'version', {
+    value: 'v11.7.0'
+  })
+  let config = {
+    checks: [{ path: [fixture('b.txt')], brotli: true }]
+  }
+  await file.step60(config, config.checks[0])
+
+  expect(config.checks[0].size).toEqual(17)
+})
+
+it('calculates file size with brotli by true value and node < v11.7.0', async () => {
+  Object.defineProperty(process, 'version', {
+    value: 'v11.6.0'
+  })
+
+  let config = {
+    checks: [{ path: [fixture('b.txt')], brotli: true }]
+  }
+
+  let err
+  try {
     await file.step60(config, config.checks[0])
+  } catch (e) {
+    err = e
+  }
 
-    expect(config.checks[0].size).toEqual(17)
-  })
-
-it('calculates file size with brotli by true value and node < v11.7.0',
-  async () => {
-    Object.defineProperty(process, 'version', {
-      value: 'v11.6.0'
-    })
-
-    let config = {
-      checks: [
-        { path: [fixture('b.txt')], brotli: true }
-      ]
-    }
-
-    let err
-    try {
-      await file.step60(config, config.checks[0])
-    } catch (e) {
-      err = e
-    }
-
-    expect(err).toEqual(new SizeLimitError('brotliUnsupported'))
-  })
+  expect(err).toEqual(new SizeLimitError('brotliUnsupported'))
+})
 
 it('uses webpack bundle if available', async () => {
   let config = {
-    checks: [
-      { path: [fixture('b.txt')], bundles: [fixture('a.txt')] }
-    ]
+    checks: [{ path: [fixture('b.txt')], bundles: [fixture('a.txt')] }]
   }
   await file.step60(config, config.checks[0])
   expect(config.checks[0].size).toEqual(22)
@@ -94,9 +84,7 @@ it('uses webpack bundle if available', async () => {
 
 it('calculates file size without gzip', async () => {
   let config = {
-    checks: [
-      { path: [fixture('b.txt')], gzip: false }
-    ]
+    checks: [{ path: [fixture('b.txt')], gzip: false }]
   }
   await file.step60(config, config.checks[0])
   expect(config.checks[0].size).toEqual(144)

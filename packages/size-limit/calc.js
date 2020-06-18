@@ -12,9 +12,11 @@ module.exports = async function calc (plugins, config, createSpinner) {
           if (plugin['all' + number]) {
             await plugin['all' + number](config)
           } else {
-            await Promise.all(config.checks.map(i => {
-              return plugin['step' + number](config, i)
-            }))
+            await Promise.all(
+              config.checks.map(i => {
+                return plugin['step' + number](config, i)
+              })
+            )
           }
         } catch (e) {
           if (spinner) spinner.fail()
@@ -28,9 +30,11 @@ module.exports = async function calc (plugins, config, createSpinner) {
   async function callMethodForEachPlugin (methodName) {
     for (let plugin of plugins.list) {
       if (plugin[methodName]) {
-        await Promise.all(config.checks.map(i => {
-          return plugin[methodName](config, i)
-        }))
+        await Promise.all(
+          config.checks.map(i => {
+            return plugin[methodName](config, i)
+          })
+        )
       }
     }
   }

@@ -37,7 +37,7 @@ let self = {
         )
       })
       if (check.import) {
-        let imports = { }
+        let imports = {}
         for (let i in check.import) {
           let changed = join(
             config.cwd,
