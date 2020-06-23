@@ -2516,14 +2516,14 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-dual-publish@^0.10.5:
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/dual-publish/-/dual-publish-0.10.5.tgz#e8c4bb2b3d5fd6430dd83b1807d9718c03539361"
-  integrity sha512-hfAKvL4nTwvwgZjAV/FN345oEjNRxqkp4erstXoRlnPTuCAJaRdgY/Hv26F12m8Rxaz6SUFSTijNym1xBR80JA==
+dual-publish@^0.10.6:
+  version "0.10.6"
+  resolved "https://registry.yarnpkg.com/dual-publish/-/dual-publish-0.10.6.tgz#0cd1cf0535e10f5dcff44842b8ccd56375a9b838"
+  integrity sha512-Akk5BNtfnidTSmncEvr88lqSj0nOHz7oYUD/ZR6SYyclfJ8SagR3HZ7h59viqrb3RE3G6aCUnGwKQIvj/rsQmw==
   dependencies:
     clean-publish "^1.1.7"
+    colorette "^1.2.0"
     globby "^11.0.1"
-    kleur "^4.0.0"
     line-column "^1.0.2"
     rimraf "^3.0.2"
 
@@ -4907,11 +4907,6 @@ kleur@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
-
-kleur@^4.0.0, kleur@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.0.1.tgz#3d4948534b666e2578f93b6fafb62108e64f05ef"
-  integrity sha512-Qs6SqCLm63rd0kNVh+wO4XsWLU6kgfwwaPYsLiClWf0Tewkzsa6MvB21bespb8cz+ANS+2t3So1ge3gintzhlw==
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"

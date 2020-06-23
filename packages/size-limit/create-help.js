@@ -1,11 +1,8 @@
+let { bold: b, yellow: y, red } = require('colorette')
 let { existsSync } = require('fs')
 let { join } = require('path')
-let kleur = require('kleur')
 
 let ownPackage = require('./package.json')
-
-let b = kleur.bold
-let y = kleur.yellow
 
 function npmCommands (pkg) {
   let add = 'npm install --save-dev '
@@ -73,7 +70,7 @@ module.exports = process => {
   function showMigrationGuide (pkg) {
     let { add } = npmCommands(pkg)
     printError(
-      kleur.red('Install Size Limit preset depends on type of the project'),
+      red('Install Size Limit preset depends on type of the project'),
       '',
       'For application, where you send JS bundle directly to users',
       '  ' + y(add + '@size-limit/preset-app'),
