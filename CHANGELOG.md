@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.5.2
+* Replace color output library.
+
 ## 4.5.1
 * Reduce dependencies.
 * Improve docs (by Mikhail Bashurov).
