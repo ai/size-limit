@@ -49,6 +49,14 @@ exports[`renders failed results 1`] = `
 "
 `;
 
+exports[`renders result for file without gzip 1`] = `
+"  
+  Size limit: [32m[1m99 B[22m[39m
+  Size:       [32m[1m100 B[22m[39m
+  
+"
+`;
+
 exports[`renders results 1`] = `
 "  
   [1mlimitless[22m
@@ -78,7 +86,7 @@ exports[`renders single result 1`] = `
 "  
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m100 B[22m[39m
-  Size:       [31m[1m101 B[22m[39m
+  Size:       [31m[1m101 B[22m[39m [90mgzipped[39m
   
   [33mTry to reduce size or increase limit at [1m.size-limit.json[22m[39m
 "
