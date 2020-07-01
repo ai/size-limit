@@ -83,7 +83,7 @@ function createHumanReporter (process) {
           sizeNote = 'with all dependencies and minified'
         } else if (plugins.has('webpack')) {
           sizeNote = 'with all dependencies, minified and gzipped'
-        } else if (plugins.has('gzip')) {
+        } else if (plugins.has('file') && check.gzip !== false) {
           sizeNote = 'gzipped'
         }
         let sizeString = formatBytes(check.size)

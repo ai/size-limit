@@ -57,7 +57,7 @@ it('renders results', () => {
 
 it('renders failed results', () => {
   expect(
-    results(['gzip'], {
+    results(['file'], {
       checks: [
         {
           name: 'ok',
@@ -145,5 +145,23 @@ it('renders JSON results', () => {
       },
       true
     )
+  ).toMatchSnapshot()
+})
+
+it('renders result for file without gzip', () => {
+  expect(
+    results(['file'], {
+      checks: [
+        {
+          name: 'without gzip',
+          size: 100,
+          sizeLimit: 99,
+          passed: true,
+          gzip: false
+        }
+      ],
+      failed: false,
+      configPath: '.size-limit.json'
+    })
   ).toMatchSnapshot()
 })
