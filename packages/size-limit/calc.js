@@ -1,5 +1,5 @@
 module.exports = async function calc (plugins, config, createSpinner) {
-  process.setMaxListeners(config.checks.reduce((a, i) => a + i.path.length, 0))
+  process.setMaxListeners(config.checks.reduce((a, i) => a + i.path.length, 1))
 
   async function step (number) {
     for (let plugin of plugins.list) {
