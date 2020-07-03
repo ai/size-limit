@@ -26,7 +26,7 @@
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-es5": "^1.5.0",
-    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^23.17.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^1.0.1",
@@ -41,7 +41,7 @@
     "lint-staged": "^10.2.4",
     "print-snapshots": "^0.3.2",
     "rimraf": "^3.0.2",
-    "typescript": "^3.9.5",
+    "typescript": "^3.9.6",
     "yaspeller-ci": "^1.0.2"
   },
   "eslintConfig": {
