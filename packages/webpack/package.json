@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack",
-  "version": "4.5.2",
+  "version": "4.5.3",
   "description": "Webpack plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,7 +17,7 @@
     "node": ">=10.0.0"
   },
   "peerDependencies": {
-    "size-limit": "4.5.2"
+    "size-limit": "4.5.3"
   },
   "dependencies": {
     "css-loader": "^3.6.0",

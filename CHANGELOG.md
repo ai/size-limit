@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.5.3
+* Fixed `MaxListenersExceededWarning` (by Pavel Pustovalov).
+* Fixed `gzipped` note (by Evgeniy Timokhov).
+
 ## 4.5.2
 * Replace color output library.
 
