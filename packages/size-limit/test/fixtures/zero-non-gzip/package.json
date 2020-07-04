@@ -1,5 +1,5 @@
 {
-  "name": "intergration",
+  "name": "integration",
   "private": true,
   "devDependencies": {
     "@size-limit/preset-small-lib": ">= 0.0.0",

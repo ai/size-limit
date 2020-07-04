@@ -1,5 +1,5 @@
 {
-  "name": "intergration",
+  "name": "integration",
   "private": true,
   "devDependencies": {
     "@size-limit/time": ">= 0.0.0",
