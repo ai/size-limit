@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.5.4
+* Better warning on missed value in CLI argument (by Mikhail Vyrodov).
+
 ## 4.5.3
 * Fixed `MaxListenersExceededWarning` (by Pavel Pustovalov).
 * Fixed `gzipped` note (by Evgeniy Timokhov).
