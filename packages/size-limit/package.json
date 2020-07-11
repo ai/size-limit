@@ -21,7 +21,7 @@
     "bytes": "^3.1.0",
     "chokidar": "^3.4.0",
     "ci-job-number": "^1.2.2",
-    "colorette": "^1.2.0",
+    "colorette": "^1.2.1",
     "cosmiconfig": "^6.0.0",
     "globby": "^11.0.1",
     "ora": "^4.0.4",
