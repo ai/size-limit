@@ -156,6 +156,13 @@ it('throws on --save-bundle argument without webpack', async () => {
   expect(await error('file', ['--save-bundle'])).toMatchSnapshot()
 })
 
+it('throws on --save-bundle argument without DIR parameter', async () => {
+  expect(await error('webpack', ['--save-bundle'])).toMatchSnapshot()
+  expect(
+    await error('webpack', ['--save-bundle', '--clean-dir'])
+  ).toMatchSnapshot()
+})
+
 it('throws on --clean-dir argument without --save-bundle', async () => {
   expect(await error('file', ['--clean-dir'])).toMatchSnapshot()
 })
