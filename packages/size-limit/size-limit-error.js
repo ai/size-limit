@@ -9,6 +9,8 @@ const MESSAGES = {
     (arg === 'why' ? '. You can add Bundle Analyzer to you own bundler.' : ''),
   argWithoutAnotherArg: (arg, anotherArg) =>
     `Argument *--${arg}* works only with *--${anotherArg}* argument`,
+  argWithoutParameter: (arg, parameter) =>
+    `Missing parameter *${parameter}* for *--${arg}* argument`,
   noConfig: () => 'Create Size Limit config in *package.json*',
   noArrayConfig: () => 'Size Limit config must contain *an array*',
   emptyConfig: () => 'Size Limit config must *not be empty*',

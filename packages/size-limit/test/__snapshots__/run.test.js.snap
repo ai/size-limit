@@ -305,6 +305,16 @@ exports[`throws on --clean-dir argument without --save-bundle 1`] = `
 "
 `;
 
+exports[`throws on --save-bundle argument without DIR parameter 1`] = `
+"[41m[30m ERROR [39m[49m [31mMissing parameter [33mDIR[31m for [33m--save-bundle[31m argument[39m
+"
+`;
+
+exports[`throws on --save-bundle argument without DIR parameter 2`] = `
+"[41m[30m ERROR [39m[49m [31mMissing parameter [33mDIR[31m for [33m--save-bundle[31m argument[39m
+"
+`;
+
 exports[`throws on --save-bundle argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[31m works only with [33m@size-limit/webpack[31m plugin[39m
 "

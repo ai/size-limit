@@ -12,7 +12,11 @@ module.exports = function parseArgs (plugins, argv) {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'save-bundle')
       }
-      args.saveBundle = argv[++i]
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        throw new SizeLimitError('argWithoutParameter', 'save-bundle', 'DIR')
+      }
+      args.saveBundle = nextArg
     } else if (arg === '--clean-dir') {
       if (!argv.includes('--save-bundle')) {
         throw new SizeLimitError(
