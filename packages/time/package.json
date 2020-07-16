@@ -17,7 +17,7 @@
     "size-limit": "4.5.4"
   },
   "dependencies": {
-    "estimo": "^2.0.4",
+    "estimo": "^2.1.1",
     "react": "^16.13.1"
   },
   "devDependencies": {
