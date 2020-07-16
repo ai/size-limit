@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.5.5
+* Dropped Node.js 13.0-13.6 support because of ES modules bug in that versions.
+
 ## 4.5.4
 * Better warning on missed value in CLI argument (by Mikhail Vyrodov).
 
