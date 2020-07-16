@@ -15,7 +15,7 @@
   "repository": "ai/size-limit",
   "bin": "bin.js",
   "engines": {
-    "node": ">=10.0.0"
+    "node": "^10 || ^11 || ^12 || >=13.7"
   },
   "dependencies": {
     "bytes": "^3.1.0",
