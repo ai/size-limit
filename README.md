@@ -472,3 +472,11 @@ sizeLimit([filePlugin, webpackPlugin], [filePath]).then(result => {
   result //=> { size: 12480 }
 })
 ```
+
+## Notes
+
+### Running time measurements
+
+Running time measurements depend on available resources and might be unstable.
+Multiple runs are averaged to mitigate this.
+For a full solution we're looking to use CPU steps and are waiting on [this issue](https://github.com/mbalabash/estimo/issues/5)
