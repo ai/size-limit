@@ -251,6 +251,14 @@ it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
 })
 
+it('shows file not found, package.json', async () => {
+  expect(await check('file-not-found')).toMatchSnapshot()
+})
+
+it('shows file not found, size-limit.json', async () => {
+  expect(await check('file-not-found-json-config')).toMatchSnapshot()
+})
+
 it('shows error when using brotli without webpack', async () => {
   expect(await error('brotli-without-webpack')).toMatchSnapshot()
 })

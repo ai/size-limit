@@ -109,6 +109,7 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
     config.checks = await Promise.all(
       result.config.map(async check => {
         if (check.path) {
+          check.filePath = check.path
           check.path = await globby(check.path, { cwd: config.cwd })
         } else if (!check.entry) {
           if (pkg.packageJson.main) {

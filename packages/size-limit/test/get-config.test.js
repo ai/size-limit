@@ -55,6 +55,7 @@ it('supports globby and main field', async () => {
     cwd: fixture('globby'),
     checks: [
       {
+        filePath: ['a*.js'],
         name: 'a',
         limit: '1 KB',
         sizeLimit: 1024,
@@ -123,6 +124,7 @@ it('uses peerDependencies as ignore option', async () => {
     cwd: fixture('peer'),
     checks: [
       {
+        filePath: 'index.js',
         name: 'index.js',
         ignore: ['a', 'b'],
         path: [fixture('peer', 'index.js')]
@@ -137,12 +139,14 @@ it('normalizes time limits', async () => {
     cwd: fixture('time'),
     checks: [
       {
+        filePath: 'index.js',
         limit: '1 s',
         timeLimit: 1,
         name: 'index.js',
         path: [fixture('time', 'index.js')]
       },
       {
+        filePath: 'index.js',
         limit: '1 ms',
         timeLimit: 0.001,
         name: 'index.js',
@@ -150,12 +154,14 @@ it('normalizes time limits', async () => {
         running: false
       },
       {
+        filePath: 'index.js',
         limit: '10ms',
         timeLimit: 0.01,
         name: 'index.js',
         path: [fixture('time', 'index.js')]
       },
       {
+        filePath: 'index.js',
         limit: '10s',
         timeLimit: 10,
         name: 'index.js',

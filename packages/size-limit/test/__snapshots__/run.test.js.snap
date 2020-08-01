@@ -198,6 +198,24 @@ exports[`shows error when using brotli without webpack 1`] = `
 "
 `;
 
+exports[`shows file not found, package.json 1`] = `
+"  
+  [33mFile not found: folder/index.js[39m
+  Size limit: [32m[1m20 KB[22m[39m
+  Size:       [32m[1m0 B  [22m[39m [90mgzipped[39m
+  
+"
+`;
+
+exports[`shows file not found, size-limit.json 1`] = `
+"  
+  [33mFile not found: folder/index.js[39m
+  Size limit: [32m[1m100 KB[22m[39m
+  Size:       [32m[1m0 B   [22m[39m [90mgzipped[39m
+  
+"
+`;
+
 exports[`shows help 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
 Check the real performance cost of your front-end project to users
