@@ -45,7 +45,7 @@ exports[`shows debug 1`] = `
   \\"checks\\": [
     {
       \\"limit\\": \\"200 B\\",
-      \\"path\\": [
+      \\"files\\": [
         \\"/packages/size-limit/test/fixtures/integration/index.js\\"
       ],
       \\"name\\": \\"index.js\\",
@@ -162,7 +162,7 @@ exports[`shows debug on error 1`] = `
   \\"checks\\": [
     {
       \\"limit\\": \\"200 s\\",
-      \\"path\\": [
+      \\"files\\": [
         \\"/packages/size-limit/test/fixtures/internal-error/index.js\\"
       ],
       \\"name\\": \\"index.js\\",

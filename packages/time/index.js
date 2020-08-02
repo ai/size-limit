@@ -24,7 +24,7 @@ let self = {
     }
     check.loadTime = getLoadingTime(check.size)
     if (check.running !== false) {
-      let files = check.bundles || check.path
+      let files = check.bundles || check.files
       check.runTime = await sum(files, i => getRunningTime(i))
       check.time = check.runTime + check.loadTime
     } else {

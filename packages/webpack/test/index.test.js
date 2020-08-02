@@ -44,13 +44,13 @@ afterEach(async () => {
 
 it('uses webpack to make bundle', async () => {
   let config = {
-    checks: [{ path: [fixture('big.js')] }]
+    checks: [{ files: [fixture('big.js')] }]
   }
   await run(config)
   expect(config).toEqual({
     checks: [
       {
-        path: [fixture('big.js')],
+        files: [fixture('big.js')],
         webpackOutput: config.checks[0].webpackOutput,
         webpackConfig: config.checks[0].webpackConfig,
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
@@ -65,7 +65,7 @@ it('uses webpack to make bundle', async () => {
 
 it('supports non-JS require', async () => {
   let config = {
-    checks: [{ path: [fixture('nonjs.js')] }]
+    checks: [{ files: [fixture('nonjs.js')] }]
   }
   await run(config)
   expect(config.checks[0].size).toBeGreaterThan(1450)
@@ -74,7 +74,7 @@ it('supports non-JS require', async () => {
 
 it('supports ignore', async () => {
   let config = {
-    checks: [{ path: fixture('big.js'), ignore: ['redux'] }]
+    checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(27)
@@ -115,7 +115,7 @@ it('throws error on unknown entry', async () => {
 
 it('allows to disable webpack', async () => {
   let config = {
-    checks: [{ path: [fixture('big.js')], webpack: false }]
+    checks: [{ files: [fixture('big.js')], webpack: false }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(55)
@@ -123,7 +123,7 @@ it('allows to disable webpack', async () => {
 
 it('allows to disable gzip', async () => {
   let config = {
-    checks: [{ path: [fixture('small.js')], gzip: false }]
+    checks: [{ files: [fixture('small.js')], gzip: false }]
   }
   await run(config)
   expect(config.checks[0].size).toEqual(36)
@@ -131,7 +131,7 @@ it('allows to disable gzip', async () => {
 
 it('throws on missed file plugin', async () => {
   let config = {
-    checks: [{ path: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }]
   }
   try {
     await webpack.step20(config, config.checks[0])
@@ -153,7 +153,7 @@ it('supports --why', async () => {
   let config = {
     project: 'superProject',
     why: true,
-    checks: [{ path: [fixture('big.js')] }]
+    checks: [{ files: [fixture('big.js')] }]
   }
   try {
     await webpack.step20(config, config.checks[0])
@@ -169,7 +169,7 @@ it('supports --why', async () => {
 it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,
-    checks: [{ path: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }]
   }
   await run(config)
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
@@ -180,7 +180,7 @@ it('supports --clean-dir', async () => {
   let config = {
     saveBundle: DIST,
     cleanDir: true,
-    checks: [{ path: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }]
   }
   await run(config)
   expect(existsSync(dist)).toBe(true)
@@ -193,7 +193,7 @@ it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
     saveBundle: DIST,
-    checks: [{ path: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }]
   }
   await run(config)
   expect(existsSync(dist)).toBe(true)
@@ -212,7 +212,7 @@ it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'index.js')
   let config = {
     saveBundle: distFile,
-    checks: [{ path: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }]
   }
   await mkdir(DIST)
   await writeFile(distFile, '')
@@ -228,7 +228,7 @@ it('throws unsupported error --save-bundle', async () => {
 
 it('throws on webpack error', async () => {
   let config = {
-    checks: [{ path: [fixture('unknown.js')] }]
+    checks: [{ files: [fixture('unknown.js')] }]
   }
   let err
   try {
@@ -242,7 +242,7 @@ it('throws on webpack error', async () => {
 it('supports specifying the import', async () => {
   expect(
     await getSize({
-      path: [fixture('module.js')],
+      files: [fixture('module.js')],
       import: {
         [fixture('module.js')]: '{ A }'
       }
@@ -251,7 +251,7 @@ it('supports specifying the import', async () => {
 
   expect(
     await getSize({
-      path: [fixture('module.js')],
+      files: [fixture('module.js')],
       import: {
         [fixture('module.js')]: '{ A }'
       },

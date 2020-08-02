@@ -43,7 +43,7 @@ it('creates config by CLI arguments', async () => {
         name: 'a.js, /b.js',
         limit: '10',
         sizeLimit: 10,
-        path: [fixture('file', 'a.js'), '/b.js']
+        files: [fixture('file', 'a.js'), '/b.js']
       }
     ]
   })
@@ -55,15 +55,15 @@ it('supports globby and main field', async () => {
     cwd: fixture('globby'),
     checks: [
       {
-        filePath: ['a*.js'],
+        path: ['a*.js'],
         name: 'a',
         limit: '1 KB',
         sizeLimit: 1024,
-        path: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
+        files: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
       },
       {
         name: 'b',
-        path: [fixture('globby', 'b1.js')]
+        files: [fixture('globby', 'b1.js')]
       }
     ]
   })
@@ -76,7 +76,7 @@ it('uses index.js by default', async () => {
     checks: [
       {
         name: 'index',
-        path: [fixture('simple', 'index.js')],
+        files: [fixture('simple', 'index.js')],
         limit: '1 KB',
         sizeLimit: 1024
       }
@@ -91,7 +91,7 @@ it('overrides limit by CLI arg', async () => {
     checks: [
       {
         name: 'index',
-        path: [fixture('simple', 'index.js')],
+        files: [fixture('simple', 'index.js')],
         limit: '10 KB',
         sizeLimit: 10240
       }
@@ -124,10 +124,10 @@ it('uses peerDependencies as ignore option', async () => {
     cwd: fixture('peer'),
     checks: [
       {
-        filePath: 'index.js',
         name: 'index.js',
         ignore: ['a', 'b'],
-        path: [fixture('peer', 'index.js')]
+        files: [fixture('peer', 'index.js')],
+        path: 'index.js'
       }
     ]
   })
@@ -139,33 +139,33 @@ it('normalizes time limits', async () => {
     cwd: fixture('time'),
     checks: [
       {
-        filePath: 'index.js',
+        path: 'index.js',
         limit: '1 s',
         timeLimit: 1,
         name: 'index.js',
-        path: [fixture('time', 'index.js')]
+        files: [fixture('time', 'index.js')]
       },
       {
-        filePath: 'index.js',
+        path: 'index.js',
         limit: '1 ms',
         timeLimit: 0.001,
         name: 'index.js',
-        path: [fixture('time', 'index.js')],
+        files: [fixture('time', 'index.js')],
         running: false
       },
       {
-        filePath: 'index.js',
+        path: 'index.js',
         limit: '10ms',
         timeLimit: 0.01,
         name: 'index.js',
-        path: [fixture('time', 'index.js')]
+        files: [fixture('time', 'index.js')]
       },
       {
-        filePath: 'index.js',
+        path: 'index.js',
         limit: '10s',
         timeLimit: 10,
         name: 'index.js',
-        path: [fixture('time', 'index.js')]
+        files: [fixture('time', 'index.js')]
       }
     ]
   })
@@ -185,7 +185,7 @@ it('normalizes import', async () => {
         },
         limit: '1 B',
         name: 'index.js',
-        path: [fixture('integration-esm', 'index.js')],
+        files: [fixture('integration-esm', 'index.js')],
         sizeLimit: 1
       }
     ]

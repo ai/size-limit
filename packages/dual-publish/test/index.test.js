@@ -30,12 +30,12 @@ it('has name', () => {
 it('calculates file size with gzip by default', async () => {
   let config = {
     cwd: fixture(),
-    checks: [{ path: [fixture('index.js')] }]
+    checks: [{ files: [fixture('index.js')] }]
   }
   await dualPublish.all10(config)
   expect(config).toEqual({
     cwd: fixture(),
-    checks: [{ path: [fixture('dual-publish-tmp/index.js')] }]
+    checks: [{ files: [fixture('dual-publish-tmp/index.js')] }]
   })
 })
 

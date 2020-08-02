@@ -74,8 +74,8 @@ function createHumanReporter (process) {
           print(bold(check.name))
         }
 
-        if (check.path && !check.path.length && check.filePath) {
-          print(yellow(`File not found: ${check.filePath}`))
+        if (check.files && !check.files.length && check.path) {
+          print(yellow(`File not found: ${check.path}`))
         }
 
         let sizeNote

@@ -29,7 +29,7 @@ let self = {
       cmd.on('error', reject)
     })
     for (let check of config.checks) {
-      check.path = check.path.map(i => {
+      check.files = check.files.map(i => {
         return join(
           config.cwd,
           'dual-publish-tmp',

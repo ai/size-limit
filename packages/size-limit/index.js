@@ -12,7 +12,7 @@ module.exports = async function (plugins, files) {
   let pluginList = new Plugins(plugins.reduce((all, i) => all.concat(i), []))
   if (Array.isArray(files)) {
     files = {
-      checks: [{ path: files }]
+      checks: [{ files }]
     }
   }
 
