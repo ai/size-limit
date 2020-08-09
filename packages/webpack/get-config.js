@@ -23,12 +23,12 @@ module.exports = async function getConfig (limitConfig, check, output) {
     await mkdirp(output)
     let entry = join(output, 'entry.js')
     await writeFile(entry, loader)
-    check.path = entry
+    check.files = entry
   }
 
   let config = {
     entry: {
-      index: check.path
+      index: check.files
     },
     output: {
       filename: limitConfig.why && `${limitConfig.project}.js`,

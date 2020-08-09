@@ -48,7 +48,7 @@ function gzipSize (path) {
 let self = {
   name: '@size-limit/file',
   async step60 (config, check) {
-    let files = check.bundles || check.path
+    let files = check.bundles || check.files
 
     if (check.brotli === true) {
       if (!gte(process.version, BROTLI_NODE_VERSION)) {

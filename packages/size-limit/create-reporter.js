@@ -74,6 +74,10 @@ function createHumanReporter (process) {
           print(bold(check.name))
         }
 
+        if (check.files && !check.files.length && check.path) {
+          print(yellow(`File not found: ${check.path}`))
+        }
+
         let sizeNote
         if (check.config) {
           sizeNote = 'with given webpack configuration'

@@ -17,8 +17,8 @@ it('has name', () => {
 it('calculates time to download and run', async () => {
   let config = {
     checks: [
-      { path: ['/a'], bundles: ['/tmp/a.js'], size: 1024 * 1024 },
-      { path: ['/b'], size: 1024 * 1024 }
+      { files: ['/a'], bundles: ['/tmp/a.js'], size: 1024 * 1024 },
+      { files: ['/b'], size: 1024 * 1024 }
     ]
   }
   await time.step80(config, config.checks[0])
@@ -26,14 +26,14 @@ it('calculates time to download and run', async () => {
   expect(config).toEqual({
     checks: [
       {
-        path: ['/a'],
+        files: ['/a'],
         size: 1024 * 1024,
         bundles: ['/tmp/a.js'],
         runTime: 10,
         loadTime: 20.48,
         time: 30.48
       },
-      { path: ['/b'], size: 1024 * 1024 }
+      { files: ['/b'], size: 1024 * 1024 }
     ]
   })
 })
@@ -41,12 +41,12 @@ it('calculates time to download and run', async () => {
 it('avoids run on request', async () => {
   let config = {
     checks: [
-      { path: ['/a'], bundle: '/tmp/a.js', size: 1024 * 1024, running: false }
+      { files: ['/a'], bundle: '/tmp/a.js', size: 1024 * 1024, running: false }
     ]
   }
   await time.step80(config, config.checks[0])
   expect(config.checks[0]).toEqual({
-    path: ['/a'],
+    files: ['/a'],
     size: 1024 * 1024,
     bundle: '/tmp/a.js',
     loadTime: 20.48,
@@ -57,7 +57,7 @@ it('avoids run on request', async () => {
 
 it('is compatible with file plugin', async () => {
   let config = {
-    checks: [{ path: ['/a'], size: 1024 * 1024 }]
+    checks: [{ files: ['/a'], size: 1024 * 1024 }]
   }
   await time.step80(config, config.checks[0])
   expect(getRunningTime).toHaveBeenCalledWith('/a')
@@ -66,7 +66,7 @@ it('is compatible with file plugin', async () => {
 
 it('uses 1 ms for download as minimum', async () => {
   let config = {
-    checks: [{ path: ['/a'], size: 1 }]
+    checks: [{ files: ['/a'], size: 1 }]
   }
   await time.step80(config, config.checks[0])
   expect(config.checks[0].loadTime).toEqual(0.01)
@@ -74,7 +74,7 @@ it('uses 1 ms for download as minimum', async () => {
 
 it('uses 0 ms for download for 0 bytes', async () => {
   let config = {
-    checks: [{ path: ['/a'], size: 0 }]
+    checks: [{ files: ['/a'], size: 0 }]
   }
   await time.step80(config, config.checks[0])
   expect(config.checks[0].loadTime).toEqual(0)
@@ -82,7 +82,7 @@ it('uses 0 ms for download for 0 bytes', async () => {
 
 it('throws an error on missed size', async () => {
   let config = {
-    checks: [{ path: ['/a'] }]
+    checks: [{ files: ['/a'] }]
   }
   let err
   try {
