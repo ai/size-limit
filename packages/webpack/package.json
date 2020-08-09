@@ -20,7 +20,7 @@
     "size-limit": "4.5.5"
   },
   "dependencies": {
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.2.1",
     "escape-string-regexp": "^4.0.0",
     "file-loader": "^6.0.0",
     "mkdirp": "^1.0.4",
@@ -29,7 +29,7 @@
     "pnp-webpack-plugin": "^1.6.4",
     "rimraf": "^3.0.2",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "webpack-bundle-analyzer": "^3.8.0"
   },
   "devDependencies": {
