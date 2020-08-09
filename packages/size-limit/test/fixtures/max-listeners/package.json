@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@size-limit/preset-app": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "1 KB"
+    },
+    {
+      "path": "lib.js",
+      "limit": "1 KB"
+    },
+    {
+      "path": "lib2.js",
+      "limit": "1 KB"
+    }
+  ]
+}
