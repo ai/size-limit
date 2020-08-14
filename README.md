@@ -83,6 +83,7 @@ and show the real cost of all your internal dependencies.
    a low-priced Android devices to calculate the CPU throttling rate.
 5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s
    available) to track the time a browser takes to compile and execute your JS.
+   Note that these measurements depend on available resources and might be unstable. [See here for more details](https://github.com/mbalabash/estimo/issues/5)
 
 
 ## Usage
