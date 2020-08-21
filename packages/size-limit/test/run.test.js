@@ -48,18 +48,12 @@ function createProcess (cwd, args = []) {
     },
     stdout: {
       write (str) {
-        history.stdout += str
-          .split(ROOT)
-          .join('')
-          .replace(TMP_DIR, '')
+        history.stdout += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     },
     stderr: {
       write (str) {
-        history.stderr += str
-          .split(ROOT)
-          .join('')
-          .replace(TMP_DIR, '')
+        history.stderr += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     }
   }
