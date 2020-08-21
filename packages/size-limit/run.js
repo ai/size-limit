@@ -27,7 +27,8 @@ module.exports = async process => {
   function hasArg (arg) {
     return process.argv.some(i => i === arg)
   }
-  let reporter = createReporter(process, hasArg('--json'))
+  let isJsonOutput = hasArg('--json')
+  let reporter = createReporter(process, isJsonOutput)
   let help = createHelp(process)
   let config, args
 
@@ -57,7 +58,8 @@ module.exports = async process => {
     config = await getConfig(plugins, process, args, pkg)
 
     let calcAndShow = async () => {
-      await calc(plugins, config, ora)
+      let outputFunc = isJsonOutput ? null : ora
+      await calc(plugins, config, outputFunc)
       debug.results(process, args, config)
       reporter.results(plugins, config)
     }
