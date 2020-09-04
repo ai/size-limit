@@ -67,6 +67,8 @@ function createHumanReporter (process) {
     results (plugins, config) {
       print('')
       for (let check of config.checks) {
+        if (check.passed && config.quiet) continue
+
         let unlimited = typeof check.passed === 'undefined'
         let rows = []
 
