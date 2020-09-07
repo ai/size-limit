@@ -18,7 +18,8 @@ let OPTIONS = {
   gzip: ['webpack', 'file'],
   running: 'time',
   disableModuleConcatenation: 'webpack',
-  brotli: 'webpack'
+  brotli: 'webpack',
+  hidePassed: false
 }
 
 function isStrings (value) {
@@ -86,6 +87,9 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
   }
   if (args.cleanDir) {
     config.cleanDir = args.cleanDir
+  }
+  if (args.hidePassed) {
+    config.hidePassed = args.hidePassed
   }
 
   if (args.files.length > 0) {

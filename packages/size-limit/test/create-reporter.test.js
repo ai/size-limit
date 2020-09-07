@@ -84,6 +84,36 @@ it('renders failed results', () => {
   ).toMatchSnapshot()
 })
 
+it('only renders failed results with --hide-passed flag', () => {
+  expect(
+    results(['file'], {
+      checks: [
+        {
+          name: 'ok',
+          size: 102400,
+          sizeLimit: 102400,
+          passed: true
+        },
+        {
+          name: 'small fail',
+          size: 102401,
+          sizeLimit: 102400,
+          passed: false
+        },
+        {
+          name: 'big fail',
+          size: 102500,
+          sizeLimit: 102400,
+          passed: false
+        }
+      ],
+      hidePassed: true,
+      failed: true,
+      configPath: 'package.json'
+    })
+  ).toMatchSnapshot()
+})
+
 it('renders single result', () => {
   expect(
     results(['file'], {
