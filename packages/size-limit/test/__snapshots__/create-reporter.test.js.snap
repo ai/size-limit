@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`only renders failed results with --quiet flag 1`] = `
+exports[`only renders failed results with --hide-passed flag 1`] = `
 "  
   [1msmall fail[22m
   [31mPackage size limit has exceeded by 1 B[39m

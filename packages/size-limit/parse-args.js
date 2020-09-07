@@ -26,8 +26,8 @@ module.exports = function parseArgs (plugins, argv) {
         )
       }
       args.cleanDir = true
-    } else if (arg === '--quiet') {
-      args.quiet = true
+    } else if (arg === '--hide-passed') {
+      args.hidePassed = true
     } else if (arg === '--why') {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'why')

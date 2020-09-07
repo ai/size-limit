@@ -100,13 +100,13 @@ it('overrides limit by CLI arg', async () => {
 })
 
 it('normalizes bundle and webpack arguments', async () => {
-  let args = ['--why', '--save-bundle', 'out', '--clean-dir', '--quiet']
+  let args = ['--why', '--save-bundle', 'out', '--clean-dir', '--hide-passed']
   expect(await check('webpack', args)).toEqual({
     configPath: 'package.json',
     cwd: fixture('webpack'),
     why: true,
     project: 'webpack',
-    quiet: true,
+    hidePassed: true,
     saveBundle: fixture('webpack', 'out'),
     cleanDir: true,
     checks: [

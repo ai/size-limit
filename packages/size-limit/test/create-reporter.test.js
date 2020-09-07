@@ -84,7 +84,7 @@ it('renders failed results', () => {
   ).toMatchSnapshot()
 })
 
-it('only renders failed results with --quiet flag', () => {
+it('only renders failed results with --hide-passed flag', () => {
   expect(
     results(['file'], {
       checks: [
@@ -107,7 +107,7 @@ it('only renders failed results with --quiet flag', () => {
           passed: false
         }
       ],
-      quiet: true,
+      hidePassed: true,
       failed: true,
       configPath: 'package.json'
     })
