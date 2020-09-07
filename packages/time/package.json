@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/time",
-  "version": "4.5.7",
+  "version": "4.6.0",
   "description": "Downloading and running time plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -14,7 +14,7 @@
   "repository": "ai/size-limit",
   "preferUnplugged": true,
   "peerDependencies": {
-    "size-limit": "4.5.7"
+    "size-limit": "4.6.0"
   },
   "dependencies": {
     "estimo": "^2.2.1",

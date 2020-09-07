@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.6
+* Added `--hide-passed` argument (by Kristján Oddsson).
+
 ## 4.5.7
 * Do not show loader in JSON mode (by Billy Vong).
 
