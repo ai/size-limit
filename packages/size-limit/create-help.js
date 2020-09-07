@@ -30,6 +30,7 @@ module.exports = process => {
       b('Core options:'),
       `  ${y('--limit LIMIT')}  Set size or running time limit for files`,
       `  ${y('--json')}         Show results in JSON format`,
+      `  ${y('--hide-passed')}  Print only failed tests`,
       `  ${y('--help')}         Display this help`,
       `  ${y('--watch')}        Runs in watch mode`,
       `  ${y('--debug')}        Show internal configs for issue report`,

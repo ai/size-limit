@@ -223,6 +223,7 @@ Check the real performance cost of your front-end project to users
 [1mCore options:[22m
   [33m--limit LIMIT[39m  Set size or running time limit for files
   [33m--json[39m         Show results in JSON format
+  [33m--hide-passed[39m  Print only failed tests
   [33m--help[39m         Display this help
   [33m--watch[39m        Runs in watch mode
   [33m--debug[39m        Show internal configs for issue report
@@ -298,6 +299,7 @@ Check the real performance cost of your front-end project to users
 [1mCore options:[22m
   [33m--limit LIMIT[39m  Set size or running time limit for files
   [33m--json[39m         Show results in JSON format
+  [33m--hide-passed[39m  Print only failed tests
   [33m--help[39m         Display this help
   [33m--watch[39m        Runs in watch mode
   [33m--debug[39m        Show internal configs for issue report
@@ -458,6 +460,7 @@ Check the real performance cost of your front-end project to users
 [1mCore options:[22m
   [33m--limit LIMIT[39m  Set size or running time limit for files
   [33m--json[39m         Show results in JSON format
+  [33m--hide-passed[39m  Print only failed tests
   [33m--help[39m         Display this help
   [33m--watch[39m        Runs in watch mode
   [33m--debug[39m        Show internal configs for issue report
