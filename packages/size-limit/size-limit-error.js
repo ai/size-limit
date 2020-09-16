@@ -2,8 +2,6 @@ const MESSAGES = {
   noPackage: () =>
     'Size Limit didn’t find *package.json*. ' +
     'Create npm package and run Size Limit there.',
-  unknownArg: arg =>
-    `Unknown argument *${arg}*. Check command for typo and read docs.`,
   argWithoutWebpack: arg =>
     `Argument *--${arg}* works only with *@size-limit/webpack* plugin` +
     (arg === 'why' ? '. You can add Bundle Analyzer to you own bundler.' : ''),
