@@ -147,8 +147,8 @@ describe(`run`, () => {
     expect(history.stderr).toMatchSnapshot()
   })
 
-  it('throws on unknown argument', async () => {
-    expect(await error('file', ['--unknown'])).toMatchSnapshot()
+  it('works in integration test with unknown arguments', async () => {
+    expect(await check('integration', ['--unknown'])).toMatchSnapshot()
   })
 
   it('throws on --save-bundle argument without webpack', async () => {

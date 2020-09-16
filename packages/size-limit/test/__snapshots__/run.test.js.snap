@@ -426,12 +426,6 @@ exports[`run throws on time limit without time plugin 1`] = `
 "
 `;
 
-exports[`run throws on unknown argument 1`] = `
-"[41m[30m ERROR [39m[49m [31mUnknown argument [33m--unknown[31m.
-        Check command for typo and read docs.[39m
-"
-`;
-
 exports[`run throws on unknown option 1`] = `
 "[41m[30m ERROR [39m[49m [31mUnknown option [33munknown[31m in config.
         Check Size Limit docs and version.[39m
@@ -527,6 +521,17 @@ exports[`run works in integration test with size 1`] = `
 exports[`run works in integration test with time 1`] = `
 "  
   Time limit:   [32m[1m2 s[22m[39m
+  Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1.1 s[22m[39m
+  
+"
+`;
+
+exports[`run works in integration test with unknown arguments 1`] = `
+"  
+  Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m

@@ -49,6 +49,29 @@ it('creates config by CLI arguments', async () => {
   })
 })
 
+it('creates config from command line with unknown arguments', async () => {
+  expect(
+    await check('file', [
+      '--unknown',
+      'unknown',
+      '--limit',
+      '10',
+      'a.js',
+      '/b.js'
+    ])
+  ).toEqual({
+    cwd: fixture('file'),
+    checks: [
+      {
+        name: 'a.js, /b.js',
+        limit: '10',
+        sizeLimit: 10,
+        files: [fixture('file', 'a.js'), '/b.js']
+      }
+    ]
+  })
+})
+
 it('supports globby and main field', async () => {
   expect(await check('globby')).toEqual({
     configPath: 'package.json',
