@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.6.1
+* Fixed `peerDependencies` support in `import`.
+* Fixed npm 7 support.
+* Updated `css-loader` and `file-loader`.
+
 ## 4.6
 * Added `--hide-passed` argument (by Kristján Oddsson).
 
