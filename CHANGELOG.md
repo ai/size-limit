@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.6.2
+* Fixed `peerDependencies` resolving in `import`.
+* Fixed Node.js 15 support.
+
 ## 4.6.1
 * Fixed `peerDependencies` support in `import`.
 * Fixed npm 7 support.
