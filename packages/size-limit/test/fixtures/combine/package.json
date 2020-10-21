@@ -2,7 +2,9 @@
   "name": "file",
   "private": true,
   "devDependencies": {
+    "@size-limit/dual-publish": ">= 0.0.0",
     "@size-limit/preset-small-lib": ">= 0.0.0",
+    "dual-publish": ">= 0.0.0",
     "size-limit": ">= 0.0.0",
     "redux": ">= 0.0.0"
   },

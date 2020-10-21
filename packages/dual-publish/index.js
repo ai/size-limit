@@ -39,12 +39,16 @@ let self = {
       if (check.import) {
         let imports = {}
         for (let i in check.import) {
-          let changed = join(
-            config.cwd,
-            'dual-publish-tmp',
-            i.slice(config.cwd.length + 1)
-          )
-          imports[changed] = check.import[i]
+          if (!i.includes('node_modules')) {
+            let changed = join(
+              config.cwd,
+              'dual-publish-tmp',
+              i.slice(config.cwd.length + 1)
+            )
+            imports[changed] = check.import[i]
+          } else {
+            imports[i] = check.import[i]
+          }
         }
         check.import = imports
       }

@@ -1,3 +1,5 @@
-export const a = 1
+const a = 1
 
-export const b = 'hfdjhwqndshdsonbavashskd;a[spdkdjsba;sx[cabsdfddf'
+const b = 'hfdjhwqndshdsonbavashskd;a[spdkdjsba;sx[cabsdfddf'
+
+module.exports = { a, b }
