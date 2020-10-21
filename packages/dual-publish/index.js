@@ -12,7 +12,7 @@ let self = {
     let stderr = ''
     let cmd = spawn(
       process.platform === 'win32' ? 'npx.cmd' : 'npx',
-      ['-q', 'dual-publish', '--check'],
+      ['-y', '-q', 'dual-publish', '--check'],
       { cwd: config.cwd }
     )
     cmd.stderr.on('data', data => {
