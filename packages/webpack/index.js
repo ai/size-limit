@@ -1,6 +1,6 @@
 let SizeLimitError = require('size-limit/size-limit-error')
 let { promisify } = require('util')
-let { nanoid } = require('nanoid')
+let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
 let { join } = require('path')
 let readdir = promisify(require('fs').readdir)
