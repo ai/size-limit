@@ -160,7 +160,7 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
       for (let i in check.import) {
         if (peer.includes(i)) {
           check.ignore = check.ignore.filter(j => j !== i)
-          imports[require.resolve(i)] = check.import[i]
+          imports[require.resolve(i, config.cwd)] = check.import[i]
         } else {
           imports[toAbsolute(i, config.cwd)] = check.import[i]
         }
