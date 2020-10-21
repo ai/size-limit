@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`run allows to use peer dependencies in import 1`] = `
+"  
+  Size: [1m2.44 KB[22m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
 exports[`run returns zero bytes for empty file 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m

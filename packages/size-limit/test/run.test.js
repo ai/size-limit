@@ -280,6 +280,10 @@ describe(`run`, () => {
     expect(await check('zero-non-gzip')).toMatchSnapshot()
   })
 
+  it('allows to use peer dependencies in import', async () => {
+    expect(clean(await check('combine'))).toMatchSnapshot()
+  })
+
   it('shows debug', async () => {
     expect(clean(await check('integration', ['--debug']))).toMatchSnapshot()
   })

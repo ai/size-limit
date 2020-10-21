@@ -1,0 +1,8 @@
+[
+  {
+    "import": {
+      "./index.js": "{ a }",
+      "redux": "{ createStore }"
+    }
+  }
+]
