@@ -1,4 +1,13 @@
-let { green, red, yellow, bgRed, black, bold, gray } = require('colorette')
+let {
+  bgGreen,
+  bgRed,
+  black,
+  bold,
+  gray,
+  green,
+  red,
+  yellow
+} = require('colorette')
 let bytes = require('bytes')
 
 function createJsonReporter (process) {
@@ -109,6 +118,9 @@ function createHumanReporter (process) {
             }
             let diff = formatBytes(check.size - check.sizeLimit)
             print(red(`Package size limit has exceeded by ${diff}`))
+          } else if (config.highlightLess && check.size < check.sizeLimit) {
+            let diff = formatBytes(check.sizeLimit - check.size)
+            print(bgGreen(black(`Package size is ${diff} less than limit`)))
           }
           rows.push(['Size limit', sizeLimitString])
         }

@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`highlight passed results with --highlight-less flag 1`] = `
+"  
+  [1mok[22m
+  Size limit: [32m[1m100 KB[22m[39m
+  Size:       [32m[1m100 KB[22m[39m [90mgzipped[39m
+  
+  [1mgood[22m
+  [42m[30mPackage size is 5 KB less than limit[39m[49m
+  Size limit: [32m[1m100 KB[22m[39m
+  Size:       [32m[1m95 KB [22m[39m [90mgzipped[39m
+  
+  [1mfail[22m
+  [31mPackage size limit has exceeded by 1 B[39m
+  Size limit: [31m[1m102400 B[22m[39m
+  Size:       [31m[1m102401 B[22m[39m [90mgzipped[39m
+  
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+"
+`;
+
 exports[`only renders failed results with --hide-passed flag 1`] = `
 "  
   [1msmall fail[22m
