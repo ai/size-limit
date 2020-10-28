@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.7
+* Add `--highlight-less` argument (by Victor Didenko).
+
 ## 4.6.2
 * Fixed `peerDependencies` resolving in `import`.
 * Fixed Node.js 15 support.
