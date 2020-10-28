@@ -19,7 +19,8 @@ let OPTIONS = {
   running: 'time',
   disableModuleConcatenation: 'webpack',
   brotli: 'webpack',
-  hidePassed: false
+  hidePassed: false,
+  highlightLess: false
 }
 
 function isStrings (value) {
@@ -90,6 +91,9 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
   }
   if (args.hidePassed) {
     config.hidePassed = args.hidePassed
+  }
+  if (args.highlightLess) {
+    config.highlightLess = args.highlightLess
   }
 
   if (args.files.length > 0) {

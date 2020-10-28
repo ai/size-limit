@@ -228,13 +228,14 @@ exports[`run shows help 1`] = `
 Check the real performance cost of your front-end project to users
 
 [1mCore options:[22m
-  [33m--limit LIMIT[39m  Set size or running time limit for files
-  [33m--json[39m         Show results in JSON format
-  [33m--hide-passed[39m  Print only failed tests
-  [33m--help[39m         Display this help
-  [33m--watch[39m        Runs in watch mode
-  [33m--debug[39m        Show internal configs for issue report
-  [33m--version[39m      Display version
+  [33m--limit LIMIT[39m     Set size or running time limit for files
+  [33m--json[39m            Show results in JSON format
+  [33m--hide-passed[39m     Print only failed files
+  [33m--highlight-less[39m  Highlight files with less than limit size
+  [33m--help[39m            Display this help
+  [33m--watch[39m           Runs in watch mode
+  [33m--debug[39m           Show internal configs for issue report
+  [33m--version[39m         Display version
 
 [1mExamples:[22m
   [33msize-limit[39m
@@ -304,13 +305,14 @@ exports[`run shows webpack-related help 1`] = `
 Check the real performance cost of your front-end project to users
 
 [1mCore options:[22m
-  [33m--limit LIMIT[39m  Set size or running time limit for files
-  [33m--json[39m         Show results in JSON format
-  [33m--hide-passed[39m  Print only failed tests
-  [33m--help[39m         Display this help
-  [33m--watch[39m        Runs in watch mode
-  [33m--debug[39m        Show internal configs for issue report
-  [33m--version[39m      Display version
+  [33m--limit LIMIT[39m     Set size or running time limit for files
+  [33m--json[39m            Show results in JSON format
+  [33m--hide-passed[39m     Print only failed files
+  [33m--highlight-less[39m  Highlight files with less than limit size
+  [33m--help[39m            Display this help
+  [33m--watch[39m           Runs in watch mode
+  [33m--debug[39m           Show internal configs for issue report
+  [33m--version[39m         Display version
 
 [1mWebpack options:[22m
   [33m--why[39m              Show package content
@@ -465,13 +467,14 @@ exports[`run uses dependencies to detect plugins 1`] = `
 Check the real performance cost of your front-end project to users
 
 [1mCore options:[22m
-  [33m--limit LIMIT[39m  Set size or running time limit for files
-  [33m--json[39m         Show results in JSON format
-  [33m--hide-passed[39m  Print only failed tests
-  [33m--help[39m         Display this help
-  [33m--watch[39m        Runs in watch mode
-  [33m--debug[39m        Show internal configs for issue report
-  [33m--version[39m      Display version
+  [33m--limit LIMIT[39m     Set size or running time limit for files
+  [33m--json[39m            Show results in JSON format
+  [33m--hide-passed[39m     Print only failed files
+  [33m--highlight-less[39m  Highlight files with less than limit size
+  [33m--help[39m            Display this help
+  [33m--watch[39m           Runs in watch mode
+  [33m--debug[39m           Show internal configs for issue report
+  [33m--version[39m         Display version
 
 [1mWebpack options:[22m
   [33m--why[39m              Show package content

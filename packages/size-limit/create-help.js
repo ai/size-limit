@@ -28,13 +28,14 @@ module.exports = process => {
       'Check the real performance cost of your front-end project to users',
       '',
       b('Core options:'),
-      `  ${y('--limit LIMIT')}  Set size or running time limit for files`,
-      `  ${y('--json')}         Show results in JSON format`,
-      `  ${y('--hide-passed')}  Print only failed tests`,
-      `  ${y('--help')}         Display this help`,
-      `  ${y('--watch')}        Runs in watch mode`,
-      `  ${y('--debug')}        Show internal configs for issue report`,
-      `  ${y('--version')}      Display version`
+      `  ${y('--limit LIMIT')}     Set size or running time limit for files`,
+      `  ${y('--json')}            Show results in JSON format`,
+      `  ${y('--hide-passed')}     Print only failed files`,
+      `  ${y('--highlight-less')}  Highlight files with less than limit size`,
+      `  ${y('--help')}            Display this help`,
+      `  ${y('--watch')}           Runs in watch mode`,
+      `  ${y('--debug')}           Show internal configs for issue report`,
+      `  ${y('--version')}         Display version`
     )
     if (plugins.has('webpack')) {
       print(

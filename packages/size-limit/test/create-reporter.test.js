@@ -114,6 +114,36 @@ it('only renders failed results with --hide-passed flag', () => {
   ).toMatchSnapshot()
 })
 
+it('highlight passed results with --highlight-less flag', () => {
+  expect(
+    results(['file'], {
+      checks: [
+        {
+          name: 'ok',
+          size: 102400,
+          sizeLimit: 102400,
+          passed: true
+        },
+        {
+          name: 'good',
+          size: 97280, // 5 KB less
+          sizeLimit: 102400,
+          passed: true
+        },
+        {
+          name: 'fail',
+          size: 102401,
+          sizeLimit: 102400,
+          passed: false
+        }
+      ],
+      highlightLess: true,
+      failed: true,
+      configPath: 'package.json'
+    })
+  ).toMatchSnapshot()
+})
+
 it('renders single result', () => {
   expect(
     results(['file'], {
