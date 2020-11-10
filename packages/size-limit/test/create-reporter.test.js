@@ -1,3 +1,6 @@
+let { join } = require('path')
+let { tmpdir } = require('os')
+
 let createReporter = require('../create-reporter')
 
 function results (types, config, isJSON = false) {
@@ -50,7 +53,9 @@ it('renders results', () => {
           time: 3,
           passed: true
         }
-      ]
+      ],
+      cleanDir: true,
+      saveBundle: join(tmpdir(), `size-limit-test`)
     })
   ).toMatchSnapshot()
 })
