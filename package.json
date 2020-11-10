@@ -3,9 +3,7 @@
   "scripts": {
     "bump": "./scripts/bump",
     "postinstall": "./scripts/each yarn",
-    "clean": "rimraf coverage/ packages/.cache",
-    "spell": "yaspeller-ci *.md packages/*/*.md",
-    "test": "jest-ci --coverage --forceExit && eslint-ci . && yarn spell && sh scripts/max-listeners-check.sh"
+    "test": "jest --coverage --forceExit && eslint . && yaspeller *.md packages/*/*.md && sh scripts/max-listeners-check.sh"
   },
   "workspaces": [
     "packages/preset-small-lib",
@@ -18,13 +16,12 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^41.0.2",
-    "@logux/sharec-config": "^0.7.9",
+    "@logux/eslint-config": "^42.2.1",
+    "@logux/sharec-config": "^0.8.4",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^0.11.0",
-    "eslint": "^7.12.1",
-    "eslint-ci": "^1.0.0",
-    "eslint-config-standard": "^15.0.0",
+    "eslint": "^7.13.0",
+    "eslint-config-standard": "^16.0.1",
     "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.0",
@@ -33,16 +30,13 @@
     "eslint-plugin-prettierx": "^0.14.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-standard": "^4.0.2",
     "eslint-plugin-unicorn": "^23.0.0",
     "husky": "^4.3.0",
-    "jest": "^26.6.1",
-    "jest-ci": "^0.1.1",
-    "lint-staged": "^10.5.0",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.1",
     "print-snapshots": "^0.3.2",
-    "rimraf": "^3.0.2",
     "typescript": "^4.0.5",
-    "yaspeller-ci": "^1.0.2"
+    "yaspeller": "^7.0.0"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config",
@@ -143,6 +137,6 @@
   },
   "sharec": {
     "config": "@logux/sharec-config",
-    "version": "0.7.9"
+    "version": "0.8.4"
   }
 }
