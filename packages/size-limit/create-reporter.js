@@ -8,7 +8,7 @@ let {
   red,
   yellow
 } = require('colorette')
-let { normalize } = require('path')
+let { join } = require('path')
 let bytes = require('bytes')
 
 function createJsonReporter (process) {
@@ -175,7 +175,7 @@ function createHumanReporter (process) {
       }
 
       if (plugins.has('webpack') && config.saveBundle) {
-        let statsFilepath = normalize(config.saveBundle, 'stats.json')
+        let statsFilepath = join(config.saveBundle, 'stats.json')
         print(`Webpack Stats file was saved to ${statsFilepath}`)
         print('You can review it using https://webpack.github.io/analyse')
       }

@@ -115,7 +115,7 @@ exports[`renders results 1`] = `
   Running time: [32m[1m2 s   [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m3 s[22m[39m
   
-  Webpack Stats file was saved to /var/folders/44/r0s26_lj75v0fds12xfnjfb80000gn/T/size-limit-test
+  Webpack Stats file was saved to /var/folders/44/r0s26_lj75v0fds12xfnjfb80000gn/T/size-limit-test/stats.json
   You can review it using https://webpack.github.io/analyse
 "
 `;
