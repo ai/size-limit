@@ -92,6 +92,14 @@ module.exports = async function getConfig (limitConfig, check, output) {
         analyzerPort: 8888 + limitConfig.checks.findIndex(i => i === check)
       })
     )
+  } else if (limitConfig.saveBundle) {
+    config.plugins.push(
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerMode: 'disabled',
+        generateStatsFile: true
+      })
+    )
   }
 
   return config

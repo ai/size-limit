@@ -173,6 +173,7 @@ it('supports --save-bundle', async () => {
   }
   await run(config)
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
+  expect(existsSync(join(DIST, 'stats.json'))).toBe(true)
 })
 
 it('supports --clean-dir', async () => {
