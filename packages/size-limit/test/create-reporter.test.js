@@ -1,6 +1,3 @@
-let { join } = require('path')
-let { tmpdir } = require('os')
-
 let createReporter = require('../create-reporter')
 
 function results (types, config, isJSON = false) {
@@ -53,9 +50,7 @@ it('renders results', () => {
           time: 3,
           passed: true
         }
-      ],
-      cleanDir: true,
-      saveBundle: join(tmpdir(), `size-limit-test`)
+      ]
     })
   ).toMatchSnapshot()
 })
@@ -227,6 +222,15 @@ it('renders result for file without gzip', () => {
       ],
       failed: false,
       configPath: '.size-limit.json'
+    })
+  ).toMatchSnapshot()
+})
+
+it('renders Webpack stats help message', () => {
+  expect(
+    results(['webpack'], {
+      checks: [],
+      saveBundle: 'test'
     })
   ).toMatchSnapshot()
 })
