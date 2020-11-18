@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.8
+* Add webpack stats support in `--save-bundle` (by Leonard Kinday).
+
 ## 4.7
 * Add `--highlight-less` argument (by Victor Didenko).
 
