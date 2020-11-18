@@ -52,6 +52,13 @@ exports[`renders JSON results 1`] = `
 "
 `;
 
+exports[`renders Webpack stats help message 1`] = `
+"  
+  Webpack Stats file was saved to test/stats.json
+  You can review it using https://webpack.github.io/analyse
+"
+`;
+
 exports[`renders config-less result 1`] = `
 "  
   [31mTotal time limit has exceeded[39m

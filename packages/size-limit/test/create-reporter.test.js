@@ -225,3 +225,12 @@ it('renders result for file without gzip', () => {
     })
   ).toMatchSnapshot()
 })
+
+it('renders Webpack stats help message', () => {
+  expect(
+    results(['webpack'], {
+      checks: [],
+      saveBundle: 'test'
+    })
+  ).toMatchSnapshot()
+})
