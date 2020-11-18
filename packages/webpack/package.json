@@ -21,16 +21,15 @@
   },
   "dependencies": {
     "css-loader": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^1.1.5",
     "escape-string-regexp": "^4.0.0",
     "file-loader": "^6.2.0",
     "mkdirp": "^1.0.4",
     "nanoid": "^3.1.16",
-    "optimize-css-assets-webpack-plugin": "^5.0.4",
-    "pnp-webpack-plugin": "^1.6.4",
     "rimraf": "^3.0.2",
     "style-loader": "^2.0.0",
-    "webpack": "^4.44.1",
-    "webpack-bundle-analyzer": "^3.9.0"
+    "webpack": "^5.5.0",
+    "webpack-bundle-analyzer": "^4.1.0"
   },
   "devDependencies": {
     "redux": "^4.0.5"

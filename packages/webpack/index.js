@@ -31,11 +31,11 @@ function getFiles (stats, check) {
 
   return Object.keys(entries)
     .reduce((assets, i) => assets.concat(entries[i].assets), [])
-    .map(i => {
+    .map(({ name }) => {
       if (check.webpackConfig.output && check.webpackConfig.output.path) {
-        return join(check.webpackConfig.output.path, i)
+        return join(check.webpackConfig.output.path, name)
       } else {
-        return join(process.cwd(), 'dist', i)
+        return join(process.cwd(), 'dist', name)
       }
     })
 }

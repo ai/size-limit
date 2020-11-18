@@ -54,7 +54,7 @@ it('uses webpack to make bundle', async () => {
         webpackOutput: config.checks[0].webpackOutput,
         webpackConfig: config.checks[0].webpackConfig,
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        size: 2849
+        size: 2710
       }
     ]
   })
@@ -69,7 +69,7 @@ it('supports non-JS require', async () => {
   }
   await run(config)
   expect(config.checks[0].size).toBeGreaterThan(1450)
-  expect(config.checks[0].size).toBeLessThan(1700)
+  expect(config.checks[0].size).toBeLessThan(1800)
 })
 
 it('supports ignore', async () => {
@@ -77,7 +77,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(27)
+  expect(config.checks[0].size).toEqual(-292)
 })
 
 it('supports custom webpack config', async () => {
@@ -86,7 +86,7 @@ it('supports custom webpack config', async () => {
     checks: [{ config: fixture('webpack.config.js') }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(1840)
+  expect(config.checks[0].size).toEqual(509)
 })
 
 it('supports custom entry', async () => {
@@ -95,7 +95,7 @@ it('supports custom entry', async () => {
     checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(688)
+  expect(config.checks[0].size).toEqual(23)
 })
 
 it('throws error on unknown entry', async () => {
@@ -126,7 +126,7 @@ it('allows to disable gzip', async () => {
     checks: [{ files: [fixture('small.js')], gzip: false }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(36)
+  expect(config.checks[0].size).toEqual(-925)
 })
 
 it('throws on missed file plugin', async () => {
@@ -247,7 +247,7 @@ it('supports specifying the import', async () => {
         [fixture('module.js')]: '{ A }'
       }
     })
-  ).toEqual(1)
+  ).toEqual(-415)
 
   expect(
     await getSize({
@@ -257,7 +257,7 @@ it('supports specifying the import', async () => {
       },
       gzip: false
     })
-  ).toEqual(1)
+  ).toEqual(-927)
 
   expect(
     await getSize({
@@ -265,7 +265,7 @@ it('supports specifying the import', async () => {
         [fixture('module.js')]: '{ methodA }'
       }
     })
-  ).toEqual(79)
+  ).toEqual(-333)
 })
 
 it('supports import with multiple files', async () => {
@@ -276,5 +276,5 @@ it('supports import with multiple files', async () => {
         [fixture('module2.js')]: '{ B }'
       }
     })
-  ).toEqual(5)
+  ).toEqual(-410)
 })
