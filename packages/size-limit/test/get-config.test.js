@@ -120,6 +120,7 @@ it('normalizes bundle and webpack arguments', async () => {
     checks: [
       {
         name: 'a',
+        highlightLess: true,
         config: fixture('webpack', 'webpack.config.js'),
         entry: ['a']
       }
@@ -193,6 +194,7 @@ it('normalizes import', async () => {
           )]: '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
         },
         limit: '1 B',
+        highlightLess: true,
         name: 'index.js',
         files: [fixture('integration-esm', 'index.js')],
         sizeLimit: 1

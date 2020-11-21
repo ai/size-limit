@@ -57,6 +57,7 @@ exports[`run shows debug 1`] = `
       ],
       \\"name\\": \\"index.js\\",
       \\"sizeLimit\\": 200,
+      \\"highlightLess\\": true,
       \\"webpackOutput\\": \\"/tmp/\\",
       \\"webpackConfig\\": {
         \\"entry\\": {
@@ -153,6 +154,7 @@ exports[`run shows debug 1`] = `
   \\"failed\\": false
 }
   
+  [42m[30mPackage size is 169 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
@@ -493,6 +495,7 @@ Check the real performance cost of your front-end project to users
 
 exports[`run works in integration test in watch 1`] = `
 "  
+  [42m[30mPackage size is 169 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
@@ -525,6 +528,7 @@ exports[`run works in integration test with JSON 1`] = `
 
 exports[`run works in integration test with size 1`] = `
 "  
+  [42m[30mPackage size is 169 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
   Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m

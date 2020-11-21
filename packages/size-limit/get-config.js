@@ -150,6 +150,8 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
         throw new SizeLimitError('timeWithoutPlugin')
       }
     }
+    if (config.highlightLess) check.highlightLess = true
+    if (/\sB$|\dB$/.test(check.limit)) check.highlightLess = true
     if (check.files) {
       check.files = check.files.map(i => toAbsolute(i, config.cwd))
     }

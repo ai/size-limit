@@ -119,7 +119,7 @@ function createHumanReporter (process) {
             }
             let diff = formatBytes(check.size - check.sizeLimit)
             print(red(`Package size limit has exceeded by ${diff}`))
-          } else if (config.highlightLess && check.size < check.sizeLimit) {
+          } else if (check.highlightLess && check.size < check.sizeLimit) {
             let diff = formatBytes(check.sizeLimit - check.size)
             print(bgGreen(black(`Package size is ${diff} less than limit`)))
           }

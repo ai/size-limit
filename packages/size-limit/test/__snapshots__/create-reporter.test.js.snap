@@ -7,7 +7,6 @@ exports[`highlight passed results with --highlight-less flag 1`] = `
   Size:       [32m[1m100 KB[22m[39m [90mgzipped[39m
   
   [1mgood[22m
-  [42m[30mPackage size is 5 KB less than limit[39m[49m
   Size limit: [32m[1m100 KB[22m[39m
   Size:       [32m[1m95 KB [22m[39m [90mgzipped[39m
   
