@@ -2,10 +2,10 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 4.8
-* Add webpack stats support in `--save-bundle` (by Leonard Kinday).
+* Added webpack stats support in `--save-bundle` (by Leonard Kinday).
 
 ## 4.7
-* Add `--highlight-less` argument (by Victor Didenko).
+* Added `--highlight-less` argument (by Victor Didenko).
 
 ## 4.6.2
 * Fixed `peerDependencies` resolving in `import`.
