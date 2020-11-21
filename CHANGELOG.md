@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.9
+* Added auto `--highlight-less` for checks with bytes in limit.
+* Updated `dual-publish`.
+
 ## 4.8
 * Added webpack stats support in `--save-bundle` (by Leonard Kinday).
 
