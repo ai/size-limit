@@ -17,7 +17,7 @@
   ],
   "devDependencies": {
     "@logux/eslint-config": "^42.2.2",
-    "@logux/sharec-config": "^0.8.4",
+    "@logux/sharec-config": "^0.8.5",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^1.0.3",
     "eslint": "^7.14.0",
@@ -137,6 +137,6 @@
   },
   "sharec": {
     "config": "@logux/sharec-config",
-    "version": "0.8.4"
+    "version": "0.8.5"
   }
 }
