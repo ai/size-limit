@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.9.1
+* Reduced dependencies by replacing `cosmiconfig` to `lilconfig`.
+
 ## 4.9
 * Added auto `--highlight-less` for checks with bytes in limit.
 * Updated `dual-publish`.
