@@ -22,8 +22,8 @@
     "chokidar": "^3.4.3",
     "ci-job-number": "^1.2.2",
     "colorette": "^1.2.1",
-    "cosmiconfig": "^7.0.0",
     "globby": "^11.0.1",
+    "lilconfig": "^2.0.1",
     "ora": "^5.1.0",
     "read-pkg-up": "^7.0.1"
   }

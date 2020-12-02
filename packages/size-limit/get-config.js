@@ -1,5 +1,5 @@
 let { isAbsolute, dirname, join, relative } = require('path')
-let { cosmiconfig } = require('cosmiconfig')
+let { lilconfig } = require('lilconfig')
 let globby = require('globby')
 let bytes = require('bytes')
 
@@ -99,7 +99,7 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
   if (args.files.length > 0) {
     config.checks = [{ files: args.files }]
   } else {
-    let explorer = cosmiconfig('size-limit', {
+    let explorer = lilconfig('size-limit', {
       searchPlaces: [
         'package.json',
         '.size-limit.json',
@@ -116,18 +116,19 @@ module.exports = async function getConfig (plugins, process, args, pkg) {
     config.cwd = dirname(result.filepath)
     config.checks = await Promise.all(
       result.config.map(async check => {
+        let processed = { ...check }
         if (check.path) {
-          check.files = await globby(check.path, { cwd: config.cwd })
+          processed.files = await globby(check.path, { cwd: config.cwd })
         } else if (!check.entry) {
           if (pkg.packageJson.main) {
-            check.files = [
+            processed.files = [
               require.resolve(join(dirname(pkg.path), pkg.packageJson.main))
             ]
           } else {
-            check.files = [join(dirname(pkg.path), 'index.js')]
+            processed.files = [join(dirname(pkg.path), 'index.js')]
           }
         }
-        return check
+        return processed
       })
     )
   }
