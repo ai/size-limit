@@ -30,7 +30,7 @@
     "rimraf": "^3.0.2",
     "style-loader": "^2.0.0",
     "webpack": "^4.44.1",
-    "webpack-bundle-analyzer": "^3.9.0"
+    "webpack-bundle-analyzer": "^4.4.0"
   },
   "devDependencies": {
     "redux": "^4.0.5"
