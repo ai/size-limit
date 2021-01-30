@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.9.2
+* Fixed plugin loading for mono repository (by John Grishin).
+
 ## 4.9.1
 * Reduced dependencies by replacing `cosmiconfig` to `lilconfig`.
 
