@@ -1,5 +1,6 @@
 let readPkgUp = require('read-pkg-up')
 let ora = require('ora')
+let path = require('path')
 let chokidar = require('chokidar')
 
 let SizeLimitError = require('./size-limit-error')
@@ -23,6 +24,17 @@ function throttle (fn) {
   }
 }
 
+async function findPlugins (parentPkg) {
+  let plugins = loadPlugins(parentPkg)
+
+  if (!parentPkg || !plugins.isEmpty) return plugins
+
+  let cwd = path.resolve(parentPkg.path, '..', '..')
+  let pkg = await readPkgUp({ cwd })
+
+  return findPlugins(pkg)
+}
+
 module.exports = async process => {
   function hasArg (arg) {
     return process.argv.some(i => i === arg)
@@ -38,7 +50,7 @@ module.exports = async process => {
     }
 
     let pkg = await readPkgUp({ cwd: process.cwd() })
-    let plugins = loadPlugins(pkg)
+    let plugins = await findPlugins(pkg)
 
     if (hasArg('--help')) {
       return help.showHelp(plugins)
