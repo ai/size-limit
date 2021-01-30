@@ -14,7 +14,7 @@ class Plugins {
 }
 
 module.exports = function loadPlugins (pkg) {
-  if (!pkg || !pkg.packageJson) return []
+  if (!pkg || !pkg.packageJson) return new Plugins([])
 
   let list = toArray(pkg.packageJson.dependencies)
     .concat(toArray(pkg.packageJson.devDependencies))

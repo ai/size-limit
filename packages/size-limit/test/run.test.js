@@ -42,7 +42,7 @@ function createProcess (cwd, args = []) {
       if (cwd.includes('/')) {
         return cwd
       } else {
-        return fixture(cwd)
+        return fixture(...(Array.isArray(cwd) ? cwd : [cwd]))
       }
     },
     exit (code) {
@@ -290,5 +290,9 @@ describe(`run`, () => {
 
   it('shows debug on error', async () => {
     expect(clean(await error('internal-error', ['--debug']))).toMatchSnapshot()
+  })
+
+  it('find plugins in parent package.json', async () => {
+    expect(clean(await check(['nested', 'package']))).toMatchSnapshot()
   })
 })

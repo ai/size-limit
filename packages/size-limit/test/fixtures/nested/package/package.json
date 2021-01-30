@@ -1,0 +1,10 @@
+{
+  "name": "package",
+  "private": true,
+  "size-limit": [
+    {
+      "name": "index",
+      "limit": "1 KB"
+    }
+  ]
+}
