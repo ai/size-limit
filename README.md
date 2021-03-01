@@ -102,6 +102,76 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
 1. Install the preset:
 
     ```sh
+    $ npm install --save-dev size-limit @size-limit/file
+    ```
+
+2. Add the `size-limit` section and the `size` script to your `package.json`:
+
+    ```diff
+    + "size-limit": [
+    +   {
+    +     "path": "dist/app-*.js"
+    +   }
+    + ],
+      "scripts": {
+        "build": "webpack ./webpack.config.js",
+    +   "size": "npm run build && size-limit",
+        "test": "jest && eslint ."
+      }
+    ```
+
+3. Here’s how you can get the size for your current project:
+
+    ```sh
+    $ npm run size
+
+      Package size: 30.08 KB with all dependencies, minified and gzipped
+    ```
+
+4. Now, let’s set the limit. Add 25% to the current total time and use that as
+   the limit in your `package.json`:
+
+    ```diff
+      "size-limit": [
+        {
+    +     "limit": "35 KB",
+          "path": "dist/app-*.js"
+        }
+      ],
+    ```
+
+5. Add the `size` script to your test suite:
+
+    ```diff
+      "scripts": {
+        "build": "webpack ./webpack.config.js",
+        "size": "npm run build && size-limit",
+    -   "test": "jest && eslint ."
+    +   "test": "jest && eslint . && npm run size"
+      }
+    ```
+
+6. If you don’t have a continuous integration service running, don’t forget
+   to add one — start with [Travis CI].
+
+</details>
+
+
+### JS Application and Time-based Limit
+
+File size limit (in KB) is not the best way to describe your JS application
+cost for developers. Developers will compare the size of the JS bundle
+with the size of images. But browsers need much more time to parse 100 KB
+of JS than 100 KB of an image since JS compilers are very complex.
+
+This is why Size Limit support time-based limit. It runs headless Chrome
+to track the time a browser takes to compile and execute your JS.
+
+<details><summary><b>Show instructions</b></summary>
+
+1. Install the preset:
+
+    ```sh
     $ npm install --save-dev size-limit @size-limit/preset-app
     ```
 
