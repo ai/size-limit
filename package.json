@@ -83,7 +83,7 @@
       }
     }
   },
-  "simple-pre-commit": "lint-staged",
+  "simple-pre-commit": "npx lint-staged",
   "lint-staged": {
     "*.md": "yaspeller",
     "*.js": "eslint --fix"
