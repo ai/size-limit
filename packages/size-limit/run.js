@@ -37,7 +37,7 @@ async function findPlugins (parentPkg) {
 
 module.exports = async process => {
   function hasArg (arg) {
-    return process.argv.some(i => i === arg)
+    return process.argv.includes(arg)
   }
   let isJsonOutput = hasArg('--json')
   let isSilentMode = hasArg('--silent')
