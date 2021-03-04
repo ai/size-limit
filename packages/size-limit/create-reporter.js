@@ -36,7 +36,7 @@ function createJsonReporter (process) {
   }
 }
 
-function createHumanReporter (process) {
+function createHumanReporter (process, isSilentMode = false) {
   function print (...lines) {
     process.stdout.write('  ' + lines.join('\n  ') + '\n')
   }
@@ -77,7 +77,12 @@ function createHumanReporter (process) {
     results (plugins, config) {
       print('')
       for (let check of config.checks) {
-        if (check.passed && config.hidePassed) continue
+        if (
+          (check.passed && config.hidePassed && !isSilentMode) ||
+          (isSilentMode && check.passed !== false)
+        ) {
+          continue
+        }
 
         let unlimited = typeof check.passed === 'undefined'
         let rows = []
@@ -183,6 +188,10 @@ function createHumanReporter (process) {
   }
 }
 
-module.exports = (process, isJSON) => {
-  return isJSON ? createJsonReporter(process) : createHumanReporter(process)
+module.exports = (process, isJSON, isSilentMode) => {
+  if (isJSON) {
+    return createJsonReporter(process)
+  } else {
+    return createHumanReporter(process, isSilentMode)
+  }
 }

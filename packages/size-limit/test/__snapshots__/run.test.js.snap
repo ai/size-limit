@@ -210,6 +210,19 @@ exports[`run shows error on time bigger than limit 1`] = `
 "
 `;
 
+exports[`run shows error on time bigger than limit. in silent mode 1`] = `
+"  
+  [31mTotal time limit has exceeded[39m
+  Time limit:   [31m[1m1 s[22m[39m
+  Size:         [31m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
+  Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [31m[1m1.1 s[22m[39m
+  
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+"
+`;
+
 exports[`run shows error when using brotli without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mbrotli[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
@@ -305,6 +318,11 @@ For small (< 10 KB) libraries
 
 Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
+"
+`;
+
+exports[`run shows nothing in silent mode and success check 1`] = `
+"  
 "
 `;
 

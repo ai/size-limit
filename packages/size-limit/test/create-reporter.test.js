@@ -1,6 +1,6 @@
 let createReporter = require('../create-reporter')
 
-function results (types, config, isJSON = false) {
+function results (types, config, isJSON = false, isSilentMode = false) {
   let stdout = ''
   let plugins = {
     has (type) {
@@ -14,7 +14,7 @@ function results (types, config, isJSON = false) {
       }
     }
   }
-  let reporter = createReporter(process, isJSON)
+  let reporter = createReporter(process, isJSON, isSilentMode)
   reporter.results(plugins, config)
   return stdout
 }
@@ -52,6 +52,106 @@ it('renders results', () => {
         }
       ]
     })
+  ).toMatchSnapshot()
+})
+
+it('renders list of success checks in silent mode', () => {
+  expect(
+    results(
+      ['webpack', 'time'],
+      {
+        checks: [
+          {
+            name: 'limitless',
+            size: 10,
+            config: 'a',
+            loadTime: 0.1,
+            runTime: 0.5,
+            time: 0.6
+          },
+          {
+            name: 'size',
+            size: 102400,
+            sizeLimit: 102400,
+            loadTime: 1,
+            runTime: 2,
+            time: 3,
+            passed: true
+          }
+        ]
+      },
+      false,
+      true
+    )
+  ).toMatchSnapshot()
+})
+
+it('renders list of failed checks in silent mode', () => {
+  expect(
+    results(
+      ['webpack', 'time'],
+      {
+        checks: [
+          {
+            name: 'small fail',
+            size: 102401,
+            sizeLimit: 102400,
+            passed: false
+          },
+          {
+            name: 'big fail',
+            size: 102500,
+            sizeLimit: 102400,
+            passed: false
+          }
+        ]
+      },
+      false,
+      true
+    )
+  ).toMatchSnapshot()
+})
+
+it('renders list of failed and success checks in silent mode', () => {
+  expect(
+    results(
+      ['webpack', 'time'],
+      {
+        checks: [
+          {
+            name: 'small fail',
+            size: 102401,
+            sizeLimit: 102400,
+            passed: false
+          },
+          {
+            name: 'limitless',
+            size: 10,
+            config: 'a',
+            loadTime: 0.1,
+            runTime: 0.5,
+            time: 0.6
+          },
+          {
+            name: 'size',
+            size: 102400,
+            sizeLimit: 102400,
+            loadTime: 1,
+            runTime: 2,
+            time: 3,
+            passed: true
+          },
+          {
+            name: 'big fail',
+            size: 102500,
+            sizeLimit: 102400,
+            passed: false
+          }
+        ]
+      },
+      false,
+      true
+    )
   ).toMatchSnapshot()
 })
 

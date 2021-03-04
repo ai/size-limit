@@ -91,6 +91,41 @@ exports[`renders failed results 1`] = `
 "
 `;
 
+exports[`renders list of failed and success checks in silent mode 1`] = `
+"  
+  [1msmall fail[22m
+  [31mPackage size limit has exceeded by 1 B[39m
+  Size limit: [31m[1m102400 B[22m[39m
+  Size:       [31m[1m102401 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+  [1mbig fail[22m
+  [31mPackage size limit has exceeded by 100 B[39m
+  Size limit: [31m[1m100 KB[22m[39m
+  Size:       [31m[1m100.1 KB[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
+exports[`renders list of failed checks in silent mode 1`] = `
+"  
+  [1msmall fail[22m
+  [31mPackage size limit has exceeded by 1 B[39m
+  Size limit: [31m[1m102400 B[22m[39m
+  Size:       [31m[1m102401 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+  [1mbig fail[22m
+  [31mPackage size limit has exceeded by 100 B[39m
+  Size limit: [31m[1m100 KB[22m[39m
+  Size:       [31m[1m100.1 KB[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
+exports[`renders list of success checks in silent mode 1`] = `
+"  
+"
+`;
+
 exports[`renders result for file without gzip 1`] = `
 "  
   Size limit: [32m[1m99 B[22m[39m
