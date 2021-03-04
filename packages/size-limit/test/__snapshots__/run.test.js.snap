@@ -257,6 +257,7 @@ Check the real performance cost of your front-end project to users
   [33m--highlight-less[39m  Highlight files with less than limit size
   [33m--help[39m            Display this help
   [33m--watch[39m           Runs in watch mode
+  [33m--silent[39m          Show only failed limits
   [33m--debug[39m           Show internal configs for issue report
   [33m--version[39m         Display version
 
@@ -339,6 +340,7 @@ Check the real performance cost of your front-end project to users
   [33m--highlight-less[39m  Highlight files with less than limit size
   [33m--help[39m            Display this help
   [33m--watch[39m           Runs in watch mode
+  [33m--silent[39m          Show only failed limits
   [33m--debug[39m           Show internal configs for issue report
   [33m--version[39m         Display version
 
@@ -501,6 +503,7 @@ Check the real performance cost of your front-end project to users
   [33m--highlight-less[39m  Highlight files with less than limit size
   [33m--help[39m            Display this help
   [33m--watch[39m           Runs in watch mode
+  [33m--silent[39m          Show only failed limits
   [33m--debug[39m           Show internal configs for issue report
   [33m--version[39m         Display version
 
