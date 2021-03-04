@@ -31,10 +31,10 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^23.0.0",
-    "husky": "^4.3.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.2",
     "print-snapshots": "^0.3.2",
+    "simple-pre-commit": "^1.2.1",
     "typescript": "^4.1.2",
     "yaspeller": "^7.0.0"
   },
@@ -83,6 +83,11 @@
       }
     }
   },
+  "simple-pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.md": "yaspeller",
+    "*.js": "eslint --fix"
+  },
   "yaspeller": {
     "lang": "en",
     "ignoreCapitalization": true,
@@ -125,15 +130,6 @@
       "ES",
       "GitHub"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.md": "yaspeller",
-    "*.js": "eslint --fix"
   },
   "sharec": {
     "config": "@logux/sharec-config",
