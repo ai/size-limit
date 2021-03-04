@@ -4,6 +4,7 @@ module.exports = function parseArgs (plugins, argv) {
   let args = { files: [] }
   for (let i = 2; i < argv.length; i++) {
     let arg = argv[i]
+
     if (arg === '--limit') {
       args.limit = argv[++i]
     } else if (arg === '--debug') {
@@ -39,6 +40,8 @@ module.exports = function parseArgs (plugins, argv) {
       args.highlightLess = true
     } else if (arg[0] !== '-') {
       args.files.push(arg)
+    } else if (arg === '--silent') {
+      args.isSilentMode = arg
     } else if (arg !== '--json') {
       throw new SizeLimitError('unknownArg', arg)
     }

@@ -40,7 +40,8 @@ module.exports = async process => {
     return process.argv.some(i => i === arg)
   }
   let isJsonOutput = hasArg('--json')
-  let reporter = createReporter(process, isJsonOutput)
+  let isSilentMode = hasArg('--silent')
+  let reporter = createReporter(process, isJsonOutput, isSilentMode)
   let help = createHelp(process)
   let config, args
 

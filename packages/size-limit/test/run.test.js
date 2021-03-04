@@ -272,6 +272,22 @@ describe(`run`, () => {
     expect(history.stdout).toMatchSnapshot()
   })
 
+  it('shows error on time bigger than limit. in silent mode', async () => {
+    let [process, history] = createProcess('integration', [
+      '--silent',
+      '--limit',
+      '1 s'
+    ])
+    await run(process)
+    expect(history.exitCode).toEqual(1)
+    expect(history.stderr).toEqual('')
+    expect(history.stdout).toMatchSnapshot()
+  })
+
+  it('shows nothing in silent mode and success check', async () => {
+    expect(await check('integration', ['--silent'])).toMatchSnapshot()
+  })
+
   it('returns zero bytes for empty file', async () => {
     expect(await check('zero')).toMatchSnapshot()
   })
