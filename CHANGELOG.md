@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.10
+* Add `--silent` argument (by Viktor Pasynok).
+
 ## 4.9.2
 * Fixed plugin loading for mono repository (by John Grishin).
 
