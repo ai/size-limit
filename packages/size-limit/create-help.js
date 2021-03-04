@@ -34,6 +34,7 @@ module.exports = process => {
       `  ${y('--highlight-less')}  Highlight files with less than limit size`,
       `  ${y('--help')}            Display this help`,
       `  ${y('--watch')}           Runs in watch mode`,
+      `  ${y('--silent')}          Show only failed limits`,
       `  ${y('--debug')}           Show internal configs for issue report`,
       `  ${y('--version')}         Display version`
     )
