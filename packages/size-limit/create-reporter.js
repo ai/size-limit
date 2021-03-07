@@ -36,6 +36,19 @@ function createJsonReporter (process) {
   }
 }
 
+function getFixText (prefix, config) {
+  if (config.configPath) {
+    if (config.configPath.endsWith('package.json')) {
+      prefix += ` in ${bold('"size-limit"')} section of `
+    } else {
+      prefix += ' at '
+    }
+    prefix += bold(config.configPath)
+  }
+
+  return prefix
+}
+
 function createHumanReporter (process, isSilentMode = false) {
   function print (...lines) {
     process.stdout.write('  ' + lines.join('\n  ') + '\n')
@@ -91,8 +104,9 @@ function createHumanReporter (process, isSilentMode = false) {
           print(bold(check.name))
         }
 
-        if (check.files && !check.files.length && check.path) {
-          print(yellow(`File not found: ${check.path}`))
+        if (check.missed) {
+          print(red(`File not found: ${check.path}`))
+          continue
         }
 
         let sizeNote
@@ -167,15 +181,12 @@ function createHumanReporter (process, isSilentMode = false) {
       }
 
       if (config.failed) {
-        let fix = 'Try to reduce size or increase limit'
-        if (config.configPath) {
-          if (config.configPath.endsWith('package.json')) {
-            fix += ` in ${bold('"size-limit"')} section of `
-          } else {
-            fix += ' at '
-          }
-          fix += bold(config.configPath)
-        }
+        let fix = getFixText('Try to reduce size or increase limit', config)
+        print(yellow(fix))
+      }
+
+      if (config.missed) {
+        let fix = getFixText('Specify correct file path', config)
         print(yellow(fix))
       }
 
