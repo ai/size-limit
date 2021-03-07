@@ -92,7 +92,8 @@ function createHumanReporter (process, isSilentMode = false) {
         }
 
         if (check.files && !check.files.length && check.path) {
-          print(yellow(`File not found: ${check.path}`))
+          print(red(`File not found: ${check.path}`))
+          continue
         }
 
         let sizeNote
@@ -167,7 +168,8 @@ function createHumanReporter (process, isSilentMode = false) {
       }
 
       if (config.failed) {
-        let fix = 'Try to reduce size or increase limit'
+        let fix =
+          'Try to reduce size, increase limit or specify correct file path'
         if (config.configPath) {
           if (config.configPath.endsWith('package.json')) {
             fix += ` in ${bold('"size-limit"')} section of `
