@@ -86,7 +86,7 @@ module.exports = async process => {
       watcher.on('change', throttle(calcAndShow))
     }
 
-    if (config.failed && !args.why) process.exit(1)
+    if ((config.failed || config.missed) && !args.why) process.exit(1)
   } catch (e) {
     debug.error(process, args, config)
     reporter.error(e)

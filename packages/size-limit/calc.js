@@ -53,10 +53,11 @@ module.exports = async function calc (plugins, config, createSpinner) {
       check.passed = check.timeLimit >= check.time
     }
     if (check.files && !check.files.length && check.path) {
-      check.passed = false
+      check.missed = true
       check.sizeLimit = undefined
       check.timeLimit = undefined
     }
   }
   config.failed = config.checks.some(i => i.passed === false)
+  config.missed = config.checks.some(i => i.missed === true)
 }

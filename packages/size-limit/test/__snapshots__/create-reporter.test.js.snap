@@ -15,7 +15,7 @@ exports[`highlight passed results with --highlight-less flag 1`] = `
   Size limit: [31m[1m102400 B[22m[39m
   Size:       [31m[1m102401 B[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -31,7 +31,7 @@ exports[`only renders failed results with --hide-passed flag 1`] = `
   Size limit: [31m[1m100 KB[22m[39m
   Size:       [31m[1m100.1 KB[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -67,7 +67,7 @@ exports[`renders config-less result 1`] = `
   Running time: [31m[1m300 ms[22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m500 ms[22m[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path[39m
+  [33mTry to reduce size or increase limit[39m
 "
 `;
 
@@ -87,7 +87,7 @@ exports[`renders failed results 1`] = `
   Size limit: [31m[1m100 KB[22m[39m
   Size:       [31m[1m100.1 KB[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -165,6 +165,6 @@ exports[`renders single result 1`] = `
   Size limit: [31m[1m100 B[22m[39m
   Size:       [31m[1m101 B[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path at [1m.size-limit.json[22m[39m
+  [33mTry to reduce size or increase limit at [1m.size-limit.json[22m[39m
 "
 `;

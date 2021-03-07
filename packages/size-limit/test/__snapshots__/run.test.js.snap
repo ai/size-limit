@@ -159,7 +159,8 @@ exports[`run shows debug 1`] = `
       \\"passed\\": true
     }
   ],
-  \\"failed\\": false
+  \\"failed\\": false,
+  \\"missed\\": false
 }
   
   [42m[30mPackage size is 169 B less than limit[39m[49m
@@ -206,7 +207,7 @@ exports[`run shows error on time bigger than limit 1`] = `
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -219,21 +220,21 @@ exports[`run shows error on time bigger than limit. in silent mode 1`] = `
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
   
-  [33mTry to reduce size, increase limit or specify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
 exports[`run shows error when file not found, package.json 1`] = `
 "  
   [31mFile not found: folder/index.js[39m
-  [33mTry to reduce size, increase limit or specify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mSpecify correct file path in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
 exports[`run shows error when file not found, size-limit.json 1`] = `
 "  
   [31mFile not found: folder/index.js[39m
-  [33mTry to reduce size, increase limit or specify correct file path at [1m.size-limit.json[22m[39m
+  [33mSpecify correct file path at [1m.size-limit.json[22m[39m
 "
 `;
 
