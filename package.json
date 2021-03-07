@@ -16,7 +16,7 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^44.2.0",
+    "@logux/eslint-config": "^45.1.0",
     "@logux/sharec-config": "^0.8.5",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^1.0.3",
@@ -24,7 +24,7 @@
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.1.5",
+    "eslint-plugin-jest": "^24.1.8",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^1.1.0",
     "eslint-plugin-prettierx": "^0.17.1",
@@ -35,7 +35,7 @@
     "lint-staged": "^10.5.4",
     "print-snapshots": "^0.3.2",
     "simple-pre-commit": "^1.2.1",
-    "typescript": "^4.2.2",
+    "typescript": "^4.2.3",
     "yaspeller": "^7.0.0"
   },
   "eslintConfig": {
@@ -44,7 +44,8 @@
       "node/no-unsupported-features/es-syntax": "off",
       "security/detect-non-literal-require": "off",
       "security/detect-non-literal-regexp": "off",
-      "node/global-require": "off"
+      "node/global-require": "off",
+      "no-console": "off"
     },
     "overrides": [
       {
