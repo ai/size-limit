@@ -16,30 +16,37 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^45.1.0",
-    "@logux/sharec-config": "^0.8.5",
+    "@logux/eslint-config": "^45.2.0",
+    "@logux/sharec-config": "^0.9.0",
+    "@size-limit/dual-publish": "^4.10.1",
+    "@size-limit/preset-small-lib": "^4.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "check-dts": "^0.4.4",
     "cross-spawn": "^7.0.3",
-    "dual-publish": "^1.0.3",
+    "dual-publish": "^1.0.4",
     "eslint": "^7.21.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.1.8",
+    "eslint-plugin-jest": "^24.2.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^1.1.0",
-    "eslint-plugin-prettierx": "^0.17.1",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^28.0.2",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
     "print-snapshots": "^0.3.2",
-    "simple-pre-commit": "^1.2.1",
+    "simple-git-hooks": "^2.0.2",
+    "size-limit": "^4.10.1",
+    "ts-jest": "^26.5.3",
     "typescript": "^4.2.3",
     "yaspeller": "^7.0.0"
   },
   "eslintConfig": {
-    "extends": "@logux/eslint-config",
+    "extends": "@logux/eslint-config/ts",
     "rules": {
       "node/no-unsupported-features/es-syntax": "off",
       "security/detect-non-literal-require": "off",
@@ -82,12 +89,30 @@
       "global": {
         "statements": 100
       }
-    }
+    },
+    "preset": "ts-jest"
   },
-  "simple-pre-commit": "npx lint-staged",
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "jsxSingleQuote": false,
+    "quoteProps": "consistent",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
   "lint-staged": {
     "*.md": "yaspeller",
-    "*.js": "eslint --fix"
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "yaspeller": {
     "lang": "en",
@@ -134,6 +159,6 @@
   },
   "sharec": {
     "config": "@logux/sharec-config",
-    "version": "0.8.5"
+    "version": "0.9.0"
   }
 }
