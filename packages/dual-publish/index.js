@@ -8,7 +8,7 @@ let self = {
   name: '@size-limit/dual-publish',
 
   wait10: 'Compiling files to ESM',
-  async all10 (config) {
+  async all10(config) {
     let stderr = ''
     let cmd = spawn(
       process.platform === 'win32' ? 'npx.cmd' : 'npx',
@@ -55,7 +55,7 @@ let self = {
     }
   },
 
-  async finally (config) {
+  async finally(config) {
     await rimraf(join(config.cwd, 'dual-publish-tmp'))
   }
 }

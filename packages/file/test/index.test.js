@@ -3,7 +3,7 @@ let SizeLimitError = require('size-limit/size-limit-error')
 
 let [file] = require('../')
 
-function fixture (name) {
+function fixture(name) {
   return join(__dirname, 'fixtures', name)
 }
 

@@ -5,10 +5,10 @@ jest.mock('estimo', () => () => {
 })
 
 jest.mock('../cache', () => ({
-  getCache () {
+  getCache() {
     return false
   },
-  saveCache () {}
+  saveCache() {}
 }))
 
 beforeEach(() => {
@@ -22,7 +22,7 @@ afterEach(() => {
 
 const EXAMPLE = require.resolve('nanoid/index.browser.js')
 
-async function runWithError () {
+async function runWithError() {
   let err
   try {
     await getRunningTime(EXAMPLE)

@@ -1,15 +1,15 @@
 let createReporter = require('../create-reporter')
 
-function results (types, config, isJSON = false, isSilentMode = false) {
+function results(types, config, isJSON = false, isSilentMode = false) {
   let stdout = ''
   let plugins = {
-    has (type) {
+    has(type) {
       return types.includes(type)
     }
   }
   let process = {
     stdout: {
-      write (str) {
+      write(str) {
         stdout += str
       }
     }

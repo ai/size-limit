@@ -4,7 +4,7 @@ let { join } = require('path')
 
 let ownPackage = require('./package.json')
 
-function npmCommands (pkg) {
+function npmCommands(pkg) {
   let add = 'npm install --save-dev '
   let rm = 'npm remove '
   if (existsSync(join(pkg.path, '..', 'yarn.lock'))) {
@@ -15,14 +15,14 @@ function npmCommands (pkg) {
 }
 
 module.exports = process => {
-  function print (...lines) {
+  function print(...lines) {
     process.stdout.write(lines.join('\n') + '\n')
   }
-  function printError (...lines) {
+  function printError(...lines) {
     process.stderr.write(lines.join('\n') + '\n')
   }
 
-  function showHelp (plugins) {
+  function showHelp(plugins) {
     print(
       y('size-limit [OPTION]… [FILE]…'),
       'Check the real performance cost of your front-end project to users',
@@ -66,11 +66,11 @@ module.exports = process => {
     }
   }
 
-  function showVersion () {
+  function showVersion() {
     print(`size-limit ${ownPackage.version}`)
   }
 
-  function showMigrationGuide (pkg) {
+  function showMigrationGuide(pkg) {
     let { add } = npmCommands(pkg)
     printError(
       red('Install Size Limit preset depends on type of the project'),

@@ -7,30 +7,30 @@ jest.setTimeout(10000)
 jest.mock('../../time/get-running-time', () => () => 1)
 
 jest.mock('../../time/cache', () => ({
-  getCache () {
+  getCache() {
     return false
   },
-  saveCache () {}
+  saveCache() {}
 }))
 
 jest.mock('ora', () => {
   return () => ({
-    start () {
+    start() {
       return this
     },
-    succeed () {},
-    fail () {}
+    succeed() {},
+    fail() {}
   })
 })
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
 
-function fixture (...files) {
+function fixture(...files) {
   return join(__dirname, 'fixtures', ...files)
 }
 
-function createProcess (cwd, args = []) {
+function createProcess(cwd, args = []) {
   let history = {
     exitCode: 0,
     stdout: '',
@@ -38,23 +38,23 @@ function createProcess (cwd, args = []) {
   }
   let process = {
     argv: ['node', 'size-limit', ...args],
-    cwd () {
+    cwd() {
       if (cwd.includes('/')) {
         return cwd
       } else {
         return fixture(...(Array.isArray(cwd) ? cwd : [cwd]))
       }
     },
-    exit (code) {
+    exit(code) {
       history.exitCode = code
     },
     stdout: {
-      write (str) {
+      write(str) {
         history.stdout += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     },
     stderr: {
-      write (str) {
+      write(str) {
         history.stderr += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     }
@@ -62,14 +62,14 @@ function createProcess (cwd, args = []) {
   return [process, history]
 }
 
-function clean (output) {
+function clean(output) {
   return output
     .replace(/var\/folders\/(.*)\//g, 'tmp/')
     .replace(/"cwd": "[^"]+"/, '"cwd": "/tmp/"')
     .replace(/"webpackOutput": "[^"]+"/, '"webpackOutput": "/tmp/"')
 }
 
-async function check (cwd, args) {
+async function check(cwd, args) {
   let [process, history] = createProcess(cwd, args)
   await run(process)
   expect(history.stderr).toEqual('')
@@ -77,7 +77,7 @@ async function check (cwd, args) {
   return history.stdout
 }
 
-async function error (cwd, args) {
+async function error(cwd, args) {
   let [process, history] = createProcess(cwd, args)
   await run(process)
   expect(history.stdout).toEqual('')

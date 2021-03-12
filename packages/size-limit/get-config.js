@@ -23,17 +23,17 @@ let OPTIONS = {
   highlightLess: false
 }
 
-function isStrings (value) {
+function isStrings(value) {
   if (!Array.isArray(value)) return false
   return value.every(i => typeof i === 'string')
 }
 
-function isStringsOrUndefined (value) {
+function isStringsOrUndefined(value) {
   let type = typeof value
   return type === 'undefined' || type === 'string' || isStrings(value)
 }
 
-function checkChecks (plugins, checks) {
+function checkChecks(plugins, checks) {
   if (!Array.isArray(checks)) {
     throw new SizeLimitError('noArrayConfig')
   }
@@ -67,15 +67,15 @@ function checkChecks (plugins, checks) {
   }
 }
 
-function toAbsolute (file, cwd) {
+function toAbsolute(file, cwd) {
   return isAbsolute(file) ? file : join(cwd, file)
 }
 
-function toName (files, cwd) {
+function toName(files, cwd) {
   return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
-module.exports = async function getConfig (plugins, process, args, pkg) {
+module.exports = async function getConfig(plugins, process, args, pkg) {
   let config = {
     cwd: process.cwd()
   }

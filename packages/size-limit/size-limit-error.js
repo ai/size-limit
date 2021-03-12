@@ -49,7 +49,7 @@ const ADD_CONFIG_EXAMPLE = {
 }
 
 class SizeLimitError extends Error {
-  constructor (type, ...args) {
+  constructor(type, ...args) {
     super(MESSAGES[type](...args))
     this.name = 'SizeLimitError'
     if (ADD_CONFIG_EXAMPLE[type]) {

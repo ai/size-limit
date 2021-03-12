@@ -1,19 +1,19 @@
-function toArray (obj) {
+function toArray(obj) {
   return typeof obj === 'object' ? Object.keys(obj) : []
 }
 
 class Plugins {
-  constructor (list) {
+  constructor(list) {
     this.list = list
     this.isEmpty = list.length === 0
   }
 
-  has (type) {
+  has(type) {
     return this.list.some(i => i.name === `@size-limit/${type}`)
   }
 }
 
-module.exports = function loadPlugins (pkg) {
+module.exports = function loadPlugins(pkg) {
   if (!pkg || !pkg.packageJson) return new Plugins([])
 
   let list = toArray(pkg.packageJson.dependencies)

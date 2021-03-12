@@ -12,7 +12,7 @@ let parseArgs = require('./parse-args')
 let debug = require('./debug')
 let calc = require('./calc')
 
-function throttle (fn) {
+function throttle(fn) {
   let next, running
   // istanbul ignore next
   return () => {
@@ -24,7 +24,7 @@ function throttle (fn) {
   }
 }
 
-async function findPlugins (parentPkg) {
+async function findPlugins(parentPkg) {
   let plugins = loadPlugins(parentPkg)
 
   if (!parentPkg || !plugins.isEmpty) return plugins
@@ -36,7 +36,7 @@ async function findPlugins (parentPkg) {
 }
 
 module.exports = async process => {
-  function hasArg (arg) {
+  function hasArg(arg) {
     return process.argv.includes(arg)
   }
   let isJsonOutput = hasArg('--json')

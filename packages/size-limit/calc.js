@@ -1,7 +1,7 @@
-module.exports = async function calc (plugins, config, createSpinner) {
+module.exports = async function calc(plugins, config, createSpinner) {
   process.setMaxListeners(config.checks.reduce((a, i) => a + i.files.length, 1))
 
-  async function step (number) {
+  async function step(number) {
     for (let plugin of plugins.list) {
       let spinner
       if (plugin['wait' + number] && createSpinner) {
@@ -27,7 +27,7 @@ module.exports = async function calc (plugins, config, createSpinner) {
     }
   }
 
-  async function callMethodForEachPlugin (methodName) {
+  async function callMethodForEachPlugin(methodName) {
     for (let plugin of plugins.list) {
       if (plugin[methodName]) {
         await Promise.all(

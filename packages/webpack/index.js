@@ -15,7 +15,7 @@ const WEBPACK_EMPTY_PROJECT_GZIP = 461
 const WEBPACK_EMPTY_PROJECT_IMPORT = 965
 const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 473
 
-function getFiles (stats, check) {
+function getFiles(stats, check) {
   let entries = {}
   if (check.entry) {
     for (let i of check.entry) {
@@ -40,7 +40,7 @@ function getFiles (stats, check) {
     })
 }
 
-async function isDirNotEmpty (dir) {
+async function isDirNotEmpty(dir) {
   try {
     let files = await readdir(dir)
     return !!files.length
@@ -53,7 +53,7 @@ async function isDirNotEmpty (dir) {
 let self = {
   name: '@size-limit/webpack',
 
-  async before (config) {
+  async before(config) {
     if (config.saveBundle) {
       if (config.cleanDir) {
         await rimraf(config.saveBundle)
@@ -66,7 +66,7 @@ let self = {
     }
   },
 
-  async step20 (config, check) {
+  async step20(config, check) {
     if (check.webpack === false) return
     check.webpackOutput = config.saveBundle
     if (!check.webpackOutput) {
@@ -81,13 +81,13 @@ let self = {
   },
 
   wait40: 'Adding to empty webpack project',
-  async step40 (config, check) {
+  async step40(config, check) {
     if (check.webpackConfig) {
       check.bundles = getFiles(await runWebpack(check), check)
     }
   },
 
-  async step61 (config, check) {
+  async step61(config, check) {
     if (check.bundles) {
       if (typeof check.size === 'undefined') {
         throw new SizeLimitError('missedPlugin', 'file')
@@ -104,7 +104,7 @@ let self = {
     }
   },
 
-  async finally (config, check) {
+  async finally(config, check) {
     if (check.webpackOutput && !config.saveBundle) {
       await rimraf(check.webpackOutput)
     }

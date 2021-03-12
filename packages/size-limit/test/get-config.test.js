@@ -4,24 +4,24 @@ let calc = require('../calc')
 let run = require('../run')
 
 jest.mock('../create-reporter', () => () => ({
-  results () {},
-  error (e) {
+  results() {},
+  error(e) {
     throw e
   }
 }))
 jest.mock('../calc')
 
-function fixture (...files) {
+function fixture(...files) {
   return join(__dirname, 'fixtures', ...files)
 }
 
-async function check (cwd, args = []) {
+async function check(cwd, args = []) {
   let process = {
     argv: ['node', 'size-limit', ...args],
-    cwd () {
+    cwd() {
       return fixture(cwd)
     },
-    exit (code) {
+    exit(code) {
       if (code !== 0) {
         throw new Error('Exit code ', code)
       }

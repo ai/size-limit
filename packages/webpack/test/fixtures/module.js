@@ -1,4 +1,4 @@
-export function methodA () {
+export function methodA() {
   console.log('AJGLE:SCHEN')
   console.log('ZWFRRWCLDA_')
   console.log('HDKLEOPWP{}')

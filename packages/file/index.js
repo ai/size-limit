@@ -7,11 +7,11 @@ let SizeLimitError = require('size-limit/size-limit-error')
 let stat = promisify(fs.stat)
 const BROTLI_NODE_VERSION = 'v11.7.0'
 
-async function sum (array, fn) {
+async function sum(array, fn) {
   return (await Promise.all(array.map(fn))).reduce((all, i) => all + i, 0)
 }
 
-function brotliSize (path) {
+function brotliSize(path) {
   return new Promise((resolve, reject) => {
     let size = 0
     let pipe = fs.createReadStream(path).pipe(
@@ -31,7 +31,7 @@ function brotliSize (path) {
   })
 }
 
-function gzipSize (path) {
+function gzipSize(path) {
   return new Promise((resolve, reject) => {
     let size = 0
     let pipe = fs.createReadStream(path).pipe(createGzip({ level: 9 }))
@@ -47,7 +47,7 @@ function gzipSize (path) {
 
 let self = {
   name: '@size-limit/file',
-  async step60 (config, check) {
+  async step60(config, check) {
     let files = check.bundles || check.files
 
     if (check.brotli === true) {

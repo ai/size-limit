@@ -11,17 +11,17 @@ let {
 let { join } = require('path')
 let bytes = require('bytes')
 
-function createJsonReporter (process) {
-  function print (data) {
+function createJsonReporter(process) {
+  function print(data) {
     process.stdout.write(JSON.stringify(data, null, 2) + '\n')
   }
 
   return {
-    error (err) {
+    error(err) {
       print({ error: err.stack })
     },
 
-    results (plugins, config) {
+    results(plugins, config) {
       print(
         config.checks.map(i => {
           let result = { name: i.name }
@@ -36,7 +36,7 @@ function createJsonReporter (process) {
   }
 }
 
-function getFixText (prefix, config) {
+function getFixText(prefix, config) {
   if (config.configPath) {
     if (config.configPath.endsWith('package.json')) {
       prefix += ` in ${bold('"size-limit"')} section of `
@@ -49,16 +49,16 @@ function getFixText (prefix, config) {
   return prefix
 }
 
-function createHumanReporter (process, isSilentMode = false) {
-  function print (...lines) {
+function createHumanReporter(process, isSilentMode = false) {
+  function print(...lines) {
     process.stdout.write('  ' + lines.join('\n  ') + '\n')
   }
 
-  function formatBytes (size) {
+  function formatBytes(size) {
     return bytes.format(size, { unitSeparator: ' ' })
   }
 
-  function formatTime (seconds) {
+  function formatTime(seconds) {
     if (seconds >= 1) {
       return Math.ceil(seconds * 10) / 10 + ' s'
     } else {
@@ -67,7 +67,7 @@ function createHumanReporter (process, isSilentMode = false) {
   }
 
   return {
-    error (err) {
+    error(err) {
       if (err.name === 'SizeLimitError') {
         let msg = err.message
           .split('. ')
@@ -87,7 +87,7 @@ function createHumanReporter (process, isSilentMode = false) {
       }
     },
 
-    results (plugins, config) {
+    results(plugins, config) {
       print('')
       for (let check of config.checks) {
         if (

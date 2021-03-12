@@ -11,7 +11,7 @@ let writeFile = promisify(fs.writeFile)
 
 const STATIC = /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
-module.exports = async function getConfig (limitConfig, check, output) {
+module.exports = async function getConfig(limitConfig, check, output) {
   if (check.import) {
     let loader = ''
     for (let i in check.import) {

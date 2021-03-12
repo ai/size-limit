@@ -4,14 +4,14 @@ let { join } = require('path')
 let [dualPublish] = require('../')
 
 jest.mock('child_process', () => ({
-  spawn (cmd, args, opts) {
+  spawn(cmd, args, opts) {
     return {
       stderr: {
-        on (type, cb) {
+        on(type, cb) {
           if (type === 'data' && opts.cwd === '') cb(' ERROR  Replace require')
         }
       },
-      on (type, cb) {
+      on(type, cb) {
         if (type === 'close') cb(opts.cwd === '' ? 1 : 0)
         return this
       }
@@ -19,7 +19,7 @@ jest.mock('child_process', () => ({
   }
 }))
 
-function fixture (name = '') {
+function fixture(name = '') {
   return join(__dirname, 'fixtures', name)
 }
 

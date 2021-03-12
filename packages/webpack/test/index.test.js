@@ -13,11 +13,11 @@ let [file] = require('../../file')
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
 
-function fixture (name) {
+function fixture(name) {
   return join(__dirname, 'fixtures', name)
 }
 
-async function run (config) {
+async function run(config) {
   try {
     await webpack.before(config)
     await webpack.step20(config, config.checks[0])
@@ -29,7 +29,7 @@ async function run (config) {
   }
 }
 
-async function getSize (check) {
+async function getSize(check) {
   let config = {
     checks: [check]
   }

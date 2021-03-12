@@ -1,11 +1,11 @@
 let SizeLimitError = require('../size-limit-error')
 let createReporter = require('../create-reporter')
 
-function print (err) {
+function print(err) {
   let stderr = ''
   let process = {
     stderr: {
-      write (str) {
+      write(str) {
         stderr += str
       }
     }

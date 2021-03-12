@@ -18,16 +18,10 @@
   "devDependencies": {
     "@logux/eslint-config": "^45.2.0",
     "@logux/sharec-config": "^0.9.0",
-    "@size-limit/dual-publish": "^4.10.1",
-    "@size-limit/preset-small-lib": "^4.10.1",
-    "@typescript-eslint/eslint-plugin": "^4.17.0",
-    "@typescript-eslint/parser": "^4.17.0",
     "check-dts": "^0.4.4",
     "cross-spawn": "^7.0.3",
-    "dual-publish": "^1.0.4",
     "eslint": "^7.21.0",
     "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.2.1",
     "eslint-plugin-node": "^11.1.0",
@@ -40,13 +34,11 @@
     "prettier": "^2.2.1",
     "print-snapshots": "^0.3.2",
     "simple-git-hooks": "^2.0.2",
-    "size-limit": "^4.10.1",
-    "ts-jest": "^26.5.3",
     "typescript": "^4.2.3",
     "yaspeller": "^7.0.0"
   },
   "eslintConfig": {
-    "extends": "@logux/eslint-config/ts",
+    "extends": "@logux/eslint-config",
     "rules": {
       "node/no-unsupported-features/es-syntax": "off",
       "security/detect-non-literal-require": "off",
@@ -89,8 +81,7 @@
       "global": {
         "statements": 100
       }
-    },
-    "preset": "ts-jest"
+    }
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

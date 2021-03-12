@@ -7,7 +7,7 @@ const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
 const URL = 'https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650'
 const JS_FILES = /\.m?js$/i
 
-async function getTime (file, throttling = 1) {
+async function getTime(file, throttling = 1) {
   if (process.env.SIZE_LIMIT_FAKE_TIME) {
     return throttling * parseFloat(process.env.SIZE_LIMIT_FAKE_TIME)
   }
@@ -31,7 +31,7 @@ async function getTime (file, throttling = 1) {
   return (throttling * value) / 3
 }
 
-async function getThrottling () {
+async function getThrottling() {
   let cache = await getCache()
   if (cache !== false) {
     return cache
@@ -46,7 +46,7 @@ async function getThrottling () {
 let throttlingCache
 let throttlingCalculating
 
-module.exports = async function getRunningTime (file) {
+module.exports = async function getRunningTime(file) {
   if (!JS_FILES.test(file)) return 0
   if (throttlingCalculating) await throttlingCalculating
   if (!throttlingCache) {
