@@ -1,4 +1,5 @@
 let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+let StatoscopeWebpackPlugin = require('@statoscope/ui-webpack')
 let PnpWebpackPlugin = require('pnp-webpack-plugin')
 let { promisify } = require('util')
 let escapeRegexp = require('escape-string-regexp')
@@ -83,7 +84,23 @@ module.exports = async function getConfig(limitConfig, check, output) {
     }
   }
 
-  if (limitConfig.why) {
+  if (limitConfig.whyStatoscope) {
+    let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
+    config.plugins.push(
+      new StatoscopeWebpackPlugin({
+        saveTo: join(output, 'statoscope.html'),
+        saveStatsTo: limitConfig.saveBundle
+          ? join(output, 'statoscope.json')
+          : undefined,
+        additionalStats: limitConfig.compareWith
+          ? limitConfig.compareWith
+          : undefined,
+        open: shouldOpen ? 'file' : false,
+        name: limitConfig.project,
+        watchMode: limitConfig.watch
+      })
+    )
+  } else if (limitConfig.why) {
     config.plugins.push(
       new BundleAnalyzerPlugin({
         openAnalyzer: process.env.NODE_ENV !== 'test',

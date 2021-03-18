@@ -128,6 +128,37 @@ it('normalizes bundle and webpack arguments', async () => {
   })
 })
 
+it('normalizes bundle and webpack arguments with --why-statoscope', async () => {
+  let args = [
+    '--why-statoscope',
+    '--save-bundle',
+    'out',
+    '--compare-with',
+    'before.json',
+    '--clean-dir',
+    '--hide-passed',
+    '--highlight-less'
+  ]
+  expect(await check('webpack', args)).toEqual({
+    configPath: 'package.json',
+    cwd: fixture('webpack'),
+    whyStatoscope: true,
+    project: 'webpack',
+    hidePassed: true,
+    highlightLess: true,
+    saveBundle: fixture('webpack', 'out'),
+    cleanDir: true,
+    checks: [
+      {
+        name: 'a',
+        highlightLess: true,
+        config: fixture('webpack', 'webpack.config.js'),
+        entry: ['a']
+      }
+    ]
+  })
+})
+
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
     configPath: '.size-limit.json',

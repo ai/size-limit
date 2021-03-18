@@ -172,6 +172,36 @@ describe(`run`, () => {
     expect(await error('file', ['--why'])).toMatchSnapshot()
   })
 
+  it('throws on --why argument with --why-statoscope', async () => {
+    expect(
+      await error('webpack', ['--why', '--why-statoscope'])
+    ).toMatchSnapshot()
+  })
+
+  it('throws on --why-statoscope argument without webpack', async () => {
+    expect(await error('file', ['--why-statoscope'])).toMatchSnapshot()
+  })
+
+  it('throws on --why-statoscope argument with --why', async () => {
+    expect(
+      await error('webpack', ['--why-statoscope', '--why'])
+    ).toMatchSnapshot()
+  })
+
+  it('throws on --compare-with argument without webpack', async () => {
+    expect(await error('file', ['--compare-with'])).toMatchSnapshot()
+  })
+
+  it('throws on --compare-with argument without --why-statoscope', async () => {
+    expect(await error('webpack', ['--compare-with'])).toMatchSnapshot()
+  })
+
+  it('throws on --compare-with argument without value', async () => {
+    expect(
+      await error('webpack', ['--why-statoscope', '--compare-with'])
+    ).toMatchSnapshot()
+  })
+
   it('throws on no config', async () => {
     expect(await error('file')).toMatchSnapshot()
   })
