@@ -130,7 +130,8 @@ it('normalizes bundle and webpack arguments', async () => {
 
 it('normalizes bundle and webpack arguments with --why-statoscope', async () => {
   let args = [
-    '--why-statoscope',
+    '--why',
+    'statoscope',
     '--save-bundle',
     'out',
     '--compare-with',
@@ -142,10 +143,11 @@ it('normalizes bundle and webpack arguments with --why-statoscope', async () => 
   expect(await check('webpack', args)).toEqual({
     configPath: 'package.json',
     cwd: fixture('webpack'),
-    whyStatoscope: true,
+    why: 'statoscope',
     project: 'webpack',
     hidePassed: true,
     highlightLess: true,
+    compareWith: fixture('webpack', 'before.json'),
     saveBundle: fixture('webpack', 'out'),
     cleanDir: true,
     checks: [

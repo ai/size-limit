@@ -84,7 +84,7 @@ module.exports = async function getConfig(limitConfig, check, output) {
     }
   }
 
-  if (limitConfig.whyStatoscope) {
+  if (limitConfig.why === 'statoscope') {
     let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
     config.plugins.push(
       new StatoscopeWebpackPlugin({
@@ -92,15 +92,13 @@ module.exports = async function getConfig(limitConfig, check, output) {
         saveStatsTo: limitConfig.saveBundle
           ? join(output, 'statoscope.json')
           : undefined,
-        additionalStats: limitConfig.compareWith
-          ? limitConfig.compareWith
-          : undefined,
+        additionalStats: limitConfig.compareWith,
         open: shouldOpen ? 'file' : false,
         name: limitConfig.project,
         watchMode: limitConfig.watch
       })
     )
-  } else if (limitConfig.why) {
+  } else if (limitConfig.why === true) {
     config.plugins.push(
       new BundleAnalyzerPlugin({
         openAnalyzer: process.env.NODE_ENV !== 'test',

@@ -166,11 +166,11 @@ it('supports --why', async () => {
   }
 })
 
-it('supports --why-statoscope', async () => {
+it('supports --why statoscope', async () => {
   jest.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
     project: 'superProject',
-    whyStatoscope: true,
+    why: 'statoscope',
     checks: [{ files: [fixture('big.js')] }]
   }
   try {

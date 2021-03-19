@@ -33,27 +33,24 @@ module.exports = function parseArgs(plugins, argv) {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
-      if (argv.includes('--why-statoscope')) {
-        throw new SizeLimitError('conflictingArgs', 'why', 'why-statoscope')
+
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        nextArg = true
+        i--
+      } else if (nextArg !== 'statoscope') {
+        throw new SizeLimitError('wrongArgParameter', '--why', nextArg)
       }
-      args.why = true
-    } else if (arg === '--why-statoscope') {
-      if (!plugins.has('webpack')) {
-        throw new SizeLimitError('argWithoutWebpack', 'why-statoscope')
-      }
-      if (argv.includes('--why')) {
-        throw new SizeLimitError('conflictingArgs', 'why-statoscope', 'why')
-      }
-      args.whyStatoscope = true
+      args.why = nextArg
     } else if (arg === '--compare-with') {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', '--compare-with')
       }
-      if (!argv.includes('--why-statoscope')) {
+      if (args.why !== 'statoscope') {
         throw new SizeLimitError(
           'argWithoutAnotherArg',
           'compare-with',
-          'why-statoscope'
+          'why statoscope'
         )
       }
       let nextArg = argv[++i]
