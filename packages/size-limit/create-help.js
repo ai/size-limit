@@ -81,7 +81,7 @@ module.exports = process => {
       'For frameworks, components and big libraries',
       '  ' + y(add + '@size-limit/preset-big-lib'),
       '',
-      'For small (< 10 KB) libraries',
+      'For small (< 10 kB) libraries',
       '  ' + y(add + '@size-limit/preset-small-lib'),
       '',
       'Check out docs for more complicated cases',

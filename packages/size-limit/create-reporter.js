@@ -9,7 +9,7 @@ let {
   yellow
 } = require('colorette')
 let { join } = require('path')
-let bytes = require('bytes')
+let bytes = require('bytes-iec')
 
 function createJsonReporter(process) {
   function print(data) {

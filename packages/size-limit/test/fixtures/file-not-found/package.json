@@ -7,7 +7,7 @@
   "size-limit": [
     {
       "path": "folder/index.js",
-      "limit": "20 KB"
+      "limit": "20 kB"
     }
   ]
 }

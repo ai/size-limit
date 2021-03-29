@@ -1,6 +1,6 @@
 [
   {
     "path": "folder/index.js",
-    "limit": "100 KB"
+    "limit": "100 kB"
   }
 ]

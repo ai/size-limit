@@ -8,7 +8,7 @@
   "size-limit": [
     {
       "name": "index",
-      "limit": "1 KB"
+      "limit": "1 kB"
     }
   ]
 }
