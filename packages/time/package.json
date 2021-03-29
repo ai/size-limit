@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "estimo": "^2.2.3",
-    "react": "^17.0.1"
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
