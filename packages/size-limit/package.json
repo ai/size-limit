@@ -18,7 +18,7 @@
     "node": "^10 || ^11 || ^12 || >=13.7"
   },
   "dependencies": {
-    "bytes": "^3.1.0",
+    "bytes-iec": "^3.1.1",
     "chokidar": "^3.5.1",
     "ci-job-number": "^1.2.2",
     "colorette": "^1.2.2",

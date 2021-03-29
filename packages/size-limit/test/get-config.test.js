@@ -57,8 +57,8 @@ it('supports globby and main field', async () => {
       {
         path: ['a*.js'],
         name: 'a',
-        limit: '1 KB',
-        sizeLimit: 1024,
+        limit: '1 kB',
+        sizeLimit: 1000,
         files: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
       },
       {
@@ -77,23 +77,23 @@ it('uses index.js by default', async () => {
       {
         name: 'index',
         files: [fixture('simple', 'index.js')],
-        limit: '1 KB',
-        sizeLimit: 1024
+        limit: '1 kB',
+        sizeLimit: 1000
       }
     ]
   })
 })
 
 it('overrides limit by CLI arg', async () => {
-  expect(await check('simple', ['--limit', '10 KB'])).toEqual({
+  expect(await check('simple', ['--limit', '10 kB'])).toEqual({
     configPath: 'package.json',
     cwd: fixture('simple'),
     checks: [
       {
         name: 'index',
         files: [fixture('simple', 'index.js')],
-        limit: '10 KB',
-        sizeLimit: 10240
+        limit: '10 kB',
+        sizeLimit: 10000
       }
     ]
   })

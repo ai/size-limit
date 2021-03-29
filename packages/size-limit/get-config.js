@@ -1,7 +1,7 @@
 let { isAbsolute, dirname, join, relative } = require('path')
 let { lilconfig } = require('lilconfig')
 let globby = require('globby')
-let bytes = require('bytes')
+let bytes = require('bytes-iec')
 
 let SizeLimitError = require('./size-limit-error')
 

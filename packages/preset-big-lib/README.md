@@ -1,6 +1,6 @@
 # Size Limit Preset for Big Libraries
 
-The preset for [Size Limit] for libraries > 10 KB. It uses
+The preset for [Size Limit] for libraries > 10 kB. It uses
 webpack, file and time plugins to track the time of JS download and execution
 of library and all dependencies.
 

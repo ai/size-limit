@@ -125,7 +125,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
     ```sh
     $ npm run size
 
-      Package size: 30.08 KB with all dependencies, minified and gzipped
+      Package size: 30.08 kB with all dependencies, minified and gzipped
     ```
 
 4. Now, let’s set the limit. Add 25% to the current total time and use that as
@@ -134,7 +134,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
     ```diff
       "size-limit": [
         {
-    +     "limit": "35 KB",
+    +     "limit": "35 kB",
           "path": "dist/app-*.js"
         }
       ],
@@ -159,10 +159,10 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
 
 ### JS Application and Time-based Limit
 
-File size limit (in KB) is not the best way to describe your JS application
+File size limit (in kB) is not the best way to describe your JS application
 cost for developers. Developers will compare the size of the JS bundle
-with the size of images. But browsers need much more time to parse 100 KB
-of JS than 100 KB of an image since JS compilers are very complex.
+with the size of images. But browsers need much more time to parse 100 kB
+of JS than 100 kB of an image since JS compilers are very complex.
 
 This is why Size Limit support time-based limit. It runs headless Chrome
 to track the time a browser takes to compile and execute your JS.
@@ -195,7 +195,7 @@ to track the time a browser takes to compile and execute your JS.
     ```sh
     $ npm run size
 
-      Package size: 30.08 KB with all dependencies, minified and gzipped
+      Package size: 30.08 kB with all dependencies, minified and gzipped
       Loading time: 602 ms   on slow 3G
       Running time: 214 ms   on Snapdragon 410
       Total time:   815 ms
@@ -232,10 +232,10 @@ to track the time a browser takes to compile and execute your JS.
 
 ### Big Libraries
 
-JS libraries > 10 KB in size.
+JS libraries > 10 kB in size.
 
 This preset includes headless Chrome, and will measure your lib’s execution
-time. You likely don’t need this overhead for a small 2 KB lib, but for larger
+time. You likely don’t need this overhead for a small 2 kB lib, but for larger
 ones the execution time is a more accurate and understandable metric that
 the size in bytes. Library like [React] is a good example for this preset.
 
@@ -279,7 +279,7 @@ the size in bytes. Library like [React] is a good example for this preset.
     ```sh
     $ npm run size
 
-      Package size: 30.08 KB with all dependencies, minified and gzipped
+      Package size: 30.08 kB with all dependencies, minified and gzipped
       Loading time: 602 ms   on slow 3G
       Running time: 214 ms   on Snapdragon 410
       Total time:   815 ms
@@ -318,7 +318,7 @@ the size in bytes. Library like [React] is a good example for this preset.
       Short project description
 
       * **Fast.** 10% faster than competitor.
-    + * **Small.** 15 KB (minified and gzipped).
+    + * **Small.** 15 kB (minified and gzipped).
     +   [Size Limit](https://github.com/ai/size-limit) controls the size.
     ```
 
@@ -327,7 +327,7 @@ the size in bytes. Library like [React] is a good example for this preset.
 
 ### Small Libraries
 
-JS libraries < 10 KB in size.
+JS libraries < 10 kB in size.
 
 This preset will only measure the size, without the execution time, so it’s
 suitable for small libraries. If your library is larger, you likely want
@@ -377,7 +377,7 @@ for this preset.
     ```diff
      "size-limit": [
         {
-    +     "limit": "9 KB",
+    +     "limit": "9 kB",
           "path": "index.js"
         }
      ],
@@ -492,7 +492,7 @@ Each section in the config can have these options:
   to test multiple files.
 * **limit**: size or time limit for files from the `path` option. It should be
   a string with a number and unit, separated by a space.
-  Format: `100 B`, `10 KB`, `500 ms`, `1 s`.
+  Format: `100 B`, `10 kB`, `500 ms`, `1 s`.
 * **name**: the name of the current section. It will only be useful
   if you have multiple sections.
 * **entry**: when using a custom webpack config, a webpack entry could be given.
@@ -508,7 +508,7 @@ Each section in the config can have these options:
 
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack
-inserts `style-loader` runtime (≈2 KB) into the bundle.
+inserts `style-loader` runtime (≈2 kB) into the bundle.
 
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
 

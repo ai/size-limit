@@ -11,7 +11,7 @@
       "path": [
         "a*.js"
       ],
-      "limit": "1 KB"
+      "limit": "1 kB"
     },
     {
       "name": "b"

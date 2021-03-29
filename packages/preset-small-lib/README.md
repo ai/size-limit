@@ -1,6 +1,6 @@
 # Size Limit Preset for Small Libraries
 
-The preset for [Size Limit] for libraries < 10 KB. It uses
+The preset for [Size Limit] for libraries < 10 kB. It uses
 webpack and file plugins to track the size of all files and dependencies.
 
 See Size Limit docs for more details.

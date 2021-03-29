@@ -2,14 +2,14 @@
 
 exports[`run allows to use peer dependencies in import 1`] = `
 "  
-  Size: [1m2.44 KB[22m [90mwith all dependencies, minified and gzipped[39m
+  Size: [1m2.5 kB[22m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
 
 exports[`run find plugins in parent package.json 1`] = `
 "  
-  Size limit: [32m[1m1 KB[22m[39m
+  Size limit: [32m[1m1 kB[22m[39m
   Size:       [32m[1m20 B[22m[39m [90mgzipped[39m
   
 "
@@ -33,7 +33,7 @@ exports[`run returns zero bytes for empty file without gzip 1`] = `
 
 exports[`run shows brotli text when brotli and gzip in config 1`] = `
 "  
-  Size limit:   [32m[1m1 KB[22m[39m
+  Size limit:   [32m[1m1 kB[22m[39m
   Size:         [32m[1m-53 B[22m[39m [90mwith all dependencies, minified and brotli[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
@@ -44,7 +44,7 @@ exports[`run shows brotli text when brotli and gzip in config 1`] = `
 
 exports[`run shows brotli text when only brotli in config 1`] = `
 "  
-  Size limit:   [32m[1m1 KB[22m[39m
+  Size limit:   [32m[1m1 kB[22m[39m
   Size:         [32m[1m-53 B[22m[39m [90mwith all dependencies, minified and brotli[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
@@ -275,7 +275,7 @@ For application, where you send JS bundle directly to users
 For frameworks, components and big libraries
   [33mnpm install --save-dev @size-limit/preset-big-lib[39m
 
-For small (< 10 KB) libraries
+For small (< 10 kB) libraries
   [33mnpm install --save-dev @size-limit/preset-small-lib[39m
 
 Check out docs for more complicated cases
@@ -292,7 +292,7 @@ For application, where you send JS bundle directly to users
 For frameworks, components and big libraries
   [33mnpm install --save-dev @size-limit/preset-big-lib[39m
 
-For small (< 10 KB) libraries
+For small (< 10 kB) libraries
   [33mnpm install --save-dev @size-limit/preset-small-lib[39m
 
 Check out docs for more complicated cases
@@ -311,7 +311,7 @@ For application, where you send JS bundle directly to users
 For frameworks, components and big libraries
   [33myarn add --dev @size-limit/preset-big-lib[39m
 
-For small (< 10 KB) libraries
+For small (< 10 kB) libraries
   [33myarn add --dev @size-limit/preset-small-lib[39m
 
 Check out docs for more complicated cases
@@ -388,7 +388,7 @@ exports[`run throws on empty config 1`] = `
   [32m\\"size-limit\\"[39m: [
     {
       [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
     }
   ]
 "
@@ -405,7 +405,7 @@ exports[`run throws on no config 1`] = `
   [32m\\"size-limit\\"[39m: [
     {
       [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
     }
   ]
 "
@@ -417,7 +417,7 @@ exports[`run throws on non-array config 1`] = `
   [32m\\"size-limit\\"[39m: [
     {
       [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
     }
   ]
 "
@@ -429,7 +429,7 @@ exports[`run throws on non-object check 1`] = `
   [32m\\"size-limit\\"[39m: [
     {
       [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
     }
   ]
 "
@@ -446,7 +446,7 @@ exports[`run throws on non-string path 1`] = `
   [32m\\"size-limit\\"[39m: [
     {
       [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 KB\\"[39m
+      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
     }
   ]
 "

@@ -7,15 +7,15 @@
   "size-limit": [
     {
       "path": "index.js",
-      "limit": "1 KB"
+      "limit": "1 kB"
     },
     {
       "path": "lib.js",
-      "limit": "1 KB"
+      "limit": "1 kB"
     },
     {
       "path": "lib2.js",
-      "limit": "1 KB"
+      "limit": "1 kB"
     }
   ]
 }

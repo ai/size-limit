@@ -7,7 +7,7 @@
   "size-limit": [
     {
       "path": "index.js",
-      "limit": "1 KB",
+      "limit": "1 kB",
       "running": false
     }
   ]

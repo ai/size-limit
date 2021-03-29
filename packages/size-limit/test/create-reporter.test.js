@@ -226,7 +226,7 @@ it('highlight passed results with --highlight-less flag', () => {
         },
         {
           name: 'good',
-          size: 97280, // 5 KB less
+          size: 97280, // 5 KiB less
           sizeLimit: 102400,
           passed: true
         },

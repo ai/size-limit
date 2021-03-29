@@ -57,7 +57,7 @@ class SizeLimitError extends Error {
         '  "size-limit": [\n' +
         '    {\n' +
         '      "path": "dist/bundle.js",\n' +
-        '      "limit": "10 KB"\n' +
+        '      "limit": "10 kB"\n' +
         '    }\n' +
         '  ]\n'
     }
