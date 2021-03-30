@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.10.2
+* Use `1000` factor for `KB` and `1024` for `KiB` (by Matthias Kunnen).
+
 ## 4.10.1
 * Fixed output on missed file (by Viktor Pasynok).
 
