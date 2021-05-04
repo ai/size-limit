@@ -11,7 +11,32 @@ let writeFile = promisify(fs.writeFile)
 
 const STATIC = /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
+function checkIfFilesExist(limitConfig, check) {
+  let filesToCheck = new Set()
+  for (let file of check.files) {
+    filesToCheck.add(file)
+  }
+  if (check.path) {
+    filesToCheck.add(join(limitConfig.cwd, check.path))
+  }
+
+  let filesToIgnore = (check.ignore || []).map(file => join(limitConfig.cwd, file))
+  filesToCheck = Array.from(filesToCheck).filter(file => !filesToIgnore.includes(file))
+
+  if (filesToIgnore.length && !filesToCheck.length) {
+    throw Error(`Could not test '${check.name}' because it includes no file to check`)
+  }
+
+  for (let file of filesToCheck) {
+    if (!fs.existsSync(file)) {
+      throw Error(`Could not test '${check.name}' because file '${file}' is missing`)
+    }
+  }
+}
+
 module.exports = async function getConfig(limitConfig, check, output) {
+  checkIfFilesExist(limitConfig, check)
+
   if (check.import) {
     let loader = ''
     for (let i in check.import) {
