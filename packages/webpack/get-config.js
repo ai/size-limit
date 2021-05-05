@@ -13,14 +13,16 @@ const STATIC = /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|htm
 
 function checkIfFilesExist(limitConfig, check) {
   let filesToCheck = new Set()
-  for (let file of check.files) {
-    filesToCheck.add(file)
+  if (check.files) {
+    for (let file of check.files) {
+      filesToCheck.add(file)
+    }
   }
   if (check.path) {
     filesToCheck.add(join(limitConfig.cwd, check.path))
   }
 
-  let filesToIgnore = (check.ignore || []).map(file => join(limitConfig.cwd, file))
+  let filesToIgnore = (check.ignore || []).filter(Boolean).map(file => join(limitConfig.cwd, file))
   filesToCheck = Array.from(filesToCheck).filter(file => !filesToIgnore.includes(file))
 
   if (filesToIgnore.length && !filesToCheck.length) {
