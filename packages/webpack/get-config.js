@@ -12,6 +12,8 @@ let writeFile = promisify(fs.writeFile)
 const STATIC = /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
 function checkIfFilesExist(limitConfig, check) {
+  let cwd = limitConfig.cwd || process.cwd()
+
   let filesToCheck = new Set()
   if (check.files) {
     for (let file of check.files) {
@@ -19,10 +21,11 @@ function checkIfFilesExist(limitConfig, check) {
     }
   }
   if (check.path) {
-    filesToCheck.add(join(limitConfig.cwd, check.path))
+    filesToCheck.add(join(cwd, check.path))
   }
 
-  let filesToIgnore = (check.ignore || []).filter(Boolean).map(file => join(limitConfig.cwd, file))
+
+  let filesToIgnore = (check.ignore || []).filter(Boolean).map(file => join(cwd, file))
   filesToCheck = Array.from(filesToCheck).filter(file => !filesToIgnore.includes(file))
 
   if (filesToIgnore.length && !filesToCheck.length) {
