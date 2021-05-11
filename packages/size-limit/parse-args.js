@@ -33,7 +33,31 @@ module.exports = function parseArgs(plugins, argv) {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
-      args.why = true
+
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        nextArg = true
+        i--
+      } else if (nextArg !== 'statoscope') {
+        throw new SizeLimitError('wrongArgParameter', '--why', nextArg)
+      }
+      args.why = nextArg
+    } else if (arg === '--compare-with') {
+      if (!plugins.has('webpack')) {
+        throw new SizeLimitError('argWithoutWebpack', '--compare-with')
+      }
+      if (args.why !== 'statoscope') {
+        throw new SizeLimitError(
+          'argWithoutAnotherArg',
+          'compare-with',
+          'why statoscope'
+        )
+      }
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        throw new SizeLimitError('argWithoutParameter', 'compare-with', 'FILE')
+      }
+      args.compareWith = nextArg
     } else if (arg === '--watch') {
       args.watch = true
     } else if (arg === '--highlight-less') {

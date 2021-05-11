@@ -7,7 +7,7 @@ let { saveCache, getCache } = require('../cache')
 
 const EXAMPLE = require.resolve('nanoid/index.browser.js')
 
-jest.setTimeout(10000)
+jest.setTimeout(15000)
 
 afterEach(async () => {
   delete process.env.SIZE_LIMIT_FAKE_TIME

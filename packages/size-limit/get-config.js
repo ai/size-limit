@@ -83,6 +83,11 @@ module.exports = async function getConfig(plugins, process, args, pkg) {
     config.project = pkg.packageJson.name
     config.why = args.why
   }
+
+  if (args.compareWith) {
+    config.compareWith = toAbsolute(args.compareWith, process.cwd())
+  }
+
   if (args.saveBundle) {
     config.saveBundle = toAbsolute(args.saveBundle, process.cwd())
   }

@@ -2,7 +2,7 @@ let { join } = require('path')
 
 let run = require('../run')
 
-jest.setTimeout(10000)
+jest.setTimeout(15000)
 
 jest.mock('../../time/get-running-time', () => () => 1)
 
@@ -170,6 +170,24 @@ describe(`run`, () => {
 
   it('throws on --why argument without webpack', async () => {
     expect(await error('file', ['--why'])).toMatchSnapshot()
+  })
+
+  it('throws on --why with wrong argument', async () => {
+    expect(await error('webpack', ['--why', 'satoscope'])).toMatchSnapshot()
+  })
+
+  it('throws on --compare-with argument without webpack', async () => {
+    expect(await error('file', ['--compare-with'])).toMatchSnapshot()
+  })
+
+  it('throws on --compare-with argument without --why statoscope', async () => {
+    expect(await error('webpack', ['--compare-with'])).toMatchSnapshot()
+  })
+
+  it('throws on --compare-with argument without value', async () => {
+    expect(
+      await error('webpack', ['--why', 'statoscope', '--compare-with'])
+    ).toMatchSnapshot()
   })
 
   it('throws on no config', async () => {
