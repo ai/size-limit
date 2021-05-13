@@ -16,14 +16,17 @@ function checkIfFilesExist(limitConfig, check) {
 
   let filesToCheck = new Set()
   if (check.files) {
-    for (let file of check.files) {
-      filesToCheck.add(file)
+    if (Array.isArray(check.files)) {
+      for (let file of check.files) {
+        filesToCheck.add(file)
+      }
+    } else {
+      filesToCheck.add(check.files)
     }
   }
   if (check.path) {
     filesToCheck.add(join(cwd, check.path))
   }
-
 
   let filesToIgnore = (check.ignore || []).filter(Boolean).map(file => join(cwd, file))
   filesToCheck = Array.from(filesToCheck).filter(file => !filesToIgnore.includes(file))
