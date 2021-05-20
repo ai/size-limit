@@ -132,6 +132,98 @@ exports[`run shows debug 1`] = `
                 }
               ],
               \\"assetNameRegExp\\": {},
+              \\"cssProcessor\\": {
+                \\"version\\": \\"8.2.15\\",
+                \\"plugins\\": [
+                  {
+                    \\"postcssPlugin\\": \\"postcss-discard-comments\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-minify-gradients\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-reduce-initial\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-svgo\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-display-values\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-reduce-transforms\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-colormin\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-timing-functions\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-calc\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-convert-values\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-ordered-values\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-minify-selectors\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-minify-params\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-charset\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-discard-overridden\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-string\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-unicode\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-minify-font-values\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-url\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-repeat-style\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-positions\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-normalize-whitespace\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-merge-longhand\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-discard-duplicates\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-merge-rules\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-discard-empty\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"postcss-unique-selectors\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"css-declaration-sorter\\"
+                  },
+                  {
+                    \\"postcssPlugin\\": \\"cssnano-util-raw-cache\\"
+                  }
+                ]
+              },
               \\"cssProcessorOptions\\": {},
               \\"cssProcessorPluginOptions\\": {}
             },
