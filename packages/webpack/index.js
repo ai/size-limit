@@ -77,6 +77,9 @@ let self = {
       convertConfig(check.webpackConfig, config.configPath)
     } else {
       check.webpackConfig = await getConfig(config, check, check.webpackOutput)
+      if (check.modifyWebpackConfig) {
+        check.webpackConfig = check.modifyWebpackConfig(check.webpackConfig)
+      }
     }
   },
 

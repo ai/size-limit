@@ -505,6 +505,7 @@ Each section in the config can have these options:
 * **config**: a path to a custom webpack config.
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
+* **modifyWebpackConfig**: (.size-limit.js only) function that can be used to do last-minute changes to the webpack config, like adding a plugin
 
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack

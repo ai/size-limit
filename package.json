@@ -145,7 +145,8 @@
       "brotli",
       "PnP",
       "ES",
-      "GitHub"
+      "GitHub",
+      "modifyWebpackConfig"
     ]
   },
   "sharec": {
