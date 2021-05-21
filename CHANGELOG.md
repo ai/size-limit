@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.10.3
+* Updated `optimize-css-assets-webpack-plugin`.
+
 ## 4.10.2
 * Use `1000` factor for `KB` and `1024` for `KiB` (by Matthias Kunnen).
 
