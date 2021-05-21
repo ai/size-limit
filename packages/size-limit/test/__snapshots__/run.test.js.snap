@@ -2,7 +2,7 @@
 
 exports[`run allows to use peer dependencies in import 1`] = `
 "  
-  Size: [1m2.5 kB[22m [90mwith all dependencies, minified and gzipped[39m
+  Size: [1m1.49 kB[22m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
