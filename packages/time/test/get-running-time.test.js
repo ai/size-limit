@@ -17,7 +17,7 @@ afterEach(async () => {
 
 it('calculates running time', async () => {
   let runTime = await getRunningTime(EXAMPLE)
-  expect(runTime).toBeGreaterThan(0.03)
+  expect(runTime).toBeGreaterThan(0.02)
   expect(runTime).toBeLessThan(0.2)
 })
 
