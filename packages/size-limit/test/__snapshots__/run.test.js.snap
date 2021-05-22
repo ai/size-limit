@@ -133,7 +133,7 @@ exports[`run shows debug 1`] = `
               ],
               \\"assetNameRegExp\\": {},
               \\"cssProcessor\\": {
-                \\"version\\": \\"8.2.15\\",
+                \\"version\\": \\"0.0.0\\",
                 \\"plugins\\": [
                   {
                     \\"postcssPlugin\\": \\"postcss-discard-comments\\"

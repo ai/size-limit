@@ -64,7 +64,8 @@ function createProcess(cwd, args = []) {
 
 function clean(output) {
   return output
-    .replace(/var\/folders\/(.*)\//g, 'tmp/')
+    .replace(/\d+\.\d+\.\d+/g, '0.0.0')
+    .replace(/var\/fvolders\/(.*)\//g, 'tmp/')
     .replace(/"cwd": "[^"]+"/, '"cwd": "/tmp/"')
     .replace(/"webpackOutput": "[^"]+"/, '"webpackOutput": "/tmp/"')
 }
