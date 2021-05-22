@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.11.0
+* Added `modifyWebpackConfig` option (by Lenz Weber).
+
 ## 4.10.3
 * Updated `optimize-css-assets-webpack-plugin`.
 
