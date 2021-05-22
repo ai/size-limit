@@ -279,3 +279,23 @@ it('supports import with multiple files', async () => {
     })
   ).toEqual(5)
 })
+
+it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
+  let { NormalModuleReplacementPlugin } = require('webpack')
+  expect(
+    await getSize({
+      import: {
+        [fixture('referencingAlias.js')]: '{ methodA }'
+      },
+      modifyWebpackConfig(config) {
+        config.plugins.push(
+          new NormalModuleReplacementPlugin(
+            /@fixtures\/module/,
+            fixture('module.js')
+          )
+        )
+        return config
+      }
+    })
+  ).toEqual(79)
+})
