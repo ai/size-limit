@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
-    "postinstall": "./scripts/each yarn",
     "test": "jest --coverage --forceExit && eslint . && yaspeller *.md packages/*/*.md && sh scripts/max-listeners-check.sh"
   },
   "workspaces": [
