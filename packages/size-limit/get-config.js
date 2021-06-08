@@ -105,7 +105,8 @@ module.exports = async function getConfig(plugins, process, args, pkg) {
         'package.json',
         '.size-limit.json',
         '.size-limit',
-        '.size-limit.js'
+        '.size-limit.js',
+        '.size-limit.cjs'
       ]
     })
     let result = await explorer.search(process.cwd())
