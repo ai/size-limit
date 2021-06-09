@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.12.0
+* Added `.size-limit.cjs` config file support (by Cole Ellison).
+
 ## 4.11.0
 * Added `modifyWebpackConfig` option (by Lenz Weber).
 
