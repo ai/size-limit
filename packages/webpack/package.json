@@ -20,7 +20,7 @@
     "size-limit": "4.11.0"
   },
   "dependencies": {
-    "css-loader": "^5.2.5",
+    "css-loader": "^5.2.6",
     "escape-string-regexp": "^4.0.0",
     "file-loader": "^6.2.0",
     "mkdirp": "^1.0.4",

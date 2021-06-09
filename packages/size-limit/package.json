@@ -23,8 +23,8 @@
     "ci-job-number": "^1.2.2",
     "colorette": "^1.2.2",
     "globby": "^11.0.3",
-    "lilconfig": "^2.0.2",
-    "ora": "^5.4.0",
+    "lilconfig": "^2.0.3",
+    "ora": "^5.4.1",
     "read-pkg-up": "^7.0.1"
   }
 }
