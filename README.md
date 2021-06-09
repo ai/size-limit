@@ -470,7 +470,7 @@ Size Limits supports three ways to define config.
    ]
    ```
 
-3. or a more flexible `.size-limit.js` config file:
+3. or a more flexible `.size-limit.js` or `.size-limit.cjs` config file:
 
    ```js
    module.exports = [
