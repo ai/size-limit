@@ -1,8 +1,8 @@
 let readPkgUp = require('read-pkg-up')
-let ora = require('ora')
 let path = require('path')
 let chokidar = require('chokidar')
 
+let spinner = require('./spinner')
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
 let loadPlugins = require('./load-plugins')
@@ -71,7 +71,7 @@ module.exports = async process => {
     config = await getConfig(plugins, process, args, pkg)
 
     let calcAndShow = async () => {
-      let outputFunc = isJsonOutput ? null : ora
+      let outputFunc = isJsonOutput ? null : spinner
       await calc(plugins, config, outputFunc)
       debug.results(process, args, config)
       reporter.results(plugins, config)
