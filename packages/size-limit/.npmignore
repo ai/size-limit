@@ -1,2 +1,10 @@
 node_modules/
 test/
+yarn-error.log
+yarn.lock
+
+**/*.test.ts
+**/types.ts
+**/errors.ts
+tsconfig.json
+coverage/
