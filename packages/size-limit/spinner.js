@@ -9,39 +9,40 @@ const Reset = '\x1b[0m'
 const HideCursor = '\x1B[?25l'
 const ShowCursor = '\x1B[?25h'
 
-class Spinner {
-  constructor() {
-    this.text = ''
-    this.timer = null
-  }
+function Spinner(text = '') {
+  let _text = text
+  let _timer = null
 
-  fail() {
-    return this.stopAndPrint({ color: FgRed, symbol: '✖' })
-  }
+  return {
+    _text,
+    _timer,
+    _stopAndPrint({ color, symbol }) {
+      clearInterval(this._timer)
 
-  succeed() {
-    return this.stopAndPrint({ color: FgGreen, symbol: '✔' })
-  }
+      std.clearLine()
+      std.write(`${color}${symbol}${Reset} ${this._text}\n`)
 
-  stopAndPrint({ color, symbol }) {
-    clearInterval(this.timer)
+      std.write(ShowCursor)
+      return this
+    },
+    fail() {
+      return this._stopAndPrint({ color: FgRed, symbol: '✖' })
+    },
+    succeed() {
+      return this._stopAndPrint({ color: FgGreen, symbol: '✔' })
+    },
+    start() {
+      std.write(HideCursor)
 
-    std.clearLine()
-    std.write(`${color}${symbol}${Reset} ${this.text}\n`)
+      let spinners = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+      let index = 0
 
-    process.stdout.write(ShowCursor)
-    return this
-  }
-
-  spin(text) {
-    this.text = text || ''
-    process.stdout.write(HideCursor)
-
-    let spinners = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
-
-    let index = 0
-
-    this.timer = setInterval(() => {
+      this._timer = setInterval(() => {
+        index = this._intervalCallback(index, spinners)
+      }, 100)
+      return this
+    },
+    _intervalCallback(index, spinners) {
       let line = spinners[index]
 
       if (line === undefined) {
@@ -49,17 +50,21 @@ class Spinner {
         line = spinners[index]
       }
       std.clearLine()
-      std.write(`${FgYellow}${line} ${Reset}${this.text}`)
+      std.write(`${FgYellow}${line} ${Reset}${this._text}`)
 
       std.cursorTo(0)
 
-      index = index >= spinners.length ? 0 : index + 1
-    }, 100)
+      return index + 1
+    },
+    stop() {
+      clearInterval(this._timer)
 
-    return this
+      std.clearLine()
+
+      std.write(ShowCursor)
+      return this
+    }
   }
 }
-const spinnerFactory = function (options) {
-  return new Spinner(options)
-}
-module.exports = spinnerFactory
+
+module.exports = Spinner
