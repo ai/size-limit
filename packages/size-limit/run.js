@@ -1,6 +1,6 @@
-let ora = require('ora')
-let path = require('path')
+let { resolve } = require('path')
 let chokidar = require('chokidar')
+let ora = require('ora')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
@@ -29,7 +29,7 @@ async function findPlugins(parentPkg) {
 
   if (!parentPkg || !plugins.isEmpty) return plugins
 
-  let cwd = path.resolve(parentPkg.path, '..', '..')
+  let cwd = resolve(parentPkg.path, '..', '..')
   let pkg = await readPkgUp(cwd)
 
   return findPlugins(pkg)

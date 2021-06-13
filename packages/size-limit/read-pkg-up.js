@@ -1,12 +1,10 @@
 let { resolve, parse, dirname } = require('path')
-let { promisify } = require('util')
-let { readFile, existsSync } = require('fs')
-
-let readFileAsync = promisify(readFile)
+let { existsSync } = require('fs')
+let { readFile } = require('fs/promises')
 
 async function readPkg(cwd) {
   let filePath = resolve(cwd, 'package.json')
-  return JSON.parse(await readFileAsync(filePath, 'utf8'))
+  return JSON.parse(await readFile(filePath, 'utf8'))
 }
 
 async function findUp(name, cwd = '') {

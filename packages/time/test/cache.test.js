@@ -1,5 +1,5 @@
 let { promisify } = require('util')
-let writeFile = promisify(require('fs').writeFile)
+let { writeFile } = require('fs/promises')
 let { join } = require('path')
 let rimraf = promisify(require('rimraf'))
 

@@ -1,10 +1,8 @@
 let SizeLimitError = require('size-limit/size-limit-error')
+let { writeFile, readFile, mkdir } = require('fs/promises')
 let { existsSync } = require('fs')
 let { promisify } = require('util')
 let { join } = require('path')
-let readFile = promisify(require('fs').readFile)
-let writeFile = promisify(require('fs').writeFile)
-let mkdir = promisify(require('fs').mkdir)
 let rimraf = promisify(require('rimraf'))
 
 let [webpack] = require('../')

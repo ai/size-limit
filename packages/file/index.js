@@ -1,10 +1,9 @@
 let { constants, createBrotliCompress, createGzip } = require('zlib')
-let { promisify } = require('util')
-let { gte } = require('semver')
-let fs = require('fs')
+let { createReadStream } = require('fs')
 let SizeLimitError = require('size-limit/size-limit-error')
+let { stat } = require('fs/promises')
+let { gte } = require('semver')
 
-let stat = promisify(fs.stat)
 const BROTLI_NODE_VERSION = 'v11.7.0'
 
 async function sum(array, fn) {
@@ -14,7 +13,7 @@ async function sum(array, fn) {
 function brotliSize(path) {
   return new Promise((resolve, reject) => {
     let size = 0
-    let pipe = fs.createReadStream(path).pipe(
+    let pipe = createReadStream(path).pipe(
       createBrotliCompress({
         params: {
           [constants.BROTLI_PARAM_QUALITY]: 11
@@ -34,7 +33,7 @@ function brotliSize(path) {
 function gzipSize(path) {
   return new Promise((resolve, reject) => {
     let size = 0
-    let pipe = fs.createReadStream(path).pipe(createGzip({ level: 9 }))
+    let pipe = createReadStream(path).pipe(createGzip({ level: 9 }))
     pipe.on('error', reject)
     pipe.on('data', buf => {
       size += buf.length

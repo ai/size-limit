@@ -1,9 +1,9 @@
 let SizeLimitError = require('size-limit/size-limit-error')
 let { promisify } = require('util')
+let { readdir } = require('fs/promises')
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
 let { join } = require('path')
-let readdir = promisify(require('fs').readdir)
 let rimraf = promisify(require('rimraf'))
 
 let convertConfig = require('./convert-config')
