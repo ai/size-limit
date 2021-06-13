@@ -1,22 +1,22 @@
-const path = require('path')
-const { promisify } = require('util')
-const fs = require('fs')
+let { resolve, parse, dirname } = require('path')
+let { promisify } = require('util')
+let { readFile, existsSync } = require('fs')
 
-const readFileAsync = promisify(fs.readFile)
+let readFileAsync = promisify(readFile)
 
-const readPkg = async cwd => {
-  let filePath = path.resolve(cwd, 'package.json')
+async function readPkg(cwd) {
+  let filePath = resolve(cwd, 'package.json')
   return JSON.parse(await readFileAsync(filePath, 'utf8'))
 }
 
-const findUp = async (name, cwd = '') => {
-  let directory = path.resolve(cwd)
-  let { root } = path.parse(directory)
+async function findUp(name, cwd = '') {
+  let directory = resolve(cwd)
+  let { root } = parse(directory)
 
   while (true) {
-    let foundPath = await path.resolve(directory, name)
+    let foundPath = await resolve(directory, name)
 
-    if (fs.existsSync(foundPath)) {
+    if (existsSync(foundPath)) {
       return foundPath
     }
 
@@ -24,7 +24,7 @@ const findUp = async (name, cwd = '') => {
       return undefined
     }
 
-    directory = path.dirname(directory)
+    directory = dirname(directory)
   }
 }
 
@@ -36,7 +36,7 @@ module.exports = async cwd => {
   }
 
   return {
-    packageJson: await readPkg(path.dirname(filePath)),
+    packageJson: await readPkg(dirname(filePath)),
     path: filePath
   }
 }
