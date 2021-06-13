@@ -18,6 +18,7 @@
     "@logux/eslint-config": "^45.4.4",
     "@logux/sharec-config": "^0.10.2",
     "check-dts": "^0.4.4",
+    "clean-publish": "^2.2.0",
     "cross-spawn": "^7.0.3",
     "eslint": "^7.28.0",
     "eslint-config-standard": "^16.0.3",

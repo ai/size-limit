@@ -21,8 +21,5 @@
   "peerDependencies": {
     "size-limit": "4.12.0",
     "dual-publish": "> 0.6.0"
-  },
-  "dependencies": {
-    "rimraf": "^3.0.2"
   }
 }

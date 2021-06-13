@@ -1,9 +1,8 @@
 let SizeLimitError = require('size-limit/size-limit-error')
 let { writeFile, readFile, mkdir } = require('fs/promises')
 let { existsSync } = require('fs')
-let { promisify } = require('util')
 let { join } = require('path')
-let rimraf = promisify(require('rimraf'))
+let rm = require('size-limit/rm')
 
 let [webpack] = require('../')
 let [file] = require('../../file')
@@ -36,7 +35,7 @@ async function getSize(check) {
 }
 
 afterEach(async () => {
-  await rimraf(DIST)
+  await rm(DIST)
   jest.clearAllMocks()
 })
 
