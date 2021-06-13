@@ -1,4 +1,3 @@
-let readPkgUp = require('read-pkg-up')
 let ora = require('ora')
 let path = require('path')
 let chokidar = require('chokidar')
@@ -7,6 +6,7 @@ let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
 let loadPlugins = require('./load-plugins')
 let createHelp = require('./create-help')
+let readPkgUp = require('./read-pkg-up')
 let getConfig = require('./get-config')
 let parseArgs = require('./parse-args')
 let debug = require('./debug')
@@ -30,7 +30,7 @@ async function findPlugins(parentPkg) {
   if (!parentPkg || !plugins.isEmpty) return plugins
 
   let cwd = path.resolve(parentPkg.path, '..', '..')
-  let pkg = await readPkgUp({ cwd })
+  let pkg = await readPkgUp(cwd)
 
   return findPlugins(pkg)
 }
@@ -50,7 +50,7 @@ module.exports = async process => {
       return help.showVersion()
     }
 
-    let pkg = await readPkgUp({ cwd: process.cwd() })
+    let pkg = await readPkgUp(process.cwd())
     let plugins = await findPlugins(pkg)
 
     if (hasArg('--help')) {
