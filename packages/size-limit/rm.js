@@ -1,5 +1,5 @@
 let { existsSync } = require('fs')
-let fs = require('fs/promises')
+let fs = require('fs').promises
 
 module.exports = async function rm(dir) {
   if (process.version.startsWith('v12.')) {

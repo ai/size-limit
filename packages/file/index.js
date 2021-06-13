@@ -1,7 +1,7 @@
 let { constants, createBrotliCompress, createGzip } = require('zlib')
 let { createReadStream } = require('fs')
 let SizeLimitError = require('size-limit/size-limit-error')
-let { stat } = require('fs/promises')
+let { stat } = require('fs').promises
 let { gte } = require('semver')
 
 const BROTLI_NODE_VERSION = 'v11.7.0'

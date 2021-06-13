@@ -1,5 +1,5 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { writeFile, readFile, mkdir } = require('fs/promises')
+let { writeFile, readFile, mkdir } = require('fs').promises
 let { existsSync } = require('fs')
 let { join } = require('path')
 let rm = require('size-limit/rm')

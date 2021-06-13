@@ -1,4 +1,4 @@
-let { writeFile, readFile, mkdir } = require('fs/promises')
+let { writeFile, readFile, mkdir } = require('fs').promises
 let { join, dirname } = require('path')
 let { existsSync } = require('fs')
 

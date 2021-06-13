@@ -1,4 +1,4 @@
-let { writeFile } = require('fs/promises')
+let { writeFile } = require('fs').promises
 let { join } = require('path')
 let rm = require('size-limit/rm')
 

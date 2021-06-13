@@ -1,5 +1,5 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { readdir } = require('fs/promises')
+let { readdir } = require('fs').promises
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
 let { join } = require('path')

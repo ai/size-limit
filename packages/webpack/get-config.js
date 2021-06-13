@@ -1,6 +1,6 @@
 let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 let PnpWebpackPlugin = require('pnp-webpack-plugin')
-let { writeFile } = require('fs/promises')
+let { writeFile } = require('fs').promises
 let escapeRegexp = require('escape-string-regexp')
 let OptimizeCss = require('optimize-css-assets-webpack-plugin')
 let { join } = require('path')

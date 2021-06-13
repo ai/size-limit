@@ -1,6 +1,6 @@
 let { resolve, parse, dirname } = require('path')
 let { existsSync } = require('fs')
-let { readFile } = require('fs/promises')
+let { readFile } = require('fs').promises
 
 async function readPkg(cwd) {
   let filePath = resolve(cwd, 'package.json')
