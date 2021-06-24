@@ -1,6 +1,5 @@
 let { resolve } = require('path')
 let chokidar = require('chokidar')
-let ora = require('ora')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
@@ -11,6 +10,7 @@ let getConfig = require('./get-config')
 let parseArgs = require('./parse-args')
 let debug = require('./debug')
 let calc = require('./calc')
+let spinner = require('./spinner')
 
 function throttle(fn) {
   let next, running
@@ -39,6 +39,7 @@ module.exports = async process => {
   function hasArg(arg) {
     return process.argv.includes(arg)
   }
+
   let isJsonOutput = hasArg('--json')
   let isSilentMode = hasArg('--silent')
   let reporter = createReporter(process, isJsonOutput, isSilentMode)
@@ -71,7 +72,7 @@ module.exports = async process => {
     config = await getConfig(plugins, process, args, pkg)
 
     let calcAndShow = async () => {
-      let outputFunc = isJsonOutput ? null : ora
+      let outputFunc = isJsonOutput ? null : spinner
       await calc(plugins, config, outputFunc)
       debug.results(process, args, config)
       reporter.results(plugins, config)

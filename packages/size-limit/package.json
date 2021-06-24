@@ -23,7 +23,6 @@
     "ci-job-number": "^1.2.2",
     "colorette": "^1.2.2",
     "globby": "^11.0.3",
-    "lilconfig": "^2.0.3",
-    "ora": "^5.4.1"
+    "lilconfig": "^2.0.3"
   }
 }
