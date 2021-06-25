@@ -25,7 +25,7 @@
     "file-loader": "^6.2.0",
     "mkdirp": "^1.0.4",
     "nanoid": "^3.1.23",
-    "optimize-css-assets-webpack-plugin": "^6.0.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "pnp-webpack-plugin": "^1.6.4",
     "style-loader": "^2.0.0",
     "webpack": "^4.44.1",
