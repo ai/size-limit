@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0
+* Removed Node.js 10 support.
+* Reduced dependencies (by Stsefanovich Kanstantsin & @enemycnt).
+
 ## 4.12.0
 * Added `.size-limit.cjs` config file support (by Cole Ellison).
 
