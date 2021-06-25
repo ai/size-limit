@@ -1,8 +1,8 @@
 let readPkgUp = require('read-pkg-up')
 let path = require('path')
 let chokidar = require('chokidar')
+let spinner = require('mico-spinner')
 
-let spinner = require('./spinner')
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
 let loadPlugins = require('./load-plugins')

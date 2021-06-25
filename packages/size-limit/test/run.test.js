@@ -13,7 +13,7 @@ jest.mock('../../time/cache', () => ({
   saveCache() {}
 }))
 
-jest.mock('../spinner', () => {
+jest.mock('mico-spinner', () => {
   return () => ({
     start() {
       return this
