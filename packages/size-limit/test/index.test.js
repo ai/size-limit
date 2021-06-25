@@ -1,5 +1,5 @@
-const filePlugin = require('@size-limit/file')
 const webpackPlugin = require('@size-limit/webpack')
+const filePlugin = require('@size-limit/file')
 let { join } = require('path')
 
 const sizeLimit = require('../')

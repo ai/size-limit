@@ -115,7 +115,7 @@ describe(`run`, () => {
   it('shows syntax errors in package.json', async () => {
     let stderr = await error('package-syntax')
     expect(stderr).toContain('ERROR')
-    expect(stderr).toContain('JSONError')
+    expect(stderr).toContain('SyntaxError: Unexpected end of JSON input')
   })
 
   it('shows error in JSON format', async () => {

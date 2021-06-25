@@ -1,8 +1,7 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { promisify } = require('util')
 let { spawn } = require('child_process')
 let { join } = require('path')
-let rimraf = promisify(require('rimraf'))
+let rm = require('size-limit/rm')
 
 let self = {
   name: '@size-limit/dual-publish',
@@ -56,7 +55,7 @@ let self = {
   },
 
   async finally(config) {
-    await rimraf(join(config.cwd, 'dual-publish-tmp'))
+    await rm(join(config.cwd, 'dual-publish-tmp'))
   }
 }
 

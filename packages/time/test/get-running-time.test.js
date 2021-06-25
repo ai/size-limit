@@ -1,6 +1,5 @@
-let { promisify } = require('util')
 let { join } = require('path')
-let rimraf = promisify(require('rimraf'))
+let rm = require('size-limit/rm')
 
 let getRunningTime = require('../get-running-time')
 let { saveCache, getCache } = require('../cache')
@@ -12,7 +11,7 @@ jest.setTimeout(10000)
 afterEach(async () => {
   delete process.env.SIZE_LIMIT_FAKE_TIME
   getRunningTime.cleanCache()
-  await rimraf(join(__dirname, '..', '..', '.cache'))
+  await rm(join(__dirname, '..', '..', '.cache'))
 })
 
 it('calculates running time', async () => {

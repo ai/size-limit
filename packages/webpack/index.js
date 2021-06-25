@@ -1,10 +1,9 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { promisify } = require('util')
+let { readdir } = require('fs').promises
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
 let { join } = require('path')
-let readdir = promisify(require('fs').readdir)
-let rimraf = promisify(require('rimraf'))
+let rm = require('size-limit/rm')
 
 let convertConfig = require('./convert-config')
 let runWebpack = require('./run-webpack')
@@ -56,7 +55,7 @@ let self = {
   async before(config) {
     if (config.saveBundle) {
       if (config.cleanDir) {
-        await rimraf(config.saveBundle)
+        await rm(config.saveBundle)
       } else {
         let notEmpty = await isDirNotEmpty(config.saveBundle)
         if (notEmpty) {
@@ -109,7 +108,7 @@ let self = {
 
   async finally(config, check) {
     if (check.webpackOutput && !config.saveBundle) {
-      await rimraf(check.webpackOutput)
+      await rm(check.webpackOutput)
     }
   }
 }

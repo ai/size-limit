@@ -1,14 +1,13 @@
-let { promisify } = require('util')
-let writeFile = promisify(require('fs').writeFile)
+let { writeFile } = require('fs').promises
 let { join } = require('path')
-let rimraf = promisify(require('rimraf'))
+let rm = require('size-limit/rm')
 
 let { saveCache, getCache } = require('../cache')
 
 const CACHE = join(__dirname, '..', '..', '.cache')
 
-beforeAll(() => rimraf(CACHE))
-afterEach(() => rimraf(CACHE))
+beforeAll(() => rm(CACHE))
+afterEach(() => rm(CACHE))
 
 it('returns false by default', async () => {
   expect(await getCache()).toBe(false)
