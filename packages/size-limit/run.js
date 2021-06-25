@@ -1,6 +1,6 @@
 let { resolve } = require('path')
 let chokidar = require('chokidar')
-let ora = require('ora')
+let spinner = require('mico-spinner')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
@@ -71,7 +71,7 @@ module.exports = async process => {
     config = await getConfig(plugins, process, args, pkg)
 
     let calcAndShow = async () => {
-      let outputFunc = isJsonOutput ? null : ora
+      let outputFunc = isJsonOutput ? null : spinner
       await calc(plugins, config, outputFunc)
       debug.results(process, args, config)
       reporter.results(plugins, config)

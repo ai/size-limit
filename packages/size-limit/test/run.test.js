@@ -13,7 +13,7 @@ jest.mock('../../time/cache', () => ({
   saveCache() {}
 }))
 
-jest.mock('ora', () => {
+jest.mock('mico-spinner', () => {
   return () => ({
     start() {
       return this
@@ -65,7 +65,7 @@ function createProcess(cwd, args = []) {
 function clean(output) {
   return output
     .replace(/\d+\.\d+\.\d+/g, '0.0.0')
-    .replace(/var\/fvolders\/(.*)\//g, 'tmp/')
+    .replace(/var\/folders\/(.*)\//g, 'tmp/')
     .replace(/"cwd": "[^"]+"/, '"cwd": "/tmp/"')
     .replace(/"webpackOutput": "[^"]+"/, '"webpackOutput": "/tmp/"')
 }
