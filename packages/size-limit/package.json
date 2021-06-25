@@ -24,6 +24,7 @@
     "colorette": "^1.2.2",
     "globby": "^11.0.3",
     "lilconfig": "^2.0.3",
+    "mico-spinner": "^1.0.0",
     "read-pkg-up": "^7.0.1"
   }
 }
