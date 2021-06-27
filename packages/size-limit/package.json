@@ -24,6 +24,6 @@
     "colorette": "^1.2.2",
     "globby": "^11.0.4",
     "lilconfig": "^2.0.3",
-    "mico-spinner": "1.0.0"
+    "mico-spinner": "^1.1.1"
   }
 }
