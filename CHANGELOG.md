@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.1
+* Fixed `mico-spinner` dependency range.
+
 ## 5.0
 * Removed Node.js 10 support.
 * Reduced dependencies (by Stsefanovich Kanstantsin & @enemycnt).
