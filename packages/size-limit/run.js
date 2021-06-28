@@ -80,7 +80,7 @@ module.exports = async process => {
     await calcAndShow()
 
     if (hasArg('--watch')) {
-      let watcher = chokidar.watch(['**/*.js', 'package.json'], {
+      let watcher = chokidar.watch(['**/*', 'package.json'], {
         ignored: '**/node_modules/**'
       })
       watcher.on('change', throttle(calcAndShow))
