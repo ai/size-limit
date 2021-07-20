@@ -20,15 +20,13 @@
     "size-limit": "5.0.5"
   },
   "dependencies": {
-    "css-loader": "^5.2.6",
+    "css-loader": "^6.3.0",
+    "css-minimizer-webpack-plugin": "^3.0.2",
     "escape-string-regexp": "^4.0.0",
-    "file-loader": "^6.2.0",
     "mkdirp": "^1.0.4",
     "nanoid": "^3.1.28",
-    "optimize-css-assets-webpack-plugin": "^6.0.1",
-    "pnp-webpack-plugin": "^1.7.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^4.44.1",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.56.0",
     "webpack-bundle-analyzer": "^4.4.2"
   },
   "devDependencies": {

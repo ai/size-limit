@@ -9,10 +9,10 @@ let convertConfig = require('./convert-config')
 let runWebpack = require('./run-webpack')
 let getConfig = require('./get-config')
 
-const WEBPACK_EMPTY_PROJECT = 962
-const WEBPACK_EMPTY_PROJECT_GZIP = 461
-const WEBPACK_EMPTY_PROJECT_IMPORT = 965
-const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 473
+const WEBPACK_EMPTY_PROJECT = 0
+const WEBPACK_EMPTY_PROJECT_GZIP = 20
+const WEBPACK_EMPTY_PROJECT_IMPORT = 37
+const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 57
 
 function getFiles(stats, check) {
   let entries = {}
@@ -30,11 +30,11 @@ function getFiles(stats, check) {
 
   return Object.keys(entries)
     .reduce((assets, i) => assets.concat(entries[i].assets), [])
-    .map(i => {
+    .map(({ name }) => {
       if (check.webpackConfig.output && check.webpackConfig.output.path) {
-        return join(check.webpackConfig.output.path, i)
+        return join(check.webpackConfig.output.path, name)
       } else {
-        return join(process.cwd(), 'dist', i)
+        return join(process.cwd(), 'dist', name)
       }
     })
 }

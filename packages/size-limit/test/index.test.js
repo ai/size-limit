@@ -9,7 +9,7 @@ it('has JS API', async () => {
     [webpackPlugin, filePlugin],
     [join(__dirname, 'fixtures', 'integration', 'index.js')]
   )
-  expect(result).toEqual([{ size: 31 }])
+  expect(result).toEqual([{ size: 141 }])
 })
 
 it('works with file module only', async () => {
