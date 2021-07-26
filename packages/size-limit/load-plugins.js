@@ -18,6 +18,7 @@ module.exports = function loadPlugins(pkg) {
 
   let list = toArray(pkg.packageJson.dependencies)
     .concat(toArray(pkg.packageJson.devDependencies))
+    .concat(toArray(pkg.packageJson.optionalDependencies))
     .filter(i => i.startsWith('@size-limit/'))
     .reduce(
       (all, i) =>
