@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.2
+* Fixed error message on no input files for webpack.
+* Fixed plugins loading from optional dependencies (by Edouard Menayde).
+
 ## 5.0.1
 * Fixed `mico-spinner` dependency range.
 
