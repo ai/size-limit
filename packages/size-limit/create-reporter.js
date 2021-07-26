@@ -1,12 +1,12 @@
 let {
   bgGreen,
+  yellow,
   bgRed,
   black,
+  green,
   bold,
   gray,
-  green,
-  red,
-  yellow
+  red
 } = require('colorette')
 let { join } = require('path')
 let bytes = require('bytes-iec')
@@ -105,7 +105,7 @@ function createHumanReporter(process, isSilentMode = false) {
         }
 
         if (check.missed) {
-          print(red(`File not found: ${check.path}`))
+          print(red(`Size Limit can’t find files at ${check.path}`))
           continue
         }
 
@@ -182,11 +182,6 @@ function createHumanReporter(process, isSilentMode = false) {
 
       if (config.failed) {
         let fix = getFixText('Try to reduce size or increase limit', config)
-        print(yellow(fix))
-      }
-
-      if (config.missed) {
-        let fix = getFixText('Specify correct file path', config)
         print(yellow(fix))
       }
 

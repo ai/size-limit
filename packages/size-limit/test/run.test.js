@@ -253,7 +253,7 @@ describe(`run`, () => {
     expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
   })
 
-  it('shows error when file not found, package.json', async () => {
+  it('shows error when file not found for simple case', async () => {
     let [process, history] = createProcess('file-not-found')
     await run(process)
     expect(history.exitCode).toEqual(1)
@@ -261,8 +261,8 @@ describe(`run`, () => {
     expect(history.stdout).toMatchSnapshot()
   })
 
-  it('shows error when file not found, size-limit.json', async () => {
-    let [process, history] = createProcess('file-not-found-json-config')
+  it('shows error when file not found for webpack', async () => {
+    let [process, history] = createProcess('webpack-no-files')
     await run(process)
     expect(history.exitCode).toEqual(1)
     expect(history.stderr).toEqual('')

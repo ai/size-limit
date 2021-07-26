@@ -24,6 +24,11 @@ module.exports = async function getConfig(limitConfig, check, output) {
     check.files = entry
   }
 
+  if (check.files.length === 0) {
+    check.missed = true
+    check.webpack = false
+  }
+
   let config = {
     entry: {
       index: check.files
