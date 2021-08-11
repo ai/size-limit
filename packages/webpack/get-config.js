@@ -50,19 +50,19 @@ module.exports = async function getConfig(limitConfig, check, output) {
       rules: [
         {
           test: STATIC,
-          use: 'file-loader'
+          use: require.resolve('file-loader')
         },
         {
           test: /\.css$/,
           exclude: /\.module\.css$/,
-          use: ['style-loader', 'css-loader']
+          use: [require.resolve('style-loader'), require.resolve('css-loader')]
         },
         {
           test: /\.module\.css$/,
           use: [
-            'style-loader',
+            require.resolve('style-loader'),
             {
-              loader: 'css-loader',
+              loader: require.resolve('css-loader'),
               options: {
                 modules: true
               }
