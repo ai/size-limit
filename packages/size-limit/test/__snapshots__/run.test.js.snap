@@ -95,22 +95,22 @@ exports[`run shows debug 1`] = `
           \\"rules\\": [
             {
               \\"test\\": {},
-              \\"use\\": \\"file-loader\\"
+              \\"use\\": \\"/node_modules/file-loader/dist/cjs.js\\"
             },
             {
               \\"test\\": {},
               \\"exclude\\": {},
               \\"use\\": [
-                \\"style-loader\\",
-                \\"css-loader\\"
+                \\"/node_modules/style-loader/dist/cjs.js\\",
+                \\"/node_modules/css-loader/dist/cjs.js\\"
               ]
             },
             {
               \\"test\\": {},
               \\"use\\": [
-                \\"style-loader\\",
+                \\"/node_modules/style-loader/dist/cjs.js\\",
                 {
-                  \\"loader\\": \\"css-loader\\",
+                  \\"loader\\": \\"/node_modules/css-loader/dist/cjs.js\\",
                   \\"options\\": {
                     \\"modules\\": true
                   }
