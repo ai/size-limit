@@ -2,7 +2,7 @@ let { join } = require('path')
 
 let run = require('../run')
 
-jest.setTimeout(10000)
+jest.setTimeout(15000)
 
 jest.mock('../../time/get-running-time', () => () => 1)
 
