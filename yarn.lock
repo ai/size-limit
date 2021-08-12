@@ -549,12 +549,12 @@
   dependencies:
     globals "^13.9.0"
 
-"@logux/sharec-config@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@logux/sharec-config/-/sharec-config-0.10.2.tgz#d7f055737ab8d09d86915ccf1f06569a31542e61"
-  integrity sha512-Gs+8w61Wb8o2u2qbQgwziH4W+zC+sRxU0lfgMsRCV+bu0tvliTZsPwTcU21XBaghID8PgPBVtAHZxY+hII8+mQ==
+"@logux/sharec-config@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@logux/sharec-config/-/sharec-config-0.11.0.tgz#9ebfc6f53f5ae83a01b3b8abf6f443aef4099c55"
+  integrity sha512-NgiWsOmEUbsgPntK6jClYmmsYeHVf1tOf43v2wonP2qLnUjn6QQnVyeSfWoGXGhbmv4OiBqiwdCyv85a7BkxRg==
   dependencies:
-    sharec "^2.9.0"
+    sharec "^2.10.2"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -6255,7 +6255,7 @@ sharec-utils@^2.10.2:
     sharec-nanomatch "^2.10.2"
     slash "^3.0.0"
 
-sharec@^2.9.0:
+sharec@^2.10.2:
   version "2.10.2"
   resolved "https://registry.yarnpkg.com/sharec/-/sharec-2.10.2.tgz#8d526ed257cec654226377308ee1d783ae3a45d2"
   integrity sha512-1WfA1C6SARECMoc0RojDO5t/0Bie49kr9hkDsBT9T1GFrzrTSfXi2qPG5n2qtli865e8Sat+fm/UnI7k0qC+dA==
