@@ -7,7 +7,7 @@ let {
   bold,
   gray,
   red
-} = require('colorette')
+} = require('nanocolors')
 let { join } = require('path')
 let bytes = require('bytes-iec')
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 let ciJobNumber = require('ci-job-number')
-let { yellow } = require('colorette')
+let { yellow } = require('nanocolors')
 
 if (ciJobNumber() !== 1) {
   process.stderr.write(
