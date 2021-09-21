@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.4
+* Replaced `colorette` dependency with `nanocolors`.
+
 ## 5.0.3
 * Fixed `pnpm` support (by @Tomyail).
 
