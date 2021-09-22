@@ -23,7 +23,7 @@
     "ci-job-number": "^1.2.2",
     "globby": "^11.0.4",
     "lilconfig": "^2.0.3",
-    "mico-spinner": "^1.2.2",
-    "nanocolors": "^0.1.0"
+    "mico-spinner": "^1.3.0",
+    "nanocolors": "^0.1.6"
   }
 }
