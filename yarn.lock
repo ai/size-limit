@@ -4796,7 +4796,7 @@ nan@^2.12.1:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
   integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
 
-nanocolors@^0.1.0, nanocolors@^0.1.1, nanocolors@^0.1.5, nanocolors@^0.1.6:
+nanocolors@^0.1.0, nanocolors@^0.1.1, nanocolors@^0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.1.6.tgz#bc2350d3edfdbfadd7ac018c855ae7c13905a6ad"
   integrity sha512-2pvTw6vYRaBLGir2xR7MxaJtyWkrn+C53EpW8yPotG+pdAwBvt0Xwk4VJ6VHLY0aLthVZPvDfm9TdZvrvAm5UQ==
@@ -5267,6 +5267,11 @@ pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
   integrity sha1-elfrVQpng/kRUzH89GY9XI4AelA=
+
+picocolors@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.1.0.tgz#e10d446a03ca5f127e9680865fbfe80ee5148266"
+  integrity sha512-W+3MFREUEjPt0MnYaR51VkLw8tY8UubrLOqcBmaQocZhM34hQhjg50FQ0c6f0UldPlecieoqUqI6ToM/dNblDw==
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"

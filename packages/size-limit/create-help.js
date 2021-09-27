@@ -1,4 +1,4 @@
-let { bold: b, yellow: y, red } = require('nanocolors')
+let { bold: b, yellow: y, red } = require('picocolors')
 let { existsSync } = require('fs')
 let { join } = require('path')
 
