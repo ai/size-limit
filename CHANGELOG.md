@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.5
+* Replaced `nanocolors` dependency with `picocolors`.
+
 ## 5.0.4
 * Replaced `colorette` dependency with `nanocolors`.
 
