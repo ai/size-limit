@@ -51,7 +51,7 @@ it('uses webpack to make bundle', async () => {
         webpackOutput: config.checks[0].webpackOutput,
         webpackConfig: config.checks[0].webpackConfig,
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        size: 1883
+        size: 2187
       }
     ]
   })
@@ -66,7 +66,7 @@ it('supports non-JS require', async () => {
   }
   await run(config)
   expect(config.checks[0].size).toBeGreaterThan(1450)
-  expect(config.checks[0].size).toBeLessThan(1700)
+  expect(config.checks[0].size).toBeLessThan(2300)
 })
 
 it('supports ignore', async () => {
@@ -74,7 +74,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(27)
+  expect(config.checks[0].size).toEqual(160)
 })
 
 it('supports custom webpack config', async () => {
@@ -83,7 +83,7 @@ it('supports custom webpack config', async () => {
     checks: [{ config: fixture('webpack.config.js') }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(1840)
+  expect(config.checks[0].size).toEqual(1154)
 })
 
 it('supports custom entry', async () => {
@@ -92,7 +92,7 @@ it('supports custom entry', async () => {
     checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(688)
+  expect(config.checks[0].size).toEqual(566)
 })
 
 it('throws error on unknown entry', async () => {
@@ -123,7 +123,7 @@ it('allows to disable gzip', async () => {
     checks: [{ files: [fixture('small.js')], gzip: false }]
   }
   await run(config)
-  expect(config.checks[0].size).toEqual(36)
+  expect(config.checks[0].size).toEqual(37)
 })
 
 it('throws on missed file plugin', async () => {
@@ -263,7 +263,7 @@ it('supports specifying the import', async () => {
         [fixture('module.js')]: '{ methodA }'
       }
     })
-  ).toEqual(79)
+  ).toEqual(83)
 })
 
 it('supports import with multiple files', async () => {
@@ -274,7 +274,7 @@ it('supports import with multiple files', async () => {
         [fixture('module2.js')]: '{ B }'
       }
     })
-  ).toEqual(5)
+  ).toEqual(6)
 })
 
 it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
@@ -285,14 +285,14 @@ it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
         [fixture('referencingAlias.js')]: '{ methodA }'
       },
       modifyWebpackConfig(config) {
-        config.plugins.push(
+        config.plugins = [
           new NormalModuleReplacementPlugin(
             /@fixtures\/module/,
             fixture('module.js')
           )
-        )
+        ]
         return config
       }
     })
-  ).toEqual(79)
+  ).toEqual(83)
 })

@@ -2,7 +2,7 @@
 
 exports[`run allows to use peer dependencies in import 1`] = `
 "  
-  Size: [1m1.49 kB[22m [90mwith all dependencies, minified and gzipped[39m
+  Size: [1m1.18 kB[22m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
@@ -34,7 +34,7 @@ exports[`run returns zero bytes for empty file without gzip 1`] = `
 exports[`run shows brotli text when brotli and gzip in config 1`] = `
 "  
   Size limit:   [32m[1m1 kB[22m[39m
-  Size:         [32m[1m-53 B[22m[39m [90mwith all dependencies, minified and brotli[39m
+  Size:         [32m[1m-19 B[22m[39m [90mwith all dependencies, minified and brotli[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -45,7 +45,7 @@ exports[`run shows brotli text when brotli and gzip in config 1`] = `
 exports[`run shows brotli text when only brotli in config 1`] = `
 "  
   Size limit:   [32m[1m1 kB[22m[39m
-  Size:         [32m[1m-53 B[22m[39m [90mwith all dependencies, minified and brotli[39m
+  Size:         [32m[1m-19 B[22m[39m [90mwith all dependencies, minified and brotli[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -77,25 +77,22 @@ exports[`run shows debug 1`] = `
           \\"path\\": \\"/tmp/\\"
         },
         \\"optimization\\": {
-          \\"concatenateModules\\": true
-        },
-        \\"resolve\\": {
-          \\"plugins\\": [
+          \\"concatenateModules\\": true,
+          \\"minimizer\\": [
+            \\"...\\",
             {
-              \\"topLevelLoader\\": {}
+              \\"options\\": {
+                \\"test\\": {},
+                \\"parallel\\": true
+              }
             }
-          ]
-        },
-        \\"resolveLoader\\": {
-          \\"plugins\\": [
-            {}
           ]
         },
         \\"module\\": {
           \\"rules\\": [
             {
               \\"test\\": {},
-              \\"use\\": \\"/node_modules/file-loader/dist/cjs.js\\"
+              \\"type\\": \\"asset/resource\\"
             },
             {
               \\"test\\": {},
@@ -119,132 +116,12 @@ exports[`run shows debug 1`] = `
             }
           ]
         },
-        \\"plugins\\": [
-          {
-            \\"pluginDescriptor\\": {
-              \\"name\\": \\"OptimizeCssAssetsWebpackPlugin\\"
-            },
-            \\"options\\": {
-              \\"assetProcessors\\": [
-                {
-                  \\"phase\\": \\"compilation.optimize-chunk-assets\\",
-                  \\"regExp\\": {}
-                }
-              ],
-              \\"assetNameRegExp\\": {},
-              \\"cssProcessor\\": {
-                \\"version\\": \\"0.0.0\\",
-                \\"plugins\\": [
-                  {
-                    \\"postcssPlugin\\": \\"postcss-discard-comments\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-minify-gradients\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-reduce-initial\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-svgo\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-display-values\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-reduce-transforms\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-colormin\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-timing-functions\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-calc\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-convert-values\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-ordered-values\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-minify-selectors\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-minify-params\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-charset\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-discard-overridden\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-string\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-unicode\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-minify-font-values\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-url\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-repeat-style\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-positions\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-normalize-whitespace\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-merge-longhand\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-discard-duplicates\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-merge-rules\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-discard-empty\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"postcss-unique-selectors\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"css-declaration-sorter\\"
-                  },
-                  {
-                    \\"postcssPlugin\\": \\"cssnano-util-raw-cache\\"
-                  }
-                ]
-              },
-              \\"cssProcessorOptions\\": {},
-              \\"cssProcessorPluginOptions\\": {}
-            },
-            \\"phaseAssetProcessors\\": {
-              \\"compilation.optimize-chunk-assets\\": [
-                {
-                  \\"phase\\": \\"compilation.optimize-chunk-assets\\",
-                  \\"regExp\\": {}
-                }
-              ],
-              \\"compilation.optimize-assets\\": [],
-              \\"emit\\": []
-            },
-            \\"deleteAssetsMap\\": {}
-          }
-        ]
+        \\"plugins\\": []
       },
       \\"bundles\\": [
         \\"/tmp/index.js\\"
       ],
-      \\"size\\": 31,
+      \\"size\\": 141,
       \\"loadTime\\": 0.01,
       \\"runTime\\": 1,
       \\"time\\": 1.01,
@@ -255,9 +132,9 @@ exports[`run shows debug 1`] = `
   \\"missed\\": false
 }
   
-  [42m[30mPackage size is 169 B less than limit[39m[49m
+  [42m[30mPackage size is 59 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -294,7 +171,7 @@ exports[`run shows error on time bigger than limit 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
-  Size:         [31m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [31m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
@@ -307,7 +184,7 @@ exports[`run shows error on time bigger than limit. in silent mode 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
-  Size:         [31m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [31m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
@@ -611,9 +488,9 @@ Check the real performance cost of your front-end project to users
 
 exports[`run works in integration test in watch 1`] = `
 "  
-  [42m[30mPackage size is 169 B less than limit[39m[49m
+  [42m[30mPackage size is 59 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -634,7 +511,7 @@ exports[`run works in integration test with JSON 1`] = `
   {
     \\"name\\": \\"index.js\\",
     \\"passed\\": true,
-    \\"size\\": 31,
+    \\"size\\": 141,
     \\"running\\": 1,
     \\"loading\\": 0.01
   }
@@ -644,9 +521,9 @@ exports[`run works in integration test with JSON 1`] = `
 
 exports[`run works in integration test with size 1`] = `
 "  
-  [42m[30mPackage size is 169 B less than limit[39m[49m
+  [42m[30mPackage size is 59 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -657,7 +534,7 @@ exports[`run works in integration test with size 1`] = `
 exports[`run works in integration test with time 1`] = `
 "  
   Time limit:   [32m[1m2 s[22m[39m
-  Size:         [32m[1m31 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m

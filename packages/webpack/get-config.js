@@ -1,8 +1,7 @@
 let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-let PnpWebpackPlugin = require('pnp-webpack-plugin')
 let { writeFile } = require('fs').promises
 let escapeRegexp = require('escape-string-regexp')
-let OptimizeCss = require('optimize-css-assets-webpack-plugin')
+let CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 let { join } = require('path')
 let mkdirp = require('mkdirp')
 
@@ -38,19 +37,14 @@ module.exports = async function getConfig(limitConfig, check, output) {
       path: output
     },
     optimization: {
-      concatenateModules: !check.disableModuleConcatenation
-    },
-    resolve: {
-      plugins: [PnpWebpackPlugin]
-    },
-    resolveLoader: {
-      plugins: [PnpWebpackPlugin.moduleLoader(module)]
+      concatenateModules: !check.disableModuleConcatenation,
+      minimizer: ['...', new CssMinimizerPlugin()]
     },
     module: {
       rules: [
         {
           test: STATIC,
-          use: require.resolve('file-loader')
+          type: 'asset/resource'
         },
         {
           test: /\.css$/,
@@ -70,14 +64,13 @@ module.exports = async function getConfig(limitConfig, check, output) {
           ]
         }
       ]
-    },
-    plugins: [new OptimizeCss()]
+    }
   }
 
   if (check.ignore && check.ignore.length > 0) {
     let escaped = check.ignore.map(i => escapeRegexp(i))
     let ignorePattern = new RegExp(`^(${escaped.join('|')})($|/)`)
-    config.externals = (context, request, callback) => {
+    config.externals = ({ request }, callback) => {
       if (ignorePattern.test(request)) {
         callback(null, 'root a')
       } else {
@@ -86,6 +79,7 @@ module.exports = async function getConfig(limitConfig, check, output) {
     }
   }
 
+  if (!config.plugins) config.plugins = []
   if (limitConfig.why) {
     config.plugins.push(
       new BundleAnalyzerPlugin({

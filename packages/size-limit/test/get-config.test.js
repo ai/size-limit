@@ -188,10 +188,8 @@ it('normalizes import', async () => {
     checks: [
       {
         import: {
-          [fixture(
-            'integration-esm',
-            'index.js'
-          )]: '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
+          [fixture('integration-esm', 'index.js')]:
+            '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
         },
         limit: '1 B',
         highlightLess: true,
