@@ -88,7 +88,7 @@ module.exports = async function getConfig(limitConfig, check, output) {
         saveStatsTo: limitConfig.saveBundle
           ? join(limitConfig.saveBundle, 'stats.json')
           : undefined,
-        additionalStats: [limitConfig.otherStats, check.otherStats].filter(
+        additionalStats: [limitConfig.compareWith, check.compareWith].filter(
           Boolean
         ),
         open: shouldOpen ? 'file' : false,

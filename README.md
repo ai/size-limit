@@ -509,7 +509,7 @@ Each section in the config can have these options:
   the project size calculation.
 * **modifyWebpackConfig**: (.size-limit.js only) function that can be used to
   do last-minute changes to the webpack config, like adding a plugin.
-* **otherStats**: add more stats into UI (when `--why` is using) to compare with current stats.
+* **compareWith**: path to `stats.json` from another build to compare (when `--why` is using).
 * **uiReports**: custom UI reports list (read more on [Statoscope docs](https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report)).
 
 If you use Size Limit to track the size of CSS files, make sure to set

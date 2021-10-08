@@ -310,7 +310,7 @@ Check the real performance cost of your front-end project to users
 
 [1mWebpack options:[22m
   [33m--why[39m              Show package content
-  [33m--other-stats[39m      Path to another stats.json for showing in the UI
+  [33m--compare-with[39m     Path to stats.json from another build to compare
   [33m--save-bundle DIR[39m  Put build files to check them by hand
   [33m--clean-dir[39m        Remove build files folder before start
 
@@ -329,18 +329,18 @@ exports[`run throws on --clean-dir argument without --save-bundle 1`] = `
 "
 `;
 
-exports[`run throws on --other-stats argument without --why 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--other-stats[31m works only with [33m--why[31m argument[39m
+exports[`run throws on --compare-with argument without --why 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [33m--compare-with[31m works only with [33m--why[31m argument[39m
 "
 `;
 
-exports[`run throws on --other-stats argument without value 1`] = `
-"[41m[30m ERROR [39m[49m [31mMissing parameter [33mFILE[31m for [33m--other-stats[31m argument[39m
+exports[`run throws on --compare-with argument without value 1`] = `
+"[41m[30m ERROR [39m[49m [31mMissing parameter [33mFILE[31m for [33m--compare-with[31m argument[39m
 "
 `;
 
-exports[`run throws on --other-stats argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m----other-stats[31m works only with [33m@size-limit/webpack[31m plugin[39m
+exports[`run throws on --compare-with argument without webpack 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [33m----compare-with[31m works only with [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
@@ -489,7 +489,7 @@ Check the real performance cost of your front-end project to users
 
 [1mWebpack options:[22m
   [33m--why[39m              Show package content
-  [33m--other-stats[39m      Path to another stats.json for showing in the UI
+  [33m--compare-with[39m     Path to stats.json from another build to compare
   [33m--save-bundle DIR[39m  Put build files to check them by hand
   [33m--clean-dir[39m        Remove build files folder before start
 

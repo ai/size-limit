@@ -128,12 +128,12 @@ it('normalizes bundle and webpack arguments', async () => {
   })
 })
 
-it('normalizes bundle and webpack arguments with --why and other-stats', async () => {
+it('normalizes bundle and webpack arguments with --why and compare-with', async () => {
   let args = [
     '--why',
     '--save-bundle',
     'out',
-    '--other-stats',
+    '--compare-with',
     'before.json',
     '--clean-dir',
     '--hide-passed',
@@ -146,7 +146,7 @@ it('normalizes bundle and webpack arguments with --why and other-stats', async (
     project: 'webpack',
     hidePassed: true,
     highlightLess: true,
-    otherStats: fixture('webpack', 'before.json'),
+    compareWith: fixture('webpack', 'before.json'),
     saveBundle: fixture('webpack', 'out'),
     cleanDir: true,
     checks: [

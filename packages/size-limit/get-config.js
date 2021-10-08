@@ -22,7 +22,7 @@ let OPTIONS = {
   brotli: 'webpack',
   hidePassed: false,
   highlightLess: false,
-  otherStats: 'webpack',
+  compareWith: 'webpack',
   uiReports: 'webpack'
 }
 
@@ -87,8 +87,8 @@ module.exports = async function getConfig(plugins, process, args, pkg) {
     config.why = args.why
   }
 
-  if (args.otherStats) {
-    config.otherStats = toAbsolute(args.otherStats, process.cwd())
+  if (args.compareWith) {
+    config.compareWith = toAbsolute(args.compareWith, process.cwd())
   }
 
   if (args.saveBundle) {
