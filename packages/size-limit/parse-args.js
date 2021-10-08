@@ -34,6 +34,18 @@ module.exports = function parseArgs(plugins, argv) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
       args.why = true
+    } else if (arg === '--other-stats') {
+      if (!plugins.has('webpack')) {
+        throw new SizeLimitError('argWithoutWebpack', '--other-stats')
+      }
+      if (!args.why) {
+        throw new SizeLimitError('argWithoutAnotherArg', 'other-stats', 'why')
+      }
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        throw new SizeLimitError('argWithoutParameter', 'other-stats', 'FILE')
+      }
+      args.otherStats = nextArg
     } else if (arg === '--watch') {
       args.watch = true
     } else if (arg === '--highlight-less') {

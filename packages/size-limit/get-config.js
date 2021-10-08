@@ -21,7 +21,9 @@ let OPTIONS = {
   disableModuleConcatenation: 'webpack',
   brotli: 'webpack',
   hidePassed: false,
-  highlightLess: false
+  highlightLess: false,
+  otherStats: 'webpack',
+  uiReports: 'webpack'
 }
 
 function isStrings(value) {
@@ -84,6 +86,11 @@ module.exports = async function getConfig(plugins, process, args, pkg) {
     config.project = pkg.packageJson.name
     config.why = args.why
   }
+
+  if (args.otherStats) {
+    config.otherStats = toAbsolute(args.otherStats, process.cwd())
+  }
+
   if (args.saveBundle) {
     config.saveBundle = toAbsolute(args.saveBundle, process.cwd())
   }

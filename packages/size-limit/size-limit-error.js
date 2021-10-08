@@ -11,6 +11,8 @@ const MESSAGES = {
     `Argument *--${arg}* works only with *--${anotherArg}* argument`,
   argWithoutParameter: (arg, parameter) =>
     `Missing parameter *${parameter}* for *--${arg}* argument`,
+  wrongArgParameter: (arg, value) =>
+    `Wrong argument parameter. ${arg} doesn't have ${value}.`,
   noConfig: () => 'Create Size Limit config in *package.json*',
   noArrayConfig: () => 'Size Limit config must contain *an array*',
   emptyConfig: () => 'Size Limit config must *not be empty*',
