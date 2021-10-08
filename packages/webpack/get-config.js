@@ -1,5 +1,4 @@
-let { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-let StatoscopeWebpackPlugin = require('@statoscope/ui-webpack')
+let StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin').default
 let PnpWebpackPlugin = require('pnp-webpack-plugin')
 let { promisify } = require('util')
 let escapeRegexp = require('escape-string-regexp')
@@ -84,35 +83,29 @@ module.exports = async function getConfig(limitConfig, check, output) {
     }
   }
 
-  if (limitConfig.why === 'statoscope') {
+  if (limitConfig.why) {
     let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
     config.plugins.push(
       new StatoscopeWebpackPlugin({
-        saveTo: join(output, 'statoscope.html'),
         saveStatsTo: limitConfig.saveBundle
-          ? join(output, 'statoscope.json')
+          ? join(output, 'stats.json')
           : undefined,
-        additionalStats: limitConfig.compareWith,
+        additionalStats: [limitConfig.otherStats, check.otherStats].filter(
+          Boolean
+        ),
         open: shouldOpen ? 'file' : false,
         name: limitConfig.project,
-        watchMode: limitConfig.watch
-      })
-    )
-  } else if (limitConfig.why === true) {
-    config.plugins.push(
-      new BundleAnalyzerPlugin({
-        openAnalyzer: process.env.NODE_ENV !== 'test',
-        analyzerMode: process.env.NODE_ENV === 'test' ? 'static' : 'server',
-        defaultSizes: check.gzip === false ? 'parsed' : 'gzip',
-        analyzerPort: 8888 + limitConfig.checks.findIndex(i => i === check)
+        watchMode: limitConfig.watch,
+        reports: check.uiReports || []
       })
     )
   } else if (limitConfig.saveBundle) {
     config.plugins.push(
-      new BundleAnalyzerPlugin({
-        openAnalyzer: false,
-        analyzerMode: 'disabled',
-        generateStatsFile: true
+      new StatoscopeWebpackPlugin({
+        saveStatsTo: join(output, 'stats.json'),
+        saveOnlyStats: true,
+        open: false,
+        watchMode: limitConfig.watch
       })
     )
   }

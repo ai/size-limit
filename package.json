@@ -145,7 +145,10 @@
       "brotli",
       "PnP",
       "ES",
-      "GitHub"
+      "GitHub",
+      "otherStats",
+      "uiReports",
+      "Statoscope"
     ]
   },
   "sharec": {

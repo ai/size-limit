@@ -166,24 +166,6 @@ it('supports --why', async () => {
   }
 })
 
-it('supports --why statoscope', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
-  let config = {
-    project: 'superProject',
-    why: 'statoscope',
-    checks: [{ files: [fixture('big.js')] }]
-  }
-  try {
-    await webpack.step20(config, config.checks[0])
-    await webpack.step40(config, config.checks[0])
-    let reportFile = join(config.checks[0].webpackOutput, 'statoscope.html')
-    let reportHTML = (await readFile(reportFile)).toString()
-    expect(reportHTML).toContain('superProject')
-  } finally {
-    await webpack.finally(config, config.checks[0])
-  }
-})
-
 it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,

@@ -172,22 +172,16 @@ describe(`run`, () => {
     expect(await error('file', ['--why'])).toMatchSnapshot()
   })
 
-  it('throws on --why with wrong argument', async () => {
-    expect(await error('webpack', ['--why', 'satoscope'])).toMatchSnapshot()
+  it('throws on --other-stats argument without webpack', async () => {
+    expect(await error('file', ['--other-stats'])).toMatchSnapshot()
   })
 
-  it('throws on --compare-with argument without webpack', async () => {
-    expect(await error('file', ['--compare-with'])).toMatchSnapshot()
+  it('throws on --other-stats argument without --why', async () => {
+    expect(await error('webpack', ['--other-stats'])).toMatchSnapshot()
   })
 
-  it('throws on --compare-with argument without --why statoscope', async () => {
-    expect(await error('webpack', ['--compare-with'])).toMatchSnapshot()
-  })
-
-  it('throws on --compare-with argument without value', async () => {
-    expect(
-      await error('webpack', ['--why', 'statoscope', '--compare-with'])
-    ).toMatchSnapshot()
+  it('throws on --other-stats argument without value', async () => {
+    expect(await error('webpack', ['--why', '--other-stats'])).toMatchSnapshot()
   })
 
   it('throws on no config', async () => {

@@ -33,31 +33,19 @@ module.exports = function parseArgs(plugins, argv) {
       if (!plugins.has('webpack')) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
-
-      let nextArg = argv[++i]
-      if (!nextArg || nextArg.startsWith('--')) {
-        nextArg = true
-        i--
-      } else if (nextArg !== 'statoscope') {
-        throw new SizeLimitError('wrongArgParameter', '--why', nextArg)
-      }
-      args.why = nextArg
-    } else if (arg === '--compare-with') {
+      args.why = true
+    } else if (arg === '--other-stats') {
       if (!plugins.has('webpack')) {
-        throw new SizeLimitError('argWithoutWebpack', '--compare-with')
+        throw new SizeLimitError('argWithoutWebpack', '--other-stats')
       }
-      if (args.why !== 'statoscope') {
-        throw new SizeLimitError(
-          'argWithoutAnotherArg',
-          'compare-with',
-          'why statoscope'
-        )
+      if (!args.why) {
+        throw new SizeLimitError('argWithoutAnotherArg', 'other-stats', 'why')
       }
       let nextArg = argv[++i]
       if (!nextArg || nextArg.startsWith('--')) {
-        throw new SizeLimitError('argWithoutParameter', 'compare-with', 'FILE')
+        throw new SizeLimitError('argWithoutParameter', 'other-stats', 'FILE')
       }
-      args.compareWith = nextArg
+      args.otherStats = nextArg
     } else if (arg === '--watch') {
       args.watch = true
     } else if (arg === '--highlight-less') {

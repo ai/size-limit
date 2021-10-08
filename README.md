@@ -35,7 +35,7 @@ With `--why`, Size Limit can tell you *why* your library is of this size
 and show the real cost of all your internal dependencies.
 
 <p align="center">
-  <img src="./img/why.png" alt="Bundle Analyzer example" width="650">
+  <img src="./img/why.png" alt="Statoscope example" width="650">
 </p>
 
 <p align="center">
@@ -370,7 +370,9 @@ for this preset.
     $ npm run size -- --why
     ```
 
-5. Now, let’s set the limit. Determine the current size of your library,
+    > We use [Statoscope](https://github.com/statoscope/statoscope) as bundle analyzer.
+
+6. Now, let’s set the limit. Determine the current size of your library,
    add just a little bit (a kilobyte, maybe) and use that as the limit
    in your `package.json`:
 
@@ -383,7 +385,7 @@ for this preset.
      ],
     ```
 
-6. Add the `size` script to your test suite:
+7. Add the `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -393,9 +395,9 @@ for this preset.
       }
     ```
 
-7. If you don’t have a continuous integration service running, don’t forget
+8. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
-8. Add the library size to docs, it will help users to choose your project:
+9. Add the library size to docs, it will help users to choose your project:
 
     ```diff
       # Project Name
@@ -505,6 +507,8 @@ Each section in the config can have these options:
 * **config**: a path to a custom webpack config.
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
+* **otherStats**: add more stats into UI (when `--why` is using) to compare with current stats.
+* **uiReports**: custom UI reports list (read more on [Statoscope docs](https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report)).
 
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack

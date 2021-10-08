@@ -128,13 +128,12 @@ it('normalizes bundle and webpack arguments', async () => {
   })
 })
 
-it('normalizes bundle and webpack arguments with --why-statoscope', async () => {
+it('normalizes bundle and webpack arguments with --why and other-stats', async () => {
   let args = [
     '--why',
-    'statoscope',
     '--save-bundle',
     'out',
-    '--compare-with',
+    '--other-stats',
     'before.json',
     '--clean-dir',
     '--hide-passed',
@@ -143,11 +142,11 @@ it('normalizes bundle and webpack arguments with --why-statoscope', async () => 
   expect(await check('webpack', args)).toEqual({
     configPath: 'package.json',
     cwd: fixture('webpack'),
-    why: 'statoscope',
+    why: true,
     project: 'webpack',
     hidePassed: true,
     highlightLess: true,
-    compareWith: fixture('webpack', 'before.json'),
+    otherStats: fixture('webpack', 'before.json'),
     saveBundle: fixture('webpack', 'out'),
     cleanDir: true,
     checks: [
@@ -156,6 +155,36 @@ it('normalizes bundle and webpack arguments with --why-statoscope', async () => 
         highlightLess: true,
         config: fixture('webpack', 'webpack.config.js'),
         entry: ['a']
+      }
+    ]
+  })
+})
+
+it('normalizes bundle and webpack arguments with --why and ui-reports', async () => {
+  let args = [
+    '--why',
+    '--save-bundle',
+    'out',
+    '--clean-dir',
+    '--hide-passed',
+    '--highlight-less'
+  ]
+  expect(await check('ui-reports', args)).toEqual({
+    configPath: '.size-limit.js',
+    cwd: fixture('ui-reports'),
+    why: true,
+    project: 'webpack',
+    hidePassed: true,
+    highlightLess: true,
+    saveBundle: fixture('ui-reports', 'out'),
+    cleanDir: true,
+    checks: [
+      {
+        name: 'a',
+        highlightLess: true,
+        config: fixture('ui-reports', 'webpack.config.js'),
+        entry: ['a'],
+        uiReports: require(fixture('ui-reports', 'reports.js'))
       }
     ]
   })
