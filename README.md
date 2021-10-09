@@ -503,19 +503,22 @@ Each section in the config can have these options:
 * **webpack**: with `false` it will disable webpack.
 * **running**: with `false` it will disable calculating running time.
 * **gzip**: with `false` it will disable gzip compression.
-* **brotli**: with `true` it will use brotli compression and disable gzip compression.
+* **brotli**: with `true` it will use brotli compression and disable
+  gzip compression.
 * **config**: a path to a custom webpack config.
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
-* **modifyWebpackConfig**: (.size-limit.js only) function that can be used to
-  do last-minute changes to the webpack config, like adding a plugin.
-* **compareWith**: path to `stats.json` from another build to compare (when `--why` is using).
-* **uiReports**: custom UI reports list (read more on [Statoscope docs](https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report)).
+* **modifyWebpackConfig**: (.size-limit.js only) function that can be used
+  to do last-minute changes to the webpack config, like adding a plugin.
+* **compareWith**: path to `stats.json` from another build to compare
+  (when `--why` is using).
+* **uiReports**: custom UI reports list (see [Statoscope docs]).
 
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack
 inserts `style-loader` runtime (≈2 kB) into the bundle.
 
+[Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
 
 

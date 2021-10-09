@@ -43,9 +43,8 @@ module.exports = process => {
         '',
         b('Webpack options:'),
         `  ${y('--why')}              Show package content`,
-        `  ${y(
-          '--compare-with'
-        )}     Path to stats.json from another build to compare`,
+        `  ${y('--compare-with')}     Path to stats.json from another build` +
+          ` to compare`,
         `  ${y('--save-bundle DIR')}  Put build files to check them by hand`,
         `  ${y('--clean-dir')}        Remove build files folder before start`
       )
