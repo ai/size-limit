@@ -559,12 +559,12 @@
   dependencies:
     globals "^13.11.0"
 
-"@logux/sharec-config@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@logux/sharec-config/-/sharec-config-0.11.0.tgz#9ebfc6f53f5ae83a01b3b8abf6f443aef4099c55"
-  integrity sha512-NgiWsOmEUbsgPntK6jClYmmsYeHVf1tOf43v2wonP2qLnUjn6QQnVyeSfWoGXGhbmv4OiBqiwdCyv85a7BkxRg==
+"@logux/sharec-config@^0.12.2":
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/@logux/sharec-config/-/sharec-config-0.12.2.tgz#3d361a3f1433595162dd3572a2455d5245ad8838"
+  integrity sha512-8kTMNF4DThV8bI7KI/TTJCttBUWMQu5gdVzVxIh56ILLSxi9yLCvJgIWizZwhpXmHhbqmJaF7+zhyzxLYK0Wug==
   dependencies:
-    sharec "^2.10.2"
+    sharec "^2.10.3"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -4761,11 +4761,6 @@ pend@~1.2.0:
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
   integrity sha1-elfrVQpng/kRUzH89GY9XI4AelA=
 
-picocolors@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.1.0.tgz#e10d446a03ca5f127e9680865fbfe80ee5148266"
-  integrity sha512-W+3MFREUEjPt0MnYaR51VkLw8tY8UubrLOqcBmaQocZhM34hQhjg50FQ0c6f0UldPlecieoqUqI6ToM/dNblDw==
-
 picocolors@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
@@ -5559,7 +5554,7 @@ sharec-utils@^2.10.2:
     sharec-nanomatch "^2.10.2"
     slash "^3.0.0"
 
-sharec@^2.10.2:
+sharec@^2.10.3:
   version "2.10.3"
   resolved "https://registry.yarnpkg.com/sharec/-/sharec-2.10.3.tgz#758288f298e4154a773a12f5e15c55f965c39f85"
   integrity sha512-4xd9SanHqiNfoEdAlq8J6CmOhgqSPq7fAM3rQ6bIxQRwPc5c2WJpTrv/XbYqo3AWj9eKquGq1cSQ4XnRQ187SQ==
