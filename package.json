@@ -145,7 +145,10 @@
       "PnP",
       "ES",
       "GitHub",
-      "modifyWebpackConfig"
+      "modifyWebpackConfig",
+      "compareWith",
+      "uiReports",
+      "Statoscope"
     ]
   },
   "sharec": {

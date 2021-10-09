@@ -128,6 +128,68 @@ it('normalizes bundle and webpack arguments', async () => {
   })
 })
 
+it('normalizes bundle and webpack arguments with --why and compare-with', async () => {
+  let args = [
+    '--why',
+    '--save-bundle',
+    'out',
+    '--compare-with',
+    'before.json',
+    '--clean-dir',
+    '--hide-passed',
+    '--highlight-less'
+  ]
+  expect(await check('webpack', args)).toEqual({
+    configPath: 'package.json',
+    cwd: fixture('webpack'),
+    why: true,
+    project: 'webpack',
+    hidePassed: true,
+    highlightLess: true,
+    compareWith: fixture('webpack', 'before.json'),
+    saveBundle: fixture('webpack', 'out'),
+    cleanDir: true,
+    checks: [
+      {
+        name: 'a',
+        highlightLess: true,
+        config: fixture('webpack', 'webpack.config.js'),
+        entry: ['a']
+      }
+    ]
+  })
+})
+
+it('normalizes bundle and webpack arguments with --why and ui-reports', async () => {
+  let args = [
+    '--why',
+    '--save-bundle',
+    'out',
+    '--clean-dir',
+    '--hide-passed',
+    '--highlight-less'
+  ]
+  expect(await check('ui-reports', args)).toEqual({
+    configPath: '.size-limit.js',
+    cwd: fixture('ui-reports'),
+    why: true,
+    project: 'webpack',
+    hidePassed: true,
+    highlightLess: true,
+    saveBundle: fixture('ui-reports', 'out'),
+    cleanDir: true,
+    checks: [
+      {
+        name: 'a',
+        highlightLess: true,
+        config: fixture('ui-reports', 'webpack.config.js'),
+        entry: ['a'],
+        uiReports: require(fixture('ui-reports', 'reports.js'))
+      }
+    ]
+  })
+})
+
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
     configPath: '.size-limit.json',
