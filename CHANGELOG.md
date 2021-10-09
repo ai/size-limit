@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0
+* Moved to webpack 5 (by Ludovico Fischer).
+* Moved from Webpack Bundle Analyzer to Statoscope (by Sergey Melyukov).
+
 ## 5.0.5
 * Replaced `nanocolors` dependency with `picocolors`.
 
