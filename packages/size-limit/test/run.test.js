@@ -13,14 +13,18 @@ jest.mock('../../time/cache', () => ({
   saveCache() {}
 }))
 
-jest.mock('mico-spinner', () => {
-  return () => ({
-    start() {
-      return this
-    },
-    succeed() {},
-    fail() {}
-  })
+jest.mock('nanospinner', () => {
+  return {
+    createSpinner() {
+      return {
+        start() {
+          return this
+        },
+        success() {},
+        error() {}
+      }
+    }
+  }
 })
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g

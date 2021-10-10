@@ -19,11 +19,11 @@ module.exports = async function calc(plugins, config, createSpinner) {
             )
           }
         } catch (e) {
-          if (spinner) spinner.fail()
+          if (spinner) spinner.error()
           throw e
         }
       }
-      if (spinner) spinner.succeed()
+      if (spinner) spinner.success()
     }
   }
 

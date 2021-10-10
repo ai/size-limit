@@ -1,6 +1,6 @@
+let { createSpinner } = require('nanospinner')
 let { resolve } = require('path')
 let chokidar = require('chokidar')
-let spinner = require('mico-spinner')
 
 let SizeLimitError = require('./size-limit-error')
 let createReporter = require('./create-reporter')
@@ -71,7 +71,7 @@ module.exports = async process => {
     config = await getConfig(plugins, process, args, pkg)
 
     let calcAndShow = async () => {
-      let outputFunc = isJsonOutput ? null : spinner
+      let outputFunc = isJsonOutput ? null : createSpinner
       await calc(plugins, config, outputFunc)
       debug.results(process, args, config)
       reporter.results(plugins, config)
