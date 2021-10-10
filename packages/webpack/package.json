@@ -20,7 +20,7 @@
     "size-limit": "6.0.0"
   },
   "dependencies": {
-    "@statoscope/webpack-plugin": "^5.12.1",
+    "@statoscope/webpack-plugin": "^5.13.0",
     "css-loader": "^6.4.0",
     "css-minimizer-webpack-plugin": "^3.0.2",
     "escape-string-regexp": "^4.0.0",
