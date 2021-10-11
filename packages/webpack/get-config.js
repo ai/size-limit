@@ -84,7 +84,9 @@ module.exports = async function getConfig(limitConfig, check, output) {
     let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
     config.plugins.push(
       new StatoscopeWebpackPlugin({
-        saveReportTo: join(output, 'report.html'),
+        saveReportTo: limitConfig.saveBundle
+          ? join(limitConfig.saveBundle, 'report.html')
+          : undefined,
         saveStatsTo: limitConfig.saveBundle
           ? join(limitConfig.saveBundle, 'stats.json')
           : undefined,
@@ -100,8 +102,8 @@ module.exports = async function getConfig(limitConfig, check, output) {
   } else if (limitConfig.saveBundle) {
     config.plugins.push(
       new StatoscopeWebpackPlugin({
+        saveReportTo: join(limitConfig.saveBundle, 'report.html'),
         saveStatsTo: join(limitConfig.saveBundle, 'stats.json'),
-        saveOnlyStats: true,
         open: false,
         watchMode: limitConfig.watch
       })
