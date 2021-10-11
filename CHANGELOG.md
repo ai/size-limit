@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.2
+* Fixed Statoscope report location (by Sergey Melyukov).
+
 ## 6.0.1
 * Replaced `mico-spinner` to `nanospinner`.
 

@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/dual-publish",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "dual-publish plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -19,7 +19,7 @@
     "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
   },
   "peerDependencies": {
-    "size-limit": "6.0.1",
+    "size-limit": "6.0.2",
     "dual-publish": "> 0.6.0"
   }
 }
