@@ -150,6 +150,7 @@ it('supports --why', async () => {
   let config = {
     project: 'superProject',
     why: true,
+    saveBundle: DIST,
     checks: [{ files: [fixture('big.js')] }]
   }
   try {
