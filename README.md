@@ -33,6 +33,7 @@ in pull request discussion.
 
 With `--why`, Size Limit can tell you *why* your library is of this size
 and show the real cost of all your internal dependencies.
+We are using [Statoscope] for this analysis.
 
 <p align="center">
   <img src="./img/why.png" alt="Statoscope example" width="650">
@@ -46,6 +47,7 @@ and show the real cost of all your internal dependencies.
 </p>
 
 [GitHub action]: https://github.com/andresz1/size-limit-action
+[Statoscope]:    https://github.com/statoscope/statoscope
 [cult-img]:      http://cultofmartians.com/assets/badges/badge.svg
 [cult]:          http://cultofmartians.com/tasks/size-limit-config.html
 
