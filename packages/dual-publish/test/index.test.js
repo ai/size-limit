@@ -24,7 +24,7 @@ function fixture(name = '') {
 }
 
 it('has name', () => {
-  expect(dualPublish.name).toEqual('@size-limit/dual-publish')
+  expect(dualPublish.name).toBe('@size-limit/dual-publish')
 })
 
 it('calculates file size with gzip by default', async () => {

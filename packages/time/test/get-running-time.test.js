@@ -22,18 +22,18 @@ it('calculates running time', async () => {
 
 it('uses cache', async () => {
   process.env.SIZE_LIMIT_FAKE_TIME = 1
-  expect(await getRunningTime(EXAMPLE)).toEqual(1)
+  expect(await getRunningTime(EXAMPLE)).toBe(1)
 
   let throttling = await getCache()
   await saveCache(throttling * 100)
-  expect(await getRunningTime(EXAMPLE)).toEqual(1)
+  expect(await getRunningTime(EXAMPLE)).toBe(1)
 
   getRunningTime.cleanCache()
-  expect(await getRunningTime(EXAMPLE)).toEqual(100)
+  expect(await getRunningTime(EXAMPLE)).toBe(100)
 })
 
 it('ignores non-JS files', async () => {
-  expect(await getRunningTime('/a.jpg')).toEqual(0)
+  expect(await getRunningTime('/a.jpg')).toBe(0)
 })
 
 it('works in parallel', async () => {

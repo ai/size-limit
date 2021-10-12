@@ -17,7 +17,7 @@ function print(err) {
 
 it('has mark', () => {
   let err = new SizeLimitError('noPackage')
-  expect(err.name).toEqual('SizeLimitError')
+  expect(err.name).toBe('SizeLimitError')
 })
 
 it('has start', () => {

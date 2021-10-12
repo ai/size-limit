@@ -15,7 +15,7 @@ it('returns false by default', async () => {
 
 it('writes cache', async () => {
   await saveCache(10)
-  expect(await getCache()).toEqual(10)
+  expect(await getCache()).toBe(10)
 })
 
 it('checks version', async () => {

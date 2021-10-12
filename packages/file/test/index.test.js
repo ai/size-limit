@@ -8,7 +8,7 @@ function fixture(name) {
 }
 
 it('has name', () => {
-  expect(file.name).toEqual('@size-limit/file')
+  expect(file.name).toBe('@size-limit/file')
 })
 
 it('calculates file size with gzip by default', async () => {
@@ -40,7 +40,7 @@ it('calculates file size with gzip by true value', async () => {
     checks: [{ files: [fixture('b.txt')], gzip: true }]
   }
   await file.step60(config, config.checks[0])
-  expect(config.checks[0].size).toEqual(29)
+  expect(config.checks[0].size).toBe(29)
 })
 
 it('calculates file size with brotli by true value and node >= v11.7.0', async () => {
@@ -52,7 +52,7 @@ it('calculates file size with brotli by true value and node >= v11.7.0', async (
   }
   await file.step60(config, config.checks[0])
 
-  expect(config.checks[0].size).toEqual(17)
+  expect(config.checks[0].size).toBe(17)
 })
 
 it('calculates file size with brotli by true value and node < v11.7.0', async () => {
@@ -79,7 +79,7 @@ it('uses webpack bundle if available', async () => {
     checks: [{ files: [fixture('b.txt')], bundles: [fixture('a.txt')] }]
   }
   await file.step60(config, config.checks[0])
-  expect(config.checks[0].size).toEqual(22)
+  expect(config.checks[0].size).toBe(22)
 })
 
 it('calculates file size without gzip', async () => {
@@ -87,5 +87,5 @@ it('calculates file size without gzip', async () => {
     checks: [{ files: [fixture('b.txt')], gzip: false }]
   }
   await file.step60(config, config.checks[0])
-  expect(config.checks[0].size).toEqual(144)
+  expect(config.checks[0].size).toBe(144)
 })

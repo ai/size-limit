@@ -11,7 +11,7 @@ beforeEach(() => {
 })
 
 it('has name', () => {
-  expect(time.name).toEqual('@size-limit/time')
+  expect(time.name).toBe('@size-limit/time')
 })
 
 it('calculates time to download and run', async () => {
@@ -61,7 +61,7 @@ it('is compatible with file plugin', async () => {
   }
   await time.step80(config, config.checks[0])
   expect(getRunningTime).toHaveBeenCalledWith('/a')
-  expect(config.checks[0].runTime).toEqual(10)
+  expect(config.checks[0].runTime).toBe(10)
 })
 
 it('uses 1 ms for download as minimum', async () => {
@@ -69,7 +69,7 @@ it('uses 1 ms for download as minimum', async () => {
     checks: [{ files: ['/a'], size: 1 }]
   }
   await time.step80(config, config.checks[0])
-  expect(config.checks[0].loadTime).toEqual(0.01)
+  expect(config.checks[0].loadTime).toBe(0.01)
 })
 
 it('uses 0 ms for download for 0 bytes', async () => {
@@ -77,7 +77,7 @@ it('uses 0 ms for download for 0 bytes', async () => {
     checks: [{ files: ['/a'], size: 0 }]
   }
   await time.step80(config, config.checks[0])
-  expect(config.checks[0].loadTime).toEqual(0)
+  expect(config.checks[0].loadTime).toBe(0)
 })
 
 it('throws an error on missed size', async () => {

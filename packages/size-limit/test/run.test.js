@@ -77,16 +77,16 @@ function clean(output) {
 async function check(cwd, args) {
   let [process, history] = createProcess(cwd, args)
   await run(process)
-  expect(history.stderr).toEqual('')
-  expect(history.exitCode).toEqual(0)
+  expect(history.stderr).toBe('')
+  expect(history.exitCode).toBe(0)
   return history.stdout
 }
 
 async function error(cwd, args) {
   let [process, history] = createProcess(cwd, args)
   await run(process)
-  expect(history.stdout).toEqual('')
-  expect(history.exitCode).toEqual(1)
+  expect(history.stdout).toBe('')
+  expect(history.exitCode).toBe(1)
   return history.stderr
 }
 
@@ -125,8 +125,8 @@ describe(`run`, () => {
   it('shows error in JSON format', async () => {
     let [process, history] = createProcess('/', ['--json'])
     await run(process)
-    expect(history.exitCode).toEqual(1)
-    expect(history.stderr).toEqual('')
+    expect(history.exitCode).toBe(1)
+    expect(history.stderr).toBe('')
     let output = JSON.parse(history.stdout)
     expect(Object.keys(output)).toEqual(['error'])
     expect(output.error).toContain('SizeLimitError: Size Limit didn’t find')
@@ -143,14 +143,14 @@ describe(`run`, () => {
   it('shows migration guide for npm users: config 1, dep 0', async () => {
     let [process, history] = createProcess('npm-with-config-without-dev')
     await run(process)
-    expect(history.exitCode).toEqual(1)
+    expect(history.exitCode).toBe(1)
     expect(history.stderr).toMatchSnapshot()
   })
 
   it('shows size-limit dependency warning', async () => {
     let [process, history] = createProcess('warn')
     await run(process)
-    expect(history.exitCode).toEqual(0)
+    expect(history.exitCode).toBe(0)
     expect(history.stderr).toMatchSnapshot()
   })
 
@@ -274,16 +274,16 @@ describe(`run`, () => {
   it('shows error when file not found for simple case', async () => {
     let [process, history] = createProcess('file-not-found')
     await run(process)
-    expect(history.exitCode).toEqual(1)
-    expect(history.stderr).toEqual('')
+    expect(history.exitCode).toBe(1)
+    expect(history.stderr).toBe('')
     expect(history.stdout).toMatchSnapshot()
   })
 
   it('shows error when file not found for webpack', async () => {
     let [process, history] = createProcess('webpack-no-files')
     await run(process)
-    expect(history.exitCode).toEqual(1)
-    expect(history.stderr).toEqual('')
+    expect(history.exitCode).toBe(1)
+    expect(history.stderr).toBe('')
     expect(history.stdout).toMatchSnapshot()
   })
 
@@ -294,8 +294,8 @@ describe(`run`, () => {
   it('shows error on time bigger than limit', async () => {
     let [process, history] = createProcess('integration', ['--limit', '1 s'])
     await run(process)
-    expect(history.exitCode).toEqual(1)
-    expect(history.stderr).toEqual('')
+    expect(history.exitCode).toBe(1)
+    expect(history.stderr).toBe('')
     expect(history.stdout).toMatchSnapshot()
   })
 
@@ -306,8 +306,8 @@ describe(`run`, () => {
       '1 s'
     ])
     await run(process)
-    expect(history.exitCode).toEqual(1)
-    expect(history.stderr).toEqual('')
+    expect(history.exitCode).toBe(1)
+    expect(history.stderr).toBe('')
     expect(history.stdout).toMatchSnapshot()
   })
 
