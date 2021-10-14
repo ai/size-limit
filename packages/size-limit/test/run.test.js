@@ -237,6 +237,10 @@ describe(`run`, () => {
     expect(await error('unknown')).toMatchSnapshot()
   })
 
+  it('supports path without dot', async () => {
+    expect(await check('relative')).toMatchSnapshot()
+  })
+
   it('works in integration test with JSON', async () => {
     expect(await check('integration', ['--json'])).toMatchSnapshot()
   })
