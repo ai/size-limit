@@ -237,8 +237,8 @@ describe(`run`, () => {
     expect(await error('unknown')).toMatchSnapshot()
   })
 
-  it('supports path without dot', async () => {
-    expect(await check('relative')).toMatchSnapshot()
+  it('does not tree-shake on no import field', async () => {
+    expect(await check('all-shakable')).toMatchSnapshot()
   })
 
   it('works in integration test with JSON', async () => {

@@ -1,5 +1,5 @@
 {
-  "name": "relative",
+  "name": "all-shakable",
   "private": true,
   "devDependencies": {
     "@size-limit/preset-small-lib": ">= 0.0.0",
