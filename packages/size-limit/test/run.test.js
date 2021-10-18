@@ -92,7 +92,7 @@ async function error(cwd, args) {
 
 describe(`run`, () => {
   beforeEach(() => {
-    jest.useFakeTimers()
+    jest.useFakeTimers('legacy')
   })
 
   it('shows version', async () => {
