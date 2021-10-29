@@ -16,7 +16,7 @@
   ],
   "devDependencies": {
     "@logux/eslint-config": "^46.0.1",
-    "@logux/sharec-config": "^0.12.2",
+    "@logux/sharec-config": "^0.13.0",
     "check-dts": "^0.6.2",
     "clean-publish": "^3.4.2",
     "cross-spawn": "^7.0.3",
@@ -95,14 +95,7 @@
   },
   "lint-staged": {
     "*.md": "yaspeller",
-    "*.js": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.ts": [
-      "prettier --write",
-      "eslint --fix"
-    ]
+    "*.js": "prettier --write"
   },
   "yaspeller": {
     "lang": "en",
@@ -153,6 +146,6 @@
   },
   "sharec": {
     "config": "@logux/sharec-config",
-    "version": "0.12.2"
+    "version": "0.13.0"
   }
 }
