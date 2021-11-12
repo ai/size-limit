@@ -1,8 +1,11 @@
+let SizeLimitError = require('size-limit/size-limit-error')
 let { existsSync } = require('fs')
 let { join } = require('path')
 
 let [esbuild] = require('..')
 let [file] = require('../../file')
+
+const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 
 function fixture(name) {
   return join(__dirname, 'fixtures', name)
@@ -24,9 +27,7 @@ it('uses esbuild to make bundle', async () => {
   let config = {
     checks: [{ files: [fixture('big.js')] }]
   }
-
   await run(config)
-
   expect(config).toEqual({
     checks: [
       {
@@ -41,4 +42,45 @@ it('uses esbuild to make bundle', async () => {
   expect(config.checks[0].esbuildOutfile).toContain('size-limit-')
   expect(typeof config.checks[0].esbuildConfig).toBe('object')
   expect(existsSync(config.checks[0].esbuildOutfile)).toBe(false)
+})
+
+it('supports ignore', async () => {
+  let config = {
+    checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
+  }
+  await run(config)
+  expect(config.checks[0].size).toBe(273)
+})
+
+it('supports custom esbuild config', async () => {
+  let config = {
+    configPath: ROOT_CONFIG,
+    checks: [{ config: fixture('esbuild.config.js') }]
+  }
+  await run(config)
+  expect(config.checks[0].size).toBe(162)
+})
+
+it('supports custom entry', async () => {
+  let config = {
+    configPath: ROOT_CONFIG,
+    checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }]
+  }
+  await run(config)
+  expect(config.checks[0].size).toBe(82)
+})
+
+it('throws error on unknown entry', async () => {
+  let config = {
+    configPath: ROOT_CONFIG,
+    checks: [{ config: fixture('esbuild.config.js'), entry: ['unknown'] }]
+  }
+  let err
+  try {
+    await run(config)
+  } catch (e) {
+    err = e
+  }
+  expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+  expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
 })

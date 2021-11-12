@@ -1,17 +1,37 @@
 let SizeLimitError = require('size-limit/size-limit-error')
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
-let { join, resolve } = require('path')
+let { join, resolve, parse } = require('path')
 let rm = require('size-limit/rm')
 
+let convertConfig = require('./convert-config')
 let runEsbuild = require('./run-esbuild')
 let getConfig = require('./get-config')
-const { ENOTTY } = require('constants')
 
 function getFiles(buildResult, check) {
-  let entries = buildResult.metafile.outputs
+  let entries = {}
+  const outputs = buildResult.metafile.outputs
 
-  return Object.keys(entries).map(entryPath => resolve(entryPath))
+  for (const key in outputs) {
+    const outputEntryName = parse(key).name
+    outputs[outputEntryName] = outputs[key]
+    outputs[outputEntryName].path = resolve(key)
+    delete outputs[key]
+  }
+
+  if (check.entry) {
+    for (let i of check.entry) {
+      if (outputs[i]) {
+        entries[i] = outputs[i]
+      } else {
+        throw new SizeLimitError('unknownEntry', i)
+      }
+    }
+  } else {
+    entries = outputs
+  }
+
+  return Object.values(entries).map(({ path }) => path)
 }
 
 let self = {

@@ -1,3 +1,5 @@
+let escapeRegexp = require('escape-string-regexp')
+
 module.exports = async function getConfig(limitConfig, check, output) {
   if (check.files.length === 0) {
     check.missed = true
@@ -5,7 +7,8 @@ module.exports = async function getConfig(limitConfig, check, output) {
   }
 
   let config = {
-    entryPoints: check.files,
+    entryPoints: Array.isArray(check.files) ? check.files : [check.files],
+    external: check.ignore,
     outdir: output,
 
     write: true,
