@@ -11,6 +11,7 @@
     "packages/dual-publish",
     "packages/size-limit",
     "packages/webpack",
+    "packages/esbuild",
     "packages/time",
     "packages/file"
   ],
@@ -117,6 +118,7 @@
       "webpack’s",
       "bundler",
       "Vue",
+      "Esbuild",
       "Rollup",
       "CI",
       "gzip",

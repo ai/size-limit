@@ -1,0 +1,35 @@
+{
+  "name": "@size-limit/esbuild",
+  "version": "6.0.4",
+  "description": "Esbuild plugin for Size Limit",
+  "keywords": [
+    "size-limit",
+    "plugin",
+    "performance",
+    "budget",
+    "performance budget",
+    "esbuild"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "ai/size-limit",
+  "engines": {
+    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+  },
+  "peerDependencies": {
+    "size-limit": "6.0.4"
+  },
+  "dependencies": {
+    "@statoscope/webpack-plugin": "^5.17.0",
+    "css-loader": "^6.5.0",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "esbuild": "^0.13.13",
+    "escape-string-regexp": "^4.0.0",
+    "mkdirp": "^1.0.4",
+    "nanoid": "^3.1.30",
+    "style-loader": "^3.3.1"
+  },
+  "devDependencies": {
+    "redux": "^4.1.2"
+  }
+}
