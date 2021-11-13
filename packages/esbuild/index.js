@@ -13,10 +13,10 @@ let getConfig = require('./get-config')
 // @@todo: dist is a just folder with builded files provided, what about bundle?
 function getFiles(buildResult, check) {
   let entries = {}
-  const outputs = buildResult.metafile.outputs
+  let outputs = buildResult.metafile.outputs
 
-  for (const key in outputs) {
-    const outputEntryName = parse(key).name
+  for (let key in outputs) {
+    let outputEntryName = parse(key).name
     outputs[outputEntryName] = outputs[key]
     outputs[outputEntryName].path = resolve(key)
     delete outputs[key]

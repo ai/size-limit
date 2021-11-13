@@ -1,5 +1,5 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { writeFile, readFile, mkdir } = require('fs').promises
+let { writeFile, mkdir } = require('fs').promises
 let { existsSync } = require('fs')
 let { join } = require('path')
 let rm = require('size-limit/rm')
@@ -24,6 +24,14 @@ async function run(config) {
   } finally {
     await esbuild.finally(config, config.checks[0])
   }
+}
+
+async function getSize(check) {
+  let config = {
+    checks: [check]
+  }
+  await run(config)
+  return config.checks[0].size
 }
 
 afterEach(async () => {
@@ -66,7 +74,7 @@ it('supports custom esbuild config', async () => {
     checks: [{ config: fixture('esbuild.config.js') }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(162)
+  expect(config.checks[0].size).toBe(195)
 })
 
 it('supports custom entry', async () => {
@@ -75,7 +83,7 @@ it('supports custom entry', async () => {
     checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(82)
+  expect(config.checks[0].size).toBe(98)
 })
 
 it('throws error on unknown entry', async () => {
@@ -194,4 +202,16 @@ it('throws on esbuild error', async () => {
     err = e
   }
   expect(err.message).toContain('unknown.js')
+})
+
+it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
+  expect(
+    await getSize({
+      files: [fixture('big.js')],
+      modifyEsbuildConfig(config) {
+        config.minify = false
+        return config
+      }
+    })
+  ).toBe(1836)
 })

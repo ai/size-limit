@@ -1,5 +1,3 @@
-let { dirname, join } = require('path')
-
-module.exports = function convertConfig(config, root) {
+module.exports = function convertConfig(config) {
   config.metafile = true
 }
