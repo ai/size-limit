@@ -1,4 +1,5 @@
 let SizeLimitError = require('size-limit/size-limit-error')
+let { readdir } = require('fs').promises
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
 let { join, resolve, parse } = require('path')
@@ -8,6 +9,8 @@ let convertConfig = require('./convert-config')
 let runEsbuild = require('./run-esbuild')
 let getConfig = require('./get-config')
 
+// @@todo: handle custom configs with write: false (in this case we'll get file size immediately)
+// @@todo: dist is a just folder with builded files provided, what about bundle?
 function getFiles(buildResult, check) {
   let entries = {}
   const outputs = buildResult.metafile.outputs
@@ -34,11 +37,30 @@ function getFiles(buildResult, check) {
   return Object.values(entries).map(({ path }) => path)
 }
 
+async function isDirNotEmpty(dir) {
+  try {
+    let files = await readdir(dir)
+    return !!files.length
+  } catch (e) {
+    if (e.code === 'ENOENT') return false
+    throw e
+  }
+}
+
 let self = {
   name: '@size-limit/esbuild',
 
   async before(config) {
-    return
+    if (config.saveBundle) {
+      if (config.cleanDir) {
+        await rm(config.saveBundle)
+      } else {
+        let notEmpty = await isDirNotEmpty(config.saveBundle)
+        if (notEmpty) {
+          throw new SizeLimitError('bundleDirNotEmpty', config.saveBundle)
+        }
+      }
+    }
   },
 
   async step20(config, check) {
