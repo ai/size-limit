@@ -1,11 +1,8 @@
-const path = require('path')
+const { join } = require('path')
 
 module.exports = {
-  entryPoints: [
-    path.join(__dirname, 'file.js'),
-    path.join(__dirname, 'small.js')
-  ],
-  outdir: 'custom',
+  entryPoints: [join(__dirname, 'file.js'), join(__dirname, 'small.js')],
+  outdir: join(process.cwd(), 'dist'),
   bundle: true,
   minify: false
 }
