@@ -9,8 +9,6 @@ let convertConfig = require('./convert-config')
 let runEsbuild = require('./run-esbuild')
 let getConfig = require('./get-config')
 
-// @@todo: handle custom configs with write: false (in this case we'll get file size immediately)
-// @@todo: dist is a just folder with builded files provided, what about bundle?
 function getFiles(buildResult, check) {
   let entries = {}
   let outputs = buildResult.metafile.outputs

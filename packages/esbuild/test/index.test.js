@@ -128,7 +128,6 @@ it('throws on missed file plugin', async () => {
   }
 })
 
-// Index.js should be here for a webpack
 it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,
@@ -138,7 +137,6 @@ it('supports --save-bundle', async () => {
   expect(existsSync(join(DIST, 'small.js'))).toBe(true)
 })
 
-// It also generates outdir instead of index.js bundle
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'small.js')
   let config = {
