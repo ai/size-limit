@@ -7,7 +7,7 @@ let [webpack] = require('../../webpack')
 let [webpackWhy] = require('../')
 let [file] = require('../../file')
 
-const DIST = join(process.cwd(), 'dist')
+const DIST = join(process.cwd(), 'out')
 
 function fixture(name) {
   return join(__dirname, 'fixtures', name)

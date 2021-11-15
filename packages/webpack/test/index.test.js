@@ -60,15 +60,6 @@ it('uses webpack to make bundle', async () => {
   expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
 })
 
-it('supports non-JS require', async () => {
-  let config = {
-    checks: [{ files: [fixture('nonjs.js')] }]
-  }
-  await run(config)
-  expect(config.checks[0].size).toBeGreaterThan(1450)
-  expect(config.checks[0].size).toBeLessThan(2300)
-})
-
 it('supports ignore', async () => {
   let config = {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]

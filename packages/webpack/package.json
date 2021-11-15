@@ -20,12 +20,9 @@
     "size-limit": "6.0.4"
   },
   "dependencies": {
-    "css-loader": "^6.5.0",
-    "css-minimizer-webpack-plugin": "^3.0.2",
     "escape-string-regexp": "^4.0.0",
     "mkdirp": "^1.0.4",
     "nanoid": "^3.1.30",
-    "style-loader": "^3.3.1",
     "webpack": "^5.61.0"
   },
   "devDependencies": {
