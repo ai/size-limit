@@ -1,7 +1,7 @@
 {
   "name": "@size-limit/esbuild",
   "version": "6.0.4",
-  "description": "Esbuild plugin for Size Limit",
+  "description": "esbuild plugin for Size Limit",
   "keywords": [
     "size-limit",
     "plugin",
