@@ -11,6 +11,7 @@
     "packages/dual-publish",
     "packages/size-limit",
     "packages/webpack",
+    "packages/webpack-why",
     "packages/time",
     "packages/file"
   ],

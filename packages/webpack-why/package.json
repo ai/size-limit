@@ -1,7 +1,7 @@
 {
-  "name": "@size-limit/webpack",
+  "name": "@size-limit/webpack-why",
   "version": "6.0.4",
-  "description": "Webpack plugin for Size Limit",
+  "description": "Webpack Statoscope plugin for Size Limit",
   "keywords": [
     "size-limit",
     "plugin",
@@ -20,12 +20,9 @@
     "size-limit": "6.0.4"
   },
   "dependencies": {
-    "css-loader": "^6.5.0",
-    "css-minimizer-webpack-plugin": "^3.0.2",
-    "escape-string-regexp": "^4.0.0",
+    "@statoscope/webpack-plugin": "^5.17.0",
     "mkdirp": "^1.0.4",
     "nanoid": "^3.1.30",
-    "style-loader": "^3.3.1",
     "webpack": "^5.61.0"
   },
   "devDependencies": {
