@@ -1,6 +1,6 @@
-# Size Limit Esbuild Plugin
+# Size Limit esbuild Plugin
 
-The plugin for [Size Limit] to track dependencies size by Esbuild.
+The plugin for [Size Limit] to track dependencies size by esbuild.
 
 See Size Limit docs for more details.
 
