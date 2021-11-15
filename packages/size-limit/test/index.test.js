@@ -27,5 +27,5 @@ it('works with esbuild module', async () => {
     [join(__dirname, 'fixtures', 'integration', 'index.js')]
   )
 
-  expect(result).toEqual([{ size: 119 }])
+  expect(result).toEqual([{ size: 99 }])
 })

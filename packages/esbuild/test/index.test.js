@@ -51,7 +51,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildOutfile: config.checks[0].esbuildOutfile,
         esbuildConfig: config.checks[0].esbuildConfig,
         bundles: [join(config.checks[0].esbuildOutfile, 'big.js')],
-        size: 1836
+        size: 1816
       }
     ]
   })
@@ -65,7 +65,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(273)
+  expect(config.checks[0].size).toBe(253)
 })
 
 it('supports custom esbuild config', async () => {
@@ -74,7 +74,7 @@ it('supports custom esbuild config', async () => {
     checks: [{ config: fixture('esbuild.config.js') }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(195)
+  expect(config.checks[0].size).toBe(175)
 })
 
 it('supports custom entry', async () => {
@@ -83,7 +83,7 @@ it('supports custom entry', async () => {
     checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(98)
+  expect(config.checks[0].size).toBe(78)
 })
 
 it('throws error on unknown entry', async () => {
@@ -107,6 +107,14 @@ it('allows to disable esbuild', async () => {
   }
   await run(config)
   expect(config.checks[0].size).toBe(55)
+})
+
+it('allows to disable gzip', async () => {
+  let config = {
+    checks: [{ files: [fixture('small.js')], gzip: false }]
+  }
+  await run(config)
+  expect(config.checks[0].size).toBe(49)
 })
 
 it('throws on missed file plugin', async () => {
@@ -211,5 +219,45 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(1836)
+  ).toBe(1816)
+})
+
+it('supports specifying the import', async () => {
+  expect(
+    await getSize({
+      files: [fixture('module.js')],
+      import: {
+        [fixture('module.js')]: '{ A }'
+      }
+    })
+  ).toBe(1)
+
+  expect(
+    await getSize({
+      files: [fixture('module.js')],
+      import: {
+        [fixture('module.js')]: '{ A }'
+      },
+      gzip: false
+    })
+  ).toBe(1)
+
+  expect(
+    await getSize({
+      import: {
+        [fixture('module.js')]: '{ methodA }'
+      }
+    })
+  ).toBe(78)
+})
+
+it('supports import with multiple files', async () => {
+  expect(
+    await getSize({
+      import: {
+        [fixture('module.js')]: '{ A }',
+        [fixture('module2.js')]: '{ B }'
+      }
+    })
+  ).toBe(10)
 })

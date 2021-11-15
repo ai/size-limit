@@ -9,6 +9,11 @@ let convertConfig = require('./convert-config')
 let runEsbuild = require('./run-esbuild')
 let getConfig = require('./get-config')
 
+const ESBUILD_EMPTY_PROJECT = 0
+const ESBUILD_EMPTY_PROJECT_GZIP = 20
+const ESBUILD_EMPTY_PROJECT_IMPORT = 34
+const ESBUILD_EMPTY_PROJECT_IMPORT_GZIP = 54
+
 function getFiles(buildResult, check) {
   let entries = {}
   let outputs = buildResult.metafile.outputs
@@ -89,6 +94,15 @@ let self = {
     if (check.bundles) {
       if (typeof check.size === 'undefined') {
         throw new SizeLimitError('missedPlugin', 'file')
+      }
+      if (check.import && check.gzip === false) {
+        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT
+      } else if (check.import) {
+        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_GZIP
+      } else if (check.gzip === false) {
+        check.size -= ESBUILD_EMPTY_PROJECT
+      } else {
+        check.size -= ESBUILD_EMPTY_PROJECT_GZIP
       }
     }
   },
