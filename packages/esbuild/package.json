@@ -20,13 +20,8 @@
     "size-limit": "6.0.4"
   },
   "dependencies": {
-    "@statoscope/webpack-plugin": "^5.17.0",
-    "css-loader": "^6.5.0",
-    "css-minimizer-webpack-plugin": "^3.0.2",
     "esbuild": "^0.13.13",
-    "escape-string-regexp": "^4.0.0",
-    "nanoid": "^3.1.30",
-    "style-loader": "^3.3.1"
+    "nanoid": "^3.1.30"
   },
   "devDependencies": {
     "redux": "^4.1.2"
