@@ -1,6 +1,6 @@
 # Size Limit Webpack Plugin
 
-The plugin for [Size Limit] to track dependencies size by webpack.
+The plugin for [Size Limit] to add CSS support for webpack.
 
 See Size Limit docs for more details.
 

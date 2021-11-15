@@ -1,6 +1,6 @@
-# Size Limit Webpack Plugin
+# Size Limit webpack-why Plugin
 
-The plugin for [Size Limit] to track dependencies size by webpack.
+The plugin for [Size Limit] to create report about the size of your dependencies.
 
 See Size Limit docs for more details.
 
