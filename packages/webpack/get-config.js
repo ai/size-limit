@@ -1,6 +1,5 @@
 let { writeFile } = require('fs').promises
 let escapeRegexp = require('escape-string-regexp')
-let CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 let { join } = require('path')
 let mkdirp = require('mkdirp')
 
@@ -36,31 +35,13 @@ module.exports = async function getConfig(limitConfig, check, output) {
       path: output
     },
     optimization: {
-      concatenateModules: !check.disableModuleConcatenation,
-      minimizer: ['...', new CssMinimizerPlugin()]
+      concatenateModules: !check.disableModuleConcatenation
     },
     module: {
       rules: [
         {
           test: STATIC,
           type: 'asset/resource'
-        },
-        {
-          test: /\.css$/,
-          exclude: /\.module\.css$/,
-          use: [require.resolve('style-loader'), require.resolve('css-loader')]
-        },
-        {
-          test: /\.module\.css$/,
-          use: [
-            require.resolve('style-loader'),
-            {
-              loader: require.resolve('css-loader'),
-              options: {
-                modules: true
-              }
-            }
-          ]
         }
       ]
     }
