@@ -1,5 +1,5 @@
 let StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin').default
-let updateCheckWithImports = require('size-limit/updateCheckWithImports')
+let updateCheckWithImports = require('size-limit/update-check-with-imports')
 let escapeRegexp = require('escape-string-regexp')
 let CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 let { join } = require('path')

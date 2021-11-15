@@ -1,4 +1,4 @@
-let updateCheckWithImports = require('size-limit/updateCheckWithImports')
+let updateCheckWithImports = require('size-limit/update-check-with-imports')
 
 module.exports = async function getConfig(limitConfig, check, output) {
   await updateCheckWithImports(check, output)
