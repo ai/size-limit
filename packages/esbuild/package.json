@@ -25,7 +25,6 @@
     "css-minimizer-webpack-plugin": "^3.0.2",
     "esbuild": "^0.13.13",
     "escape-string-regexp": "^4.0.0",
-    "mkdirp": "^1.0.4",
     "nanoid": "^3.1.30",
     "style-loader": "^3.3.1"
   },

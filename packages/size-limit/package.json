@@ -23,6 +23,7 @@
     "ci-job-number": "^1.2.2",
     "globby": "^11.0.4",
     "lilconfig": "^2.0.3",
+    "mkdirp": "^1.0.4",
     "nanospinner": "^0.4.0",
     "picocolors": "^1.0.0"
   }
