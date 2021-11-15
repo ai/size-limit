@@ -1,4 +1,3 @@
-let StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin').default
 let { writeFile } = require('fs').promises
 let escapeRegexp = require('escape-string-regexp')
 let CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
@@ -80,35 +79,6 @@ module.exports = async function getConfig(limitConfig, check, output) {
   }
 
   if (!config.plugins) config.plugins = []
-  if (limitConfig.why) {
-    let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
-    config.plugins.push(
-      new StatoscopeWebpackPlugin({
-        saveReportTo: limitConfig.saveBundle
-          ? join(limitConfig.saveBundle, 'report.html')
-          : undefined,
-        saveStatsTo: limitConfig.saveBundle
-          ? join(limitConfig.saveBundle, 'stats.json')
-          : undefined,
-        additionalStats: [limitConfig.compareWith, check.compareWith].filter(
-          Boolean
-        ),
-        open: shouldOpen ? 'file' : false,
-        name: limitConfig.project,
-        watchMode: limitConfig.watch,
-        reports: check.uiReports || []
-      })
-    )
-  } else if (limitConfig.saveBundle) {
-    config.plugins.push(
-      new StatoscopeWebpackPlugin({
-        saveReportTo: join(limitConfig.saveBundle, 'report.html'),
-        saveStatsTo: join(limitConfig.saveBundle, 'stats.json'),
-        open: false,
-        watchMode: limitConfig.watch
-      })
-    )
-  }
 
   return config
 }

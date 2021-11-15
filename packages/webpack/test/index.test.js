@@ -145,35 +145,6 @@ it('throws on missed file plugin', async () => {
   }
 })
 
-it('supports --why', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
-  let config = {
-    project: 'superProject',
-    why: true,
-    saveBundle: DIST,
-    checks: [{ files: [fixture('big.js')] }]
-  }
-  try {
-    await webpack.step20(config, config.checks[0])
-    await webpack.step40(config, config.checks[0])
-    let reportFile = join(config.checks[0].webpackOutput, 'report.html')
-    let reportHTML = await readFile(reportFile)
-    expect(reportHTML.toString()).toContain('superProject')
-  } finally {
-    await webpack.finally(config, config.checks[0])
-  }
-})
-
-it('supports --save-bundle', async () => {
-  let config = {
-    saveBundle: DIST,
-    checks: [{ files: [fixture('small.js')] }]
-  }
-  await run(config)
-  expect(existsSync(join(DIST, 'index.js'))).toBe(true)
-  expect(existsSync(join(DIST, 'stats.json'))).toBe(true)
-})
-
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
