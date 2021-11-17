@@ -1,4 +1,4 @@
-let [webpack] = require('@size-limit/webpack')
+let [esbuild] = require('@size-limit/esbuild')
 let [file] = require('@size-limit/file')
 
-module.exports = [webpack, file]
+module.exports = [esbuild, file]
