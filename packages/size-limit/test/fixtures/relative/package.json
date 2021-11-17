@@ -2,7 +2,8 @@
   "name": "relative",
   "private": true,
   "devDependencies": {
-    "@size-limit/preset-small-lib": ">= 0.0.0",
+    "@size-limit/webpack": ">= 0.0.0",
+    "@size-limit/file": ">= 0.0.0",
     "size-limit": ">= 0.0.0"
   }
 }

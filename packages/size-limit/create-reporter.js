@@ -110,13 +110,14 @@ function createHumanReporter(process, isSilentMode = false) {
         }
 
         let sizeNote
+        let bundled = plugins.has('webpack') || plugins.has('esbuild')
         if (check.config) {
           sizeNote = 'with given webpack configuration'
-        } else if (plugins.has('webpack') && check.brotli === true) {
+        } else if (bundled && check.brotli === true) {
           sizeNote = 'with all dependencies, minified and brotli'
-        } else if (plugins.has('webpack') && check.gzip === false) {
+        } else if (bundled && check.gzip === false) {
           sizeNote = 'with all dependencies and minified'
-        } else if (plugins.has('webpack')) {
+        } else if (bundled) {
           sizeNote = 'with all dependencies, minified and gzipped'
         } else if (plugins.has('file') && check.gzip !== false) {
           sizeNote = 'gzipped'

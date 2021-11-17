@@ -2,13 +2,13 @@
   "name": "integration",
   "private": true,
   "devDependencies": {
-    "@size-limit/preset-small-lib": ">= 0.0.0",
+    "@size-limit/webpack": ">= 0.0.0",
+    "@size-limit/file": ">= 0.0.0",
     "size-limit": ">= 0.0.0"
   },
   "size-limit": [
     {
-      "limit": "0 B",
-      "gzip": false
+      "limit": "0 B"
     }
   ]
 }

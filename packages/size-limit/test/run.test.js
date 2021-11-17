@@ -319,12 +319,12 @@ describe(`run`, () => {
     expect(await check('integration', ['--silent'])).toMatchSnapshot()
   })
 
-  it('returns zero bytes for empty file', async () => {
-    expect(await check('zero')).toMatchSnapshot()
+  it('returns zero bytes for empty file with webpack', async () => {
+    expect(await check('zero-webpack')).toMatchSnapshot()
   })
 
-  it('returns zero bytes for empty file without gzip', async () => {
-    expect(await check('zero-non-gzip')).toMatchSnapshot()
+  it('returns zero bytes for empty file with webpack without gzip', async () => {
+    expect(await check('zero-webpack-non-gzip')).toMatchSnapshot()
   })
 
   it('returns zero bytes for empty file with esbuild', async () => {
