@@ -327,6 +327,14 @@ describe(`run`, () => {
     expect(await check('zero-non-gzip')).toMatchSnapshot()
   })
 
+  it('returns zero bytes for empty file with esbuild', async () => {
+    expect(await check('zero-esbuild')).toMatchSnapshot()
+  })
+
+  it('returns zero bytes for empty file with esbuild and without gzip', async () => {
+    expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
+  })
+
   it('allows to use peer dependencies in import', async () => {
     expect(clean(await check('combine'))).toMatchSnapshot()
   })

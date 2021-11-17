@@ -1,25 +1,11 @@
-let { writeFile } = require('fs').promises
+let updateCheckWithImports = require('size-limit/update-check-with-imports')
 let escapeRegexp = require('escape-string-regexp')
-let { join } = require('path')
-let mkdirp = require('mkdirp')
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
 module.exports = async function getConfig(limitConfig, check, output) {
-  if (check.import) {
-    let loader = ''
-    for (let i in check.import) {
-      let list = check.import[i].replace(/}|{/g, '').trim()
-      loader +=
-        `import ${check.import[i]} from ${JSON.stringify(i)}\n` +
-        `console.log(${list})\n`
-    }
-    await mkdirp(output)
-    let entry = join(output, 'entry.js')
-    await writeFile(entry, loader)
-    check.files = entry
-  }
+  await updateCheckWithImports(check, output)
 
   if (check.files.length === 0) {
     check.missed = true
