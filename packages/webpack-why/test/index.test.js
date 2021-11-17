@@ -52,6 +52,38 @@ it('supports --why', async () => {
   }
 })
 
+it('applies both `modifyWebpackConfig`', async () => {
+  let { DefinePlugin } = require('webpack')
+  let plugin = new DefinePlugin({
+    TEST: 'true'
+  })
+  let config = {
+    project: 'superProject',
+    why: true,
+    saveBundle: DIST,
+    checks: [
+      {
+        files: [fixture('big.js')],
+        modifyWebpackConfig: webpackConfig => {
+          webpackConfig.plugins.push(plugin)
+          return webpackConfig
+        }
+      }
+    ]
+  }
+
+  try {
+    await webpackWhy.before(config, config.checks[0])
+    await webpack.step20(config, config.checks[0])
+
+    let webpackConfig = config.checks[0].webpackConfig
+
+    expect(webpackConfig.plugins).toContain(plugin)
+  } finally {
+    await webpack.finally(config, config.checks[0])
+  }
+})
+
 it('supports --save-bundle', async () => {
   let config = {
     saveBundle: DIST,
