@@ -92,9 +92,5 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none"
-  },
-  "sharec": {
-    "config": "@logux/sharec-config",
-    "version": "0.13.0"
   }
 }
