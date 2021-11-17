@@ -10,7 +10,7 @@ module.exports = function parseArgs(plugins, argv) {
     } else if (arg === '--debug') {
       args.debug = true
     } else if (arg === '--save-bundle') {
-      if (!plugins.has('webpack')) {
+      if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
         throw new SizeLimitError('argWithoutWebpack', 'save-bundle')
       }
       let nextArg = argv[++i]
@@ -30,12 +30,12 @@ module.exports = function parseArgs(plugins, argv) {
     } else if (arg === '--hide-passed') {
       args.hidePassed = true
     } else if (arg === '--why') {
-      if (!plugins.has('webpack')) {
+      if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
       args.why = true
     } else if (arg === '--compare-with') {
-      if (!plugins.has('webpack')) {
+      if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
         throw new SizeLimitError('argWithoutWebpack', '--compare-with')
       }
       if (!args.why) {

@@ -1,18 +1,18 @@
 {
-  "name": "@size-limit/time",
+  "name": "@size-limit/webpack-why",
   "version": "6.0.4",
-  "description": "Downloading and running time plugin for Size Limit",
+  "description": "Webpack Statoscope plugin for Size Limit",
   "keywords": [
     "size-limit",
     "plugin",
     "performance",
     "budget",
-    "performance budget"
+    "performance budget",
+    "webpack"
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
-  "preferUnplugged": true,
   "engines": {
     "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
   },
@@ -20,7 +20,9 @@
     "size-limit": "6.0.4"
   },
   "dependencies": {
-    "estimo": "^2.3.0",
-    "react": "^17.0.2"
+    "@statoscope/webpack-plugin": "^5.18.0"
+  },
+  "devDependencies": {
+    "redux": "^4.1.2"
   }
 }
