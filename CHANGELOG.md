@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0
+* Added `@size-limit/esbuild` plugin for better performance (by Artem Tumin).
+* Moved `@size-limit/preset-small-lib` to `@size-limit/esbuild`.
+* Moved CSS from webpack plugin to `@size-limit/webpack-css` (by Egor Ogarkov).
+* Moved `--why` to `@size-limit/webpack-why` (by Egor Ogarkov).
+
 ## 6.0.4
 * Updated dependencies.
 
