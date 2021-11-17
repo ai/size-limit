@@ -9,8 +9,8 @@ let convertConfig = require('./convert-config')
 let runEsbuild = require('./run-esbuild')
 let getConfig = require('./get-config')
 
-const ESBUILD_EMPTY_PROJECT = 0
-const ESBUILD_EMPTY_PROJECT_GZIP = 20
+const ESBUILD_EMPTY_PROJECT = 12
+const ESBUILD_EMPTY_PROJECT_GZIP = 32
 const ESBUILD_EMPTY_PROJECT_IMPORT = 34
 const ESBUILD_EMPTY_PROJECT_IMPORT_GZIP = 54
 

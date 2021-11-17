@@ -51,7 +51,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildOutfile: config.checks[0].esbuildOutfile,
         esbuildConfig: config.checks[0].esbuildConfig,
         bundles: [join(config.checks[0].esbuildOutfile, 'big.js')],
-        size: 1816
+        size: 1804
       }
     ]
   })
@@ -65,7 +65,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(253)
+  expect(config.checks[0].size).toBe(241)
 })
 
 it('supports custom esbuild config', async () => {
@@ -74,7 +74,7 @@ it('supports custom esbuild config', async () => {
     checks: [{ config: fixture('esbuild.config.js') }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(175)
+  expect(config.checks[0].size).toBe(163)
 })
 
 it('supports custom entry', async () => {
@@ -83,7 +83,7 @@ it('supports custom entry', async () => {
     checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(78)
+  expect(config.checks[0].size).toBe(66)
 })
 
 it('throws error on unknown entry', async () => {
@@ -114,7 +114,7 @@ it('allows to disable gzip', async () => {
     checks: [{ files: [fixture('small.js')], gzip: false }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(49)
+  expect(config.checks[0].size).toBe(37)
 })
 
 it('throws on missed file plugin', async () => {
@@ -219,7 +219,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(1816)
+  ).toBe(1804)
 })
 
 it('supports specifying the import', async () => {
