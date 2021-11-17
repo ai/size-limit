@@ -1,5 +1,5 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { writeFile, readFile, mkdir } = require('fs').promises
+let { writeFile, mkdir } = require('fs').promises
 let { existsSync } = require('fs')
 let { join } = require('path')
 let rm = require('size-limit/rm')
@@ -58,15 +58,6 @@ it('uses webpack to make bundle', async () => {
   expect(config.checks[0].webpackOutput).toContain('size-limit-')
   expect(typeof config.checks[0].webpackConfig).toBe('object')
   expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
-})
-
-it('supports non-JS require', async () => {
-  let config = {
-    checks: [{ files: [fixture('nonjs.js')] }]
-  }
-  await run(config)
-  expect(config.checks[0].size).toBeGreaterThan(1450)
-  expect(config.checks[0].size).toBeLessThan(2300)
 })
 
 it('supports ignore', async () => {
@@ -143,35 +134,6 @@ it('throws on missed file plugin', async () => {
   } finally {
     await webpack.finally(config, config.checks[0])
   }
-})
-
-it('supports --why', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
-  let config = {
-    project: 'superProject',
-    why: true,
-    saveBundle: DIST,
-    checks: [{ files: [fixture('big.js')] }]
-  }
-  try {
-    await webpack.step20(config, config.checks[0])
-    await webpack.step40(config, config.checks[0])
-    let reportFile = join(config.checks[0].webpackOutput, 'report.html')
-    let reportHTML = await readFile(reportFile)
-    expect(reportHTML.toString()).toContain('superProject')
-  } finally {
-    await webpack.finally(config, config.checks[0])
-  }
-})
-
-it('supports --save-bundle', async () => {
-  let config = {
-    saveBundle: DIST,
-    checks: [{ files: [fixture('small.js')] }]
-  }
-  await run(config)
-  expect(existsSync(join(DIST, 'index.js'))).toBe(true)
-  expect(existsSync(join(DIST, 'stats.json'))).toBe(true)
 })
 
 it('supports --clean-dir', async () => {

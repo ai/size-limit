@@ -77,42 +77,13 @@ exports[`run shows debug 1`] = `
           \\"path\\": \\"/tmp/\\"
         },
         \\"optimization\\": {
-          \\"concatenateModules\\": true,
-          \\"minimizer\\": [
-            \\"...\\",
-            {
-              \\"options\\": {
-                \\"test\\": {},
-                \\"parallel\\": true
-              }
-            }
-          ]
+          \\"concatenateModules\\": true
         },
         \\"module\\": {
           \\"rules\\": [
             {
               \\"test\\": {},
               \\"type\\": \\"asset/resource\\"
-            },
-            {
-              \\"test\\": {},
-              \\"exclude\\": {},
-              \\"use\\": [
-                \\"/node_modules/style-loader/dist/cjs.js\\",
-                \\"/node_modules/css-loader/dist/cjs.js\\"
-              ]
-            },
-            {
-              \\"test\\": {},
-              \\"use\\": [
-                \\"/node_modules/style-loader/dist/cjs.js\\",
-                {
-                  \\"loader\\": \\"/node_modules/css-loader/dist/cjs.js\\",
-                  \\"options\\": {
-                    \\"modules\\": true
-                  }
-                }
-              ]
             }
           ]
         },
@@ -369,7 +340,7 @@ exports[`run throws on --save-bundle argument without webpack 1`] = `
 `;
 
 exports[`run throws on --why argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m plugin.
+"[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m plugin and [33m@size-limit/webpack-why[31m plugin.
         You can add Bundle Analyzer to you own bundler.[39m
 "
 `;

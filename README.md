@@ -532,6 +532,10 @@ Plugins:
   or without compression.
 * `@size-limit/webpack` adds your library to empty webpack project
   and prepares bundle file for `file` plugin.
+* `@size-limit/webpack-why` adds reports for `webpack` plugin
+  about your library is of this size to show the cost of all your
+  dependencies
+* `@size-limit/webpack-css` adds css support for `webpack` plugin
 * `@size-limit/time` uses headless Chrome to track time to execute JS.
 * `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
   to check size after tree-shaking.
