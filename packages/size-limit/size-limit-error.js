@@ -7,7 +7,8 @@ const MESSAGES = {
   argWithoutWebpack: arg =>
     `Argument *--${arg}* works only with *@size-limit/webpack* plugin` +
     (arg === 'why'
-      ? ' and *@size-limit/webpack-why* plugin. You can add Bundle Analyzer to you own bundler.'
+      ? ' and *@size-limit/webpack-why* plugin. You can add Bundle ' +
+        'Analyzer to you own bundler.'
       : ''),
   argWithoutAnotherArg: (arg, anotherArg) =>
     `Argument *--${arg}* works only with *--${anotherArg}* argument`,
