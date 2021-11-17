@@ -15,7 +15,7 @@ let OPTIONS = {
   modifyWebpackConfig: 'webpack',
   webpack: 'webpack',
   ignore: 'webpack',
-  import: 'webpack',
+  import: ['webpack', 'esbuild'],
   gzip: ['webpack', 'file'],
   running: 'time',
   disableModuleConcatenation: 'webpack',
