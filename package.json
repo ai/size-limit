@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
-    "test": "jest --coverage --forceExit && eslint . && yaspeller *.md packages/*/*.md && sh scripts/max-listeners-check.sh"
+    "test": "jest --coverage --forceExit && eslint . && sh scripts/max-listeners-check.sh"
   },
   "workspaces": [
     "packages/preset-small-lib",
@@ -17,26 +17,18 @@
     "packages/file"
   ],
   "devDependencies": {
-    "@logux/eslint-config": "^46.0.1",
-    "@logux/sharec-config": "^0.13.0",
-    "check-dts": "^0.6.2",
-    "clean-publish": "^3.4.2",
+    "@logux/eslint-config": "^46.1.0",
+    "check-dts": "^0.6.3",
+    "clean-publish": "^3.4.3",
     "cross-spawn": "^7.0.3",
-    "eslint": "^8.1.0",
+    "eslint": "^8.2.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^25.2.2",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-let": "^3.0.0",
+    "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^5.1.1",
-    "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-unicorn": "^37.0.1",
     "jest": "^27.3.1",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1",
-    "print-snapshots": "^0.4.2",
-    "simple-git-hooks": "^2.7.0",
-    "yaspeller": "^8.0.0"
+    "print-snapshots": "^0.4.2"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config",
@@ -52,6 +44,15 @@
         "files": "*.test.js",
         "rules": {
           "node/no-extraneous-require": "off"
+        },
+        "globals": {
+          "describe": "readonly",
+          "it": "readonly",
+          "expect": "readonly",
+          "beforeAll": "readonly",
+          "beforeEach": "readonly",
+          "afterEach": "readonly",
+          "jest": "readonly"
         }
       },
       {
@@ -84,9 +85,6 @@
       }
     }
   },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
-  },
   "prettier": {
     "arrowParens": "avoid",
     "jsxSingleQuote": false,
@@ -94,57 +92,6 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none"
-  },
-  "lint-staged": {
-    "*.md": "yaspeller",
-    "*.js": "prettier --write"
-  },
-  "yaspeller": {
-    "lang": "en",
-    "ignoreCapitalization": true,
-    "ignoreText": [
-      " \\(by [^)]+\\)."
-    ],
-    "dictionary": [
-      "linter",
-      "JS",
-      "polyfills",
-      "MobX",
-      "UI",
-      "Autoprefixer",
-      "PostCSS",
-      "Browserslist",
-      "EmojiMart",
-      "Logux",
-      "webpack’s",
-      "bundler",
-      "Vue",
-      "Rollup",
-      "CI",
-      "gzip",
-      "js",
-      "kB",
-      "nanoid",
-      "npm",
-      "Storeon",
-      "Travis",
-      "webpack",
-      "Versioning",
-      "JSDoc",
-      "Puppeter",
-      "estimo",
-      "bundlers",
-      "CLI",
-      "CRM",
-      "brotli",
-      "PnP",
-      "ES",
-      "GitHub",
-      "modifyWebpackConfig",
-      "compareWith",
-      "uiReports",
-      "Statoscope"
-    ]
   },
   "sharec": {
     "config": "@logux/sharec-config",

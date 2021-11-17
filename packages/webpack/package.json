@@ -23,7 +23,7 @@
     "escape-string-regexp": "^4.0.0",
     "mkdirp": "^1.0.4",
     "nanoid": "^3.1.30",
-    "webpack": "^5.61.0"
+    "webpack": "^5.64.1"
   },
   "devDependencies": {
     "redux": "^4.1.2"
