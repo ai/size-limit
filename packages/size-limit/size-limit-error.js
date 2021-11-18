@@ -4,9 +4,12 @@ const MESSAGES = {
     'Create npm package and run Size Limit there.',
   unknownArg: arg =>
     `Unknown argument *${arg}*. Check command for typo and read docs.`,
+  argWithoutPlugins: (arg, mod1, mod2) =>
+    `Argument *--${arg}* needs *@size-limit/${mod1}* ` +
+    `or *@size-limit/${mod2}* plugin`,
   argWithoutWebpack: arg =>
     `Argument *--${arg}* works only with *@size-limit/webpack* plugin` +
-    (arg === 'why'
+    (arg === 'why' || arg === 'compare-with'
       ? ' and *@size-limit/webpack-why* plugin. You can add Bundle ' +
         'Analyzer to you own bundler.'
       : ''),

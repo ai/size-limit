@@ -336,7 +336,8 @@ exports[`run throws on --compare-with argument without value 1`] = `
 `;
 
 exports[`run throws on --compare-with argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m----compare-with[31m works only with [33m@size-limit/webpack[31m plugin[39m
+"[41m[30m ERROR [39m[49m [31mArgument [33m--compare-with[31m works only with [33m@size-limit/webpack[31m plugin and [33m@size-limit/webpack-why[31m plugin.
+        You can add Bundle Analyzer to you own bundler.[39m
 "
 `;
 
@@ -351,7 +352,7 @@ exports[`run throws on --save-bundle argument without DIR parameter 2`] = `
 `;
 
 exports[`run throws on --save-bundle argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[31m works only with [33m@size-limit/webpack[31m plugin[39m
+"[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[31m needs [33m@size-limit/webpack[31m or [33m@size-limit/esbuild[31m plugin[39m
 "
 `;
 
