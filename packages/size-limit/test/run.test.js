@@ -291,8 +291,8 @@ describe(`run`, () => {
     expect(history.stdout).toMatchSnapshot()
   })
 
-  it('shows error when using brotli without webpack', async () => {
-    expect(await error('brotli-without-webpack')).toMatchSnapshot()
+  it('shows error when using brotli without file', async () => {
+    expect(await error('brotli-without-file')).toMatchSnapshot()
   })
 
   it('shows error on time bigger than limit', async () => {

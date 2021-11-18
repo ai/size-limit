@@ -2,7 +2,6 @@
   "name": "file",
   "private": true,
   "devDependencies": {
-    "@size-limit/preset-app": ">= 0.0.0",
     "size-limit": ">= 0.0.0"
   },
   "size-limit": [
