@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.1
+* Fixed `--save-bundle` arguments with `@size-limit/esbuild`.
+* Fixed `ignore` option with `@size-limit/esbuild`.
+* Fixed `brotli` option without webpack.
+* Fixed error messages.
+
 ## 7.0
 * Added `@size-limit/esbuild` plugin for better performance (by Artem Tumin).
 * Moved `@size-limit/preset-small-lib` to `@size-limit/esbuild`.
