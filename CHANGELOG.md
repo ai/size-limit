@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.3
+* Fixed package size.
+
 ## 7.0.2
 * Fixed peer dependency ignore in `@size-limit/esbuild`.
 
