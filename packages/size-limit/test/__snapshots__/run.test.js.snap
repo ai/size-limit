@@ -340,8 +340,8 @@ exports[`run supports import and ignore for esbuild 1`] = `
 
 exports[`run supports import and ignore for esbuild and gzip 1`] = `
 "  
-  Size limit: [32m[1m41 B[22m[39m
-  Size:       [32m[1m41 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size limit: [32m[1m56 B[22m[39m
+  Size:       [32m[1m56 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
