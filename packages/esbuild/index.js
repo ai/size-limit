@@ -1,5 +1,5 @@
+let { readdir, readFile } = require('fs').promises
 let SizeLimitError = require('size-limit/size-limit-error')
-let { readdir } = require('fs').promises
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
 let { join, resolve, parse } = require('path')
@@ -13,6 +13,8 @@ const ESBUILD_EMPTY_PROJECT = 12
 const ESBUILD_EMPTY_PROJECT_GZIP = 32
 const ESBUILD_EMPTY_PROJECT_IMPORT = 34
 const ESBUILD_EMPTY_PROJECT_IMPORT_GZIP = 54
+const ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE = 866
+const ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GRIP = 441
 
 function getFiles(buildResult, check) {
   let entries = {}
@@ -95,7 +97,20 @@ let self = {
       if (typeof check.size === 'undefined') {
         throw new SizeLimitError('missedPlugin', 'file')
       }
-      if (check.import && check.gzip === false) {
+      let hasRequirePolyfill = false
+      if (check.ignore) {
+        for (let bundle of check.bundles) {
+          let js = await readFile(bundle)
+          if (js.toString().includes('Dynamic require of ')) {
+            hasRequirePolyfill = true
+          }
+        }
+      }
+      if (hasRequirePolyfill && check.import && check.gzip === false) {
+        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE
+      } else if (hasRequirePolyfill && check.import) {
+        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GRIP
+      } else if (check.import && check.gzip === false) {
         check.size -= ESBUILD_EMPTY_PROJECT_IMPORT
       } else if (check.import) {
         check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_GZIP

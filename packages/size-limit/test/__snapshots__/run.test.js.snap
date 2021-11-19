@@ -2,7 +2,14 @@
 
 exports[`run allows to use peer dependencies in import 1`] = `
 "  
+  [1mall[22m
   Size: [1m1.96 kB[22m [90mwith all dependencies, minified and gzipped[39m
+  
+  [1ma[22m
+  Size: [1m1 B[22m [90mwith all dependencies, minified and gzipped[39m
+  
+  [1mredux[22m
+  Size: [1m1.95 kB[22m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
@@ -320,6 +327,22 @@ Check the real performance cost of your front-end project to users
     Show the size of specific files with all file dependencies
   [33msize-limit --why[39m
     Show reasons why project have this size
+"
+`;
+
+exports[`run supports import and ignore for esbuild 1`] = `
+"  
+  Size limit: [32m[1m41 B[22m[39m
+  Size:       [32m[1m41 B[22m[39m [90mwith all dependencies and minified[39m
+  
+"
+`;
+
+exports[`run supports import and ignore for esbuild and gzip 1`] = `
+"  
+  Size limit: [32m[1m41 B[22m[39m
+  Size:       [32m[1m41 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
 "
 `;
 

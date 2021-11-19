@@ -1,7 +1,18 @@
 [
   {
+    "name": "all",
     "import": {
       "./index.js": "{ a }",
+      "redux": "{ createStore }"
+    }
+  },
+  {
+    "name": "a",
+    "import": "{ a }"
+  },
+  {
+    "name": "redux",
+    "import": {
       "redux": "{ createStore }"
     }
   }

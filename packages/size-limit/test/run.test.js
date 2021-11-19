@@ -339,6 +339,14 @@ describe(`run`, () => {
     expect(clean(await check('combine'))).toMatchSnapshot()
   })
 
+  it('supports import and ignore for esbuild', async () => {
+    expect(clean(await check('peer-esbuild-non-gzip'))).toMatchSnapshot()
+  })
+
+  it('supports import and ignore for esbuild and gzip', async () => {
+    expect(clean(await check('peer-esbuild'))).toMatchSnapshot()
+  })
+
   it('shows debug', async () => {
     expect(clean(await check('integration', ['--debug']))).toMatchSnapshot()
   })
