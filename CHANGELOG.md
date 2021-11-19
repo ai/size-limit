@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.2
+* Fixed peer dependency ignore in `@size-limit/esbuild`.
+
 ## 7.0.1
 * Fixed `--save-bundle` arguments with `@size-limit/esbuild`.
 * Fixed `ignore` option with `@size-limit/esbuild`.

@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/esbuild",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "esbuild plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,7 +17,7 @@
     "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
   },
   "peerDependencies": {
-    "size-limit": "7.0.1"
+    "size-limit": "7.0.2"
   },
   "dependencies": {
     "esbuild": "^0.13.14",
