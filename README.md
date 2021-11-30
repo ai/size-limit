@@ -130,7 +130,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
       Package size: 30.08 kB with all dependencies, minified and gzipped
     ```
 
-4. Now, let’s set the limit. Add 25% to the current total time and use that as
+4. Now, let’s set the limit. Add 25% to the current total size and use that as
    the limit in your `package.json`:
 
     ```diff
