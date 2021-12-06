@@ -2,7 +2,7 @@ let { writeFile } = require('fs').promises
 let { join } = require('path')
 let mkdirp = require('mkdirp')
 
-module.exports = async function updateCheckWithImports(check, output) {
+module.exports = async function processImport(check, output) {
   if (!check.import) {
     return
   }

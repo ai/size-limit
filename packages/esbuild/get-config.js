@@ -1,7 +1,7 @@
-let updateCheckWithImports = require('size-limit/update-check-with-imports')
+let processImport = require('size-limit/process-import')
 
 module.exports = async function getConfig(limitConfig, check, output) {
-  await updateCheckWithImports(check, output)
+  await processImport(check, output)
 
   let config = {
     entryPoints: Array.isArray(check.files) ? check.files : [check.files],

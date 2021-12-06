@@ -1,11 +1,11 @@
-let updateCheckWithImports = require('size-limit/update-check-with-imports')
+let processImport = require('size-limit/process-import')
 let escapeRegexp = require('escape-string-regexp')
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
 module.exports = async function getConfig(limitConfig, check, output) {
-  await updateCheckWithImports(check, output)
+  await processImport(check, output)
 
   if (check.files.length === 0) {
     check.missed = true
