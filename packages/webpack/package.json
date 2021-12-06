@@ -22,7 +22,7 @@
   "dependencies": {
     "escape-string-regexp": "^4.0.0",
     "nanoid": "^3.1.30",
-    "webpack": "^5.64.1"
+    "webpack": "^5.64.4"
   },
   "devDependencies": {
     "redux": "^4.1.2"

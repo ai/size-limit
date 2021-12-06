@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.1.4",
+    "css-minimizer-webpack-plugin": "^3.2.0",
     "style-loader": "^3.3.1"
   }
 }

@@ -20,7 +20,7 @@
     "size-limit": "7.0.3"
   },
   "dependencies": {
-    "@statoscope/webpack-plugin": "^5.18.0"
+    "@statoscope/webpack-plugin": "^5.19.0"
   },
   "devDependencies": {
     "redux": "^4.1.2"
