@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.4
+* Updated `esbuild`.
+* Updated `nanospinner`.
+
 ## 7.0.3
 * Fixed package size.
 
