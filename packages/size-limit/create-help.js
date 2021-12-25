@@ -10,6 +10,9 @@ function npmCommands(pkg) {
   if (existsSync(join(pkg.path, '..', 'yarn.lock'))) {
     add = 'yarn add --dev '
     rm = 'yarn remove '
+  } else if (existsSync(join(pkg.path, '..', 'pnpm-lock.yaml'))) {
+    add = 'pnpm add --save-dev '
+    rm = 'pnpm remove '
   }
   return { add, rm }
 }

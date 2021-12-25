@@ -140,6 +140,10 @@ describe(`run`, () => {
     expect(await error('legacy-yarn')).toMatchSnapshot()
   })
 
+  it('shows migration guide for pnpm users', async () => {
+    expect(await error('legacy-pnpm')).toMatchSnapshot()
+  })
+
   it('shows migration guide for npm users: config 1, dep 0', async () => {
     let [process, history] = createProcess('npm-with-config-without-dev')
     await run(process)
