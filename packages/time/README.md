@@ -1,4 +1,4 @@
-# Size Limit File Plugin
+# Size Limit Time Plugin
 
 The plugin for [Size Limit] to track JS download and execution time by [estimo]
 and Puppeter.
