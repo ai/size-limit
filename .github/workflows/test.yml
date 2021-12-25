@@ -19,7 +19,7 @@ jobs:
           node-version: 17
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
       - name: Run tests
         run: pnpm test
         env:
@@ -46,7 +46,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
       - name: Run unit tests
         run: ./node_modules/.bin/jest --forceExit
         env:
