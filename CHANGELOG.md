@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.5
+* Added `pnpm` examples to migration guide.
+* Fixed docs (by @azat-io).
+
 ## 7.0.4
 * Updated `esbuild`.
 * Updated `nanospinner`.

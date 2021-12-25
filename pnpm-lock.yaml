@@ -46,14 +46,6 @@ importers:
       jest: 27.4.5
       print-snapshots: 0.4.2
 
-  fixtures/integration:
-    specifiers:
-      '@size-limit/preset-big-lib': workspace:^7.0.4
-      size-limit: workspace:^7.0.4
-    devDependencies:
-      '@size-limit/preset-big-lib': link:../../packages/preset-big-lib
-      size-limit: link:../../packages/size-limit
-
   packages/dual-publish:
     specifiers:
       size-limit: workspace:>=0
@@ -86,17 +78,17 @@ importers:
 
   packages/preset-app:
     specifiers:
-      '@size-limit/file': 7.0.4
-      '@size-limit/time': 7.0.4
+      '@size-limit/file': 7.0.5
+      '@size-limit/time': 7.0.5
     dependencies:
       '@size-limit/file': link:../file
       '@size-limit/time': link:../time
 
   packages/preset-big-lib:
     specifiers:
-      '@size-limit/file': 7.0.4
-      '@size-limit/time': 7.0.4
-      '@size-limit/webpack': 7.0.4
+      '@size-limit/file': 7.0.5
+      '@size-limit/time': 7.0.5
+      '@size-limit/webpack': 7.0.5
     dependencies:
       '@size-limit/file': link:../file
       '@size-limit/time': link:../time
@@ -104,8 +96,8 @@ importers:
 
   packages/preset-small-lib:
     specifiers:
-      '@size-limit/esbuild': 7.0.4
-      '@size-limit/file': 7.0.4
+      '@size-limit/esbuild': 7.0.5
+      '@size-limit/file': 7.0.5
     dependencies:
       '@size-limit/esbuild': link:../esbuild
       '@size-limit/file': link:../file
