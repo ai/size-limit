@@ -2,10 +2,10 @@ let SizeLimitError = require('size-limit/size-limit-error')
 let { writeFile, mkdir } = require('fs').promises
 let { existsSync } = require('fs')
 let { join } = require('path')
+let [file] = require('@size-limit/file')
 let rm = require('size-limit/rm')
 
 let [esbuild] = require('..')
-let [file] = require('../../file')
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -51,7 +51,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildOutfile: config.checks[0].esbuildOutfile,
         esbuildConfig: config.checks[0].esbuildConfig,
         bundles: [join(config.checks[0].esbuildOutfile, 'big.js')],
-        size: 1804
+        size: 1805
       }
     ]
   })
@@ -219,7 +219,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(1804)
+  ).toBe(1805)
 })
 
 it('supports specifying the import', async () => {

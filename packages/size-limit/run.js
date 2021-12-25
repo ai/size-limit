@@ -28,6 +28,9 @@ async function findPlugins(parentPkg) {
   let plugins = loadPlugins(parentPkg)
 
   if (!parentPkg || !plugins.isEmpty) return plugins
+  if (parentPkg.packageJson && parentPkg.packageJson.sizeLimitRoot) {
+    return plugins
+  }
 
   let cwd = resolve(parentPkg.path, '..', '..')
   let pkg = await readPkgUp(cwd)

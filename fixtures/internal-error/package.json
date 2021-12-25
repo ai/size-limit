@@ -1,0 +1,13 @@
+{
+  "name": "internal-error",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/time": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "limit": "200 s"
+    }
+  ]
+}

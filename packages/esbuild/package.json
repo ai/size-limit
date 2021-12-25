@@ -24,6 +24,8 @@
     "nanoid": "^3.1.30"
   },
   "devDependencies": {
-    "redux": "^4.1.2"
+    "@size-limit/file": "workspace:>=0",
+    "redux": "^4.1.2",
+    "size-limit": "workspace:>=0"
   }
 }

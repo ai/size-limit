@@ -1,0 +1,21 @@
+{
+  "name": "globby",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/file": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "name": "a",
+      "path": [
+        "a*.js"
+      ],
+      "limit": "1 kB"
+    },
+    {
+      "name": "b"
+    }
+  ],
+  "main": "b1"
+}

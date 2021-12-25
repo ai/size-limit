@@ -1,0 +1,11 @@
+{
+  "name": "peer",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/webpack": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "peerDependencies": {
+    "a": ">= 0.0.0"
+  }
+}

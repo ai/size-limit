@@ -1,0 +1,14 @@
+{
+  "name": "zero-webpack",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/webpack": ">= 0.0.0",
+    "@size-limit/file": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "limit": "0 B"
+    }
+  ]
+}

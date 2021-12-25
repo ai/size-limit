@@ -1,0 +1,13 @@
+{
+  "name": "integration",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/preset-big-lib": ">=0",
+    "size-limit": ">=0"
+  },
+  "size-limit": [
+    {
+      "limit": "200 B"
+    }
+  ]
+}

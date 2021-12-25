@@ -2,23 +2,20 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
+    "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
     "test": "jest --coverage --forceExit && eslint . && sh scripts/max-listeners-check.sh"
   },
-  "workspaces": [
-    "packages/preset-small-lib",
-    "packages/preset-big-lib",
-    "packages/preset-app",
-    "packages/dual-publish",
-    "packages/size-limit",
-    "packages/webpack",
-    "packages/esbuild",
-    "packages/webpack-why",
-    "packages/webpack-css",
-    "packages/time",
-    "packages/file"
-  ],
   "devDependencies": {
     "@logux/eslint-config": "^46.1.1",
+    "@size-limit/dual-publish": "workspace:>=0",
+    "@size-limit/esbuild": "workspace:>=0",
+    "@size-limit/file": "workspace:>=0",
+    "@size-limit/preset-app": "workspace:>=0",
+    "@size-limit/preset-big-lib": "workspace:>=0",
+    "@size-limit/preset-small-lib": "workspace:^7.0.4",
+    "@size-limit/time": "workspace:>=0",
+    "@size-limit/webpack": "workspace:>=0",
+    "@size-limit/webpack-why": "workspace:>=0",
     "clean-publish": "^3.4.4",
     "cross-spawn": "^7.0.3",
     "eslint": "^8.5.0",
@@ -71,13 +68,13 @@
   },
   "eslintIgnore": [
     "node_modules",
-    "packages/size-limit/test/fixtures",
+    "fixtures",
     "**/errors.ts"
   ],
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
-      "<rootDir>/packages/size-limit/test/fixtures"
+      "<rootDir>/fixtures"
     ],
     "coverageThreshold": {
       "global": {

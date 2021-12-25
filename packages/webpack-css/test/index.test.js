@@ -1,9 +1,9 @@
+let [webpack] = require('@size-limit/webpack')
 let { join } = require('path')
+let [file] = require('@size-limit/file')
 let rm = require('size-limit/rm')
 
 let [webpackCss] = require('../')
-let [webpack] = require('../../webpack')
-let [file] = require('../../file')
 
 const DIST = join(process.cwd(), 'dist')
 

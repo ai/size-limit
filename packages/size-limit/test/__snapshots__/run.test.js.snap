@@ -3,13 +3,13 @@
 exports[`run allows to use peer dependencies in import 1`] = `
 "  
   [1mall[22m
-  Size: [1m1.96 kB[22m [90mwith all dependencies, minified and gzipped[39m
+  Size: [1m1.97 kB[22m [90mwith all dependencies, minified and gzipped[39m
   
   [1ma[22m
   Size: [1m1 B[22m [90mwith all dependencies, minified and gzipped[39m
   
   [1mredux[22m
-  Size: [1m1.95 kB[22m [90mwith all dependencies, minified and gzipped[39m
+  Size: [1m1.96 kB[22m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
@@ -84,7 +84,7 @@ exports[`run shows debug 1`] = `
     {
       \\"limit\\": \\"200 B\\",
       \\"files\\": [
-        \\"/packages/size-limit/test/fixtures/integration/index.js\\"
+        \\"/fixtures/integration/index.js\\"
       ],
       \\"name\\": \\"index.js\\",
       \\"sizeLimit\\": 200,
@@ -93,7 +93,7 @@ exports[`run shows debug 1`] = `
       \\"webpackConfig\\": {
         \\"entry\\": {
           \\"index\\": [
-            \\"/packages/size-limit/test/fixtures/integration/index.js\\"
+            \\"/fixtures/integration/index.js\\"
           ]
         },
         \\"output\\": {
@@ -144,7 +144,7 @@ exports[`run shows debug on error 1`] = `
     {
       \\"limit\\": \\"200 s\\",
       \\"files\\": [
-        \\"/packages/size-limit/test/fixtures/internal-error/index.js\\"
+        \\"/fixtures/internal-error/index.js\\"
       ],
       \\"name\\": \\"index.js\\",
       \\"timeLimit\\": 200

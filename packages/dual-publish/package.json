@@ -19,7 +19,10 @@
     "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
   },
   "peerDependencies": {
-    "size-limit": "7.0.4",
-    "dual-publish": "> 0.6.0"
+    "dual-publish": "> 0.6.0",
+    "size-limit": "7.0.4"
+  },
+  "devDependencies": {
+    "size-limit": "workspace:>=0"
   }
 }

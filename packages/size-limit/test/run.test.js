@@ -31,7 +31,7 @@ const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
 
 function fixture(...files) {
-  return join(__dirname, 'fixtures', ...files)
+  return join(ROOT, 'fixtures', ...files)
 }
 
 function createProcess(cwd, args = []) {

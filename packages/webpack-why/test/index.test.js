@@ -1,11 +1,11 @@
 let { writeFile, readFile, mkdir } = require('fs').promises
 let { existsSync } = require('fs')
+let [webpack] = require('@size-limit/webpack')
 let { join } = require('path')
+let [file] = require('@size-limit/file')
 let rm = require('size-limit/rm')
 
-let [webpack] = require('../../webpack')
 let [webpackWhy] = require('../')
-let [file] = require('../../file')
 
 const DIST = join(process.cwd(), 'out')
 

@@ -1,0 +1,19 @@
+{
+  "name": "peer-esbuild",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/esbuild": ">= 0.0.0",
+    "@size-limit/file": ">= 0.0.0",
+    "cross-spawn": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "peerDependencies": {
+    "cross-spawn": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "import": "{ test }",
+      "limit": "56 B"
+    }
+  ]
+}

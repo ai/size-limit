@@ -12,7 +12,7 @@ jest.mock('../create-reporter', () => () => ({
 jest.mock('../calc')
 
 function fixture(...files) {
-  return join(__dirname, 'fixtures', ...files)
+  return join(__dirname, '..', '..', '..', 'fixtures', ...files)
 }
 
 async function check(cwd, args = []) {
@@ -173,7 +173,7 @@ it('normalizes bundle and webpack arguments with --why and ui-reports', async ()
     configPath: '.size-limit.js',
     cwd: fixture('ui-reports'),
     why: true,
-    project: 'webpack',
+    project: 'ui-reports',
     hidePassed: true,
     highlightLess: true,
     saveBundle: fixture('ui-reports', 'out'),

@@ -4,7 +4,7 @@ let readPkgUp = require('../read-pkg-up')
 
 describe(`read-pkg-up`, () => {
   it('finds package.json of the same package', async () => {
-    let cwd = join(__dirname, 'fixtures/simple')
+    let cwd = join(__dirname, '..', '..', '..', 'fixtures', 'simple')
     let result = await readPkgUp(cwd)
     expect(result.packageJson.name).toBe('file')
     expect(result.path).toBe(join(cwd, 'package.json'))
