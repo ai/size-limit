@@ -5,15 +5,15 @@ importers:
   .:
     specifiers:
       '@logux/eslint-config': ^46.1.1
-      '@size-limit/dual-publish': workspace:>=0
-      '@size-limit/esbuild': workspace:>=0
-      '@size-limit/file': workspace:>=0
+      '@size-limit/dual-publish': workspace:^7.0.4
+      '@size-limit/esbuild': workspace:^7.0.4
+      '@size-limit/file': workspace:^7.0.4
       '@size-limit/preset-app': workspace:^7.0.4
-      '@size-limit/preset-big-lib': workspace:>=0
+      '@size-limit/preset-big-lib': workspace:^7.0.4
       '@size-limit/preset-small-lib': workspace:^7.0.4
-      '@size-limit/time': workspace:>=0
-      '@size-limit/webpack': workspace:>=0
-      '@size-limit/webpack-why': workspace:>=0
+      '@size-limit/time': workspace:^7.0.4
+      '@size-limit/webpack': workspace:^7.0.4
+      '@size-limit/webpack-why': workspace:^7.0.4
       clean-publish: ^3.4.4
       cross-spawn: ^7.0.3
       eslint: ^8.5.0
