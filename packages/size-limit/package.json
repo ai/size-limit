@@ -24,7 +24,7 @@
     "globby": "^11.0.4",
     "lilconfig": "^2.0.3",
     "mkdirp": "^1.0.4",
-    "nanospinner": "^0.5.0",
+    "nanospinner": "^0.6.0",
     "picocolors": "^1.0.0"
   }
 }
