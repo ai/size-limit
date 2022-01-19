@@ -91,6 +91,12 @@ async function error(cwd, args) {
   return history.stderr
 }
 
+async function checkJson(cwd, json) {
+  expect(clean(await check(cwd, ['--json']))).toEqual(
+    JSON.stringify(json, null, '  ') + '\n'
+  )
+}
+
 describe(`run`, () => {
   beforeEach(() => {
     jest.useFakeTimers('legacy')
@@ -274,7 +280,13 @@ describe(`run`, () => {
 
   if (NODE_VERSION >= 16) {
     it('works in integration test with ESM', async () => {
-      expect(await check('integration-esm')).toMatchSnapshot()
+      await checkJson('integration-esm', [
+        {
+          name: 'index.js',
+          passed: true,
+          size: 1
+        }
+      ])
     })
   }
 
@@ -344,7 +356,11 @@ describe(`run`, () => {
 
   if (NODE_VERSION >= 16) {
     it('allows to use peer dependencies in import', async () => {
-      expect(clean(await check('combine'))).toMatchSnapshot()
+      await checkJson('combine', [
+        { name: 'all', size: 1965 },
+        { name: 'a', size: 1 },
+        { name: 'redux', size: 1956 }
+      ])
     })
   }
 

@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`run allows to use peer dependencies in import 1`] = `
-"  
-  [1mall[22m
-  Size: [1m1.97 kB[22m [90mwith all dependencies, minified and gzipped[39m
-  
-  [1ma[22m
-  Size: [1m1 B[22m [90mwith all dependencies, minified and gzipped[39m
-  
-  [1mredux[22m
-  Size: [1m1.96 kB[22m [90mwith all dependencies, minified and gzipped[39m
-  
-"
-`;
-
 exports[`run find plugins in parent package.json 1`] = `
 "  
   Size limit: [32m[1m1 kB[22m[39m
@@ -560,14 +546,6 @@ exports[`run works in integration test in watch 1`] = `
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
-  
-"
-`;
-
-exports[`run works in integration test with ESM 1`] = `
-"  
-  Size limit: [32m[1m1 B[22m[39m
-  Size:       [32m[1m1 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
