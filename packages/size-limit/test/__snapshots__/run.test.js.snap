@@ -22,7 +22,7 @@ exports[`run find plugins in parent package.json 1`] = `
 "
 `;
 
-exports[`run returns zero bytes for empty file with esbuild 1`] = `
+exports[`run returns zero for empty file with esbuild 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
@@ -30,7 +30,7 @@ exports[`run returns zero bytes for empty file with esbuild 1`] = `
 "
 `;
 
-exports[`run returns zero bytes for empty file with esbuild and without gzip 1`] = `
+exports[`run returns zero for empty file with esbuild and without gzip 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
@@ -38,7 +38,7 @@ exports[`run returns zero bytes for empty file with esbuild and without gzip 1`]
 "
 `;
 
-exports[`run returns zero bytes for empty file with webpack 1`] = `
+exports[`run returns zero for empty file with webpack 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
@@ -46,7 +46,7 @@ exports[`run returns zero bytes for empty file with webpack 1`] = `
 "
 `;
 
-exports[`run returns zero bytes for empty file with webpack without gzip 1`] = `
+exports[`run returns zero for empty file with webpack without gzip 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m

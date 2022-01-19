@@ -29,6 +29,7 @@ jest.mock('nanospinner', () => {
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
+const NODE_VERSION = parseInt(process.version.slice(1))
 
 function fixture(...files) {
   return join(ROOT, 'fixtures', ...files)
@@ -271,10 +272,7 @@ describe(`run`, () => {
     expect(await check('integration')).toMatchSnapshot()
   })
 
-  if (
-    !process.version.startsWith('v12.') &&
-    !process.version.startsWith('v14.')
-  ) {
+  if (NODE_VERSION >= 16) {
     it('works in integration test with ESM', async () => {
       expect(await check('integration-esm')).toMatchSnapshot()
     })
@@ -328,23 +326,23 @@ describe(`run`, () => {
     expect(await check('integration', ['--silent'])).toMatchSnapshot()
   })
 
-  it('returns zero bytes for empty file with webpack', async () => {
+  it('returns zero for empty file with webpack', async () => {
     expect(await check('zero-webpack')).toMatchSnapshot()
   })
 
-  it('returns zero bytes for empty file with webpack without gzip', async () => {
+  it('returns zero for empty file with webpack without gzip', async () => {
     expect(await check('zero-webpack-non-gzip')).toMatchSnapshot()
   })
 
-  it('returns zero bytes for empty file with esbuild', async () => {
+  it('returns zero for empty file with esbuild', async () => {
     expect(await check('zero-esbuild')).toMatchSnapshot()
   })
 
-  it('returns zero bytes for empty file with esbuild and without gzip', async () => {
+  it('returns zero for empty file with esbuild and without gzip', async () => {
     expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
   })
 
-  if (!process.version.startsWith('v12.')) {
+  if (NODE_VERSION >= 16) {
     it('allows to use peer dependencies in import', async () => {
       expect(clean(await check('combine'))).toMatchSnapshot()
     })
