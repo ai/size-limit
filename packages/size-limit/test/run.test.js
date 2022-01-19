@@ -271,9 +271,14 @@ describe(`run`, () => {
     expect(await check('integration')).toMatchSnapshot()
   })
 
-  it('works in integration test with ESM', async () => {
-    expect(await check('integration-esm')).toMatchSnapshot()
-  })
+  if (
+    !process.version.startsWith('v12.') &&
+    !process.version.startsWith('v14.')
+  ) {
+    it('works in integration test with ESM', async () => {
+      expect(await check('integration-esm')).toMatchSnapshot()
+    })
+  }
 
   it('works in integration test with time', async () => {
     expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
@@ -339,9 +344,11 @@ describe(`run`, () => {
     expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
   })
 
-  it('allows to use peer dependencies in import', async () => {
-    expect(clean(await check('combine'))).toMatchSnapshot()
-  })
+  if (!process.version.startsWith('v12.')) {
+    it('allows to use peer dependencies in import', async () => {
+      expect(clean(await check('combine'))).toMatchSnapshot()
+    })
+  }
 
   it('supports import and ignore for esbuild', async () => {
     expect(clean(await check('peer-esbuild-non-gzip'))).toMatchSnapshot()
