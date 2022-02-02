@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
-    "release": "./scripts/each npx clean-publish",
+    "release": "./scripts/each pnpx clean-publish",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
     "test": "jest --coverage --forceExit && eslint . && sh scripts/max-listeners-check.sh"
   },
