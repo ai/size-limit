@@ -357,9 +357,9 @@ describe(`run`, () => {
   if (NODE_VERSION >= 16) {
     it('allows to use peer dependencies in import', async () => {
       await checkJson('combine', [
-        { name: 'all', size: 1965 },
+        { name: 'all', size: 1960 },
         { name: 'a', size: 1 },
-        { name: 'redux', size: 1956 }
+        { name: 'redux', size: 1951 }
       ])
     })
   }

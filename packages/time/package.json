@@ -20,11 +20,11 @@
     "size-limit": "7.0.5"
   },
   "dependencies": {
-    "estimo": "^2.3.1",
+    "estimo": "^2.3.3",
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "nanoid": "^3.1.30",
-    "size-limit": "workspace:>=0"
+    "nanoid": "^3.2.0",
+    "size-limit": "workspace:^7.0.5"
   }
 }

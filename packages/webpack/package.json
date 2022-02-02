@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "escape-string-regexp": "^4.0.0",
-    "nanoid": "^3.1.30",
-    "webpack": "^5.65.0"
+    "nanoid": "^3.2.0",
+    "webpack": "^5.68.0"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:>=0",
+    "@size-limit/file": "workspace:^7.0.5",
     "redux": "^4.1.2",
-    "size-limit": "workspace:>=0"
+    "size-limit": "workspace:^7.0.5"
   }
 }

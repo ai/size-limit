@@ -19,17 +19,17 @@
   },
   "dependencies": {
     "bytes-iec": "^3.1.1",
-    "chokidar": "^3.5.2",
+    "chokidar": "^3.5.3",
     "ci-job-number": "^1.2.2",
-    "globby": "^11.0.4",
-    "lilconfig": "^2.0.3",
+    "globby": "^11.1.0",
+    "lilconfig": "^2.0.4",
     "mkdirp": "^1.0.4",
-    "nanospinner": "^0.6.0",
+    "nanospinner": "^1.0.0",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "workspace:>=0",
-    "@size-limit/file": "workspace:>=0",
-    "@size-limit/webpack": "workspace:>=0"
+    "@size-limit/esbuild": "workspace:^7.0.5",
+    "@size-limit/file": "workspace:^7.0.5",
+    "@size-limit/webpack": "workspace:^7.0.5"
   }
 }

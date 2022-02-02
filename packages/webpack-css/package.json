@@ -20,14 +20,14 @@
     "size-limit": "7.0.5"
   },
   "dependencies": {
-    "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.3.1",
+    "css-loader": "^6.6.0",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "style-loader": "^3.3.1"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:>=0",
-    "@size-limit/webpack": "workspace:>=0",
-    "size-limit": "workspace:>=0",
-    "webpack": "^5.65.0"
+    "@size-limit/file": "workspace:^7.0.5",
+    "@size-limit/webpack": "workspace:^7.0.5",
+    "size-limit": "workspace:^7.0.5",
+    "webpack": "^5.68.0"
   }
 }
