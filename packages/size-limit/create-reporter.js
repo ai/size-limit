@@ -119,10 +119,10 @@ function createHumanReporter(process, isSilentMode = false) {
           sizeNote = 'with all dependencies and minified'
         } else if (bundled) {
           sizeNote = 'with all dependencies, minified and gzipped'
-        } else if (plugins.has('file') && check.gzip !== false && check.brotli !== true) {
-          sizeNote = 'gzipped'
         } else if (plugins.has('file') && check.brotli === true) {
           sizeNote = 'brotlied'
+        } else if (plugins.has('file') && check.gzip !== false) {
+          sizeNote = 'gzipped'
         }
         let sizeString = formatBytes(check.size)
 
