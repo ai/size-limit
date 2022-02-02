@@ -326,6 +326,24 @@ it('renders result for file without gzip', () => {
   ).toMatchSnapshot()
 })
 
+it('renders result for file with brotli', () => {
+  expect(
+    results(['file'], {
+      checks: [
+        {
+          name: 'with brotli',
+          size: 100,
+          sizeLimit: 99,
+          passed: true,
+          brotli: true
+        }
+      ],
+      failed: false,
+      configPath: '.size-limit.json'
+    })
+  ).toMatchSnapshot()
+})
+
 it('renders Webpack stats help message', () => {
   expect(
     results(['webpack'], {
