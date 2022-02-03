@@ -114,7 +114,7 @@ function createHumanReporter(process, isSilentMode = false) {
         if (check.config) {
           sizeNote = 'with given webpack configuration'
         } else if (bundled && check.brotli === true) {
-          sizeNote = 'with all dependencies, minified and brotli'
+          sizeNote = 'with all dependencies, minified and brotlied'
         } else if (bundled && check.gzip === false) {
           sizeNote = 'with all dependencies and minified'
         } else if (bundled) {
