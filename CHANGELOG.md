@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.8
+* Fixed peer dependencies.
+
 ## 7.0.7
 * Fixed plugin versions in presets.
 
