@@ -16,7 +16,7 @@
     "size-limit": "7.0.8"
   },
   "dependencies": {
-    "@size-limit/esbuild": "7.0.8",
-    "@size-limit/file": "7.0.8"
+    "@size-limit/esbuild": "workspace:7.0.8",
+    "@size-limit/file": "workspace:7.0.8"
   }
 }

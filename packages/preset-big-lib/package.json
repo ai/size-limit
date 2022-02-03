@@ -16,8 +16,8 @@
     "size-limit": "7.0.8"
   },
   "dependencies": {
-    "@size-limit/file": "7.0.8",
-    "@size-limit/time": "7.0.8",
-    "@size-limit/webpack": "7.0.8"
+    "@size-limit/file": "workspace:7.0.8",
+    "@size-limit/time": "workspace:7.0.8",
+    "@size-limit/webpack": "workspace:7.0.8"
   }
 }

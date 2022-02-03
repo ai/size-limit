@@ -25,9 +25,9 @@
     "style-loader": "^3.3.1"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^7.0.5",
-    "@size-limit/webpack": "workspace:^7.0.5",
-    "size-limit": "workspace:^7.0.5",
+    "@size-limit/file": "workspace:^7.0.8",
+    "@size-limit/webpack": "workspace:^7.0.8",
+    "size-limit": "workspace:^7.0.8",
     "webpack": "^5.68.0"
   }
 }
