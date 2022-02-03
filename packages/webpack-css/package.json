@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack-css",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "Webpack plugin to support css for Size Limit",
   "keywords": [
     "size-limit",

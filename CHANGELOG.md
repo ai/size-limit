@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.7
+* Fixed plugin versions in presets.
+
 ## 7.0.6
 * Added `brotlied` note to CLI output (by @azat-io).
 * Updated `nanospinner`.

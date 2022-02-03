@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "Webpack plugin for Size Limit",
   "keywords": [
     "size-limit",

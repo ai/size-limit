@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/dual-publish",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "dual-publish plugin for Size Limit",
   "keywords": [
     "size-limit",

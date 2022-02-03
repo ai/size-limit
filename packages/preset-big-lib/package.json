@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-big-lib",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "Size Limit preset for big open source libraries",
   "keywords": [
     "size-limit",

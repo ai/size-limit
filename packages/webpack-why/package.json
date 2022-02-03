@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack-why",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "Webpack Statoscope plugin for Size Limit",
   "keywords": [
     "size-limit",
