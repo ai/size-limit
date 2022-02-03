@@ -15,9 +15,15 @@ for (let dir of readdirSync(PACKAGES)) {
   let pkgPath = join(PACKAGES, dir, 'package.json')
   if (existsSync(pkgPath)) {
     let pkg = readFileSync(pkgPath).toString()
-    writeFileSync(pkgPath, pkg
-      .replace(/("@size-limit\/[^"]+": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
-      .replace(/("size-limit": )"\d+.\d+.\d+"/g, `$1"${ version }"`)
-      .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${ version }"`))
+    writeFileSync(
+      pkgPath,
+      pkg
+        .replace(
+          /("@size-limit\/[^"]+": )"(workspace:)\d+.\d+.\d+"/g,
+          `$1"${version}"`
+        )
+        .replace(/("size-limit": )"(workspace:)\d+.\d+.\d+"/g, `$1"${version}"`)
+        .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${version}"`)
+    )
   }
 }
