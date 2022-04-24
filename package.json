@@ -7,7 +7,7 @@
     "test": "jest --coverage --forceExit && eslint . && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^46.1.1",
+    "@logux/eslint-config": "^47.2.0",
     "@size-limit/dual-publish": "workspace:^7.0.8",
     "@size-limit/esbuild": "workspace:^7.0.8",
     "@size-limit/file": "workspace:^7.0.8",
@@ -19,31 +19,30 @@
     "@size-limit/webpack-why": "workspace:^7.0.8",
     "clean-publish": "^4.0.0",
     "cross-spawn": "^7.0.3",
-    "dual-publish": "^3.0.0",
-    "eslint": "^8.8.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
+    "dual-publish": "^3.0.1",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.0.0",
-    "jest": "^27.4.7",
+    "jest": "^27.5.1",
     "print-snapshots": "^0.4.2",
-    "redux": "^4.1.2"
+    "redux": "^4.2.0"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config",
     "rules": {
-      "node/no-unsupported-features/es-syntax": "off",
       "security/detect-non-literal-require": "off",
       "security/detect-non-literal-regexp": "off",
-      "node/global-require": "off",
+      "n/global-require": "off",
       "no-console": "off"
     },
     "overrides": [
       {
         "files": "*.test.js",
         "rules": {
-          "node/no-extraneous-require": "off"
+          "n/no-extraneous-require": "off"
         },
         "globals": {
           "describe": "readonly",
@@ -58,7 +57,7 @@
       {
         "files": "packages/*/test/**/*.js",
         "rules": {
-          "node/no-unpublished-require": "off"
+          "n/no-unpublished-require": "off"
         }
       },
       {
