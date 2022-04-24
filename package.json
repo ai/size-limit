@@ -33,8 +33,6 @@
   "eslintConfig": {
     "extends": "@logux/eslint-config",
     "rules": {
-      "security/detect-non-literal-require": "off",
-      "security/detect-non-literal-regexp": "off",
       "n/global-require": "off",
       "no-console": "off"
     },
@@ -52,12 +50,6 @@
           "beforeEach": "readonly",
           "afterEach": "readonly",
           "jest": "readonly"
-        }
-      },
-      {
-        "files": "packages/*/test/**/*.js",
-        "rules": {
-          "n/no-unpublished-require": "off"
         }
       },
       {
