@@ -281,6 +281,11 @@ describe(`run`, () => {
           name: 'index.js',
           passed: true,
           size: 1
+        },
+        {
+          name: 'all',
+          passed: true,
+          size: 39
         }
       ])
     })
