@@ -4,7 +4,7 @@ let rm = require('size-limit/rm')
 let getRunningTime = require('../get-running-time')
 let { saveCache, getCache } = require('../cache')
 
-const EXAMPLE = require.resolve('nanoid/index.browser.js')
+const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')
 
 jest.setTimeout(15000)
 
