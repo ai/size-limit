@@ -69,7 +69,7 @@ jobs:
         with:
           node-version: 12
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
       - name: Run unit tests
         run: ./node_modules/.bin/jest --forceExit
         env:
