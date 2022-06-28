@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 importers:
 
@@ -27,7 +27,7 @@ importers:
       print-snapshots: ^0.4.2
       redux: ^4.2.0
     devDependencies:
-      '@logux/eslint-config': 47.2.0_6c64d8a29505f396e85a7a09189cde65
+      '@logux/eslint-config': 47.2.0_nrsnriuvaxzzn2c2pierrhg6mu
       '@size-limit/dual-publish': link:packages/dual-publish
       '@size-limit/esbuild': link:packages/esbuild
       '@size-limit/file': link:packages/file
@@ -41,7 +41,7 @@ importers:
       cross-spawn: 7.0.3
       dual-publish: 3.0.1
       eslint: 8.14.0
-      eslint-config-standard: 17.0.0_288458a4b7d86b306f0e96ba7939a3dc
+      eslint-config-standard: 17.0.0_fccfrjfx3bvta3yos25hsond3q
       eslint-plugin-import: 2.26.0_eslint@8.14.0
       eslint-plugin-n: 15.1.0_eslint@8.14.0
       eslint-plugin-prefer-let: 3.0.1
@@ -797,7 +797,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.11
     dev: true
 
-  /@logux/eslint-config/47.2.0_6c64d8a29505f396e85a7a09189cde65:
+  /@logux/eslint-config/47.2.0_nrsnriuvaxzzn2c2pierrhg6mu:
     resolution: {integrity: sha512-nNPPkw+kfA2bLyhkxaqGzd3MWSN4S2dUf69xo2syskBd5ZfFk2WT9ssO+yDDUd26yNgN3AmweKztEwyUim9wOQ==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -809,7 +809,7 @@ packages:
       eslint-plugin-promise: ^6.0.0
     dependencies:
       eslint: 8.14.0
-      eslint-config-standard: 17.0.0_288458a4b7d86b306f0e96ba7939a3dc
+      eslint-config-standard: 17.0.0_fccfrjfx3bvta3yos25hsond3q
       eslint-plugin-import: 2.26.0_eslint@8.14.0
       eslint-plugin-n: 15.1.0_eslint@8.14.0
       eslint-plugin-prefer-let: 3.0.1
@@ -2374,7 +2374,7 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-standard/17.0.0_288458a4b7d86b306f0e96ba7939a3dc:
+  /eslint-config-standard/17.0.0_fccfrjfx3bvta3yos25hsond3q:
     resolution: {integrity: sha512-/2ks1GKyqSOkH7JFvXJicu0iMpoojkwB+f5Du/1SC0PtBL+s8v30k9njRZ21pm2drKYm2342jFnGWzttxPmZVg==}
     peerDependencies:
       eslint: ^8.0.1

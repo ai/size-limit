@@ -27,6 +27,7 @@ function createJsonReporter(process) {
           let result = { name: i.name }
           if (typeof i.passed !== 'undefined') result.passed = i.passed
           if (typeof i.size !== 'undefined') result.size = i.size
+          if (typeof i.limit !== 'undefined') result.sizeLimit = i.sizeLimit
           if (typeof i.runTime !== 'undefined') result.running = i.runTime
           if (typeof i.loadTime !== 'undefined') result.loading = i.loadTime
           return result
