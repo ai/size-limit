@@ -448,9 +448,13 @@ jobs:
 
 ## Config
 
-### `plugins` and `presets`
+### Plugins and Presets
 
-`plugins` or `presets` will be loaded automatically from `package.json`. For example, if you want to use `@size-limit/webpack`, you can just use `npm install --save-dev @size-limit/webpack`, or you can use our preset `@size-limit/preset-big-lib`.
+Plugins or plugins’ presets will be loaded automatically from `package.json`.
+For example, if you want to use `@size-limit/webpack`, you can just use
+`npm install --save-dev @size-limit/webpack`, or you can use our preset
+`@size-limit/preset-big-lib`.
+
 
 ### Limits config
 
