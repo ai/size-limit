@@ -448,7 +448,13 @@ jobs:
 
 ## Config
 
-Size Limits supports three ways to define config.
+### `plugins` and `presets`
+
+`plugins` or `presets` will be loaded automatically from `package.json`. For example, if you want to use `@size-limit/webpack`, you can just use `npm install --save-dev @size-limit/webpack`, or you can use our preset `@size-limit/preset-big-lib`.
+
+### Limits config
+
+Size Limits supports three ways to define limits config.
 
 1. `size-limit` section in `package.json`:
 
