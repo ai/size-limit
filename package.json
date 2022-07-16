@@ -28,7 +28,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^28.1.2",
     "print-snapshots": "^0.4.2",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "size-limit-node-esbuild": "^0.1.0"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config",
