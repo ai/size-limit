@@ -98,10 +98,6 @@ async function checkJson(cwd, json) {
 }
 
 describe(`run`, () => {
-  beforeEach(() => {
-    jest.useFakeTimers('legacy')
-  })
-
   it('shows version', async () => {
     let out = await check('file', ['--version'])
     expect(out).toMatch(/^size-limit \d+.\d+.\d+\n$/m)
@@ -285,6 +281,11 @@ describe(`run`, () => {
           name: 'index.js',
           passed: true,
           size: 1
+        },
+        {
+          name: 'all',
+          passed: true,
+          size: 39
         }
       ])
     })

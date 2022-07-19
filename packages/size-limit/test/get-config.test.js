@@ -258,6 +258,13 @@ it('normalizes import', async () => {
         name: 'index.js',
         files: [fixture('integration-esm', 'index.js')],
         sizeLimit: 1
+      },
+      {
+        limit: '39 B',
+        highlightLess: true,
+        name: 'all',
+        files: [fixture('integration-esm', 'index.js')],
+        sizeLimit: 39
       }
     ]
   })

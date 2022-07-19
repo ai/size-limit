@@ -1,3 +1,5 @@
+let { join } = require('path')
+
 let getRunningTime = require('../get-running-time')
 
 jest.mock('estimo', () => () => {
@@ -20,7 +22,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-const EXAMPLE = require.resolve('nanoid/index.browser.js')
+const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')
 
 async function runWithError() {
   let err
