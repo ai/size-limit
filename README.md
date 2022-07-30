@@ -479,14 +479,20 @@ Plugin presets:
 
 [`dual-publish`]: https://github.com/ai/dual-publish
 
-#### Third party plugins
 
-Third party plugins and presets named start with `size-limit-` are also supported. For example:
+#### Third-Party Plugins
 
-* [`size-limit-node-esbuild`](https://github.com/un-ts/size-limit/tree/main/packages/node-esbuild) is like `@size-limit/esbuild` but for Node libraries.
-* [`size-limit-preset-node-lib`](https://github.com/un-ts/size-limit/tree/main/packages/preset-node-lib) is like `@size-limit/preset-small-lib` but for Node libraries which contains above `node-esbuild` and core `file` plugins.
+Third-party plugins and presets named start with `size-limit-` are also supported.
+For example:
 
-### Limits config
+* [`size-limit-node-esbuild`](https://github.com/un-ts/size-limit/tree/main/packages/node-esbuild)
+  is like `@size-limit/esbuild` but for Node libraries.
+* [`size-limit-preset-node-lib`](https://github.com/un-ts/size-limit/tree/main/packages/preset-node-lib)
+  is like `@size-limit/preset-small-lib` but for Node libraries which contains
+  above `node-esbuild` and core `file` plugins.
+
+
+### Limits Config
 
 Size Limits supports three ways to define limits config.
 
