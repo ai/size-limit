@@ -284,6 +284,25 @@ if (NODE_VERSION >= 16) {
   })
 }
 
+if (NODE_VERSION >= 16) {
+  it('works in integration test with ESM', async () => {
+    await checkJson('integration-esm', [
+      {
+        name: 'index.js',
+        passed: true,
+        size: 1,
+        sizeLimit: 1
+      },
+      {
+        name: 'all',
+        passed: true,
+        size: 39,
+        sizeLimit: 39
+      }
+    ])
+  })
+}
+  
 it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
 })

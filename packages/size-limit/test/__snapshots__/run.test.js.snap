@@ -544,6 +544,7 @@ exports[`works in integration test with JSON 1`] = `
     \\"name\\": \\"index.js\\",
     \\"passed\\": true,
     \\"size\\": 141,
+    \\"sizeLimit\\": 200,
     \\"running\\": 1,
     \\"loading\\": 0.01
   }
