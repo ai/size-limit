@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`run find plugins in parent package.json 1`] = `
+exports[`find plugins in parent package.json 1`] = `
 "  
   Size limit: [32m[1m1 kB[22m[39m
   Size:       [32m[1m20 B[22m[39m [90mgzipped[39m
@@ -8,7 +8,7 @@ exports[`run find plugins in parent package.json 1`] = `
 "
 `;
 
-exports[`run returns zero for empty file with esbuild 1`] = `
+exports[`returns zero for empty file with esbuild 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
@@ -16,7 +16,7 @@ exports[`run returns zero for empty file with esbuild 1`] = `
 "
 `;
 
-exports[`run returns zero for empty file with esbuild and without gzip 1`] = `
+exports[`returns zero for empty file with esbuild and without gzip 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
@@ -24,7 +24,7 @@ exports[`run returns zero for empty file with esbuild and without gzip 1`] = `
 "
 `;
 
-exports[`run returns zero for empty file with webpack 1`] = `
+exports[`returns zero for empty file with webpack 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
@@ -32,7 +32,7 @@ exports[`run returns zero for empty file with webpack 1`] = `
 "
 `;
 
-exports[`run returns zero for empty file with webpack without gzip 1`] = `
+exports[`returns zero for empty file with webpack without gzip 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
@@ -40,7 +40,7 @@ exports[`run returns zero for empty file with webpack without gzip 1`] = `
 "
 `;
 
-exports[`run shows brotli text when brotli and gzip in config 1`] = `
+exports[`shows brotli text when brotli and gzip in config 1`] = `
 "  
   Size limit:   [32m[1m1 kB[22m[39m
   Size:         [32m[1m-19 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
@@ -51,7 +51,7 @@ exports[`run shows brotli text when brotli and gzip in config 1`] = `
 "
 `;
 
-exports[`run shows brotli text when only brotli in config 1`] = `
+exports[`shows brotli text when only brotli in config 1`] = `
 "  
   Size limit:   [32m[1m1 kB[22m[39m
   Size:         [32m[1m-19 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
@@ -62,7 +62,7 @@ exports[`run shows brotli text when only brotli in config 1`] = `
 "
 `;
 
-exports[`run shows debug 1`] = `
+exports[`shows debug 1`] = `
 "{
   \\"cwd\\": \\"/tmp/\\",
   \\"configPath\\": \\"package.json\\",
@@ -122,7 +122,7 @@ exports[`run shows debug 1`] = `
 "
 `;
 
-exports[`run shows debug on error 1`] = `
+exports[`shows debug on error 1`] = `
 "{
   \\"cwd\\": \\"/tmp/\\",
   \\"configPath\\": \\"package.json\\",
@@ -141,13 +141,13 @@ exports[`run shows debug on error 1`] = `
 "
 `;
 
-exports[`run shows error on missed package.json 1`] = `
+exports[`shows error on missed package.json 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33mpackage.json[31m.
         Create npm package and run Size Limit there.[39m
 "
 `;
 
-exports[`run shows error on time bigger than limit 1`] = `
+exports[`shows error on time bigger than limit 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
@@ -160,7 +160,7 @@ exports[`run shows error on time bigger than limit 1`] = `
 "
 `;
 
-exports[`run shows error on time bigger than limit. in silent mode 1`] = `
+exports[`shows error on time bigger than limit. in silent mode 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
@@ -173,19 +173,19 @@ exports[`run shows error on time bigger than limit. in silent mode 1`] = `
 "
 `;
 
-exports[`run shows error when file not found for simple case 1`] = `
+exports[`shows error when file not found for simple case 1`] = `
 "  
   [31mSize Limit can’t find files at folder/index.js[39m
 "
 `;
 
-exports[`run shows error when file not found for webpack 1`] = `
+exports[`shows error when file not found for webpack 1`] = `
 "  
   [31mSize Limit can’t find files at dist/*.js[39m
 "
 `;
 
-exports[`run shows error when using brotli without file 1`] = `
+exports[`shows error when using brotli without file 1`] = `
 "[31mInstall Size Limit preset depends on type of the project[39m
 
 For application, where you send JS bundle directly to users
@@ -202,7 +202,7 @@ Check out docs for more complicated cases
 "
 `;
 
-exports[`run shows help 1`] = `
+exports[`shows help 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
 Check the real performance cost of your front-end project to users
 
@@ -225,7 +225,7 @@ Check the real performance cost of your front-end project to users
 "
 `;
 
-exports[`run shows migration guide for npm users 1`] = `
+exports[`shows migration guide for npm users 1`] = `
 "[31mInstall Size Limit preset depends on type of the project[39m
 
 For application, where you send JS bundle directly to users
@@ -242,7 +242,7 @@ Check out docs for more complicated cases
 "
 `;
 
-exports[`run shows migration guide for npm users: config 1, dep 0 1`] = `
+exports[`shows migration guide for npm users: config 1, dep 0 1`] = `
 "[31mInstall Size Limit preset depends on type of the project[39m
 
 For application, where you send JS bundle directly to users
@@ -261,7 +261,7 @@ You need to add size-limit dependency: [33mnpm install --save-dev size-limit[3
 "
 `;
 
-exports[`run shows migration guide for pnpm users 1`] = `
+exports[`shows migration guide for pnpm users 1`] = `
 "[31mInstall Size Limit preset depends on type of the project[39m
 
 For application, where you send JS bundle directly to users
@@ -278,7 +278,7 @@ Check out docs for more complicated cases
 "
 `;
 
-exports[`run shows migration guide for yarn users 1`] = `
+exports[`shows migration guide for yarn users 1`] = `
 "[31mInstall Size Limit preset depends on type of the project[39m
 
 For application, where you send JS bundle directly to users
@@ -295,14 +295,14 @@ Check out docs for more complicated cases
 "
 `;
 
-exports[`run shows nothing in silent mode and success check 1`] = `
+exports[`shows nothing in silent mode and success check 1`] = `
 "  
 "
 `;
 
-exports[`run shows size-limit dependency warning 1`] = `""`;
+exports[`shows size-limit dependency warning 1`] = `""`;
 
-exports[`run shows webpack-related help 1`] = `
+exports[`shows webpack-related help 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
 Check the real performance cost of your front-end project to users
 
@@ -333,7 +333,7 @@ Check the real performance cost of your front-end project to users
 "
 `;
 
-exports[`run supports import and ignore for esbuild 1`] = `
+exports[`supports import and ignore for esbuild 1`] = `
 "  
   Size limit: [32m[1m41 B[22m[39m
   Size:       [32m[1m41 B[22m[39m [90mwith all dependencies and minified[39m
@@ -341,7 +341,7 @@ exports[`run supports import and ignore for esbuild 1`] = `
 "
 `;
 
-exports[`run supports import and ignore for esbuild and gzip 1`] = `
+exports[`supports import and ignore for esbuild and gzip 1`] = `
 "  
   Size limit: [32m[1m56 B[22m[39m
   Size:       [32m[1m56 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
@@ -349,7 +349,7 @@ exports[`run supports import and ignore for esbuild and gzip 1`] = `
 "
 `;
 
-exports[`run supports path without dot 1`] = `
+exports[`supports path without dot 1`] = `
 "  
   [42m[30mPackage size is 59 B less than limit[39m[49m
   Size limit: [32m[1m200 B[22m[39m
@@ -358,49 +358,49 @@ exports[`run supports path without dot 1`] = `
 "
 `;
 
-exports[`run throws on --clean-dir argument without --save-bundle 1`] = `
+exports[`throws on --clean-dir argument without --save-bundle 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--clean-dir[31m works only with [33m--save-bundle[31m argument[39m
 "
 `;
 
-exports[`run throws on --compare-with argument without --why 1`] = `
+exports[`throws on --compare-with argument without --why 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--compare-with[31m works only with [33m--why[31m argument[39m
 "
 `;
 
-exports[`run throws on --compare-with argument without value 1`] = `
+exports[`throws on --compare-with argument without value 1`] = `
 "[41m[30m ERROR [39m[49m [31mMissing parameter [33mFILE[31m for [33m--compare-with[31m argument[39m
 "
 `;
 
-exports[`run throws on --compare-with argument without webpack 1`] = `
+exports[`throws on --compare-with argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--compare-with[31m works only with [33m@size-limit/webpack[31m plugin and [33m@size-limit/webpack-why[31m plugin.
         You can add Bundle Analyzer to you own bundler.[39m
 "
 `;
 
-exports[`run throws on --save-bundle argument without DIR parameter 1`] = `
+exports[`throws on --save-bundle argument without DIR parameter 1`] = `
 "[41m[30m ERROR [39m[49m [31mMissing parameter [33mDIR[31m for [33m--save-bundle[31m argument[39m
 "
 `;
 
-exports[`run throws on --save-bundle argument without DIR parameter 2`] = `
+exports[`throws on --save-bundle argument without DIR parameter 2`] = `
 "[41m[30m ERROR [39m[49m [31mMissing parameter [33mDIR[31m for [33m--save-bundle[31m argument[39m
 "
 `;
 
-exports[`run throws on --save-bundle argument without webpack 1`] = `
+exports[`throws on --save-bundle argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--save-bundle[31m needs [33m@size-limit/webpack[31m or [33m@size-limit/esbuild[31m plugin[39m
 "
 `;
 
-exports[`run throws on --why argument without webpack 1`] = `
+exports[`throws on --why argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m plugin and [33m@size-limit/webpack-why[31m plugin.
         You can add Bundle Analyzer to you own bundler.[39m
 "
 `;
 
-exports[`run throws on empty config 1`] = `
+exports[`throws on empty config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must [33mnot be empty[31m[39m
 
   [32m\\"size-limit\\"[39m: [
@@ -412,12 +412,12 @@ exports[`run throws on empty config 1`] = `
 "
 `;
 
-exports[`run throws on gzip option without gzip plugin 1`] = `
+exports[`throws on gzip option without gzip plugin 1`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/file[31m plugin[39m
 "
 `;
 
-exports[`run throws on no config 1`] = `
+exports[`throws on no config 1`] = `
 "[41m[30m ERROR [39m[49m [31mCreate Size Limit config in [33mpackage.json[31m[39m
 
   [32m\\"size-limit\\"[39m: [
@@ -429,7 +429,7 @@ exports[`run throws on no config 1`] = `
 "
 `;
 
-exports[`run throws on non-array config 1`] = `
+exports[`throws on non-array config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must contain [33man array[31m[39m
 
   [32m\\"size-limit\\"[39m: [
@@ -441,7 +441,7 @@ exports[`run throws on non-array config 1`] = `
 "
 `;
 
-exports[`run throws on non-object check 1`] = `
+exports[`throws on non-object check 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config array should contain [33monly objects[31m[39m
 
   [32m\\"size-limit\\"[39m: [
@@ -453,12 +453,12 @@ exports[`run throws on non-object check 1`] = `
 "
 `;
 
-exports[`run throws on non-string entry 1`] = `
+exports[`throws on non-string entry 1`] = `
 "[41m[30m ERROR [39m[49m [31mThe [33mentry[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
 "
 `;
 
-exports[`run throws on non-string path 1`] = `
+exports[`throws on non-string path 1`] = `
 "[41m[30m ERROR [39m[49m [31mThe [33mpath[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
 
   [32m\\"size-limit\\"[39m: [
@@ -470,44 +470,44 @@ exports[`run throws on non-string path 1`] = `
 "
 `;
 
-exports[`run throws on running option without time plugin 1`] = `
+exports[`throws on running option without time plugin 1`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mrunning[31m needs [33m@size-limit/time[31m plugin[39m
 "
 `;
 
-exports[`run throws on time limit without time plugin 1`] = `
+exports[`throws on time limit without time plugin 1`] = `
 "[41m[30m ERROR [39m[49m [31mAdd [33m@size-limit/time[31m plugin to use time limit[39m
 "
 `;
 
-exports[`run throws on unknown argument 1`] = `
+exports[`throws on unknown argument 1`] = `
 "[41m[30m ERROR [39m[49m [31mUnknown argument [33m--unknown[31m.
         Check command for typo and read docs.[39m
 "
 `;
 
-exports[`run throws on unknown option 1`] = `
+exports[`throws on unknown option 1`] = `
 "[41m[30m ERROR [39m[49m [31mUnknown option [33munknown[31m in config.
         Check Size Limit docs and version.[39m
 "
 `;
 
-exports[`run throws on webpack option without webpack plugin 1`] = `
+exports[`throws on webpack option without webpack plugin 1`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mwebpack[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
-exports[`run throws on webpack option without webpack plugin 2`] = `
+exports[`throws on webpack option without webpack plugin 2`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mignore[31m needs [33m@size-limit/webpack[31m or [33m@size-limit/esbuild[31m plugin[39m
 "
 `;
 
-exports[`run throws on webpack option without webpack plugin 3`] = `
+exports[`throws on webpack option without webpack plugin 3`] = `
 "[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[31m needs [33m@size-limit/webpack[31m plugin[39m
 "
 `;
 
-exports[`run uses dependencies to detect plugins 1`] = `
+exports[`uses dependencies to detect plugins 1`] = `
 "[33msize-limit [OPTION]… [FILE]…[39m
 Check the real performance cost of your front-end project to users
 
@@ -538,7 +538,7 @@ Check the real performance cost of your front-end project to users
 "
 `;
 
-exports[`run works in integration test in watch 1`] = `
+exports[`works in integration test in watch 1`] = `
 "  
   [42m[30mPackage size is 59 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
@@ -550,7 +550,7 @@ exports[`run works in integration test in watch 1`] = `
 "
 `;
 
-exports[`run works in integration test with JSON 1`] = `
+exports[`works in integration test with JSON 1`] = `
 "[
   {
     \\"name\\": \\"index.js\\",
@@ -563,7 +563,7 @@ exports[`run works in integration test with JSON 1`] = `
 "
 `;
 
-exports[`run works in integration test with size 1`] = `
+exports[`works in integration test with size 1`] = `
 "  
   [42m[30mPackage size is 59 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
@@ -575,7 +575,7 @@ exports[`run works in integration test with size 1`] = `
 "
 `;
 
-exports[`run works in integration test with time 1`] = `
+exports[`works in integration test with time 1`] = `
 "  
   Time limit:   [32m[1m2 s[22m[39m
   Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
