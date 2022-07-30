@@ -273,12 +273,14 @@ if (NODE_VERSION >= 16) {
       {
         name: 'index.js',
         passed: true,
-        size: 1
+        size: 1,
+        sizeLimit: 1
       },
       {
         name: 'all',
         passed: true,
-        size: 39
+        size: 39,
+        sizeLimit: 39
       }
     ])
   })
@@ -302,7 +304,7 @@ if (NODE_VERSION >= 16) {
     ])
   })
 }
-  
+
 it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
 })
