@@ -4,7 +4,7 @@
     "bump": "./scripts/bump",
     "release": "./scripts/each pnpx clean-publish",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
-    "test": "jest --coverage --forceExit && eslint . && sh scripts/max-listeners-check.sh"
+    "test": "jest --coverage && eslint . && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
     "@logux/eslint-config": "^47.2.0",
@@ -20,13 +20,13 @@
     "clean-publish": "^4.0.1",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^3.0.1",
-    "eslint": "^8.19.0",
+    "eslint": "^8.20.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.0.0",
-    "jest": "^28.1.2",
+    "jest": "^28.1.3",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.0",
     "size-limit-node-esbuild": "^0.1.0"

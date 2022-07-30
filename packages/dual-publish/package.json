@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "engines": {
-    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+    "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
     "dual-publish": "> 0.6.0",

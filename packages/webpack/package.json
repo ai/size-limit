@@ -14,19 +14,19 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "engines": {
-    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+    "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
     "size-limit": "7.0.8"
   },
   "dependencies": {
     "escape-string-regexp": "^4.0.0",
-    "nanoid": "^3.2.0",
-    "webpack": "^5.68.0"
+    "nanoid": "^3.3.4",
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:^7.0.8",
-    "redux": "^4.1.2",
+    "redux": "^4.2.0",
     "size-limit": "workspace:^7.0.8"
   }
 }
