@@ -4,7 +4,7 @@
     "bump": "./scripts/bump",
     "release": "./scripts/each pnpx clean-publish",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
-    "test": "jest --coverage --forceExit && eslint . && sh scripts/max-listeners-check.sh"
+    "test": "jest --coverage && eslint . && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
     "@logux/eslint-config": "^47.2.0",
