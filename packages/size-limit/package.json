@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "7.0.8",
+  "version": "8.0.0",
   "description": "CLI tool for Size Limit",
   "keywords": [
     "size-limit",
@@ -28,8 +28,8 @@
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "workspace:^7.0.8",
-    "@size-limit/file": "workspace:^7.0.8",
-    "@size-limit/webpack": "workspace:^7.0.8"
+    "@size-limit/esbuild": "workspace:^8.0.0",
+    "@size-limit/file": "workspace:^8.0.0",
+    "@size-limit/webpack": "workspace:^8.0.0"
   }
 }

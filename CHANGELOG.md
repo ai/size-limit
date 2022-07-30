@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0
+* Removed Node.js 12 support.
+* Added support for third-party plugins support (by @JounQin).
+* Added field with limit to JSON output (by Elliot Westlake).
+
 ## 7.0.8
 * Fixed peer dependencies.
 

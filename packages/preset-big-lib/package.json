@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-big-lib",
-  "version": "7.0.8",
+  "version": "8.0.0",
   "description": "Size Limit preset for big open source libraries",
   "keywords": [
     "size-limit",
@@ -13,11 +13,11 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "peerDependencies": {
-    "size-limit": "7.0.8"
+    "size-limit": "8.0.0"
   },
   "dependencies": {
-    "@size-limit/file": "workspace:7.0.8",
-    "@size-limit/time": "workspace:7.0.8",
-    "@size-limit/webpack": "workspace:7.0.8"
+    "@size-limit/file": "8.0.0",
+    "@size-limit/time": "8.0.0",
+    "@size-limit/webpack": "8.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/esbuild",
-  "version": "7.0.8",
+  "version": "8.0.0",
   "description": "esbuild plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,15 +17,15 @@
     "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
-    "size-limit": "7.0.8"
+    "size-limit": "8.0.0"
   },
   "dependencies": {
     "esbuild": "^0.14.51",
     "nanoid": "^3.3.4"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^7.0.8",
+    "@size-limit/file": "workspace:^8.0.0",
     "redux": "^4.2.0",
-    "size-limit": "workspace:^7.0.8"
+    "size-limit": "workspace:^8.0.0"
   }
 }

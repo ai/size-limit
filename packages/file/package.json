@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/file",
-  "version": "7.0.8",
+  "version": "8.0.0",
   "description": "File size plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,12 +17,12 @@
     "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
-    "size-limit": "7.0.8"
+    "size-limit": "8.0.0"
   },
   "dependencies": {
     "semver": "7.3.7"
   },
   "devDependencies": {
-    "size-limit": "workspace:^7.0.8"
+    "size-limit": "workspace:^8.0.0"
   }
 }
