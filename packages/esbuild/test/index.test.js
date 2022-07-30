@@ -51,7 +51,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildOutfile: config.checks[0].esbuildOutfile,
         esbuildConfig: config.checks[0].esbuildConfig,
         bundles: [join(config.checks[0].esbuildOutfile, 'big.js')],
-        size: 1802
+        size: 1818
       }
     ]
   })
@@ -219,7 +219,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(1802)
+  ).toBe(1818)
 })
 
 it('supports specifying the import', async () => {
@@ -230,7 +230,7 @@ it('supports specifying the import', async () => {
         [fixture('module.js')]: '{ A }'
       }
     })
-  ).toBe(1)
+  ).toBe(9)
 
   expect(
     await getSize({
@@ -248,7 +248,7 @@ it('supports specifying the import', async () => {
         [fixture('module.js')]: '{ methodA }'
       }
     })
-  ).toBe(78)
+  ).toBe(86)
 })
 
 it('supports import with multiple files', async () => {
@@ -259,5 +259,5 @@ it('supports import with multiple files', async () => {
         [fixture('module2.js')]: '{ B }'
       }
     })
-  ).toBe(10)
+  ).toBe(18)
 })
