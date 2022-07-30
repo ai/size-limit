@@ -448,7 +448,47 @@ jobs:
 
 ## Config
 
-Size Limits supports three ways to define config.
+### Plugins and Presets
+
+Plugins or plugin presets will be loaded automatically from `package.json`.
+For example, if you want to use `@size-limit/webpack`, you can just use
+`npm install --save-dev @size-limit/webpack`, or you can use our preset
+`@size-limit/preset-big-lib`.
+
+Plugins:
+
+* `@size-limit/file` checks the size of files with Gzip, Brotli
+  or without compression.
+* `@size-limit/webpack` adds your library to empty webpack project
+  and prepares bundle file for `file` plugin.
+* `@size-limit/webpack-why` adds reports for `webpack` plugin
+  about your library is of this size to show the cost of all your
+  dependencies.
+* `@size-limit/webpack-css` adds css support for `webpack` plugin.
+* `@size-limit/esbuild` is like `webpack` plugin, but uses `esbuild`
+  to be faster and use less space in `node_modules`.
+* `@size-limit/time` uses headless Chrome to track time to execute JS.
+* `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
+  to check size after tree-shaking.
+
+Plugin presets:
+
+* `@size-limit/preset-app` contains `file` and `time` plugins.
+* `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
+* `@size-limit/preset-small-lib` contains `esbuild` and `file` plugins.
+
+[`dual-publish`]: https://github.com/ai/dual-publish
+
+#### Third party plugins
+
+Third party plugins and presets named start with `size-limit-` are also supported. For example:
+
+* [`size-limit-node-esbuild`](https://github.com/un-ts/size-limit/tree/main/packages/node-esbuild) is like `@size-limit/esbuild` but for Node libraries.
+* [`size-limit-preset-node-lib`](https://github.com/un-ts/size-limit/tree/main/packages/preset-node-lib) is like `@size-limit/preset-small-lib` but for Node libraries which contains above `node-esbuild` and core `file` plugins.
+
+### Limits config
+
+Size Limits supports three ways to define limits config.
 
 1. `size-limit` section in `package.json`:
 
@@ -522,33 +562,6 @@ inserts `style-loader` runtime (≈2 kB) into the bundle.
 
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
-
-
-## Plugins and Presets
-
-Plugins:
-
-* `@size-limit/file` checks the size of files with Gzip, Brotli
-  or without compression.
-* `@size-limit/webpack` adds your library to empty webpack project
-  and prepares bundle file for `file` plugin.
-* `@size-limit/webpack-why` adds reports for `webpack` plugin
-  about your library is of this size to show the cost of all your
-  dependencies.
-* `@size-limit/webpack-css` adds css support for `webpack` plugin.
-* `@size-limit/esbuild` is like `webpack` plugin, but uses `esbuild`
-  to be faster and use less space in `node_modules`.
-* `@size-limit/time` uses headless Chrome to track time to execute JS.
-* `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
-  to check size after tree-shaking.
-
-Plugin presets:
-
-* `@size-limit/preset-app` contains `file` and `time` plugins.
-* `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
-* `@size-limit/preset-small-lib` contains `esbuild` and `file` plugins.
-
-[`dual-publish`]: https://github.com/ai/dual-publish
 
 
 ## JS API

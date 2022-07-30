@@ -14,17 +14,17 @@
   "repository": "ai/size-limit",
   "preferUnplugged": true,
   "engines": {
-    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+    "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
     "size-limit": "7.0.8"
   },
   "dependencies": {
-    "estimo": "^2.3.3",
+    "estimo": "^2.3.6",
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "nanoid": "^3.2.0",
+    "nanoid": "^3.3.4",
     "size-limit": "workspace:^7.0.8"
   }
 }

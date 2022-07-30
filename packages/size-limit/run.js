@@ -82,6 +82,7 @@ module.exports = async process => {
 
     await calcAndShow()
 
+    /* istanbul ignore if */
     if (hasArg('--watch')) {
       let watcher = chokidar.watch(['**/*'], {
         ignored: '**/node_modules/**'

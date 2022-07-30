@@ -15,16 +15,16 @@
   "repository": "ai/size-limit",
   "bin": "bin.js",
   "engines": {
-    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+    "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "dependencies": {
     "bytes-iec": "^3.1.1",
     "chokidar": "^3.5.3",
     "ci-job-number": "^1.2.2",
     "globby": "^11.1.0",
-    "lilconfig": "^2.0.4",
+    "lilconfig": "^2.0.6",
     "mkdirp": "^1.0.4",
-    "nanospinner": "^1.0.0",
+    "nanospinner": "^1.1.0",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
