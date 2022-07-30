@@ -52,6 +52,7 @@ module.exports = function parseArgs(plugins, argv) {
       }
       args.compareWith = nextArg
     } else if (arg === '--watch') {
+      /* istanbul ignore next */
       args.watch = true
     } else if (arg === '--highlight-less') {
       args.highlightLess = true

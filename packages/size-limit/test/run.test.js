@@ -249,10 +249,6 @@ it('works in integration test with JSON', async () => {
   expect(await check('integration', ['--json'])).toMatchSnapshot()
 })
 
-it('works in integration test in watch', async () => {
-  expect(await check('integration', ['--watch'])).toMatchSnapshot()
-})
-
 it('shows brotli text when only brotli in config', async () => {
   Object.defineProperty(process, 'version', {
     value: 'v11.7.0'
