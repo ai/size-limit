@@ -912,8 +912,8 @@ packages:
     peerDependencies:
       size-limit: 7.0.8
     dependencies:
-      esbuild: 0.14.18
-      nanoid: 3.2.0
+      esbuild: 0.14.51
+      nanoid: 3.3.4
     dev: true
 
   /@statoscope/extensions/5.14.1:
@@ -2110,7 +2110,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: false
     optional: true
 
   /esbuild-android-arm64/0.14.51:
@@ -2207,7 +2206,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /esbuild-linux-s390x/0.14.51:
@@ -2292,7 +2290,6 @@ packages:
       esbuild-windows-32: 0.14.51
       esbuild-windows-64: 0.14.51
       esbuild-windows-arm64: 0.14.51
-    dev: false
 
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -4685,7 +4682,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
       '@size-limit/esbuild': 7.0.8
-      nanoid: 3.2.0
+      nanoid: 3.3.4
       tslib: 2.4.0
     transitivePeerDependencies:
       - size-limit
