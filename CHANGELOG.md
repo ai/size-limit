@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.1
+* Fixed `config` and `modifyEsbuildConfig` options (by Angelo Ashmore).
+* Updated `esbuild`.
+
 ## 8.0
 * Removed Node.js 12 support.
 * Added support for third-party plugins support (by @JounQin).
