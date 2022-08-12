@@ -503,7 +503,7 @@ exports[`throws on webpack option without webpack plugin 2`] = `
 `;
 
 exports[`throws on webpack option without webpack plugin 3`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[31m needs [33m@size-limit/webpack[31m plugin[39m
+"[41m[30m ERROR [39m[49m [31mConfig option [33mconfig[31m needs [33m@size-limit/webpack[31m or [33m@size-limit/esbuild[31m plugin[39m
 "
 `;
 
