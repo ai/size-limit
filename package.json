@@ -20,7 +20,7 @@
     "clean-publish": "^4.0.1",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^3.0.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.4",
