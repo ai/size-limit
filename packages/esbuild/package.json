@@ -20,7 +20,7 @@
     "size-limit": "8.0.1"
   },
   "dependencies": {
-    "esbuild": "^0.15.1",
+    "esbuild": "^0.15.7",
     "nanoid": "^3.3.4"
   },
   "devDependencies": {
