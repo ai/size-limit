@@ -4,6 +4,8 @@ on:
     branches:
       - main
   pull_request:
+permissions:
+  contents: read
 jobs:
   full:
     name: Node.js Latest Full
@@ -24,8 +26,6 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Run tests
         run: pnpm test
-        env:
-          FORCE_COLOR: 2
   short:
     runs-on: ubuntu-latest
     strategy:
@@ -50,5 +50,3 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Run unit tests
         run: ./node_modules/.bin/jest --forceExit
-        env:
-          FORCE_COLOR: 2
