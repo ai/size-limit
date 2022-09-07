@@ -9,10 +9,16 @@ module.exports = async function processImport(check, output) {
 
   let loader = ''
   for (let i in check.import) {
+    let imports = `${check.import[i]}`
     let list = check.import[i].replace(/}|{/g, '').trim()
+
+    if (check.import[i] === '*') {
+      imports = `${check.import[i]} as all`
+      list = `all`
+    }
+
     loader +=
-      `import ${check.import[i]} from ${JSON.stringify(i)}\n` +
-      `console.log(${list})\n`
+      `import ${imports} from ${JSON.stringify(i)}\n` + `console.log(${list})\n`
   }
   await mkdirp(output)
   let entry = join(output, 'index.js')

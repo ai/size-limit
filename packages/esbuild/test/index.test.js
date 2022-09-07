@@ -261,3 +261,13 @@ it('supports import with multiple files', async () => {
     })
   ).toBe(18)
 })
+
+it('supports wildcard imports', async () => {
+  expect(
+    await getSize({
+      import: {
+        [fixture('module.js')]: '*'
+      }
+    })
+  ).toBe(191)
+})
