@@ -13,7 +13,7 @@
   "size-limit": [
     {
       "import": "{ test }",
-      "limit": "56 B"
+      "limit": "49 B"
     }
   ]
 }

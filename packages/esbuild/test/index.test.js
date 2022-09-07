@@ -65,7 +65,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(241)
+  expect(config.checks[0].size).toBe(233)
 })
 
 it('supports custom esbuild config', async () => {
