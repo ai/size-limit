@@ -239,7 +239,7 @@ JS libraries > 10 kB in size.
 This preset includes headless Chrome, and will measure your lib’s execution
 time. You likely don’t need this overhead for a small 2 kB lib, but for larger
 ones the execution time is a more accurate and understandable metric that
-the size in bytes. Library like [React] is a good example for this preset.
+the size in bytes. Libraries like [React] are good examples for this preset.
 
 <details><summary><b>Show instructions</b></summary>
 
