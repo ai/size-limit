@@ -84,5 +84,6 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none"
-  }
+  },
+  "packageManager": "pnpm@7.18.0"
 }
