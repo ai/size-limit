@@ -35,7 +35,10 @@ module.exports = function parseArgs(plugins, argv) {
     } else if (arg === '--hide-passed') {
       args.hidePassed = true
     } else if (arg === '--why') {
-      if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
+      if (
+        !(plugins.has('webpack') && plugins.has('webpack-why')) &&
+        !(plugins.has('esbuild') && plugins.has('esbuild-why'))
+      ) {
         throw new SizeLimitError('argWithoutWebpack', 'why')
       }
       args.why = true
