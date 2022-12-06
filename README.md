@@ -468,6 +468,9 @@ Plugins:
 * `@size-limit/webpack-css` adds css support for `webpack` plugin.
 * `@size-limit/esbuild` is like `webpack` plugin, but uses `esbuild`
   to be faster and use less space in `node_modules`.
+* `@size-limit/esbuild-why` add reports for `esbuild` plugin
+  about your library is of this size to show the cost of all your
+  dependencies.
 * `@size-limit/time` uses headless Chrome to track time to execute JS.
 * `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
   to check size after tree-shaking.

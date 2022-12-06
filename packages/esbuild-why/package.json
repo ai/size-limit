@@ -1,0 +1,32 @@
+{
+  "name": "@size-limit/esbuild-why",
+  "version": "8.1.0",
+  "description": "esbuild plugin for Size Limit",
+  "keywords": [
+    "size-limit",
+    "plugin",
+    "performance",
+    "budget",
+    "performance budget",
+    "esbuild"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "ai/size-limit",
+  "engines": {
+    "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
+  },
+  "peerDependencies": {
+    "size-limit": "8.1.0"
+  },
+  "dependencies": {
+    "esbuild-visualizer": "^0.3.1"
+  },
+  "devDependencies": {
+    "@size-limit/file": "workspace:^8.0.0",
+    "@size-limit/esbuild": "workspace:^8.0.0",
+    "redux": "^4.2.0",
+    "size-limit": "workspace:^8.0.0",
+    "esbuild": "^0.15.7"
+  }
+}
