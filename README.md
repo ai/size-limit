@@ -69,7 +69,6 @@ We are using [Statoscope] for this analysis.
 * [Logux](https://github.com/logux) reduced
   [90% of the size](https://github.com/logux/logux-client/commit/62b258e20e1818b23ae39b9c4cd49e2495781e91).
 
-
 ## How It Works
 
 1. Size Limit contains a CLI tool, 3 plugins (`file`, `webpack`, `time`)
@@ -89,7 +88,6 @@ We are using [Statoscope] for this analysis.
    be unstable. [See here](https://github.com/mbalabash/estimo/issues/5)
    for more details.
 
-
 ## Usage
 
 ### JS Applications
@@ -104,7 +102,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
 1. Install the preset:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/file
+    npm install --save-dev size-limit @size-limit/file
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -158,7 +156,6 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
 
 </details>
 
-
 ### JS Application and Time-based Limit
 
 File size limit (in kB) is not the best way to describe your JS application
@@ -174,7 +171,7 @@ to track the time a browser takes to compile and execute your JS.
 1. Install the preset:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-app
+    npm install --save-dev size-limit @size-limit/preset-app
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -231,7 +228,6 @@ to track the time a browser takes to compile and execute your JS.
 
 </details>
 
-
 ### Big Libraries
 
 JS libraries > 10 kB in size.
@@ -246,7 +242,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
 1. Install preset:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-big-lib
+    npm install --save-dev size-limit @size-limit/preset-big-lib
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -326,7 +322,6 @@ the size in bytes. Libraries like [React] are good examples for this preset.
 
 </details>
 
-
 ### Small Libraries
 
 JS libraries < 10 kB in size.
@@ -341,7 +336,7 @@ for this preset.
 1. First, install `size-limit`:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-small-lib
+    npm install --save-dev size-limit @size-limit/preset-small-lib
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -369,7 +364,7 @@ for this preset.
 4. If your project size starts to look bloated, run `--why` for analysis:
 
     ```sh
-    $ npm run size -- --why
+    npm run size -- --why
     ```
 
     > We use [Statoscope](https://github.com/statoscope/statoscope) as bundle analyzer.
@@ -418,7 +413,6 @@ for this preset.
 [Nano ID]: https://github.com/ai/nanoid/
 [React]: https://github.com/facebook/react/
 
-
 ## Reports
 
 Size Limit has a [GitHub action] that comments and rejects pull requests based
@@ -444,7 +438,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
-
 
 ## Config
 
@@ -479,10 +472,9 @@ Plugin presets:
 
 [`dual-publish`]: https://github.com/ai/dual-publish
 
-
 #### Third-Party Plugins
 
-Third-party plugins and presets named start with `size-limit-` are also supported.
+Third-party plugins and presets named starting with `size-limit-` are also supported.
 For example:
 
 * [`size-limit-node-esbuild`](https://github.com/un-ts/size-limit/tree/main/packages/node-esbuild)
@@ -490,7 +482,6 @@ For example:
 * [`size-limit-preset-node-lib`](https://github.com/un-ts/size-limit/tree/main/packages/preset-node-lib)
   is like `@size-limit/preset-small-lib` but for Node libraries which contains
   above `node-esbuild` and core `file` plugins.
-
 
 ### Limits Config
 
@@ -568,7 +559,6 @@ inserts `style-loader` runtime (≈2 kB) into the bundle.
 
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
-
 
 ## JS API
 
