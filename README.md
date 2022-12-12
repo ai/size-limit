@@ -369,7 +369,7 @@ for this preset.
 
     > We use [Statoscope](https://github.com/statoscope/statoscope) as bundle analyzer.
 
-6. Now, let’s set the limit. Determine the current size of your library,
+5. Now, let’s set the limit. Determine the current size of your library,
    add just a little bit (a kilobyte, maybe) and use that as the limit
    in your `package.json`:
 
@@ -382,7 +382,7 @@ for this preset.
      ],
     ```
 
-7. Add the `size` script to your test suite:
+6. Add the `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -392,9 +392,9 @@ for this preset.
       }
     ```
 
-8. If you don’t have a continuous integration service running, don’t forget
+7. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
-9. Add the library size to docs, it will help users to choose your project:
+8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
       # Project Name
