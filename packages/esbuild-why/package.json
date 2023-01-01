@@ -20,7 +20,7 @@
     "size-limit": "8.1.0"
   },
   "dependencies": {
-    "esbuild-visualizer": "^0.3.1"
+    "esbuild-visualizer": "^0.4.0"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:^8.0.0",

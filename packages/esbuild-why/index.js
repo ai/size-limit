@@ -1,4 +1,4 @@
-const { visualizer } = require('esbuild-visualizer/dist/plugin')
+const { visualizer } = require('esbuild-visualizer')
 const { join } = require('path')
 const { writeFileSync } = require('fs')
 
