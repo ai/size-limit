@@ -104,7 +104,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
 1. Install the preset:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/file
+    npm install --save-dev size-limit @size-limit/file
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -174,7 +174,7 @@ to track the time a browser takes to compile and execute your JS.
 1. Install the preset:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-app
+    npm install --save-dev size-limit @size-limit/preset-app
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -246,7 +246,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
 1. Install preset:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-big-lib
+    npm install --save-dev size-limit @size-limit/preset-big-lib
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -341,7 +341,7 @@ for this preset.
 1. First, install `size-limit`:
 
     ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-small-lib
+    npm install --save-dev size-limit @size-limit/preset-small-lib
     ```
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
@@ -369,12 +369,12 @@ for this preset.
 4. If your project size starts to look bloated, run `--why` for analysis:
 
     ```sh
-    $ npm run size -- --why
+    npm run size -- --why
     ```
 
     > We use [Statoscope](https://github.com/statoscope/statoscope) as bundle analyzer.
 
-6. Now, let’s set the limit. Determine the current size of your library,
+5. Now, let’s set the limit. Determine the current size of your library,
    add just a little bit (a kilobyte, maybe) and use that as the limit
    in your `package.json`:
 
@@ -387,7 +387,7 @@ for this preset.
      ],
     ```
 
-7. Add the `size` script to your test suite:
+6. Add the `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -397,9 +397,9 @@ for this preset.
       }
     ```
 
-8. If you don’t have a continuous integration service running, don’t forget
+7. If you don’t have a continuous integration service running, don’t forget
    to add one — start with [Travis CI].
-9. Add the library size to docs, it will help users to choose your project:
+8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
       # Project Name
@@ -412,6 +412,7 @@ for this preset.
     ```
 
 </details>
+
 
 [Travis CI]: https://github.com/dwyl/learn-travis
 [Storeon]: https://github.com/ai/storeon/
@@ -482,7 +483,7 @@ Plugin presets:
 
 #### Third-Party Plugins
 
-Third-party plugins and presets named start with `size-limit-` are also supported.
+Third-party plugins and presets named starting with `size-limit-` are also supported.
 For example:
 
 * [`size-limit-node-esbuild`](https://github.com/un-ts/size-limit/tree/main/packages/node-esbuild)
