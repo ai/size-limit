@@ -69,6 +69,7 @@ We are using [Statoscope] for this analysis.
 * [Logux](https://github.com/logux) reduced
   [90% of the size](https://github.com/logux/logux-client/commit/62b258e20e1818b23ae39b9c4cd49e2495781e91).
 
+
 ## How It Works
 
 1. Size Limit contains a CLI tool, 3 plugins (`file`, `webpack`, `time`)
@@ -87,6 +88,7 @@ We are using [Statoscope] for this analysis.
    Note that these measurements depend on available resources and might
    be unstable. [See here](https://github.com/mbalabash/estimo/issues/5)
    for more details.
+
 
 ## Usage
 
@@ -155,6 +157,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
    to add one — start with [Travis CI].
 
 </details>
+
 
 ### JS Application and Time-based Limit
 
@@ -227,6 +230,7 @@ to track the time a browser takes to compile and execute your JS.
    to add one — start with [Travis CI].
 
 </details>
+
 
 ### Big Libraries
 
@@ -322,6 +326,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
 
 </details>
 
+
 ### Small Libraries
 
 JS libraries < 10 kB in size.
@@ -408,10 +413,12 @@ for this preset.
 
 </details>
 
+
 [Travis CI]: https://github.com/dwyl/learn-travis
 [Storeon]: https://github.com/ai/storeon/
 [Nano ID]: https://github.com/ai/nanoid/
 [React]: https://github.com/facebook/react/
+
 
 ## Reports
 
@@ -438,6 +445,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
 
 ## Config
 
@@ -472,6 +480,7 @@ Plugin presets:
 
 [`dual-publish`]: https://github.com/ai/dual-publish
 
+
 #### Third-Party Plugins
 
 Third-party plugins and presets named starting with `size-limit-` are also supported.
@@ -482,6 +491,7 @@ For example:
 * [`size-limit-preset-node-lib`](https://github.com/un-ts/size-limit/tree/main/packages/preset-node-lib)
   is like `@size-limit/preset-small-lib` but for Node libraries which contains
   above `node-esbuild` and core `file` plugins.
+
 
 ### Limits Config
 
@@ -559,6 +569,7 @@ inserts `style-loader` runtime (≈2 kB) into the bundle.
 
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
+
 
 ## JS API
 
