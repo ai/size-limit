@@ -45,9 +45,9 @@ it('supports --why', async () => {
     await esbuild.step40(config, config.checks[0])
     await esbuildWhy.step81(config, config.checks[0])
 
-    // let reportFile = join(config.checks[0].esbuildOutfile, 'report.html')
-    // let reportHTML = await readFile(reportFile)
-    // expect(reportHTML.toString()).toContain('superProject')
+    let reportFile = join(config.checks[0].esbuildOutfile, 'report.html')
+    let reportHTML = await readFile(reportFile)
+    expect(reportHTML.toString()).toContain('EsBuild Visualizer')
   } finally {
     await esbuild.finally(config, config.checks[0])
   }
