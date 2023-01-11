@@ -51,7 +51,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildOutfile: config.checks[0].esbuildOutfile,
         esbuildConfig: config.checks[0].esbuildConfig,
         bundles: [join(config.checks[0].esbuildOutfile, 'big.js')],
-        size: 2115
+        size: 2113
       }
     ]
   })
@@ -219,7 +219,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(2115)
+  ).toBe(2113)
 })
 
 it('supports specifying the import', async () => {
