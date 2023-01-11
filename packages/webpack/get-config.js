@@ -1,5 +1,8 @@
 let processImport = require('size-limit/process-import')
-let escapeRegexp = require('escape-string-regexp')
+
+function escapeRegexp(string) {
+  return string.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d')
+}
 
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
