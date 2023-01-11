@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.1.1
+* Updated `esbuild`.
+
 ## 8.1
 * Added `"*"` value support to `import` (by @denkristoffer).
 

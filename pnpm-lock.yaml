@@ -84,17 +84,17 @@ importers:
 
   packages/preset-app:
     specifiers:
-      '@size-limit/file': workspace:8.1.0
-      '@size-limit/time': workspace:8.1.0
+      '@size-limit/file': 8.1.1
+      '@size-limit/time': 8.1.1
     dependencies:
       '@size-limit/file': link:../file
       '@size-limit/time': link:../time
 
   packages/preset-big-lib:
     specifiers:
-      '@size-limit/file': workspace:8.1.0
-      '@size-limit/time': workspace:8.1.0
-      '@size-limit/webpack': workspace:8.1.0
+      '@size-limit/file': 8.1.1
+      '@size-limit/time': 8.1.1
+      '@size-limit/webpack': 8.1.1
     dependencies:
       '@size-limit/file': link:../file
       '@size-limit/time': link:../time
@@ -102,8 +102,8 @@ importers:
 
   packages/preset-small-lib:
     specifiers:
-      '@size-limit/esbuild': workspace:8.1.0
-      '@size-limit/file': workspace:8.1.0
+      '@size-limit/esbuild': 8.1.1
+      '@size-limit/file': 8.1.1
     dependencies:
       '@size-limit/esbuild': link:../esbuild
       '@size-limit/file': link:../file
