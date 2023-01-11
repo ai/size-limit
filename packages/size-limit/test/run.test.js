@@ -121,7 +121,7 @@ it('shows error on missed package.json', async () => {
 it('shows syntax errors in package.json', async () => {
   let stderr = await error('package-syntax')
   expect(stderr).toContain('ERROR')
-  expect(stderr).toContain('SyntaxError: Unexpected end of JSON input')
+  expect(stderr).toContain('SyntaxError')
 })
 
 it('shows error in JSON format', async () => {
@@ -372,9 +372,9 @@ it('returns zero for empty file with esbuild and without gzip', async () => {
 if (NODE_VERSION >= 16) {
   it('allows to use peer dependencies in import', async () => {
     await checkJson('combine', [
-      { name: 'all', size: 1960 },
+      { name: 'all', size: 2253 },
       { name: 'a', size: 1 },
-      { name: 'redux', size: 1955 }
+      { name: 'redux', size: 2249 }
     ])
   })
 }

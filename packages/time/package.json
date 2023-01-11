@@ -25,6 +25,6 @@
   },
   "devDependencies": {
     "nanoid": "^3.3.4",
-    "size-limit": "workspace:^8.0.0"
+    "size-limit": "workspace:^8.1.0"
   }
 }

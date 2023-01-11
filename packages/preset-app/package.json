@@ -16,7 +16,7 @@
     "size-limit": "8.1.0"
   },
   "dependencies": {
-    "@size-limit/file": "8.1.0",
-    "@size-limit/time": "8.1.0"
+    "@size-limit/file": "workspace:8.1.0",
+    "@size-limit/time": "workspace:8.1.0"
   }
 }

@@ -23,6 +23,6 @@
     "size-limit": "8.1.0"
   },
   "devDependencies": {
-    "size-limit": "workspace:^8.0.0"
+    "size-limit": "workspace:^8.1.0"
   }
 }

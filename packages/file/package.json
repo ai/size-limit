@@ -20,9 +20,9 @@
     "size-limit": "8.1.0"
   },
   "dependencies": {
-    "semver": "7.3.7"
+    "semver": "7.3.8"
   },
   "devDependencies": {
-    "size-limit": "workspace:^8.0.0"
+    "size-limit": "workspace:^8.1.0"
   }
 }
