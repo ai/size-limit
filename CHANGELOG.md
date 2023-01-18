@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.1.2
+* Fixed silent mode (by Igor Suvorov).
+* Updated `esbuild`.
+* Reduced dependencies.
+
 ## 8.1.1
 * Updated `esbuild`.
 
