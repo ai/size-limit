@@ -20,12 +20,12 @@
     "size-limit": "8.1.1"
   },
   "dependencies": {
-    "esbuild": "^0.16.16",
+    "esbuild": "^0.17.2",
     "nanoid": "^3.3.4"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^8.1.0",
+    "@size-limit/file": "workspace:^8.1.1",
     "redux": "^4.2.0",
-    "size-limit": "workspace:^8.1.0"
+    "size-limit": "workspace:^8.1.1"
   }
 }

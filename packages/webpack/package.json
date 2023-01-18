@@ -24,8 +24,8 @@
     "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^8.1.0",
+    "@size-limit/file": "workspace:^8.1.1",
     "redux": "^4.2.0",
-    "size-limit": "workspace:^8.1.0"
+    "size-limit": "workspace:^8.1.1"
   }
 }
