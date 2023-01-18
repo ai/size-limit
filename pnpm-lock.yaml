@@ -118,7 +118,6 @@ importers:
       ci-job-number: ^1.2.2
       globby: ^11.1.0
       lilconfig: ^2.0.6
-      mkdirp: ^1.0.4
       nanospinner: ^1.1.0
       picocolors: ^1.0.0
     dependencies:
@@ -127,7 +126,6 @@ importers:
       ci-job-number: 1.2.2
       globby: 11.1.0
       lilconfig: 2.0.6
-      mkdirp: 1.0.4
       nanospinner: 1.1.0
       picocolors: 1.0.0
     devDependencies:
@@ -4187,12 +4185,6 @@ packages:
 
   /mkdirp-classic/0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
-    dev: false
-
-  /mkdirp/1.0.4:
-    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
-    engines: {node: '>=10'}
-    hasBin: true
     dev: false
 
   /ms/2.1.2:

@@ -1,6 +1,5 @@
-let { writeFile } = require('fs').promises
+let { writeFile, mkdir } = require('fs').promises
 let { join } = require('path')
-let mkdirp = require('mkdirp')
 
 module.exports = async function processImport(check, output) {
   if (!check.import) {
@@ -20,7 +19,7 @@ module.exports = async function processImport(check, output) {
     loader +=
       `import ${imports} from ${JSON.stringify(i)}\n` + `console.log(${list})\n`
   }
-  await mkdirp(output)
+  await mkdir(output, { recursive: true })
   let entry = join(output, 'index.js')
   await writeFile(entry, loader)
   check.files = entry
