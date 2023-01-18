@@ -74,7 +74,7 @@ module.exports = async process => {
     config = await getConfig(plugins, process, args, pkg)
 
     let calcAndShow = async () => {
-      let outputFunc = isJsonOutput ? null : createSpinner
+      let outputFunc = isJsonOutput || isSilentMode ? null : createSpinner
       await calc(plugins, config, outputFunc)
       debug.results(process, args, config)
       reporter.results(plugins, config)
