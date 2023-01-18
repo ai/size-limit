@@ -19,15 +19,6 @@ function run(args, env = {}) {
   })
 }
 
-it('runs only on first job in Travis CI', async () => {
-  let { out, code } = await run([], {
-    TRAVIS: '1',
-    TRAVIS_JOB_NUMBER: '1.2'
-  })
-  expect(out).toContain('first CI job')
-  expect(code).toBe(0)
-})
-
 it('passes process to runner', async () => {
   let { out, code } = await run(['--version'], {
     TRAVIS: '1',
