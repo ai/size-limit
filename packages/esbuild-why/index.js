@@ -7,13 +7,9 @@ const self = {
 
   async step81(config, check) {
     if (config.why && check.esbuildMetafile) {
-      if (!config.saveBundle) {
-        console.warn('`--why` option requires `--save-bundle` option')
-      } else {
-        const result = await visualizer(check.esbuildMetafile)
-        const file = join(config.saveBundle, 'report.html')
-        writeFileSync(file, result)
-      }
+      const result = await visualizer(check.esbuildMetafile)
+      const file = join(config.saveBundle ?? '', 'report.html')
+      writeFileSync(file, result)
     }
   }
 
