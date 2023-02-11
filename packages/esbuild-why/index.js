@@ -7,8 +7,8 @@ const self = {
 
   async step81(config, check) {
     if (config.why && check.esbuildMetafile) {
-      const result = await visualizer(check.esbuildMetafile)
-      const file = join(config.saveBundle ?? '', 'report.html')
+      let result = await visualizer(check.esbuildMetafile)
+      let file = join(config.saveBundle ?? '', 'report.html')
       writeFileSync(file, result)
     }
   }

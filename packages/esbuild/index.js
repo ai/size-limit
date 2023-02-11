@@ -88,7 +88,7 @@ let self = {
   wait40: 'Adding to empty esbuild project',
   async step40(config, check) {
     if (check.esbuildConfig && check.esbuild !== false) {
-      const result = await runEsbuild(check)
+      let result = await runEsbuild(check)
       check.esbuildMetafile = result.metafile
       check.bundles = getFiles(result, check)
     }
