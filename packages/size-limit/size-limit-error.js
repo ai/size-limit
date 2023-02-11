@@ -7,12 +7,10 @@ const MESSAGES = {
   argWithoutPlugins: (arg, mod1, mod2) =>
     `Argument *--${arg}* needs *@size-limit/${mod1}* ` +
     `or *@size-limit/${mod2}* plugin`,
-  argWithoutWebpack: arg =>
-    `Argument *--${arg}* works only with *@size-limit/webpack* plugin` +
-    (arg === 'why' || arg === 'compare-with'
-      ? ' and *@size-limit/webpack-why* plugin. You can add Bundle ' +
-        'Analyzer to you own bundler.'
-      : ''),
+  argWithoutAnalyzer: (arg, bundler, analyzer = `${bundler}-${arg}`) =>
+    `Argument *--${arg}* works only with *@size-limit/${bundler}* plugin` +
+    ` and *@size-limit/${analyzer}* plugin. You can add Bundle ` +
+    `Analyzer to you own bundler.`,
   argWithoutAnotherArg: (arg, anotherArg) =>
     `Argument *--${arg}* works only with *--${anotherArg}* argument`,
   argWithoutParameter: (arg, parameter) =>

@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/esbuild-why",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "description": "esbuild plugin for Size Limit",
   "keywords": [
     "size-limit",

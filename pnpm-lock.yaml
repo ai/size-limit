@@ -7,6 +7,7 @@ importers:
       '@logux/eslint-config': ^48.0.0
       '@size-limit/dual-publish': workspace:^8.1.1
       '@size-limit/esbuild': workspace:^8.1.1
+      '@size-limit/esbuild-why': workspace:^8.1.1
       '@size-limit/file': workspace:^8.1.1
       '@size-limit/preset-app': workspace:^8.1.1
       '@size-limit/preset-big-lib': workspace:^8.1.1
@@ -31,6 +32,7 @@ importers:
       '@logux/eslint-config': 48.0.0_ukh2j42gfmynpsgehd3ktpsvhq
       '@size-limit/dual-publish': link:packages/dual-publish
       '@size-limit/esbuild': link:packages/esbuild
+      '@size-limit/esbuild-why': link:packages/esbuild-why
       '@size-limit/file': link:packages/file
       '@size-limit/preset-app': link:packages/preset-app
       '@size-limit/preset-big-lib': link:packages/preset-big-lib
