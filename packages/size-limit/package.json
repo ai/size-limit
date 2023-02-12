@@ -26,8 +26,8 @@
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "workspace:^8.1.1",
-    "@size-limit/file": "workspace:^8.1.1",
-    "@size-limit/webpack": "workspace:^8.1.1"
+    "@size-limit/esbuild": "workspace:^8.1.2",
+    "@size-limit/file": "workspace:^8.1.2",
+    "@size-limit/webpack": "workspace:^8.1.2"
   }
 }
