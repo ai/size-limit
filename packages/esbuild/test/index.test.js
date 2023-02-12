@@ -48,6 +48,7 @@ it('uses esbuild to make bundle', async () => {
     checks: [
       {
         files: [fixture('big.js')],
+        esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
         esbuildConfig: config.checks[0].esbuildConfig,
         bundles: [join(config.checks[0].esbuildOutfile, 'big.js')],

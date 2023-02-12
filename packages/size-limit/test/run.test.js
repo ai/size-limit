@@ -183,6 +183,10 @@ it('throws on --why argument without webpack', async () => {
   expect(await error('file', ['--why'])).toMatchSnapshot()
 })
 
+it('throws on --why argument with esbuild but without esbuild-why', async () => {
+  expect(await error('esbuild-why-missing', ['--why'])).toMatchSnapshot()
+})
+
 it('throws on --compare-with argument without webpack', async () => {
   expect(await error('file', ['--compare-with'])).toMatchSnapshot()
 })

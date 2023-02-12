@@ -35,13 +35,20 @@ module.exports = function parseArgs(plugins, argv) {
     } else if (arg === '--hide-passed') {
       args.hidePassed = true
     } else if (arg === '--why') {
-      if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
-        throw new SizeLimitError('argWithoutWebpack', 'why')
+      if (plugins.has('esbuild')) {
+        if (!plugins.has('esbuild-why')) {
+          throw new SizeLimitError('argWithoutAnalyzer', 'why', 'esbuild')
+        }
+      }
+      // current code assume either esbuild or webpack must be present.
+      // this should be improved to work with any bundler.
+      else if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
+        throw new SizeLimitError('argWithoutAnalyzer', 'why', 'webpack')
       }
       args.why = true
     } else if (arg === '--compare-with') {
       if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
-        throw new SizeLimitError('argWithoutWebpack', 'compare-with')
+        throw new SizeLimitError('argWithoutAnalyzer', 'compare-with', 'webpack', 'webpack-why')
       }
       if (!args.why) {
         throw new SizeLimitError('argWithoutAnotherArg', 'compare-with', 'why')

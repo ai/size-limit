@@ -1,0 +1,14 @@
+{
+  "name": "esbuild-why-missing",
+  "private": true,
+  "devDependencies": {
+    "@size-limit/esbuild": ">= 0.0.0",
+    "@size-limit/file": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "path": "index.js"
+    }
+  ]
+}

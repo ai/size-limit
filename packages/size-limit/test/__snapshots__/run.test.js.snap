@@ -124,16 +124,16 @@ exports[`shows debug 1`] = `
 
 exports[`shows debug on error 1`] = `
 "{
-  \"cwd\": \"/tmp/\",
-  \"configPath\": \"package.json\",
-  \"checks\": [
+  "cwd": "/tmp/",
+  "configPath": "package.json",
+  "checks": [
     {
-      \"limit\": \"200 s\",
-      \"files\": [
-        \"/fixtures/internal-error/index.js\"
+      "limit": "200 s",
+      "files": [
+        "/fixtures/internal-error/index.js"
       ],
-      \"name\": \"index.js\",
-      \"timeLimit\": 200
+      "name": "index.js",
+      "timeLimit": 200
     }
   ]
 }
@@ -156,7 +156,7 @@ exports[`shows error on time bigger than limit 1`] = `
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
   
-  [33mTry to reduce size or increase limit in [1m\"size-limit\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m"size-limit"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -169,7 +169,7 @@ exports[`shows error on time bigger than limit. in silent mode 1`] = `
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
   
-  [33mTry to reduce size or increase limit in [1m\"size-limit\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m"size-limit"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -394,6 +394,12 @@ exports[`throws on --save-bundle argument without webpack 1`] = `
 "
 `;
 
+exports[`throws on --why argument with esbuild but without esbuild-why 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/esbuild[31m plugin and [33m@size-limit/esbuild-why[31m plugin.
+        You can add Bundle Analyzer to you own bundler.[39m
+"
+`;
+
 exports[`throws on --why argument without webpack 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [33m--why[31m works only with [33m@size-limit/webpack[31m plugin and [33m@size-limit/webpack-why[31m plugin.
         You can add Bundle Analyzer to you own bundler.[39m
@@ -403,10 +409,10 @@ exports[`throws on --why argument without webpack 1`] = `
 exports[`throws on empty config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must [33mnot be empty[31m[39m
 
-  [32m\"size-limit\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\"path\"[39m: [33m\"dist/bundle.js\"[39m,
-      [32m\"limit\"[39m: [33m\"10 kB\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -420,10 +426,10 @@ exports[`throws on gzip option without gzip plugin 1`] = `
 exports[`throws on no config 1`] = `
 "[41m[30m ERROR [39m[49m [31mCreate Size Limit config in [33mpackage.json[31m[39m
 
-  [32m\"size-limit\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\"path\"[39m: [33m\"dist/bundle.js\"[39m,
-      [32m\"limit\"[39m: [33m\"10 kB\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -432,10 +438,10 @@ exports[`throws on no config 1`] = `
 exports[`throws on non-array config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must contain [33man array[31m[39m
 
-  [32m\"size-limit\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\"path\"[39m: [33m\"dist/bundle.js\"[39m,
-      [32m\"limit\"[39m: [33m\"10 kB\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -444,10 +450,10 @@ exports[`throws on non-array config 1`] = `
 exports[`throws on non-object check 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config array should contain [33monly objects[31m[39m
 
-  [32m\"size-limit\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\"path\"[39m: [33m\"dist/bundle.js\"[39m,
-      [32m\"limit\"[39m: [33m\"10 kB\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -461,10 +467,10 @@ exports[`throws on non-string entry 1`] = `
 exports[`throws on non-string path 1`] = `
 "[41m[30m ERROR [39m[49m [31mThe [33mpath[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
 
-  [32m\"size-limit\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\"path\"[39m: [33m\"dist/bundle.js\"[39m,
-      [32m\"limit\"[39m: [33m\"10 kB\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "

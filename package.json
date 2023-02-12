@@ -10,6 +10,7 @@
     "@logux/eslint-config": "^48.0.0",
     "@size-limit/dual-publish": "workspace:^8.1.1",
     "@size-limit/esbuild": "workspace:^8.1.1",
+    "@size-limit/esbuild-why": "workspace:^8.1.1",
     "@size-limit/file": "workspace:^8.1.1",
     "@size-limit/preset-app": "workspace:^8.1.1",
     "@size-limit/preset-big-lib": "workspace:^8.1.1",
