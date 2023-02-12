@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.2.3
+* Fixed npm release process.
+
 ## 8.2.2
 * Fixed npm release process.
 
