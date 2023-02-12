@@ -23,10 +23,10 @@
     "esbuild-visualizer": "^0.4.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "workspace:^8.2.2",
-    "@size-limit/file": "workspace:^8.2.2",
+    "@size-limit/esbuild": "workspace:^8.2.3",
+    "@size-limit/file": "workspace:^8.2.3",
     "esbuild": "^0.17.7",
     "redux": "^4.2.1",
-    "size-limit": "workspace:^8.2.2"
+    "size-limit": "workspace:^8.2.3"
   }
 }
