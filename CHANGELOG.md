@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.2.4
+* Fixed `@size-limit/esbuild-why` for multiple checks (by Homa Wong).
+
 ## 8.2.3
 * Fixed npm release process.
 
