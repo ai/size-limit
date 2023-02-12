@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack",
-  "version": "8.2.0",
+  "version": "4.2.1",
   "description": "Webpack plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,15 +17,15 @@
     "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
-    "size-limit": "8.2.0"
+    "size-limit": "4.2.1"
   },
   "dependencies": {
     "nanoid": "^3.3.4",
     "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^8.2.0",
+    "@size-limit/file": "workspace:^4.2.1",
     "redux": "^4.2.1",
-    "size-limit": "workspace:^8.2.0"
+    "size-limit": "workspace:^4.2.1"
   }
 }

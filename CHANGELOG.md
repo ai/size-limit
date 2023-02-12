@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.2.1
+* Fixed `size-limit-esbuild-why` package size.
+
 ## 8.2
 * Added `size-limit-esbuild-why` plugin (by Homa Wong).
 * Fixed peer dependency (by Sébastien Vanvelthem).

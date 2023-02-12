@@ -5,16 +5,16 @@ importers:
   .:
     specifiers:
       '@logux/eslint-config': ^48.0.0
-      '@size-limit/dual-publish': workspace:^8.2.0
-      '@size-limit/esbuild': workspace:^8.2.0
-      '@size-limit/esbuild-why': workspace:^8.2.0
-      '@size-limit/file': workspace:^8.2.0
-      '@size-limit/preset-app': workspace:^8.2.0
-      '@size-limit/preset-big-lib': workspace:^8.2.0
-      '@size-limit/preset-small-lib': workspace:^8.2.0
-      '@size-limit/time': workspace:^8.2.0
-      '@size-limit/webpack': workspace:^8.2.0
-      '@size-limit/webpack-why': workspace:^8.2.0
+      '@size-limit/dual-publish': workspace:^4.2.1
+      '@size-limit/esbuild': workspace:^4.2.1
+      '@size-limit/esbuild-why': workspace:^4.2.1
+      '@size-limit/file': workspace:^4.2.1
+      '@size-limit/preset-app': workspace:^4.2.1
+      '@size-limit/preset-big-lib': workspace:^4.2.1
+      '@size-limit/preset-small-lib': workspace:^4.2.1
+      '@size-limit/time': workspace:^4.2.1
+      '@size-limit/webpack': workspace:^4.2.1
+      '@size-limit/webpack-why': workspace:^4.2.1
       clean-publish: ^4.1.1
       cross-spawn: ^7.0.3
       dual-publish: ^3.0.1
@@ -56,17 +56,17 @@ importers:
 
   packages/dual-publish:
     specifiers:
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
     devDependencies:
       size-limit: link:../size-limit
 
   packages/esbuild:
     specifiers:
-      '@size-limit/file': workspace:^8.2.0
+      '@size-limit/file': workspace:^4.2.1
       esbuild: ^0.17.7
       nanoid: ^3.3.4
       redux: ^4.2.1
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
     dependencies:
       esbuild: 0.17.7
       nanoid: 3.3.4
@@ -77,12 +77,12 @@ importers:
 
   packages/esbuild-why:
     specifiers:
-      '@size-limit/esbuild': workspace:^8.2.0
-      '@size-limit/file': workspace:^8.2.0
+      '@size-limit/esbuild': workspace:^4.2.1
+      '@size-limit/file': workspace:^4.2.1
       esbuild: ^0.17.7
       esbuild-visualizer: ^0.4.0
       redux: ^4.2.1
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
     dependencies:
       esbuild-visualizer: 0.4.0
     devDependencies:
@@ -95,7 +95,7 @@ importers:
   packages/file:
     specifiers:
       semver: 7.3.8
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
     dependencies:
       semver: 7.3.8
     devDependencies:
@@ -103,17 +103,17 @@ importers:
 
   packages/preset-app:
     specifiers:
-      '@size-limit/file': workspace:8.2.0
-      '@size-limit/time': workspace:8.2.0
+      '@size-limit/file': workspace:4.2.1
+      '@size-limit/time': workspace:4.2.1
     dependencies:
       '@size-limit/file': link:../file
       '@size-limit/time': link:../time
 
   packages/preset-big-lib:
     specifiers:
-      '@size-limit/file': workspace:8.2.0
-      '@size-limit/time': workspace:8.2.0
-      '@size-limit/webpack': workspace:8.2.0
+      '@size-limit/file': workspace:4.2.1
+      '@size-limit/time': workspace:4.2.1
+      '@size-limit/webpack': workspace:4.2.1
     dependencies:
       '@size-limit/file': link:../file
       '@size-limit/time': link:../time
@@ -121,17 +121,17 @@ importers:
 
   packages/preset-small-lib:
     specifiers:
-      '@size-limit/esbuild': workspace:8.2.0
-      '@size-limit/file': workspace:8.2.0
+      '@size-limit/esbuild': workspace:4.2.1
+      '@size-limit/file': workspace:4.2.1
     dependencies:
       '@size-limit/esbuild': link:../esbuild
       '@size-limit/file': link:../file
 
   packages/size-limit:
     specifiers:
-      '@size-limit/esbuild': workspace:^8.2.0
-      '@size-limit/file': workspace:^8.2.0
-      '@size-limit/webpack': workspace:^8.2.0
+      '@size-limit/esbuild': workspace:^4.2.1
+      '@size-limit/file': workspace:^4.2.1
+      '@size-limit/webpack': workspace:^4.2.1
       bytes-iec: ^3.1.1
       chokidar: ^3.5.3
       globby: ^11.1.0
@@ -155,7 +155,7 @@ importers:
       estimo: ^2.3.6
       nanoid: ^3.3.4
       react: ^17.0.2
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
     dependencies:
       estimo: 2.3.6
       react: 17.0.2
@@ -165,10 +165,10 @@ importers:
 
   packages/webpack:
     specifiers:
-      '@size-limit/file': workspace:^8.2.0
+      '@size-limit/file': workspace:^4.2.1
       nanoid: ^3.3.4
       redux: ^4.2.1
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
       webpack: ^5.75.0
     dependencies:
       nanoid: 3.3.4
@@ -180,11 +180,11 @@ importers:
 
   packages/webpack-css:
     specifiers:
-      '@size-limit/file': workspace:^8.2.0
-      '@size-limit/webpack': workspace:^8.2.0
+      '@size-limit/file': workspace:^4.2.1
+      '@size-limit/webpack': workspace:^4.2.1
       css-loader: ^6.7.3
       css-minimizer-webpack-plugin: ^4.2.2
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
       style-loader: ^3.3.1
       webpack: ^5.75.0
     dependencies:
@@ -199,11 +199,11 @@ importers:
 
   packages/webpack-why:
     specifiers:
-      '@size-limit/file': workspace:^8.2.0
-      '@size-limit/webpack': workspace:^8.2.0
+      '@size-limit/file': workspace:^4.2.1
+      '@size-limit/webpack': workspace:^4.2.1
       '@statoscope/webpack-plugin': ^5.24.0
       redux: ^4.2.1
-      size-limit: workspace:^8.2.0
+      size-limit: workspace:^4.2.1
       webpack: ^5.75.0
     dependencies:
       '@statoscope/webpack-plugin': 5.24.0_webpack@5.75.0
@@ -1113,11 +1113,11 @@ packages:
       - supports-color
     dev: false
 
-  /@size-limit/esbuild/8.1.2:
-    resolution: {integrity: sha512-BQZg+8QDVz4qQK4Iok8bjrAmzUPDTQW5ht6IrqLfeinHZQOn05fkxbcQuGoja0r6xoQ9+bM7b4cnqgCl61dXEw==}
+  /@size-limit/esbuild/8.2.0:
+    resolution: {integrity: sha512-TA6bsRqLqofAMUdmP2sE/FEx+8y9JrOZdNYqN5gW6tfVlQhczORtKfQcFgmaDrHGNQQBNdNeTd9VIORBucJ9VA==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     peerDependencies:
-      size-limit: 8.1.2
+      size-limit: 8.2.0
     dependencies:
       esbuild: 0.17.7
       nanoid: 3.3.4
@@ -4799,7 +4799,7 @@ packages:
     resolution: {integrity: sha512-iiIfHBH/+ZxgsE7YVQDEejAUGZYEu4QIai/QNZloEGxA+cmow79O8uGdu4sK64V8kafryqR1grK7nl7xIGv6rw==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
-      '@size-limit/esbuild': 8.1.2
+      '@size-limit/esbuild': 8.2.0
       nanoid: 3.3.4
       tslib: 2.5.0
     transitivePeerDependencies:
