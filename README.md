@@ -573,6 +573,40 @@ inserts `style-loader` runtime (≈2 kB) into the bundle.
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/sindresorhus/globby#globbing-patterns
 
+## Analyze with `--why`
+
+You can run `size-limit --why` to analyze the bundle.
+
+You will need to install `@size-limit/esbuild-why` or `@size-limit/webpack-why`
+depends on which bundler you are using (default is `esbuild`).
+
+For `@size-limit/esbuild-why`,
+it will generate a `esbuild-why.html` at the current directory.
+
+If you also specify `--save-bundle <DIR>`,
+the report will be generated inside `<DIR>`.
+
+If you have multiple sections in your config,
+the files will be named `esbuild-why-{n}.html`,
+or you can give it a custom name:
+
+```jsonc
+[
+  {
+    "name": "cjs",
+    /* snap */
+  },
+  {
+    "name": "esm",
+    /* snap */
+  }
+]
+```
+
+This will produce `esbuild-why-cjs.html` and `esbuild-why-esm.html` respectively.
+
+For `@size-limit/webpack-why`,
+it will generate the report and open it in the browser automatically.
 
 ## JS API
 
