@@ -36,6 +36,7 @@
     "extends": "@logux/eslint-config",
     "rules": {
       "n/global-require": "off",
+      "no-control-regex": "off",
       "no-console": "off"
     },
     "overrides": [
