@@ -1,9 +1,9 @@
-const { readFile } = require('fs').promises
-const [esbuild] = require('@size-limit/esbuild')
-const { join } = require('path')
-const rm = require('size-limit/rm')
+let { readFile } = require('fs').promises
+let [esbuild] = require('@size-limit/esbuild')
+let { join } = require('path')
+let rm = require('size-limit/rm')
 
-const [esbuildWhy] = require('..')
+let [esbuildWhy] = require('..')
 
 const DIST = join(process.cwd(), 'out')
 

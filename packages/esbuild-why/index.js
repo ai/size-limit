@@ -1,8 +1,8 @@
-const { visualizer } = require('esbuild-visualizer')
-const { join } = require('path')
-const { writeFileSync } = require('fs')
+let { visualizer } = require('esbuild-visualizer')
+let { join } = require('path')
+let { writeFileSync } = require('fs')
 
-const self = {
+let self = {
   name: '@size-limit/esbuild-why',
 
   async step81(config, check) {
@@ -12,7 +12,6 @@ const self = {
       writeFileSync(file, result)
     }
   }
-
 }
 
 module.exports = [self]
