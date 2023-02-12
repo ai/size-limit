@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack-why",
-  "version": "4.2.1",
+  "version": "8.2.2",
   "description": "Webpack Statoscope plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -17,17 +17,17 @@
     "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
   },
   "peerDependencies": {
-    "size-limit": "4.2.1",
+    "size-limit": "8.2.2",
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
     "@statoscope/webpack-plugin": "^5.24.0"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^4.2.1",
-    "@size-limit/webpack": "workspace:^4.2.1",
+    "@size-limit/file": "workspace:^8.2.2",
+    "@size-limit/webpack": "workspace:^8.2.2",
     "redux": "^4.2.1",
-    "size-limit": "workspace:^4.2.1",
+    "size-limit": "workspace:^8.2.2",
     "webpack": "^5.75.0"
   }
 }
