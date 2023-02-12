@@ -83,10 +83,8 @@ importers:
       esbuild-visualizer: ^0.4.0
       redux: ^4.2.1
       size-limit: workspace:^8.2.3
-      valid-filename: ^3.1.0
     dependencies:
       esbuild-visualizer: 0.4.0
-      valid-filename: 3.1.0
     devDependencies:
       '@size-limit/esbuild': link:../esbuild
       '@size-limit/file': link:../file
@@ -2760,11 +2758,6 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
-  /filename-reserved-regex/2.0.0:
-    resolution: {integrity: sha512-lc1bnsSr4L4Bdif8Xb/qrtokGbq5zlsms/CYH8PP+WtCkGNF65DPiQY8vG3SakEdRn8Dlnm+gW/qWKKjS5sZzQ==}
-    engines: {node: '>=4'}
-    dev: false
-
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -5156,13 +5149,6 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.4
       convert-source-map: 1.9.0
     dev: true
-
-  /valid-filename/3.1.0:
-    resolution: {integrity: sha512-O99sdfhdGCiWoN4cv6Unq4eJ2EuXwRsOLCeSw+IJyMYgwVK0BPmaUnzhWQw5E8qknLTVrVExCr6xxTBnRBvtsQ==}
-    engines: {node: '>=6'}
-    dependencies:
-      filename-reserved-regex: 2.0.0
-    dev: false
 
   /walker/1.0.8:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}

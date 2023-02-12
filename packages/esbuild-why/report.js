@@ -1,4 +1,4 @@
-const isValidFilename = require('valid-filename')
+let { isValidFilename } = require('./valid-filename')
 
 module.exports = {
   getReportName(config, check) {

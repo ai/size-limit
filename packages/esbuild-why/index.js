@@ -1,10 +1,10 @@
-const { visualizer } = require('esbuild-visualizer')
-const { join } = require('path')
-const { writeFileSync } = require('fs')
+let { visualizer } = require('esbuild-visualizer')
+let { join } = require('path')
+let { writeFileSync } = require('fs')
 
-const { getReportName } = require('./report')
+let { getReportName } = require('./report')
 
-const self = {
+let self = {
   name: '@size-limit/esbuild-why',
 
   async step81(config, check) {

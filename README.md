@@ -577,7 +577,8 @@ inserts `style-loader` runtime (≈2 kB) into the bundle.
 
 You can run `size-limit --why` to analyze the bundle.
 
-You will need to install `@size-limit/esbuild-why` or `@size-limit/webpack-why` depends on which bundler you are using (default is `esbuild`).
+You will need to install `@size-limit/esbuild-why` or `@size-limit/webpack-why`
+depends on which bundler you are using (default is `esbuild`).
 
 For `@size-limit/esbuild-why`,
 it will generate a `esbuild-why.html` at the current directory.

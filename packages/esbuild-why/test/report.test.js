@@ -1,21 +1,21 @@
-const { getReportName } = require('../report')
+let { getReportName } = require('../report')
 
-const plain = {
+let plain = {
   name: 'plain'
 }
-const withPlus = {
+let withPlus = {
   name: 'with+'
 }
-const aDotB = {
+let aDotB = {
   name: 'a.b'
 }
-const withSlash = {
+let withSlash = {
   name: 'a/index.js'
 }
-const withBackSlash = {
+let withBackSlash = {
   name: 'b\\index.js'
 }
-const config = {
+let config = {
   checks: [plain, withPlus, aDotB, withSlash, withBackSlash]
 }
 
