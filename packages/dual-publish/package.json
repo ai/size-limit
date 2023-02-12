@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/dual-publish",
-  "version": "8.2.3",
+  "version": "8.2.4",
   "description": "dual-publish plugin for Size Limit",
   "keywords": [
     "size-limit",
@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "dual-publish": "> 0.6.0",
-    "size-limit": "8.2.3"
+    "size-limit": "8.2.4"
   },
   "devDependencies": {
     "size-limit": "workspace:^8.2.3"
