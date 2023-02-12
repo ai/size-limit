@@ -8,10 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Fixed npm release process.
 
 ## 8.2.1
-* Fixed `size-limit-esbuild-why` package size.
+* Fixed `@size-limit/esbuild-why` package size.
 
 ## 8.2
-* Added `size-limit-esbuild-why` plugin (by Homa Wong).
+* Added `@size-limit/esbuild-why` plugin (by Homa Wong).
 * Fixed peer dependency (by Sébastien Vanvelthem).
 
 ## 8.1.2
