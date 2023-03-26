@@ -23,6 +23,6 @@
     "semver": "7.3.8"
   },
   "devDependencies": {
-    "size-limit": "workspace:^8.2.3"
+    "size-limit": "workspace:^8.2.4"
   }
 }

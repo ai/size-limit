@@ -21,13 +21,13 @@
     "bytes-iec": "^3.1.1",
     "chokidar": "^3.5.3",
     "globby": "^11.1.0",
-    "lilconfig": "^2.0.6",
+    "lilconfig": "^2.1.0",
     "nanospinner": "^1.1.0",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "workspace:^8.2.3",
-    "@size-limit/file": "workspace:^8.2.3",
-    "@size-limit/webpack": "workspace:^8.2.3"
+    "@size-limit/esbuild": "workspace:^8.2.4",
+    "@size-limit/file": "workspace:^8.2.4",
+    "@size-limit/webpack": "workspace:^8.2.4"
   }
 }
