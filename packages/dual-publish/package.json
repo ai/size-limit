@@ -23,6 +23,9 @@
     "size-limit": "8.2.4"
   },
   "devDependencies": {
-    "size-limit": "workspace:^8.2.4"
+    "size-limit": "workspace:^"
+  },
+  "dependencies": {
+    "dual-publish": "^3.0.1"
   }
 }

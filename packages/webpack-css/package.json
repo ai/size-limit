@@ -21,13 +21,13 @@
   },
   "dependencies": {
     "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "^4.2.2",
+    "css-minimizer-webpack-plugin": "^5.0.0",
     "style-loader": "^3.3.2"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^8.2.4",
-    "@size-limit/webpack": "workspace:^8.2.4",
-    "size-limit": "workspace:^8.2.4",
-    "webpack": "^5.76.3"
+    "@size-limit/file": "workspace:^",
+    "@size-limit/webpack": "workspace:^",
+    "size-limit": "workspace:^",
+    "webpack": "^5.79.0"
   }
 }

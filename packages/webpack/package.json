@@ -21,11 +21,11 @@
   },
   "dependencies": {
     "nanoid": "^3.3.6",
-    "webpack": "^5.76.3"
+    "webpack": "^5.79.0"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:^8.2.4",
+    "@size-limit/file": "workspace:^",
     "redux": "^4.2.1",
-    "size-limit": "workspace:^8.2.4"
+    "size-limit": "workspace:^"
   }
 }
