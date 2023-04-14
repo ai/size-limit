@@ -50,7 +50,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Run unit tests
         run: ./node_modules/.bin/jest --forceExit
-  short:
+  old:
     runs-on: ubuntu-latest
     name: Node.js 14 Quick
     steps:
