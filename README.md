@@ -494,7 +494,8 @@ For example:
 * [`size-limit-preset-node-lib`](https://github.com/un-ts/size-limit/tree/main/packages/preset-node-lib)
   is like `@size-limit/preset-small-lib` but for Node libraries which contains
   above `node-esbuild` and core `file` plugins.
-* [`nx-size-limit`](https://github.com/LironHazan/nx-size-limit) is an [NX](https://nx.dev/community) build system community plugin.
+* [`nx-size-limit`](https://github.com/LironHazan/nx-size-limit)
+  is an [NX](https://nx.dev/community) build system community plugin.
 
 
 ### Limits Config
