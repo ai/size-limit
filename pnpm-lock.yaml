@@ -4876,7 +4876,7 @@ packages:
     dependencies:
       '@size-limit/esbuild': 8.2.4(size-limit@packages+size-limit)
       nanoid: 3.3.6
-      tslib: 2.5.0
+      tslib: 2.5.3
     transitivePeerDependencies:
       - size-limit
     dev: true
@@ -5150,8 +5150,8 @@ packages:
       strip-bom: 3.0.0
     dev: true
 
-  /tslib@2.5.0:
-    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+  /tslib@2.5.3:
+    resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: true
 
   /type-check@0.4.0:
