@@ -583,7 +583,7 @@ You will need to install `@size-limit/esbuild-why` or `@size-limit/webpack-why`
 depends on which bundler you are using (default is `esbuild`).
 
 For `@size-limit/esbuild-why`,
-it will generate a `esbuild-why.html` at the current directory.
+it will generate a `esbuild-why.html` at the current directory & open it in the browser.
 
 If you also specify `--save-bundle <DIR>`,
 the report will be generated inside `<DIR>`.
