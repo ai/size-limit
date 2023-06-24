@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.2.6
+* Fixed npm release process.
+
 ## 8.2.5
 * Fixed opening report in `@size-limit/esbuild-why` (by Yaroslav Chapelskyi).
 * Updated `esbuild`.
