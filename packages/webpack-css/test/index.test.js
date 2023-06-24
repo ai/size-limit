@@ -34,7 +34,7 @@ it('supports non-JS require', async () => {
   }
   await run(config)
   expect(config.checks[0].size).toBeGreaterThan(1450)
-  expect(config.checks[0].size).toBeLessThan(2300)
+  expect(config.checks[0].size).toBeLessThan(2400)
 })
 
 it('applies both `modifyWebpackConfig`', async () => {

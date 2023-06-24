@@ -376,9 +376,9 @@ it('returns zero for empty file with esbuild and without gzip', async () => {
 if (NODE_VERSION >= 16) {
   it('allows to use peer dependencies in import', async () => {
     await checkJson('combine', [
-      { name: 'all', size: 2251 },
+      { name: 'all', size: 2269 },
       { name: 'a', size: 1 },
-      { name: 'redux', size: 2248 }
+      { name: 'redux', size: 2267 }
     ])
   })
 }

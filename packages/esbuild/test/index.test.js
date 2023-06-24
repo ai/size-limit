@@ -52,7 +52,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
         files: [fixture('big.js')],
-        size: 2113
+        size: 2132
       }
     ]
   })
@@ -220,7 +220,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(2113)
+  ).toBe(2132)
 })
 
 it('supports specifying the import', async () => {
