@@ -111,6 +111,9 @@ importers:
       esbuild-visualizer:
         specifier: ^0.4.0
         version: 0.4.0
+      open:
+        specifier: ^8.4.2
+        version: 8.4.2
     devDependencies:
       '@size-limit/esbuild':
         specifier: workspace:^

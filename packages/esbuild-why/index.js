@@ -1,6 +1,7 @@
 let { visualizer } = require('esbuild-visualizer')
 let { join } = require('path')
 let { writeFileSync } = require('fs')
+let open = require('open')
 
 let { getReportName } = require('./report')
 
@@ -11,7 +12,15 @@ let self = {
     if (config.why && check.esbuildMetafile) {
       let result = await visualizer(check.esbuildMetafile)
       let file = join(config.saveBundle ?? '', getReportName(config, check))
+      check.esbuildVisualizerFile = file;
       writeFileSync(file, result)
+    }
+  },
+  async finally(config, check) {
+    let {esbuildVisualizerFile} = check
+
+    if (esbuildVisualizerFile) {
+      await open(esbuildVisualizerFile)
     }
   }
 }

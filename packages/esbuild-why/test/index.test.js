@@ -1,7 +1,10 @@
-let { readFile } = require('fs').promises
+let {readFile} = require('fs').promises
 let [esbuild] = require('@size-limit/esbuild')
-let { join } = require('path')
+let {join} = require('path')
 let rm = require('size-limit/rm')
+let open = require('open')
+
+jest.mock('open');
 
 let [esbuildWhy] = require('..')
 
@@ -22,7 +25,7 @@ it('supports --why', async () => {
     project: 'superProject',
     why: true,
     saveBundle: DIST,
-    checks: [{ files: [fixture('big.js')] }]
+    checks: [{files: [fixture('big.js')]}]
   }
   try {
     await esbuild.before(config)
@@ -36,4 +39,25 @@ it('supports --why', async () => {
   } finally {
     await esbuild.finally(config, config.checks[0])
   }
+})
+
+it('supports open esbuild visualizer on complete', async () => {
+  let config = {
+    project: 'superProject',
+    why: true,
+    saveBundle: DIST,
+    checks: [{files: [fixture('big.js')]}]
+  }
+  try {
+    await esbuild.before(config)
+    await esbuild.step20(config, config.checks[0])
+    await esbuild.step40(config, config.checks[0])
+    await esbuildWhy.step81(config, config.checks[0])
+  } finally {
+    await esbuild.finally(config, config.checks[0])
+    await esbuildWhy.finally(config, config.checks[0])
+  }
+
+  expect(open).toHaveBeenCalledTimes(1);
+  expect(open).toHaveBeenCalledWith(expect.stringMatching( /.*\/out\/esbuild-why.html$/));
 })
