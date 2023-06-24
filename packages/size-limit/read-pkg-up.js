@@ -1,4 +1,4 @@
-let { resolve, parse, dirname } = require('path')
+let { dirname, parse, resolve } = require('path')
 let { existsSync } = require('fs')
 let { readFile } = require('fs').promises
 

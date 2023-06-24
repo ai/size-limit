@@ -17,11 +17,11 @@ jest.mock('nanospinner', () => {
   return {
     createSpinner() {
       return {
+        error() {},
         start() {
           return this
         },
-        success() {},
-        error() {}
+        success() {}
       }
     }
   }
@@ -38,8 +38,8 @@ function fixture(...files) {
 function createProcess(cwd, args = []) {
   let history = {
     exitCode: 0,
-    stdout: '',
-    stderr: ''
+    stderr: '',
+    stdout: ''
   }
   let process = {
     argv: ['node', 'size-limit', ...args],
@@ -53,14 +53,14 @@ function createProcess(cwd, args = []) {
     exit(code) {
       history.exitCode = code
     },
-    stdout: {
-      write(str) {
-        history.stdout += str.split(ROOT).join('').replace(TMP_DIR, '')
-      }
-    },
     stderr: {
       write(str) {
         history.stderr += str.split(ROOT).join('').replace(TMP_DIR, '')
+      }
+    },
+    stdout: {
+      write(str) {
+        history.stdout += str.split(ROOT).join('').replace(TMP_DIR, '')
       }
     }
   }

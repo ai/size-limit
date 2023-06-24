@@ -1,6 +1,6 @@
 let estimo = require('estimo')
 
-let { saveCache, getCache } = require('./cache')
+let { getCache, saveCache } = require('./cache')
 
 const EXAMPLE = require.resolve('react/umd/react.production.min.js')
 const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410

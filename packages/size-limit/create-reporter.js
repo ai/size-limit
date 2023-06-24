@@ -1,12 +1,12 @@
 let {
   bgGreen,
-  yellow,
   bgRed,
   black,
-  green,
   bold,
   gray,
-  red
+  green,
+  red,
+  yellow
 } = require('picocolors')
 let { join } = require('path')
 let bytes = require('bytes-iec')

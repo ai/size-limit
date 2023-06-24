@@ -4,9 +4,6 @@ let { join } = require('path')
 let rm = require('size-limit/rm')
 
 let self = {
-  name: '@size-limit/dual-publish',
-
-  wait10: 'Compiling files to ESM',
   async all10(config) {
     let stderr = ''
     let cmd = spawn(
@@ -56,7 +53,10 @@ let self = {
 
   async finally(config) {
     await rm(join(config.cwd, 'dual-publish-tmp'))
-  }
+  },
+  name: '@size-limit/dual-publish',
+
+  wait10: 'Compiling files to ESM'
 }
 
 module.exports = [self]

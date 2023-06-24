@@ -7,27 +7,27 @@ function addStatoscope(limitConfig, check, webpackConfig) {
 
     webpackConfig.plugins.push(
       new StatoscopeWebpackPlugin({
+        additionalStats: [limitConfig.compareWith, check.compareWith].filter(
+          Boolean
+        ),
+        name: limitConfig.project,
+        open: shouldOpen ? 'file' : false,
+        reports: check.uiReports || [],
         saveReportTo: limitConfig.saveBundle
           ? join(limitConfig.saveBundle, 'report.html')
           : undefined,
         saveStatsTo: limitConfig.saveBundle
           ? join(limitConfig.saveBundle, 'stats.json')
           : undefined,
-        additionalStats: [limitConfig.compareWith, check.compareWith].filter(
-          Boolean
-        ),
-        open: shouldOpen ? 'file' : false,
-        name: limitConfig.project,
-        watchMode: limitConfig.watch,
-        reports: check.uiReports || []
+        watchMode: limitConfig.watch
       })
     )
   } else if (limitConfig.saveBundle) {
     webpackConfig.plugins.push(
       new StatoscopeWebpackPlugin({
+        open: false,
         saveReportTo: join(limitConfig.saveBundle, 'report.html'),
         saveStatsTo: join(limitConfig.saveBundle, 'stats.json'),
-        open: false,
         watchMode: limitConfig.watch
       })
     )
@@ -35,8 +35,6 @@ function addStatoscope(limitConfig, check, webpackConfig) {
 }
 
 let self = {
-  name: '@size-limit/webpack-why',
-
   async before(config, check) {
     let modifyConfig = check.modifyWebpackConfig
 
@@ -49,7 +47,9 @@ let self = {
 
       return webpackConfig
     }
-  }
+  },
+
+  name: '@size-limit/webpack-why'
 }
 
 module.exports = [self]

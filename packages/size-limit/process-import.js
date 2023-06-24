@@ -1,4 +1,4 @@
-let { writeFile, mkdir } = require('fs').promises
+let { mkdir, writeFile } = require('fs').promises
 let { join } = require('path')
 
 module.exports = async function processImport(check, output) {

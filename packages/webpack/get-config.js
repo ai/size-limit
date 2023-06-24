@@ -19,13 +19,6 @@ module.exports = async function getConfig(limitConfig, check, output) {
     entry: {
       index: check.files
     },
-    output: {
-      filename: limitConfig.why && `${limitConfig.project}.js`,
-      path: output
-    },
-    optimization: {
-      concatenateModules: !check.disableModuleConcatenation
-    },
     module: {
       rules: [
         {
@@ -33,6 +26,13 @@ module.exports = async function getConfig(limitConfig, check, output) {
           type: 'asset/resource'
         }
       ]
+    },
+    optimization: {
+      concatenateModules: !check.disableModuleConcatenation
+    },
+    output: {
+      filename: limitConfig.why && `${limitConfig.project}.js`,
+      path: output
     }
   }
 

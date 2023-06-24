@@ -48,7 +48,7 @@ it('calculates file size with brotli by true value and node >= v11.7.0', async (
     value: 'v11.7.0'
   })
   let config = {
-    checks: [{ files: [fixture('b.txt')], brotli: true }]
+    checks: [{ brotli: true, files: [fixture('b.txt')] }]
   }
   await file.step60(config, config.checks[0])
 
@@ -61,7 +61,7 @@ it('calculates file size with brotli by true value and node < v11.7.0', async ()
   })
 
   let config = {
-    checks: [{ files: [fixture('b.txt')], brotli: true }]
+    checks: [{ brotli: true, files: [fixture('b.txt')] }]
   }
 
   let err
@@ -76,7 +76,7 @@ it('calculates file size with brotli by true value and node < v11.7.0', async ()
 
 it('uses webpack bundle if available', async () => {
   let config = {
-    checks: [{ files: [fixture('b.txt')], bundles: [fixture('a.txt')] }]
+    checks: [{ bundles: [fixture('a.txt')], files: [fixture('b.txt')] }]
   }
   await file.step60(config, config.checks[0])
   expect(config.checks[0].size).toBe(22)

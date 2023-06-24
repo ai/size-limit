@@ -2,7 +2,7 @@ let { readdir, readFile } = require('fs').promises
 let SizeLimitError = require('size-limit/size-limit-error')
 let { nanoid } = require('nanoid/non-secure')
 let { tmpdir } = require('os')
-let { join, resolve, parse } = require('path')
+let { join, parse, resolve } = require('path')
 let rm = require('size-limit/rm')
 
 let convertConfig = require('./convert-config')
@@ -53,8 +53,6 @@ async function isDirNotEmpty(dir) {
 }
 
 let self = {
-  name: '@size-limit/esbuild',
-
   async before(config) {
     if (config.saveBundle) {
       if (config.cleanDir) {
@@ -67,6 +65,14 @@ let self = {
       }
     }
   },
+
+  async finally(config, check) {
+    if (check.esbuildOutfile && !config.saveBundle) {
+      await rm(check.esbuildOutfile)
+    }
+  },
+
+  name: '@size-limit/esbuild',
 
   async step20(config, check) {
     if (check.esbuild === false) return
@@ -84,8 +90,6 @@ let self = {
       }
     }
   },
-
-  wait40: 'Adding to empty esbuild project',
   async step40(config, check) {
     if (check.esbuildConfig && check.esbuild !== false) {
       let result = await runEsbuild(check)
@@ -124,11 +128,7 @@ let self = {
     }
   },
 
-  async finally(config, check) {
-    if (check.esbuildOutfile && !config.saveBundle) {
-      await rm(check.esbuildOutfile)
-    }
-  }
+  wait40: 'Adding to empty esbuild project'
 }
 
 module.exports = [self]

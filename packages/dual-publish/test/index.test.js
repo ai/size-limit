@@ -6,14 +6,14 @@ let [dualPublish] = require('../')
 jest.mock('child_process', () => ({
   spawn(cmd, args, opts) {
     return {
+      on(type, cb) {
+        if (type === 'close') cb(opts.cwd === '' ? 1 : 0)
+        return this
+      },
       stderr: {
         on(type, cb) {
           if (type === 'data' && opts.cwd === '') cb(' ERROR  Replace require')
         }
-      },
-      on(type, cb) {
-        if (type === 'close') cb(opts.cwd === '' ? 1 : 0)
-        return this
       }
     }
   }
@@ -29,20 +29,20 @@ it('has name', () => {
 
 it('calculates file size with gzip by default', async () => {
   let config = {
-    cwd: fixture(),
-    checks: [{ files: [fixture('index.js')] }]
+    checks: [{ files: [fixture('index.js')] }],
+    cwd: fixture()
   }
   await dualPublish.all10(config)
   expect(config).toEqual({
-    cwd: fixture(),
-    checks: [{ files: [fixture('dual-publish-tmp/index.js')] }]
+    checks: [{ files: [fixture('dual-publish-tmp/index.js')] }],
+    cwd: fixture()
   })
 })
 
 it('throws dual-publish error', async () => {
   let config = {
-    cwd: '',
-    checks: []
+    checks: [],
+    cwd: ''
   }
 
   let err

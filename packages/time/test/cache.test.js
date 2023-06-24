@@ -2,7 +2,7 @@ let { writeFile } = require('fs').promises
 let { join } = require('path')
 let rm = require('size-limit/rm')
 
-let { saveCache, getCache } = require('../cache')
+let { getCache, saveCache } = require('../cache')
 
 const CACHE = join(__dirname, '..', '..', '.cache')
 

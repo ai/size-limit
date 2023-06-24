@@ -2,7 +2,7 @@ let { join } = require('path')
 let rm = require('size-limit/rm')
 
 let getRunningTime = require('../get-running-time')
-let { saveCache, getCache } = require('../cache')
+let { getCache, saveCache } = require('../cache')
 
 const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')
 

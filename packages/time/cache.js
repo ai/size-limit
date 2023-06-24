@@ -1,5 +1,5 @@
-let { writeFile, readFile, mkdir } = require('fs').promises
-let { join, dirname } = require('path')
+let { mkdir, readFile, writeFile } = require('fs').promises
+let { dirname, join } = require('path')
 let { existsSync } = require('fs')
 
 const VERSION = 1
@@ -28,4 +28,4 @@ async function saveCache(throttling) {
   await writeFile(CACHE, JSON.stringify({ throttling, version: VERSION }))
 }
 
-module.exports = { saveCache, getCache }
+module.exports = { getCache, saveCache }

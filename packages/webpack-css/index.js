@@ -1,8 +1,8 @@
 let CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const cssRule = {
-  test: /\.css$/,
   exclude: /\.module\.css$/,
+  test: /\.css$/,
   use: [require.resolve('style-loader'), require.resolve('css-loader')]
 }
 
@@ -27,8 +27,6 @@ function addCssSupport(webpackConfig) {
 }
 
 let self = {
-  name: '@size-limit/webpack-css',
-
   async before(config, check) {
     let modifyConfig = check.modifyWebpackConfig
 
@@ -41,7 +39,9 @@ let self = {
 
       return webpackConfig
     }
-  }
+  },
+
+  name: '@size-limit/webpack-css'
 }
 
 module.exports = [self]

@@ -82,12 +82,6 @@ exports[`shows debug 1`] = `
             "/fixtures/integration/index.js"
           ]
         },
-        "output": {
-          "path": "/tmp/"
-        },
-        "optimization": {
-          "concatenateModules": true
-        },
         "module": {
           "rules": [
             {
@@ -95,6 +89,12 @@ exports[`shows debug 1`] = `
               "type": "asset/resource"
             }
           ]
+        },
+        "optimization": {
+          "concatenateModules": true
+        },
+        "output": {
+          "path": "/tmp/"
         },
         "plugins": []
       },

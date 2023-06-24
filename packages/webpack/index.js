@@ -50,8 +50,6 @@ async function isDirNotEmpty(dir) {
 }
 
 let self = {
-  name: '@size-limit/webpack',
-
   async before(config) {
     if (config.saveBundle) {
       if (config.cleanDir) {
@@ -64,6 +62,14 @@ let self = {
       }
     }
   },
+
+  async finally(config, check) {
+    if (check.webpackOutput && !config.saveBundle) {
+      await rm(check.webpackOutput)
+    }
+  },
+
+  name: '@size-limit/webpack',
 
   async step20(config, check) {
     if (check.webpack === false) return
@@ -81,8 +87,6 @@ let self = {
       }
     }
   },
-
-  wait40: 'Adding to empty webpack project',
   async step40(config, check) {
     if (check.webpackConfig && check.webpack !== false) {
       check.bundles = getFiles(await runWebpack(check), check)
@@ -106,11 +110,7 @@ let self = {
     }
   },
 
-  async finally(config, check) {
-    if (check.webpackOutput && !config.saveBundle) {
-      await rm(check.webpackOutput)
-    }
-  }
+  wait40: 'Adding to empty webpack project'
 }
 
 module.exports = [self]

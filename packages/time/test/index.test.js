@@ -17,7 +17,7 @@ it('has name', () => {
 it('calculates time to download and run', async () => {
   let config = {
     checks: [
-      { files: ['/a'], bundles: ['/tmp/a.js'], size: 1024 * 1024 },
+      { bundles: ['/tmp/a.js'], files: ['/a'], size: 1024 * 1024 },
       { files: ['/b'], size: 1024 * 1024 }
     ]
   }
@@ -26,11 +26,11 @@ it('calculates time to download and run', async () => {
   expect(config).toEqual({
     checks: [
       {
-        files: ['/a'],
-        size: 1024 * 1024,
         bundles: ['/tmp/a.js'],
-        runTime: 10,
+        files: ['/a'],
         loadTime: 20.48,
+        runTime: 10,
+        size: 1024 * 1024,
         time: 30.48
       },
       { files: ['/b'], size: 1024 * 1024 }
@@ -41,16 +41,16 @@ it('calculates time to download and run', async () => {
 it('avoids run on request', async () => {
   let config = {
     checks: [
-      { files: ['/a'], bundle: '/tmp/a.js', size: 1024 * 1024, running: false }
+      { bundle: '/tmp/a.js', files: ['/a'], running: false, size: 1024 * 1024 }
     ]
   }
   await time.step80(config, config.checks[0])
   expect(config.checks[0]).toEqual({
-    files: ['/a'],
-    size: 1024 * 1024,
     bundle: '/tmp/a.js',
+    files: ['/a'],
     loadTime: 20.48,
     running: false,
+    size: 1024 * 1024,
     time: 20.48
   })
 })

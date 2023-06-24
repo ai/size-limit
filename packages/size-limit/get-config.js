@@ -1,4 +1,4 @@
-let { isAbsolute, dirname, join, relative } = require('path')
+let { dirname, isAbsolute, join, relative } = require('path')
 let { lilconfig } = require('lilconfig')
 let globby = require('globby')
 let bytes = require('bytes-iec')
@@ -6,25 +6,25 @@ let bytes = require('bytes-iec')
 let SizeLimitError = require('./size-limit-error')
 
 let OPTIONS = {
-  name: true,
-  path: true,
-  limit: true,
-  module: true,
-  entry: 'webpack',
-  config: ['webpack', 'esbuild'],
-  modifyWebpackConfig: 'webpack',
-  modifyEsbuildConfig: 'esbuild',
-  webpack: 'webpack',
-  ignore: ['webpack', 'esbuild'],
-  import: ['webpack', 'esbuild'],
   brotli: 'file',
-  gzip: 'file',
-  running: 'time',
+  compareWith: 'webpack',
+  config: ['webpack', 'esbuild'],
   disableModuleConcatenation: 'webpack',
+  entry: 'webpack',
+  gzip: 'file',
   hidePassed: false,
   highlightLess: false,
-  compareWith: 'webpack',
-  uiReports: 'webpack'
+  ignore: ['webpack', 'esbuild'],
+  import: ['webpack', 'esbuild'],
+  limit: true,
+  modifyEsbuildConfig: 'esbuild',
+  modifyWebpackConfig: 'webpack',
+  module: true,
+  name: true,
+  path: true,
+  running: 'time',
+  uiReports: 'webpack',
+  webpack: 'webpack'
 }
 
 function isStrings(value) {

@@ -1,5 +1,5 @@
 let SizeLimitError = require('size-limit/size-limit-error')
-let { writeFile, mkdir } = require('fs').promises
+let { mkdir, writeFile } = require('fs').promises
 let { existsSync } = require('fs')
 let { join } = require('path')
 let [file] = require('@size-limit/file')
@@ -47,11 +47,11 @@ it('uses webpack to make bundle', async () => {
   expect(config).toEqual({
     checks: [
       {
-        files: [fixture('big.js')],
-        webpackOutput: config.checks[0].webpackOutput,
-        webpackConfig: config.checks[0].webpackConfig,
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        size: 2456
+        files: [fixture('big.js')],
+        size: 2456,
+        webpackConfig: config.checks[0].webpackConfig,
+        webpackOutput: config.checks[0].webpackOutput
       }
     ]
   })
@@ -70,8 +70,8 @@ it('supports ignore', async () => {
 
 it('supports custom webpack config', async () => {
   let config = {
-    configPath: ROOT_CONFIG,
-    checks: [{ config: fixture('webpack.config.js') }]
+    checks: [{ config: fixture('webpack.config.js') }],
+    configPath: ROOT_CONFIG
   }
   await run(config)
   expect(config.checks[0].size).toBe(1154)
@@ -79,8 +79,8 @@ it('supports custom webpack config', async () => {
 
 it('supports custom entry', async () => {
   let config = {
-    configPath: ROOT_CONFIG,
-    checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }]
+    checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }],
+    configPath: ROOT_CONFIG
   }
   await run(config)
   expect(config.checks[0].size).toBe(566)
@@ -88,8 +88,8 @@ it('supports custom entry', async () => {
 
 it('throws error on unknown entry', async () => {
   let config = {
-    configPath: ROOT_CONFIG,
-    checks: [{ config: fixture('webpack.config.js'), entry: ['unknown'] }]
+    checks: [{ config: fixture('webpack.config.js'), entry: ['unknown'] }],
+    configPath: ROOT_CONFIG
   }
   let err
   try {
@@ -139,9 +139,9 @@ it('throws on missed file plugin', async () => {
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
-    saveBundle: DIST,
+    checks: [{ files: [fixture('small.js')] }],
     cleanDir: true,
-    checks: [{ files: [fixture('small.js')] }]
+    saveBundle: DIST
   }
   await run(config)
   expect(existsSync(dist)).toBe(true)
@@ -153,8 +153,8 @@ it('supports --clean-dir', async () => {
 it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
-    saveBundle: DIST,
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }],
+    saveBundle: DIST
   }
   await run(config)
   expect(existsSync(dist)).toBe(true)
@@ -172,8 +172,8 @@ it('throws error on not empty bundle dir', async () => {
 it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'index.js')
   let config = {
-    saveBundle: distFile,
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }],
+    saveBundle: distFile
   }
   await mkdir(DIST)
   await writeFile(distFile, '')
@@ -213,10 +213,10 @@ it('supports specifying the import', async () => {
   expect(
     await getSize({
       files: [fixture('module.js')],
+      gzip: false,
       import: {
         [fixture('module.js')]: '{ A }'
-      },
-      gzip: false
+      }
     })
   ).toBe(1)
 

@@ -20,7 +20,7 @@ function run(args, env = {}) {
 }
 
 it('passes process to runner', async () => {
-  let { out, code } = await run(['--version'], {
+  let { code, out } = await run(['--version'], {
     TRAVIS: '1',
     TRAVIS_JOB_NUMBER: '1.1'
   })

@@ -22,10 +22,10 @@ afterEach(async () => {
 it('supports --why', async () => {
   jest.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
+    checks: [{files: [fixture('big.js')]}],
     project: 'superProject',
-    why: true,
     saveBundle: DIST,
-    checks: [{files: [fixture('big.js')]}]
+    why: true
   }
   try {
     await esbuild.before(config)
@@ -43,10 +43,10 @@ it('supports --why', async () => {
 
 it('supports open esbuild visualizer on complete', async () => {
   let config = {
+    checks: [{files: [fixture('big.js')]}],
     project: 'superProject',
-    why: true,
     saveBundle: DIST,
-    checks: [{files: [fixture('big.js')]}]
+    why: true
   }
   try {
     await esbuild.before(config)

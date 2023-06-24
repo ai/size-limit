@@ -4,10 +4,10 @@ let calc = require('../calc')
 let run = require('../run')
 
 jest.mock('../create-reporter', () => () => ({
-  results() {},
   error(e) {
     throw e
-  }
+  },
+  results() {}
 }))
 jest.mock('../calc')
 
@@ -37,65 +37,65 @@ beforeEach(() => {
 
 it('creates config by CLI arguments', async () => {
   expect(await check('file', ['--limit', '10', 'a.js', '/b.js'])).toEqual({
-    cwd: fixture('file'),
     checks: [
       {
-        name: 'a.js, /b.js',
+        files: [fixture('file', 'a.js'), '/b.js'],
         limit: '10',
-        sizeLimit: 10,
-        files: [fixture('file', 'a.js'), '/b.js']
+        name: 'a.js, /b.js',
+        sizeLimit: 10
       }
-    ]
+    ],
+    cwd: fixture('file')
   })
 })
 
 it('supports globby and main field', async () => {
   expect(await check('globby')).toEqual({
-    configPath: 'package.json',
-    cwd: fixture('globby'),
     checks: [
       {
-        path: ['a*.js'],
-        name: 'a',
+        files: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')],
         limit: '1 kB',
-        sizeLimit: 1000,
-        files: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')]
+        name: 'a',
+        path: ['a*.js'],
+        sizeLimit: 1000
       },
       {
-        name: 'b',
-        files: [fixture('globby', 'b1.js')]
+        files: [fixture('globby', 'b1.js')],
+        name: 'b'
       }
-    ]
+    ],
+    configPath: 'package.json',
+    cwd: fixture('globby')
   })
 })
 
 it('uses index.js by default', async () => {
   expect(await check('simple')).toEqual({
-    configPath: 'package.json',
-    cwd: fixture('simple'),
     checks: [
       {
-        name: 'index',
         files: [fixture('simple', 'index.js')],
         limit: '1 kB',
+        name: 'index',
         sizeLimit: 1000
       }
-    ]
+    ],
+    configPath: 'package.json',
+    cwd: fixture('simple')
   })
 })
 
 it('overrides limit by CLI arg', async () => {
   expect(await check('simple', ['--limit', '10 kB'])).toEqual({
-    configPath: 'package.json',
-    cwd: fixture('simple'),
     checks: [
       {
-        name: 'index',
         files: [fixture('simple', 'index.js')],
         limit: '10 kB',
+        name: 'index',
         sizeLimit: 10000
       }
-    ]
+    ],
+    configPath: 'package.json',
+    cwd: fixture('simple')
   })
 })
 
@@ -109,22 +109,22 @@ it('normalizes bundle and webpack arguments', async () => {
     '--highlight-less'
   ]
   expect(await check('webpack', args)).toEqual({
-    configPath: 'package.json',
-    cwd: fixture('webpack'),
-    why: true,
-    project: 'webpack',
-    hidePassed: true,
-    highlightLess: true,
-    saveBundle: fixture('webpack', 'out'),
-    cleanDir: true,
     checks: [
       {
-        name: 'a',
-        highlightLess: true,
         config: fixture('webpack', 'webpack.config.js'),
-        entry: ['a']
+        entry: ['a'],
+        highlightLess: true,
+        name: 'a'
       }
-    ]
+    ],
+    cleanDir: true,
+    configPath: 'package.json',
+    cwd: fixture('webpack'),
+    hidePassed: true,
+    highlightLess: true,
+    project: 'webpack',
+    saveBundle: fixture('webpack', 'out'),
+    why: true
   })
 })
 
@@ -140,23 +140,23 @@ it('normalizes bundle and webpack arguments with --why and compare-with', async 
     '--highlight-less'
   ]
   expect(await check('webpack', args)).toEqual({
-    configPath: 'package.json',
-    cwd: fixture('webpack'),
-    why: true,
-    project: 'webpack',
-    hidePassed: true,
-    highlightLess: true,
-    compareWith: fixture('webpack', 'before.json'),
-    saveBundle: fixture('webpack', 'out'),
-    cleanDir: true,
     checks: [
       {
-        name: 'a',
-        highlightLess: true,
         config: fixture('webpack', 'webpack.config.js'),
-        entry: ['a']
+        entry: ['a'],
+        highlightLess: true,
+        name: 'a'
       }
-    ]
+    ],
+    cleanDir: true,
+    compareWith: fixture('webpack', 'before.json'),
+    configPath: 'package.json',
+    cwd: fixture('webpack'),
+    hidePassed: true,
+    highlightLess: true,
+    project: 'webpack',
+    saveBundle: fixture('webpack', 'out'),
+    why: true
   })
 })
 
@@ -170,102 +170,102 @@ it('normalizes bundle and webpack arguments with --why and ui-reports', async ()
     '--highlight-less'
   ]
   expect(await check('ui-reports', args)).toEqual({
-    configPath: '.size-limit.js',
-    cwd: fixture('ui-reports'),
-    why: true,
-    project: 'ui-reports',
-    hidePassed: true,
-    highlightLess: true,
-    saveBundle: fixture('ui-reports', 'out'),
-    cleanDir: true,
     checks: [
       {
-        name: 'a',
-        highlightLess: true,
         config: fixture('ui-reports', 'webpack.config.js'),
         entry: ['a'],
+        highlightLess: true,
+        name: 'a',
         uiReports: require(fixture('ui-reports', 'reports.js'))
       }
-    ]
+    ],
+    cleanDir: true,
+    configPath: '.size-limit.js',
+    cwd: fixture('ui-reports'),
+    hidePassed: true,
+    highlightLess: true,
+    project: 'ui-reports',
+    saveBundle: fixture('ui-reports', 'out'),
+    why: true
   })
 })
 
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
-    configPath: '.size-limit.json',
-    cwd: fixture('peer'),
     checks: [
       {
-        name: 'index.js',
-        ignore: ['a', 'b'],
         files: [fixture('peer', 'index.js')],
+        ignore: ['a', 'b'],
+        name: 'index.js',
         path: 'index.js'
       }
-    ]
+    ],
+    configPath: '.size-limit.json',
+    cwd: fixture('peer')
   })
 })
 
 it('normalizes time limits', async () => {
   expect(await check('time')).toEqual({
-    configPath: 'package.json',
-    cwd: fixture('time'),
     checks: [
       {
-        path: 'index.js',
-        limit: '1 s',
-        timeLimit: 1,
-        name: 'index.js',
-        files: [fixture('time', 'index.js')]
-      },
-      {
-        path: 'index.js',
-        limit: '1 ms',
-        timeLimit: 0.001,
-        name: 'index.js',
         files: [fixture('time', 'index.js')],
-        running: false
+        limit: '1 s',
+        name: 'index.js',
+        path: 'index.js',
+        timeLimit: 1
       },
       {
+        files: [fixture('time', 'index.js')],
+        limit: '1 ms',
+        name: 'index.js',
         path: 'index.js',
+        running: false,
+        timeLimit: 0.001
+      },
+      {
+        files: [fixture('time', 'index.js')],
         limit: '10ms',
-        timeLimit: 0.01,
         name: 'index.js',
-        files: [fixture('time', 'index.js')]
+        path: 'index.js',
+        timeLimit: 0.01
       },
       {
-        path: 'index.js',
+        files: [fixture('time', 'index.js')],
         limit: '10s',
-        timeLimit: 10,
         name: 'index.js',
-        files: [fixture('time', 'index.js')]
+        path: 'index.js',
+        timeLimit: 10
       }
-    ]
+    ],
+    configPath: 'package.json',
+    cwd: fixture('time')
   })
 })
 
 it('normalizes import', async () => {
   expect(await check('integration-esm')).toEqual({
-    cwd: fixture('integration-esm'),
-    configPath: 'package.json',
     checks: [
       {
+        files: [fixture('integration-esm', 'index.js')],
+        highlightLess: true,
         import: {
           [fixture('integration-esm', 'index.js')]:
             '{ VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING }'
         },
         limit: '1 B',
-        highlightLess: true,
         name: 'index.js',
-        files: [fixture('integration-esm', 'index.js')],
         sizeLimit: 1
       },
       {
-        limit: '39 B',
-        highlightLess: true,
-        name: 'all',
         files: [fixture('integration-esm', 'index.js')],
+        highlightLess: true,
+        limit: '39 B',
+        name: 'all',
         sizeLimit: 39
       }
-    ]
+    ],
+    configPath: 'package.json',
+    cwd: fixture('integration-esm')
   })
 })

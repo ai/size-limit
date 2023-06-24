@@ -1,4 +1,4 @@
-let { bold: b, yellow: y, red } = require('picocolors')
+let { bold: b, red, yellow: y } = require('picocolors')
 let { existsSync } = require('fs')
 let { join } = require('path')
 
@@ -101,5 +101,5 @@ module.exports = process => {
     }
   }
 
-  return { showVersion, showHelp, showMigrationGuide }
+  return { showHelp, showMigrationGuide, showVersion }
 }

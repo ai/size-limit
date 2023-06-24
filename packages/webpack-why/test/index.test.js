@@ -1,4 +1,4 @@
-let { writeFile, readFile, mkdir } = require('fs').promises
+let { mkdir, readFile, writeFile } = require('fs').promises
 let { existsSync } = require('fs')
 let [webpack] = require('@size-limit/webpack')
 let { join } = require('path')
@@ -34,10 +34,10 @@ afterEach(async () => {
 it('supports --why', async () => {
   jest.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
+    checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',
-    why: true,
     saveBundle: DIST,
-    checks: [{ files: [fixture('big.js')] }]
+    why: true
   }
   try {
     await webpackWhy.before(config, config.checks[0])
@@ -58,9 +58,6 @@ it('applies both `modifyWebpackConfig`', async () => {
     TEST: 'true'
   })
   let config = {
-    project: 'superProject',
-    why: true,
-    saveBundle: DIST,
     checks: [
       {
         files: [fixture('big.js')],
@@ -69,7 +66,10 @@ it('applies both `modifyWebpackConfig`', async () => {
           return webpackConfig
         }
       }
-    ]
+    ],
+    project: 'superProject',
+    saveBundle: DIST,
+    why: true
   }
 
   try {
@@ -86,8 +86,8 @@ it('applies both `modifyWebpackConfig`', async () => {
 
 it('supports --save-bundle', async () => {
   let config = {
-    saveBundle: DIST,
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }],
+    saveBundle: DIST
   }
   await run(config)
   expect(existsSync(join(DIST, 'index.js'))).toBe(true)
@@ -97,8 +97,8 @@ it('supports --save-bundle', async () => {
 it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'index.js')
   let config = {
-    saveBundle: distFile,
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('small.js')] }],
+    saveBundle: distFile
   }
   await mkdir(DIST)
   await writeFile(distFile, '')

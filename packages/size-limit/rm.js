@@ -8,6 +8,6 @@ module.exports = async function rm(dir) {
       await fs.rmdir(dir, { recursive: true })
     }
   } else {
-    await fs.rm(dir, { recursive: true, force: true })
+    await fs.rm(dir, { force: true, recursive: true })
   }
 }
