@@ -148,40 +148,40 @@ importers:
   packages/preset-app:
     dependencies:
       '@size-limit/file':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../file
       '@size-limit/time':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../time
       size-limit:
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../size-limit
 
   packages/preset-big-lib:
     dependencies:
       '@size-limit/file':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../file
       '@size-limit/time':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../time
       '@size-limit/webpack':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../webpack
       size-limit:
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../size-limit
 
   packages/preset-small-lib:
     dependencies:
       '@size-limit/esbuild':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../esbuild
       '@size-limit/file':
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../file
       size-limit:
-        specifier: 8.2.5
+        specifier: 8.2.6
         version: link:../size-limit
 
   packages/size-limit:
@@ -1214,11 +1214,11 @@ packages:
       - supports-color
     dev: false
 
-  /@size-limit/esbuild@8.2.5(size-limit@packages+size-limit):
-    resolution: {integrity: sha512-DklvaHhAQi1K5yVhKFwEshfU7S3CfbKzDd7FbSuzkfrpFmCm362FxwQ8ozOluPWNUWkWKhOX7RNgzJdZ3neltw==}
+  /@size-limit/esbuild@8.2.6(size-limit@packages+size-limit):
+    resolution: {integrity: sha512-a4c8xVDuDMYw5jF655ADjQDluw3jGPPYer6UJock5rSnUlWnIbmT/Ohud7gJGq5gqyLUQOCrBD7NB3g+mlhj4g==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     peerDependencies:
-      size-limit: 8.2.5
+      size-limit: 8.2.6
     dependencies:
       esbuild: 0.18.6
       nanoid: 3.3.6
@@ -4940,7 +4940,7 @@ packages:
     resolution: {integrity: sha512-iiIfHBH/+ZxgsE7YVQDEejAUGZYEu4QIai/QNZloEGxA+cmow79O8uGdu4sK64V8kafryqR1grK7nl7xIGv6rw==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
-      '@size-limit/esbuild': 8.2.5(size-limit@packages+size-limit)
+      '@size-limit/esbuild': 8.2.6(size-limit@packages+size-limit)
       nanoid: 3.3.6
       tslib: 2.5.3
     transitivePeerDependencies:
