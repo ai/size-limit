@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-app",
-  "version": "8.2.4",
+  "version": "8.2.5",
   "description": "Size Limit preset for applications",
   "keywords": [
     "size-limit",
@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "peerDependencies": {
-    "size-limit": "8.2.4"
+    "size-limit": "8.2.5"
   },
   "dependencies": {
     "@size-limit/file": "workspace:*",

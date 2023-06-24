@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.2.5
+* Fixed opening report in `@size-limit/esbuild-why` (by Yaroslav Chapelskyi).
+* Updated `esbuild`.
+
 ## 8.2.4
 * Fixed `@size-limit/esbuild-why` for multiple checks (by Homa Wong).
 
