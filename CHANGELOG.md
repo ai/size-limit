@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.0
+* Remove Node.js 14 and 16 support.
+* Moved to React from CDN for `time` plugin (by Aakansha Doshi).
+
 ## 8.2.6
 * Fixed npm release process.
 

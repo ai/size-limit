@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-small-lib",
-  "version": "8.2.6",
+  "version": "9.0.0",
   "description": "Size Limit preset for small open source libraries",
   "keywords": [
     "size-limit",
@@ -13,11 +13,11 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "peerDependencies": {
-    "size-limit": "8.2.6"
+    "size-limit": "9.0.0"
   },
   "dependencies": {
-    "@size-limit/esbuild": "workspace:*",
-    "@size-limit/file": "workspace:*",
-    "size-limit": "workspace:*"
+    "@size-limit/esbuild": "9.0.0",
+    "@size-limit/file": "9.0.0",
+    "size-limit": "9.0.0"
   }
 }

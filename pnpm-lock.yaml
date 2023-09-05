@@ -79,7 +79,7 @@ importers:
         version: 4.2.1
       size-limit-node-esbuild:
         specifier: ^0.2.0
-        version: 0.2.0(size-limit@packages+size-limit)
+        version: 0.2.0(size-limit@8.2.6)
 
   packages/dual-publish:
     dependencies:
@@ -148,40 +148,40 @@ importers:
   packages/preset-app:
     dependencies:
       '@size-limit/file':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../file
       '@size-limit/time':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../time
       size-limit:
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../size-limit
 
   packages/preset-big-lib:
     dependencies:
       '@size-limit/file':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../file
       '@size-limit/time':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../time
       '@size-limit/webpack':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../webpack
       size-limit:
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../size-limit
 
   packages/preset-small-lib:
     dependencies:
       '@size-limit/esbuild':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../esbuild
       '@size-limit/file':
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../file
       size-limit:
-        specifier: workspace:*
+        specifier: 9.0.0
         version: link:../size-limit
 
   packages/size-limit:
@@ -1408,7 +1408,7 @@ packages:
       - supports-color
     dev: false
 
-  /@size-limit/esbuild@8.2.6(size-limit@packages+size-limit):
+  /@size-limit/esbuild@8.2.6(size-limit@8.2.6):
     resolution: {integrity: sha512-a4c8xVDuDMYw5jF655ADjQDluw3jGPPYer6UJock5rSnUlWnIbmT/Ohud7gJGq5gqyLUQOCrBD7NB3g+mlhj4g==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -1416,7 +1416,7 @@ packages:
     dependencies:
       esbuild: 0.18.20
       nanoid: 3.3.6
-      size-limit: link:packages/size-limit
+      size-limit: 8.2.6
     dev: true
 
   /@statoscope/extensions@5.14.1:
@@ -2157,7 +2157,6 @@ packages:
   /bytes-iec@3.1.1:
     resolution: {integrity: sha512-fey6+4jDK7TFtFg/klGSvNKJctyU7n2aQdnM+CO0ruLPbqqMOM8Tio0Pc+deqUeVKX1tL5DQep1zQ7+37aTAsA==}
     engines: {node: '>= 0.8'}
-    dev: false
 
   /call-bind@1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
@@ -4387,7 +4386,6 @@ packages:
     resolution: {integrity: sha512-yFvNYMig4AthKYfHFl1sLj7B2nkHL4lzdig4osvl9/LdGbXwrdFRoqBS98gsEsOakr0yH+r5NZ/1Y9gdVB8trA==}
     dependencies:
       picocolors: 1.0.0
-    dev: false
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -5225,15 +5223,28 @@ packages:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
     dev: true
 
-  /size-limit-node-esbuild@0.2.0(size-limit@packages+size-limit):
+  /size-limit-node-esbuild@0.2.0(size-limit@8.2.6):
     resolution: {integrity: sha512-iiIfHBH/+ZxgsE7YVQDEejAUGZYEu4QIai/QNZloEGxA+cmow79O8uGdu4sK64V8kafryqR1grK7nl7xIGv6rw==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
-      '@size-limit/esbuild': 8.2.6(size-limit@packages+size-limit)
+      '@size-limit/esbuild': 8.2.6(size-limit@8.2.6)
       nanoid: 3.3.6
       tslib: 2.6.2
     transitivePeerDependencies:
       - size-limit
+    dev: true
+
+  /size-limit@8.2.6:
+    resolution: {integrity: sha512-zpznim/tX/NegjoQuRKgWTF4XiB0cn2qt90uJzxYNTFAqexk4b94DOAkBD3TwhC6c3kw2r0KcnA5upziVMZqDg==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    hasBin: true
+    dependencies:
+      bytes-iec: 3.1.1
+      chokidar: 3.5.3
+      globby: 11.1.0
+      lilconfig: 2.1.0
+      nanospinner: 1.1.0
+      picocolors: 1.0.0
     dev: true
 
   /slash@3.0.0:
