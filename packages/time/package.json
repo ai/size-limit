@@ -20,8 +20,7 @@
     "size-limit": "8.2.6"
   },
   "dependencies": {
-    "estimo": "^2.3.6",
-    "react": "^17.0.2"
+    "estimo": "^2.3.6"
   },
   "devDependencies": {
     "nanoid": "^3.3.6",
