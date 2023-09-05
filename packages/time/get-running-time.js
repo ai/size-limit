@@ -2,7 +2,7 @@ let estimo = require('estimo')
 
 let { getCache, saveCache } = require('./cache')
 
-const EXAMPLE = require.resolve('react/umd/react.production.min.js')
+const EXAMPLE = 'https://unpkg.com/react@18.2.0/umd/react.production.min.js'
 const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
 const URL = 'https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650'
 const JS_FILES = /\.m?js$/i
