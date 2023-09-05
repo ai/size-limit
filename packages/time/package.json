@@ -14,7 +14,7 @@
   "repository": "ai/size-limit",
   "preferUnplugged": true,
   "engines": {
-    "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
+    "node": "^18.0.0 || >=20.0.0"
   },
   "peerDependencies": {
     "size-limit": "8.2.6"
