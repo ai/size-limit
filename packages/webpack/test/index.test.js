@@ -49,7 +49,7 @@ it('uses webpack to make bundle', async () => {
       {
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
         files: [fixture('big.js')],
-        size: 2457,
+        size: 2480,
         webpackConfig: config.checks[0].webpackConfig,
         webpackOutput: config.checks[0].webpackOutput
       }

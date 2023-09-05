@@ -52,7 +52,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
         files: [fixture('big.js')],
-        size: 2132
+        size: 2130
       }
     ]
   })
@@ -66,7 +66,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(233)
+  expect(config.checks[0].size).toBe(231)
 })
 
 it('supports custom esbuild config', async () => {
@@ -220,7 +220,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(2132)
+  ).toBe(2130)
 })
 
 it('supports specifying the import', async () => {

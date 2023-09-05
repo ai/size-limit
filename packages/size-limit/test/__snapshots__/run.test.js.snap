@@ -335,16 +335,18 @@ Check the real performance cost of your front-end project to users
 
 exports[`supports import and ignore for esbuild 1`] = `
 "  
+  [42m[30mPackage size is 4 B less than limit[39m[49m
   Size limit: [32m[1m5 B[22m[39m
-  Size:       [32m[1m5 B[22m[39m [90mwith all dependencies and minified[39m
+  Size:       [32m[1m1 B[22m[39m [90mwith all dependencies and minified[39m
   
 "
 `;
 
 exports[`supports import and ignore for esbuild and gzip 1`] = `
 "  
+  [42m[30mPackage size is 2 B less than limit[39m[49m
   Size limit: [32m[1m49 B[22m[39m
-  Size:       [32m[1m49 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [32m[1m47 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;

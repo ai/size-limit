@@ -378,7 +378,7 @@ if (NODE_VERSION >= 16) {
     await checkJson('combine', [
       { name: 'all', size: 2269 },
       { name: 'a', size: 1 },
-      { name: 'redux', size: 2267 }
+      { name: 'redux', size: 2265 }
     ])
   })
 }
