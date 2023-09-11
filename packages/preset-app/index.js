@@ -1,4 +1,7 @@
-let [file] = require('@size-limit/file')
-let [time] = require('@size-limit/time')
+import filePlugins from '@size-limit/file'
+import timePlugins from '@size-limit/time'
 
-module.exports = [file, time]
+let [file] = filePlugins
+let [time] = timePlugins
+
+export default [file, time]
