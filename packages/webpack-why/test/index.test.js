@@ -1,11 +1,16 @@
-let { mkdir, readFile, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let [webpack] = require('@size-limit/webpack')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePlugins from '@size-limit/file'
+import webpackPlugins from '@size-limit/webpack'
+import { existsSync } from 'node:fs'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it, vi } from 'vitest'
 
-let [webpackWhy] = require('../')
+import webpackWhyPlugins from '../'
+
+let [webpack] = webpackPlugins
+let [file] = filePlugins
+let [webpackWhy] = webpackWhyPlugins
 
 const DIST = join(process.cwd(), 'out')
 
@@ -28,11 +33,11 @@ async function run(config) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('supports --why', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
+  vi.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
     checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',
@@ -53,7 +58,7 @@ it('supports --why', async () => {
 })
 
 it('applies both `modifyWebpackConfig`', async () => {
-  let { DefinePlugin } = require('webpack')
+  let { DefinePlugin } = await import('webpack')
   let plugin = new DefinePlugin({
     TEST: 'true'
   })

@@ -1,5 +1,5 @@
-let StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin').default
-let { join } = require('path')
+import StatoscopeWebpackPlugin from '@statoscope/webpack-plugin'
+import { join } from 'node:path'
 
 function addStatoscope(limitConfig, check, webpackConfig) {
   if (limitConfig.why) {
@@ -52,4 +52,4 @@ let self = {
   name: '@size-limit/webpack-why'
 }
 
-module.exports = [self]
+export default [self]
