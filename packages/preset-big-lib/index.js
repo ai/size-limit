@@ -1,5 +1,9 @@
-let [webpack] = require('@size-limit/webpack')
-let [file] = require('@size-limit/file')
-let [time] = require('@size-limit/time')
+import filePlugins from '@size-limit/file'
+import timePlugins from '@size-limit/time'
+import webpackPlugins from '@size-limit/webpack'
 
-module.exports = [webpack, file, time]
+let [webpack] = webpackPlugins
+let [file] = filePlugins
+let [time] = timePlugins
+
+export default [webpack, file, time]
