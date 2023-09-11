@@ -12,6 +12,7 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
+  "type": "module",
   "peerDependencies": {
     "size-limit": "9.0.0"
   },
