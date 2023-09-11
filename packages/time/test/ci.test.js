@@ -1,12 +1,15 @@
-let { join } = require('path')
+import { join } from 'node:path'
+import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 
-let getRunningTime = require('../get-running-time')
+import getRunningTime from '../get-running-time'
 
-jest.mock('estimo', () => () => {
-  throw new Error('libX11-xcb.so.1')
-})
+vi.mock('estimo', () => ({
+  default: () => {
+    throw new Error('libX11-xcb.so.1')
+  }
+}))
 
-jest.mock('../cache', () => ({
+vi.mock('../cache', () => ({
   getCache() {
     return false
   },
@@ -14,12 +17,12 @@ jest.mock('../cache', () => ({
 }))
 
 beforeEach(() => {
-  jest.spyOn(console, 'warn').mockImplementation(() => true)
+  vi.spyOn(console, 'warn').mockImplementation(() => true)
   delete process.env.CI
 })
 
 afterEach(() => {
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')

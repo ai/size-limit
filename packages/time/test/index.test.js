@@ -1,9 +1,13 @@
-let SizeLimitError = require('size-limit/size-limit-error')
+import SizeLimitError from 'size-limit/size-limit-error'
+import { beforeEach, expect, it, vi } from 'vitest'
 
-let getRunningTime = require('../get-running-time')
-let [time] = require('../')
+import timePlugins from '../'
+import getRunningTime from '../get-running-time'
+let [time] = timePlugins
 
-jest.mock('../get-running-time')
+vi.mock('../get-running-time', () => ({
+  default: vi.fn()
+}))
 
 beforeEach(() => {
   getRunningTime.mockReset()

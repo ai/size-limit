@@ -1,6 +1,6 @@
-let SizeLimitError = require('size-limit/size-limit-error')
+import SizeLimitError from 'size-limit/size-limit-error.js'
 
-let getRunningTime = require('./get-running-time')
+import getRunningTime from './get-running-time.js'
 
 const SLOW_3G = 50 * 1024
 
@@ -33,4 +33,4 @@ let self = {
   wait80: 'Running JS in headless Chrome'
 }
 
-module.exports = [self]
+export default [self]
