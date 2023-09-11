@@ -1,8 +1,8 @@
-let { constants, createBrotliCompress, createGzip } = require('zlib')
-let { createReadStream } = require('fs')
-let SizeLimitError = require('size-limit/size-limit-error')
-let { stat } = require('fs').promises
-let { gte } = require('semver')
+import { createReadStream } from 'node:fs'
+import { stat } from 'node:fs/promises'
+import { constants, createBrotliCompress, createGzip } from 'node:zlib'
+import { gte } from 'semver'
+import SizeLimitError from 'size-limit/size-limit-error.js'
 
 const BROTLI_NODE_VERSION = 'v11.7.0'
 
@@ -62,4 +62,4 @@ let self = {
   }
 }
 
-module.exports = [self]
+export default [self]
