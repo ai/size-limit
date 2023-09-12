@@ -1,13 +1,13 @@
-let { readdir, readFile } = require('fs').promises
-let SizeLimitError = require('size-limit/size-limit-error')
-let { nanoid } = require('nanoid/non-secure')
-let { tmpdir } = require('os')
-let { join, parse, resolve } = require('path')
-let rm = require('size-limit/rm')
+import { nanoid } from 'nanoid/non-secure'
+import { readdir, readFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join, parse, resolve } from 'node:path'
+import rm from 'size-limit/rm'
+import SizeLimitError from 'size-limit/size-limit-error'
 
-let convertConfig = require('./convert-config')
-let runEsbuild = require('./run-esbuild')
-let getConfig = require('./get-config')
+import convertConfig from './convert-config.js'
+import getConfig from './get-config.js'
+import runEsbuild from './run-esbuild.js'
 
 const ESBUILD_EMPTY_PROJECT = 12
 const ESBUILD_EMPTY_PROJECT_GZIP = 32
@@ -131,4 +131,4 @@ let self = {
   wait40: 'Adding to empty esbuild project'
 }
 
-module.exports = [self]
+export default [self]

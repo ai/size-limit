@@ -1,6 +1,6 @@
-let processImport = require('size-limit/process-import')
+import processImport from 'size-limit/process-import'
 
-module.exports = async function getConfig(limitConfig, check, output) {
+export default async function getConfig(limitConfig, check, output) {
   await processImport(check, output)
 
   let config = {

@@ -1,11 +1,15 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { mkdir, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePlugins from '@size-limit/file'
+import { existsSync } from 'node:fs'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import rm from 'size-limit/rm'
+import SizeLimitError from 'size-limit/size-limit-error'
+import { afterEach, expect, it, vi } from 'vitest'
 
-let [esbuild] = require('..')
+import esbuildPlugins from '..'
+
+let [file] = filePlugins
+let [esbuild] = esbuildPlugins
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -36,7 +40,7 @@ async function getSize(check) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('uses esbuild to make bundle', async () => {
@@ -71,7 +75,7 @@ it('supports ignore', async () => {
 
 it('supports custom esbuild config', async () => {
   let config = {
-    checks: [{ config: fixture('esbuild.config.js') }],
+    checks: [{ config: fixture('esbuild.config.cjs') }],
     configPath: ROOT_CONFIG
   }
   await run(config)
@@ -80,7 +84,7 @@ it('supports custom esbuild config', async () => {
 
 it('supports custom entry', async () => {
   let config = {
-    checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }],
+    checks: [{ config: fixture('esbuild.config.cjs'), entry: ['small'] }],
     configPath: ROOT_CONFIG
   }
   await run(config)
@@ -89,7 +93,7 @@ it('supports custom entry', async () => {
 
 it('throws error on unknown entry', async () => {
   let config = {
-    checks: [{ config: fixture('esbuild.config.js'), entry: ['unknown'] }],
+    checks: [{ config: fixture('esbuild.config.cjs'), entry: ['unknown'] }],
     configPath: ROOT_CONFIG
   }
   let err
