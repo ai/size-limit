@@ -13,6 +13,7 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
+  "type": "module",
   "engines": {
     "node": "^18.0.0 || >=20.0.0"
   },

@@ -1,9 +1,14 @@
-let [webpack] = require('@size-limit/webpack')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePlugins from '@size-limit/file'
+import webpackPlugins from '@size-limit/webpack'
+import { join } from 'node:path'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it, vi } from 'vitest'
 
-let [webpackCss] = require('../')
+import webpackCssPlugins from '../'
+let [webpack] = webpackPlugins
+let [file] = filePlugins
+
+let [webpackCss] = webpackCssPlugins
 
 const DIST = join(process.cwd(), 'dist')
 
@@ -25,7 +30,7 @@ async function run(config) {
 }
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('supports non-JS require', async () => {
@@ -38,7 +43,7 @@ it('supports non-JS require', async () => {
 })
 
 it('applies both `modifyWebpackConfig`', async () => {
-  let { DefinePlugin } = require('webpack')
+  let { DefinePlugin } = await import('webpack')
   let plugin = new DefinePlugin({
     TEST: 'true'
   })

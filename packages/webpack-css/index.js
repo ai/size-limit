@@ -1,4 +1,7 @@
-let CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import { createRequire } from 'node:module'
+
+const require = createRequire(import.meta.url)
 
 const cssRule = {
   exclude: /\.module\.css$/,
@@ -44,4 +47,4 @@ let self = {
   name: '@size-limit/webpack-css'
 }
 
-module.exports = [self]
+export default [self]
