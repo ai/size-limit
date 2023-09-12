@@ -1,12 +1,16 @@
-let {readFile} = require('fs').promises
-let [esbuild] = require('@size-limit/esbuild')
-let {join} = require('path')
-let rm = require('size-limit/rm')
-let open = require('open')
+import esbuildPlugins from '@size-limit/esbuild'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import open from 'open'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it, vi } from 'vitest'
 
-jest.mock('open');
+import esbuildWhyPlugins from '..'
+let [esbuild] = esbuildPlugins
 
-let [esbuildWhy] = require('..')
+vi.mock('open')
+
+let [esbuildWhy] = esbuildWhyPlugins
 
 const DIST = join(process.cwd(), 'out')
 
@@ -16,13 +20,13 @@ function fixture(name) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('supports --why', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
+  vi.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
-    checks: [{files: [fixture('big.js')]}],
+    checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',
     saveBundle: DIST,
     why: true
@@ -43,7 +47,7 @@ it('supports --why', async () => {
 
 it('supports open esbuild visualizer on complete', async () => {
   let config = {
-    checks: [{files: [fixture('big.js')]}],
+    checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',
     saveBundle: DIST,
     why: true
@@ -58,6 +62,8 @@ it('supports open esbuild visualizer on complete', async () => {
     await esbuildWhy.finally(config, config.checks[0])
   }
 
-  expect(open).toHaveBeenCalledTimes(1);
-  expect(open).toHaveBeenCalledWith(expect.stringMatching( /.*\/out\/esbuild-why.html$/));
+  expect(open).toHaveBeenCalledTimes(1)
+  expect(open).toHaveBeenCalledWith(
+    expect.stringMatching(/.*\/out\/esbuild-why.html$/)
+  )
 })
