@@ -1,13 +1,13 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { readdir } = require('fs').promises
-let { nanoid } = require('nanoid/non-secure')
-let { tmpdir } = require('os')
-let { join } = require('path')
-let rm = require('size-limit/rm')
+import { nanoid } from 'nanoid/non-secure'
+import { readdir } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import rm from 'size-limit/rm'
+import SizeLimitError from 'size-limit/size-limit-error'
 
-let convertConfig = require('./convert-config')
-let runWebpack = require('./run-webpack')
-let getConfig = require('./get-config')
+import convertConfig from './convert-config.js'
+import getConfig from './get-config.js'
+import runWebpack from './run-webpack.js'
 
 const WEBPACK_EMPTY_PROJECT = 0
 const WEBPACK_EMPTY_PROJECT_GZIP = 20
@@ -113,4 +113,4 @@ let self = {
   wait40: 'Adding to empty webpack project'
 }
 
-module.exports = [self]
+export default [self]

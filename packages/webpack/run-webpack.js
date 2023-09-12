@@ -1,6 +1,6 @@
-let webpack = require('webpack')
+import webpack from 'webpack'
 
-module.exports = function runWebpack(check) {
+export default function runWebpack(check) {
   return new Promise((resolve, reject) => {
     let compiler = webpack(check.webpackConfig)
     compiler.run((err, stats) => {

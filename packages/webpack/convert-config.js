@@ -1,6 +1,6 @@
-let { dirname, join } = require('path')
+import { dirname, join } from 'node:path'
 
-module.exports = function convertConfig(config, root) {
+export default function convertConfig(config, root) {
   let resolveModulesPaths = [join(dirname(root), 'node_modules')]
   if (!config.resolveLoader) config.resolveLoader = {}
   if (!config.resolve) config.resolve = {}

@@ -1,11 +1,15 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { mkdir, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePlugins from '@size-limit/file'
+import { existsSync } from 'node:fs'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import rm from 'size-limit/rm'
+import SizeLimitError from 'size-limit/size-limit-error'
+import { afterEach, expect, it, vi } from 'vitest'
 
-let [webpack] = require('../')
+import webpackPlugins from '../'
+let [file] = filePlugins
+
+let [webpack] = webpackPlugins
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -36,7 +40,7 @@ async function getSize(check) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('uses webpack to make bundle', async () => {
@@ -241,7 +245,7 @@ it('supports import with multiple files', async () => {
 })
 
 it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
-  let { NormalModuleReplacementPlugin } = require('webpack')
+  let { NormalModuleReplacementPlugin } = await import('webpack')
   expect(
     await getSize({
       import: {
