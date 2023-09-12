@@ -41,7 +41,7 @@ importers:
       '@size-limit/webpack-why':
         specifier: workspace:^
         version: link:packages/webpack-why
-      '@vitest/coverage-v8':
+      '@vitest/coverage-istanbul':
         specifier: 0.34.4
         version: 0.34.4(vitest@0.34.4)
       clean-publish:
@@ -1731,22 +1731,18 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@vitest/coverage-v8@0.34.4(vitest@0.34.4):
-    resolution: {integrity: sha512-TZ5ghzhmg3COQqfBShL+zRQEInHmV9TSwghTdfkHpCTyTOr+rxo6x41vCNcVfWysWULtqtBVpY6YFNovxnESfA==}
+  /@vitest/coverage-istanbul@0.34.4(vitest@0.34.4):
+    resolution: {integrity: sha512-jJiN+U5drYrv1fU39T8jOVWc3RklYkNeTR7UyiVD8fa+Tbav9pAxq02pti93OPZIDoXwwg+RhFAuRuAz///rkQ==}
     peerDependencies:
       vitest: '>=0.32.0 <1'
     dependencies:
-      '@ampproject/remapping': 2.2.1
-      '@bcoe/v8-coverage': 0.2.3
       istanbul-lib-coverage: 3.2.0
+      istanbul-lib-instrument: 6.0.0
       istanbul-lib-report: 3.0.1
       istanbul-lib-source-maps: 4.0.1
       istanbul-reports: 3.1.6
-      magic-string: 0.30.3
       picocolors: 1.0.0
-      std-env: 3.4.3
       test-exclude: 6.0.0
-      v8-to-istanbul: 9.1.0
       vitest: 0.34.4
     transitivePeerDependencies:
       - supports-color

@@ -18,7 +18,7 @@
     "@size-limit/time": "workspace:^",
     "@size-limit/webpack": "workspace:^",
     "@size-limit/webpack-why": "workspace:^",
-    "@vitest/coverage-v8": "0.34.4",
+    "@vitest/coverage-istanbul": "0.34.4",
     "clean-publish": "^4.2.0",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^3.0.1",
