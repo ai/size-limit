@@ -1,6 +1,7 @@
-let { join } = require('path')
+import { join } from 'node:path'
+import { describe, expect, it } from 'vitest'
 
-let readPkgUp = require('../read-pkg-up')
+import readPkgUp from '../read-pkg-up'
 
 describe(`read-pkg-up`, () => {
   it('finds package.json of the same package', async () => {

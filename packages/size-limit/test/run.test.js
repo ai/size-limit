@@ -1,31 +1,30 @@
-let { join } = require('path')
+import { join } from 'node:path'
+import { expect, it, vi } from 'vitest'
 
-let run = require('../run')
+import run from '../run'
 
-jest.setTimeout(15000)
+vi.mock('../../time/get-running-time', () => ({
+  default: () => 1
+}))
 
-jest.mock('../../time/get-running-time', () => () => 1)
-
-jest.mock('../../time/cache', () => ({
+vi.mock('../../time/cache', () => ({
   getCache() {
     return false
   },
   saveCache() {}
 }))
 
-jest.mock('nanospinner', () => {
-  return {
-    createSpinner() {
-      return {
-        error() {},
-        start() {
-          return this
-        },
-        success() {}
-      }
+vi.mock('nanospinner', () => ({
+  createSpinner() {
+    return {
+      error() {},
+      start() {
+        return this
+      },
+      success() {}
     }
   }
-})
+}))
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')

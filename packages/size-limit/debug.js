@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   error(process, args, config) {
     if (args && args.debug) {
       process.stderr.write(JSON.stringify(config, null, 2) + '\n')

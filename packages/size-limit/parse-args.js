@@ -1,6 +1,6 @@
-let SizeLimitError = require('./size-limit-error')
+import SizeLimitError from './size-limit-error.js'
 
-module.exports = function parseArgs(plugins, argv) {
+export default function parseArgs(plugins, argv) {
   let args = { files: [] }
   for (let i = 2; i < argv.length; i++) {
     let arg = argv[i]
@@ -48,7 +48,12 @@ module.exports = function parseArgs(plugins, argv) {
       args.why = true
     } else if (arg === '--compare-with') {
       if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
-        throw new SizeLimitError('argWithoutAnalyzer', 'compare-with', 'webpack', 'webpack-why')
+        throw new SizeLimitError(
+          'argWithoutAnalyzer',
+          'compare-with',
+          'webpack',
+          'webpack-why'
+        )
       }
       if (!args.why) {
         throw new SizeLimitError('argWithoutAnotherArg', 'compare-with', 'why')

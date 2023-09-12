@@ -1,9 +1,10 @@
-let webpackPlugin = require('@size-limit/webpack')
-let esbuildPlugin = require('@size-limit/esbuild')
-let filePlugin = require('@size-limit/file')
-let { join } = require('path')
+import esbuildPlugin from '@size-limit/esbuild'
+import filePlugin from '@size-limit/file'
+import webpackPlugin from '@size-limit/webpack'
+import { join } from 'node:path'
+import { expect, it } from 'vitest'
 
-let sizeLimit = require('../')
+import sizeLimit from '../'
 
 const ROOT = join(__dirname, '..', '..', '..')
 const INTEGRATION = join(ROOT, 'fixtures', 'integration', 'index.js')

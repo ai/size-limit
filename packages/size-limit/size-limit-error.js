@@ -68,4 +68,4 @@ class SizeLimitError extends Error {
   }
 }
 
-module.exports = SizeLimitError
+export default SizeLimitError

@@ -1,15 +1,24 @@
-let { join } = require('path')
+import { join } from 'node:path'
+import { beforeEach, expect, it, vi } from 'vitest'
 
-let calc = require('../calc')
-let run = require('../run')
+import calc from '../calc'
+import run from '../run'
 
-jest.mock('../create-reporter', () => () => ({
-  error(e) {
-    throw e
-  },
-  results() {}
-}))
-jest.mock('../calc')
+vi.mock('../create-reporter', () => {
+  return {
+    default: () => ({
+      error(e) {
+        throw e
+      },
+      results() {}
+    })
+  }
+})
+vi.mock('../calc', () => {
+  return {
+    default: vi.fn()
+  }
+})
 
 function fixture(...files) {
   return join(__dirname, '..', '..', '..', 'fixtures', ...files)
@@ -176,7 +185,7 @@ it('normalizes bundle and webpack arguments with --why and ui-reports', async ()
         entry: ['a'],
         highlightLess: true,
         name: 'a',
-        uiReports: require(fixture('ui-reports', 'reports.js'))
+        uiReports: (await import(fixture('ui-reports', 'reports.js'))).default
       }
     ],
     cleanDir: true,

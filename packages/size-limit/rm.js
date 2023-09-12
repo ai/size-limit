@@ -1,7 +1,7 @@
-let { existsSync } = require('fs')
-let fs = require('fs').promises
+import { existsSync } from 'node:fs'
+import fs from 'node:fs/promises'
 
-module.exports = async function rm(dir) {
+export default async function rm(dir) {
   if (!fs.rm) {
     /* istanbul ignore next */
     if (existsSync(dir)) {

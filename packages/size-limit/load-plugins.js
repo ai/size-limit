@@ -15,24 +15,19 @@ class Plugins {
   }
 }
 
-module.exports = function loadPlugins(pkg) {
+async function loadPlugins(pkg) {
   if (!pkg || !pkg.packageJson) return new Plugins([])
 
-  let list = toArray(pkg.packageJson.dependencies)
+  let promises = toArray(pkg.packageJson.dependencies)
     .concat(toArray(pkg.packageJson.devDependencies))
     .concat(toArray(pkg.packageJson.optionalDependencies))
     .filter(i => i.startsWith('@size-limit/') || i.startsWith('size-limit-'))
-    .reduce(
-      (all, i) =>
-        all.concat(
-          require(require.resolve(i, {
-            paths: [process.cwd()]
-          }))
-        ),
-      []
-    )
+    .map(async name => (await import(name)).default)
+
+  let list = (await Promise.all(promises)).flat()
 
   return new Plugins(list)
 }
 
-module.exports.Plugins = Plugins
+export default loadPlugins
+export { Plugins }

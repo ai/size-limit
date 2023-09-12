@@ -1,5 +1,5 @@
-let { Plugins } = require('./load-plugins')
-let calc = require('./calc')
+import calc from './calc.js'
+import { Plugins } from './load-plugins.js'
 
 /**
  * Run Size Limit and return the result
@@ -8,7 +8,7 @@ let calc = require('./calc')
  * @param  {string[]|object} files Path to files or internal config
  * @return {Promise<object>}     Project size
  */
-module.exports = async function (plugins, files) {
+export default async function (plugins, files) {
   let pluginList = new Plugins(plugins.reduce((all, i) => all.concat(i), []))
   if (Array.isArray(files)) {
     files = {
