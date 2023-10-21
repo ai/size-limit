@@ -1,11 +1,14 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { mkdir, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePkg from '@size-limit/file'
+import { existsSync } from 'fs'
+import { mkdir, writeFile } from 'fs/promises'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { SizeLimitError } from 'size-limit/size-limit-error'
+import { afterEach, expect, it, vi } from "vitest"
 
-let [webpack] = require('../')
+import webpackPkg from '../'
+const [file] = filePkg
+const [webpack] = webpackPkg
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -36,7 +39,7 @@ async function getSize(check) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('uses webpack to make bundle', async () => {
@@ -49,7 +52,7 @@ it('uses webpack to make bundle', async () => {
       {
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
         files: [fixture('big.js')],
-        size: 2480,
+        size: 2477,
         webpackConfig: config.checks[0].webpackConfig,
         webpackOutput: config.checks[0].webpackOutput
       }
@@ -203,19 +206,19 @@ it('throws on webpack error', async () => {
 it('supports specifying the import', async () => {
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(1)
 
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       gzip: false,
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(1)
@@ -223,7 +226,7 @@ it('supports specifying the import', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ methodA }'
+        [fixture('esm/module.js')]: '{ methodA }'
       }
     })
   ).toBe(83)
@@ -233,8 +236,8 @@ it('supports import with multiple files', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ A }',
-        [fixture('module2.js')]: '{ B }'
+        [fixture('esm/module.js')]: '{ A }',
+        [fixture('esm/module2.js')]: '{ B }'
       }
     })
   ).toBe(6)
@@ -245,13 +248,13 @@ it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('referencingAlias.js')]: '{ methodA }'
+        [fixture('esm/referencingAlias.js')]: '{ methodA }'
       },
       modifyWebpackConfig(config) {
         config.plugins = [
           new NormalModuleReplacementPlugin(
             /@fixtures\/module/,
-            fixture('module.js')
+            fixture('esm/module.js')
           )
         ]
         return config

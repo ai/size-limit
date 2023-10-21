@@ -2,6 +2,7 @@
   "name": "@size-limit/esbuild",
   "version": "9.0.0",
   "description": "esbuild plugin for Size Limit",
+  "type": "module",
   "keywords": [
     "size-limit",
     "plugin",

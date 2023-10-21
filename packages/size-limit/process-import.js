@@ -1,7 +1,7 @@
-let { mkdir, writeFile } = require('fs').promises
-let { join } = require('path')
+import { mkdir, writeFile } from 'fs/promises'
+import { join } from 'path'
 
-module.exports = async function processImport(check, output) {
+export default async function processImport(check, output) {
   if (!check.import) {
     return
   }

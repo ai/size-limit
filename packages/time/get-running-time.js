@@ -1,6 +1,6 @@
-let estimo = require('estimo')
+import estimo from 'estimo'
 
-let { getCache, saveCache } = require('./cache')
+import { getCache, saveCache } from './cache.js'
 
 const EXAMPLE = 'https://unpkg.com/react@18.2.0/umd/react.production.min.js'
 const EXAMPLE_TIME = 0.086 // Xiaomi Redmi 2, Snapdragon 410
@@ -46,7 +46,7 @@ async function getThrottling() {
 let throttlingCache
 let throttlingCalculating
 
-module.exports = async function getRunningTime(file) {
+export async function getRunningTime(file) {
   if (!JS_FILES.test(file)) return 0
   if (throttlingCalculating) await throttlingCalculating
   if (!throttlingCache) {
@@ -58,7 +58,7 @@ module.exports = async function getRunningTime(file) {
   return getTime(file, throttlingCache)
 }
 
-module.exports.cleanCache = function () {
+export function cleanCache() {
   throttlingCalculating = undefined
   throttlingCache = undefined
 }

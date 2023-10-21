@@ -1,5 +1,6 @@
-let { join } = require('path')
-let spawn = require('cross-spawn')
+import spawn from 'cross-spawn'
+import { join } from 'path'
+import { expect, it } from 'vitest'
 
 const BIN_PATH = join(__dirname, '../bin.js')
 

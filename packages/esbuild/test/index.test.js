@@ -1,11 +1,14 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { mkdir, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePkg from '@size-limit/file'
+import { existsSync } from 'fs'
+import { mkdir, writeFile } from 'fs/promises'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { SizeLimitError } from 'size-limit/size-limit-error'
+import { afterEach, expect, it, vi } from "vitest"
 
-let [esbuild] = require('..')
+import esbuildPkg from '../'
+const [file] = filePkg
+const [esbuild] = esbuildPkg
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -36,12 +39,12 @@ async function getSize(check) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('uses esbuild to make bundle', async () => {
   let config = {
-    checks: [{ files: [fixture('big.js')] }]
+    checks: [{ files: [fixture('cjs/big.js')] }]
   }
   await run(config)
   expect(config).toEqual({
@@ -51,8 +54,8 @@ it('uses esbuild to make bundle', async () => {
         esbuildConfig: config.checks[0].esbuildConfig,
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
-        files: [fixture('big.js')],
-        size: 2130
+        files: [fixture('cjs/big.js')],
+        size: 2140
       }
     ]
   })
@@ -63,10 +66,10 @@ it('uses esbuild to make bundle', async () => {
 
 it('supports ignore', async () => {
   let config = {
-    checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
+    checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(231)
+  expect(config.checks[0].size).toBe(237)
 })
 
 it('supports custom esbuild config', async () => {
@@ -75,7 +78,7 @@ it('supports custom esbuild config', async () => {
     configPath: ROOT_CONFIG
   }
   await run(config)
-  expect(config.checks[0].size).toBe(163)
+  expect(config.checks[0].size).toBe(327)
 })
 
 it('supports custom entry', async () => {
@@ -104,7 +107,7 @@ it('throws error on unknown entry', async () => {
 
 it('allows to disable esbuild', async () => {
   let config = {
-    checks: [{ esbuild: false, files: [fixture('big.js')] }]
+    checks: [{ esbuild: false, files: [fixture('cjs/big.js')] }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(55)
@@ -214,13 +217,13 @@ it('throws on esbuild error', async () => {
 it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
   expect(
     await getSize({
-      files: [fixture('big.js')],
+      files: [fixture('cjs/big.js')],
       modifyEsbuildConfig(config) {
         config.minify = false
         return config
       }
     })
-  ).toBe(2130)
+  ).toBe(2140)
 })
 
 it('supports specifying the import', async () => {

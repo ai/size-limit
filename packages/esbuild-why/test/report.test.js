@@ -1,4 +1,6 @@
-let { getReportName } = require('../report')
+import { expect, it } from "vitest"
+
+import { getReportName } from '../report'
 
 let plain = {
   name: 'plain'

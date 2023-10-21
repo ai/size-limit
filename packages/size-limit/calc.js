@@ -1,4 +1,4 @@
-module.exports = async function calc(plugins, config, createSpinner) {
+export default async function calc(plugins, config, createSpinner) {
   process.setMaxListeners(config.checks.reduce((a, i) => a + i.files.length, 1))
 
   async function step(number) {

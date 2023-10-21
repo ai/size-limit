@@ -1,11 +1,11 @@
-let { visualizer } = require('esbuild-visualizer')
-let { join } = require('path')
-let { writeFileSync } = require('fs')
-let open = require('open')
+import { visualizer } from 'esbuild-visualizer'
+import { writeFileSync } from 'fs'
+import open from 'open'
+import { join } from 'path'
 
-let { getReportName } = require('./report')
+import { getReportName } from './report'
 
-let self = {
+export default [{
   async finally(config, check) {
     let {esbuildVisualizerFile} = check
 
@@ -23,6 +23,4 @@ let self = {
       writeFileSync(file, result)
     }
   }
-}
-
-module.exports = [self]
+}]

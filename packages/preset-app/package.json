@@ -2,6 +2,7 @@
   "name": "@size-limit/preset-app",
   "version": "9.0.0",
   "description": "Size Limit preset for applications",
+  "type": "module",
   "keywords": [
     "size-limit",
     "preset",

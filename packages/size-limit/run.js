@@ -1,16 +1,16 @@
-let { createSpinner } = require('nanospinner')
-let { resolve } = require('path')
-let chokidar = require('chokidar')
+import chokidar from 'chokidar'
+import { createSpinner } from 'nanospinner'
+import { resolve } from 'path'
 
-let SizeLimitError = require('./size-limit-error')
-let createReporter = require('./create-reporter')
-let loadPlugins = require('./load-plugins')
-let createHelp = require('./create-help')
-let readPkgUp = require('./read-pkg-up')
-let getConfig = require('./get-config')
-let parseArgs = require('./parse-args')
-let debug = require('./debug')
-let calc = require('./calc')
+import calc from './calc.js'
+import createHelp from './create-help.js'
+import createReporter from './create-reporter.js'
+import debug from './debug.js'
+import getConfig from './get-config.js'
+import loadPlugins from './load-plugins.js'
+import parseArgs from './parse-args.js'
+import readPkgUp from './read-pkg-up.js'
+import { SizeLimitError } from './size-limit-error.js'
 
 function throttle(fn) {
   let next, running
@@ -25,7 +25,7 @@ function throttle(fn) {
 }
 
 async function findPlugins(parentPkg) {
-  let plugins = loadPlugins(parentPkg)
+  let plugins = await loadPlugins(parentPkg)
 
   if (!parentPkg || !plugins.isEmpty) return plugins
   if (parentPkg.packageJson && parentPkg.packageJson.sizeLimitRoot) {
@@ -38,7 +38,7 @@ async function findPlugins(parentPkg) {
   return findPlugins(pkg)
 }
 
-module.exports = async process => {
+export default async process => {
   function hasArg(arg) {
     return process.argv.includes(arg)
   }

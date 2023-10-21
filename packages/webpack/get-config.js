@@ -1,4 +1,4 @@
-let processImport = require('size-limit/process-import')
+import processImport from 'size-limit/process-import'
 
 function escapeRegexp(string) {
   return string.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d')
@@ -7,7 +7,7 @@ function escapeRegexp(string) {
 const STATIC =
   /\.(eot|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|mp4|mp3|ogg|pdf|html|ico|md)$/
 
-module.exports = async function getConfig(limitConfig, check, output) {
+export async function getConfig(limitConfig, check, output) {
   await processImport(check, output)
 
   if (check.files.length === 0) {

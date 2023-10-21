@@ -1,4 +1,6 @@
-let { isValidFilename } = require('../valid-filename')
+import { expect, it } from 'vitest'
+
+import { isValidFilename } from '../valid-filename'
 
 it('main', () => {
   expect(isValidFilename('foo-bar')).toBe(true)

@@ -1,13 +1,13 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { readdir } = require('fs').promises
-let { nanoid } = require('nanoid/non-secure')
-let { tmpdir } = require('os')
-let { join } = require('path')
-let rm = require('size-limit/rm')
+import { readdir } from 'fs/promises'
+import { nanoid } from 'nanoid/non-secure'
+import { tmpdir } from 'os'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { SizeLimitError } from 'size-limit/size-limit-error'
 
-let convertConfig = require('./convert-config')
-let runWebpack = require('./run-webpack')
-let getConfig = require('./get-config')
+import { convertConfig } from './convert-config'
+import { getConfig } from './get-config'
+import { runWebpack } from './run-webpack'
 
 const WEBPACK_EMPTY_PROJECT = 0
 const WEBPACK_EMPTY_PROJECT_GZIP = 20
@@ -49,7 +49,7 @@ async function isDirNotEmpty(dir) {
   }
 }
 
-let self = {
+export default [{
   async before(config) {
     if (config.saveBundle) {
       if (config.cleanDir) {
@@ -78,7 +78,7 @@ let self = {
       check.webpackOutput = join(tmpdir(), `size-limit-${nanoid()}`)
     }
     if (check.config) {
-      check.webpackConfig = require(check.config)
+      check.webpackConfig = (await import(check.config)).default;
       convertConfig(check.webpackConfig, config.configPath)
     } else {
       check.webpackConfig = await getConfig(config, check, check.webpackOutput)
@@ -111,6 +111,4 @@ let self = {
   },
 
   wait40: 'Adding to empty webpack project'
-}
-
-module.exports = [self]
+}]

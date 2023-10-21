@@ -2,6 +2,7 @@
   "name": "@size-limit/preset-small-lib",
   "version": "9.0.0",
   "description": "Size Limit preset for small open source libraries",
+  "type": "module",
   "keywords": [
     "size-limit",
     "preset",

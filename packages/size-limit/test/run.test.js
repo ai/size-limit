@@ -1,19 +1,20 @@
-let { join } = require('path')
+import { join } from 'path'
+import { expect, it, vi } from 'vitest'
 
-let run = require('../run')
+import run from '../run'
 
-jest.setTimeout(15000)
+vi.mock('../../time/get-running-time', () => ({
+  getRunningTime: () => 1
+}))
 
-jest.mock('../../time/get-running-time', () => () => 1)
-
-jest.mock('../../time/cache', () => ({
+vi.mock('../../time/cache', () => ({
   getCache() {
     return false
   },
   saveCache() {}
 }))
 
-jest.mock('nanospinner', () => {
+vi.mock('nanospinner', () => {
   return {
     createSpinner() {
       return {
@@ -271,43 +272,39 @@ it('works in integration test with size', async () => {
   expect(await check('integration')).toMatchSnapshot()
 })
 
-if (NODE_VERSION >= 16) {
-  it('works in integration test with ESM', async () => {
-    await checkJson('integration-esm', [
-      {
-        name: 'index.js',
-        passed: true,
-        size: 1,
-        sizeLimit: 1
-      },
-      {
-        name: 'all',
-        passed: true,
-        size: 39,
-        sizeLimit: 39
-      }
-    ])
-  })
-}
+it.skipIf(NODE_VERSION < 16)('works in integration test with ESM', async () => {
+  await checkJson('integration-esm', [
+    {
+      name: 'index.js',
+      passed: true,
+      size: 1,
+      sizeLimit: 1
+    },
+    {
+      name: 'all',
+      passed: true,
+      size: 39,
+      sizeLimit: 39
+    }
+  ])
+})
 
-if (NODE_VERSION >= 16) {
-  it('works in integration test with ESM', async () => {
-    await checkJson('integration-esm', [
-      {
-        name: 'index.js',
-        passed: true,
-        size: 1,
-        sizeLimit: 1
-      },
-      {
-        name: 'all',
-        passed: true,
-        size: 39,
-        sizeLimit: 39
-      }
-    ])
-  })
-}
+it.skipIf(NODE_VERSION < 16)('works in integration test with ESM', async () => {
+  await checkJson('integration-esm', [
+    {
+      name: 'index.js',
+      passed: true,
+      size: 1,
+      sizeLimit: 1
+    },
+    {
+      name: 'all',
+      passed: true,
+      size: 39,
+      sizeLimit: 39
+    }
+  ])
+})
 
 it('works in integration test with time', async () => {
   expect(await check('integration', ['--limit', '2s'])).toMatchSnapshot()
@@ -373,15 +370,13 @@ it('returns zero for empty file with esbuild and without gzip', async () => {
   expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
 })
 
-if (NODE_VERSION >= 16) {
-  it('allows to use peer dependencies in import', async () => {
-    await checkJson('combine', [
-      { name: 'all', size: 2269 },
-      { name: 'a', size: 1 },
-      { name: 'redux', size: 2265 }
-    ])
-  })
-}
+it.skipIf(NODE_VERSION < 16)('allows to use peer dependencies in import', async () => {
+  await checkJson('combine', [
+    { name: 'all', size: 2269 },
+    { name: 'a', size: 1 },
+    { name: 'redux', size: 2265 }
+  ])
+})
 
 it('supports import and ignore for esbuild', async () => {
   expect(clean(await check('peer-esbuild-non-gzip'))).toMatchSnapshot()

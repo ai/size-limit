@@ -2,6 +2,7 @@
   "name": "size-limit",
   "version": "9.0.0",
   "description": "CLI tool for Size Limit",
+  "type": "module",
   "keywords": [
     "size-limit",
     "cli",

@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-require('./run.js')(process)
+import run from './run.js'
+
+run(process)

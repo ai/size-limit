@@ -1,9 +1,9 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { spawn } = require('child_process')
-let { join } = require('path')
-let rm = require('size-limit/rm')
+import { spawn } from 'child_process'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { SizeLimitError } from 'size-limit/size-limit-error'
 
-let self = {
+export default [{
   async all10(config) {
     let stderr = ''
     let cmd = spawn(
@@ -57,6 +57,4 @@ let self = {
   name: '@size-limit/dual-publish',
 
   wait10: 'Compiling files to ESM'
-}
-
-module.exports = [self]
+}]

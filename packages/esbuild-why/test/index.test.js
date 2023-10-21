@@ -1,12 +1,15 @@
-let {readFile} = require('fs').promises
-let [esbuild] = require('@size-limit/esbuild')
-let {join} = require('path')
-let rm = require('size-limit/rm')
-let open = require('open')
+import esbuildPkg from '@size-limit/esbuild'
+import {readFile} from 'fs/promises'
+import open from 'open'
+import {join} from 'path'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it, vi } from "vitest"
 
-jest.mock('open');
+import esbuildWhyPkg from '..'
+const [esbuild] = esbuildPkg
 
-let [esbuildWhy] = require('..')
+vi.mock('open');
+const [esbuildWhy] = esbuildWhyPkg
 
 const DIST = join(process.cwd(), 'out')
 
@@ -16,11 +19,11 @@ function fixture(name) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('supports --why', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
+  vi.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
     checks: [{files: [fixture('big.js')]}],
     project: 'superProject',

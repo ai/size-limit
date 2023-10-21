@@ -1,16 +1,15 @@
-let { join } = require('path')
-let rm = require('size-limit/rm')
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it } from "vitest"
 
-let getRunningTime = require('../get-running-time')
-let { getCache, saveCache } = require('../cache')
+import { getCache, saveCache } from '../cache'
+import { cleanCache, getRunningTime } from '../get-running-time'
 
 const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')
 
-jest.setTimeout(15000)
-
 afterEach(async () => {
   delete process.env.SIZE_LIMIT_FAKE_TIME
-  getRunningTime.cleanCache()
+  cleanCache()
   await rm(join(__dirname, '..', '..', '.cache'))
 })
 
@@ -18,7 +17,7 @@ it('calculates running time', async () => {
   let runTime = await getRunningTime(EXAMPLE)
   expect(runTime).toBeGreaterThan(0.01)
   expect(runTime).toBeLessThan(0.5)
-})
+}, 15_000)
 
 it('uses cache', async () => {
   process.env.SIZE_LIMIT_FAKE_TIME = 1
@@ -28,7 +27,7 @@ it('uses cache', async () => {
   await saveCache(throttling * 100)
   expect(await getRunningTime(EXAMPLE)).toBe(1)
 
-  getRunningTime.cleanCache()
+  cleanCache()
   expect(await getRunningTime(EXAMPLE)).toBe(100)
 })
 

@@ -1,4 +1,8 @@
-let {
+import bytes from 'bytes-iec'
+import { join } from 'path'
+import pc from 'picocolors'
+
+const {
   bgGreen,
   bgRed,
   black,
@@ -6,10 +10,8 @@ let {
   gray,
   green,
   red,
-  yellow
-} = require('picocolors')
-let { join } = require('path')
-let bytes = require('bytes-iec')
+  yellow,
+} = pc
 
 function createJsonReporter(process) {
   function print(data) {
@@ -198,7 +200,7 @@ function createHumanReporter(process, isSilentMode = false) {
   }
 }
 
-module.exports = (process, isJSON, isSilentMode) => {
+export default (process, isJSON, isSilentMode) => {
   if (isJSON) {
     return createJsonReporter(process)
   } else {

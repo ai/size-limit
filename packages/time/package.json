@@ -2,6 +2,7 @@
   "name": "@size-limit/time",
   "version": "9.0.0",
   "description": "Downloading and running time plugin for Size Limit",
+  "type": "module",
   "keywords": [
     "size-limit",
     "plugin",

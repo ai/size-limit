@@ -1,6 +1,6 @@
-let SizeLimitError = require('./size-limit-error')
+import { SizeLimitError } from './size-limit-error.js'
 
-module.exports = function parseArgs(plugins, argv) {
+export default function parseArgs(plugins, argv) {
   let args = { files: [] }
   for (let i = 2; i < argv.length; i++) {
     let arg = argv[i]

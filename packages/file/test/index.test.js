@@ -1,7 +1,9 @@
-let { join } = require('path')
-let SizeLimitError = require('size-limit/size-limit-error')
+import { join } from 'path'
+import { SizeLimitError } from 'size-limit/size-limit-error'
+import { expect, it } from "vitest"
 
-let [file] = require('../')
+import filePkg from "../"
+const [file] = filePkg
 
 function fixture(name) {
   return join(__dirname, 'fixtures', name)

@@ -1,5 +1,7 @@
-let SizeLimitError = require('../size-limit-error')
-let createReporter = require('../create-reporter')
+import { expect, it } from 'vitest'
+
+import createReporter from '../create-reporter'
+import { SizeLimitError } from '../size-limit-error'
 
 function print(err) {
   let stderr = ''

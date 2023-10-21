@@ -1,7 +1,7 @@
-const { join } = require('path')
+import { join } from 'path'
 
-module.exports = {
-  entryPoints: [join(__dirname, 'file.js'), join(__dirname, 'small.js')],
+export default {
+  entryPoints: [join(__dirname, 'cjs/file.js'), join(__dirname, 'small.js')],
   outdir: join(process.cwd(), 'dist'),
   bundle: true,
   minify: false
