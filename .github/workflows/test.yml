@@ -48,4 +48,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run unit tests
-        run: ./node_modules/.bin/jest --forceExit
+        run: ./node_modules/.bin/vitest --run
