@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
 import rm from 'size-limit/rm'
 import { SizeLimitError } from 'size-limit/size-limit-error'
-import { afterEach, expect, it, vi } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 
 import esbuildPkg from '../'
 const [file] = filePkg
@@ -55,7 +55,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
         files: [fixture('cjs/big.js')],
-        size: 2140
+        size: 2286
       }
     ]
   })
@@ -69,40 +69,79 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(237)
+  expect(config.checks[0].size).toBe(439)
 })
 
-it('supports custom esbuild config', async () => {
-  let config = {
-    checks: [{ config: fixture('esbuild.config.js') }],
-    configPath: ROOT_CONFIG
-  }
-  await run(config)
-  expect(config.checks[0].size).toBe(327)
-})
-
-it('supports custom entry', async () => {
-  let config = {
-    checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }],
-    configPath: ROOT_CONFIG
-  }
-  await run(config)
-  expect(config.checks[0].size).toBe(66)
-})
-
-it('throws error on unknown entry', async () => {
-  let config = {
-    checks: [{ config: fixture('esbuild.config.js'), entry: ['unknown'] }],
-    configPath: ROOT_CONFIG
-  }
-  let err
-  try {
+describe('supports custom esbuild config', () => {
+  it('should work with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/esbuild.config.js') }],
+      configPath: ROOT_CONFIG
+    }
     await run(config)
-  } catch (e) {
-    err = e
-  }
-  expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
-  expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+    expect(config.checks[0].size).toBe(163)
+  })
+
+  it('should work with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esbuild.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(163)
+  })
+})
+
+describe('supports custom entry', () => {
+  it('should work with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/esbuild.config.js'), entry: ['small'] }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(66)
+  })
+
+  it('should work with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(66)
+  })
+})
+
+describe('throws error on unknown entry', () => {
+  it('should work with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/esbuild.config.js'), entry: ['unknown'] }],
+      configPath: ROOT_CONFIG
+    }
+    let err
+    try {
+      await run(config)
+    } catch (e) {
+      err = e
+    }
+    expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+    expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+  })
+
+  it('should work with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esbuild.config.js'), entry: ['unknown'] }],
+      configPath: ROOT_CONFIG
+    }
+    let err
+    try {
+      await run(config)
+    } catch (e) {
+      err = e
+    }
+    expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+    expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+  })
 })
 
 it('allows to disable esbuild', async () => {
@@ -110,7 +149,7 @@ it('allows to disable esbuild', async () => {
     checks: [{ esbuild: false, files: [fixture('cjs/big.js')] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(55)
+  expect(config.checks[0].size).toBe(56)
 })
 
 it('allows to disable gzip', async () => {
@@ -223,7 +262,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(2140)
+  ).toBe(2286)
 })
 
 it('supports specifying the import', async () => {
