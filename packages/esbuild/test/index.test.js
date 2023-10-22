@@ -84,7 +84,7 @@ describe('supports custom esbuild config', () => {
 
   it('should work with esm config', async () => {
     let config = {
-      checks: [{ config: fixture('esbuild.config.js') }],
+      checks: [{ config: fixture('esm/esbuild.config.js') }],
       configPath: ROOT_CONFIG
     }
     await run(config)
@@ -104,7 +104,7 @@ describe('supports custom entry', () => {
 
   it('should work with esm config', async () => {
     let config = {
-      checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }],
+      checks: [{ config: fixture('esm/esbuild.config.js'), entry: ['small'] }],
       configPath: ROOT_CONFIG
     }
     await run(config)
@@ -130,7 +130,7 @@ describe('throws error on unknown entry', () => {
 
   it('should work with esm config', async () => {
     let config = {
-      checks: [{ config: fixture('esbuild.config.js'), entry: ['unknown'] }],
+      checks: [{ config: fixture('esm/esbuild.config.js'), entry: ['unknown'] }],
       configPath: ROOT_CONFIG
     }
     let err
@@ -268,19 +268,19 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
 it('supports specifying the import', async () => {
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(9)
 
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       gzip: false,
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(1)
@@ -288,7 +288,7 @@ it('supports specifying the import', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ methodA }'
+        [fixture('esm/module.js')]: '{ methodA }'
       }
     })
   ).toBe(86)
@@ -298,8 +298,8 @@ it('supports import with multiple files', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ A }',
-        [fixture('module2.js')]: '{ B }'
+        [fixture('esm/module.js')]: '{ A }',
+        [fixture('esm/module2.js')]: '{ B }'
       }
     })
   ).toBe(18)
@@ -309,7 +309,7 @@ it('supports wildcard imports', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '*'
+        [fixture('esm/module.js')]: '*'
       }
     })
   ).toBe(191)

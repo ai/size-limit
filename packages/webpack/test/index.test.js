@@ -44,14 +44,14 @@ afterEach(async () => {
 
 it('uses webpack to make bundle', async () => {
   let config = {
-    checks: [{ files: [fixture('big.js')] }]
+    checks: [{ files: [fixture('cjs/big.js')] }]
   }
   await run(config)
   expect(config).toEqual({
     checks: [
       {
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        files: [fixture('big.js')],
+        files: [fixture('cjs/big.js')],
         size: 2477,
         webpackConfig: config.checks[0].webpackConfig,
         webpackOutput: config.checks[0].webpackOutput
@@ -65,7 +65,7 @@ it('uses webpack to make bundle', async () => {
 
 it('supports ignore', async () => {
   let config = {
-    checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
+    checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(160)
@@ -75,11 +75,11 @@ it('supports ignore', async () => {
 describe('supports custom webpack config', () => {
   it('should work with commonjs config', async () => {
     let config = {
-      checks: [{ config: fixture('webpack.config.js') }],
+      checks: [{ config: fixture('cjs/webpack.config.js') }],
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1154)
+    expect(config.checks[0].size).toBe(1160)
   })
 
   it('should work with esm config', async () => {
@@ -88,18 +88,18 @@ describe('supports custom webpack config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1154)
+    expect(config.checks[0].size).toBe(1605)
   })
 })
 
 describe('supports custom entry', () => {
   it('should work with commonjs config', async () => {
     let config = {
-      checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }],
+      checks: [{ config: fixture('cjs/webpack.config.js'), entry: ['small'] }],
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(566)
+    expect(config.checks[0].size).toBe(569)
   })
 
   it('should work with esm config', async () => {
@@ -108,14 +108,14 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(566)
+    expect(config.checks[0].size).toBe(792)
   })
 })
 
 describe('throws error on unknown entry', () => {
   it('should work with commonjs config', async () => {
     let config = {
-      checks: [{ config: fixture('webpack.config.js'), entry: ['unknown'] }],
+      checks: [{ config: fixture('cjs/webpack.config.js'), entry: ['unknown'] }],
       configPath: ROOT_CONFIG
     }
     let err
@@ -147,7 +147,7 @@ describe('throws error on unknown entry', () => {
 
 it('allows to disable webpack', async () => {
   let config = {
-    checks: [{ files: [fixture('big.js')], webpack: false }]
+    checks: [{ files: [fixture('cjs/big.js')], webpack: false }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(55)
@@ -155,7 +155,7 @@ it('allows to disable webpack', async () => {
 
 it('allows to disable gzip', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')], gzip: false }]
+    checks: [{ files: [fixture('cjs/small.js')], gzip: false }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(37)
@@ -163,7 +163,7 @@ it('allows to disable gzip', async () => {
 
 it('throws on missed file plugin', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('cjs/small.js')] }]
   }
   try {
     await webpack.step20(config, config.checks[0])
@@ -183,7 +183,7 @@ it('throws on missed file plugin', async () => {
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     cleanDir: true,
     saveBundle: DIST
   }
@@ -197,7 +197,7 @@ it('supports --clean-dir', async () => {
 it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: DIST
   }
   await run(config)
@@ -216,7 +216,7 @@ it('throws error on not empty bundle dir', async () => {
 it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'index.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: distFile
   }
   await mkdir(DIST)
