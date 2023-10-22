@@ -46,15 +46,6 @@
         "files": "*.test.js",
         "rules": {
           "n/no-extraneous-require": "off"
-        },
-        "globals": {
-          "describe": "readonly",
-          "it": "readonly",
-          "expect": "readonly",
-          "beforeAll": "readonly",
-          "beforeEach": "readonly",
-          "afterEach": "readonly",
-          "jest": "readonly"
         }
       },
       {

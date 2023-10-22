@@ -6,5 +6,10 @@ export default defineConfig({
       provider: 'istanbul',
       statements: 100,
     },
+    watchExclude: [
+      '**/fixtures',
+      '**/dist',
+      '**/out',
+    ],
   },
 })

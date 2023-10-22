@@ -55,7 +55,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
         files: [fixture('cjs/big.js')],
-        size: 2286
+        size: 2140
       }
     ]
   })
@@ -69,7 +69,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(439)
+  expect(config.checks[0].size).toBe(237)
 })
 
 describe('supports custom esbuild config', () => {
@@ -79,7 +79,7 @@ describe('supports custom esbuild config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(163)
+    expect(config.checks[0].size).toBe(490)
   })
 
   it('should work with esm config', async () => {
@@ -88,7 +88,7 @@ describe('supports custom esbuild config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(163)
+    expect(config.checks[0].size).toBe(166)
   })
 })
 
@@ -99,7 +99,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(66)
+    expect(config.checks[0].size).toBe(229)
   })
 
   it('should work with esm config', async () => {
@@ -108,7 +108,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(66)
+    expect(config.checks[0].size).toBe(68)
   })
 })
 
@@ -149,12 +149,12 @@ it('allows to disable esbuild', async () => {
     checks: [{ esbuild: false, files: [fixture('cjs/big.js')] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(56)
+  expect(config.checks[0].size).toBe(55)
 })
 
 it('allows to disable gzip', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')], gzip: false }]
+    checks: [{ files: [fixture('esm/small.js')], gzip: false }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(37)
@@ -162,7 +162,7 @@ it('allows to disable gzip', async () => {
 
 it('throws on missed file plugin', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('cjs/small.js')] }]
   }
   try {
     await esbuild.step20(config, config.checks[0])
@@ -181,7 +181,7 @@ it('throws on missed file plugin', async () => {
 
 it('supports --save-bundle', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: DIST
   }
   await run(config)
@@ -191,7 +191,7 @@ it('supports --save-bundle', async () => {
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'small.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     cleanDir: true,
     saveBundle: DIST
   }
@@ -206,7 +206,7 @@ it('supports --clean-dir', async () => {
 it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'small.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: DIST
   }
   await run(config)
@@ -225,7 +225,7 @@ it('throws error on not empty bundle dir', async () => {
 it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'small.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: distFile
   }
   await mkdir(DIST)
@@ -262,7 +262,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(2286)
+  ).toBe(2140)
 })
 
 it('supports specifying the import', async () => {
