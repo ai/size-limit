@@ -73,7 +73,7 @@ it('supports ignore', async () => {
 })
 
 describe('supports custom esbuild config', () => {
-  it('should work with commonjs config', async () => {
+  it('works with commonjs config', async () => {
     let config = {
       checks: [{ config: fixture('cjs/esbuild.config.js') }],
       configPath: ROOT_CONFIG
@@ -82,7 +82,7 @@ describe('supports custom esbuild config', () => {
     expect(config.checks[0].size).toBe(490)
   })
 
-  it('should work with esm config', async () => {
+  it('works with esm config', async () => {
     let config = {
       checks: [{ config: fixture('esm/esbuild.config.js') }],
       configPath: ROOT_CONFIG
@@ -93,7 +93,7 @@ describe('supports custom esbuild config', () => {
 })
 
 describe('supports custom entry', () => {
-  it('should work with commonjs config', async () => {
+  it('works with commonjs config', async () => {
     let config = {
       checks: [{ config: fixture('cjs/esbuild.config.js'), entry: ['small'] }],
       configPath: ROOT_CONFIG
@@ -102,7 +102,7 @@ describe('supports custom entry', () => {
     expect(config.checks[0].size).toBe(229)
   })
 
-  it('should work with esm config', async () => {
+  it('works with esm config', async () => {
     let config = {
       checks: [{ config: fixture('esm/esbuild.config.js'), entry: ['small'] }],
       configPath: ROOT_CONFIG
@@ -113,7 +113,7 @@ describe('supports custom entry', () => {
 })
 
 describe('throws error on unknown entry', () => {
-  it('should work with commonjs config', async () => {
+  it('works with commonjs config', async () => {
     let config = {
       checks: [
         { config: fixture('cjs/esbuild.config.js'), entry: ['unknown'] }
@@ -130,7 +130,7 @@ describe('throws error on unknown entry', () => {
     expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
   })
 
-  it('should work with esm config', async () => {
+  it('works with esm config', async () => {
     let config = {
       checks: [
         { config: fixture('esm/esbuild.config.js'), entry: ['unknown'] }
