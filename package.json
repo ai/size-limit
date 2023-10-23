@@ -63,17 +63,6 @@
     "fixtures",
     "**/errors.ts"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/fixtures"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 100
-      }
-    }
-  },
   "prettier": {
     "arrowParens": "avoid",
     "jsxSingleQuote": false,
