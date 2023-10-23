@@ -1,11 +1,14 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { mkdir, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePkg from '@size-limit/file'
+import { existsSync } from 'fs'
+import { mkdir, writeFile } from 'fs/promises'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { SizeLimitError } from 'size-limit/size-limit-error'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
-let [esbuild] = require('..')
+import esbuildPkg from '../'
+const [file] = filePkg
+const [esbuild] = esbuildPkg
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -36,12 +39,12 @@ async function getSize(check) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('uses esbuild to make bundle', async () => {
   let config = {
-    checks: [{ files: [fixture('big.js')] }]
+    checks: [{ files: [fixture('cjs/big.js')] }]
   }
   await run(config)
   expect(config).toEqual({
@@ -51,8 +54,8 @@ it('uses esbuild to make bundle', async () => {
         esbuildConfig: config.checks[0].esbuildConfig,
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
-        files: [fixture('big.js')],
-        size: 2130
+        files: [fixture('cjs/big.js')],
+        size: 2140
       }
     ]
   })
@@ -63,48 +66,91 @@ it('uses esbuild to make bundle', async () => {
 
 it('supports ignore', async () => {
   let config = {
-    checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
+    checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(231)
+  expect(config.checks[0].size).toBe(237)
 })
 
-it('supports custom esbuild config', async () => {
-  let config = {
-    checks: [{ config: fixture('esbuild.config.js') }],
-    configPath: ROOT_CONFIG
-  }
-  await run(config)
-  expect(config.checks[0].size).toBe(163)
-})
-
-it('supports custom entry', async () => {
-  let config = {
-    checks: [{ config: fixture('esbuild.config.js'), entry: ['small'] }],
-    configPath: ROOT_CONFIG
-  }
-  await run(config)
-  expect(config.checks[0].size).toBe(66)
-})
-
-it('throws error on unknown entry', async () => {
-  let config = {
-    checks: [{ config: fixture('esbuild.config.js'), entry: ['unknown'] }],
-    configPath: ROOT_CONFIG
-  }
-  let err
-  try {
+describe('supports custom esbuild config', () => {
+  it('works with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/esbuild.config.js') }],
+      configPath: ROOT_CONFIG
+    }
     await run(config)
-  } catch (e) {
-    err = e
-  }
-  expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
-  expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+    expect(config.checks[0].size).toBe(490)
+  })
+
+  it('works with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esm/esbuild.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(166)
+  })
+})
+
+describe('supports custom entry', () => {
+  it('works with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/esbuild.config.js'), entry: ['small'] }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(229)
+  })
+
+  it('works with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esm/esbuild.config.js'), entry: ['small'] }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(68)
+  })
+})
+
+describe('throws error on unknown entry', () => {
+  it('works with commonjs config', async () => {
+    let config = {
+      checks: [
+        { config: fixture('cjs/esbuild.config.js'), entry: ['unknown'] }
+      ],
+      configPath: ROOT_CONFIG
+    }
+    let err
+    try {
+      await run(config)
+    } catch (e) {
+      err = e
+    }
+    expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+    expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+  })
+
+  it('works with esm config', async () => {
+    let config = {
+      checks: [
+        { config: fixture('esm/esbuild.config.js'), entry: ['unknown'] }
+      ],
+      configPath: ROOT_CONFIG
+    }
+    let err
+    try {
+      await run(config)
+    } catch (e) {
+      err = e
+    }
+    expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+    expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+  })
 })
 
 it('allows to disable esbuild', async () => {
   let config = {
-    checks: [{ esbuild: false, files: [fixture('big.js')] }]
+    checks: [{ esbuild: false, files: [fixture('cjs/big.js')] }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(55)
@@ -112,7 +158,7 @@ it('allows to disable esbuild', async () => {
 
 it('allows to disable gzip', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')], gzip: false }]
+    checks: [{ files: [fixture('esm/small.js')], gzip: false }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(37)
@@ -120,7 +166,7 @@ it('allows to disable gzip', async () => {
 
 it('throws on missed file plugin', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('cjs/small.js')] }]
   }
   try {
     await esbuild.step20(config, config.checks[0])
@@ -139,7 +185,7 @@ it('throws on missed file plugin', async () => {
 
 it('supports --save-bundle', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: DIST
   }
   await run(config)
@@ -149,7 +195,7 @@ it('supports --save-bundle', async () => {
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'small.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     cleanDir: true,
     saveBundle: DIST
   }
@@ -164,7 +210,7 @@ it('supports --clean-dir', async () => {
 it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'small.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: DIST
   }
   await run(config)
@@ -183,7 +229,7 @@ it('throws error on not empty bundle dir', async () => {
 it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'small.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: distFile
   }
   await mkdir(DIST)
@@ -214,31 +260,31 @@ it('throws on esbuild error', async () => {
 it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
   expect(
     await getSize({
-      files: [fixture('big.js')],
+      files: [fixture('cjs/big.js')],
       modifyEsbuildConfig(config) {
         config.minify = false
         return config
       }
     })
-  ).toBe(2130)
+  ).toBe(2140)
 })
 
 it('supports specifying the import', async () => {
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(9)
 
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       gzip: false,
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(1)
@@ -246,7 +292,7 @@ it('supports specifying the import', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ methodA }'
+        [fixture('esm/module.js')]: '{ methodA }'
       }
     })
   ).toBe(86)
@@ -256,8 +302,8 @@ it('supports import with multiple files', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ A }',
-        [fixture('module2.js')]: '{ B }'
+        [fixture('esm/module.js')]: '{ A }',
+        [fixture('esm/module2.js')]: '{ B }'
       }
     })
   ).toBe(18)
@@ -267,7 +313,7 @@ it('supports wildcard imports', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '*'
+        [fixture('esm/module.js')]: '*'
       }
     })
   ).toBe(191)

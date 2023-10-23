@@ -1,4 +1,4 @@
-let [file] = require('@size-limit/file')
-let [time] = require('@size-limit/time')
+import file from '@size-limit/file'
+import time from '@size-limit/time'
 
-module.exports = [file, time]
+export default [...file, ...time]

@@ -1,11 +1,14 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { mkdir, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePkg from '@size-limit/file'
+import { existsSync } from 'fs'
+import { mkdir, writeFile } from 'fs/promises'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { SizeLimitError } from 'size-limit/size-limit-error'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
-let [webpack] = require('../')
+import webpackPkg from '../'
+const [file] = filePkg
+const [webpack] = webpackPkg
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')
@@ -36,20 +39,20 @@ async function getSize(check) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('uses webpack to make bundle', async () => {
   let config = {
-    checks: [{ files: [fixture('big.js')] }]
+    checks: [{ files: [fixture('cjs/big.js')] }]
   }
   await run(config)
   expect(config).toEqual({
     checks: [
       {
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
-        files: [fixture('big.js')],
-        size: 2480,
+        files: [fixture('cjs/big.js')],
+        size: 2477,
         webpackConfig: config.checks[0].webpackConfig,
         webpackOutput: config.checks[0].webpackOutput
       }
@@ -62,48 +65,91 @@ it('uses webpack to make bundle', async () => {
 
 it('supports ignore', async () => {
   let config = {
-    checks: [{ files: fixture('big.js'), ignore: ['redux'] }]
+    checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(160)
 })
 
-it('supports custom webpack config', async () => {
-  let config = {
-    checks: [{ config: fixture('webpack.config.js') }],
-    configPath: ROOT_CONFIG
-  }
-  await run(config)
-  expect(config.checks[0].size).toBe(1154)
-})
-
-it('supports custom entry', async () => {
-  let config = {
-    checks: [{ config: fixture('webpack.config.js'), entry: ['small'] }],
-    configPath: ROOT_CONFIG
-  }
-  await run(config)
-  expect(config.checks[0].size).toBe(566)
-})
-
-it('throws error on unknown entry', async () => {
-  let config = {
-    checks: [{ config: fixture('webpack.config.js'), entry: ['unknown'] }],
-    configPath: ROOT_CONFIG
-  }
-  let err
-  try {
+describe('supports custom webpack config', () => {
+  it('works with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/webpack.config.js') }],
+      configPath: ROOT_CONFIG
+    }
     await run(config)
-  } catch (e) {
-    err = e
-  }
-  expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
-  expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+    expect(config.checks[0].size).toBe(1160)
+  })
+
+  it('works with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esm/webpack.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(1605)
+  })
+})
+
+describe('supports custom entry', () => {
+  it('works with commonjs config', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/webpack.config.js'), entry: ['small'] }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(569)
+  })
+
+  it('works with esm config', async () => {
+    let config = {
+      checks: [{ config: fixture('esm/webpack.config.js'), entry: ['small'] }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(792)
+  })
+})
+
+describe('throws error on unknown entry', () => {
+  it('works with commonjs config', async () => {
+    let config = {
+      checks: [
+        { config: fixture('cjs/webpack.config.js'), entry: ['unknown'] }
+      ],
+      configPath: ROOT_CONFIG
+    }
+    let err
+    try {
+      await run(config)
+    } catch (e) {
+      err = e
+    }
+    expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+    expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+  })
+
+  it('works with esm config', async () => {
+    let config = {
+      checks: [
+        { config: fixture('esm/webpack.config.js'), entry: ['unknown'] }
+      ],
+      configPath: ROOT_CONFIG
+    }
+    let err
+    try {
+      await run(config)
+    } catch (e) {
+      err = e
+    }
+    expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
+    expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
+  })
 })
 
 it('allows to disable webpack', async () => {
   let config = {
-    checks: [{ files: [fixture('big.js')], webpack: false }]
+    checks: [{ files: [fixture('cjs/big.js')], webpack: false }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(55)
@@ -111,7 +157,7 @@ it('allows to disable webpack', async () => {
 
 it('allows to disable gzip', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')], gzip: false }]
+    checks: [{ files: [fixture('cjs/small.js')], gzip: false }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(37)
@@ -119,7 +165,7 @@ it('allows to disable gzip', async () => {
 
 it('throws on missed file plugin', async () => {
   let config = {
-    checks: [{ files: [fixture('small.js')] }]
+    checks: [{ files: [fixture('cjs/small.js')] }]
   }
   try {
     await webpack.step20(config, config.checks[0])
@@ -139,7 +185,7 @@ it('throws on missed file plugin', async () => {
 it('supports --clean-dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     cleanDir: true,
     saveBundle: DIST
   }
@@ -153,7 +199,7 @@ it('supports --clean-dir', async () => {
 it('throws error on not empty bundle dir', async () => {
   let dist = join(DIST, 'index.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: DIST
   }
   await run(config)
@@ -172,7 +218,7 @@ it('throws error on not empty bundle dir', async () => {
 it('throws unsupported error --save-bundle', async () => {
   let distFile = join(DIST, 'index.js')
   let config = {
-    checks: [{ files: [fixture('small.js')] }],
+    checks: [{ files: [fixture('cjs/small.js')] }],
     saveBundle: distFile
   }
   await mkdir(DIST)
@@ -203,19 +249,19 @@ it('throws on webpack error', async () => {
 it('supports specifying the import', async () => {
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(1)
 
   expect(
     await getSize({
-      files: [fixture('module.js')],
+      files: [fixture('esm/module.js')],
       gzip: false,
       import: {
-        [fixture('module.js')]: '{ A }'
+        [fixture('esm/module.js')]: '{ A }'
       }
     })
   ).toBe(1)
@@ -223,7 +269,7 @@ it('supports specifying the import', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ methodA }'
+        [fixture('esm/module.js')]: '{ methodA }'
       }
     })
   ).toBe(83)
@@ -233,8 +279,8 @@ it('supports import with multiple files', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('module.js')]: '{ A }',
-        [fixture('module2.js')]: '{ B }'
+        [fixture('esm/module.js')]: '{ A }',
+        [fixture('esm/module2.js')]: '{ B }'
       }
     })
   ).toBe(6)
@@ -245,13 +291,13 @@ it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
   expect(
     await getSize({
       import: {
-        [fixture('referencingAlias.js')]: '{ methodA }'
+        [fixture('esm/referencingAlias.js')]: '{ methodA }'
       },
       modifyWebpackConfig(config) {
         config.plugins = [
           new NormalModuleReplacementPlugin(
             /@fixtures\/module/,
-            fixture('module.js')
+            fixture('esm/module.js')
           )
         ]
         return config

@@ -2,6 +2,7 @@
   "name": "@size-limit/file",
   "version": "9.0.0",
   "description": "File size plugin for Size Limit",
+  "type": "module",
   "keywords": [
     "size-limit",
     "plugin",

@@ -1,9 +1,9 @@
-let { dirname, isAbsolute, join, relative } = require('path')
-let { lilconfig } = require('lilconfig')
-let globby = require('globby')
-let bytes = require('bytes-iec')
+import bytes from 'bytes-iec'
+import globby from 'globby'
+import { lilconfig } from 'lilconfig'
+import { dirname, isAbsolute, join, relative } from 'path'
 
-let SizeLimitError = require('./size-limit-error')
+import { SizeLimitError } from './size-limit-error.js'
 
 let OPTIONS = {
   brotli: 'file',
@@ -79,7 +79,7 @@ function toName(files, cwd) {
   return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
-module.exports = async function getConfig(plugins, process, args, pkg) {
+export default async function getConfig(plugins, process, args, pkg) {
   let config = {
     cwd: process.cwd()
   }

@@ -1,10 +1,11 @@
 {
+  "type": "module",
   "private": true,
   "scripts": {
     "bump": "./scripts/bump",
     "release": "./scripts/each pnpm clean-publish --access public",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
-    "test": "jest --coverage && eslint . && sh scripts/max-listeners-check.sh"
+    "test": "vitest run --coverage && eslint . && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
     "@logux/eslint-config": "^51.0.2",
@@ -18,6 +19,7 @@
     "@size-limit/time": "workspace:^",
     "@size-limit/webpack": "workspace:^",
     "@size-limit/webpack-why": "workspace:^",
+    "@vitest/coverage-istanbul": "^0.34.6",
     "clean-publish": "^4.2.0",
     "cross-spawn": "^7.0.3",
     "dual-publish": "^3.0.1",
@@ -27,10 +29,10 @@
     "eslint-plugin-n": "^16.0.2",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.1.1",
-    "jest": "^29.6.4",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
-    "size-limit-node-esbuild": "^0.2.0"
+    "size-limit-node-esbuild": "^0.2.0",
+    "vitest": "^0.34.6"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config",
@@ -44,15 +46,6 @@
         "files": "*.test.js",
         "rules": {
           "n/no-extraneous-require": "off"
-        },
-        "globals": {
-          "describe": "readonly",
-          "it": "readonly",
-          "expect": "readonly",
-          "beforeAll": "readonly",
-          "beforeEach": "readonly",
-          "afterEach": "readonly",
-          "jest": "readonly"
         }
       },
       {

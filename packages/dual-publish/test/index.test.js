@@ -1,9 +1,11 @@
-let SizeLimitError = require('size-limit/size-limit-error')
-let { join } = require('path')
+import { join } from 'path'
+import { SizeLimitError } from 'size-limit/size-limit-error'
+import { expect, it, vi } from 'vitest'
 
-let [dualPublish] = require('../')
+import dualPublishPkg from '../'
+const [dualPublish] = dualPublishPkg
 
-jest.mock('child_process', () => ({
+vi.mock('child_process', () => ({
   spawn(cmd, args, opts) {
     return {
       on(type, cb) {

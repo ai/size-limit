@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`has error for CLI error 1`] = `
 "[41m[30m ERROR [39m[49m [31mcli-tool error: Module not found

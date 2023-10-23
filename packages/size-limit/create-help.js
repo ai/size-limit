@@ -1,8 +1,11 @@
-let { bold: b, red, yellow: y } = require('picocolors')
-let { existsSync } = require('fs')
-let { join } = require('path')
+import { existsSync } from 'fs'
+import { createRequire } from 'module'
+import { join } from 'path'
+import pc from 'picocolors'
+const require = createRequire(import.meta.url)
 
-let ownPackage = require('./package.json')
+const { bold: b, red, yellow: y } = pc
+const ownPackage = require('./package.json')
 
 function npmCommands(pkg) {
   let add = 'npm install --save-dev '
@@ -17,7 +20,7 @@ function npmCommands(pkg) {
   return { add, rm }
 }
 
-module.exports = process => {
+export default process => {
   function print(...lines) {
     process.stdout.write(lines.join('\n') + '\n')
   }

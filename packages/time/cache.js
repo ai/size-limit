@@ -1,18 +1,21 @@
-let { mkdir, readFile, writeFile } = require('fs').promises
-let { dirname, join } = require('path')
-let { existsSync } = require('fs')
+import { existsSync } from 'fs'
+import { mkdir, readFile, writeFile } from 'fs/promises'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const VERSION = 1
 const CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')
 
-async function createCacheDir() {
+export async function createCacheDir() {
   let sizeLimitCache = dirname(CACHE)
   let npmCache = dirname(sizeLimitCache)
   if (!existsSync(npmCache)) await mkdir(npmCache)
   if (!existsSync(sizeLimitCache)) await mkdir(sizeLimitCache)
 }
 
-async function getCache() {
+export async function getCache() {
   if (!existsSync(CACHE)) return false
   try {
     let cache = JSON.parse(await readFile(CACHE))
@@ -23,9 +26,7 @@ async function getCache() {
   }
 }
 
-async function saveCache(throttling) {
+export async function saveCache(throttling) {
   if (!existsSync(CACHE)) await createCacheDir()
   await writeFile(CACHE, JSON.stringify({ throttling, version: VERSION }))
 }
-
-module.exports = { getCache, saveCache }

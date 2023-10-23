@@ -1,4 +1,4 @@
-let [esbuild] = require('@size-limit/esbuild')
-let [file] = require('@size-limit/file')
+import esbuild from '@size-limit/esbuild'
+import file from '@size-limit/file'
 
-module.exports = [esbuild, file]
+export default [...esbuild, ...file]

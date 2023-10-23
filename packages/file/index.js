@@ -1,8 +1,8 @@
-let { constants, createBrotliCompress, createGzip } = require('zlib')
-let { createReadStream } = require('fs')
-let SizeLimitError = require('size-limit/size-limit-error')
-let { stat } = require('fs').promises
-let { gte } = require('semver')
+import { createReadStream } from 'fs'
+import { stat } from 'fs/promises'
+import { gte } from 'semver'
+import { SizeLimitError } from 'size-limit/size-limit-error.js'
+import { constants, createBrotliCompress, createGzip } from 'zlib'
 
 const BROTLI_NODE_VERSION = 'v11.7.0'
 
@@ -44,22 +44,22 @@ function gzipSize(path) {
   })
 }
 
-let self = {
-  name: '@size-limit/file',
-  async step60(config, check) {
-    let files = check.bundles || check.files
+export default [
+  {
+    name: '@size-limit/file',
+    async step60(_config, check) {
+      let files = check.bundles || check.files
 
-    if (check.brotli === true) {
-      if (!gte(process.version, BROTLI_NODE_VERSION)) {
-        throw new SizeLimitError('brotliUnsupported')
+      if (check.brotli === true) {
+        if (!gte(process.version, BROTLI_NODE_VERSION)) {
+          throw new SizeLimitError('brotliUnsupported')
+        }
+        check.size = await sum(files, async i => brotliSize(i))
+      } else if (check.gzip === false) {
+        check.size = await sum(files, async i => (await stat(i)).size)
+      } else {
+        check.size = await sum(files, async i => gzipSize(i))
       }
-      check.size = await sum(files, async i => brotliSize(i))
-    } else if (check.gzip === false) {
-      check.size = await sum(files, async i => (await stat(i)).size)
-    } else {
-      check.size = await sum(files, async i => gzipSize(i))
     }
   }
-}
-
-module.exports = [self]
+]

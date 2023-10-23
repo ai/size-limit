@@ -1,15 +1,20 @@
-let { join } = require('path')
+import { join } from 'path'
+import { beforeEach, expect, it, vi } from 'vitest'
 
-let calc = require('../calc')
-let run = require('../run')
+import calc from '../calc'
+import run from '../run'
 
-jest.mock('../create-reporter', () => () => ({
-  error(e) {
-    throw e
-  },
-  results() {}
-}))
-jest.mock('../calc')
+vi.mock('../create-reporter', () => {
+  return {
+    default: () => ({
+      error(e) {
+        throw e
+      },
+      results() {}
+    })
+  }
+})
+vi.mock('../calc')
 
 function fixture(...files) {
   return join(__dirname, '..', '..', '..', 'fixtures', ...files)

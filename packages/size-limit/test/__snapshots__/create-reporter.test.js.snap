@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`highlight passed results with --highlight-less flag 1`] = `
 "  
@@ -15,7 +15,7 @@ exports[`highlight passed results with --highlight-less flag 1`] = `
   Size limit: [31m[1m102400 B[22m[39m
   Size:       [31m[1m102401 B[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size or increase limit in [1m\"size-limit\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -31,21 +31,21 @@ exports[`only renders failed results with --hide-passed flag 1`] = `
   Size limit: [31m[1m102.4 kB[22m[39m
   Size:       [31m[1m102.5 kB[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size or increase limit in [1m\"size-limit\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
 exports[`renders JSON results 1`] = `
 "[
   {
-    "name": "big fail"
+    \\"name\\": \\"big fail\\"
   },
   {
-    "name": "big fail",
-    "passed": false,
-    "size": 1000,
-    "running": 0.3,
-    "loading": 0.2
+    \\"name\\": \\"big fail\\",
+    \\"passed\\": false,
+    \\"size\\": 1000,
+    \\"running\\": 0.3,
+    \\"loading\\": 0.2
   }
 ]
 "
@@ -87,7 +87,7 @@ exports[`renders failed results 1`] = `
   Size limit: [31m[1m102.4 kB[22m[39m
   Size:       [31m[1m102.5 kB[22m[39m [90mgzipped[39m
   
-  [33mTry to reduce size or increase limit in [1m\"size-limit\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
 `;
 

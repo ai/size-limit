@@ -2,6 +2,7 @@
   "name": "@size-limit/dual-publish",
   "version": "9.0.0",
   "description": "dual-publish plugin for Size Limit",
+  "type": "module",
   "keywords": [
     "size-limit",
     "plugin",

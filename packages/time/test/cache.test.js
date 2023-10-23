@@ -1,8 +1,9 @@
-let { writeFile } = require('fs').promises
-let { join } = require('path')
-let rm = require('size-limit/rm')
+import { writeFile } from 'fs/promises'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { afterEach, beforeAll, expect, it } from 'vitest'
 
-let { getCache, saveCache } = require('../cache')
+import { getCache, saveCache } from '../cache'
 
 const CACHE = join(__dirname, '..', '..', '.cache')
 

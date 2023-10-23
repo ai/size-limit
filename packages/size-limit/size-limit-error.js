@@ -52,7 +52,7 @@ const ADD_CONFIG_EXAMPLE = {
   pathNotString: true
 }
 
-class SizeLimitError extends Error {
+export class SizeLimitError extends Error {
   constructor(type, ...args) {
     super(MESSAGES[type](...args))
     this.name = 'SizeLimitError'
@@ -67,5 +67,3 @@ class SizeLimitError extends Error {
     }
   }
 }
-
-module.exports = SizeLimitError

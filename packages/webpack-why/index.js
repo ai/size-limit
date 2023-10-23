@@ -1,5 +1,5 @@
-let StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin').default
-let { join } = require('path')
+import StatoscopeWebpackPlugin from '@statoscope/webpack-plugin'
+import { join } from 'path'
 
 function addStatoscope(limitConfig, check, webpackConfig) {
   if (limitConfig.why) {
@@ -34,22 +34,22 @@ function addStatoscope(limitConfig, check, webpackConfig) {
   }
 }
 
-let self = {
-  async before(config, check) {
-    let modifyConfig = check.modifyWebpackConfig
+export default [
+  {
+    async before(config, check) {
+      let modifyConfig = check.modifyWebpackConfig
 
-    check.modifyWebpackConfig = function modifyWebpackConfig(webpackConfig) {
-      addStatoscope(config, check, webpackConfig)
+      check.modifyWebpackConfig = function modifyWebpackConfig(webpackConfig) {
+        addStatoscope(config, check, webpackConfig)
 
-      if (modifyConfig) {
-        return modifyConfig(webpackConfig) || webpackConfig
+        if (modifyConfig) {
+          return modifyConfig(webpackConfig) || webpackConfig
+        }
+
+        return webpackConfig
       }
+    },
 
-      return webpackConfig
-    }
-  },
-
-  name: '@size-limit/webpack-why'
-}
-
-module.exports = [self]
+    name: '@size-limit/webpack-why'
+  }
+]

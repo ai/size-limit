@@ -1,6 +1,6 @@
-let { dirname, parse, resolve } = require('path')
-let { existsSync } = require('fs')
-let { readFile } = require('fs').promises
+import { existsSync } from 'fs'
+import { readFile } from 'fs/promises'
+import { dirname, parse, resolve } from 'path'
 
 async function readPkg(cwd) {
   let filePath = resolve(cwd, 'package.json')
@@ -12,7 +12,7 @@ async function findUp(name, cwd = '') {
   let { root } = parse(directory)
 
   while (true) {
-    let foundPath = await resolve(directory, name)
+    let foundPath = resolve(directory, name)
 
     if (existsSync(foundPath)) {
       return foundPath
@@ -26,7 +26,7 @@ async function findUp(name, cwd = '') {
   }
 }
 
-module.exports = async cwd => {
+export default async cwd => {
   let filePath = await findUp('package.json', cwd)
 
   if (!filePath) {

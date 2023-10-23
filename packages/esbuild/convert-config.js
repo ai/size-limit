@@ -1,3 +1,3 @@
-module.exports = function convertConfig(config) {
+export function convertConfig(config) {
   config.metafile = true
 }

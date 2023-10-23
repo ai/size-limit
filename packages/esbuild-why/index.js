@@ -1,28 +1,28 @@
-let { visualizer } = require('esbuild-visualizer')
-let { join } = require('path')
-let { writeFileSync } = require('fs')
-let open = require('open')
+import { visualizer } from 'esbuild-visualizer'
+import { writeFileSync } from 'fs'
+import open from 'open'
+import { join } from 'path'
 
-let { getReportName } = require('./report')
+import { getReportName } from './report'
 
-let self = {
-  async finally(config, check) {
-    let {esbuildVisualizerFile} = check
+export default [
+  {
+    async finally(config, check) {
+      let { esbuildVisualizerFile } = check
 
-    if (esbuildVisualizerFile) {
-      await open(esbuildVisualizerFile)
-    }
-  },
+      if (esbuildVisualizerFile) {
+        await open(esbuildVisualizerFile)
+      }
+    },
 
-  name: '@size-limit/esbuild-why',
-  async step81(config, check) {
-    if (config.why && check.esbuildMetafile) {
-      let result = await visualizer(check.esbuildMetafile)
-      let file = join(config.saveBundle ?? '', getReportName(config, check))
-      check.esbuildVisualizerFile = file;
-      writeFileSync(file, result)
+    name: '@size-limit/esbuild-why',
+    async step81(config, check) {
+      if (config.why && check.esbuildMetafile) {
+        let result = await visualizer(check.esbuildMetafile)
+        let file = join(config.saveBundle ?? '', getReportName(config, check))
+        check.esbuildVisualizerFile = file
+        writeFileSync(file, result)
+      }
     }
   }
-}
-
-module.exports = [self]
+]

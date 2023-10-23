@@ -1,9 +1,13 @@
-let [webpack] = require('@size-limit/webpack')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePkg from '@size-limit/file'
+import webpackPkg from '@size-limit/webpack'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it, vi } from 'vitest'
 
-let [webpackCss] = require('../')
+import webpackCssPkg from '../'
+const [webpack] = webpackPkg
+const [file] = filePkg
+const [webpackCss] = webpackCssPkg
 
 const DIST = join(process.cwd(), 'dist')
 
@@ -23,9 +27,10 @@ async function run(config) {
     await webpack.finally(config, config.checks[0])
   }
 }
+
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('supports non-JS require', async () => {

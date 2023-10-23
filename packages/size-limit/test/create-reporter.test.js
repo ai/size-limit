@@ -1,4 +1,6 @@
-let createReporter = require('../create-reporter')
+import { expect, it } from 'vitest'
+
+import createReporter from '../create-reporter'
 
 function results(types, config, isJSON = false, isSilentMode = false) {
   let stdout = ''

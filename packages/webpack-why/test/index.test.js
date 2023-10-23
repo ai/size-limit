@@ -1,11 +1,15 @@
-let { mkdir, readFile, writeFile } = require('fs').promises
-let { existsSync } = require('fs')
-let [webpack] = require('@size-limit/webpack')
-let { join } = require('path')
-let [file] = require('@size-limit/file')
-let rm = require('size-limit/rm')
+import filePkg from '@size-limit/file'
+import webpackPkg from '@size-limit/webpack'
+import { existsSync } from 'fs'
+import { mkdir, readFile, writeFile } from 'fs/promises'
+import { join } from 'path'
+import rm from 'size-limit/rm'
+import { afterEach, expect, it, vi } from 'vitest'
 
-let [webpackWhy] = require('../')
+import webpackWhyPkg from '../'
+const [webpack] = webpackPkg
+const [file] = filePkg
+const [webpackWhy] = webpackWhyPkg
 
 const DIST = join(process.cwd(), 'out')
 
@@ -28,11 +32,11 @@ async function run(config) {
 
 afterEach(async () => {
   await rm(DIST)
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 it('supports --why', async () => {
-  jest.spyOn(console, 'log').mockImplementation(() => true)
+  vi.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
     checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',

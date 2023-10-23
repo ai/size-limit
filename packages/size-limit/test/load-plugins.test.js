@@ -1,12 +1,13 @@
-let { join } = require('path')
+import { join } from 'path'
+import { describe, expect, it } from 'vitest'
 
-let loadPlugins = require('../load-plugins')
-let readPkgUp = require('../read-pkg-up')
+import loadPlugins from '../load-plugins'
+import readPkgUp from '../read-pkg-up'
 
 describe(`load-plugins`, () => {
   it('load core plugins of size-limit', async () => {
     let cwd = join(__dirname, '..', '..', '..', 'fixtures', 'zero-esbuild')
-    let result = loadPlugins(await readPkgUp(cwd))
+    let result = await loadPlugins(await readPkgUp(cwd))
     expect(result.isEmpty).toBe(false)
     expect(result.list.length).toBe(2)
     expect(result.has('esbuild')).toBe(true)
@@ -16,7 +17,7 @@ describe(`load-plugins`, () => {
 
   it('load 3rd-party plugins', async () => {
     let cwd = join(__dirname, '..', '..', '..', 'fixtures', 'plugins')
-    let result = loadPlugins(await readPkgUp(cwd))
+    let result = await loadPlugins(await readPkgUp(cwd))
     expect(result.isEmpty).toBe(false)
     expect(result.list.length).toBe(1)
     expect(result.has('esbuild')).toBe(false)
@@ -25,7 +26,7 @@ describe(`load-plugins`, () => {
   })
 
   it('plugins should be empty if no package.json was found', async () => {
-    let result = loadPlugins(await readPkgUp('/'))
+    let result = await loadPlugins(await readPkgUp('/'))
     expect(result.isEmpty).toBe(true)
   })
 })
