@@ -1,7 +1,7 @@
 import { visualizer } from 'esbuild-visualizer'
-import { writeFileSync } from 'fs'
+import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import open from 'open'
-import { join } from 'path'
 
 import { getReportName } from './report'
 

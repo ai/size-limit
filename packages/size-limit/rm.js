@@ -1,5 +1,5 @@
-import { existsSync } from 'fs'
-import fs from 'fs/promises'
+import { existsSync } from 'node:fs'
+import fs from 'node:fs/promises'
 
 export default async function rm(dir) {
   if (!fs.rm) {

@@ -1,8 +1,8 @@
 import filePkg from '@size-limit/file'
 import webpackPkg from '@size-limit/webpack'
-import { existsSync } from 'fs'
-import { mkdir, readFile, writeFile } from 'fs/promises'
-import { join } from 'path'
+import { existsSync } from 'node:fs'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import rm from 'size-limit/rm'
 import { afterEach, expect, it, vi } from 'vitest'
 

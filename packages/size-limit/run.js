@@ -1,6 +1,6 @@
 import chokidar from 'chokidar'
 import { createSpinner } from 'nanospinner'
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 import calc from './calc.js'
 import createHelp from './create-help.js'

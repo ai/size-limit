@@ -1,5 +1,5 @@
 import spawn from 'cross-spawn'
-import { join } from 'path'
+import { join } from 'node:path'
 import { expect, it } from 'vitest'
 
 const BIN_PATH = join(__dirname, '../bin.js')

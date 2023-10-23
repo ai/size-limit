@@ -1,5 +1,5 @@
 import bytes from 'bytes-iec'
-import { join } from 'path'
+import { join } from 'node:path'
 import pc from 'picocolors'
 
 const { bgGreen, bgRed, black, bold, gray, green, red, yellow } = pc

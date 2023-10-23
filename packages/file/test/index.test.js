@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { SizeLimitError } from 'size-limit/size-limit-error'
 import { expect, it } from 'vitest'
 

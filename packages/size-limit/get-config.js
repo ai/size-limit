@@ -1,7 +1,7 @@
 import bytes from 'bytes-iec'
 import globby from 'globby'
 import { lilconfig } from 'lilconfig'
-import { dirname, isAbsolute, join, relative } from 'path'
+import { dirname, isAbsolute, join, relative } from 'node:path'
 
 import { SizeLimitError } from './size-limit-error.js'
 

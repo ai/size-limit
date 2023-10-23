@@ -1,6 +1,6 @@
-import { existsSync } from 'fs'
-import { createRequire } from 'module'
-import { join } from 'path'
+import { existsSync } from 'node:fs'
+import { createRequire } from 'node:module'
+import { join } from 'node:path'
 import pc from 'picocolors'
 const require = createRequire(import.meta.url)
 

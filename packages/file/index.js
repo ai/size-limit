@@ -1,8 +1,8 @@
-import { createReadStream } from 'fs'
-import { stat } from 'fs/promises'
+import { createReadStream } from 'node:fs'
+import { stat } from 'node:fs/promises'
+import { constants, createBrotliCompress, createGzip } from 'node:zlib'
 import { gte } from 'semver'
 import { SizeLimitError } from 'size-limit/size-limit-error.js'
-import { constants, createBrotliCompress, createGzip } from 'zlib'
 
 const BROTLI_NODE_VERSION = 'v11.7.0'
 

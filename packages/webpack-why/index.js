@@ -1,5 +1,5 @@
 import StatoscopeWebpackPlugin from '@statoscope/webpack-plugin'
-import { join } from 'path'
+import { join } from 'node:path'
 
 function addStatoscope(limitConfig, check, webpackConfig) {
   if (limitConfig.why) {

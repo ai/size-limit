@@ -1,5 +1,5 @@
-import { writeFile } from 'fs/promises'
-import { join } from 'path'
+import { writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import rm from 'size-limit/rm'
 import { afterEach, beforeAll, expect, it } from 'vitest'
 

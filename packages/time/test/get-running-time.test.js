@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import rm from 'size-limit/rm'
 import { afterEach, expect, it } from 'vitest'
 

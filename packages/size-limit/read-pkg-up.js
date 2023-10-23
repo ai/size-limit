@@ -1,6 +1,6 @@
-import { existsSync } from 'fs'
-import { readFile } from 'fs/promises'
-import { dirname, parse, resolve } from 'path'
+import { existsSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
+import { dirname, parse, resolve } from 'node:path'
 
 async function readPkg(cwd) {
   let filePath = resolve(cwd, 'package.json')

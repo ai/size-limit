@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { beforeEach, expect, it, vi } from 'vitest'
 
 import calc from '../calc'

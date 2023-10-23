@@ -1,7 +1,7 @@
-import { readdir, readFile } from 'fs/promises'
 import { nanoid } from 'nanoid/non-secure'
-import { tmpdir } from 'os'
-import { join, parse, resolve } from 'path'
+import { readdir, readFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join, parse, resolve } from 'node:path'
 import rm from 'size-limit/rm'
 import { SizeLimitError } from 'size-limit/size-limit-error'
 

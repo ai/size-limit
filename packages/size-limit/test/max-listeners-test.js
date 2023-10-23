@@ -1,5 +1,5 @@
-import { join } from 'path'
-import { fileURLToPath } from 'url'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import run from '../run.js'
 

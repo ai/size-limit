@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { expect, it, vi } from 'vitest'
 
 import run from '../run'

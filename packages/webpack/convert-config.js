@@ -1,4 +1,4 @@
-import { dirname, join } from 'path'
+import { dirname, join } from 'node:path'
 
 export function convertConfig(config, root) {
   let resolveModulesPaths = [join(dirname(root), 'node_modules')]

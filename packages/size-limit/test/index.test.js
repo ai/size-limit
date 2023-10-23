@@ -1,7 +1,7 @@
 import esbuildPlugin from '@size-limit/esbuild'
 import filePlugin from '@size-limit/file'
 import webpackPlugin from '@size-limit/webpack'
-import { join } from 'path'
+import { join } from 'node:path'
 import { expect, it } from 'vitest'
 
 import sizeLimit from '../'

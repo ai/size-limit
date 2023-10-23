@@ -1,6 +1,6 @@
 import filePkg from '@size-limit/file'
 import webpackPkg from '@size-limit/webpack'
-import { join } from 'path'
+import { join } from 'node:path'
 import rm from 'size-limit/rm'
 import { afterEach, expect, it, vi } from 'vitest'
 

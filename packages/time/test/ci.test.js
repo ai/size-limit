@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 
 import { getRunningTime } from '../get-running-time'
