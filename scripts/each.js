@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 
-let { readdirSync, existsSync } = require('fs')
-let { spawn } = require('child_process')
-let { join } = require('path')
+import { spawn } from 'node:child_process'
+import { existsSync, readdirSync } from 'node:fs'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const PACKAGES = join(__dirname, '..', 'packages')
+const PACKAGES = join(fileURLToPath(import.meta.url), '..', '..', 'packages')
 
 let command = process.argv[2]
 let args = process.argv.slice(3)
 
 let dirs = readdirSync(PACKAGES)
 
-function nextTick () {
+function nextTick() {
   if (dirs.length === 0) return
   let dir = dirs.pop()
 
@@ -20,12 +21,12 @@ function nextTick () {
     return
   }
 
-  process.stdout.write(`$ cd packages/${ dir }\n`)
-  process.stdout.write(`$ ${ command } ${ args.join(' ') }\n`)
+  process.stdout.write(`$ cd packages/${dir}\n`)
+  process.stdout.write(`$ ${command} ${args.join(' ')}\n`)
   let run = spawn(command, args, {
-    stdio: 'inherit',
     cwd: join(PACKAGES, dir),
-    env: process.env
+    env: process.env,
+    stdio: 'inherit'
   })
   run.on('close', exitCode => {
     if (exitCode === 0) {

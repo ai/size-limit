@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-let { readdirSync, readFileSync, writeFileSync, existsSync } = require('fs')
-let { join } = require('path')
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const PACKAGES = join(__dirname, '..', 'packages')
+const PACKAGES = join(fileURLToPath(import.meta.url), '..', '..', 'packages')
 
 let version = process.argv[2]
 if (!version) {
