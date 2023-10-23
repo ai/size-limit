@@ -1,11 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.1
+* Fixed imports and exports between packages.
+
 ## 10.0
 * Removed `@size-limit/dual-publish` plugin.
 * Moved projects to ESM (by @lev875).
   Size Limit still can be used as CLI in CJS projects.
-* Update `globby` dependency.
+* Updated `globby` dependency.
 
 ## 9.0
 * Remove Node.js 14 and 16 support.
