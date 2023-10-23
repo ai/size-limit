@@ -12,9 +12,9 @@ import parseArgs from './parse-args.js'
 import readPkgUp from './read-pkg-up.js'
 import { SizeLimitError } from './size-limit-error.js'
 
+/* c8 ignore next 10 */
 function throttle(fn) {
   let next, running
-  // istanbul ignore next
   return () => {
     clearTimeout(next)
     next = setTimeout(async () => {
@@ -82,7 +82,7 @@ export default async process => {
 
     await calcAndShow()
 
-    /* istanbul ignore if */
+    /* c8 ignore next 6 */
     if (hasArg('--watch')) {
       let watcher = chokidar.watch(['**/*'], {
         ignored: '**/node_modules/**'

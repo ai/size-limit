@@ -3,7 +3,7 @@ import fs from 'node:fs/promises'
 
 export default async function rm(dir) {
   if (!fs.rm) {
-    /* istanbul ignore next */
+    /* c8 ignore next 3 */
     if (existsSync(dir)) {
       await fs.rmdir(dir, { recursive: true })
     }
