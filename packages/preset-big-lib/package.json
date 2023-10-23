@@ -13,6 +13,10 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/size-limit",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
   "peerDependencies": {
     "size-limit": "10.0.0"
   },
