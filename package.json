@@ -2,8 +2,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "bump": "./scripts/bump",
-    "release": "./scripts/each pnpm clean-publish --access public",
+    "bump": "./scripts/bump.js",
+    "release": "./scripts/each.js pnpm clean-publish --access public",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
     "test": "vitest run --coverage && eslint . && sh scripts/max-listeners-check.sh"
   },
