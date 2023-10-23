@@ -67,5 +67,3 @@ export class SizeLimitError extends Error {
     }
   }
 }
-
-

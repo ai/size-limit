@@ -1,6 +1,6 @@
 import { join } from 'path'
 import rm from 'size-limit/rm'
-import { afterEach, expect, it } from "vitest"
+import { afterEach, expect, it } from 'vitest'
 
 import { getCache, saveCache } from '../cache'
 import { cleanCache, getRunningTime } from '../get-running-time'

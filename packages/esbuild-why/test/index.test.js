@@ -1,14 +1,14 @@
 import esbuildPkg from '@size-limit/esbuild'
-import {readFile} from 'fs/promises'
+import { readFile } from 'fs/promises'
 import open from 'open'
-import {join} from 'path'
+import { join } from 'path'
 import rm from 'size-limit/rm'
-import { afterEach, expect, it, vi } from "vitest"
+import { afterEach, expect, it, vi } from 'vitest'
 
 import esbuildWhyPkg from '..'
 const [esbuild] = esbuildPkg
 
-vi.mock('open');
+vi.mock('open')
 const [esbuildWhy] = esbuildWhyPkg
 
 const DIST = join(process.cwd(), 'out')
@@ -25,7 +25,7 @@ afterEach(async () => {
 it('supports --why', async () => {
   vi.spyOn(console, 'log').mockImplementation(() => true)
   let config = {
-    checks: [{files: [fixture('big.js')]}],
+    checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',
     saveBundle: DIST,
     why: true
@@ -46,7 +46,7 @@ it('supports --why', async () => {
 
 it('supports open esbuild visualizer on complete', async () => {
   let config = {
-    checks: [{files: [fixture('big.js')]}],
+    checks: [{ files: [fixture('big.js')] }],
     project: 'superProject',
     saveBundle: DIST,
     why: true
@@ -61,6 +61,8 @@ it('supports open esbuild visualizer on complete', async () => {
     await esbuildWhy.finally(config, config.checks[0])
   }
 
-  expect(open).toHaveBeenCalledTimes(1);
-  expect(open).toHaveBeenCalledWith(expect.stringMatching( /.*\/out\/esbuild-why.html$/));
+  expect(open).toHaveBeenCalledTimes(1)
+  expect(open).toHaveBeenCalledWith(
+    expect.stringMatching(/.*\/out\/esbuild-why.html$/)
+  )
 })

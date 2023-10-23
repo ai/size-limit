@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
 import rm from 'size-limit/rm'
 import { SizeLimitError } from 'size-limit/size-limit-error'
-import { afterEach, describe, expect, it, vi } from "vitest"
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import esbuildPkg from '../'
 const [file] = filePkg
@@ -115,7 +115,9 @@ describe('supports custom entry', () => {
 describe('throws error on unknown entry', () => {
   it('should work with commonjs config', async () => {
     let config = {
-      checks: [{ config: fixture('cjs/esbuild.config.js'), entry: ['unknown'] }],
+      checks: [
+        { config: fixture('cjs/esbuild.config.js'), entry: ['unknown'] }
+      ],
       configPath: ROOT_CONFIG
     }
     let err
@@ -130,7 +132,9 @@ describe('throws error on unknown entry', () => {
 
   it('should work with esm config', async () => {
     let config = {
-      checks: [{ config: fixture('esm/esbuild.config.js'), entry: ['unknown'] }],
+      checks: [
+        { config: fixture('esm/esbuild.config.js'), entry: ['unknown'] }
+      ],
       configPath: ROOT_CONFIG
     }
     let err

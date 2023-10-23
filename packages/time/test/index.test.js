@@ -1,5 +1,5 @@
 import { SizeLimitError } from 'size-limit/size-limit-error'
-import { beforeEach, expect, it, vi } from "vitest"
+import { beforeEach, expect, it, vi } from 'vitest'
 
 import timePkg from '../'
 import { getRunningTime } from '../get-running-time'

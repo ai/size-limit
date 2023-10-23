@@ -15,21 +15,22 @@ function getLoadingTime(size) {
   return time
 }
 
-export default [{
-  name: '@size-limit/time',
-  async step80(config, check) {
-    if (typeof check.size === 'undefined') {
-      throw new SizeLimitError('missedPlugin', 'file')
-    }
-    check.loadTime = getLoadingTime(check.size)
-    if (check.running !== false) {
-      let files = check.bundles || check.files
-      check.runTime = await sum(files, i => getRunningTime(i))
-      check.time = check.runTime + check.loadTime
-    } else {
-      check.time = check.loadTime
-    }
-  },
-  wait80: 'Running JS in headless Chrome'
-}]
-
+export default [
+  {
+    name: '@size-limit/time',
+    async step80(config, check) {
+      if (typeof check.size === 'undefined') {
+        throw new SizeLimitError('missedPlugin', 'file')
+      }
+      check.loadTime = getLoadingTime(check.size)
+      if (check.running !== false) {
+        let files = check.bundles || check.files
+        check.runTime = await sum(files, i => getRunningTime(i))
+        check.time = check.runTime + check.loadTime
+      } else {
+        check.time = check.loadTime
+      }
+    },
+    wait80: 'Running JS in headless Chrome'
+  }
+]

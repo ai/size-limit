@@ -18,4 +18,4 @@ it('main', () => {
   expect(isValidFilename('.')).toBe(false)
   expect(isValidFilename('..')).toBe(false)
   expect(isValidFilename('...')).toBe(true)
-});
+})

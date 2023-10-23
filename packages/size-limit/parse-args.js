@@ -48,7 +48,12 @@ export default function parseArgs(plugins, argv) {
       args.why = true
     } else if (arg === '--compare-with') {
       if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
-        throw new SizeLimitError('argWithoutAnalyzer', 'compare-with', 'webpack', 'webpack-why')
+        throw new SizeLimitError(
+          'argWithoutAnalyzer',
+          'compare-with',
+          'webpack',
+          'webpack-why'
+        )
       }
       if (!args.why) {
         throw new SizeLimitError('argWithoutAnotherArg', 'compare-with', 'why')

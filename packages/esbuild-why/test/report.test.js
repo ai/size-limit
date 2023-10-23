@@ -1,4 +1,4 @@
-import { expect, it } from "vitest"
+import { expect, it } from 'vitest'
 
 import { getReportName } from '../report'
 
@@ -29,7 +29,9 @@ it('returns name if the name is a valid file name', () => {
 
 it('returns plain name if there is only one check', () => {
   expect(getReportName({ checks: [plain] }, plain)).toEqual(`esbuild-why.html`)
-  expect(getReportName({ checks: [withSlash] }, withSlash)).toEqual(`esbuild-why.html`)
+  expect(getReportName({ checks: [withSlash] }, withSlash)).toEqual(
+    `esbuild-why.html`
+  )
 })
 
 it('returns one-based index if name is not a valid file name', () => {

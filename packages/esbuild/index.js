@@ -52,82 +52,87 @@ async function isDirNotEmpty(dir) {
   }
 }
 
-export default [{
-  async before(config) {
-    if (config.saveBundle) {
-      if (config.cleanDir) {
-        await rm(config.saveBundle)
-      } else {
-        let notEmpty = await isDirNotEmpty(config.saveBundle)
-        if (notEmpty) {
-          throw new SizeLimitError('bundleDirNotEmpty', config.saveBundle)
-        }
-      }
-    }
-  },
-
-  async finally(config, check) {
-    if (check.esbuildOutfile && !config.saveBundle) {
-      await rm(check.esbuildOutfile)
-    }
-  },
-
-  name: '@size-limit/esbuild',
-
-  async step20(config, check) {
-    if (check.esbuild === false) return
-    check.esbuildOutfile = config.saveBundle
-    if (!check.esbuildOutfile) {
-      check.esbuildOutfile = join(tmpdir(), `size-limit-${nanoid()}`)
-    }
-    if (check.config) {
-      check.esbuildConfig = (await import(check.config)).default
-      convertConfig(check.esbuildConfig, config.configPath)
-    } else {
-      check.esbuildConfig = await getConfig(config, check, check.esbuildOutfile)
-      if (check.modifyEsbuildConfig) {
-        check.esbuildConfig = check.modifyEsbuildConfig(check.esbuildConfig)
-      }
-    }
-  },
-  async step40(config, check) {
-    if (check.esbuildConfig && check.esbuild !== false) {
-      let result = await runEsbuild(check)
-      check.esbuildMetafile = result.metafile
-      check.bundles = getFiles(result, check)
-    }
-  },
-
-  async step61(config, check) {
-    if (check.bundles) {
-      if (typeof check.size === 'undefined') {
-        throw new SizeLimitError('missedPlugin', 'file')
-      }
-      let hasRequirePolyfill = false
-      if (check.ignore) {
-        for (let bundle of check.bundles) {
-          let js = await readFile(bundle)
-          if (js.toString().includes('Dynamic require of ')) {
-            hasRequirePolyfill = true
+export default [
+  {
+    async before(config) {
+      if (config.saveBundle) {
+        if (config.cleanDir) {
+          await rm(config.saveBundle)
+        } else {
+          let notEmpty = await isDirNotEmpty(config.saveBundle)
+          if (notEmpty) {
+            throw new SizeLimitError('bundleDirNotEmpty', config.saveBundle)
           }
         }
       }
-      if (hasRequirePolyfill && check.import && check.gzip === false) {
-        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE
-      } else if (hasRequirePolyfill && check.import) {
-        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GRIP
-      } else if (check.import && check.gzip === false) {
-        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT
-      } else if (check.import) {
-        check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_GZIP
-      } else if (check.gzip === false) {
-        check.size -= ESBUILD_EMPTY_PROJECT
-      } else {
-        check.size -= ESBUILD_EMPTY_PROJECT_GZIP
+    },
+
+    async finally(config, check) {
+      if (check.esbuildOutfile && !config.saveBundle) {
+        await rm(check.esbuildOutfile)
       }
-    }
-  },
+    },
 
-  wait40: 'Adding to empty esbuild project'
-}]
+    name: '@size-limit/esbuild',
 
+    async step20(config, check) {
+      if (check.esbuild === false) return
+      check.esbuildOutfile = config.saveBundle
+      if (!check.esbuildOutfile) {
+        check.esbuildOutfile = join(tmpdir(), `size-limit-${nanoid()}`)
+      }
+      if (check.config) {
+        check.esbuildConfig = (await import(check.config)).default
+        convertConfig(check.esbuildConfig, config.configPath)
+      } else {
+        check.esbuildConfig = await getConfig(
+          config,
+          check,
+          check.esbuildOutfile
+        )
+        if (check.modifyEsbuildConfig) {
+          check.esbuildConfig = check.modifyEsbuildConfig(check.esbuildConfig)
+        }
+      }
+    },
+    async step40(config, check) {
+      if (check.esbuildConfig && check.esbuild !== false) {
+        let result = await runEsbuild(check)
+        check.esbuildMetafile = result.metafile
+        check.bundles = getFiles(result, check)
+      }
+    },
+
+    async step61(config, check) {
+      if (check.bundles) {
+        if (typeof check.size === 'undefined') {
+          throw new SizeLimitError('missedPlugin', 'file')
+        }
+        let hasRequirePolyfill = false
+        if (check.ignore) {
+          for (let bundle of check.bundles) {
+            let js = await readFile(bundle)
+            if (js.toString().includes('Dynamic require of ')) {
+              hasRequirePolyfill = true
+            }
+          }
+        }
+        if (hasRequirePolyfill && check.import && check.gzip === false) {
+          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE
+        } else if (hasRequirePolyfill && check.import) {
+          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GRIP
+        } else if (check.import && check.gzip === false) {
+          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT
+        } else if (check.import) {
+          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_GZIP
+        } else if (check.gzip === false) {
+          check.size -= ESBUILD_EMPTY_PROJECT
+        } else {
+          check.size -= ESBUILD_EMPTY_PROJECT_GZIP
+        }
+      }
+    },
+
+    wait40: 'Adding to empty esbuild project'
+  }
+]

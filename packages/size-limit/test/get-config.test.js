@@ -7,10 +7,10 @@ import run from '../run'
 vi.mock('../create-reporter', () => {
   return {
     default: () => ({
-        error(e) {
-          throw e
-        },
-        results() {}
+      error(e) {
+        throw e
+      },
+      results() {}
     })
   }
 })

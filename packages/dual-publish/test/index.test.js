@@ -1,10 +1,9 @@
 import { join } from 'path'
 import { SizeLimitError } from 'size-limit/size-limit-error'
-import { expect, it, vi } from "vitest"
+import { expect, it, vi } from 'vitest'
 
 import dualPublishPkg from '../'
 const [dualPublish] = dualPublishPkg
-
 
 vi.mock('child_process', () => ({
   spawn(cmd, args, opts) {

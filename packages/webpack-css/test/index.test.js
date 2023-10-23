@@ -35,7 +35,7 @@ afterEach(async () => {
 
 it('supports non-JS require', async () => {
   let config = {
-    checks: [{ files: [fixture('nonjs.js')], }]
+    checks: [{ files: [fixture('nonjs.js')] }]
   }
   await run(config)
   expect(config.checks[0].size).toBeGreaterThan(1450)

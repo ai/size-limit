@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
 import rm from 'size-limit/rm'
 import { SizeLimitError } from 'size-limit/size-limit-error'
-import { afterEach, describe, expect, it, vi } from "vitest"
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import webpackPkg from '../'
 const [file] = filePkg
@@ -71,7 +71,6 @@ it('supports ignore', async () => {
   expect(config.checks[0].size).toBe(160)
 })
 
-
 describe('supports custom webpack config', () => {
   it('should work with commonjs config', async () => {
     let config = {
@@ -115,7 +114,9 @@ describe('supports custom entry', () => {
 describe('throws error on unknown entry', () => {
   it('should work with commonjs config', async () => {
     let config = {
-      checks: [{ config: fixture('cjs/webpack.config.js'), entry: ['unknown'] }],
+      checks: [
+        { config: fixture('cjs/webpack.config.js'), entry: ['unknown'] }
+      ],
       configPath: ROOT_CONFIG
     }
     let err
@@ -130,7 +131,9 @@ describe('throws error on unknown entry', () => {
 
   it('should work with esm config', async () => {
     let config = {
-      checks: [{ config: fixture('esm/webpack.config.js'), entry: ['unknown'] }],
+      checks: [
+        { config: fixture('esm/webpack.config.js'), entry: ['unknown'] }
+      ],
       configPath: ROOT_CONFIG
     }
     let err
@@ -142,7 +145,6 @@ describe('throws error on unknown entry', () => {
     expect(err).toEqual(new SizeLimitError('unknownEntry', 'unknown'))
     expect(existsSync(config.checks[0].webpackOutput)).toBe(false)
   })
-
 })
 
 it('allows to disable webpack', async () => {

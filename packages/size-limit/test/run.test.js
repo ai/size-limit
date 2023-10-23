@@ -370,13 +370,16 @@ it('returns zero for empty file with esbuild and without gzip', async () => {
   expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
 })
 
-it.skipIf(NODE_VERSION < 16)('allows to use peer dependencies in import', async () => {
-  await checkJson('combine', [
-    { name: 'all', size: 2269 },
-    { name: 'a', size: 1 },
-    { name: 'redux', size: 2265 }
-  ])
-})
+it.skipIf(NODE_VERSION < 16)(
+  'allows to use peer dependencies in import',
+  async () => {
+    await checkJson('combine', [
+      { name: 'all', size: 2269 },
+      { name: 'a', size: 1 },
+      { name: 'redux', size: 2265 }
+    ])
+  }
+)
 
 it('supports import and ignore for esbuild', async () => {
   expect(clean(await check('peer-esbuild-non-gzip'))).toMatchSnapshot()

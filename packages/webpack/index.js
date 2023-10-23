@@ -49,66 +49,72 @@ async function isDirNotEmpty(dir) {
   }
 }
 
-export default [{
-  async before(config) {
-    if (config.saveBundle) {
-      if (config.cleanDir) {
-        await rm(config.saveBundle)
-      } else {
-        let notEmpty = await isDirNotEmpty(config.saveBundle)
-        if (notEmpty) {
-          throw new SizeLimitError('bundleDirNotEmpty', config.saveBundle)
+export default [
+  {
+    async before(config) {
+      if (config.saveBundle) {
+        if (config.cleanDir) {
+          await rm(config.saveBundle)
+        } else {
+          let notEmpty = await isDirNotEmpty(config.saveBundle)
+          if (notEmpty) {
+            throw new SizeLimitError('bundleDirNotEmpty', config.saveBundle)
+          }
         }
       }
-    }
-  },
+    },
 
-  async finally(config, check) {
-    if (check.webpackOutput && !config.saveBundle) {
-      await rm(check.webpackOutput)
-    }
-  },
-
-  name: '@size-limit/webpack',
-
-  async step20(config, check) {
-    if (check.webpack === false) return
-    check.webpackOutput = config.saveBundle
-    if (!check.webpackOutput) {
-      check.webpackOutput = join(tmpdir(), `size-limit-${nanoid()}`)
-    }
-    if (check.config) {
-      check.webpackConfig = (await import(check.config)).default;
-      convertConfig(check.webpackConfig, config.configPath)
-    } else {
-      check.webpackConfig = await getConfig(config, check, check.webpackOutput)
-      if (check.modifyWebpackConfig) {
-        check.webpackConfig = check.modifyWebpackConfig(check.webpackConfig)
+    async finally(config, check) {
+      if (check.webpackOutput && !config.saveBundle) {
+        await rm(check.webpackOutput)
       }
-    }
-  },
-  async step40(config, check) {
-    if (check.webpackConfig && check.webpack !== false) {
-      check.bundles = getFiles(await runWebpack(check), check)
-    }
-  },
+    },
 
-  async step61(config, check) {
-    if (check.bundles) {
-      if (typeof check.size === 'undefined') {
-        throw new SizeLimitError('missedPlugin', 'file')
+    name: '@size-limit/webpack',
+
+    async step20(config, check) {
+      if (check.webpack === false) return
+      check.webpackOutput = config.saveBundle
+      if (!check.webpackOutput) {
+        check.webpackOutput = join(tmpdir(), `size-limit-${nanoid()}`)
       }
-      if (check.import && check.gzip === false) {
-        check.size -= WEBPACK_EMPTY_PROJECT_IMPORT
-      } else if (check.import) {
-        check.size -= WEBPACK_EMPTY_PROJECT_IMPORT_GZIP
-      } else if (check.gzip === false) {
-        check.size -= WEBPACK_EMPTY_PROJECT
+      if (check.config) {
+        check.webpackConfig = (await import(check.config)).default
+        convertConfig(check.webpackConfig, config.configPath)
       } else {
-        check.size -= WEBPACK_EMPTY_PROJECT_GZIP
+        check.webpackConfig = await getConfig(
+          config,
+          check,
+          check.webpackOutput
+        )
+        if (check.modifyWebpackConfig) {
+          check.webpackConfig = check.modifyWebpackConfig(check.webpackConfig)
+        }
       }
-    }
-  },
+    },
+    async step40(config, check) {
+      if (check.webpackConfig && check.webpack !== false) {
+        check.bundles = getFiles(await runWebpack(check), check)
+      }
+    },
 
-  wait40: 'Adding to empty webpack project'
-}]
+    async step61(config, check) {
+      if (check.bundles) {
+        if (typeof check.size === 'undefined') {
+          throw new SizeLimitError('missedPlugin', 'file')
+        }
+        if (check.import && check.gzip === false) {
+          check.size -= WEBPACK_EMPTY_PROJECT_IMPORT
+        } else if (check.import) {
+          check.size -= WEBPACK_EMPTY_PROJECT_IMPORT_GZIP
+        } else if (check.gzip === false) {
+          check.size -= WEBPACK_EMPTY_PROJECT
+        } else {
+          check.size -= WEBPACK_EMPTY_PROJECT_GZIP
+        }
+      }
+    },
+
+    wait40: 'Adding to empty webpack project'
+  }
+]

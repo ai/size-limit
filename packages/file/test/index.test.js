@@ -1,8 +1,8 @@
 import { join } from 'path'
 import { SizeLimitError } from 'size-limit/size-limit-error'
-import { expect, it } from "vitest"
+import { expect, it } from 'vitest'
 
-import filePkg from "../"
+import filePkg from '../'
 const [file] = filePkg
 
 function fixture(name) {

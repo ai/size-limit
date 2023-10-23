@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url'
 
 import run from '../run.js'
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 process.args = ['node', 'size-limit']
 process.cwd = function () {

@@ -26,20 +26,22 @@ function addCssSupport(webpackConfig) {
   ).concat(['...', new CssMinimizerPlugin()])
 }
 
-export default [{
-  async before(config, check) {
-    let modifyConfig = check.modifyWebpackConfig
+export default [
+  {
+    async before(config, check) {
+      let modifyConfig = check.modifyWebpackConfig
 
-    check.modifyWebpackConfig = function modifyWebpackConfig(webpackConfig) {
-      addCssSupport(webpackConfig)
+      check.modifyWebpackConfig = function modifyWebpackConfig(webpackConfig) {
+        addCssSupport(webpackConfig)
 
-      if (modifyConfig) {
-        return modifyConfig(webpackConfig) || webpackConfig
+        if (modifyConfig) {
+          return modifyConfig(webpackConfig) || webpackConfig
+        }
+
+        return webpackConfig
       }
+    },
 
-      return webpackConfig
-    }
-  },
-
-  name: '@size-limit/webpack-css'
-}]
+    name: '@size-limit/webpack-css'
+  }
+]
