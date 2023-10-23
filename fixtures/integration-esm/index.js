@@ -1,3 +1,3 @@
-let { VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING, method } = require('./lib')
+import { VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING, method } from './lib'
 
-module.exports = { VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING, method }
+export { VERY_LONG_NAME_FOR_CONST_TO_TEST_TREE_SHAKING, method }

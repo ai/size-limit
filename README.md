@@ -472,16 +472,12 @@ Plugins:
   about your library is of this size to show the cost of all your
   dependencies.
 * `@size-limit/time` uses headless Chrome to track time to execute JS.
-* `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
-  to check size after tree-shaking.
 
 Plugin presets:
 
 * `@size-limit/preset-app` contains `file` and `time` plugins.
 * `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
 * `@size-limit/preset-small-lib` contains `esbuild` and `file` plugins.
-
-[`dual-publish`]: https://github.com/ai/dual-publish
 
 
 #### Third-Party Plugins

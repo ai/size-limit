@@ -1,7 +1,0 @@
-{
-  "name": "fixtures",
-  "version": "0.0.0",
-  "dependencies": {
-    "dual-publish": "> 0.0.0"
-  }
-}

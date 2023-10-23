@@ -41,7 +41,7 @@ it('has error for CLI error', () => {
   let err = new SizeLimitError(
     'cmdError',
     'cli-tool',
-    'Module not found\n  @ multi ./dual-publish-tmp/index.js index[0]'
+    'Module not found\n  @ multi ./tmp/index.js index[0]'
   )
   expect(print(err)).toMatchSnapshot()
 })

@@ -7,17 +7,13 @@ export default async function calc(plugins, config, createSpinner) {
       if (plugin['wait' + number] && createSpinner) {
         spinner = createSpinner(plugin['wait' + number]).start()
       }
-      if (plugin['step' + number] || plugin['all' + number]) {
+      if (plugin['step' + number]) {
         try {
-          if (plugin['all' + number]) {
-            await plugin['all' + number](config)
-          } else {
-            await Promise.all(
-              config.checks.map(i => {
-                return plugin['step' + number](config, i)
-              })
-            )
-          }
+          await Promise.all(
+            config.checks.map(i => {
+              return plugin['step' + number](config, i)
+            })
+          )
         } catch (e) {
           if (spinner) spinner.error()
           throw e

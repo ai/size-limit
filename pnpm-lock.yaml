@@ -11,9 +11,6 @@ importers:
       '@logux/eslint-config':
         specifier: ^52.0.1
         version: 52.0.1(eslint-config-standard@17.1.0)(eslint-plugin-import@2.29.0)(eslint-plugin-n@16.2.0)(eslint-plugin-node-import@1.0.4)(eslint-plugin-perfectionist@2.2.0)(eslint-plugin-prefer-let@3.0.1)(eslint-plugin-promise@6.1.1)(eslint@8.52.0)
-      '@size-limit/dual-publish':
-        specifier: workspace:^
-        version: link:packages/dual-publish
       '@size-limit/esbuild':
         specifier: workspace:^
         version: link:packages/esbuild
@@ -50,9 +47,6 @@ importers:
       cross-spawn:
         specifier: ^7.0.3
         version: 7.0.3
-      dual-publish:
-        specifier: ^3.0.1
-        version: 3.0.1
       eslint:
         specifier: ^8.52.0
         version: 8.52.0
@@ -89,16 +83,6 @@ importers:
       vitest:
         specifier: ^0.34.6
         version: 0.34.6
-
-  packages/dual-publish:
-    dependencies:
-      dual-publish:
-        specifier: ^3.0.1
-        version: 3.0.1
-    devDependencies:
-      size-limit:
-        specifier: workspace:^
-        version: link:../size-limit
 
   packages/esbuild:
     dependencies:
@@ -1747,6 +1731,7 @@ packages:
       fast-glob: 3.3.1
       lilconfig: 2.1.0
       micromatch: 4.0.5
+    dev: true
 
   /cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
@@ -2106,16 +2091,6 @@ packages:
       domelementtype: 2.3.0
       domhandler: 5.0.3
     dev: false
-
-  /dual-publish@3.0.1:
-    resolution: {integrity: sha512-nVBrd2y9/jlyeG6OD2U/F1BrFFCL5zkBPDBHsTbWTRYqfartbEOR8pQImEFh44PRQfX4PtOrOM5Uatv7f6i1Tg==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      clean-publish: 4.2.0
-      fast-glob: 3.3.1
-      line-column: 1.0.2
-      picocolors: 1.0.0
 
   /duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
@@ -3155,21 +3130,12 @@ packages:
       is-docker: 2.2.1
     dev: false
 
-  /isarray@1.0.0:
-    resolution: {integrity: sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==}
-
   /isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-
-  /isobject@2.1.0:
-    resolution: {integrity: sha512-+OUdGJlgjOBZDfxnDjYYG6zp487z0JGNQq3cYQYg5f5hKR+syHMsaztzGeml/4kGG55CSpKSpWTY+jYGgsHLgA==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      isarray: 1.0.0
 
   /istanbul-lib-coverage@3.2.0:
     resolution: {integrity: sha512-eOeJ5BHCmHYvQK7xt9GkdHuzuCGS1Y6g9Gvnx3Ym33fz/HpLRYxiS0wHNr+m/MBC8B647Xt608vCDEvhl9c6Mw==}
@@ -3294,12 +3260,6 @@ packages:
   /lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
-
-  /line-column@1.0.2:
-    resolution: {integrity: sha512-Ktrjk5noGYlHsVnYWh62FLVs4hTb8A3e+vucNZMgPeAOITdshMSgv4cCZQeRDjm7+goqmo6+liZwTXo+U3sVww==}
-    dependencies:
-      isarray: 1.0.0
-      isobject: 2.1.0
 
   /loader-runner@4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}

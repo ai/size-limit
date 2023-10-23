@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^52.0.1",
-    "@size-limit/dual-publish": "workspace:^",
     "@size-limit/esbuild": "workspace:^",
     "@size-limit/esbuild-why": "workspace:^",
     "@size-limit/file": "workspace:^",
@@ -22,7 +21,6 @@
     "@vitest/coverage-v8": "^0.34.6",
     "clean-publish": "^4.2.0",
     "cross-spawn": "^7.0.3",
-    "dual-publish": "^3.0.1",
     "eslint": "^8.52.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.0",
