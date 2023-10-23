@@ -118,7 +118,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
       "scripts": {
         "build": "webpack ./webpack.config.js",
     +   "size": "npm run build && size-limit",
-        "test": "jest && eslint ."
+        "test": "vitest && eslint ."
       }
     ```
 
@@ -148,8 +148,8 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
       "scripts": {
         "build": "webpack ./webpack.config.js",
         "size": "npm run build && size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
+    -   "test": "vitest && eslint ."
+    +   "test": "vitest && eslint . && npm run size"
       }
     ```
 
@@ -188,7 +188,7 @@ to track the time a browser takes to compile and execute your JS.
       "scripts": {
         "build": "webpack ./webpack.config.js",
     +   "size": "npm run build && size-limit",
-        "test": "jest && eslint ."
+        "test": "vitest && eslint ."
       }
     ```
 
@@ -221,8 +221,8 @@ to track the time a browser takes to compile and execute your JS.
       "scripts": {
         "build": "webpack ./webpack.config.js",
         "size": "npm run build && size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
+    -   "test": "vitest && eslint ."
+    +   "test": "vitest && eslint . && npm run size"
       }
     ```
 
@@ -260,7 +260,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
       "scripts": {
         "build": "webpack ./scripts/rollup/build.js",
     +   "size": "npm run build && size-limit",
-        "test": "jest && eslint ."
+        "test": "vitest && eslint ."
       }
     ```
 
@@ -305,8 +305,8 @@ the size in bytes. Libraries like [React] are good examples for this preset.
       "scripts": {
         "build": "rollup ./scripts/rollup/build.js",
         "size": "npm run build && size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
+    -   "test": "vitest && eslint ."
+    +   "test": "vitest && eslint . && npm run size"
       }
     ```
 
@@ -354,7 +354,7 @@ for this preset.
     + ],
       "scripts": {
     +   "size": "size-limit",
-        "test": "jest && eslint ."
+        "test": "vitest && eslint ."
       }
     ```
 
@@ -392,8 +392,8 @@ for this preset.
     ```diff
       "scripts": {
         "size": "size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
+    -   "test": "vitest && eslint ."
+    +   "test": "vitest && eslint . && npm run size"
       }
     ```
 
