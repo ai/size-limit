@@ -24,7 +24,7 @@
     "estimo": "^2.3.6"
   },
   "devDependencies": {
-    "nanoid": "^3.3.6",
+    "nanoid": "^5.0.2",
     "size-limit": "workspace:^"
   }
 }

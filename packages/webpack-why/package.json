@@ -22,13 +22,13 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
-    "@statoscope/webpack-plugin": "^5.27.0"
+    "@statoscope/webpack-plugin": "^5.28.1"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:^",
     "@size-limit/webpack": "workspace:^",
     "redux": "^4.2.1",
     "size-limit": "workspace:^",
-    "webpack": "^5.88.2"
+    "webpack": "^5.89.0"
   }
 }

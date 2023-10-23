@@ -1,5 +1,5 @@
 import bytes from 'bytes-iec'
-import globby from 'globby'
+import { globby } from 'globby'
 import { lilconfig } from 'lilconfig'
 import { dirname, isAbsolute, join, relative } from 'node:path'
 
