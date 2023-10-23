@@ -1,8 +1,8 @@
-import { SizeLimitError } from 'size-limit/size-limit-error'
+import { SizeLimitError } from 'size-limit'
 import { beforeEach, expect, it, vi } from 'vitest'
 
-import timePkg from '../'
-import { getRunningTime } from '../get-running-time'
+import { getRunningTime } from '../get-running-time.js'
+import timePkg from '../index.js'
 const [time] = timePkg
 
 vi.mock('../get-running-time')

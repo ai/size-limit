@@ -2,12 +2,11 @@ import { nanoid } from 'nanoid/non-secure'
 import { readdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import rm from 'size-limit/rm'
-import { SizeLimitError } from 'size-limit/size-limit-error'
+import { rm, SizeLimitError } from 'size-limit'
 
-import { convertConfig } from './convert-config'
-import { getConfig } from './get-config'
-import { runWebpack } from './run-webpack'
+import { convertConfig } from './convert-config.js'
+import { getConfig } from './get-config.js'
+import { runWebpack } from './run-webpack.js'
 
 const WEBPACK_EMPTY_PROJECT = 0
 const WEBPACK_EMPTY_PROJECT_GZIP = 20

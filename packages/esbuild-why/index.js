@@ -3,7 +3,7 @@ import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import open from 'open'
 
-import { getReportName } from './report'
+import { getReportName } from './report.js'
 
 export default [
   {

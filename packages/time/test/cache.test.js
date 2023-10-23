@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import rm from 'size-limit/rm'
+import { rm } from 'size-limit'
 import { afterEach, beforeAll, expect, it } from 'vitest'
 
 import { getCache, saveCache } from '../cache'

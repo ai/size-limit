@@ -4,7 +4,7 @@ import webpackPlugin from '@size-limit/webpack'
 import { join } from 'node:path'
 import { expect, it } from 'vitest'
 
-import sizeLimit from '../'
+import sizeLimit from '../index.js'
 
 const ROOT = join(__dirname, '..', '..', '..')
 const INTEGRATION = join(ROOT, 'fixtures', 'integration', 'index.js')

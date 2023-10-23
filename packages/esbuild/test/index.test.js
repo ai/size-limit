@@ -2,11 +2,10 @@ import filePkg from '@size-limit/file'
 import { existsSync } from 'node:fs'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import rm from 'size-limit/rm'
-import { SizeLimitError } from 'size-limit/size-limit-error'
+import { rm, SizeLimitError } from 'size-limit'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import esbuildPkg from '../'
+import esbuildPkg from '../index.js'
 const [file] = filePkg
 const [esbuild] = esbuildPkg
 

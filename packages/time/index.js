@@ -1,4 +1,4 @@
-import { SizeLimitError } from 'size-limit/size-limit-error.js'
+import { SizeLimitError } from 'size-limit'
 
 import { getRunningTime } from './get-running-time.js'
 

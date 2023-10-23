@@ -1,4 +1,4 @@
-import processImport from 'size-limit/process-import'
+import { processImport } from 'size-limit'
 
 function escapeRegexp(string) {
   return string.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d')

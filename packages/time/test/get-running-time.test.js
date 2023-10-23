@@ -1,9 +1,9 @@
 import { join } from 'node:path'
-import rm from 'size-limit/rm'
+import { rm } from 'size-limit'
 import { afterEach, expect, it } from 'vitest'
 
-import { getCache, saveCache } from '../cache'
-import { cleanCache, getRunningTime } from '../get-running-time'
+import { getCache, saveCache } from '../cache.js'
+import { cleanCache, getRunningTime } from '../get-running-time.js'
 
 const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')
 

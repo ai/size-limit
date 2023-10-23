@@ -2,7 +2,7 @@ import { createReadStream } from 'node:fs'
 import { stat } from 'node:fs/promises'
 import { constants, createBrotliCompress, createGzip } from 'node:zlib'
 import { gte } from 'semver'
-import { SizeLimitError } from 'size-limit/size-limit-error.js'
+import { SizeLimitError } from 'size-limit'
 
 const BROTLI_NODE_VERSION = 'v11.7.0'
 

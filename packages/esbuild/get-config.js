@@ -1,4 +1,4 @@
-import processImport from 'size-limit/process-import'
+import { processImport } from 'size-limit'
 
 export async function getConfig(_limitConfig, check, output) {
   await processImport(check, output)

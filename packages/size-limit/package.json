@@ -20,10 +20,7 @@
   },
   "exports": {
     ".": "./index.js",
-    "./package.json": "./package.json",
-    "./rm": "./rm.js",
-    "./size-limit-error": "./size-limit-error.js",
-    "./process-import": "./process-import.js"
+    "./package.json": "./package.json"
   },
   "dependencies": {
     "bytes-iec": "^3.1.1",

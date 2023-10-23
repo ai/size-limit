@@ -2,12 +2,11 @@ import { nanoid } from 'nanoid/non-secure'
 import { readdir, readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, parse, resolve } from 'node:path'
-import rm from 'size-limit/rm'
-import { SizeLimitError } from 'size-limit/size-limit-error'
+import { rm, SizeLimitError } from 'size-limit'
 
-import { convertConfig } from './convert-config'
-import { getConfig } from './get-config'
-import { runEsbuild } from './run-esbuild'
+import { convertConfig } from './convert-config.js'
+import { getConfig } from './get-config.js'
+import { runEsbuild } from './run-esbuild.js'
 
 const ESBUILD_EMPTY_PROJECT = 12
 const ESBUILD_EMPTY_PROJECT_GZIP = 32

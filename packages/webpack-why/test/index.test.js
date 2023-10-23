@@ -3,10 +3,10 @@ import webpackPkg from '@size-limit/webpack'
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import rm from 'size-limit/rm'
+import { rm } from 'size-limit'
 import { afterEach, expect, it, vi } from 'vitest'
 
-import webpackWhyPkg from '../'
+import webpackWhyPkg from '../index.js'
 const [webpack] = webpackPkg
 const [file] = filePkg
 const [webpackWhy] = webpackWhyPkg

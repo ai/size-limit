@@ -1,10 +1,10 @@
 import filePkg from '@size-limit/file'
 import webpackPkg from '@size-limit/webpack'
 import { join } from 'node:path'
-import rm from 'size-limit/rm'
+import { rm } from 'size-limit'
 import { afterEach, expect, it, vi } from 'vitest'
 
-import webpackCssPkg from '../'
+import webpackCssPkg from '../index.js'
 const [webpack] = webpackPkg
 const [file] = filePkg
 const [webpackCss] = webpackCssPkg

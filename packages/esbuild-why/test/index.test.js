@@ -2,7 +2,7 @@ import esbuildPkg from '@size-limit/esbuild'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import open from 'open'
-import rm from 'size-limit/rm'
+import { rm } from 'size-limit'
 import { afterEach, expect, it, vi } from 'vitest'
 
 import esbuildWhyPkg from '..'

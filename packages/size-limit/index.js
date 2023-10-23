@@ -1,5 +1,9 @@
-import calc from './calc'
-import { Plugins } from './load-plugins'
+import calc from './calc.js'
+import { Plugins } from './load-plugins.js'
+
+export { processImport } from './process-import.js'
+export { rm } from './rm.js'
+export { SizeLimitError } from './size-limit-error.js'
 
 /**
  * Run Size Limit and return the result

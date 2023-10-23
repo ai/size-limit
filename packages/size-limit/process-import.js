@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-export default async function processImport(check, output) {
+export async function processImport(check, output) {
   if (!check.import) {
     return
   }

@@ -1,4 +1,4 @@
-import { isValidFilename } from './valid-filename'
+import { isValidFilename } from './valid-filename.js'
 
 export function getReportName(config, check) {
   if (config.checks.length === 1) return `esbuild-why.html`
