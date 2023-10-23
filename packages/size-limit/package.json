@@ -21,6 +21,8 @@
   "exports": {
     ".": "./index.js",
     "./rm": "./rm.js",
+    "./size-limit-error": "./size-limit-error.js",
+    "./process-import": "./process-import.js",
     "./package.json": "./package.json"
   },
   "dependencies": {
