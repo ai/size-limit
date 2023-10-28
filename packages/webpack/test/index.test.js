@@ -90,6 +90,46 @@ describe('supports custom webpack config', () => {
   })
 })
 
+describe('supports custom webpack config defined as function', () => {
+  it('works with cjs', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/webpack-func.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(1160)
+  })
+
+  it('works with esm', async () => {
+    let config = {
+      checks: [{ config: fixture('esm/webpack-func.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(1605)
+  })
+})
+
+describe('supports custom webpack config defined as async function', () => {
+  it('works with cjs', async () => {
+    let config = {
+      checks: [{ config: fixture('cjs/webpack-promise.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(1160)
+  })
+
+  it('works with esm', async () => {
+    let config = {
+      checks: [{ config: fixture('esm/webpack-promise.config.js') }],
+      configPath: ROOT_CONFIG
+    }
+    await run(config)
+    expect(config.checks[0].size).toBe(1605)
+  })
+})
+
 describe('supports custom entry', () => {
   it('works with commonjs config', async () => {
     let config = {

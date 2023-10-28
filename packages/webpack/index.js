@@ -48,6 +48,10 @@ async function isDirNotEmpty(dir) {
   }
 }
 
+async function loadConfig(config) {
+  return typeof config === 'function' ? config() : config
+}
+
 export default [
   {
     async before(config) {
@@ -78,7 +82,8 @@ export default [
         check.webpackOutput = join(tmpdir(), `size-limit-${nanoid()}`)
       }
       if (check.config) {
-        check.webpackConfig = (await import(check.config)).default
+        let configModule = await import(check.config)
+        check.webpackConfig = await loadConfig(configModule.default)
         convertConfig(check.webpackConfig, config.configPath)
       } else {
         check.webpackConfig = await getConfig(
