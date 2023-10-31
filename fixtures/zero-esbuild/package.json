@@ -4,6 +4,7 @@
   "devDependencies": {
     "@size-limit/esbuild": ">= 0.0.0",
     "@size-limit/file": ">= 0.0.0",
+    "@size-limit/webpack-css": ">= 10.0.1",
     "size-limit": ">= 0.0.0"
   },
   "size-limit": [

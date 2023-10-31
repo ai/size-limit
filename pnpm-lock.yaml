@@ -35,6 +35,9 @@ importers:
       '@size-limit/webpack':
         specifier: workspace:^
         version: link:packages/webpack
+      '@size-limit/webpack-css':
+        specifier: workspace:^
+        version: link:packages/webpack-css
       '@size-limit/webpack-why':
         specifier: workspace:^
         version: link:packages/webpack-why
