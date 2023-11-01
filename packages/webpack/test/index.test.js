@@ -51,7 +51,7 @@ it('uses webpack to make bundle', async () => {
       {
         bundles: [join(config.checks[0].webpackOutput, 'index.js')],
         files: [fixture('cjs/big.js')],
-        size: 2482,
+        size: 2484,
         webpackConfig: config.checks[0].webpackConfig,
         webpackOutput: config.checks[0].webpackOutput
       }
@@ -77,7 +77,7 @@ describe('supports custom webpack config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1160)
+    expect(config.checks[0].size).toBe(1149)
   })
 
   it('works with esm config', async () => {
@@ -86,7 +86,7 @@ describe('supports custom webpack config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1605)
+    expect(config.checks[0].size).toBe(1597)
   })
 })
 
@@ -97,7 +97,7 @@ describe('supports custom webpack config defined as function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1160)
+    expect(config.checks[0].size).toBe(1149)
   })
 
   it('works with esm', async () => {
@@ -106,7 +106,7 @@ describe('supports custom webpack config defined as function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1605)
+    expect(config.checks[0].size).toBe(1597)
   })
 })
 
@@ -117,7 +117,7 @@ describe('supports custom webpack config defined as async function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1160)
+    expect(config.checks[0].size).toBe(1149)
   })
 
   it('works with esm', async () => {
@@ -126,7 +126,7 @@ describe('supports custom webpack config defined as async function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(1605)
+    expect(config.checks[0].size).toBe(1597)
   })
 })
 
@@ -137,7 +137,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(569)
+    expect(config.checks[0].size).toBe(563)
   })
 
   it('works with esm config', async () => {
@@ -146,7 +146,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(792)
+    expect(config.checks[0].size).toBe(788)
   })
 })
 
@@ -191,7 +191,7 @@ it('allows to disable webpack', async () => {
     checks: [{ files: [fixture('cjs/big.js')], webpack: false }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(55)
+  expect(config.checks[0].size).toBe(56)
 })
 
 it('allows to disable gzip', async () => {
@@ -311,7 +311,7 @@ it('supports specifying the import', async () => {
         [fixture('esm/module.js')]: '{ methodA }'
       }
     })
-  ).toBe(83)
+  ).toBe(85)
 })
 
 it('supports import with multiple files', async () => {
@@ -342,5 +342,5 @@ it('can use `modifyWebpackConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(83)
+  ).toBe(85)
 })

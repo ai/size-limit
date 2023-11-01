@@ -54,7 +54,7 @@ it('uses esbuild to make bundle', async () => {
         esbuildMetafile: config.checks[0].esbuildMetafile,
         esbuildOutfile: config.checks[0].esbuildOutfile,
         files: [fixture('cjs/big.js')],
-        size: 2140
+        size: 2146
       }
     ]
   })
@@ -78,7 +78,7 @@ describe('supports custom esbuild config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(490)
+    expect(config.checks[0].size).toBe(493)
   })
 
   it('works with esm config', async () => {
@@ -87,7 +87,7 @@ describe('supports custom esbuild config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(166)
+    expect(config.checks[0].size).toBe(173)
   })
 })
 
@@ -98,7 +98,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(229)
+    expect(config.checks[0].size).toBe(230)
   })
 
   it('works with esm config', async () => {
@@ -107,7 +107,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBe(68)
+    expect(config.checks[0].size).toBe(70)
   })
 })
 
@@ -152,7 +152,7 @@ it('allows to disable esbuild', async () => {
     checks: [{ esbuild: false, files: [fixture('cjs/big.js')] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(55)
+  expect(config.checks[0].size).toBe(56)
 })
 
 it('allows to disable gzip', async () => {
@@ -265,7 +265,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBe(2140)
+  ).toBe(2146)
 })
 
 it('supports specifying the import', async () => {
@@ -315,5 +315,5 @@ it('supports wildcard imports', async () => {
         [fixture('esm/module.js')]: '*'
       }
     })
-  ).toBe(191)
+  ).toBe(192)
 })

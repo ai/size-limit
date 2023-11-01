@@ -374,9 +374,9 @@ it.skipIf(NODE_VERSION < 16)(
   'allows to use peer dependencies in import',
   async () => {
     await checkJson('combine', [
-      { name: 'all', size: 2269 },
+      { name: 'all', size: 2273 },
       { name: 'a', size: 1 },
-      { name: 'redux', size: 2265 }
+      { name: 'redux', size: 2270 }
     ])
   }
 )

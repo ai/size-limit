@@ -344,9 +344,9 @@ exports[`supports import and ignore for esbuild 1`] = `
 
 exports[`supports import and ignore for esbuild and gzip 1`] = `
 "  
-  [42m[30mPackage size is 2 B less than limit[39m[49m
+  [42m[30mPackage size is 3 B less than limit[39m[49m
   Size limit: [32m[1m49 B[22m[39m
-  Size:       [32m[1m47 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [32m[1m46 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   
 "
 `;
