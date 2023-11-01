@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.2
+* Fixed `require is not defined` in `webpack-css` (by Andrey Medvedev).
+* Fixed webpack config defined as function support (by @lev875).
+
 ## 10.0.1
 * Fixed imports and exports between packages.
 
