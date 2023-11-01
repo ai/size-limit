@@ -1,4 +1,7 @@
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 const cssRule = {
   exclude: /\.module\.css$/,

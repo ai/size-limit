@@ -9,9 +9,10 @@ describe(`load-plugins`, () => {
     let cwd = join(__dirname, '..', '..', '..', 'fixtures', 'zero-esbuild')
     let result = await loadPlugins(await readPkgUp(cwd))
     expect(result.isEmpty).toBe(false)
-    expect(result.list.length).toBe(2)
+    expect(result.list.length).toBe(3)
     expect(result.has('esbuild')).toBe(true)
     expect(result.has('file')).toBe(true)
+    expect(result.has('webpack-css')).toBe(true)
     expect(result.has('plugin')).toBe(false)
   })
 
