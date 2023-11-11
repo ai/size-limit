@@ -1,10 +1,6 @@
 import { createReadStream } from 'node:fs'
 import { stat } from 'node:fs/promises'
 import { constants, createBrotliCompress, createGzip } from 'node:zlib'
-import { gte } from 'semver'
-import { SizeLimitError } from 'size-limit'
-
-const BROTLI_NODE_VERSION = 'v11.7.0'
 
 async function sum(array, fn) {
   return (await Promise.all(array.map(fn))).reduce((all, i) => all + i, 0)
@@ -51,9 +47,6 @@ export default [
       let files = check.bundles || check.files
 
       if (check.brotli === true) {
-        if (!gte(process.version, BROTLI_NODE_VERSION)) {
-          throw new SizeLimitError('brotliUnsupported')
-        }
         check.size = await sum(files, async i => brotliSize(i))
       } else if (check.gzip === false) {
         check.size = await sum(files, async i => (await stat(i)).size)

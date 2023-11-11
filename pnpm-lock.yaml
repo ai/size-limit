@@ -132,10 +132,6 @@ importers:
         version: link:../size-limit
 
   packages/file:
-    dependencies:
-      semver:
-        specifier: 7.5.4
-        version: 7.5.4
     devDependencies:
       size-limit:
         specifier: workspace:^

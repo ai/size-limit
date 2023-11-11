@@ -24,9 +24,6 @@
   "peerDependencies": {
     "size-limit": "10.0.2"
   },
-  "dependencies": {
-    "semver": "7.5.4"
-  },
   "devDependencies": {
     "size-limit": "workspace:^"
   }

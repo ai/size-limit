@@ -10,8 +10,6 @@ const MESSAGES = {
   argWithoutPlugins: (arg, mod1, mod2) =>
     `Argument *--${arg}* needs *@size-limit/${mod1}* ` +
     `or *@size-limit/${mod2}* plugin`,
-  brotliUnsupported: () =>
-    'Update your Node.js to version >= v11.7.0 to use Brotli',
   bundleDirNotEmpty: dir =>
     `The directory *${dir}* is not empty. ` +
     'Pass *--clean-dir* if you want to remove it',
