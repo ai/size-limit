@@ -58,7 +58,7 @@ it('uses esbuild to make bundle', async () => {
       }
     ]
   })
-  expect(config.checks[0].size).toBeCloseTo(2146, -2)
+  expect(config.checks[0].size).toBeCloseTo(1938, -2)
   expect(config.checks[0].esbuildOutfile).toContain('size-limit-')
   expect(typeof config.checks[0].esbuildConfig).toBe('object')
   expect(existsSync(config.checks[0].esbuildOutfile)).toBe(false)
@@ -69,7 +69,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(237)
+  expect(config.checks[0].size).toBe(209)
 })
 
 describe('supports custom esbuild config', () => {
@@ -79,7 +79,7 @@ describe('supports custom esbuild config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(493, -1)
+    expect(config.checks[0].size).toBeCloseTo(429, -1)
   })
 
   it('works with esm config', async () => {
@@ -99,7 +99,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(230, -1)
+    expect(config.checks[0].size).toBeCloseTo(204, -1)
   })
 
   it('works with esm config', async () => {
@@ -108,7 +108,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(70, -1)
+    expect(config.checks[0].size).toBeCloseTo(61, -1)
   })
 })
 
@@ -153,12 +153,12 @@ it('allows to disable esbuild', async () => {
     checks: [{ esbuild: false, files: [fixture('cjs/big.js')] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBeCloseTo(56, -1)
+  expect(config.checks[0].size).toBeCloseTo(50, -1)
 })
 
-it('allows to disable gzip', async () => {
+it('allows to disable compression', async () => {
   let config = {
-    checks: [{ files: [fixture('esm/small.js')], gzip: false }]
+    checks: [{ brotli: false, files: [fixture('esm/small.js')] }]
   }
   await run(config)
   expect(config.checks[0].size).toBe(37)
@@ -266,7 +266,7 @@ it('can use `modifyEsbuildConfig` for resolution of aliases', async () => {
         return config
       }
     })
-  ).toBeCloseTo(2146, -2)
+  ).toBeCloseTo(1938, -2)
 })
 
 it('supports specifying the import', async () => {
@@ -281,8 +281,8 @@ it('supports specifying the import', async () => {
 
   expect(
     await getSize({
+      brotli: false,
       files: [fixture('esm/module.js')],
-      gzip: false,
       import: {
         [fixture('esm/module.js')]: '{ A }'
       }
@@ -291,11 +291,21 @@ it('supports specifying the import', async () => {
 
   expect(
     await getSize({
+      files: [fixture('esm/module.js')],
+      gzip: true,
+      import: {
+        [fixture('esm/module.js')]: '{ A }'
+      }
+    })
+  ).toBe(9)
+
+  expect(
+    await getSize({
       import: {
         [fixture('esm/module.js')]: '{ methodA }'
       }
     })
-  ).toBe(86)
+  ).toBe(87)
 })
 
 it('supports import with multiple files', async () => {
@@ -306,7 +316,7 @@ it('supports import with multiple files', async () => {
         [fixture('esm/module2.js')]: '{ B }'
       }
     })
-  ).toBe(18)
+  ).toBe(30)
 })
 
 it('supports wildcard imports', async () => {
@@ -316,5 +326,5 @@ it('supports wildcard imports', async () => {
         [fixture('esm/module.js')]: '*'
       }
     })
-  ).toBeCloseTo(192, -1)
+  ).toBeCloseTo(167, -1)
 })

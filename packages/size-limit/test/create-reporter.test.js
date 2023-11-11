@@ -310,13 +310,13 @@ it('renders JSON results', () => {
   ).toMatchSnapshot()
 })
 
-it('renders result for file without gzip', () => {
+it('renders result for file without compression', () => {
   expect(
     results(['file'], {
       checks: [
         {
-          gzip: false,
-          name: 'without gzip',
+          brotli: false,
+          name: 'without compression',
           passed: true,
           size: 100,
           sizeLimit: 99
@@ -328,13 +328,13 @@ it('renders result for file without gzip', () => {
   ).toMatchSnapshot()
 })
 
-it('renders result for file with brotli', () => {
+it('renders result for file with gzip', () => {
   expect(
     results(['file'], {
       checks: [
         {
-          brotli: true,
-          name: 'with brotli',
+          gzip: true,
+          name: 'with gzip',
           passed: true,
           size: 100,
           sizeLimit: 99

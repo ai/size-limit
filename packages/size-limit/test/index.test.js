@@ -11,12 +11,12 @@ const INTEGRATION = join(ROOT, 'fixtures', 'integration', 'index.js')
 
 it('has JS API', async () => {
   let result = await sizeLimit([webpackPlugin, filePlugin], [INTEGRATION])
-  expect(result).toEqual([{ size: 141 }])
+  expect(result).toEqual([{ size: 123 }])
 })
 
 it('works with file module only', async () => {
   let result = await sizeLimit([filePlugin], [INTEGRATION])
-  expect(result).toEqual([{ size: 37 }])
+  expect(result).toEqual([{ size: 21 }])
 })
 
 it('works with esbuild module', async () => {

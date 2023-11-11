@@ -8,8 +8,8 @@ on CI, calculates the real cost of your JS for end-users and throws an error
 if the cost exceeds the limit.
 
 * **ES modules** and **tree-shaking** support.
-* Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
-  or another CI system to know if a pull request adds a massive dependency.
+* Add Size Limit to **GitHub Actions**, **Circle CI** or another CI system
+  to know if a pull request adds a massive dependency.
 * **Modular** to fit different use cases: big JS applications
   that use their own bundler or small npm libraries with many files.
 * Can calculate **the time** it would take a browser
@@ -127,7 +127,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
     ```sh
     $ npm run size
 
-      Package size: 30.08 kB with all dependencies, minified and gzipped
+      Package size: 30.08 kB with all dependencies, minified and brotlied
     ```
 
 4. Now, let’s set the limit. Add 25% to the current total size and use that as
@@ -154,7 +154,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
     ```
 
 6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
+   to add one — start with Github Actions.
 
 </details>
 
@@ -197,7 +197,7 @@ to track the time a browser takes to compile and execute your JS.
     ```sh
     $ npm run size
 
-      Package size: 30.08 kB with all dependencies, minified and gzipped
+      Package size: 30.08 kB with all dependencies, minified and brotlied
       Loading time: 602 ms   on slow 3G
       Running time: 214 ms   on Snapdragon 410
       Total time:   815 ms
@@ -227,7 +227,7 @@ to track the time a browser takes to compile and execute your JS.
     ```
 
 6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
+   to add one — start with Github Actions.
 
 </details>
 
@@ -281,7 +281,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
     ```sh
     $ npm run size
 
-      Package size: 30.08 kB with all dependencies, minified and gzipped
+      Package size: 30.08 kB with all dependencies, minified and brotlied
       Loading time: 602 ms   on slow 3G
       Running time: 214 ms   on Snapdragon 410
       Total time:   815 ms
@@ -311,7 +311,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
     ```
 
 7. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
+   to add one — start with Github Actions.
 8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
@@ -320,7 +320,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
       Short project description
 
       * **Fast.** 10% faster than competitor.
-    + * **Small.** 15 kB (minified and gzipped).
+    + * **Small.** 15 kB (minified and brotlied).
     +   [Size Limit](https://github.com/ai/size-limit) controls the size.
     ```
 
@@ -363,7 +363,7 @@ for this preset.
     ```sh
     $ npm run size
 
-      Package size: 177 B with all dependencies, minified and gzipped
+      Package size: 177 B with all dependencies, minified and brotlied
     ```
 
 4. If your project size starts to look bloated, run `--why` for analysis:
@@ -398,7 +398,7 @@ for this preset.
     ```
 
 7. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
+   to add one — start with Github Actions.
 8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
@@ -407,14 +407,12 @@ for this preset.
       Short project description
 
       * **Fast.** 10% faster than competitor.
-    + * **Small.** 500 bytes (minified and gzipped). No dependencies.
+    + * **Small.** 500 bytes (minified and brotlied). No dependencies.
     +   [Size Limit](https://github.com/ai/size-limit) controls the size.
     ```
 
 </details>
 
-
-[Travis CI]: https://github.com/dwyl/learn-travis
 [Storeon]: https://github.com/ai/storeon/
 [Nano ID]: https://github.com/ai/nanoid/
 [React]: https://github.com/facebook/react/
@@ -458,7 +456,7 @@ For example, if you want to use `@size-limit/webpack`, you can just use
 
 Plugins:
 
-* `@size-limit/file` checks the size of files with Gzip, Brotli
+* `@size-limit/file` checks the size of files with Brotli (default), Gzip
   or without compression.
 * `@size-limit/webpack` adds your library to empty webpack project
   and prepares bundle file for `file` plugin.
@@ -552,9 +550,9 @@ Each section in the config can have these options:
   By default, the total size of all entry points will be checked.
 * **webpack**: with `false` it will disable webpack.
 * **running**: with `false` it will disable calculating running time.
-* **gzip**: with `false` it will disable gzip compression.
-* **brotli**: with `true` it will use brotli compression and disable
-  gzip compression.
+* **gzip**: with `true` it will use Brotli compression and disable
+  Brotli compression.
+* **brotli**: with `false` it will disable any compression.
 * **config**: a path to a custom webpack config.
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.

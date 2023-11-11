@@ -10,10 +10,13 @@ import { runEsbuild } from './run-esbuild.js'
 
 const ESBUILD_EMPTY_PROJECT = 12
 const ESBUILD_EMPTY_PROJECT_GZIP = 32
+const ESBUILD_EMPTY_PROJECT_BROTLI = 16
 const ESBUILD_EMPTY_PROJECT_IMPORT = 34
 const ESBUILD_EMPTY_PROJECT_IMPORT_GZIP = 46
+const ESBUILD_EMPTY_PROJECT_IMPORT_BROTLI = 30
 const ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE = 331
-const ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GRIP = 182
+const ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GZIP = 182
+const ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_BROTLI = 182
 
 function getFiles(buildResult, check) {
   let entries = {}
@@ -116,18 +119,28 @@ export default [
             }
           }
         }
-        if (hasRequirePolyfill && check.import && check.gzip === false) {
-          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE
-        } else if (hasRequirePolyfill && check.import) {
-          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GRIP
-        } else if (check.import && check.gzip === false) {
-          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT
+        if (hasRequirePolyfill && check.import) {
+          if (check.gzip === true) {
+            check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_GZIP
+          } else if (check.brotli === false) {
+            check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE
+          } else {
+            check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_IGNORE_BROTLI
+          }
         } else if (check.import) {
-          check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_GZIP
-        } else if (check.gzip === false) {
+          if (check.gzip === true) {
+            check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_GZIP
+          } else if (check.brotli === false) {
+            check.size -= ESBUILD_EMPTY_PROJECT_IMPORT
+          } else {
+            check.size -= ESBUILD_EMPTY_PROJECT_IMPORT_BROTLI
+          }
+        } else if (check.gzip === true) {
+          check.size -= ESBUILD_EMPTY_PROJECT_GZIP
+        } else if (check.brotli === false) {
           check.size -= ESBUILD_EMPTY_PROJECT
         } else {
-          check.size -= ESBUILD_EMPTY_PROJECT_GZIP
+          check.size -= ESBUILD_EMPTY_PROJECT_BROTLI
         }
       }
     },

@@ -4,16 +4,16 @@ exports[`highlight passed results with --highlight-less flag 1`] = `
 "  
   [1mok[22m
   Size limit: [32m[1m102.4 kB[22m[39m
-  Size:       [32m[1m102.4 kB[22m[39m [90mgzipped[39m
+  Size:       [32m[1m102.4 kB[22m[39m [90mbrotlied[39m
   
   [1mgood[22m
   Size limit: [32m[1m102.4 kB[22m[39m
-  Size:       [32m[1m97.28 kB[22m[39m [90mgzipped[39m
+  Size:       [32m[1m97.28 kB[22m[39m [90mbrotlied[39m
   
   [1mfail[22m
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m102400 B[22m[39m
-  Size:       [31m[1m102401 B[22m[39m [90mgzipped[39m
+  Size:       [31m[1m102401 B[22m[39m [90mbrotlied[39m
   
   [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
@@ -24,12 +24,12 @@ exports[`only renders failed results with --hide-passed flag 1`] = `
   [1msmall fail[22m
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m102400 B[22m[39m
-  Size:       [31m[1m102401 B[22m[39m [90mgzipped[39m
+  Size:       [31m[1m102401 B[22m[39m [90mbrotlied[39m
   
   [1mbig fail[22m
   [31mPackage size limit has exceeded by 100 B[39m
   Size limit: [31m[1m102.4 kB[22m[39m
-  Size:       [31m[1m102.5 kB[22m[39m [90mgzipped[39m
+  Size:       [31m[1m102.5 kB[22m[39m [90mbrotlied[39m
   
   [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
@@ -75,17 +75,17 @@ exports[`renders failed results 1`] = `
 "  
   [1mok[22m
   Size limit: [32m[1m102.4 kB[22m[39m
-  Size:       [32m[1m102.4 kB[22m[39m [90mgzipped[39m
+  Size:       [32m[1m102.4 kB[22m[39m [90mbrotlied[39m
   
   [1msmall fail[22m
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m102400 B[22m[39m
-  Size:       [31m[1m102401 B[22m[39m [90mgzipped[39m
+  Size:       [31m[1m102401 B[22m[39m [90mbrotlied[39m
   
   [1mbig fail[22m
   [31mPackage size limit has exceeded by 100 B[39m
   Size limit: [31m[1m102.4 kB[22m[39m
-  Size:       [31m[1m102.5 kB[22m[39m [90mgzipped[39m
+  Size:       [31m[1m102.5 kB[22m[39m [90mbrotlied[39m
   
   [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
 "
@@ -96,12 +96,12 @@ exports[`renders list of failed and success checks in silent mode 1`] = `
   [1msmall fail[22m
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m102400 B[22m[39m
-  Size:       [31m[1m102401 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [31m[1m102401 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
   [1mbig fail[22m
   [31mPackage size limit has exceeded by 100 B[39m
   Size limit: [31m[1m102.4 kB[22m[39m
-  Size:       [31m[1m102.5 kB[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [31m[1m102.5 kB[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
@@ -111,12 +111,12 @@ exports[`renders list of failed checks in silent mode 1`] = `
   [1msmall fail[22m
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m102400 B[22m[39m
-  Size:       [31m[1m102401 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [31m[1m102401 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
   [1mbig fail[22m
   [31mPackage size limit has exceeded by 100 B[39m
   Size limit: [31m[1m102.4 kB[22m[39m
-  Size:       [31m[1m102.5 kB[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [31m[1m102.5 kB[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
@@ -126,15 +126,15 @@ exports[`renders list of success checks in silent mode 1`] = `
 "
 `;
 
-exports[`renders result for file with brotli 1`] = `
+exports[`renders result for file with gzip 1`] = `
 "  
   Size limit: [32m[1m99 B[22m[39m
-  Size:       [32m[1m100 B[22m[39m [90mbrotlied[39m
+  Size:       [32m[1m100 B[22m[39m [90mgzipped[39m
   
 "
 `;
 
-exports[`renders result for file without gzip 1`] = `
+exports[`renders result for file without compression 1`] = `
 "  
   Size limit: [32m[1m99 B[22m[39m
   Size:       [32m[1m100 B[22m[39m
@@ -152,14 +152,14 @@ exports[`renders results 1`] = `
   
   [1msize[22m
   Size limit:   [32m[1m102.4 kB[22m[39m
-  Size:         [32m[1m102.4 kB[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m102.4 kB[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m1 s     [22m[39m [90mon slow 3G[39m
   Running time: [32m[1m2 s     [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m3 s[22m[39m
   
   [1mtime[22m
   Time limit:   [32m[1m4 s[22m[39m
-  Size:         [32m[1m102.4 kB[22m[39m [90mwith all dependencies and minified[39m
+  Size:         [32m[1m102.4 kB[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m1 s     [22m[39m [90mon slow 3G[39m
   Running time: [32m[1m2 s     [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m3 s[22m[39m
@@ -171,7 +171,7 @@ exports[`renders single result 1`] = `
 "  
   [31mPackage size limit has exceeded by 1 B[39m
   Size limit: [31m[1m100 B[22m[39m
-  Size:       [31m[1m101 B[22m[39m [90mgzipped[39m
+  Size:       [31m[1m101 B[22m[39m [90mbrotlied[39m
   
   [33mTry to reduce size or increase limit at [1m.size-limit.json[22m[39m
 "

@@ -10,8 +10,10 @@ import { runWebpack } from './run-webpack.js'
 
 const WEBPACK_EMPTY_PROJECT = 0
 const WEBPACK_EMPTY_PROJECT_GZIP = 20
+const WEBPACK_EMPTY_PROJECT_BROTLI = 1
 const WEBPACK_EMPTY_PROJECT_IMPORT = 37
 const WEBPACK_EMPTY_PROJECT_IMPORT_GZIP = 57
+const WEBPACK_EMPTY_PROJECT_IMPORT_BROTLI = 41
 
 function getFiles(stats, check) {
   let entries = {}
@@ -107,14 +109,20 @@ export default [
         if (typeof check.size === 'undefined') {
           throw new SizeLimitError('missedPlugin', 'file')
         }
-        if (check.import && check.gzip === false) {
-          check.size -= WEBPACK_EMPTY_PROJECT_IMPORT
-        } else if (check.import) {
-          check.size -= WEBPACK_EMPTY_PROJECT_IMPORT_GZIP
-        } else if (check.gzip === false) {
+        if (check.import) {
+          if (check.gzip === true) {
+            check.size -= WEBPACK_EMPTY_PROJECT_IMPORT_GZIP
+          } else if (check.brotli === false) {
+            check.size -= WEBPACK_EMPTY_PROJECT_IMPORT
+          } else {
+            check.size -= WEBPACK_EMPTY_PROJECT_IMPORT_BROTLI
+          }
+        } else if (check.gzip === true) {
+          check.size -= WEBPACK_EMPTY_PROJECT_GZIP
+        } else if (check.brotli === false) {
           check.size -= WEBPACK_EMPTY_PROJECT
         } else {
-          check.size -= WEBPACK_EMPTY_PROJECT_GZIP
+          check.size -= WEBPACK_EMPTY_PROJECT_BROTLI
         }
       }
     },

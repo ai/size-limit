@@ -3,7 +3,23 @@
 exports[`find plugins in parent package.json 1`] = `
 "  
   Size limit: [32m[1m1 kB[22m[39m
-  Size:       [32m[1m20 B[22m[39m [90mgzipped[39m
+  Size:       [32m[1m1 B [22m[39m [90mbrotlied[39m
+  
+"
+`;
+
+exports[`returns zero for empty esbuild file and with gzip 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
+exports[`returns zero for empty esbuild file and without compression 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
   
 "
 `;
@@ -11,15 +27,7 @@ exports[`find plugins in parent package.json 1`] = `
 exports[`returns zero for empty file with esbuild 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
-  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
-  
-"
-`;
-
-exports[`returns zero for empty file with esbuild and without gzip 1`] = `
-"  
-  Size limit: [32m[1m0 B[22m[39m
-  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
@@ -27,37 +35,15 @@ exports[`returns zero for empty file with esbuild and without gzip 1`] = `
 exports[`returns zero for empty file with webpack 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
-  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
 
-exports[`returns zero for empty file with webpack without gzip 1`] = `
+exports[`returns zero for empty webpack file without compression 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
-  
-"
-`;
-
-exports[`shows brotli text when brotli and gzip in config 1`] = `
-"  
-  Size limit:   [32m[1m1 kB[22m[39m
-  Size:         [32m[1m-19 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
-  Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
-  Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
-  Total time:   [32m[1m1.1 s[22m[39m
-  
-"
-`;
-
-exports[`shows brotli text when only brotli in config 1`] = `
-"  
-  Size limit:   [32m[1m1 kB[22m[39m
-  Size:         [32m[1m-19 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
-  Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
-  Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
-  Total time:   [32m[1m1.1 s[22m[39m
   
 "
 `;
@@ -101,7 +87,7 @@ exports[`shows debug 1`] = `
       \\"bundles\\": [
         \\"/tmp/index.js\\"
       ],
-      \\"size\\": 141,
+      \\"size\\": 123,
       \\"loadTime\\": 0.01,
       \\"runTime\\": 1,
       \\"time\\": 1.01,
@@ -112,9 +98,9 @@ exports[`shows debug 1`] = `
   \\"missed\\": false
 }
   
-  [42m[30mPackage size is 59 B less than limit[39m[49m
+  [42m[30mPackage size is 77 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -151,7 +137,7 @@ exports[`shows error on time bigger than limit 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
-  Size:         [31m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [31m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
@@ -164,7 +150,7 @@ exports[`shows error on time bigger than limit. in silent mode 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
-  Size:         [31m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [31m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
@@ -199,6 +185,28 @@ For small (< 10 kB) libraries
 
 Check out docs for more complicated cases
   [33mhttps://github.com/ai/size-limit/[39m
+"
+`;
+
+exports[`shows gzip text when brotli and gzip in config 1`] = `
+"  
+  Size limit:   [32m[1m1 kB[22m[39m
+  Size:         [32m[1m0 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Loading time: [32m[1m0 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m1 s [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1 s[22m[39m
+  
+"
+`;
+
+exports[`shows gzip text when only gzip in config 1`] = `
+"  
+  Size limit:   [32m[1m1 kB[22m[39m
+  Size:         [32m[1m0 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Loading time: [32m[1m0 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m1 s [22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1 s[22m[39m
+  
 "
 `;
 
@@ -342,10 +350,18 @@ exports[`supports import and ignore for esbuild 1`] = `
 "
 `;
 
+exports[`supports import and ignore for esbuild and brotli 1`] = `
+"  
+  [42m[30mPackage size is 48 B less than limit[39m[49m
+  Size limit: [32m[1m49 B[22m[39m
+  Size:       [32m[1m1 B [22m[39m [90mwith all dependencies, minified and brotlied[39m
+  
+"
+`;
+
 exports[`supports import and ignore for esbuild and gzip 1`] = `
 "  
-  [42m[30mPackage size is 3 B less than limit[39m[49m
-  Size limit: [32m[1m49 B[22m[39m
+  Size limit: [32m[1m46 B[22m[39m
   Size:       [32m[1m46 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
   
 "
@@ -353,9 +369,9 @@ exports[`supports import and ignore for esbuild and gzip 1`] = `
 
 exports[`supports path without dot 1`] = `
 "  
-  [42m[30mPackage size is 59 B less than limit[39m[49m
+  [42m[30mPackage size is 75 B less than limit[39m[49m
   Size limit: [32m[1m200 B[22m[39m
-  Size:       [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:       [32m[1m125 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
@@ -408,6 +424,11 @@ exports[`throws on --why argument without webpack 1`] = `
 "
 `;
 
+exports[`throws on brotli option without brotli plugin 1`] = `
+"[41m[30m ERROR [39m[49m [31mConfig option [33mbrotli[31m needs [33m@size-limit/file[31m plugin[39m
+"
+`;
+
 exports[`throws on empty config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must [33mnot be empty[31m[39m
 
@@ -417,11 +438,6 @@ exports[`throws on empty config 1`] = `
       [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
     }
   ]
-"
-`;
-
-exports[`throws on gzip option without gzip plugin 1`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [33mgzip[31m needs [33m@size-limit/file[31m plugin[39m
 "
 `;
 
@@ -551,7 +567,7 @@ exports[`works in integration test with JSON 1`] = `
   {
     \\"name\\": \\"index.js\\",
     \\"passed\\": true,
-    \\"size\\": 141,
+    \\"size\\": 123,
     \\"sizeLimit\\": 200,
     \\"running\\": 1,
     \\"loading\\": 0.01
@@ -562,9 +578,9 @@ exports[`works in integration test with JSON 1`] = `
 
 exports[`works in integration test with size 1`] = `
 "  
-  [42m[30mPackage size is 59 B less than limit[39m[49m
+  [42m[30mPackage size is 77 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -575,7 +591,7 @@ exports[`works in integration test with size 1`] = `
 exports[`works in integration test with time 1`] = `
 "  
   Time limit:   [32m[1m2 s[22m[39m
-  Size:         [32m[1m141 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  Size:         [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
