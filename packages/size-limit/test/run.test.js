@@ -373,9 +373,12 @@ it.skipIf(NODE_VERSION < 21)(
   }
 )
 
-it('supports import and ignore for esbuild and gzip', async () => {
-  expect(clean(await check('peer-esbuild-gzip'))).toMatchSnapshot()
-})
+it.skipIf(NODE_VERSION < 21)(
+  'supports import and ignore for esbuild and gzip',
+  async () => {
+    expect(clean(await check('peer-esbuild-gzip'))).toMatchSnapshot()
+  }
+)
 
 it('shows debug', async () => {
   expect(clean(await check('integration', ['--debug']))).toMatchSnapshot()
