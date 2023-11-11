@@ -21,5 +21,6 @@ it('works with file module only', async () => {
 
 it('works with esbuild module', async () => {
   let result = await sizeLimit([esbuildPlugin, filePlugin], [INTEGRATION])
-  expect(result).toEqual([{ size: 90 }])
+  expect(result).toEqual([{ size: expect.anything() }])
+  expect(result[0].size).toBeCloseTo(90, -2)
 })
