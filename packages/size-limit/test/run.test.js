@@ -30,7 +30,6 @@ vi.mock('nanospinner', () => {
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
-const NODE_VERSION = parseInt(process.version.slice(1))
 
 function fixture(...files) {
   return join(ROOT, 'fixtures', ...files)
@@ -272,7 +271,7 @@ it('works in integration test with size', async () => {
   expect(await check('integration')).toMatchSnapshot()
 })
 
-it.skipIf(NODE_VERSION < 16)('works in integration test with ESM', async () => {
+it('works in integration test with ESM', async () => {
   await checkJson('integration-esm', [
     {
       name: 'index.js',
@@ -289,7 +288,7 @@ it.skipIf(NODE_VERSION < 16)('works in integration test with ESM', async () => {
   ])
 })
 
-it.skipIf(NODE_VERSION < 16)('works in integration test with ESM', async () => {
+it('works in integration test with ESM', async () => {
   await checkJson('integration-esm', [
     {
       name: 'index.js',
@@ -370,16 +369,13 @@ it('returns zero for empty file with esbuild and without gzip', async () => {
   expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
 })
 
-it.skipIf(NODE_VERSION < 16)(
-  'allows to use peer dependencies in import',
-  async () => {
-    await checkJson('combine', [
-      { name: 'all', size: 2273 },
-      { name: 'a', size: 1 },
-      { name: 'redux', size: 2270 }
-    ])
-  }
-)
+it('allows to use peer dependencies in import', async () => {
+  await checkJson('combine', [
+    { name: 'all', size: 2273 },
+    { name: 'a', size: 1 },
+    { name: 'redux', size: 2270 }
+  ])
+})
 
 it('supports import and ignore for esbuild', async () => {
   expect(clean(await check('peer-esbuild-non-gzip'))).toMatchSnapshot()
