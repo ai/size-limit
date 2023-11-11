@@ -25,7 +25,7 @@
     "size-limit": "10.0.2"
   },
   "dependencies": {
-    "nanoid": "^5.0.2",
+    "nanoid": "^5.0.3",
     "webpack": "^5.89.0"
   },
   "devDependencies": {
