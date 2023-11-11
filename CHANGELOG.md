@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.3
+* Fixed third-party plugins support (by @JounQin).
+* Fixed Windows support (by @JounQin).
+
 ## 10.0.2
 * Fixed `require is not defined` in `webpack-css` (by Andrey Medvedev).
 * Fixed webpack config defined as function support (by @lev875).
