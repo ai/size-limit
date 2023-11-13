@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack-css",
-  "version": "10.0.3",
+  "version": "11.0.0",
   "description": "Webpack plugin to support css for Size Limit",
   "type": "module",
   "keywords": [
@@ -22,7 +22,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "size-limit": "10.0.3"
+    "size-limit": "11.0.0"
   },
   "dependencies": {
     "css-loader": "^6.8.1",

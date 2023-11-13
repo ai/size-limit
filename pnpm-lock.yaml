@@ -140,40 +140,40 @@ importers:
   packages/preset-app:
     dependencies:
       '@size-limit/file':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../file
       '@size-limit/time':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../time
       size-limit:
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../size-limit
 
   packages/preset-big-lib:
     dependencies:
       '@size-limit/file':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../file
       '@size-limit/time':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../time
       '@size-limit/webpack':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../webpack
       size-limit:
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../size-limit
 
   packages/preset-small-lib:
     dependencies:
       '@size-limit/esbuild':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../esbuild
       '@size-limit/file':
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../file
       size-limit:
-        specifier: workspace:*
+        specifier: 11.0.0
         version: link:../size-limit
 
   packages/size-limit:

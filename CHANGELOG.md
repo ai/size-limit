@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.0
+* Moved to Brotli as default compression. Use `gzip: true` for old behavior.
+
 ## 10.0.3
 * Fixed third-party plugins support (by @JounQin).
 * Fixed Windows support (by @JounQin).
