@@ -1,5 +1,4 @@
 {
-  "name": "peer-esbuild",
   "private": true,
   "devDependencies": {
     "@size-limit/esbuild": ">= 0.0.0",

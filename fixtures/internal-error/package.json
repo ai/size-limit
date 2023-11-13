@@ -1,5 +1,4 @@
 {
-  "name": "internal-error",
   "private": true,
   "devDependencies": {
     "@size-limit/time": ">= 0.0.0",

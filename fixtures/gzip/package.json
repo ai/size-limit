@@ -1,12 +1,14 @@
 {
   "private": true,
   "devDependencies": {
-    "@size-limit/time": ">= 0.0.0",
+    "@size-limit/preset-big-lib": ">= 0.0.0",
     "size-limit": ">= 0.0.0"
   },
   "size-limit": [
     {
-      "gzip": false
+      "path": "index.js",
+      "limit": "1 kB",
+      "gzip": true
     }
   ]
 }

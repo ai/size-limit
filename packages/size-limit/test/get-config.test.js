@@ -265,9 +265,9 @@ it('normalizes import', async () => {
       {
         files: [fixture('integration-esm', 'index.js')],
         highlightLess: true,
-        limit: '39 B',
+        limit: '48 B',
         name: 'all',
-        sizeLimit: 39
+        sizeLimit: 48
       }
     ],
     configPath: 'package.json',

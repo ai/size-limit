@@ -28,12 +28,20 @@ it('calculates file size with gzip by default', async () => {
   ])
   expect(config).toEqual({
     checks: [
-      { files: [fixture('a.txt'), fixture('b.txt')], size: 51 },
-      { files: [fixture('a.txt')], size: 22 },
-      { files: [fixture('b.txt')], size: 29 },
+      { files: [fixture('a.txt'), fixture('b.txt')], size: 23 },
+      { files: [fixture('a.txt')], size: 6 },
+      { files: [fixture('b.txt')], size: 17 },
       { files: [fixture('b.txt')] }
     ]
   })
+})
+
+it('calculates file size with compression by true value', async () => {
+  let config = {
+    checks: [{ brotli: true, files: [fixture('b.txt')] }]
+  }
+  await file.step60(config, config.checks[0])
+  expect(config.checks[0].size).toBe(17)
 })
 
 it('calculates file size with gzip by true value', async () => {
@@ -41,19 +49,8 @@ it('calculates file size with gzip by true value', async () => {
     checks: [{ files: [fixture('b.txt')], gzip: true }]
   }
   await file.step60(config, config.checks[0])
+
   expect(config.checks[0].size).toBe(29)
-})
-
-it('calculates file size with brotli by true value and node >= v11.7.0', async () => {
-  Object.defineProperty(process, 'version', {
-    value: 'v11.7.0'
-  })
-  let config = {
-    checks: [{ brotli: true, files: [fixture('b.txt')] }]
-  }
-  await file.step60(config, config.checks[0])
-
-  expect(config.checks[0].size).toBe(17)
 })
 
 it('uses webpack bundle if available', async () => {
@@ -61,12 +58,12 @@ it('uses webpack bundle if available', async () => {
     checks: [{ bundles: [fixture('a.txt')], files: [fixture('b.txt')] }]
   }
   await file.step60(config, config.checks[0])
-  expect(config.checks[0].size).toBe(22)
+  expect(config.checks[0].size).toBe(6)
 })
 
-it('calculates file size without gzip', async () => {
+it('calculates file size without compression', async () => {
   let config = {
-    checks: [{ files: [fixture('b.txt')], gzip: false }]
+    checks: [{ brotli: false, files: [fixture('b.txt')] }]
   }
   await file.step60(config, config.checks[0])
   expect(config.checks[0].size).toBe(144)

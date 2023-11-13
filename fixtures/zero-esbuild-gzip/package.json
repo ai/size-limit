@@ -1,13 +1,15 @@
 {
   "private": true,
   "devDependencies": {
+    "@size-limit/esbuild": ">= 0.0.0",
     "@size-limit/file": ">= 0.0.0",
+    "@size-limit/webpack-css": ">= 10.0.1",
     "size-limit": ">= 0.0.0"
   },
   "size-limit": [
     {
-      "name": "index",
-      "limit": "1 kB"
+      "limit": "0 B",
+      "gzip": true
     }
   ]
 }

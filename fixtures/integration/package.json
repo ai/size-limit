@@ -1,5 +1,4 @@
 {
-  "name": "integration",
   "private": true,
   "devDependencies": {
     "@size-limit/preset-big-lib": ">=0",

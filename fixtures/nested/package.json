@@ -1,5 +1,4 @@
 {
-  "name": "nested",
   "private": true,
   "devDependencies": {
     "@size-limit/file": ">=0",

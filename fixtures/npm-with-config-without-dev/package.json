@@ -1,5 +1,4 @@
 {
-  "name": "npm-with-config-without-dev",
   "private": true,
   "devDependencies": {},
   "size-limit": [

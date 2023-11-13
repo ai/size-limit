@@ -46,12 +46,12 @@ export default [
     async step60(_config, check) {
       let files = check.bundles || check.files
 
-      if (check.brotli === true) {
-        check.size = await sum(files, async i => brotliSize(i))
-      } else if (check.gzip === false) {
+      if (check.gzip === true) {
+        check.size = await sum(files, async i => gzipSize(i))
+      } else if (check.brotli === false) {
         check.size = await sum(files, async i => (await stat(i)).size)
       } else {
-        check.size = await sum(files, async i => gzipSize(i))
+        check.size = await sum(files, async i => brotliSize(i))
       }
     }
   }

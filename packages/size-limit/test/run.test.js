@@ -230,8 +230,8 @@ it('throws on webpack option without webpack plugin', async () => {
   expect(await error('non-webpack-config')).toMatchSnapshot()
 })
 
-it('throws on gzip option without gzip plugin', async () => {
-  expect(await error('non-gzip')).toMatchSnapshot()
+it('throws on brotli option without brotli plugin', async () => {
+  expect(await error('non-brotli')).toMatchSnapshot()
 })
 
 it('throws on running option without time plugin', async () => {
@@ -254,18 +254,12 @@ it('works in integration test with JSON', async () => {
   expect(await check('integration', ['--json'])).toMatchSnapshot()
 })
 
-it('shows brotli text when only brotli in config', async () => {
-  Object.defineProperty(process, 'version', {
-    value: 'v11.7.0'
-  })
-  expect(await check('brotli')).toMatchSnapshot()
+it('shows gzip text when only gzip in config', async () => {
+  expect(await check('gzip')).toMatchSnapshot()
 })
 
-it('shows brotli text when brotli and gzip in config', async () => {
-  Object.defineProperty(process, 'version', {
-    value: 'v11.7.0'
-  })
-  expect(await check('brotli-with-gzip')).toMatchSnapshot()
+it('shows gzip text when brotli and gzip in config', async () => {
+  expect(await check('gzip-with-brotli')).toMatchSnapshot()
 })
 
 it('works in integration test with size', async () => {
@@ -283,25 +277,8 @@ it('works in integration test with ESM', async () => {
     {
       name: 'all',
       passed: true,
-      size: 39,
-      sizeLimit: 39
-    }
-  ])
-})
-
-it('works in integration test with ESM', async () => {
-  await checkJson('integration-esm', [
-    {
-      name: 'index.js',
-      passed: true,
-      size: 1,
-      sizeLimit: 1
-    },
-    {
-      name: 'all',
-      passed: true,
-      size: 39,
-      sizeLimit: 39
+      size: 48,
+      sizeLimit: 48
     }
   ])
 })
@@ -358,37 +335,48 @@ it('returns zero for empty file with webpack', async () => {
   expect(await check('zero-webpack')).toMatchSnapshot()
 })
 
-it('returns zero for empty file with webpack without gzip', async () => {
-  expect(await check('zero-webpack-non-gzip')).toMatchSnapshot()
+it('returns zero for empty webpack file without compression', async () => {
+  expect(await check('zero-webpack-non-compression')).toMatchSnapshot()
 })
 
 it('returns zero for empty file with esbuild', async () => {
   expect(await check('zero-esbuild')).toMatchSnapshot()
 })
 
-it('returns zero for empty file with esbuild and without gzip', async () => {
-  expect(await check('zero-esbuild-non-gzip')).toMatchSnapshot()
+it('returns zero for empty esbuild file and with gzip', async () => {
+  expect(await check('zero-esbuild-gzip')).toMatchSnapshot()
+})
+
+it('returns zero for empty esbuild file and without compression', async () => {
+  expect(await check('zero-esbuild-non-compression')).toMatchSnapshot()
 })
 
 it.skipIf(NODE_VERSION < 21)(
   'allows to use peer dependencies in import',
   async () => {
     await checkJson('combine', [
-      { name: 'all', size: 2273 },
+      { name: 'all', size: 2051 },
       { name: 'a', size: 1 },
-      { name: 'redux', size: 2270 }
+      { name: 'redux', size: 2046 }
     ])
   }
 )
 
 it('supports import and ignore for esbuild', async () => {
-  expect(clean(await check('peer-esbuild-non-gzip'))).toMatchSnapshot()
+  expect(clean(await check('peer-esbuild-non-compression'))).toMatchSnapshot()
 })
+
+it.skipIf(NODE_VERSION < 21)(
+  'supports import and ignore for esbuild and brotli',
+  async () => {
+    expect(clean(await check('peer-esbuild'))).toMatchSnapshot()
+  }
+)
 
 it.skipIf(NODE_VERSION < 21)(
   'supports import and ignore for esbuild and gzip',
   async () => {
-    expect(clean(await check('peer-esbuild'))).toMatchSnapshot()
+    expect(clean(await check('peer-esbuild-gzip'))).toMatchSnapshot()
   }
 )
 

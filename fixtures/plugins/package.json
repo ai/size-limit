@@ -1,5 +1,4 @@
 {
-  "name": "size-limit-3rd-party-plugin",
   "dependencies": {
     "size-limit-node-esbuild": ">=0.0.0"
   }

@@ -1,5 +1,4 @@
 {
-  "name": "integration-esm",
   "private": true,
   "devDependencies": {
     "@size-limit/preset-small-lib": ">= 0.0.0",
@@ -12,7 +11,7 @@
     },
     {
       "name": "all",
-      "limit": "39 B"
+      "limit": "48 B"
     }
   ]
 }
