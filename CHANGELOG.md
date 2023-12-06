@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.0.1
+* Updated `estimo`.
+* Updated `lilconfig`.
+
 ## 11.0
 * Moved to Brotli as default compression. Use `gzip: true` for old behavior.
 

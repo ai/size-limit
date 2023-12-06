@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-big-lib",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Size Limit preset for big open source libraries",
   "type": "module",
   "keywords": [
@@ -18,12 +18,12 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "size-limit": "11.0.0"
+    "size-limit": "11.0.1"
   },
   "dependencies": {
-    "@size-limit/file": "workspace:*",
-    "@size-limit/time": "workspace:*",
-    "@size-limit/webpack": "workspace:*",
-    "size-limit": "workspace:*"
+    "@size-limit/file": "11.0.1",
+    "@size-limit/time": "11.0.1",
+    "@size-limit/webpack": "11.0.1",
+    "size-limit": "11.0.1"
   }
 }
