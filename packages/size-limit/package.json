@@ -26,7 +26,7 @@
     "bytes-iec": "^3.1.1",
     "chokidar": "^3.5.3",
     "globby": "^14.0.0",
-    "lilconfig": "^2.1.0",
+    "lilconfig": "^3.0.0",
     "nanospinner": "^1.1.0",
     "picocolors": "^1.0.0"
   },

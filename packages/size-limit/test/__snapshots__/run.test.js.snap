@@ -50,52 +50,52 @@ exports[`returns zero for empty webpack file without compression 1`] = `
 
 exports[`shows debug 1`] = `
 "{
-  \\"cwd\\": \\"/tmp/\\",
-  \\"configPath\\": \\"package.json\\",
-  \\"checks\\": [
+  "cwd": "/tmp/",
+  "configPath": "package.json",
+  "checks": [
     {
-      \\"limit\\": \\"200 B\\",
-      \\"files\\": [
-        \\"/fixtures/integration/index.js\\"
+      "limit": "200 B",
+      "files": [
+        "/fixtures/integration/index.js"
       ],
-      \\"name\\": \\"index.js\\",
-      \\"sizeLimit\\": 200,
-      \\"highlightLess\\": true,
-      \\"webpackOutput\\": \\"/tmp/\\",
-      \\"webpackConfig\\": {
-        \\"entry\\": {
-          \\"index\\": [
-            \\"/fixtures/integration/index.js\\"
+      "name": "index.js",
+      "sizeLimit": 200,
+      "highlightLess": true,
+      "webpackOutput": "/tmp/",
+      "webpackConfig": {
+        "entry": {
+          "index": [
+            "/fixtures/integration/index.js"
           ]
         },
-        \\"module\\": {
-          \\"rules\\": [
+        "module": {
+          "rules": [
             {
-              \\"test\\": {},
-              \\"type\\": \\"asset/resource\\"
+              "test": {},
+              "type": "asset/resource"
             }
           ]
         },
-        \\"optimization\\": {
-          \\"concatenateModules\\": true
+        "optimization": {
+          "concatenateModules": true
         },
-        \\"output\\": {
-          \\"path\\": \\"/tmp/\\"
+        "output": {
+          "path": "/tmp/"
         },
-        \\"plugins\\": []
+        "plugins": []
       },
-      \\"bundles\\": [
-        \\"/tmp/index.js\\"
+      "bundles": [
+        "/tmp/index.js"
       ],
-      \\"size\\": 123,
-      \\"loadTime\\": 0.01,
-      \\"runTime\\": 1,
-      \\"time\\": 1.01,
-      \\"passed\\": true
+      "size": 123,
+      "loadTime": 0.01,
+      "runTime": 1,
+      "time": 1.01,
+      "passed": true
     }
   ],
-  \\"failed\\": false,
-  \\"missed\\": false
+  "failed": false,
+  "missed": false
 }
   
   [42m[30mPackage size is 77 B less than limit[39m[49m
@@ -110,16 +110,16 @@ exports[`shows debug 1`] = `
 
 exports[`shows debug on error 1`] = `
 "{
-  \\"cwd\\": \\"/tmp/\\",
-  \\"configPath\\": \\"package.json\\",
-  \\"checks\\": [
+  "cwd": "/tmp/",
+  "configPath": "package.json",
+  "checks": [
     {
-      \\"limit\\": \\"200 s\\",
-      \\"files\\": [
-        \\"/fixtures/internal-error/index.js\\"
+      "limit": "200 s",
+      "files": [
+        "/fixtures/internal-error/index.js"
       ],
-      \\"name\\": \\"index.js\\",
-      \\"timeLimit\\": 200
+      "name": "index.js",
+      "timeLimit": 200
     }
   ]
 }
@@ -142,7 +142,7 @@ exports[`shows error on time bigger than limit 1`] = `
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
   
-  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m"size-limit"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -155,7 +155,7 @@ exports[`shows error on time bigger than limit. in silent mode 1`] = `
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
   
-  [33mTry to reduce size or increase limit in [1m\\"size-limit\\"[22m section of [1mpackage.json[22m[39m
+  [33mTry to reduce size or increase limit in [1m"size-limit"[22m section of [1mpackage.json[22m[39m
 "
 `;
 
@@ -432,10 +432,10 @@ exports[`throws on brotli option without brotli plugin 1`] = `
 exports[`throws on empty config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must [33mnot be empty[31m[39m
 
-  [32m\\"size-limit\\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -444,10 +444,10 @@ exports[`throws on empty config 1`] = `
 exports[`throws on no config 1`] = `
 "[41m[30m ERROR [39m[49m [31mCreate Size Limit config in [33mpackage.json[31m[39m
 
-  [32m\\"size-limit\\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -456,10 +456,10 @@ exports[`throws on no config 1`] = `
 exports[`throws on non-array config 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config must contain [33man array[31m[39m
 
-  [32m\\"size-limit\\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -468,10 +468,10 @@ exports[`throws on non-array config 1`] = `
 exports[`throws on non-object check 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit config array should contain [33monly objects[31m[39m
 
-  [32m\\"size-limit\\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -485,10 +485,10 @@ exports[`throws on non-string entry 1`] = `
 exports[`throws on non-string path 1`] = `
 "[41m[30m ERROR [39m[49m [31mThe [33mpath[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
 
-  [32m\\"size-limit\\"[39m: [
+  [32m"size-limit"[39m: [
     {
-      [32m\\"path\\"[39m: [33m\\"dist/bundle.js\\"[39m,
-      [32m\\"limit\\"[39m: [33m\\"10 kB\\"[39m
+      [32m"path"[39m: [33m"dist/bundle.js"[39m,
+      [32m"limit"[39m: [33m"10 kB"[39m
     }
   ]
 "
@@ -565,12 +565,12 @@ Check the real performance cost of your front-end project to users
 exports[`works in integration test with JSON 1`] = `
 "[
   {
-    \\"name\\": \\"index.js\\",
-    \\"passed\\": true,
-    \\"size\\": 123,
-    \\"sizeLimit\\": 200,
-    \\"running\\": 1,
-    \\"loading\\": 0.01
+    "name": "index.js",
+    "passed": true,
+    "size": 123,
+    "sizeLimit": 200,
+    "running": 1,
+    "loading": 0.01
   }
 ]
 "
