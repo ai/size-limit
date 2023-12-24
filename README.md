@@ -550,7 +550,7 @@ Each section in the config can have these options:
   By default, the total size of all entry points will be checked.
 * **webpack**: with `false` it will disable webpack.
 * **running**: with `false` it will disable calculating running time.
-* **gzip**: with `true` it will use Brotli compression and disable
+* **gzip**: with `true` it will use Gzip compression and disable
   Brotli compression.
 * **brotli**: with `false` it will disable any compression.
 * **config**: a path to a custom webpack config.
