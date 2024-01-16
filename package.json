@@ -19,13 +19,13 @@
     "@size-limit/webpack": "workspace:^",
     "@size-limit/webpack-css": "workspace:^",
     "@size-limit/webpack-why": "workspace:^",
-    "@vitest/coverage-v8": "^1.0.1",
+    "@vitest/coverage-v8": "^1.2.0",
     "clean-publish": "^4.2.0",
     "cross-spawn": "^7.0.3",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-n": "^16.3.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-node-imports": "^1.0.2",
     "eslint-plugin-perfectionist": "^2.5.0",
     "eslint-plugin-prefer-let": "^3.0.1",
@@ -33,7 +33,7 @@
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
     "size-limit-node-esbuild": "^0.3.0",
-    "vitest": "^1.0.1"
+    "vitest": "^1.2.0"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config",

@@ -25,13 +25,13 @@
     "size-limit": "11.0.1"
   },
   "dependencies": {
-    "esbuild-visualizer": "^0.4.1",
-    "open": "^9.1.0"
+    "esbuild-visualizer": "^0.6.0",
+    "open": "^10.0.3"
   },
   "devDependencies": {
     "@size-limit/esbuild": "workspace:^",
     "@size-limit/file": "workspace:^",
-    "esbuild": "^0.19.8",
+    "esbuild": "^0.19.11",
     "redux": "^4.2.1",
     "size-limit": "workspace:^"
   }
