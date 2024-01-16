@@ -1,9 +1,12 @@
 import bytes from 'bytes-iec'
 import { globby } from 'globby'
 import { lilconfig } from 'lilconfig'
+import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
 
 import { SizeLimitError } from './size-limit-error.js'
+
+const require = createRequire(import.meta.url)
 
 let OPTIONS = {
   brotli: 'file',
