@@ -1,5 +1,5 @@
 module.exports = [
   {
-    path: 'index.js',
+    path: 'index.js'
   }
 ]

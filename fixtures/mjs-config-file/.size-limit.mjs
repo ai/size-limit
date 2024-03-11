@@ -1,5 +1,5 @@
 export default [
   {
-    path: 'index.js',
+    path: 'index.js'
   }
 ]
