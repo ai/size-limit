@@ -195,6 +195,48 @@ it('normalizes bundle and webpack arguments with --why and ui-reports', async ()
   })
 })
 
+it('should work with .mjs config file', async () => {
+  expect(await check('mjs-config-file')).toEqual({
+    checks: [
+      {
+        files: [fixture('mjs-config-file', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.mjs',
+    cwd: fixture('mjs-config-file')
+  })
+})
+
+it('should work with .js config file', async () => {
+  expect(await check('js-config-file')).toEqual({
+    checks: [
+      {
+        files: [fixture('js-config-file', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.js',
+    cwd: fixture('js-config-file')
+  })
+})
+
+it('should work with .js config file and "type": "module"', async () => {
+  expect(await check('js-config-file-with-type-module')).toEqual({
+    checks: [
+      {
+        files: [fixture('js-config-file-with-type-module', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.js',
+    cwd: fixture('js-config-file-with-type-module')
+  })
+})
+
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
     checks: [
