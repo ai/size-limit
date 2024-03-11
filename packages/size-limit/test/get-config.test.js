@@ -223,6 +223,20 @@ it('should work with .js config file', async () => {
   })
 })
 
+it('should work with .js config file and "type": "module"', async () => {
+  expect(await check('js-config-file-with-type-module')).toEqual({
+    checks: [
+      {
+        files: [fixture('js-config-file-with-type-module', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.js',
+    cwd: fixture('js-config-file-with-type-module')
+  })
+})
+
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
     checks: [
