@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "bytes-iec": "^3.1.1",
-    "chokidar": "^3.5.3",
-    "globby": "^14.0.0",
+    "chokidar": "^3.6.0",
+    "globby": "^14.0.1",
     "lilconfig": "^3.1.1",
     "nanospinner": "^1.1.0",
     "picocolors": "^1.0.0"

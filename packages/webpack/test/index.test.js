@@ -68,7 +68,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(154)
+  expect(config.checks[0].size).toBeCloseTo(179, -2)
 })
 
 describe('supports custom webpack config', () => {

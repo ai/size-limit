@@ -33,6 +33,6 @@
     "@size-limit/webpack": "workspace:^",
     "redux": "^4.2.1",
     "size-limit": "workspace:^",
-    "webpack": "^5.89.0"
+    "webpack": "^5.90.3"
   }
 }

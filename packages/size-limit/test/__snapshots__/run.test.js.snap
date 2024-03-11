@@ -369,9 +369,9 @@ exports[`supports import and ignore for esbuild and gzip 1`] = `
 
 exports[`supports path without dot 1`] = `
 "  
-  [42m[30mPackage size is 75 B less than limit[39m[49m
+  [42m[30mPackage size is 77 B less than limit[39m[49m
   Size limit: [32m[1m200 B[22m[39m
-  Size:       [32m[1m125 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:       [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
