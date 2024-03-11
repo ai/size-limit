@@ -112,11 +112,15 @@ export default async function getConfig(plugins, process, args, pkg) {
     config.checks = [{ files: args.files }]
   } else {
     let explorer = lilconfig('size-limit', {
+      loaders: {
+        '.mjs': async filePath => (await import(filePath)).default
+      },
       searchPlaces: [
         'package.json',
         '.size-limit.json',
         '.size-limit',
         '.size-limit.js',
+        '.size-limit.mjs',
         '.size-limit.cjs'
       ]
     })
