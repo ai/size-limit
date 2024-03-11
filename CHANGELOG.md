@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.0.3
+* Fixed `.mjs` config support (by Arya Emami).
+* Updated `esbuild`.
+
 ## 11.0.2
 * Fixed `require is not defined` regression.
 * Updated `esbuild-visualizer`.

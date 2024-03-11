@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "description": "CLI tool for Size Limit",
   "type": "module",
   "keywords": [
