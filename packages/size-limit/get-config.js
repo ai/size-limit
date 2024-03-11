@@ -82,6 +82,15 @@ function toName(files, cwd) {
   return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
+/**
+ * Dynamically imports a module from a given file path
+ * and returns its default export.
+ *
+ * @param {string} filePath - The path to the module file to be imported.
+ * @returns {Promise<any>} A promise that resolves with the default export of the module.
+ */
+const dynamicImport = async filePath => (await import(filePath)).default
+
 export default async function getConfig(plugins, process, args, pkg) {
   let config = {
     cwd: process.cwd()
@@ -113,7 +122,8 @@ export default async function getConfig(plugins, process, args, pkg) {
   } else {
     let explorer = lilconfig('size-limit', {
       loaders: {
-        '.mjs': async filePath => (await import(filePath)).default
+        '.js': dynamicImport,
+        '.mjs': dynamicImport
       },
       searchPlaces: [
         'package.json',
