@@ -1,5 +1,6 @@
 import bytes from 'bytes-iec'
 import { globby } from 'globby'
+import _jiti from 'jiti'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
@@ -7,6 +8,7 @@ import { dirname, isAbsolute, join, relative } from 'node:path'
 import { SizeLimitError } from './size-limit-error.js'
 
 const require = createRequire(import.meta.url)
+const jiti = _jiti(__filename, { interopDefault: true })
 
 let OPTIONS = {
   brotli: 'file',
@@ -91,6 +93,18 @@ function toName(files, cwd) {
  */
 const dynamicImport = async filePath => (await import(filePath)).default
 
+/**
+ * Loads a TypeScript file from a given file path using the
+ * {@linkcode jiti} function. This loader function simplifies the
+ * process of dynamically importing TypeScript modules at runtime,
+ * offering a way to execute or import TypeScript files directly
+ * without pre-compilation.
+ *
+ * @param {string} filePath - The path to the TypeScript file to be loaded.
+ * @returns {any} The module exports from the loaded TypeScript file.
+ */
+const tsLoader = filePath => jiti(filePath)
+
 export default async function getConfig(plugins, process, args, pkg) {
   let config = {
     cwd: process.cwd()
@@ -123,7 +137,11 @@ export default async function getConfig(plugins, process, args, pkg) {
     let explorer = lilconfig('size-limit', {
       loaders: {
         '.js': dynamicImport,
-        '.mjs': dynamicImport
+        '.mjs': dynamicImport,
+        '.cjs': dynamicImport,
+        '.ts': tsLoader,
+        '.mts': tsLoader,
+        '.cts': tsLoader
       },
       searchPlaces: [
         'package.json',
@@ -131,7 +149,10 @@ export default async function getConfig(plugins, process, args, pkg) {
         '.size-limit',
         '.size-limit.js',
         '.size-limit.mjs',
-        '.size-limit.cjs'
+        '.size-limit.cjs',
+        '.size-limit.ts',
+        '.size-limit.mts',
+        '.size-limit.cts'
       ]
     })
     let result = await explorer.search(process.cwd())
