@@ -8,7 +8,7 @@ export { SizeLimitError } from './size-limit-error.js'
 /**
  * Run Size Limit and return the result
  *
- * @param  {functions[]} plugins   The list of plugins like `@size-limit/time`
+ * @param  {Function[]} plugins   The list of plugins like `@size-limit/time`
  * @param  {string[]|object} files Path to files or internal config
  * @return {Promise<object>}     Project size
  */
