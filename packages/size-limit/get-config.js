@@ -1,6 +1,5 @@
 import bytes from 'bytes-iec'
 import { globby } from 'globby'
-import buildJiti from 'jiti'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
@@ -9,8 +8,6 @@ import { fileURLToPath } from 'node:url'
 import { SizeLimitError } from './size-limit-error.js'
 
 const require = createRequire(import.meta.url)
-
-const jiti = buildJiti(fileURLToPath(import.meta.url), { interopDefault: true })
 
 let OPTIONS = {
   brotli: 'file',
@@ -103,9 +100,14 @@ const dynamicImport = async filePath => (await import(filePath)).default
  * without pre-compilation.
  *
  * @param {string} filePath - The path to the TypeScript file to be loaded.
- * @returns {any} The module exports from the loaded TypeScript file.
+ * @returns {Promise<any>} The module exports from the loaded TypeScript file.
  */
-const tsLoader = filePath => jiti(filePath)
+const tsLoader = async filePath => {
+  const jiti = (await import('jiti')).default(fileURLToPath(import.meta.url), {
+    interopDefault: true
+  })
+  return jiti(filePath)
+}
 
 export default async function getConfig(plugins, process, args, pkg) {
   let config = {
