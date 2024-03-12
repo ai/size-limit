@@ -1,4 +1,4 @@
-export type Config = {
+export interface Config {
   /**
    * With `false` it will disable any compression.
    */
