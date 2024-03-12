@@ -2,7 +2,7 @@ import _StatoscopeWebpackPlugin from '@statoscope/webpack-plugin'
 import { join } from 'node:path'
 
 function addStatoscope(limitConfig, check, webpackConfig) {
-  const StatoscopeWebpackPlugin = _StatoscopeWebpackPlugin.default ?? _StatoscopeWebpackPlugin
+  let StatoscopeWebpackPlugin = _StatoscopeWebpackPlugin.default ? _StatoscopeWebpackPlugin.default : _StatoscopeWebpackPlugin;
   if (limitConfig.why) {
     let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
 
