@@ -1,6 +1,6 @@
 import bytes from 'bytes-iec'
 import { globby } from 'globby'
-import _jiti from 'jiti'
+import buildJiti from 'jiti'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url)
 
 const __filename = fileURLToPath(import.meta.url)
 
-const jiti = _jiti(__filename, { interopDefault: true })
+const jiti = buildJiti(__filename, { interopDefault: true })
 
 let OPTIONS = {
   brotli: 'file',
