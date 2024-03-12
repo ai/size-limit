@@ -1,4 +1,4 @@
-export interface Config {
+export interface Check {
   /**
    * With `false` it will disable any compression.
    */
@@ -89,4 +89,4 @@ export interface Config {
   webpack?: boolean
 }
 
-export type SizeLimitConfig = Config[]
+export type SizeLimitConfig = Check[]
