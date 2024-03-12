@@ -88,3 +88,5 @@ export type Config = {
    */
   webpack?: boolean
 }
+
+export type SizeLimitConfig = Config[]
