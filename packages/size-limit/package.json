@@ -3,6 +3,7 @@
   "version": "11.0.3",
   "description": "CLI tool for Size Limit",
   "type": "module",
+  "types": "index.d.ts",
   "keywords": [
     "size-limit",
     "cli",
