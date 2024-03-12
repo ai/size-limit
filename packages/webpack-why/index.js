@@ -6,7 +6,7 @@ function addStatoscope(limitConfig, check, webpackConfig) {
     let shouldOpen = process.env.NODE_ENV !== 'test' && !limitConfig.saveBundle
 
     webpackConfig.plugins.push(
-      new StatoscopeWebpackPlugin.default({
+      new StatoscopeWebpackPlugin({
         additionalStats: [limitConfig.compareWith, check.compareWith].filter(
           Boolean
         ),
@@ -24,7 +24,7 @@ function addStatoscope(limitConfig, check, webpackConfig) {
     )
   } else if (limitConfig.saveBundle) {
     webpackConfig.plugins.push(
-      new StatoscopeWebpackPlugin.default({
+      new StatoscopeWebpackPlugin({
         open: false,
         saveReportTo: join(limitConfig.saveBundle, 'report.html'),
         saveStatsTo: join(limitConfig.saveBundle, 'stats.json'),
