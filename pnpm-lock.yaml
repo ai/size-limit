@@ -166,6 +166,9 @@ importers:
       globby:
         specifier: ^14.0.1
         version: 14.0.1
+      jiti:
+        specifier: ^1.21.0
+        version: 1.21.0
       lilconfig:
         specifier: ^3.1.1
         version: 3.1.1
@@ -3673,6 +3676,11 @@ packages:
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
+    dev: false
+
+  /jiti@1.21.0:
+    resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
+    hasBin: true
     dev: false
 
   /jora@1.0.0-beta.8:
