@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { beforeEach, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import calc from '../calc'
 import run from '../run'
@@ -237,6 +237,118 @@ it('should work with .js config file and "type": "module"', async () => {
   })
 })
 
+it('should work with .js config file and `export default` without "type": "module"', async () => {
+  expect(await check('js-config-file-esm')).toEqual({
+    checks: [
+      {
+        files: [fixture('js-config-file-esm', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.js',
+    cwd: fixture('js-config-file-esm')
+  })
+})
+
+it('should work with .cjs config file and `export default` without "type": "module"', async () => {
+  expect(await check('cjs-config-file-esm')).toEqual({
+    checks: [
+      {
+        files: [fixture('cjs-config-file-esm', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.cjs',
+    cwd: fixture('cjs-config-file-esm')
+  })
+})
+
+it('should work with .cjs config file and `module.exports` without "type": "module"', async () => {
+  expect(await check('cjs-config-file-cjs')).toEqual({
+    checks: [
+      {
+        files: [fixture('cjs-config-file-cjs', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.cjs',
+    cwd: fixture('cjs-config-file-cjs')
+  })
+})
+
+it('should work with .ts config file and `export default` without "type": "module"', async () => {
+  expect(await check('ts-config-file-esm')).toEqual({
+    checks: [
+      {
+        files: [fixture('ts-config-file-esm', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.ts',
+    cwd: fixture('ts-config-file-esm')
+  })
+})
+
+it('should work with .ts config file', async () => {
+  expect(await check('ts-config-file')).toEqual({
+    checks: [
+      {
+        files: [fixture('ts-config-file', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.ts',
+    cwd: fixture('ts-config-file')
+  })
+})
+
+it('should work with .cts config file', async () => {
+  expect(await check('cts-config-file')).toEqual({
+    checks: [
+      {
+        files: [fixture('cts-config-file', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.cts',
+    cwd: fixture('cts-config-file')
+  })
+})
+
+it('should work with .mts config file', async () => {
+  expect(await check('mts-config-file')).toEqual({
+    checks: [
+      {
+        files: [fixture('mts-config-file', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.mts',
+    cwd: fixture('mts-config-file')
+  })
+})
+
+it('should work with .ts config file and "type": "module"', async () => {
+  expect(await check('ts-config-file-with-type-module')).toEqual({
+    checks: [
+      {
+        files: [fixture('ts-config-file-with-type-module', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.ts',
+    cwd: fixture('ts-config-file-with-type-module')
+  })
+})
+
 it('uses peerDependencies as ignore option', async () => {
   expect(await check('peer')).toEqual({
     checks: [
@@ -316,3 +428,33 @@ it('normalizes import', async () => {
     cwd: fixture('integration-esm')
   })
 })
+
+const allConfigFileExtensions = ['mjs', 'js', 'cjs', 'ts', 'mts', 'cts']
+const exportTypes = [
+  { moduleType: 'esm', exportSyntax: 'export default' },
+  { moduleType: 'cjs', exportSyntax: 'module.exports' }
+]
+
+describe.each(allConfigFileExtensions)(
+  'config file with `.%s` extension',
+  extension => {
+    it.each(exportTypes)(
+      'should work with $moduleType module syntax ($exportSyntax)',
+      async ({ moduleType }) => {
+        expect(await check(`${extension}-config-file-${moduleType}`)).toEqual({
+          checks: [
+            {
+              files: [
+                fixture(`${extension}-config-file-${moduleType}`, 'index.js')
+              ],
+              name: 'index.js',
+              path: 'index.js'
+            }
+          ],
+          configPath: `.size-limit.${extension}`,
+          cwd: fixture(`${extension}-config-file-${moduleType}`)
+        })
+      }
+    )
+  }
+)
