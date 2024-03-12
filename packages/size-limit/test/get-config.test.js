@@ -431,8 +431,8 @@ it('normalizes import', async () => {
 
 const allConfigFileExtensions = ['mjs', 'js', 'cjs', 'ts', 'mts', 'cts']
 const exportTypes = [
-  { moduleType: 'esm', exportSyntax: 'export default' },
-  { moduleType: 'cjs', exportSyntax: 'module.exports' }
+  { exportSyntax: 'export default', moduleType: 'esm' },
+  { exportSyntax: 'module.exports', moduleType: 'cjs' }
 ]
 
 describe.each(allConfigFileExtensions)(
