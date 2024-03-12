@@ -9,9 +9,7 @@ import { SizeLimitError } from './size-limit-error.js'
 
 const require = createRequire(import.meta.url)
 
-const __filename = fileURLToPath(import.meta.url)
-
-const jiti = buildJiti(__filename, { interopDefault: true })
+const jiti = buildJiti(fileURLToPath(import.meta.url), { interopDefault: true })
 
 let OPTIONS = {
   brotli: 'file',
@@ -139,12 +137,12 @@ export default async function getConfig(plugins, process, args, pkg) {
   } else {
     let explorer = lilconfig('size-limit', {
       loaders: {
+        '.cjs': dynamicImport,
+        '.cts': tsLoader,
         '.js': dynamicImport,
         '.mjs': dynamicImport,
-        '.cjs': dynamicImport,
-        '.ts': tsLoader,
         '.mts': tsLoader,
-        '.cts': tsLoader
+        '.ts': tsLoader
       },
       searchPlaces: [
         'package.json',
