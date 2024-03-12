@@ -96,3 +96,22 @@ export interface Check {
 }
 
 export type SizeLimitConfig = Check[]
+
+/**
+ * Any function with any arguments.
+ */
+type AnyFunction = (...args: any[]) => any
+
+/**
+ * Run Size Limit and return the result.
+ *
+ * @param plugins   The list of plugins like `@size-limit/time`
+ * @param  files Path to files or internal config
+ * @return Project size
+ */
+declare function sizeLimitAPI(
+  plugins: AnyFunction,
+  files: string[] | object
+): Promise<object>
+
+export default sizeLimitAPI
