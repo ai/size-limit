@@ -13,6 +13,7 @@ export interface Check {
    * A path to a custom webpack config.
    */
   config?: string
+
   disableModuleConcatenation?: boolean
 
   /**
@@ -26,7 +27,9 @@ export interface Check {
    * With `true` it will use Gzip compression and disable Brotli compression.
    */
   gzip?: boolean
+
   hidePassed?: boolean
+
   highlightLess?: boolean
 
   /**
@@ -34,6 +37,7 @@ export interface Check {
    * the project size calculation.
    */
   ignore?: string[]
+
   /**
    * Partial import to test tree-shaking. It could be `"{ lib }"` to test
    * `import { lib } from 'lib'`, `*` to test all exports, or
@@ -47,6 +51,7 @@ export interface Check {
    * Format: `100 B`, `10 kB`, `500 ms`, `1 s`.
    */
   limit?: string
+
   modifyEsbuildConfig?: (config?: any) => any
 
   /**
@@ -54,6 +59,7 @@ export interface Check {
    * changes to the webpack config, like adding a plugin.
    */
   modifyWebpackConfig?: (config?: any) => any
+
   module?: boolean
 
   /**
