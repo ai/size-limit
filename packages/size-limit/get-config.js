@@ -4,10 +4,13 @@ import _jiti from 'jiti'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
-
+import { fileURLToPath } from 'node:url'
 import { SizeLimitError } from './size-limit-error.js'
 
 const require = createRequire(import.meta.url)
+
+const __filename = fileURLToPath(import.meta.url)
+
 const jiti = _jiti(__filename, { interopDefault: true })
 
 let OPTIONS = {
