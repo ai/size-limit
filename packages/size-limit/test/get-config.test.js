@@ -195,7 +195,7 @@ it('normalizes bundle and webpack arguments with --why and ui-reports', async ()
   })
 })
 
-it('should work with .mjs config file', async () => {
+it('works with .mjs config file', async () => {
   expect(await check('mjs-config-file')).toEqual({
     checks: [
       {
@@ -209,7 +209,7 @@ it('should work with .mjs config file', async () => {
   })
 })
 
-it('should work with .js config file', async () => {
+it('works with .js config file', async () => {
   expect(await check('js-config-file')).toEqual({
     checks: [
       {
@@ -223,7 +223,7 @@ it('should work with .js config file', async () => {
   })
 })
 
-it('should work with .js config file and "type": "module"', async () => {
+it('works with .js config file and "type": "module"', async () => {
   expect(await check('js-config-file-with-type-module')).toEqual({
     checks: [
       {
@@ -237,7 +237,7 @@ it('should work with .js config file and "type": "module"', async () => {
   })
 })
 
-it('should work with .js config file and `export default` without "type": "module"', async () => {
+it('works with .js config file and `export default` without "type": "module"', async () => {
   expect(await check('js-config-file-esm')).toEqual({
     checks: [
       {
@@ -251,7 +251,7 @@ it('should work with .js config file and `export default` without "type": "modul
   })
 })
 
-it('should work with .cjs config file and `export default` without "type": "module"', async () => {
+it('works with .cjs config file and `export default` without "type": "module"', async () => {
   expect(await check('cjs-config-file-esm')).toEqual({
     checks: [
       {
@@ -265,7 +265,7 @@ it('should work with .cjs config file and `export default` without "type": "modu
   })
 })
 
-it('should work with .cjs config file and `module.exports` without "type": "module"', async () => {
+it('works with .cjs config file and `module.exports` without "type": "module"', async () => {
   expect(await check('cjs-config-file-cjs')).toEqual({
     checks: [
       {
@@ -279,7 +279,7 @@ it('should work with .cjs config file and `module.exports` without "type": "modu
   })
 })
 
-it('should work with .ts config file and `export default` without "type": "module"', async () => {
+it('works with .ts config file and `export default` without "type": "module"', async () => {
   expect(await check('ts-config-file-esm')).toEqual({
     checks: [
       {
@@ -293,7 +293,7 @@ it('should work with .ts config file and `export default` without "type": "modul
   })
 })
 
-it('should work with .ts config file', async () => {
+it('works with .ts config file', async () => {
   expect(await check('ts-config-file')).toEqual({
     checks: [
       {
@@ -307,7 +307,7 @@ it('should work with .ts config file', async () => {
   })
 })
 
-it('should work with .cts config file', async () => {
+it('works with .cts config file', async () => {
   expect(await check('cts-config-file')).toEqual({
     checks: [
       {
@@ -321,7 +321,7 @@ it('should work with .cts config file', async () => {
   })
 })
 
-it('should work with .mts config file', async () => {
+it('works with .mts config file', async () => {
   expect(await check('mts-config-file')).toEqual({
     checks: [
       {
@@ -335,7 +335,7 @@ it('should work with .mts config file', async () => {
   })
 })
 
-it('should work with .ts config file and "type": "module"', async () => {
+it('works with .ts config file and "type": "module"', async () => {
   expect(await check('ts-config-file-with-type-module')).toEqual({
     checks: [
       {
@@ -439,7 +439,7 @@ describe.each(allConfigFileExtensions)(
   'config file with `.%s` extension',
   extension => {
     it.each(exportTypes)(
-      'should work with $moduleType module syntax ($exportSyntax)',
+      'works with $moduleType module syntax ($exportSyntax)',
       async ({ moduleType }) => {
         expect(await check(`${extension}-config-file-${moduleType}`)).toEqual({
           checks: [
