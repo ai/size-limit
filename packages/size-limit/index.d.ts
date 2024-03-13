@@ -1,3 +1,6 @@
+/**
+ * Represents the options for the size-limit check.
+ */
 export interface Check {
   /**
    * With `false` it will disable any compression.
