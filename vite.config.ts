@@ -19,7 +19,7 @@ export default defineConfig({
         'packages/preset-app/index.js'
       ]
     },
-    testTimeout: 20_000,
-    watchExclude: ['**/fixtures', '**/dist', '**/out']
-  }
+    testTimeout: 20_000
+  },
+  server: { watch: { ignored: ['**/fixtures', '**/dist', '**/out'] } }
 })
