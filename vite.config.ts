@@ -20,7 +20,8 @@ export default defineConfig({
       ]
     },
     testTimeout: 20_000,
-    retry: process.env.CI ? 1 : 0
+    retry: process.env.CI ? 1 : 0,
+    fileParallelism: !process.env.CI
   },
   server: { watch: { ignored: ['**/fixtures', '**/dist', '**/out'] } }
 })
