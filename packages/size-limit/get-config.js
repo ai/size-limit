@@ -103,7 +103,7 @@ const dynamicImport = async filePath => (await import(filePath)).default
  * @returns {Promise<any>} The module exports from the loaded TypeScript file.
  */
 const tsLoader = async filePath => {
-  const jiti = (await import('jiti')).default(fileURLToPath(import.meta.url), {
+  let jiti = (await import('jiti')).default(fileURLToPath(import.meta.url), {
     interopDefault: true
   })
   return jiti(filePath)
