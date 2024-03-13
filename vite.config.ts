@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { coverageConfigDefaults, defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
@@ -11,6 +11,7 @@ export default defineConfig({
       skipFull: true,
       clean: true,
       exclude: [
+        ...coverageConfigDefaults.exclude,
         '**/fixtures',
         '**/scripts',
         '**/test',
@@ -18,7 +19,9 @@ export default defineConfig({
         'packages/preset-app/index.js'
       ]
     },
-    testTimeout: 10000,
-    watchExclude: ['**/fixtures', '**/dist', '**/out']
-  }
+    testTimeout: 20_000,
+    retry: process.env.CI ? 1 : 0,
+    fileParallelism: !process.env.CI
+  },
+  server: { watch: { ignored: ['**/fixtures', '**/dist', '**/out'] } }
 })

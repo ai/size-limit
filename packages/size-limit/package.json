@@ -3,6 +3,7 @@
   "version": "11.0.3",
   "description": "CLI tool for Size Limit",
   "type": "module",
+  "types": "index.d.ts",
   "keywords": [
     "size-limit",
     "cli",
@@ -26,6 +27,7 @@
     "bytes-iec": "^3.1.1",
     "chokidar": "^3.6.0",
     "globby": "^14.0.1",
+    "jiti": "^1.21.0",
     "lilconfig": "^3.1.1",
     "nanospinner": "^1.1.0",
     "picocolors": "^1.0.0"

@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "name": "mts-config-file",
+  "devDependencies": {
+    "@size-limit/webpack": ">= 0.0.0",
+    "@size-limit/webpack-why": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  }
+}
