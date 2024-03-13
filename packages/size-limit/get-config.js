@@ -83,25 +83,8 @@ function toName(files, cwd) {
   return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
-/**
- * Dynamically imports a module from a given file path
- * and returns its default export.
- *
- * @param {string} filePath - The path to the module file to be imported.
- * @returns {Promise<any>} A promise that resolves with the default export of the module.
- */
 const dynamicImport = async filePath => (await import(filePath)).default
 
-/**
- * Loads a TypeScript file from a given file path using the
- * {@linkcode jiti} function. This loader function simplifies the
- * process of dynamically importing TypeScript modules at runtime,
- * offering a way to execute or import TypeScript files directly
- * without pre-compilation.
- *
- * @param {string} filePath - The path to the TypeScript file to be loaded.
- * @returns {Promise<any>} The module exports from the loaded TypeScript file.
- */
 const tsLoader = async filePath => {
   let jiti = (await import('jiti')).default(fileURLToPath(import.meta.url), {
     interopDefault: true

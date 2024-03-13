@@ -532,6 +532,20 @@ Size Limits supports three ways to define limits config.
    ]
    ```
 
+4. or types `.size-limit.ts`:
+
+   ```ts
+   import type { SizeLimitConfig } from '../../packages/size-limit'
+
+   module.exports = [
+     {
+       path: "index.js",
+       import: "{ createStore }",
+       limit: "500 ms"
+     }
+   ] satisfies SizeLimitConfig
+   ```
+
 Each section in the config can have these options:
 
 * **path**: relative paths to files. The only mandatory option.
