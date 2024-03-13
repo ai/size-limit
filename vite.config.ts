@@ -19,7 +19,8 @@ export default defineConfig({
         'packages/preset-app/index.js'
       ]
     },
-    testTimeout: 20_000
+    testTimeout: 20_000,
+    retry: process.env.CI ? 1 : 0
   },
   server: { watch: { ignored: ['**/fixtures', '**/dist', '**/out'] } }
 })
