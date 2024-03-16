@@ -3,7 +3,7 @@ import { globby } from 'globby'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { SizeLimitError } from './size-limit-error.js'
 
@@ -83,7 +83,8 @@ function toName(files, cwd) {
   return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
-const dynamicImport = async filePath => (await import(filePath)).default
+const dynamicImport = async filePath =>
+  (await import(pathToFileURL(filePath).href)).default
 
 const tsLoader = async filePath => {
   let jiti = (await import('jiti')).default(fileURLToPath(import.meta.url), {
