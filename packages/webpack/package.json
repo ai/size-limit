@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "description": "Webpack plugin for Size Limit",
   "type": "module",
   "keywords": [
@@ -22,7 +22,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "size-limit": "11.1.0"
+    "size-limit": "11.1.1"
   },
   "dependencies": {
     "nanoid": "^5.0.6",

@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.1.1
+* Fixed Windows support (by @aryaemami59).
+
 ## 11.1.0
 * Added TypeScript support for config (by @aryaemami59).
 * Fixed `webpack-why` regression (by @hoo00nn).
