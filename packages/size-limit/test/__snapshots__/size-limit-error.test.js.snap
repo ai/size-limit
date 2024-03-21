@@ -12,7 +12,7 @@ exports[`has error for CLI error without output 1`] = `
 `;
 
 exports[`has error for unknown entry 1`] = `
-"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33madmin[31m entry in custom Webpack config[39m
+"[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33madmin[31m entry in the custom bundler config[39m
 "
 `;
 

@@ -23,18 +23,20 @@ function getFiles(buildResult, check) {
   let outputs = buildResult.metafile.outputs
 
   for (let key in outputs) {
-    let outputEntryName = parse(key).name
+    let outputEntryName = parse(key).base
     outputs[outputEntryName] = outputs[key]
     outputs[outputEntryName].path = resolve(key)
     delete outputs[key]
   }
 
   if (check.entry) {
-    for (let i of check.entry) {
-      if (outputs[i]) {
-        entries[i] = outputs[i]
-      } else {
-        throw new SizeLimitError('unknownEntry', i)
+    for (let entry of check.entry) {
+      let matches = Object.keys(outputs).filter(key => parse(key).name === entry)
+      if(matches.length === 0) {
+        throw new SizeLimitError('unknownEntry', entry)
+      }
+      for(let match of matches) {
+        entries[match] = outputs[match]
       }
     }
   } else {

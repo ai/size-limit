@@ -37,7 +37,7 @@ const MESSAGES = {
   unknownArg: arg =>
     `Unknown argument *${arg}*. Check command for typo and read docs.`,
   unknownEntry: entry =>
-    `Size Limit didn’t find *${entry}* entry in custom Webpack config`,
+    `Size Limit didn’t find *${entry}* entry in the custom bundler config`,
   unknownOption: opt =>
     `Unknown option *${opt}* in config. Check Size Limit docs and version.`
 }
