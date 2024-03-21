@@ -64,6 +64,14 @@ it('uses esbuild to make bundle', async () => {
   expect(existsSync(config.checks[0].esbuildOutfile)).toBe(false)
 })
 
+it('supports bundles with css', async () => {
+  let config = {
+    checks: [{ files: fixture('esm/nonjs.js') }]
+  }
+  await run(config)
+  expect(config.checks[0].size).toBe(49)
+})
+
 it('supports ignore', async () => {
   let config = {
     checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
