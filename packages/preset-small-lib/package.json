@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-small-lib",
-  "version": "11.1.1",
+  "version": "11.1.2",
   "description": "Size Limit preset for small open source libraries",
   "type": "module",
   "keywords": [
@@ -18,11 +18,11 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "size-limit": "11.1.1"
+    "size-limit": "11.1.2"
   },
   "dependencies": {
-    "@size-limit/esbuild": "workspace:*",
-    "@size-limit/file": "workspace:*",
-    "size-limit": "workspace:*"
+    "@size-limit/esbuild": "11.1.2",
+    "@size-limit/file": "11.1.2",
+    "size-limit": "11.1.2"
   }
 }
