@@ -25,6 +25,6 @@
     "size-limit": "11.1.3"
   },
   "devDependencies": {
-    "size-limit": "11.1.3"
+    "size-limit": "workspace:*"
   }
 }

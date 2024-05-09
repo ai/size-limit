@@ -29,10 +29,10 @@
     "open": "^10.1.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "11.1.3",
-    "@size-limit/file": "11.1.3",
+    "@size-limit/esbuild": "workspace:*",
+    "@size-limit/file": "workspace:*",
     "esbuild": "^0.21.1",
     "redux": "^4.2.1",
-    "size-limit": "11.1.3"
+    "size-limit": "workspace:*"
   }
 }

@@ -76,13 +76,13 @@ importers:
         version: 5.0.7
     devDependencies:
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       redux:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/esbuild-why:
@@ -95,10 +95,10 @@ importers:
         version: 10.1.0
     devDependencies:
       '@size-limit/esbuild':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../esbuild
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       esbuild:
         specifier: ^0.21.1
@@ -107,52 +107,52 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/file:
     devDependencies:
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/preset-app:
     dependencies:
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       '@size-limit/time':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../time
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/preset-big-lib:
     dependencies:
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       '@size-limit/time':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../time
       '@size-limit/webpack':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../webpack
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/preset-small-lib:
     dependencies:
       '@size-limit/esbuild':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../esbuild
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/size-limit:
@@ -180,13 +180,13 @@ importers:
         version: 1.0.0
     devDependencies:
       '@size-limit/esbuild':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../esbuild
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       '@size-limit/webpack':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../webpack
 
   packages/time:
@@ -199,7 +199,7 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/webpack:
@@ -212,13 +212,13 @@ importers:
         version: 5.91.0
     devDependencies:
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       redux:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
 
   packages/webpack-css:
@@ -234,13 +234,13 @@ importers:
         version: 4.0.0(webpack@5.91.0)
     devDependencies:
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       '@size-limit/webpack':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../webpack
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
       webpack:
         specifier: ^5.91.0
@@ -253,16 +253,16 @@ importers:
         version: 5.28.2(webpack@5.91.0)
     devDependencies:
       '@size-limit/file':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../file
       '@size-limit/webpack':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../webpack
       redux:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../size-limit
       webpack:
         specifier: ^5.91.0
