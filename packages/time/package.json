@@ -25,10 +25,10 @@
     "size-limit": "11.1.2"
   },
   "dependencies": {
-    "estimo": "^3.0.2"
+    "estimo": "^3.0.3"
   },
   "devDependencies": {
-    "nanoid": "^5.0.6",
+    "nanoid": "^5.0.7",
     "size-limit": "workspace:^"
   }
 }
