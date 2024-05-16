@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.1.4
+* Fixed types (by @aryaemami59).
+
 ## 11.1.3
 * Updated `esbuild`.
 * Updated CSS loaders for webpack.

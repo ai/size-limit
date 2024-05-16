@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-app",
-  "version": "11.1.3",
+  "version": "11.1.4",
   "description": "Size Limit preset for applications",
   "type": "module",
   "keywords": [
@@ -18,11 +18,11 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "size-limit": "11.1.3"
+    "size-limit": "11.1.4"
   },
   "dependencies": {
-    "@size-limit/file": "workspace:*",
-    "@size-limit/time": "workspace:*",
-    "size-limit": "workspace:*"
+    "@size-limit/file": "11.1.4",
+    "@size-limit/time": "11.1.4",
+    "size-limit": "11.1.4"
   }
 }
