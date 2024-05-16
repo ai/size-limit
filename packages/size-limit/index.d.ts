@@ -113,7 +113,7 @@ type AnyFunction = (...args: any[]) => any
  * @return Project size
  */
 declare function sizeLimitAPI(
-  plugins: AnyFunction,
+  plugins: AnyFunction[],
   files: string[] | object
 ): Promise<object>
 
