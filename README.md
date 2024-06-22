@@ -55,6 +55,7 @@ We are using [Statoscope] for this analysis.
 
 * [MobX](https://github.com/mobxjs/mobx)
 * [Material-UI](https://github.com/callemall/material-ui)
+* [Ant Design](https://github.com/ant-design/ant-design/)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [PostCSS](https://github.com/postcss/postcss) reduced
   [25% of the size](https://github.com/postcss/postcss/commit/150edaa42f6d7ede73d8c72be9909f0a0f87a70f).
