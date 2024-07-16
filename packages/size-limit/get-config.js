@@ -1,4 +1,5 @@
 import bytes from 'bytes-iec'
+import fg from 'fast-glob'
 import { globby } from 'globby'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
@@ -154,7 +155,7 @@ export default async function getConfig(plugins, process, args, pkg) {
       result.config.map(async check => {
         let processed = { ...check }
         if (check.path) {
-          processed.files = await globby(check.path, { cwd: config.cwd })
+          processed.files = await globby(check.path.map(fg.escapePath), { cwd: config.cwd })
         } else if (!check.entry) {
           if (pkg.packageJson.main) {
             processed.files = [
