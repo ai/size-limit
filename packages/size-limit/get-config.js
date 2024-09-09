@@ -1,9 +1,9 @@
 import bytes from 'bytes-iec'
-import { globby } from 'globby'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import { glob } from 'tinyglobby'
 
 import { SizeLimitError } from './size-limit-error.js'
 
@@ -154,7 +154,8 @@ export default async function getConfig(plugins, process, args, pkg) {
       result.config.map(async check => {
         let processed = { ...check }
         if (check.path) {
-          processed.files = await globby(check.path, { cwd: config.cwd })
+          let patterns = Array.isArray(check.path) ? check.path : [check.path]
+          processed.files = await glob(patterns, { cwd: config.cwd })
         } else if (!check.entry) {
           if (pkg.packageJson.main) {
             processed.files = [
