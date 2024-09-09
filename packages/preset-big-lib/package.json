@@ -21,9 +21,9 @@
     "size-limit": "11.1.5"
   },
   "dependencies": {
-    "@size-limit/file": "11.1.5",
-    "@size-limit/time": "11.1.5",
-    "@size-limit/webpack": "11.1.5",
-    "size-limit": "11.1.5"
+    "@size-limit/file": "workspace:*",
+    "@size-limit/time": "workspace:*",
+    "@size-limit/webpack": "workspace:*",
+    "size-limit": "workspace:*"
   }
 }
