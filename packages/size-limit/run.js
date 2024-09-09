@@ -46,7 +46,7 @@ export default async process => {
   let isSilentMode = hasArg('--silent')
   let reporter = createReporter(process, isJsonOutput, isSilentMode)
   let help = createHelp(process)
-  let config, args
+  let args, config
 
   try {
     if (hasArg('--version')) {
