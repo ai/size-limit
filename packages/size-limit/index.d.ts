@@ -74,7 +74,7 @@ export interface Check {
   /**
    * Relative paths to files. The only mandatory option.
    * It could be a path `"index.js"`, a
-   * {@link https://github.com/sindresorhus/globby#globbing-patterns pattern}
+   * {@link https://github.com/SuperchupuDev/tinyglobby pattern}
    * `"dist/app-*.js"` or an array
    * `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
    */
