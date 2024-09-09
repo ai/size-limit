@@ -582,7 +582,7 @@ If you use Size Limit to track the size of CSS files, make sure to set
 inserts `style-loader` runtime (≈2 kB) into the bundle.
 
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
-[pattern]: https://github.com/sindresorhus/globby#globbing-patterns
+[pattern]: https://github.com/SuperchupuDev/tinyglobby
 
 ## Analyze with `--why`
 

@@ -54,23 +54,23 @@ it('creates config by CLI arguments', async () => {
   })
 })
 
-it('supports globby and main field', async () => {
-  expect(await check('globby')).toEqual({
+it('supports tinyglobby and main field', async () => {
+  expect(await check('tinyglobby')).toEqual({
     checks: [
       {
-        files: [fixture('globby', 'a1.js'), fixture('globby', 'a2.js')],
+        files: [fixture('tinyglobby', 'a1.js'), fixture('tinyglobby', 'a2.js')],
         limit: '1 kB',
         name: 'a',
         path: ['a*.js'],
         sizeLimit: 1000
       },
       {
-        files: [fixture('globby', 'b1.js')],
+        files: [fixture('tinyglobby', 'b1.js')],
         name: 'b'
       }
     ],
     configPath: 'package.json',
-    cwd: fixture('globby')
+    cwd: fixture('tinyglobby')
   })
 })
 
