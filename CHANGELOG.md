@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.1.5
+* Reduced dependencies (by @ziebam).
+* Updated `esbuild`.
+
 ## 11.1.4
 * Fixed types (by @aryaemami59).
 

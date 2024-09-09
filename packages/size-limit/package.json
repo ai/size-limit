@@ -1,6 +1,6 @@
 {
   "name": "size-limit",
-  "version": "11.1.4",
+  "version": "11.1.5",
   "description": "CLI tool for Size Limit",
   "type": "module",
   "types": "index.d.ts",
