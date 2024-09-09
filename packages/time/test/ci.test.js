@@ -22,7 +22,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-  vi.clearAllMocks()
+  vi.restoreAllMocks()
 })
 
 const EXAMPLE = join(__dirname, '../node_modules/nanoid/index.browser.js')

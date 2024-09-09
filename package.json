@@ -8,7 +8,7 @@
     "test": "vitest run --coverage && eslint . && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^53.1.0",
+    "@logux/eslint-config": "^53.4.0",
     "@size-limit/esbuild": "workspace:^",
     "@size-limit/esbuild-why": "workspace:^",
     "@size-limit/file": "workspace:^",
@@ -19,14 +19,14 @@
     "@size-limit/webpack": "workspace:^",
     "@size-limit/webpack-css": "workspace:^",
     "@size-limit/webpack-why": "workspace:^",
-    "@vitest/coverage-v8": "^1.6.0",
-    "clean-publish": "^4.4.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "clean-publish": "^5.0.0",
     "cross-spawn": "^7.0.3",
-    "eslint": "^9.2.0",
+    "eslint": "^9.10.0",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
     "size-limit-node-esbuild": "^0.3.0",
-    "vitest": "^1.6.0"
+    "vitest": "^2.0.5"
   },
   "prettier": {
     "arrowParens": "avoid",

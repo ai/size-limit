@@ -26,10 +26,10 @@
   "dependencies": {
     "bytes-iec": "^3.1.1",
     "chokidar": "^3.6.0",
-    "jiti": "^1.21.0",
-    "lilconfig": "^3.1.1",
+    "jiti": "^1.21.6",
+    "lilconfig": "^3.1.2",
     "nanospinner": "^1.1.0",
-    "picocolors": "^1.0.1",
+    "picocolors": "^1.1.0",
     "tinyglobby": "^0.2.6"
   },
   "devDependencies": {
