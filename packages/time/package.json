@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/time",
-  "version": "11.1.5",
+  "version": "11.1.6",
   "description": "Downloading and running time plugin for Size Limit",
   "type": "module",
   "keywords": [
@@ -22,7 +22,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "size-limit": "11.1.5"
+    "size-limit": "11.1.6"
   },
   "dependencies": {
     "estimo": "^3.0.3"
