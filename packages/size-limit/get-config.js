@@ -87,7 +87,7 @@ const dynamicImport = async filePath =>
   (await import(pathToFileURL(filePath).href)).default
 
 const tsLoader = async filePath => {
-  let jiti = (await import('jiti')).default(fileURLToPath(import.meta.url), {
+  let jiti = (await import('jiti')).createJiti(fileURLToPath(import.meta.url), {
     interopDefault: true
   })
   return jiti(filePath)

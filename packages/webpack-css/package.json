@@ -33,6 +33,6 @@
     "@size-limit/file": "workspace:*",
     "@size-limit/webpack": "workspace:*",
     "size-limit": "workspace:*",
-    "webpack": "^5.94.0"
+    "webpack": "^5.95.0"
   }
 }
