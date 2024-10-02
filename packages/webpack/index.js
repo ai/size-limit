@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid/non-secure'
-import { readdir } from 'node:fs/promises'
+import { readdir, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { rm, SizeLimitError } from 'size-limit'
+import { SizeLimitError } from 'size-limit'
 
 import { convertConfig } from './convert-config.js'
 import { getConfig } from './get-config.js'
@@ -59,7 +59,7 @@ export default [
     async before(config) {
       if (config.saveBundle) {
         if (config.cleanDir) {
-          await rm(config.saveBundle)
+          await rm(config.saveBundle, { force: true, recursive: true })
         } else {
           let notEmpty = await isDirNotEmpty(config.saveBundle)
           if (notEmpty) {
@@ -71,7 +71,7 @@ export default [
 
     async finally(config, check) {
       if (check.webpackOutput && !config.saveBundle) {
-        await rm(check.webpackOutput)
+        await rm(check.webpackOutput, { force: true, recursive: true })
       }
     },
 

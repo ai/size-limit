@@ -31,11 +31,13 @@ function getFiles(buildResult, check) {
 
   if (check.entry) {
     for (let entry of check.entry) {
-      let matches = Object.keys(outputs).filter(key => parse(key).name === entry)
-      if(matches.length === 0) {
+      let matches = Object.keys(outputs).filter(
+        key => parse(key).name === entry
+      )
+      if (matches.length === 0) {
         throw new SizeLimitError('unknownEntry', entry)
       }
-      for(let match of matches) {
+      for (let match of matches) {
         entries[match] = outputs[match]
       }
     }
@@ -61,7 +63,7 @@ export default [
     async before(config) {
       if (config.saveBundle) {
         if (config.cleanDir) {
-          await rm(config.saveBundle)
+          await rm(config.saveBundle, { force: true, recursive: true })
         } else {
           let notEmpty = await isDirNotEmpty(config.saveBundle)
           if (notEmpty) {
@@ -73,7 +75,7 @@ export default [
 
     async finally(config, check) {
       if (check.esbuildOutfile && !config.saveBundle) {
-        await rm(check.esbuildOutfile)
+        await rm(check.esbuildOutfile, { force: true, recursive: true })
       }
     },
 

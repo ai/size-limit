@@ -1,9 +1,8 @@
 import filePkg from '@size-limit/file'
 import webpackPkg from '@size-limit/webpack'
 import { existsSync } from 'node:fs'
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { rm } from 'size-limit'
 import { afterEach, expect, it, vi } from 'vitest'
 
 import webpackWhyPkg from '../index.js'
@@ -31,7 +30,7 @@ async function run(config) {
 }
 
 afterEach(async () => {
-  await rm(DIST)
+  await rm(DIST, { force: true, recursive: true })
   vi.clearAllMocks()
 })
 

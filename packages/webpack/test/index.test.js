@@ -1,8 +1,8 @@
 import filePkg from '@size-limit/file'
 import { existsSync } from 'node:fs'
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { rm, SizeLimitError } from 'size-limit'
+import { SizeLimitError } from 'size-limit'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import webpackPkg from '../index.js'
@@ -37,7 +37,7 @@ async function getSize(check) {
 }
 
 afterEach(async () => {
-  await rm(DIST)
+  await rm(DIST, { force: true, recursive: true })
   vi.clearAllMocks()
 })
 

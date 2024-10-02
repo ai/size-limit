@@ -1,8 +1,7 @@
 import esbuildPkg from '@size-limit/esbuild'
-import { readFile } from 'node:fs/promises'
+import { readFile, rm } from 'node:fs/promises'
 import { join } from 'node:path'
 import open from 'open'
-import { rm } from 'size-limit'
 import { afterEach, expect, it, vi } from 'vitest'
 
 import esbuildWhyPkg from '..'
@@ -18,7 +17,7 @@ function fixture(name) {
 }
 
 afterEach(async () => {
-  await rm(DIST)
+  await rm(DIST, { force: true, recursive: true })
   vi.clearAllMocks()
 })
 

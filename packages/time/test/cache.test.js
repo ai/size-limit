@@ -1,14 +1,13 @@
-import { writeFile } from 'node:fs/promises'
+import { rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { rm } from 'size-limit'
 import { afterEach, beforeAll, expect, it } from 'vitest'
 
 import { getCache, saveCache } from '../cache'
 
 const CACHE = join(__dirname, '..', '..', '.cache')
 
-beforeAll(() => rm(CACHE))
-afterEach(() => rm(CACHE))
+beforeAll(() => rm(CACHE, { force: true, recursive: true }))
+afterEach(() => rm(CACHE, { force: true, recursive: true }))
 
 it('returns false by default', async () => {
   expect(await getCache()).toBe(false)

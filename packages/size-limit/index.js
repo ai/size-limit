@@ -1,8 +1,9 @@
+import fs from 'node:fs/promises'
+
 import calc from './calc.js'
 import { Plugins } from './load-plugins.js'
 
 export { processImport } from './process-import.js'
-export { rm } from './rm.js'
 export { SizeLimitError } from './size-limit-error.js'
 
 /**
@@ -29,4 +30,8 @@ export default async function (plugins, files) {
     }
     return value
   })
+}
+
+export async function rm(dir) {
+  await fs.rm(dir, { force: true, recursive: true })
 }
