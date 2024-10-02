@@ -88,9 +88,12 @@ const dynamicImport = async filePath =>
 
 const tsLoader = async filePath => {
   let jiti = (await import('jiti')).createJiti(fileURLToPath(import.meta.url), {
-    interopDefault: true
+    interopDefault: false
   })
-  return jiti(filePath)
+
+  let config = await jiti.import(filePath)
+
+  return config?.default ?? config
 }
 
 export default async function getConfig(plugins, process, args, pkg) {
