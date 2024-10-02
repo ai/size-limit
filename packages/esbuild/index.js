@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid/non-secure'
-import { readdir, readFile } from 'node:fs/promises'
+import { readdir, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, parse, resolve } from 'node:path'
-import { rm, SizeLimitError } from 'size-limit'
+import { SizeLimitError } from 'size-limit'
 
 import { convertConfig } from './convert-config.js'
 import { getConfig } from './get-config.js'
