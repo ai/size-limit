@@ -71,6 +71,17 @@ exports[`renders config-less result 1`] = `
 "
 `;
 
+exports[`renders custom message 1`] = `
+"  
+  [31mPackage size limit has exceeded by 1 B[39m
+  see docs for additional instructions
+  Size limit: [31m[1m100 B[22m[39m
+  Size:       [31m[1m101 B[22m[39m [90mbrotlied[39m
+  
+  [33mTry to reduce size or increase limit at [1m.size-limit.json[22m[39m
+"
+`;
+
 exports[`renders failed results 1`] = `
 "  
   [1mok[22m

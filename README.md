@@ -560,6 +560,9 @@ Each section in the config can have these options:
   Format: `100 B`, `10 kB`, `500 ms`, `1 s`.
 * **name**: the name of the current section. It will only be useful
   if you have multiple sections.
+* **message**: an optional custom message to display additional information,
+  such as guidance for resolving errors, relevant links, or instructions
+  for next steps when a limit is exceeded.
 * **entry**: when using a custom webpack config, a webpack entry could be given.
   It could be a string or an array of strings.
   By default, the total size of all entry points will be checked.

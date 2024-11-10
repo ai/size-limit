@@ -21,6 +21,7 @@ let OPTIONS = {
   ignore: ['webpack', 'esbuild'],
   import: ['webpack', 'esbuild'],
   limit: true,
+  message: true,
   modifyEsbuildConfig: 'esbuild',
   modifyWebpackConfig: 'webpack',
   module: true,

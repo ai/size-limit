@@ -263,6 +263,24 @@ it('renders single result', () => {
   ).toMatchSnapshot()
 })
 
+it('renders custom message', () => {
+  expect(
+    results(['file'], {
+      checks: [
+        {
+          message: 'see docs for additional instructions',
+          name: 'big fail',
+          passed: false,
+          size: 101,
+          sizeLimit: 100
+        }
+      ],
+      configPath: '.size-limit.json',
+      failed: true
+    })
+  ).toMatchSnapshot()
+})
+
 it('renders config-less result', () => {
   expect(
     results(['time'], {
