@@ -185,7 +185,7 @@ interactive elements, using React/Vue/Svelte lib or vanilla JS.
     ```
 
 6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
+   to add one — start with GitHub Actions.
 
 </details>
 
