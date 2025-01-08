@@ -21,7 +21,7 @@
     "@size-limit/webpack-why": "workspace:^",
     "@vitest/coverage-v8": "^2.1.1",
     "clean-publish": "^5.0.0",
-    "cross-spawn": "^7.0.3",
+    "cross-spawn": "^7.0.5",
     "eslint": "^9.11.1",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
