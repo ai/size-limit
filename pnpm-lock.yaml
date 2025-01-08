@@ -72,8 +72,8 @@ importers:
         specifier: ^0.24.0
         version: 0.24.0
       nanoid:
-        specifier: ^5.0.7
-        version: 5.0.7
+        specifier: ^5.0.9
+        version: 5.0.9
     devDependencies:
       '@size-limit/file':
         specifier: workspace:*
@@ -196,8 +196,8 @@ importers:
         version: 3.0.3
     devDependencies:
       nanoid:
-        specifier: ^5.0.7
-        version: 5.0.7
+        specifier: ^5.0.9
+        version: 5.0.9
       size-limit:
         specifier: workspace:*
         version: link:../size-limit
@@ -205,8 +205,8 @@ importers:
   packages/webpack:
     dependencies:
       nanoid:
-        specifier: ^5.0.7
-        version: 5.0.7
+        specifier: ^5.0.9
+        version: 5.0.9
       webpack:
         specifier: ^5.95.0
         version: 5.95.0
@@ -2258,6 +2258,11 @@ packages:
 
   nanoid@5.0.7:
     resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+
+  nanoid@5.0.9:
+    resolution: {integrity: sha512-Aooyr6MXU6HpvvWXKoVoXwKMs/KyVakWwg7xQfv5/S/RIgJMy0Ifa45H9qqYy7pTCszrHzP21Uk4PZq2HpEM8Q==}
     engines: {node: ^18 || >=20}
     hasBin: true
 
@@ -5316,6 +5321,8 @@ snapshots:
 
   nanoid@5.0.7: {}
 
+  nanoid@5.0.9: {}
+
   nanospinner@1.1.0:
     dependencies:
       picocolors: 1.1.0
@@ -5831,7 +5838,7 @@ snapshots:
 
   size-limit-node-esbuild@0.3.0:
     dependencies:
-      nanoid: 5.0.7
+      nanoid: 5.0.9
       size-limit: 10.0.3
       tslib: 2.7.0
 
