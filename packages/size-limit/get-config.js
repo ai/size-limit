@@ -92,9 +92,9 @@ const tsLoader = async filePath => {
     interopDefault: false
   })
 
-  let config = await jiti.import(filePath)
+  let config = await jiti.import(filePath, { default: true })
 
-  return config?.default ?? config
+  return config
 }
 
 export default async function getConfig(plugins, process, args, pkg) {
