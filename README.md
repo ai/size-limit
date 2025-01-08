@@ -17,6 +17,8 @@ if the cost exceeds the limit.
   and understandable metric compared to the size in bytes.
 * Calculations include **all dependencies and polyfills**
   used in your JS.
+* **Flexible usage**: Install as a dev dependency with full configuration
+  or use with npx for quick checks (requires plugin installation).
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
@@ -92,6 +94,34 @@ We are using [Statoscope] for this analysis.
 
 
 ## Usage
+
+### Quick Start with npx
+
+Size Limit can be used with npx for quick size checks, but requires the appropriate plugin to be installed first due to its plugin architecture:
+
+1. Install the required plugin as a **dev dependency** (choose based on your needs):
+
+    ```sh
+    npm install --save-dev @size-limit/file  # For simple file size checks
+    # Or for other cases:
+    # npm install --save-dev @size-limit/webpack  # For webpack projects
+    # npm install --save-dev @size-limit/esbuild  # For faster checks
+    ```
+
+2. Run size-limit with **npx**:
+
+    ```sh
+    npx size-limit --limit "10 kB" dist/bundle.js
+    ```
+
+3. Run size-limit with **global** installation instead of npx:
+
+    ```sh
+    npm install --global @size-limit/cli
+    size-limit --limit "10 kB" dist/bundle.js
+    ```
+
+Note: This approach works best for quick checks. For long-term project maintenance and CI integration, we recommend the full installation methods described below.
 
 ### JS Applications
 
