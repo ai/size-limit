@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "esbuild": "^0.24.0",
-    "nanoid": "^5.0.7"
+    "nanoid": "^5.0.9"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:*",
