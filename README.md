@@ -17,8 +17,6 @@ if the cost exceeds the limit.
   and understandable metric compared to the size in bytes.
 * Calculations include **all dependencies and polyfills**
   used in your JS.
-* **Flexible usage**: Install as a dev dependency with full configuration
-  or use with npx for quick checks (requires plugin installation).
 
 <p align="center">
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
@@ -94,34 +92,6 @@ We are using [Statoscope] for this analysis.
 
 
 ## Usage
-
-### Quick Start with npx
-
-Size Limit can be used with npx for quick size checks, but requires the appropriate plugin to be installed first due to its plugin architecture:
-
-1. Install the required plugin as a **dev dependency** (choose based on your needs):
-
-    ```sh
-    npm install --save-dev @size-limit/file  # For simple file size checks
-    # Or for other cases:
-    # npm install --save-dev @size-limit/webpack  # For webpack projects
-    # npm install --save-dev @size-limit/esbuild  # For faster checks
-    ```
-
-2. Run size-limit with **npx**:
-
-    ```sh
-    npx size-limit --limit "10 kB" dist/bundle.js
-    ```
-
-3. Run size-limit with **global** installation instead of npx:
-
-    ```sh
-    npm install --global @size-limit/cli
-    size-limit --limit "10 kB" dist/bundle.js
-    ```
-
-Note: This approach works best for quick checks. For long-term project maintenance and CI integration, we recommend the full installation methods described below.
 
 ### JS Applications
 
@@ -258,7 +228,7 @@ to track the time a browser takes to compile and execute your JS.
     ```
 
 6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
+   to add one — start with GitHub Actions.
 
 </details>
 
@@ -342,7 +312,7 @@ the size in bytes. Libraries like [React] are good examples for this preset.
     ```
 
 7. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
+   to add one — start with GitHub Actions.
 8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
@@ -429,7 +399,7 @@ for this preset.
     ```
 
 7. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
+   to add one — start with GitHub Actions.
 8. Add the library size to docs, it will help users to choose your project:
 
     ```diff
@@ -613,6 +583,13 @@ Each section in the config can have these options:
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack
 inserts `style-loader` runtime (≈2 kB) into the bundle.
+
+Also, you avoid having a config and pass the limit to CLI:
+
+```sh
+npm install --save-dev @size-limit/file
+npx size-limit --limit "10 kB" dist/bundle.js
+```
 
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/SuperchupuDev/tinyglobby
