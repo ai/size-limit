@@ -211,6 +211,12 @@ it('throws on --config argument with invalid FILE parameter', async () => {
   )
 })
 
+it('throws on --config argument with invalid FILE extension', async () => {
+  expect(
+    await error('file', ['--config', 'invalid/config/path.extension'])
+  ).toContain('No loader specified for extension')
+})
+
 it('throws on no config', async () => {
   expect(await error('file')).toMatchSnapshot()
 })
