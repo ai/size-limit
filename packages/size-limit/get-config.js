@@ -1,7 +1,7 @@
 import bytes from 'bytes-iec'
 import { lilconfig } from 'lilconfig'
 import { createRequire } from 'node:module'
-import { dirname, isAbsolute, join, relative } from 'node:path'
+import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { glob } from 'tinyglobby'
 
@@ -147,7 +147,9 @@ export default async function getConfig(plugins, process, args, pkg) {
         '.size-limit.cts'
       ]
     })
-    let result = await explorer.search(process.cwd())
+    let result = args.config?.trim()
+      ? await explorer.load(resolve(args.config.trim()))
+      : await explorer.search(process.cwd())
 
     if (result === null) throw new SizeLimitError('noConfig')
     checkChecks(plugins, result.config)
