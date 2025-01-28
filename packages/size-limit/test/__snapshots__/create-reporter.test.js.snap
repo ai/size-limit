@@ -134,7 +134,7 @@ exports[`renders list of failed checks in silent mode 1`] = `
 
 exports[`renders list of success checks in silent mode 1`] = `
 "  
-"
+[1A[2K"
 `;
 
 exports[`renders result for file with gzip 1`] = `
