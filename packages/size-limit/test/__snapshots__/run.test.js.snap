@@ -305,7 +305,7 @@ Check out docs for more complicated cases
 
 exports[`shows nothing in silent mode and success check 1`] = `
 "  
-"
+[1A[2K"
 `;
 
 exports[`shows size-limit dependency warning 1`] = `""`;

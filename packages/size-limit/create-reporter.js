@@ -1,5 +1,6 @@
 import bytes from 'bytes-iec'
 import { join } from 'node:path'
+import readline from 'node:readline'
 import pc from 'picocolors'
 
 const { bgGreen, bgRed, black, bold, gray, green, red, yellow } = pc
@@ -42,10 +43,13 @@ function getFixText(prefix, config) {
 
   return prefix
 }
-
 function createHumanReporter(process, isSilentMode = false) {
+  let output = ''
+
   function print(...lines) {
-    process.stdout.write('  ' + lines.join('\n  ') + '\n')
+    let value = '  ' + lines.join('\n  ') + '\n'
+    output += value
+    process.stdout.write(value)
   }
 
   function formatBytes(size) {
@@ -189,6 +193,12 @@ function createHumanReporter(process, isSilentMode = false) {
         let statsFilepath = join(config.saveBundle, 'stats.json')
         print(`Webpack Stats file was saved to ${statsFilepath}`)
         print('You can review it using https://webpack.github.io/analyse')
+      }
+
+      // clean the blank line in silent mode if the output is empty
+      if (isSilentMode && !output.trim()) {
+        readline.moveCursor(process.stdout, 0, -1)
+        readline.clearLine(process.stdout, 0)
       }
     }
   }
