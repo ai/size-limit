@@ -90,7 +90,7 @@ exports[`shows debug 1`] = `
       "size": 123,
       "loadTime": 0.01,
       "runTime": 1,
-      "time": 1.01,
+      "totalTime": 1.01,
       "passed": true
     }
   ],

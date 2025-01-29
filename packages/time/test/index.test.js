@@ -33,7 +33,7 @@ it('calculates time to download and run', async () => {
         loadTime: 20.48,
         runTime: 10,
         size: 1024 * 1024,
-        time: 30.48
+        totalTime: 30.48
       },
       { files: ['/b'], size: 1024 * 1024 }
     ]
@@ -53,7 +53,7 @@ it('avoids run on request', async () => {
     loadTime: 20.48,
     running: false,
     size: 1024 * 1024,
-    time: 20.48
+    totalTime: 20.48
   })
 })
 

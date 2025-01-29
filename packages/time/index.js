@@ -26,9 +26,9 @@ export default [
       if (check.running !== false) {
         let files = check.bundles || check.files
         check.runTime = await sum(files, i => getRunningTime(i))
-        check.time = check.runTime + check.loadTime
+        check.totalTime = check.runTime + check.loadTime
       } else {
-        check.time = check.loadTime
+        check.totalTime = check.loadTime
       }
     },
     wait80: 'Running JS in headless Chrome'

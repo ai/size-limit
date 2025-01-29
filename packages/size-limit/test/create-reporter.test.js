@@ -31,7 +31,7 @@ it('renders results', () => {
           name: 'limitless',
           runTime: 0.5,
           size: 10,
-          time: 0.6
+          totalTime: 0.6
         },
         {
           loadTime: 1,
@@ -40,7 +40,7 @@ it('renders results', () => {
           runTime: 2,
           size: 102400,
           sizeLimit: 102400,
-          time: 3
+          totalTime: 3
         },
         {
           gzip: false,
@@ -49,8 +49,8 @@ it('renders results', () => {
           passed: true,
           runTime: 2,
           size: 102400,
-          time: 3,
-          timeLimit: 4
+          timeLimit: 4,
+          totalTime: 3
         }
       ]
     })
@@ -69,7 +69,7 @@ it('renders list of success checks in silent mode', () => {
             name: 'limitless',
             runTime: 0.5,
             size: 10,
-            time: 0.6
+            totalTime: 0.6
           },
           {
             loadTime: 1,
@@ -78,7 +78,7 @@ it('renders list of success checks in silent mode', () => {
             runTime: 2,
             size: 102400,
             sizeLimit: 102400,
-            time: 3
+            totalTime: 3
           }
         ]
       },
@@ -132,7 +132,7 @@ it('renders list of failed and success checks in silent mode', () => {
             name: 'limitless',
             runTime: 0.5,
             size: 10,
-            time: 0.6
+            totalTime: 0.6
           },
           {
             loadTime: 1,
@@ -141,7 +141,7 @@ it('renders list of failed and success checks in silent mode', () => {
             runTime: 2,
             size: 102400,
             sizeLimit: 102400,
-            time: 3
+            totalTime: 3
           },
           {
             name: 'big fail',
@@ -291,8 +291,8 @@ it('renders config-less result', () => {
           passed: false,
           runTime: 0.3,
           size: 1000,
-          time: 0.5,
-          timeLimit: 0.5
+          timeLimit: 0.5,
+          totalTime: 0.5
         }
       ],
       failed: true
@@ -317,8 +317,8 @@ it('renders JSON results', () => {
             path: '/b',
             runTime: 0.3,
             size: 1000,
-            time: 0.5,
-            timeLimit: 10
+            timeLimit: 10,
+            totalTime: 0.5
           }
         ],
         failed: true

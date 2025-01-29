@@ -158,7 +158,7 @@ function createHumanReporter(process, isSilentMode = false) {
         if (typeof check.runTime !== 'undefined') {
           rows.push(
             ['Running time', formatTime(check.runTime), 'on Snapdragon 410'],
-            ['Total time', formatTime(check.time)]
+            ['Total time', formatTime(check.totalTime)]
           )
         }
 
