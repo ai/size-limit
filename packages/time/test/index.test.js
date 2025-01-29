@@ -94,3 +94,50 @@ it('throws an error on missed size', async () => {
   }
   expect(err).toEqual(new SizeLimitError('missedPlugin', 'file'))
 })
+
+it('uses provided network speed for calculating loading time', async () => {
+  let config = {
+    checks: [
+      { running: false, size: 1024 * 1024, time: { networkSpeed: 100 * 1024 } }
+    ]
+  }
+
+  await time.step80(config, config.checks[0])
+  expect(config.checks[0].loadTime).toBe(
+    config.checks[0].size / config.checks[0].time.networkSpeed
+  )
+})
+
+it('uses provided latency to loading time', async () => {
+  let size = 1024 * 1024
+  let config = {
+    checks: [
+      { running: false, size },
+      { running: false, size, time: { latency: 8 } }
+    ]
+  }
+
+  await time.step80(config, config.checks[0])
+  await time.step80(config, config.checks[1])
+  expect(config.checks[1].loadTime).toBe(
+    config.checks[0].loadTime + config.checks[1].time.latency
+  )
+})
+
+it('uses provided network speed and latency for calculating loading time', async () => {
+  let config = {
+    checks: [
+      {
+        running: false,
+        size: 1024 * 1024,
+        time: { latency: 0.1984, networkSpeed: 100 * 1024 }
+      }
+    ]
+  }
+
+  await time.step80(config, config.checks[0])
+  expect(config.checks[0].loadTime).toBe(
+    config.checks[0].size / config.checks[0].time.networkSpeed +
+      config.checks[0].time.latency
+  )
+})

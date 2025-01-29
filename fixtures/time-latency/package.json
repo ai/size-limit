@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "time-latency",
+  "devDependencies": {
+    "@size-limit/time": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "time": {
+        "latency": "200 ms"
+      }
+    },
+    {
+      "time": {
+        "latency": "2.35 s"
+      }
+    }
+  ]
+}

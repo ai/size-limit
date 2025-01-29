@@ -429,6 +429,48 @@ it('normalizes import', async () => {
   })
 })
 
+it('normalizes networkSpeed option for time plugin', async () => {
+  let cwd = 'time-network-speed'
+  expect(await check(cwd)).toEqual({
+    checks: [
+      {
+        files: [fixture(cwd, 'index.js')],
+        name: 'index.js',
+        path: 'index.js',
+        time: { networkSpeed: 20 }
+      },
+      {
+        files: [fixture(cwd, 'index.js')],
+        name: 'index.js',
+        time: { networkSpeed: 20000 }
+      }
+    ],
+    configPath: 'package.json',
+    cwd: fixture(cwd)
+  })
+})
+
+it('normalizes latency option for time plugin', async () => {
+  let cwd = 'time-latency'
+  expect(await check(cwd)).toEqual({
+    checks: [
+      {
+        files: [fixture(cwd, 'index.js')],
+        name: 'index.js',
+        path: 'index.js',
+        time: { latency: 0.2 }
+      },
+      {
+        files: [fixture(cwd, 'index.js')],
+        name: 'index.js',
+        time: { latency: 2.35 }
+      }
+    ],
+    configPath: 'package.json',
+    cwd: fixture(cwd)
+  })
+})
+
 const allConfigFileExtensions = ['mjs', 'js', 'cjs', 'ts', 'mts', 'cts']
 const exportTypes = [
   { exportSyntax: 'export default', moduleType: 'esm' },

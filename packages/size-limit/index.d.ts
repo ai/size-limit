@@ -96,6 +96,38 @@ export interface Check {
    * With `false` it will disable webpack.
    */
   webpack?: boolean
+
+  /**
+   * Options for `@size-limit/time` plugin.
+   */
+  time?: TimeOptions
+}
+
+/**
+ * Represents the options for the size-limit check time property to customize `@size-limit/time` plugin.
+ */
+export interface TimeOptions {
+  /**
+   * A network speed to calculate loading time of files.
+   * It should be a string with a number and unit, separated by a space.
+   * Format: `100 B`, `10 kB`.
+   * @default "50 kB"
+   */
+  networkSpeed?: string
+
+  /**
+   * Delay for calculating loading time that simulates network latency
+   * It should be a string with a number and unit, separated by a space.
+   * Format: `500 ms`, `1 s`.
+   * @default: "0"
+   */
+  latency: string
+
+  /**
+   * A message for loading time details
+   * @default "on slow 3G"
+   */
+  loadingMessage?: string
 }
 
 export type SizeLimitConfig = Check[]

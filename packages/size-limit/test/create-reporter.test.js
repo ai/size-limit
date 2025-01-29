@@ -372,3 +372,28 @@ it('renders Webpack stats help message', () => {
     })
   ).toMatchSnapshot()
 })
+
+it('renders loading time with custom message from time options for every check', () => {
+  expect(
+    results(['time'], {
+      checks: [
+        {
+          loadTime: 0.2,
+          name: 'loading message 1',
+          passed: true,
+          runTime: 0.4,
+          size: 10,
+          time: { loadingMessage: 'for ~1000 users per month' },
+          totalTime: 1.4
+        },
+        {
+          loadTime: 0.2,
+          name: 'loading message 2',
+          passed: true,
+          runTime: 0.3,
+          time: { loadingMessage: '' }
+        }
+      ]
+    })
+  ).toMatchSnapshot()
+})

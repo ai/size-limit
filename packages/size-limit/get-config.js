@@ -28,6 +28,7 @@ let OPTIONS = {
   name: true,
   path: true,
   running: 'time',
+  time: 'time',
   uiReports: 'webpack',
   webpack: 'webpack'
 }
@@ -40,6 +41,14 @@ function isStrings(value) {
 function isStringsOrUndefined(value) {
   let type = typeof value
   return type === 'undefined' || type === 'string' || isStrings(value)
+}
+
+function endsWithMs(value) {
+  return / ?ms/i.test(value)
+}
+
+function endsWithS(value) {
+  return / ?s/i.test(value)
 }
 
 function checkChecks(plugins, checks) {
@@ -181,9 +190,9 @@ export default async function getConfig(plugins, process, args, pkg) {
     if (!check.name) check.name = toName(check.entry || check.files, config.cwd)
     if (args.limit) check.limit = args.limit
     if (check.limit) {
-      if (/ ?ms/i.test(check.limit)) {
+      if (endsWithMs(check.limit)) {
         check.timeLimit = parseFloat(check.limit) / 1000
-      } else if (/ ?s/i.test(check.limit)) {
+      } else if (endsWithS(check.limit)) {
         check.timeLimit = parseFloat(check.limit)
       } else {
         check.sizeLimit = bytes.parse(check.limit)
@@ -214,6 +223,19 @@ export default async function getConfig(plugins, process, args, pkg) {
         }
       }
       check.import = imports
+    }
+    if (check.time) {
+      let { latency, networkSpeed } = check.time
+      if (latency) {
+        if (endsWithMs(latency)) {
+          check.time.latency = parseFloat(latency) / 1000
+        } else {
+          check.time.latency = parseFloat(latency) || 0
+        }
+      }
+      if (networkSpeed) {
+        check.time.networkSpeed = bytes.parse(networkSpeed)
+      }
     }
   }
 
