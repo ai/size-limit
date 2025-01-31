@@ -3,9 +3,11 @@
 The plugin for [Size Limit] to track JS download and execution time by [estimo]
 and Puppeter.
 
-## Custom options
+## Customize Network Speed
 
-By default, Size Limit measures the loading time of your files using a slow 3G network (50 kB/s) without latency. You can customize these settings for each check by modifying your Size Limit configuration:
+By default, Size Limit measures the loading time of your files using a slow 3G
+network (50 kB/s) without latency. You can customize these settings for each
+check by modifying your Size Limit configuration:
 
 1. Install the preset:
 
