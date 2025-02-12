@@ -31,7 +31,7 @@
   "devDependencies": {
     "@size-limit/esbuild": "workspace:*",
     "@size-limit/file": "workspace:*",
-    "esbuild": "^0.24.2",
+    "esbuild": "^0.25.0",
     "redux": "^4.2.1",
     "size-limit": "workspace:*"
   }
