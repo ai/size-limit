@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 11.2.0
+* Added `--config` argument (by @EvgenyWas).
+* Added top-level `await` support to config (by @aryaemami59).
+* Added `time` option to config (by @EvgenyWas).
+* Added `message` option to config (by @dartess).
+* Updated `esbuild`.
+
 ## 11.1.6
 * Updated `chokidar`.
 * Updated `esbuild`.
