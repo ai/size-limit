@@ -1,7 +1,9 @@
+import './force-colors.js'
+
 import { join } from 'node:path'
 import { expect, it, vi } from 'vitest'
 
-import run from '../run'
+import run from '../run.js'
 
 vi.mock('../../time/get-running-time', () => ({
   getRunningTime: () => 1

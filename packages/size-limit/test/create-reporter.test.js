@@ -1,3 +1,5 @@
+import './force-colors.js'
+
 import { expect, it } from 'vitest'
 
 import createReporter from '../create-reporter'

@@ -19,14 +19,14 @@
     "@size-limit/webpack": "workspace:^",
     "@size-limit/webpack-css": "workspace:^",
     "@size-limit/webpack-why": "workspace:^",
-    "@vitest/coverage-v8": "^2.1.9",
+    "@vitest/coverage-v8": "^3.0.6",
     "clean-publish": "^5.1.0",
     "cross-spawn": "^7.0.6",
     "eslint": "^9.20.1",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
     "size-limit-node-esbuild": "^0.3.0",
-    "vitest": "^2.1.9"
+    "vitest": "^3.0.6"
   },
   "prettier": {
     "arrowParens": "avoid",
