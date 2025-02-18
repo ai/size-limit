@@ -397,6 +397,16 @@ exports[`throws on --compare-with argument without webpack 1`] = `
 "
 `;
 
+exports[`throws on --config argument without FILE parameter 1`] = `
+"[41m[30m ERROR [39m[49m [31mMissing parameter [33mFILE[31m for [33m--config[31m argument[39m
+"
+`;
+
+exports[`throws on --config argument without FILE parameter 2`] = `
+"[41m[30m ERROR [39m[49m [31mMissing parameter [33mFILE[31m for [33m--config[31m argument[39m
+"
+`;
+
 exports[`throws on --save-bundle argument without DIR parameter 1`] = `
 "[41m[30m ERROR [39m[49m [31mMissing parameter [33mDIR[31m for [33m--save-bundle[31m argument[39m
 "

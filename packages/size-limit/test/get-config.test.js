@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import calc from '../calc'
@@ -426,6 +426,31 @@ it('normalizes import', async () => {
     ],
     configPath: 'package.json',
     cwd: fixture('integration-esm')
+  })
+})
+
+it('takes config from CLI config argument', async () => {
+  let cwd = 'config-file-from-arg'
+  let configPath = 'src/configs/my-size-limit.config.js'
+  expect(await check(cwd, ['--config', fixture(cwd, configPath)])).toEqual({
+    checks: [
+      {
+        files: [fixture(cwd, 'index.js')],
+        limit: 10,
+        name: 'index',
+        path: '../../index.js',
+        sizeLimit: 10
+      },
+      {
+        files: [fixture(cwd, 'src/main.js')],
+        limit: 20,
+        name: 'main',
+        path: '../main.js',
+        sizeLimit: 20
+      }
+    ],
+    configPath,
+    cwd: fixture(cwd, dirname(configPath))
   })
 })
 
