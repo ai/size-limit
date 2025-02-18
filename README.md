@@ -15,6 +15,8 @@ if the cost exceeds the limit.
 * Can calculate **the time** it would take a browser
   to download and **execute** your JS. Time is a much more accurate
   and understandable metric compared to the size in bytes.
+  Additionally, you can [customize time plugin] via config
+  for every check with network speed, latency and so on.
 * Calculations include **all dependencies and polyfills**
   used in your JS.
 
@@ -50,6 +52,7 @@ We are using [Statoscope] for this analysis.
 [Statoscope]:    https://github.com/statoscope/statoscope
 [cult-img]:      http://cultofmartians.com/assets/badges/badge.svg
 [cult]:          http://cultofmartians.com/tasks/size-limit-config.html
+[customize time plugin]: https://github.com/ai/size-limit/packages/time#customize-network-speed
 
 ## Who Uses Size Limit
 

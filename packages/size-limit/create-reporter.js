@@ -153,12 +153,14 @@ function createHumanReporter(process, isSilentMode = false) {
           rows.push(['Size', sizeString, sizeNote])
         }
         if (typeof check.loadTime !== 'undefined') {
-          rows.push(['Loading time', formatTime(check.loadTime), 'on slow 3G'])
+          let description =
+            (check.time && check.time.loadingMessage) || 'on slow 3G'
+          rows.push(['Loading time', formatTime(check.loadTime), description])
         }
         if (typeof check.runTime !== 'undefined') {
           rows.push(
             ['Running time', formatTime(check.runTime), 'on Snapdragon 410'],
-            ['Total time', formatTime(check.time)]
+            ['Total time', formatTime(check.totalTime)]
           )
         }
 

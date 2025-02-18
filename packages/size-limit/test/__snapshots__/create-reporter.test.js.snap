@@ -137,6 +137,22 @@ exports[`renders list of success checks in silent mode 1`] = `
 [1A[2K"
 `;
 
+exports[`renders loading time with custom message from time options for every check 1`] = `
+"  
+  [1mloading message 1[22m
+  Size:         [32m[1m10 B[22m[39m
+  Loading time: [32m[1m200 ms[22m[39m [90mfor ~1000 users per month[39m
+  Running time: [32m[1m400 ms[22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1m1.4 s[22m[39m
+  
+  [1mloading message 2[22m
+  Loading time: [32m[1m200 ms[22m[39m [90mon slow 3G[39m
+  Running time: [32m[1m300 ms[22m[39m [90mon Snapdragon 410[39m
+  Total time:   [32m[1mNaN ms[22m[39m
+  
+"
+`;
+
 exports[`renders result for file with gzip 1`] = `
 "  
   Size limit: [32m[1m99 B[22m[39m

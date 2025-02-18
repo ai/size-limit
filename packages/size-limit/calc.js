@@ -46,7 +46,7 @@ export default async function calc(plugins, config, createSpinner) {
       check.passed = check.sizeLimit >= check.size
     }
     if (typeof check.timeLimit !== 'undefined') {
-      check.passed = check.timeLimit >= check.time
+      check.passed = check.timeLimit >= check.totalTime
     }
     if (check.files && !check.files.length && check.path) {
       check.missed = true

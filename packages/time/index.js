@@ -8,9 +8,9 @@ async function sum(array, fn) {
   return (await Promise.all(array.map(fn))).reduce((all, i) => all + i, 0)
 }
 
-function getLoadingTime(size) {
+function getLoadingTime(size, networkSpeed) {
   if (size === 0) return 0
-  let time = size / SLOW_3G
+  let time = size / networkSpeed
   if (time < 0.01) time = 0.01
   return time
 }
@@ -22,13 +22,15 @@ export default [
       if (typeof check.size === 'undefined') {
         throw new SizeLimitError('missedPlugin', 'file')
       }
-      check.loadTime = getLoadingTime(check.size)
+      let networkSpeed = (check.time && check.time.networkSpeed) || SLOW_3G
+      let latency = (check.time && check.time.latency) || 0
+      check.loadTime = getLoadingTime(check.size, networkSpeed) + latency
       if (check.running !== false) {
         let files = check.bundles || check.files
         check.runTime = await sum(files, i => getRunningTime(i))
-        check.time = check.runTime + check.loadTime
+        check.totalTime = check.runTime + check.loadTime
       } else {
-        check.time = check.loadTime
+        check.totalTime = check.loadTime
       }
     },
     wait80: 'Running JS in headless Chrome'
