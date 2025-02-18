@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "config-file-from-arg",
+  "devDependencies": {
+    "@size-limit/file": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    {
+      "path": [
+        "a.js",
+        "b.js"
+      ],
+      "import": "a"
+    }
+  ]
+}

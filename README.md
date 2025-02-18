@@ -594,6 +594,12 @@ npm install --save-dev @size-limit/file
 npx size-limit --limit "10 kB" dist/bundle.js
 ```
 
+Additionally, you can specify a custom path to your configuration file when running the CLI:
+
+```sh
+npx size-limit --config configs/size-limit.json
+```
+
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://github.com/SuperchupuDev/tinyglobby
 

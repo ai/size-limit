@@ -63,6 +63,12 @@ export default function parseArgs(plugins, argv) {
         throw new SizeLimitError('argWithoutParameter', 'compare-with', 'FILE')
       }
       args.compareWith = nextArg
+    } else if (arg === '--config') {
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        throw new SizeLimitError('argWithoutParameter', 'config', 'FILE')
+      }
+      args.config = nextArg
     } else if (arg === '--watch') {
       /* c8 ignore next */
       args.watch = true
