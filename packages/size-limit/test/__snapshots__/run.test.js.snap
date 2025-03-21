@@ -223,6 +223,7 @@ Check the real performance cost of your front-end project to users
   [33m--watch[39m           Runs in watch mode
   [33m--silent[39m          Show only failed limits
   [33m--debug[39m           Show internal configs for issue report
+  [33m--save-bundle DIR[39m Write output bundle to disk for manual review
   [33m--version[39m         Display version
 
 [1mExamples:[22m
@@ -323,6 +324,7 @@ Check the real performance cost of your front-end project to users
   [33m--watch[39m           Runs in watch mode
   [33m--silent[39m          Show only failed limits
   [33m--debug[39m           Show internal configs for issue report
+  [33m--save-bundle DIR[39m Write output bundle to disk for manual review
   [33m--version[39m         Display version
 
 [1mWebpack options:[22m
@@ -554,6 +556,7 @@ Check the real performance cost of your front-end project to users
   [33m--watch[39m           Runs in watch mode
   [33m--silent[39m          Show only failed limits
   [33m--debug[39m           Show internal configs for issue report
+  [33m--save-bundle DIR[39m Write output bundle to disk for manual review
   [33m--version[39m         Display version
 
 [1mWebpack options:[22m
