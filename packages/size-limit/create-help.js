@@ -42,6 +42,7 @@ export default process => {
       `  ${y('--watch')}           Runs in watch mode`,
       `  ${y('--silent')}          Show only failed limits`,
       `  ${y('--debug')}           Show internal configs for issue report`,
+      `  ${y('--save-bundle DIR')} Write output bundle to disk for manual review`,
       `  ${y('--version')}         Display version`
     )
     if (plugins.has('webpack')) {
