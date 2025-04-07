@@ -35,5 +35,10 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none"
+  },
+  "pnpm": {
+    "overrides": {
+      "tar-fs": "^3.0.8"
+    }
   }
 }
