@@ -25,7 +25,7 @@
     "size-limit": "11.2.0"
   },
   "dependencies": {
-    "estimo": "^3.0.3"
+    "estimo": "^3.0.4"
   },
   "devDependencies": {
     "nanoid": "^5.1.0",
