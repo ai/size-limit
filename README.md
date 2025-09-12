@@ -574,10 +574,12 @@ Each section in the config can have these options:
 * **gzip**: with `true` it will use Gzip compression and disable
   Brotli compression.
 * **brotli**: with `false` it will disable any compression.
-* **config**: a path to a custom webpack config.
+* **config**: a path to a custom webpack or esbuild config.
 * **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
 * **modifyWebpackConfig**: (.size-limit.js only) function that can be used
+  to do last-minute changes to the webpack config, like adding a plugin.
+* **modifyEsbuildConfig**: (.size-limit.js only) function that can be used
   to do last-minute changes to the webpack config, like adding a plugin.
 * **compareWith**: path to `stats.json` from another build to compare
   (when `--why` is using).
