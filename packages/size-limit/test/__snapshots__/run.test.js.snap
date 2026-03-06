@@ -87,7 +87,7 @@ exports[`shows debug 1`] = `
       "bundles": [
         "/tmp/index.js"
       ],
-      "size": 123,
+      "size": 124,
       "loadTime": 0.01,
       "runTime": 1,
       "totalTime": 1.01,
@@ -98,9 +98,9 @@ exports[`shows debug 1`] = `
   "missed": false
 }
   
-  [42m[30mPackage size is 77 B less than limit[39m[49m
+  [42m[30mPackage size is 76 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:         [32m[1m124 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -137,7 +137,7 @@ exports[`shows error on time bigger than limit 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
-  Size:         [31m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:         [31m[1m124 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
@@ -150,7 +150,7 @@ exports[`shows error on time bigger than limit. in silent mode 1`] = `
 "  
   [31mTotal time limit has exceeded[39m
   Time limit:   [31m[1m1 s[22m[39m
-  Size:         [31m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:         [31m[1m124 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [31m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [31m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [31m[1m1.1 s[22m[39m
@@ -371,9 +371,9 @@ exports[`supports import and ignore for esbuild and gzip 1`] = `
 
 exports[`supports path without dot 1`] = `
 "  
-  [42m[30mPackage size is 77 B less than limit[39m[49m
+  [42m[30mPackage size is 76 B less than limit[39m[49m
   Size limit: [32m[1m200 B[22m[39m
-  Size:       [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:       [32m[1m124 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   
 "
 `;
@@ -580,7 +580,7 @@ exports[`works in integration test with JSON 1`] = `
   {
     "name": "index.js",
     "passed": true,
-    "size": 123,
+    "size": 124,
     "sizeLimit": 200,
     "running": 1,
     "loading": 0.01
@@ -591,9 +591,9 @@ exports[`works in integration test with JSON 1`] = `
 
 exports[`works in integration test with size 1`] = `
 "  
-  [42m[30mPackage size is 77 B less than limit[39m[49m
+  [42m[30mPackage size is 76 B less than limit[39m[49m
   Size limit:   [32m[1m200 B[22m[39m
-  Size:         [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:         [32m[1m124 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m
@@ -604,7 +604,7 @@ exports[`works in integration test with size 1`] = `
 exports[`works in integration test with time 1`] = `
 "  
   Time limit:   [32m[1m2 s[22m[39m
-  Size:         [32m[1m123 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  Size:         [32m[1m124 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
   Loading time: [32m[1m10 ms[22m[39m [90mon slow 3G[39m
   Running time: [32m[1m1 s  [22m[39m [90mon Snapdragon 410[39m
   Total time:   [32m[1m1.1 s[22m[39m

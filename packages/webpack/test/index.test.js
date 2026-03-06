@@ -147,7 +147,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(653, -1)
+    expect(config.checks[0].size).toBeCloseTo(648, -1)
   })
 })
 
