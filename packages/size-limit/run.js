@@ -12,7 +12,7 @@ import parseArgs from './parse-args.js'
 import readPkgUp from './read-pkg-up.js'
 import { SizeLimitError } from './size-limit-error.js'
 
-/* c8 ignore next 10 */
+/* v8 ignore next 10 */
 function throttle(fn) {
   let next, running
   return () => {
@@ -82,7 +82,7 @@ export default async process => {
 
     await calcAndShow()
 
-    /* c8 ignore next 9 */
+    /* v8 ignore next 9 */
     if (hasArg('--watch')) {
       let watcher = watch(process.cwd(), { recursive: true })
       let throttledCalcAndShow = throttle(calcAndShow)
