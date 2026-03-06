@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "nanoid": "^5.1.6",
-    "webpack": "^5.103.0"
+    "webpack": "^5.105.4"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:*",
