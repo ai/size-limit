@@ -1,9 +1,6 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 12.0.1
-* Updated `css-minimizer-webpack-plugin`
-
 ## 12.0.0
 * Moved `jiti` to optional dependency.
 * Removed `chokidar` dependency in favor of `fs.watch`.
