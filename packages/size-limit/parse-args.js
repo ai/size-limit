@@ -69,8 +69,8 @@ export default function parseArgs(plugins, argv) {
         throw new SizeLimitError('argWithoutParameter', 'config', 'FILE')
       }
       args.config = nextArg
+      /* v8 ignore start */
     } else if (arg === '--watch') {
-      /* v8 ignore next */
       args.watch = true
     } else if (arg === '--highlight-less') {
       args.highlightLess = true
@@ -81,6 +81,7 @@ export default function parseArgs(plugins, argv) {
     } else if (arg !== '--json') {
       throw new SizeLimitError('unknownArg', arg)
     }
+    /* v8 ignore end */
   }
   return args
 }

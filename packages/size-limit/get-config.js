@@ -102,13 +102,14 @@ const tsLoader = async filePath => {
     jiti = (await import('jiti')).createJiti(fileURLToPath(import.meta.url), {
       interopDefault: false
     })
-    /* v8 ignore next 6 */
+    /* v8 ignore start */
   } catch (error) {
     if (error.code === 'ERR_MODULE_NOT_FOUND') {
       throw new SizeLimitError('missingPackage', 'jiti', 'TypeScript config')
     }
     throw error
   }
+  /* v8 ignore end */
 
   let config = await jiti.import(filePath, { default: true })
 

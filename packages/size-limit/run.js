@@ -12,7 +12,7 @@ import parseArgs from './parse-args.js'
 import readPkgUp from './read-pkg-up.js'
 import { SizeLimitError } from './size-limit-error.js'
 
-/* v8 ignore next 10 */
+/* v8 ignore start */
 function throttle(fn) {
   let next, running
   return () => {
@@ -23,6 +23,7 @@ function throttle(fn) {
     }, 200)
   }
 }
+/* v8 ignore end */
 
 async function findPlugins(parentPkg) {
   let plugins = await loadPlugins(parentPkg)
@@ -82,7 +83,7 @@ export default async process => {
 
     await calcAndShow()
 
-    /* v8 ignore next 9 */
+    /* v8 ignore start */
     if (hasArg('--watch')) {
       let watcher = watch(process.cwd(), { recursive: true })
       let throttledCalcAndShow = throttle(calcAndShow)
@@ -92,6 +93,7 @@ export default async process => {
         }
       }
     }
+    /* v8 ignore end */
 
     if ((config.failed || config.missed) && !args.why) process.exit(1)
   } catch (e) {
