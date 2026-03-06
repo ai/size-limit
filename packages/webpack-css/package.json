@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": "ai/size-limit",
   "engines": {
-    "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
+    "node": "^20.9.0 || ^22.0.0 || >=24.0.0"
   },
   "exports": {
     ".": "./index.js",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.2",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "style-loader": "^4.0.0"
   },
   "devDependencies": {
