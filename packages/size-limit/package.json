@@ -12,7 +12,7 @@
     "budget",
     "performance budget"
   ],
-  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "author": "Andrey Sitnik <andrey@sitnik.es>",
   "license": "MIT",
   "repository": "ai/size-limit",
   "bin": "bin.js",
