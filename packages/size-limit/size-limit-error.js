@@ -15,6 +15,9 @@ const MESSAGES = {
     'Pass *--clean-dir* if you want to remove it',
   cmdError: (cmd, error) => (error ? `${cmd} error: ${error}` : `${cmd} error`),
   emptyConfig: () => 'Size Limit config must *not be empty*',
+  disablePluginsNotString: () =>
+    'The *disablePlugins* in Size Limit config ' +
+    'must be *a string* or *an array of strings*',
   entryNotString: () =>
     'The *entry* in Size Limit config ' +
     'must be *a string* or *an array of strings*',

@@ -489,6 +489,11 @@ exports[`throws on non-object check 1`] = `
 "
 `;
 
+exports[`throws on non-string disablePlugins 1`] = `
+"[41m[30m ERROR [39m[49m [31mThe [33mdisablePlugins[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
+"
+`;
+
 exports[`throws on non-string entry 1`] = `
 "[41m[30m ERROR [39m[49m [31mThe [33mentry[31m in Size Limit config must be [33ma string[31m or [33man array of strings[31m[39m
 "

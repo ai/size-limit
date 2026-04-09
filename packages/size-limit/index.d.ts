@@ -20,6 +20,13 @@ export interface Check {
   disableModuleConcatenation?: boolean
 
   /**
+   * Array of plugin names to skip for this check.
+   * Plugin names can be short (`"esbuild"`), scoped (`"@size-limit/esbuild"`),
+   * or hyphenated (`"size-limit-esbuild"`).
+   */
+  disablePlugins?: string | string[]
+
+  /**
    * When using a custom webpack config, a webpack entry could be given.
    * It could be a string or an array of strings. By default,
    * the total size of all entry points will be checked.
