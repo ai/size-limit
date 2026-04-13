@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/file",
-  "version": "12.0.1",
+  "version": "12.1.0",
   "description": "File size plugin for Size Limit",
   "keywords": [
     "budget",
@@ -19,10 +19,10 @@
     "./package.json": "./package.json"
   },
   "devDependencies": {
-    "size-limit": "12.0.1"
+    "size-limit": "12.1.0"
   },
   "peerDependencies": {
-    "size-limit": "12.0.1"
+    "size-limit": "12.1.0"
   },
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"

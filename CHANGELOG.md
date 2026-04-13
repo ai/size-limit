@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 12.1.0
+
+- Added `disablePlugins` option (by @JPeer264).
+- Updated `esbuild`.
+
 ## 12.0.1
 
 - Updated `css-minimizer-webpack-plugin` (by @SevereCloud).

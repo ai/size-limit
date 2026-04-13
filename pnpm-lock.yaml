@@ -88,13 +88,13 @@ importers:
         version: 5.1.7
     devDependencies:
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       redux:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/esbuild-why:
@@ -107,10 +107,10 @@ importers:
         version: 11.0.0
     devDependencies:
       '@size-limit/esbuild':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../esbuild
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       esbuild:
         specifier: ^0.28.0
@@ -119,52 +119,52 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/file:
     devDependencies:
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/preset-app:
     dependencies:
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       '@size-limit/time':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../time
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/preset-big-lib:
     dependencies:
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       '@size-limit/time':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../time
       '@size-limit/webpack':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../webpack
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/preset-small-lib:
     dependencies:
       '@size-limit/esbuild':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../esbuild
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/size-limit:
@@ -189,13 +189,13 @@ importers:
         version: 0.2.16
     devDependencies:
       '@size-limit/esbuild':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../esbuild
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       '@size-limit/webpack':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../webpack
 
   packages/time:
@@ -208,7 +208,7 @@ importers:
         specifier: ^5.1.7
         version: 5.1.7
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/webpack:
@@ -221,13 +221,13 @@ importers:
         version: 5.106.1
     devDependencies:
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       redux:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
 
   packages/webpack-css:
@@ -243,13 +243,13 @@ importers:
         version: 4.0.0(webpack@5.106.1)
     devDependencies:
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       '@size-limit/webpack':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../webpack
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
       webpack:
         specifier: ^5.106.1
@@ -262,16 +262,16 @@ importers:
         version: 5.29.0(@rspack/core@1.6.5)(webpack@5.106.1)
     devDependencies:
       '@size-limit/file':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../file
       '@size-limit/webpack':
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../webpack
       redux:
         specifier: ^4.2.1
         version: 4.2.1
       size-limit:
-        specifier: 12.0.1
+        specifier: 12.1.0
         version: link:../size-limit
       webpack:
         specifier: ^5.106.1
