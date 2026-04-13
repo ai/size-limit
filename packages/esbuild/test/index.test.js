@@ -6,8 +6,8 @@ import { SizeLimitError } from 'size-limit'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import esbuildPkg from '../index.js'
-const [file] = filePkg
-const [esbuild] = esbuildPkg
+let [file] = filePkg
+let [esbuild] = esbuildPkg
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')

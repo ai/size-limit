@@ -3,7 +3,7 @@ import { beforeEach, expect, it, vi } from 'vitest'
 
 import { getRunningTime } from '../get-running-time.js'
 import timePkg from '../index.js'
-const [time] = timePkg
+let [time] = timePkg
 
 vi.mock('../get-running-time')
 

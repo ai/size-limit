@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
+let __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const VERSION = 1
 const CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')

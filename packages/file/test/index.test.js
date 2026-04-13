@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { expect, it } from 'vitest'
 
 import filePkg from '../index.js'
-const [file] = filePkg
+let [file] = filePkg
 
 function fixture(name) {
   return join(__dirname, 'fixtures', name)

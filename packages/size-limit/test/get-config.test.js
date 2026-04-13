@@ -511,8 +511,8 @@ it('takes config from CLI config argument', async () => {
   })
 })
 
-const allConfigFileExtensions = ['mjs', 'js', 'cjs', 'ts', 'mts', 'cts']
-const exportTypes = [
+let allConfigFileExtensions = ['mjs', 'js', 'cjs', 'ts', 'mts', 'cts']
+let exportTypes = [
   { exportSyntax: 'export default', moduleType: 'esm' },
   { exportSyntax: 'module.exports', moduleType: 'cjs' }
 ]

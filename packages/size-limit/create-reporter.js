@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import readline from 'node:readline'
 import pc from 'picocolors'
 
-const { bgGreen, bgRed, black, bold, gray, green, red, yellow } = pc
+let { bgGreen, bgRed, black, bold, gray, green, red, yellow } = pc
 
 function createJsonReporter(process) {
   function print(data) {

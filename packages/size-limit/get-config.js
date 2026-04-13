@@ -7,9 +7,9 @@ import { glob } from 'tinyglobby'
 
 import { SizeLimitError } from './size-limit-error.js'
 
-const require = createRequire(import.meta.url)
+let require = createRequire(import.meta.url)
 
-let OPTIONS = {
+const OPTIONS = {
   brotli: 'file',
   compareWith: 'webpack',
   config: ['webpack', 'esbuild'],
@@ -101,10 +101,11 @@ function toName(files, cwd) {
   return files.map(i => (i.startsWith(cwd) ? relative(cwd, i) : i)).join(', ')
 }
 
-const dynamicImport = async filePath =>
-  (await import(pathToFileURL(filePath).href)).default
+async function dynamicImport(filePath) {
+  return (await import(pathToFileURL(filePath).href)).default
+}
 
-const tsLoader = async filePath => {
+async function tsLoader(filePath) {
   let jiti
   try {
     jiti = (await import('jiti')).createJiti(fileURLToPath(import.meta.url), {

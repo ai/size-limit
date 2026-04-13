@@ -5,9 +5,9 @@ import { join } from 'node:path'
 import { afterEach, expect, it, vi } from 'vitest'
 
 import webpackCssPkg from '../index.js'
-const [webpack] = webpackPkg
-const [file] = filePkg
-const [webpackCss] = webpackCssPkg
+let [webpack] = webpackPkg
+let [file] = filePkg
+let [webpackCss] = webpackCssPkg
 
 const DIST = join(process.cwd(), 'dist')
 

@@ -1,15 +1,15 @@
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import { createRequire } from 'node:module'
 
-const require = createRequire(import.meta.url)
+let require = createRequire(import.meta.url)
 
-const cssRule = {
+let cssRule = {
   exclude: /\.module\.css$/,
   test: /\.css$/,
   use: [require.resolve('style-loader'), require.resolve('css-loader')]
 }
 
-const moduleCssRule = {
+let moduleCssRule = {
   test: /\.module\.css$/,
   use: [
     require.resolve('style-loader'),

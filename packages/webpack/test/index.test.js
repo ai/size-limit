@@ -6,8 +6,8 @@ import { SizeLimitError } from 'size-limit'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import webpackPkg from '../index.js'
-const [file] = filePkg
-const [webpack] = webpackPkg
+let [file] = filePkg
+let [webpack] = webpackPkg
 
 const ROOT_CONFIG = join(__dirname, '..', '..', '.size-limit.json')
 const DIST = join(process.cwd(), 'dist')

@@ -5,10 +5,10 @@ import open from 'open'
 import { afterEach, expect, it, vi } from 'vitest'
 
 import esbuildWhyPkg from '..'
-const [esbuild] = esbuildPkg
+let [esbuild] = esbuildPkg
 
 vi.mock('open')
-const [esbuildWhy] = esbuildWhyPkg
+let [esbuildWhy] = esbuildWhyPkg
 
 const DIST = join(process.cwd(), 'out')
 

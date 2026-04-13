@@ -2,10 +2,10 @@ import { existsSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { join } from 'node:path'
 import pc from 'picocolors'
-const require = createRequire(import.meta.url)
+let require = createRequire(import.meta.url)
 
-const { bold: b, red, yellow: y } = pc
-const ownPackage = require('./package.json')
+let { bold: b, red, yellow: y } = pc
+let ownPackage = require('./package.json')
 
 function npmCommands(pkg) {
   let add = 'npm install --save-dev '
