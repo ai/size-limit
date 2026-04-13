@@ -14,6 +14,9 @@ const MESSAGES = {
     `The directory *${dir}* is not empty. ` +
     'Pass *--clean-dir* if you want to remove it',
   cmdError: (cmd, error) => (error ? `${cmd} error: ${error}` : `${cmd} error`),
+  disablePluginsNotArray: () =>
+    'The *disablePlugins* in Size Limit config ' +
+    'must be *an array of strings*',
   emptyConfig: () => 'Size Limit config must *not be empty*',
   entryNotString: () =>
     'The *entry* in Size Limit config ' +

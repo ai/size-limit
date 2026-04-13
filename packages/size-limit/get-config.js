@@ -14,6 +14,7 @@ let OPTIONS = {
   compareWith: 'webpack',
   config: ['webpack', 'esbuild'],
   disableModuleConcatenation: 'webpack',
+  disablePlugins: true,
   entry: 'webpack',
   gzip: 'file',
   hidePassed: false,
@@ -43,6 +44,10 @@ function isStringsOrUndefined(value) {
   return type === 'undefined' || type === 'string' || isStrings(value)
 }
 
+function isStringArrayOrUndefined(value) {
+  return typeof value === 'undefined' || isStrings(value)
+}
+
 function endsWithMs(value) {
   return / ?ms/i.test(value)
 }
@@ -67,6 +72,9 @@ function checkChecks(plugins, checks) {
     }
     if (!isStringsOrUndefined(check.entry)) {
       throw new SizeLimitError('entryNotString')
+    }
+    if (!isStringArrayOrUndefined(check.disablePlugins)) {
+      throw new SizeLimitError('disablePluginsNotArray')
     }
     for (let opt in check) {
       let available = OPTIONS[opt]

@@ -243,6 +243,23 @@ it('throws on non-string entry', async () => {
   expect(await error('non-string-entry')).toMatchSnapshot()
 })
 
+it('throws on non-array disablePlugins', async () => {
+  expect(await error('non-string-disable-plugins')).toMatchSnapshot()
+})
+
+it('throws on string disablePlugins', async () => {
+  expect(await error('string-disable-plugins')).toMatchSnapshot()
+})
+
+it('respects disablePlugins option', async () => {
+  await checkJson('disable-plugins', [
+    {
+      name: 'index.js',
+      size: 20
+    }
+  ])
+})
+
 it('throws on webpack option without webpack plugin', async () => {
   expect(await error('non-webpack')).toMatchSnapshot()
   expect(await error('non-webpack-ignore')).toMatchSnapshot()

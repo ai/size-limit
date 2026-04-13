@@ -364,6 +364,21 @@ it('uses peerDependencies as ignore option', async () => {
   })
 })
 
+it('supports disablePlugins option', async () => {
+  expect(await check('disable-plugins')).toEqual({
+    checks: [
+      {
+        disablePlugins: ['@size-limit/esbuild'],
+        files: [fixture('disable-plugins', 'index.js')],
+        name: 'index.js',
+        path: 'index.js'
+      }
+    ],
+    configPath: 'package.json',
+    cwd: fixture('disable-plugins')
+  })
+})
+
 it('normalizes time limits', async () => {
   expect(await check('time')).toEqual({
     checks: [

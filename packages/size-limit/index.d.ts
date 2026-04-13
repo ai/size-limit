@@ -20,6 +20,12 @@ export interface Check {
   disableModuleConcatenation?: boolean
 
   /**
+   * Plugin npm package names to skip for this check.
+   * For example: `["@size-limit/webpack"]`, `["@size-limit/esbuild"]`, or `["@size-limit/time"]`.
+   */
+  disablePlugins?: string[]
+
+  /**
    * When using a custom webpack config, a webpack entry could be given.
    * It could be a string or an array of strings. By default,
    * the total size of all entry points will be checked.

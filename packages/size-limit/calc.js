@@ -1,16 +1,22 @@
+function isPluginDisabled(plugin, check) {
+  if (!check.disablePlugins) return false
+  return check.disablePlugins.includes(plugin.name)
+}
+
 export default async function calc(plugins, config, createSpinner) {
   process.setMaxListeners(config.checks.reduce((a, i) => a + i.files.length, 1))
 
   async function step(number) {
     for (let plugin of plugins.list) {
+      let checks = config.checks.filter(i => !isPluginDisabled(plugin, i))
       let spinner
-      if (plugin['wait' + number] && createSpinner) {
+      if (checks.length > 0 && plugin['wait' + number] && createSpinner) {
         spinner = createSpinner(plugin['wait' + number]).start()
       }
       if (plugin['step' + number]) {
         try {
           await Promise.all(
-            config.checks.map(i => {
+            checks.map(i => {
               return plugin['step' + number](config, i)
             })
           )
@@ -26,8 +32,9 @@ export default async function calc(plugins, config, createSpinner) {
   async function callMethodForEachPlugin(methodName) {
     for (let plugin of plugins.list) {
       if (plugin[methodName]) {
+        let checks = config.checks.filter(i => !isPluginDisabled(plugin, i))
         await Promise.all(
-          config.checks.map(i => {
+          checks.map(i => {
             return plugin[methodName](config, i)
           })
         )

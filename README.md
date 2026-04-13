@@ -591,6 +591,9 @@ Each section in the config can have these options:
 * **compareWith**: path to `stats.json` from another build to compare
   (when `--why` is using).
 * **uiReports**: custom UI reports list (see [Statoscope docs]).
+* **disablePlugins**: npm package names of plugins to skip
+  for this check. For example: `"@size-limit/webpack"`, `"@size-limit/esbuild"`,
+  or `"@size-limit/time"`.
 
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack
