@@ -368,7 +368,7 @@ it('supports disablePlugins option', async () => {
   expect(await check('disable-plugins')).toEqual({
     checks: [
       {
-        disablePlugins: ['esbuild'],
+        disablePlugins: ['@size-limit/esbuild'],
         files: [fixture('disable-plugins', 'index.js')],
         name: 'index.js',
         path: 'index.js'

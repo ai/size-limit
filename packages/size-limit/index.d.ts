@@ -20,11 +20,10 @@ export interface Check {
   disableModuleConcatenation?: boolean
 
   /**
-   * Array of plugin names to skip for this check.
-   * Plugin names can be short (`"esbuild"`), scoped (`"@size-limit/esbuild"`),
-   * or hyphenated (`"size-limit-esbuild"`).
+   * Plugin npm package names to skip for this check.
+   * For example: `["@size-limit/webpack"]`, `["@size-limit/esbuild"]`, or `["@size-limit/time"]`.
    */
-  disablePlugins?: string | string[]
+  disablePlugins?: string[]
 
   /**
    * When using a custom webpack config, a webpack entry could be given.

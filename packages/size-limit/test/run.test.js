@@ -243,8 +243,12 @@ it('throws on non-string entry', async () => {
   expect(await error('non-string-entry')).toMatchSnapshot()
 })
 
-it('throws on non-string disablePlugins', async () => {
+it('throws on non-array disablePlugins', async () => {
   expect(await error('non-string-disable-plugins')).toMatchSnapshot()
+})
+
+it('throws on string disablePlugins', async () => {
+  expect(await error('string-disable-plugins')).toMatchSnapshot()
 })
 
 it('respects disablePlugins option', async () => {

@@ -1,15 +1,6 @@
 function isPluginDisabled(plugin, check) {
   if (!check.disablePlugins) return false
-  let disabled = Array.isArray(check.disablePlugins)
-    ? check.disablePlugins
-    : [check.disablePlugins]
-  return disabled.some(name => {
-    return (
-      plugin.name === name ||
-      plugin.name === `@size-limit/${name}` ||
-      plugin.name === `size-limit-${name}`
-    )
-  })
+  return check.disablePlugins.includes(plugin.name)
 }
 
 export default async function calc(plugins, config, createSpinner) {
