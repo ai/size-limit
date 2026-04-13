@@ -22,10 +22,10 @@
     "@statoscope/webpack-plugin": "^5.29.0"
   },
   "devDependencies": {
-    "@size-limit/file": "workspace:*",
-    "@size-limit/webpack": "workspace:*",
+    "@size-limit/file": "12.0.1",
+    "@size-limit/webpack": "12.0.1",
     "redux": "^4.2.1",
-    "size-limit": "workspace:*",
+    "size-limit": "12.0.1",
     "webpack": "^5.106.1"
   },
   "peerDependencies": {

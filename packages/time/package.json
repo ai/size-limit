@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "nanoid": "^5.1.7",
-    "size-limit": "workspace:*"
+    "size-limit": "12.0.1"
   },
   "peerDependencies": {
     "size-limit": "12.0.1"

@@ -19,14 +19,8 @@ for (let dir of readdirSync(PACKAGES)) {
     writeFileSync(
       pkgPath,
       pkg
-        .replace(
-          /("@size-limit\/[^"]+": )"((workspace:)?\d+.\d+.\d+"|workspace:\^")/g,
-          `$1"${version}"`
-        )
-        .replace(
-          /("size-limit": )"((workspace:)?\d+.\d+.\d+"|workspace:\^")/g,
-          `$1"${version}"`
-        )
+        .replace(/("@size-limit\/[^"]+": )"(\d+.\d+.\d+")/g, `$1"${version}"`)
+        .replace(/("size-limit": )"(\d+.\d+.\d+")/g, `$1"${version}"`)
         .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${version}"`)
     )
   }

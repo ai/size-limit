@@ -18,10 +18,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@size-limit/file": "workspace:*",
-    "@size-limit/time": "workspace:*",
-    "@size-limit/webpack": "workspace:*",
-    "size-limit": "workspace:*"
+    "@size-limit/file": "12.0.1",
+    "@size-limit/time": "12.0.1",
+    "@size-limit/webpack": "12.0.1",
+    "size-limit": "12.0.1"
   },
   "peerDependencies": {
     "size-limit": "12.0.1"
