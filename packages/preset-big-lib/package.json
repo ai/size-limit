@@ -2,28 +2,28 @@
   "name": "@size-limit/preset-big-lib",
   "version": "12.0.1",
   "description": "Size Limit preset for big open source libraries",
-  "type": "module",
   "keywords": [
-    "size-limit",
-    "preset",
-    "performance",
     "budget",
-    "performance budget"
+    "performance",
+    "performance budget",
+    "preset",
+    "size-limit"
   ],
-  "author": "Andrey Sitnik <andrey@sitnik.es>",
   "license": "MIT",
+  "author": "Andrey Sitnik <andrey@sitnik.es>",
   "repository": "ai/size-limit",
+  "type": "module",
   "exports": {
     ".": "./index.js",
     "./package.json": "./package.json"
-  },
-  "peerDependencies": {
-    "size-limit": "12.0.1"
   },
   "dependencies": {
     "@size-limit/file": "workspace:*",
     "@size-limit/time": "workspace:*",
     "@size-limit/webpack": "workspace:*",
     "size-limit": "workspace:*"
+  },
+  "peerDependencies": {
+    "size-limit": "12.0.1"
   }
 }

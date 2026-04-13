@@ -485,7 +485,7 @@ it('normalizes latency option for time plugin', async () => {
     cwd: fixture(cwd)
   })
 })
-    
+
 it('takes config from CLI config argument', async () => {
   let cwd = 'config-file-from-arg'
   let configPath = 'src/configs/my-size-limit.config.js'

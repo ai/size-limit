@@ -16,8 +16,7 @@ export async function processImport(check, output) {
       list = `all`
     }
 
-    loader +=
-      `import ${imports} from ${JSON.stringify(i)}\n` + `console.log(${list})\n`
+    loader += `import ${imports} from ${JSON.stringify(i)}\nconsole.log(${list})\n`
   }
   await mkdir(output, { recursive: true })
   let entry = join(output, 'index.js')

@@ -3,8 +3,8 @@
   "private": true,
   "devDependencies": {
     "@size-limit/preset-small-lib": ">= 0.0.0",
-    "size-limit": ">= 0.0.0",
-    "redux": ">= 0.0.0"
+    "redux": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
   },
   "peerDependencies": {
     "redux": ">= 0.0.0"

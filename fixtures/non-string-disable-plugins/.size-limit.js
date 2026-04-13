@@ -1,5 +1,5 @@
 module.exports = [
   {
-    "disablePlugins": 1
+    disablePlugins: 1
   }
 ]

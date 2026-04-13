@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "config-file-from-arg",
+  "private": true,
   "devDependencies": {
     "@size-limit/file": ">= 0.0.0",
     "size-limit": ">= 0.0.0"

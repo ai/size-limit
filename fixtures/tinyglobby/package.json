@@ -1,5 +1,6 @@
 {
   "private": true,
+  "main": "b1",
   "devDependencies": {
     "@size-limit/file": ">= 0.0.0",
     "size-limit": ">= 0.0.0"
@@ -15,6 +16,5 @@
     {
       "name": "b"
     }
-  ],
-  "main": "b1"
+  ]
 }

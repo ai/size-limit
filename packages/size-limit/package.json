@@ -2,23 +2,20 @@
   "name": "size-limit",
   "version": "12.0.1",
   "description": "CLI tool for Size Limit",
-  "type": "module",
-  "types": "index.d.ts",
   "keywords": [
-    "size-limit",
+    "budget",
     "cli",
     "esm",
     "performance",
-    "budget",
-    "performance budget"
+    "performance budget",
+    "size-limit"
   ],
-  "author": "Andrey Sitnik <andrey@sitnik.es>",
   "license": "MIT",
+  "author": "Andrey Sitnik <andrey@sitnik.es>",
   "repository": "ai/size-limit",
   "bin": "bin.js",
-  "engines": {
-    "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
-  },
+  "type": "module",
+  "types": "index.d.ts",
   "exports": {
     ".": "./index.js",
     "./package.json": "./package.json"
@@ -30,6 +27,11 @@
     "picocolors": "^1.1.1",
     "tinyglobby": "^0.2.16"
   },
+  "devDependencies": {
+    "@size-limit/esbuild": "workspace:*",
+    "@size-limit/file": "workspace:*",
+    "@size-limit/webpack": "workspace:*"
+  },
   "peerDependencies": {
     "jiti": "^2.0.0"
   },
@@ -38,9 +40,7 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@size-limit/esbuild": "workspace:*",
-    "@size-limit/file": "workspace:*",
-    "@size-limit/webpack": "workspace:*"
+  "engines": {
+    "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
   }
 }

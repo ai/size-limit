@@ -1,14 +1,14 @@
 {
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "bump": "./scripts/bump.js",
     "release": "./scripts/each.js pnpm clean-publish --access public",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
-    "test": "vitest run --coverage && eslint . && sh scripts/max-listeners-check.sh"
+    "test": "oxlint && vitest run --coverage && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^57.1.0",
+    "@logux/oxc-configs": "^0.3.2",
     "@size-limit/esbuild": "workspace:^",
     "@size-limit/esbuild-why": "workspace:^",
     "@size-limit/file": "workspace:^",
@@ -23,18 +23,13 @@
     "actions-up": "^1.13.0",
     "clean-publish": "^6.0.5",
     "cross-spawn": "^7.0.6",
-    "eslint": "^10.2.0",
+    "eslint-plugin-prefer-let": "^4.2.2",
+    "oxlint": "^1.59.0",
+    "oxlint-tsgolint": "^0.20.0",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
     "size-limit-node-esbuild": "^0.4.0",
+    "typescript": "^6.0.2",
     "vitest": "^4.1.4"
-  },
-  "prettier": {
-    "arrowParens": "avoid",
-    "jsxSingleQuote": false,
-    "quoteProps": "consistent",
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none"
   }
 }

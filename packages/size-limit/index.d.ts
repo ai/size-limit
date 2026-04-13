@@ -61,13 +61,13 @@ export interface Check {
    */
   limit?: string
 
-  modifyEsbuildConfig?: (config?: any) => any
+  modifyEsbuildConfig?: <T extends object>(config?: T) => T
 
   /**
    * (`.size-limit.js` only) Function that can be used to do last-minute
    * changes to the webpack config, like adding a plugin.
    */
-  modifyWebpackConfig?: (config?: any) => any
+  modifyWebpackConfig?: <T extends object>(config?: T) => T
 
   module?: boolean
 
@@ -141,7 +141,7 @@ export type SizeLimitConfig = Check[]
 /**
  * Any function with any arguments.
  */
-type AnyFunction = (...args: any[]) => any
+type AnyFunction = (...args: unknown[]) => unknown
 
 /**
  * Run Size Limit and return the result.

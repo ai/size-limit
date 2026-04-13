@@ -4,5 +4,5 @@
     "@size-limit/file": ">= 0.0.0",
     "size-limit": ">= 0.0.0"
   },
-  "size-limit": { }
+  "size-limit": {}
 }

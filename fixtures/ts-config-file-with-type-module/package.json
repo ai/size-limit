@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "ts-config-file-with-type-module",
+  "private": true,
   "type": "module",
   "devDependencies": {
     "@size-limit/webpack": ">= 0.0.0",
