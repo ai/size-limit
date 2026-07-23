@@ -7,38 +7,15 @@ permissions:
   contents: write
 jobs:
   release:
-    name: Release On Tag
-    if: startsWith(github.ref, 'refs/tags/')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Extract the changelog
-        id: changelog
-        run: |
-          TAG_NAME=${GITHUB_REF/refs\/tags\//}
-          READ_SECTION=false
-          CHANGELOG=""
-          while IFS= read -r line; do
-            if [[ "$line" =~ ^#+\ +(.*) ]]; then
-              if [[ "${BASH_REMATCH[1]}" == "$TAG_NAME" ]]; then
-                READ_SECTION=true
-              elif [[ "$READ_SECTION" == true ]]; then
-                break
-              fi
-            elif [[ "$READ_SECTION" == true ]]; then
-              CHANGELOG+="$line"$'\n'
-            fi
-          done < "CHANGELOG.md"
-          CHANGELOG=$(echo "$CHANGELOG" | awk '/./ {$1=$1;print}')
-          echo "changelog_content<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-      - name: Create the release
-        if: steps.changelog.outputs.changelog_content != ''
-        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
-        with:
-          name: ${{ github.ref_name }}
-          body: '${{ steps.changelog.outputs.changelog_content }}'
-          draft: false
-          prerelease: false
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+      steps:
+        - name: Checkout the repository
+          uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+          with:
+            persist-credentials: false
+        - name: Clean npm package
+          uses: ai/copy-changelog-to-release@a6dc825c34575add2da2060796794f7b84894628 # v0.2.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
