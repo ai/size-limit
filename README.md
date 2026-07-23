@@ -1,4 +1,4 @@
-# Size Limit [![Cult Of Martians][cult-img]][cult]
+# Size Limit
 
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
@@ -41,17 +41,14 @@ We are using [Statoscope] for this analysis.
   <img src="./img/why.png" alt="Statoscope example" width="650">
 </p>
 
-<p align="center">
-  <a href="https://evilmartians.com/?utm_source=size-limit">
-    <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
-         alt="Sponsored by Evil Martians" width="236" height="54">
-  </a>
-</p>
+---
+
+<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  Size Limit is built by <b><a href="https://evilmartians.com/">Evil Martians</a></b>, an American design and engineering consultancy for <b>developer tools, AI, and cybersecurity startups</b>.
+
+---
 
 [GitHub action]: https://github.com/andresz1/size-limit-action
 [Statoscope]: https://github.com/statoscope/statoscope
-[cult-img]: http://cultofmartians.com/assets/badges/badge.svg
-[cult]: http://cultofmartians.com/tasks/size-limit-config.html
 [customize time plugin]: https://github.com/ai/size-limit/packages/time#customize-network-speed
 
 ## Who Uses Size Limit
