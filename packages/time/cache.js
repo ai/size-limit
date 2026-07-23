@@ -1,12 +1,15 @@
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-let __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const VERSION = 1
-const CACHE = join(__dirname, '..', '.cache', 'size-limit', 'cache.json')
+const CACHE = join(
+  import.meta.dirname,
+  '..',
+  '.cache',
+  'size-limit',
+  'cache.json'
+)
 
 export async function createCacheDir() {
   let sizeLimitCache = dirname(CACHE)

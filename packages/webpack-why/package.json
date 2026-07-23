@@ -26,7 +26,7 @@
     "@size-limit/webpack": "12.1.0",
     "redux": "^4.2.1",
     "size-limit": "12.1.0",
-    "webpack": "^5.106.1"
+    "webpack": "^5.108.4"
   },
   "peerDependencies": {
     "size-limit": "12.1.0",

@@ -1,2 +1,5 @@
 packages:
   - 'packages/*'
+linkWorkspacePackages: true
+allowBuilds:
+  esbuild: false

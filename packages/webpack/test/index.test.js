@@ -78,7 +78,7 @@ describe('supports custom webpack config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(895, -2)
+    expect(config.checks[0].size).toBeCloseTo(949, -2)
   })
 
   it('works with esm config', async () => {
@@ -98,7 +98,7 @@ describe('supports custom webpack config defined as function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(895, -2)
+    expect(config.checks[0].size).toBeCloseTo(949, -2)
   })
 
   it('works with esm', async () => {
@@ -118,7 +118,7 @@ describe('supports custom webpack config defined as async function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(895, -2)
+    expect(config.checks[0].size).toBeCloseTo(949, -2)
   })
 
   it('works with esm', async () => {
@@ -147,7 +147,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(648, -1)
+    expect(config.checks[0].size).toBeCloseTo(640, -1)
   })
 })
 

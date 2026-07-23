@@ -77,7 +77,7 @@ it('supports ignore', async () => {
     checks: [{ files: fixture('cjs/big.js'), ignore: ['redux'] }]
   }
   await run(config)
-  expect(config.checks[0].size).toBe(209)
+  expect(config.checks[0].size).toBe(231)
 })
 
 describe('supports custom esbuild config', () => {
@@ -87,7 +87,7 @@ describe('supports custom esbuild config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(429, -1)
+    expect(config.checks[0].size).toBeCloseTo(483, -1)
   })
 
   it('works with esm config', async () => {
@@ -107,7 +107,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(204, -1)
+    expect(config.checks[0].size).toBeCloseTo(234, -1)
   })
 
   it('works with esm config', async () => {

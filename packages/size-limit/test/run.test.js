@@ -346,9 +346,9 @@ it('shows error when using brotli without file', async () => {
 it('shows error on time bigger than limit', async () => {
   let [process, history] = createProcess('integration', ['--limit', '1 s'])
   await run(process)
-  expect(history.exitCode).toBe(1)
   expect(history.stderr).toBe('')
   expect(history.stdout).toMatchSnapshot()
+  expect(history.exitCode).toBe(1)
 })
 
 it('shows error on time bigger than limit. in silent mode', async () => {
@@ -358,9 +358,9 @@ it('shows error on time bigger than limit. in silent mode', async () => {
     '1 s'
   ])
   await run(process)
-  expect(history.exitCode).toBe(1)
   expect(history.stderr).toBe('')
   expect(history.stdout).toMatchSnapshot()
+  expect(history.exitCode).toBe(1)
 })
 
 it('shows nothing in silent mode and success check', async () => {
@@ -391,9 +391,9 @@ it.skipIf(NODE_VERSION < 21)(
   'allows to use peer dependencies in import',
   async () => {
     await checkJson('combine', [
-      { name: 'all', size: 2053 },
+      { name: 'all', size: 2061 },
       { name: 'a', size: 1 },
-      { name: 'redux', size: 2045 }
+      { name: 'redux', size: 2061 }
     ])
   }
 )

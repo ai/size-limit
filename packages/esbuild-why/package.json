@@ -25,7 +25,7 @@
   "devDependencies": {
     "@size-limit/esbuild": "12.1.0",
     "@size-limit/file": "12.1.0",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "redux": "^4.2.1",
     "size-limit": "12.1.0"
   },

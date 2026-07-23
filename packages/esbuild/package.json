@@ -19,8 +19,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "esbuild": "^0.28.0",
-    "nanoid": "^5.1.7"
+    "esbuild": "^0.28.1",
+    "nanoid": "^6.0.0"
   },
   "devDependencies": {
     "@size-limit/file": "12.1.0",

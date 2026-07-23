@@ -11,7 +11,7 @@ const INTEGRATION = join(ROOT, 'fixtures', 'integration', 'index.js')
 
 it('has JS API', async () => {
   let result = await sizeLimit([webpackPlugin, filePlugin], [INTEGRATION])
-  expect(result).toEqual([{ size: 124 }])
+  expect(result).toEqual([{ size: 131 }])
 })
 
 it('works with file module only', async () => {

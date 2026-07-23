@@ -12,40 +12,60 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Install pnpm
-        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          version: 10
-      - name: Install Node.js
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+          persist-credentials: false
+      - name: Install Node.js & pnpm
+        uses: pnpm/setup@5d160c5bc68a09337ad0d5654e237e03253b5879 # v1.0.0
         with:
-          node-version: 25
-          cache: pnpm
+          version: 11
+          runtime: node@26
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm ci
       - name: Run tests
         run: pnpm test
   short:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version:
+        node:
           - 24
           - 22
-          - 20
-    name: Node.js ${{ matrix.node-version }} Quick
+    name: Node.js ${{ matrix.node }} Quick
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Node.js & pnpm
+        uses: pnpm/setup@5d160c5bc68a09337ad0d5654e237e03253b5879 # v1.0.0
+        with:
+          version: 11
+          runtime: node@${{ matrix.node }}
+      - name: Install dependencies
+        run: pnpm ci
+      - name: Run unit tests
+        run: ./node_modules/.bin/vitest --run
+  old:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - 20
+    name: Node.js ${{ matrix.node }} Quick
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Install pnpm
         uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
         with:
           version: 10
-      - name: Install Node.js ${{ matrix.node-version }}
+      - name: Install Node.js ${{ matrix.node }}
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
           cache: pnpm
       - name: Install dependencies
         run: pnpm install

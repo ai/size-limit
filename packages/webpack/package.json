@@ -19,8 +19,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "nanoid": "^5.1.7",
-    "webpack": "^5.106.1"
+    "nanoid": "^6.0.0",
+    "webpack": "^5.108.4"
   },
   "devDependencies": {
     "@size-limit/file": "12.1.0",
