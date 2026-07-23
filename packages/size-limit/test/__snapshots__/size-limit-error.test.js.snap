@@ -11,12 +11,6 @@ exports[`has error for CLI error without output 1`] = `
 "
 `;
 
-exports[`has error for missing jiti package 1`] = `
-"[41m[30m ERROR [39m[49m [31m[33mjiti[31m package is required for TypeScript config.
-        Install it with [33mnpm install --save-dev jiti[31m or [33mpnpm add -D jiti[31m[39m
-"
-`;
-
 exports[`has error for unknown entry 1`] = `
 "[41m[30m ERROR [39m[49m [31mSize Limit didn’t find [33madmin[31m entry in the custom bundler config[39m
 "

@@ -1,5 +1,5 @@
 import { dirname, join } from 'node:path'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, expect, it, vi } from 'vitest'
 
 import calc from '../calc'
 import run from '../run'
@@ -256,20 +256,6 @@ it('works with .js config file and `export default` without "type": "module"', a
   })
 })
 
-it('works with .cjs config file and `export default` without "type": "module"', async () => {
-  expect(await check('cjs-config-file-esm')).toEqual({
-    checks: [
-      {
-        files: [fixture('cjs-config-file-esm', 'index.js')],
-        name: 'index.js',
-        path: 'index.js'
-      }
-    ],
-    configPath: '.size-limit.cjs',
-    cwd: fixture('cjs-config-file-esm')
-  })
-})
-
 it('works with .cjs config file and `module.exports` without "type": "module"', async () => {
   expect(await check('cjs-config-file-cjs')).toEqual({
     checks: [
@@ -516,32 +502,32 @@ it('takes config from CLI config argument', async () => {
   })
 })
 
-let allConfigFileExtensions = ['mjs', 'js', 'cjs', 'ts', 'mts', 'cts']
-let exportTypes = [
-  { exportSyntax: 'export default', moduleType: 'esm' },
-  { exportSyntax: 'module.exports', moduleType: 'cjs' }
+// `.mjs` and `.mts` are always ESM, `.cjs` and `.cts` are always CommonJS.
+// Only `.js` and `.ts` allow both syntaxes, since Node.js detects them.
+let configFiles = [
+  { exportSyntax: 'export default', extension: 'mjs', moduleType: 'esm' },
+  { exportSyntax: 'export default', extension: 'js', moduleType: 'esm' },
+  { exportSyntax: 'module.exports', extension: 'js', moduleType: 'cjs' },
+  { exportSyntax: 'module.exports', extension: 'cjs', moduleType: 'cjs' },
+  { exportSyntax: 'export default', extension: 'mts', moduleType: 'esm' },
+  { exportSyntax: 'export default', extension: 'ts', moduleType: 'esm' },
+  { exportSyntax: 'module.exports', extension: 'ts', moduleType: 'cjs' },
+  { exportSyntax: 'module.exports', extension: 'cts', moduleType: 'cjs' }
 ]
 
-describe.each(allConfigFileExtensions)(
-  'config file with `.%s` extension',
-  extension => {
-    it.each(exportTypes)(
-      'works with $moduleType module syntax ($exportSyntax)',
-      async ({ moduleType }) => {
-        expect(await check(`${extension}-config-file-${moduleType}`)).toEqual({
-          checks: [
-            {
-              files: [
-                fixture(`${extension}-config-file-${moduleType}`, 'index.js')
-              ],
-              name: 'index.js',
-              path: 'index.js'
-            }
-          ],
-          configPath: `.size-limit.${extension}`,
-          cwd: fixture(`${extension}-config-file-${moduleType}`)
-        })
-      }
-    )
+it.each(configFiles)(
+  'works with `.$extension` config file and $exportSyntax',
+  async ({ extension, moduleType }) => {
+    expect(await check(`${extension}-config-file-${moduleType}`)).toEqual({
+      checks: [
+        {
+          files: [fixture(`${extension}-config-file-${moduleType}`, 'index.js')],
+          name: 'index.js',
+          path: 'index.js'
+        }
+      ],
+      configPath: `.size-limit.${extension}`,
+      cwd: fixture(`${extension}-config-file-${moduleType}`)
+    })
   }
 )

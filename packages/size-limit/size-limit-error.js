@@ -22,9 +22,6 @@ const MESSAGES = {
     'The *entry* in Size Limit config ' +
     'must be *a string* or *an array of strings*',
   missedPlugin: mod => `Add *@size-limit/${mod}* plugin to Size Limit`,
-  missingPackage: (pkg, usage) =>
-    `*${pkg}* package is required for ${usage}. ` +
-    `Install it with *npm install --save-dev ${pkg}* or *pnpm add -D ${pkg}*`,
   multiPluginlessConfig: (opt, mod1, mod2) =>
     `Config option *${opt}* needs *@size-limit/${mod1}* ` +
     `or *@size-limit/${mod2}* plugin`,

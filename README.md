@@ -538,13 +538,6 @@ Size Limits supports three ways to define limits config.
    ] satisfies SizeLimitConfig
    ```
 
-   **Note:** TypeScript config files (`.size-limit.ts`) require
-   the `jiti` package to be installed:
-
-   ```sh
-   npm install --save-dev jiti
-   ```
-
 Each section in the config can have these options:
 
 - **path**: relative paths to files. The only mandatory option.

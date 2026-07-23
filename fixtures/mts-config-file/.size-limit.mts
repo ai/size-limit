@@ -1,4 +1,4 @@
-import { SizeLimitConfig } from '../../packages/size-limit'
+import type { SizeLimitConfig } from '../../packages/size-limit'
 
 export default [
   {

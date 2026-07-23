@@ -3,7 +3,7 @@ import { lilconfig } from 'lilconfig'
 import { glob } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { pathToFileURL } from 'node:url'
 
 import { SizeLimitError } from './size-limit-error.js'
 
@@ -123,26 +123,6 @@ async function dynamicImport(filePath) {
   return (await import(pathToFileURL(filePath).href)).default
 }
 
-async function tsLoader(filePath) {
-  let jiti
-  try {
-    jiti = (await import('jiti')).createJiti(fileURLToPath(import.meta.url), {
-      interopDefault: false
-    })
-    /* v8 ignore start */
-  } catch (error) {
-    if (error.code === 'ERR_MODULE_NOT_FOUND') {
-      throw new SizeLimitError('missingPackage', 'jiti', 'TypeScript config')
-    }
-    throw error
-  }
-  /* v8 ignore end */
-
-  let config = await jiti.import(filePath, { default: true })
-
-  return config
-}
-
 export default async function getConfig(plugins, process, args, pkg) {
   let config = {
     cwd: process.cwd()
@@ -175,11 +155,11 @@ export default async function getConfig(plugins, process, args, pkg) {
     let explorer = lilconfig('size-limit', {
       loaders: {
         '.cjs': dynamicImport,
-        '.cts': tsLoader,
+        '.cts': dynamicImport,
         '.js': dynamicImport,
         '.mjs': dynamicImport,
-        '.mts': tsLoader,
-        '.ts': tsLoader
+        '.mts': dynamicImport,
+        '.ts': dynamicImport
       },
       searchPlaces: [
         'package.json',
