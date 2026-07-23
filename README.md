@@ -601,7 +601,7 @@ npx size-limit --config configs/size-limit.json
 ```
 
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
-[pattern]: https://github.com/SuperchupuDev/tinyglobby
+[pattern]: https://nodejs.org/api/fs.html#fspromisesglobpattern-options
 
 ## Analyze with `--why`
 

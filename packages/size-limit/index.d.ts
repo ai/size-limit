@@ -80,7 +80,7 @@ export interface Check {
   /**
    * Relative paths to files. The only mandatory option.
    * It could be a path `"index.js"`, a
-   * {@link https://github.com/SuperchupuDev/tinyglobby pattern}
+   * {@link https://nodejs.org/api/fs.html#fspromisesglobpattern-options pattern}
    * `"dist/app-*.js"` or an array
    * `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
    */

@@ -1,9 +1,9 @@
 import bytes from 'bytes-iec'
 import { lilconfig } from 'lilconfig'
+import { glob } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { glob } from 'tinyglobby'
 
 import { SizeLimitError } from './size-limit-error.js'
 
@@ -95,6 +95,24 @@ function checkChecks(plugins, checks) {
 
 function toAbsolute(file, cwd) {
   return isAbsolute(file) ? file : join(cwd, file)
+}
+
+async function findFiles(patterns, cwd) {
+  let found = await Array.fromAsync(glob(patterns, { cwd, withFileTypes: true }))
+  return found
+    .filter(i => i.isFile())
+    .map(i => relative(cwd, join(i.parentPath, i.name)))
+}
+
+async function globFiles(patterns, cwd) {
+  let ignore = patterns.filter(i => i.startsWith('!'))
+  let files = await findFiles(
+    patterns.filter(i => !i.startsWith('!')),
+    cwd
+  )
+  if (ignore.length === 0) return files
+  let ignored = new Set(await findFiles(ignore.map(i => i.slice(1)), cwd))
+  return files.filter(i => !ignored.has(i))
 }
 
 function toName(files, cwd) {
@@ -189,7 +207,7 @@ export default async function getConfig(plugins, process, args, pkg) {
         let processed = { ...check }
         if (check.path) {
           let patterns = Array.isArray(check.path) ? check.path : [check.path]
-          processed.files = await glob(patterns, { cwd: config.cwd })
+          processed.files = await globFiles(patterns, config.cwd)
         } else if (!check.entry) {
           if (pkg.packageJson.main) {
             processed.files = [
