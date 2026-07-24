@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 13.0.1
+
+- Fixed publishing process.
+
 ## 13.0.0
 
 - Removed Node.js 20 support.
