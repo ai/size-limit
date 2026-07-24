@@ -24,13 +24,13 @@
     "style-loader": "^4.0.0"
   },
   "devDependencies": {
-    "@size-limit/file": "12.1.0",
-    "@size-limit/webpack": "12.1.0",
-    "size-limit": "12.1.0",
+    "@size-limit/file": "workspace:*",
+    "@size-limit/webpack": "workspace:*",
+    "size-limit": "workspace:*",
     "webpack": "^5.108.4"
   },
   "peerDependencies": {
-    "size-limit": "12.1.0"
+    "size-limit": "workspace:*"
   },
   "engines": {
     "node": "^20.9.0 || ^22.0.0 || >=24.0.0"

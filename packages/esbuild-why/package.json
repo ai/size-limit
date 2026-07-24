@@ -23,14 +23,14 @@
     "open": "^11.0.0"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "12.1.0",
-    "@size-limit/file": "12.1.0",
+    "@size-limit/esbuild": "workspace:*",
+    "@size-limit/file": "workspace:*",
     "esbuild": "^0.28.1",
     "redux": "^4.2.1",
-    "size-limit": "12.1.0"
+    "size-limit": "workspace:*"
   },
   "peerDependencies": {
-    "size-limit": "12.1.0"
+    "size-limit": "workspace:*"
   },
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"

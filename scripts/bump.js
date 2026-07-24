@@ -16,12 +16,11 @@ for (let dir of readdirSync(PACKAGES)) {
   let pkgPath = join(PACKAGES, dir, 'package.json')
   if (existsSync(pkgPath)) {
     let pkg = readFileSync(pkgPath).toString()
+    // Dependencies between packages use `workspace:*`,
+    // which pnpm replaces with the real version on publish
     writeFileSync(
       pkgPath,
-      pkg
-        .replace(/("@size-limit\/[^"]+": )"(\d+.\d+.\d+")/g, `$1"${version}"`)
-        .replace(/("size-limit": )"(\d+.\d+.\d+")/g, `$1"${version}"`)
-        .replace(/("version": )"\d+.\d+.\d+"/g, `$1"${version}"`)
+      pkg.replace(/("version": )"\d+.\d+.\d+"/g, `$1"${version}"`)
     )
   }
 }

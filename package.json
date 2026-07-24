@@ -3,7 +3,6 @@
   "type": "module",
   "scripts": {
     "bump": "./scripts/bump.js",
-    "release": "./scripts/each.js pnpm clean-publish --access public",
     "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
     "test": "oxlint && vitest run --coverage && sh scripts/max-listeners-check.sh"
   },
@@ -21,7 +20,6 @@
     "@size-limit/webpack-why": "workspace:^",
     "@vitest/coverage-v8": "^4.1.10",
     "actions-up": "^1.16.0",
-    "clean-publish": "^7.1.0",
     "cross-spawn": "^7.0.6",
     "eslint-plugin-prefer-let": "^4.2.2",
     "oxlint": "^1.75.0",

@@ -27,9 +27,9 @@
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
-    "@size-limit/esbuild": "12.1.0",
-    "@size-limit/file": "12.1.0",
-    "@size-limit/webpack": "12.1.0"
+    "@size-limit/esbuild": "workspace:*",
+    "@size-limit/file": "workspace:*",
+    "@size-limit/webpack": "workspace:*"
   },
   "engines": {
     "node": "^22.18.0 || ^24.0.0 || >=26.0.0"

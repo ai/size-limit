@@ -23,12 +23,12 @@
     "webpack": "^5.108.4"
   },
   "devDependencies": {
-    "@size-limit/file": "12.1.0",
+    "@size-limit/file": "workspace:*",
     "redux": "^4.2.1",
-    "size-limit": "12.1.0"
+    "size-limit": "workspace:*"
   },
   "peerDependencies": {
-    "size-limit": "12.1.0"
+    "size-limit": "workspace:*"
   },
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
