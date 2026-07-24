@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 13.0.0
+
+- Removed Node.js 20 support.
+- Removed `tinyglobby` and `jiti` dependencies.
+- Added npm provenance.
+
 ## 12.1.0
 
 - Added `disablePlugins` option (by @JPeer264).

@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/time",
-  "version": "12.1.0",
+  "version": "13.0.0",
   "description": "Downloading and running time plugin for Size Limit",
   "keywords": [
     "budget",
