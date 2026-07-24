@@ -1,25 +1,19 @@
 #!/usr/bin/env node
 
-// Pack npm tarballs without `pnpm install`, so that no third-party code
-// is ever downloaded next to the files we are about to publish.
+// Resolve the `workspace:*` protocol in every package's `package.json`
+// without `pnpm install`, so that no third-party code is ever downloaded
+// next to the files we are about to publish.
 //
-// `pnpm pack` can not be used here: it installs the workspace to resolve
-// the `workspace:*` protocol. We resolve it ourselves and call `npm pack`,
-// which only needs Node.js.
+// `pnpm` can not be used here: it installs the workspace to resolve the
+// `workspace:*` protocol. We resolve it ourselves, rewriting each
+// `package.json` in place, which only needs Node.js. The actual publishing
+// is done by `npm stage publish` from inside each package directory.
 
-import { execFileSync } from 'node:child_process'
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync
-} from 'node:fs'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const ROOT = join(import.meta.dirname, '..')
 const PACKAGES = join(ROOT, 'packages')
-const DESTINATION = join(ROOT, 'tarballs')
 const DEPENDENCIES = [
   'dependencies',
   'optionalDependencies',
@@ -55,10 +49,3 @@ for (let [i, pkg] of pkgs.entries()) {
     JSON.stringify(pkg, null, 2) + '\n'
   )
 }
-
-mkdirSync(DESTINATION, { recursive: true })
-execFileSync(
-  'npm',
-  ['pack', ...dirs, '--ignore-scripts', '--pack-destination', DESTINATION],
-  { stdio: 'inherit' }
-)
