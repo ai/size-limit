@@ -26,7 +26,7 @@
     "@size-limit/webpack": "workspace:*",
     "redux": "^4.2.1",
     "size-limit": "workspace:*",
-    "webpack": "^5.108.4"
+    "webpack": "^5.109.0"
   },
   "peerDependencies": {
     "size-limit": "workspace:*",

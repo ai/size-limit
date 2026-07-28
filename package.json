@@ -22,7 +22,7 @@
     "actions-up": "^1.16.0",
     "cross-spawn": "^7.0.6",
     "eslint-plugin-prefer-let": "^4.2.2",
-    "oxlint": "^1.75.0",
+    "oxlint": "^1.76.0",
     "oxlint-tsgolint": "^7.0.2001",
     "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
