@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack-why",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "Webpack Statoscope plugin for Size Limit",
   "keywords": [
     "budget",

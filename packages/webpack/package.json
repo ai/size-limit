@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/webpack",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "Webpack plugin for Size Limit",
   "keywords": [
     "budget",
