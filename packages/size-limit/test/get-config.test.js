@@ -79,6 +79,23 @@ it('supports glob and main field', async () => {
   })
 })
 
+it('ignores a whole directory by its name', async () => {
+  expect(await check('glob-dir')).toEqual({
+    checks: [
+      {
+        files: [
+          fixture('glob-dir', 'a.js'),
+          fixture('glob-dir', 'sub', 'b.js')
+        ],
+        name: 'without ignored dir',
+        path: ['**/*.js', '!skip']
+      }
+    ],
+    configPath: 'package.json',
+    cwd: fixture('glob-dir')
+  })
+})
+
 it('uses index.js by default', async () => {
   expect(await check('simple')).toEqual({
     checks: [

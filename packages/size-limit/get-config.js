@@ -98,10 +98,19 @@ function toAbsolute(file, cwd) {
 }
 
 async function findFiles(patterns, cwd) {
-  let found = await Array.fromAsync(glob(patterns, { cwd, withFileTypes: true }))
-  return found
-    .filter(i => i.isFile())
-    .map(i => relative(cwd, join(i.parentPath, i.name)))
+  // Node.js `glob` matches a bare directory as a single entry, while
+  // `tinyglobby` expanded it to the files inside. Add a `/**` sibling for
+  // every pattern to keep that behavior (e.g. `dist/ui` → `dist/ui/**`).
+  let expanded = patterns.flatMap(i => [i, `${i}/**`])
+  let found = await Array.fromAsync(
+    glob(expanded, { cwd, withFileTypes: true })
+  )
+  let files = new Set(
+    found
+      .filter(i => i.isFile())
+      .map(i => relative(cwd, join(i.parentPath, i.name)))
+  )
+  return [...files]
 }
 
 async function globFiles(patterns, cwd) {
