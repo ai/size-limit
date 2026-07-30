@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-big-lib",
-  "version": "13.0.2",
+  "version": "13.0.3",
   "description": "Size Limit preset for big open source libraries",
   "keywords": [
     "budget",

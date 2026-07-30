@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 13.0.3
+
+- Removed `picocolors` dependencies.
+
 ## 13.0.2
 
 - Fixed glob pattern regression.
