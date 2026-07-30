@@ -1,10 +1,13 @@
 import { existsSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { join } from 'node:path'
-import pc from 'picocolors'
+
+import color from './colors.js'
 let require = createRequire(import.meta.url)
 
-let { bold: b, red, yellow: y } = pc
+let b = color('bold')
+let red = color('red')
+let y = color('yellow')
 let ownPackage = require('./package.json')
 
 function npmCommands(pkg) {

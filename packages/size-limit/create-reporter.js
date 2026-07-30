@@ -1,9 +1,18 @@
 import bytes from 'bytes-iec'
 import { join } from 'node:path'
 import readline from 'node:readline'
-import pc from 'picocolors'
 
-let { bgGreen, bgRed, black, bold, gray, green, red, yellow } = pc
+import color from './colors.js'
+
+let bold = color('bold')
+let boldGreen = color('green', 'bold')
+let boldRed = color('red', 'bold')
+let errorBadge = color('bgRed', 'black')
+let gray = color('gray')
+let green = color('green')
+let lessBadge = color('bgGreen', 'black')
+let red = color('red')
+let yellow = color('yellow')
 
 function createJsonReporter(process) {
   function print(data) {
@@ -43,6 +52,19 @@ function getFixText(prefix, config) {
 
   return prefix
 }
+
+function highlightMessage(msg) {
+  // Every part is colored separately, because nested styles do not work
+  // in old Node.js versions
+  return msg
+    .split(/\*([^*]+)\*/)
+    .map((part, index) => {
+      if (!part) return ''
+      return index % 2 === 0 ? red(part) : yellow(part)
+    })
+    .join('')
+}
+
 function createHumanReporter(process, isSilentMode = false) {
   let output = ''
 
@@ -67,11 +89,10 @@ function createHumanReporter(process, isSilentMode = false) {
   return {
     error(err) {
       if (err.name === 'SizeLimitError') {
-        let msg = err.message
-          .split('. ')
-          .map(i => i.replace(/\*([^*]+)\*/g, yellow('$1')))
-          .join('.\n        ')
-        process.stderr.write(`${bgRed(black(' ERROR '))} ${red(msg)}\n`)
+        let msg = err.message.split('. ').join('.\n        ')
+        process.stderr.write(
+          `${errorBadge(' ERROR ')} ${highlightMessage(msg)}\n`
+        )
         if (err.example) {
           process.stderr.write(
             '\n' +
@@ -81,7 +102,7 @@ function createHumanReporter(process, isSilentMode = false) {
           )
         }
       } else {
-        process.stderr.write(`${bgRed(black(' ERROR '))} ${red(err.stack)}\n`)
+        process.stderr.write(`${errorBadge(' ERROR ')} ${red(err.stack)}\n`)
       }
     },
 
@@ -144,7 +165,7 @@ function createHumanReporter(process, isSilentMode = false) {
             }
           } else if (check.highlightLess && check.size < check.sizeLimit) {
             let diff = formatBytes(check.sizeLimit - check.size)
-            print(bgGreen(black(`Package size is ${diff} less than limit`)))
+            print(lessBadge(`Package size is ${diff} less than limit`))
           }
           rows.push(['Size limit', sizeLimitString])
         }
@@ -170,13 +191,12 @@ function createHumanReporter(process, isSilentMode = false) {
         for (let [name, value, note] of rows) {
           let str = (name + ':').padEnd(max0 + 1) + ' '
           if (note) value = value.padEnd(max1)
-          value = bold(value)
           if (unlimited || name.includes('Limit')) {
-            str += value
+            str += bold(value)
           } else if (check.passed) {
-            str += green(value)
+            str += boldGreen(value)
           } else {
-            str += red(value)
+            str += boldRed(value)
           }
           if (note) {
             str += ' ' + gray(note)
