@@ -26,7 +26,6 @@
     "eslint-plugin-prefer-let": "^4.2.2",
     "oxlint": "^1.76.0",
     "oxlint-tsgolint": "^7.0.2001",
-    "print-snapshots": "^0.4.2",
     "redux": "^4.2.1",
     "size-limit-node-esbuild": "^0.4.0",
     "typescript": "^7.0.2",
