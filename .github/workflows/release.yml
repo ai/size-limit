@@ -23,9 +23,14 @@ jobs:
         run: node scripts/resolve-workspaces.js
       - name: Stage npm packages
         run: |
+          failed=""
           for pkg in packages/*/; do
-            ( cd "$pkg" && npm stage publish --access public )
+            ( cd "$pkg" && npm stage publish --access public ) || failed="$failed $pkg"
           done
+          if [ -n "$failed" ]; then
+            echo "Failed to stage:$failed" >&2
+            exit 1
+          fi
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
