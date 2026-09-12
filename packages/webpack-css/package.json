@@ -19,7 +19,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "css-loader": "^7.1.4",
+    "css-loader": "^7.1.5",
     "css-minimizer-webpack-plugin": "^8.0.0",
     "style-loader": "^4.0.0"
   },
@@ -27,7 +27,7 @@
     "@size-limit/file": "workspace:*",
     "@size-limit/webpack": "workspace:*",
     "size-limit": "workspace:*",
-    "webpack": "^5.109.2"
+    "webpack": "^5.110.3"
   },
   "peerDependencies": {
     "size-limit": "workspace:*"

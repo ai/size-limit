@@ -19,7 +19,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "open": "^11.0.0",
+    "open": "^11.0.3",
     "rollup-plugin-visualizer": "^7.1.1"
   },
   "devDependencies": {

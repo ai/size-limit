@@ -7,7 +7,7 @@
     "test": "oxlint && vitest run --coverage && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {
-    "@logux/oxc-configs": "^1.0.0",
+    "@logux/oxc-configs": "^1.2.0",
     "@size-limit/esbuild": "workspace:^",
     "@size-limit/esbuild-why": "workspace:^",
     "@size-limit/file": "workspace:^",
@@ -20,15 +20,15 @@
     "@size-limit/webpack": "workspace:^",
     "@size-limit/webpack-css": "workspace:^",
     "@size-limit/webpack-why": "workspace:^",
-    "@vitest/coverage-v8": "^4.1.10",
-    "actions-up": "^1.16.0",
+    "@vitest/coverage-v8": "^5.0.0",
+    "actions-up": "^1.20.0",
     "cross-spawn": "^7.0.6",
     "eslint-plugin-prefer-let": "^4.2.2",
-    "oxlint": "^1.76.0",
+    "oxlint": "^1.82.0",
     "oxlint-tsgolint": "^7.0.2001",
     "redux": "^4.2.1",
     "size-limit-node-esbuild": "^0.4.0",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.0"
   }
 }

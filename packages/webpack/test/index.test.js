@@ -87,7 +87,7 @@ describe('supports custom webpack config', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(1295, -2)
+    expect(config.checks[0].size).toBeCloseTo(1232, -2)
   })
 })
 
@@ -107,7 +107,7 @@ describe('supports custom webpack config defined as function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(1295, -2)
+    expect(config.checks[0].size).toBeCloseTo(1232, -2)
   })
 })
 
@@ -127,7 +127,7 @@ describe('supports custom webpack config defined as async function', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(1295, -2)
+    expect(config.checks[0].size).toBeCloseTo(1232, -2)
   })
 })
 
@@ -147,7 +147,7 @@ describe('supports custom entry', () => {
       configPath: ROOT_CONFIG
     }
     await run(config)
-    expect(config.checks[0].size).toBeCloseTo(640, -1)
+    expect(config.checks[0].size).toBeCloseTo(613, -1)
   })
 })
 
@@ -192,7 +192,7 @@ it('allows to disable webpack', async () => {
     checks: [{ files: [fixture('cjs/big.js')], webpack: false }]
   }
   await run(config)
-  expect(config.checks[0].size).toBeCloseTo(50, -1)
+  expect(config.checks[0].size).toBeCloseTo(68, -1)
 })
 
 it('allows to disable compression', async () => {
