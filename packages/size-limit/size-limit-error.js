@@ -1,3 +1,10 @@
+function pluginList(mods) {
+  let names = mods.map(i => `*@size-limit/${i}*`)
+  let last = names.pop()
+  if (names.length === 0) return last
+  return `${names.join(', ')} or ${last}`
+}
+
 const MESSAGES = {
   argWithoutAnalyzer: (arg, bundler, analyzer = `${bundler}-${arg}`) =>
     `Argument *--${arg}* works only with *@size-limit/${bundler}* plugin` +
@@ -7,9 +14,8 @@ const MESSAGES = {
     `Argument *--${arg}* works only with *--${anotherArg}* argument`,
   argWithoutParameter: (arg, parameter) =>
     `Missing parameter *${parameter}* for *--${arg}* argument`,
-  argWithoutPlugins: (arg, mod1, mod2) =>
-    `Argument *--${arg}* needs *@size-limit/${mod1}* ` +
-    `or *@size-limit/${mod2}* plugin`,
+  argWithoutPlugins: (arg, ...mods) =>
+    `Argument *--${arg}* needs ${pluginList(mods)} plugin`,
   bundleDirNotEmpty: dir =>
     `The directory *${dir}* is not empty. ` +
     'Pass *--clean-dir* if you want to remove it',
@@ -22,9 +28,8 @@ const MESSAGES = {
     'The *entry* in Size Limit config ' +
     'must be *a string* or *an array of strings*',
   missedPlugin: mod => `Add *@size-limit/${mod}* plugin to Size Limit`,
-  multiPluginlessConfig: (opt, mod1, mod2) =>
-    `Config option *${opt}* needs *@size-limit/${mod1}* ` +
-    `or *@size-limit/${mod2}* plugin`,
+  multiPluginlessConfig: (opt, ...mods) =>
+    `Config option *${opt}* needs ${pluginList(mods)} plugin`,
   noArrayConfig: () => 'Size Limit config must contain *an array*',
   noConfig: () => 'Create Size Limit config in *package.json*',
   noObjectCheck: () => 'Size Limit config array should contain *only objects*',

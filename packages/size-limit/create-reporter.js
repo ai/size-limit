@@ -129,7 +129,10 @@ function createHumanReporter(process, isSilentMode = false) {
         }
 
         let sizeNote
-        let bundled = plugins.has('webpack') || plugins.has('esbuild')
+        let bundled =
+          plugins.has('webpack') ||
+          plugins.has('esbuild') ||
+          plugins.has('rolldown')
         if (check.config) {
           sizeNote = 'with given webpack configuration'
         } else if (bundled && check.gzip === true) {

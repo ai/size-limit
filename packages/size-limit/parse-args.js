@@ -10,12 +10,17 @@ export default function parseArgs(plugins, argv) {
     } else if (arg === '--debug') {
       args.debug = true
     } else if (arg === '--save-bundle') {
-      if (!plugins.has('esbuild') && !plugins.has('webpack')) {
+      if (
+        !plugins.has('esbuild') &&
+        !plugins.has('webpack') &&
+        !plugins.has('rolldown')
+      ) {
         throw new SizeLimitError(
           'argWithoutPlugins',
           'save-bundle',
           'webpack',
-          'esbuild'
+          'esbuild',
+          'rolldown'
         )
       }
       let nextArg = argv[++i]
@@ -39,9 +44,13 @@ export default function parseArgs(plugins, argv) {
         if (!plugins.has('esbuild-why')) {
           throw new SizeLimitError('argWithoutAnalyzer', 'why', 'esbuild')
         }
+      } else if (plugins.has('rolldown')) {
+        if (!plugins.has('rolldown-why')) {
+          throw new SizeLimitError('argWithoutAnalyzer', 'why', 'rolldown')
+        }
       }
-      // current code assume either esbuild or webpack must be present.
-      // this should be improved to work with any bundler.
+      // current code assume either esbuild, rolldown or webpack must be
+      // present. this should be improved to work with any bundler.
       else if (!plugins.has('webpack') || !plugins.has('webpack-why')) {
         throw new SizeLimitError('argWithoutAnalyzer', 'why', 'webpack')
       }

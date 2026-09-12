@@ -13,7 +13,7 @@ export interface Check {
   compareWith?: string
 
   /**
-   * A path to a custom webpack config.
+   * A path to a custom webpack, esbuild or rolldown config.
    */
   config?: string
 
@@ -21,12 +21,13 @@ export interface Check {
 
   /**
    * Plugin npm package names to skip for this check.
-   * For example: `["@size-limit/webpack"]`, `["@size-limit/esbuild"]`, or `["@size-limit/time"]`.
+   * For example: `["@size-limit/webpack"]`, `["@size-limit/esbuild"]`,
+   * `["@size-limit/rolldown"]`, or `["@size-limit/time"]`.
    */
   disablePlugins?: string[]
 
   /**
-   * When using a custom webpack config, a webpack entry could be given.
+   * When using a custom bundler config, an entry point could be given.
    * It could be a string or an array of strings. By default,
    * the total size of all entry points will be checked.
    */
@@ -65,6 +66,12 @@ export interface Check {
 
   /**
    * (`.size-limit.js` only) Function that can be used to do last-minute
+   * changes to the rolldown config, like adding a plugin.
+   */
+  modifyRolldownConfig?: <T extends object>(config?: T) => T
+
+  /**
+   * (`.size-limit.js` only) Function that can be used to do last-minute
    * changes to the webpack config, like adding a plugin.
    */
   modifyWebpackConfig?: <T extends object>(config?: T) => T
@@ -85,6 +92,11 @@ export interface Check {
    * `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
    */
   path: string | string[]
+
+  /**
+   * With `false` it will disable rolldown.
+   */
+  rolldown?: boolean
 
   /**
    * With `false` it will disable calculating running time.
