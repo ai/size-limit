@@ -190,6 +190,10 @@ it('throws on --why argument with esbuild but without esbuild-why', async () => 
   expect(await error('esbuild-why-missing', ['--why'])).toMatchSnapshot()
 })
 
+it('throws on --why argument with rolldown but without rolldown-why', async () => {
+  expect(await error('rolldown-why-missing', ['--why'])).toMatchSnapshot()
+})
+
 it('throws on --compare-with argument without webpack', async () => {
   expect(await error('file', ['--compare-with'])).toMatchSnapshot()
 })
@@ -387,6 +391,18 @@ it('returns zero for empty esbuild file and without compression', async () => {
   expect(await check('zero-esbuild-non-compression')).toMatchSnapshot()
 })
 
+it('returns zero for empty file with rolldown', async () => {
+  expect(await check('zero-rolldown')).toMatchSnapshot()
+})
+
+it('returns zero for empty rolldown file and with gzip', async () => {
+  expect(await check('zero-rolldown-gzip')).toMatchSnapshot()
+})
+
+it('returns zero for empty rolldown file and without compression', async () => {
+  expect(await check('zero-rolldown-non-compression')).toMatchSnapshot()
+})
+
 it.skipIf(NODE_VERSION < 21)(
   'allows to use peer dependencies in import',
   async () => {
@@ -413,6 +429,24 @@ it.skipIf(NODE_VERSION < 21)(
   'supports import and ignore for esbuild and gzip',
   async () => {
     expect(clean(await check('peer-esbuild-gzip'))).toMatchSnapshot()
+  }
+)
+
+it('supports import and ignore for rolldown', async () => {
+  expect(clean(await check('peer-rolldown-non-compression'))).toMatchSnapshot()
+})
+
+it.skipIf(NODE_VERSION < 21)(
+  'supports import and ignore for rolldown and brotli',
+  async () => {
+    expect(clean(await check('peer-rolldown'))).toMatchSnapshot()
+  }
+)
+
+it.skipIf(NODE_VERSION < 21)(
+  'supports import and ignore for rolldown and gzip',
+  async () => {
+    expect(clean(await check('peer-rolldown-gzip'))).toMatchSnapshot()
   }
 )
 

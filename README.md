@@ -463,6 +463,11 @@ Plugins:
 - `@size-limit/esbuild-why` add reports for `esbuild` plugin
   about your library is of this size to show the cost of all your
   dependencies.
+- `@size-limit/rolldown` is like `esbuild` plugin, but uses `rolldown`.
+  It does not bundle CSS.
+- `@size-limit/rolldown-why` add reports for `rolldown` plugin
+  about your library is of this size to show the cost of all your
+  dependencies.
 - `@size-limit/time` uses headless Chrome to track time to execute JS.
 
 Plugin presets:
@@ -554,31 +559,36 @@ Each section in the config can have these options:
 - **message**: an optional custom message to display additional information,
   such as guidance for resolving errors, relevant links, or instructions
   for next steps when a limit is exceeded.
-- **entry**: when using a custom webpack config, a webpack entry could be given.
+- **entry**: when using a custom bundler config, an entry point could be given.
   It could be a string or an array of strings.
   By default, the total size of all entry points will be checked.
 - **webpack**: with `false` it will disable webpack.
+- **rolldown**: with `false` it will disable rolldown.
 - **running**: with `false` it will disable calculating running time.
 - **gzip**: with `true` it will use Gzip compression and disable
   Brotli compression.
 - **brotli**: with `false` it will disable any compression.
-- **config**: a path to a custom webpack or esbuild config.
+- **config**: a path to a custom webpack, esbuild or rolldown config.
 - **ignore**: an array of files and dependencies to exclude from
   the project size calculation.
 - **modifyWebpackConfig**: (.size-limit.js only) function that can be used
   to do last-minute changes to the webpack config, like adding a plugin.
 - **modifyEsbuildConfig**: (.size-limit.js only) function that can be used
   to do last-minute changes to the webpack config, like adding a plugin.
+- **modifyRolldownConfig**: (.size-limit.js only) function that can be used
+  to do last-minute changes to the rolldown config, like adding a plugin.
 - **compareWith**: path to `stats.json` from another build to compare
   (when `--why` is using).
 - **uiReports**: custom UI reports list (see [Statoscope docs]).
 - **disablePlugins**: npm package names of plugins to skip
   for this check. For example: `"@size-limit/webpack"`, `"@size-limit/esbuild"`,
-  or `"@size-limit/time"`.
+  `"@size-limit/rolldown"`, or `"@size-limit/time"`.
 
 If you use Size Limit to track the size of CSS files, make sure to set
 `webpack: false`. Otherwise, you will get wrong numbers, because webpack
-inserts `style-loader` runtime (≈2 kB) into the bundle.
+inserts `style-loader` runtime (≈2 kB) into the bundle. With
+`@size-limit/rolldown` set `rolldown: false`: Rolldown does not bundle CSS
+and will fail on a CSS entry point.
 
 Also, you avoid having a config and pass the limit to CLI:
 
@@ -600,7 +610,8 @@ npx size-limit --config configs/size-limit.json
 
 You can run `size-limit --why` to analyze the bundle.
 
-You will need to install `@size-limit/esbuild-why` or `@size-limit/webpack-why`
+You will need to install `@size-limit/esbuild-why`,
+`@size-limit/rolldown-why` or `@size-limit/webpack-why`
 depends on which bundler you are using (default is `esbuild`).
 
 For `@size-limit/esbuild-why`,
@@ -627,6 +638,9 @@ or you can give it a custom name:
 ```
 
 This will produce `esbuild-why-cjs.html` and `esbuild-why-esm.html` respectively.
+
+`@size-limit/rolldown-why` works the same way, but names its reports
+`rolldown-why.html`.
 
 For `@size-limit/webpack-why`,
 it will generate the report and open it in the browser automatically.

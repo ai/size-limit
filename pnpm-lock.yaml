@@ -29,6 +29,12 @@ importers:
       '@size-limit/preset-small-lib':
         specifier: workspace:^
         version: link:packages/preset-small-lib
+      '@size-limit/rolldown':
+        specifier: workspace:^
+        version: link:packages/rolldown
+      '@size-limit/rolldown-why':
+        specifier: workspace:^
+        version: link:packages/rolldown-why
       '@size-limit/time':
         specifier: workspace:^
         version: link:packages/time
@@ -164,6 +170,50 @@ importers:
         specifier: workspace:*
         version: link:../size-limit
 
+  packages/rolldown:
+    dependencies:
+      nanoid:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rolldown:
+        specifier: ^1.2.8
+        version: 1.2.8
+    devDependencies:
+      '@size-limit/file':
+        specifier: workspace:*
+        version: link:../file
+      redux:
+        specifier: ^4.2.1
+        version: 4.2.1
+      size-limit:
+        specifier: workspace:*
+        version: link:../size-limit
+
+  packages/rolldown-why:
+    dependencies:
+      open:
+        specifier: ^11.0.0
+        version: 11.0.0
+      rollup-plugin-visualizer:
+        specifier: ^7.1.1
+        version: 7.1.1(rolldown@1.2.8)(rollup@4.60.1)
+    devDependencies:
+      '@size-limit/file':
+        specifier: workspace:*
+        version: link:../file
+      '@size-limit/rolldown':
+        specifier: workspace:*
+        version: link:../rolldown
+      redux:
+        specifier: ^4.2.1
+        version: 4.2.1
+      rolldown:
+        specifier: ^1.2.8
+        version: 1.2.8
+      size-limit:
+        specifier: workspace:*
+        version: link:../size-limit
+
   packages/size-limit:
     dependencies:
       bytes-iec:
@@ -182,6 +232,9 @@ importers:
       '@size-limit/file':
         specifier: workspace:*
         version: link:../file
+      '@size-limit/rolldown':
+        specifier: workspace:*
+        version: link:../rolldown
       '@size-limit/webpack':
         specifier: workspace:*
         version: link:../webpack
@@ -206,7 +259,7 @@ importers:
         version: 6.0.0
       webpack:
         specifier: ^5.109.2
-        version: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+        version: 5.109.2(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
     devDependencies:
       '@size-limit/file':
         specifier: workspace:*
@@ -222,13 +275,13 @@ importers:
     dependencies:
       css-loader:
         specifier: ^7.1.4
-        version: 7.1.4(@rspack/core@1.6.5)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+        version: 7.1.4(@rspack/core@1.6.5)(webpack@5.109.2(postcss@8.5.24))
       css-minimizer-webpack-plugin:
         specifier: ^8.0.0
-        version: 8.0.0(csso@5.0.5)(esbuild@0.28.1)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+        version: 8.0.0(csso@5.0.5)(esbuild@0.28.1)(webpack@5.109.2(postcss@8.5.24))
       style-loader:
         specifier: ^4.0.0
-        version: 4.0.0(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+        version: 4.0.0(webpack@5.109.2(postcss@8.5.24))
     devDependencies:
       '@size-limit/file':
         specifier: workspace:*
@@ -241,13 +294,13 @@ importers:
         version: link:../size-limit
       webpack:
         specifier: ^5.109.2
-        version: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+        version: 5.109.2(postcss@8.5.24)
 
   packages/webpack-why:
     dependencies:
       '@statoscope/webpack-plugin':
         specifier: ^5.29.0
-        version: 5.29.0(@rspack/core@1.6.5)(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+        version: 5.29.0(@rspack/core@1.6.5)(webpack@5.109.2)
     devDependencies:
       '@size-limit/file':
         specifier: workspace:*
@@ -263,7 +316,7 @@ importers:
         version: link:../size-limit
       webpack:
         specifier: ^5.109.2
-        version: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+        version: 5.109.2
 
 packages:
 
@@ -693,6 +746,9 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
+  '@oxc-project/types@0.149.0':
+    resolution: {integrity: sha512-Efcc+iF0j3Bf67YjEqIqWXbX5XddXoK/Mw4K1/JuXwRCZ8N16VR7iT23nlCc9XrveFVh/E5Rqs2StT0V8v9LdA==}
+
   '@oxlint-tsgolint/darwin-arm64@7.0.2001':
     resolution: {integrity: sha512-CUJEdbSZ54+Xy9OXqOhWLTKZKV0BBiV7C2i/ygyVmXtkUNXx5YCzN8DpSSshTAKktoL7S+tnQ/ftFG/i7X896w==}
     cpu: [arm64]
@@ -849,6 +905,105 @@ packages:
     resolution: {integrity: sha512-3ZG500+ZeLql8rE0hjfhkycJjDj0pI/btEh3L9IkWUYcOrgP0xCNRq3HbtbqOPbvDhFaAWD88pDFtlLv8ns8gA==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@rolldown/binding-android-arm-eabi@1.2.8':
+    resolution: {integrity: sha512-tN5aztYkKCte4i5SIrrz5yK/HMjEuCqCSCJa418jOV8tZ1cBY3YF2otxB1ktPxzsLA1BeTqwapK0bfjxNvHJVw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [android]
+
+  '@rolldown/binding-android-arm64@1.2.8':
+    resolution: {integrity: sha512-dIYTWl9XprMUiQFoc55KUyk/oS8SKYH3zFl0LTR7RT0Xj4hgSVyuJcroH8JUu8RcpF8fTB6E0aOwCkZoYPcDSQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [android]
+
+  '@rolldown/binding-darwin-arm64@1.2.8':
+    resolution: {integrity: sha512-PCSDQGXD2IyTEFrcgPyBM8jJuGmrbCMuoIOXdbEGVemruKACXoLQJrb+A45Z0L5t1RQkdfJprAYPkikbh7dzdA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@rolldown/binding-darwin-x64@1.2.8':
+    resolution: {integrity: sha512-Uk7lRsGhPFHVX/sAUC6D5H9Ol30dFHd6iquokll2th3LpdJ3F5CzQB+7DHn0Ri2mG+U7k2zXiPHDrwZenXhwSA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rolldown/binding-freebsd-x64@1.2.8':
+    resolution: {integrity: sha512-DjszaTEVogPqA5bYzsEeqDCQxbcp2fexQwKcRspYji2yzR68fCf+e4fx6kBSRDwX5/brZaHw/hWS9+A/+/w9sQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@rolldown/binding-linux-arm-gnueabihf@1.2.8':
+    resolution: {integrity: sha512-zmwa7FTmdzB6aaEEuuls18H6Ap5JmJPSoPTuXixeJZV6tG40SyLkApQtz1g8ptZtiEKqj9OM0oNLPh1AgvE31Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
+  '@rolldown/binding-linux-arm64-gnu@1.2.8':
+    resolution: {integrity: sha512-KdYQDPHwJVnbFwdTGMgxsI9SqblBlz6STGM+w1We/d5B8OWWidYH0MwkU/uA1wM5fIpO2MkOVxXrNzzuZhw9ew==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-arm64-musl@1.2.8':
+    resolution: {integrity: sha512-jFJTifHnNPY+yzOoNZQfSIysrVyXzEQPhPnOUjmD1bcQGHH6s7c8cViKWar8YplQImE5N9JRqMCLrM2CdxOrZA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@rolldown/binding-linux-ppc64-gnu@1.2.8':
+    resolution: {integrity: sha512-FhiOziBDWPBjbcmRzfLyIJnaP7AVMFXT7YCXPjXxj7wKU3vx24RjrCNN/zjvVa+N2vVoHJwCoUBvsrN/DG3zIA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-s390x-gnu@1.2.8':
+    resolution: {integrity: sha512-WnHfADMzOV2Y55wlx1hzzQnar/wDt/VdvWSD99r18Mz9ylNieIGOkRx3UV21h7m/eJvjySYJkO26VvGNFkwsIQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-x64-gnu@1.2.8':
+    resolution: {integrity: sha512-H9tRr5ibfXFVLxbPOseVewewFpl28zcEdjRDt2FTUZU7odxP0gEv1ki4/kGmcGOh78oRwZuuQllGLZ9zTJp84g==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-x64-musl@1.2.8':
+    resolution: {integrity: sha512-UefiqfM3D6IVNlZ8tSGs9+Ejjud2T+oxO0IHADU45Y+lyEjD2dVFyZHbkfX0LUb5Zugo/oIv1eCO/KVYhgYJYA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@rolldown/binding-openharmony-arm64@1.2.8':
+    resolution: {integrity: sha512-637Ke4kWSy6rp9cxQ9gMOXlxPgIw/c1beASV4M//3+9I4uwBVOOl74G+e3zyU3u19U7RkRl/HuewixZ/Z6+Rjg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [openharmony]
+
+  '@rolldown/binding-win32-arm64-msvc@1.2.8':
+    resolution: {integrity: sha512-xWBkPOF1Q9k/Gv1nQXnVdLxKu74jXppuOM4Z3mnypVUJJJwLsMl7hNJGRAUJoG8A5MgOI1ACKM+wBFxSJzKy4A==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [win32]
+
+  '@rolldown/binding-win32-x64-msvc@1.2.8':
+    resolution: {integrity: sha512-uz2ZvfgXbxqNwijjjbxrnvALwpyODDcgc1T1N8N3rf/DXKQmaFwmB4LX4yyjggpwN2obdQLb2rgirX5ffCWYng==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
+  '@rolldown/pluginutils@1.0.1':
+    resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
   '@rollup/rollup-android-arm-eabi@4.60.1':
     resolution: {integrity: sha512-d6FinEBLdIiK+1uACUttJKfgZREXrF0Qc2SmLII7W2AD8FfiZ9Wjd+rD/iRuf5s5dWrr1GgwXCvPqOuDquOowA==}
@@ -1425,9 +1580,17 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
+  ansi-regex@6.3.0:
+    resolution: {integrity: sha512-WpDfL7NO6j7tH88IDBNVdUJxDh9nmCteAVW9dsep846XdwF4naCBK+/tGLX3KJgcpgMRXCFlTM2hKGoK9FsdrQ==}
+    engines: {node: '>=12'}
+
   ansi-styles@4.3.0:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
     engines: {node: '>=8'}
+
+  ansi-styles@6.2.3:
+    resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
+    engines: {node: '>=12'}
 
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
@@ -1572,6 +1735,10 @@ packages:
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
+
+  cliui@9.0.1:
+    resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
+    engines: {node: '>=20'}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -1741,6 +1908,9 @@ packages:
   electron-to-chromium@1.5.398:
     resolution: {integrity: sha512-AsvhAxopJGh6museTDMIjn6JpDYOfgu4RLlygomt87MUwBUqTfd/1EiPtx10/LZE8xpTvkP2E9Gafq7lkLtodQ==}
 
+  emoji-regex@10.6.0:
+    resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
+
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -1883,6 +2053,10 @@ packages:
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
+
+  get-east-asian-width@1.6.0:
+    resolution: {integrity: sha512-QRbvDIbx6YklUe6RxeTeleMR0yv3cYH6PsPZHcnVn7xv7zO1BHN8r0XETu8n6Ye3Q+ahtSarc3WgtNWmehIBfA==}
+    engines: {node: '>=18'}
 
   get-stream@5.2.0:
     resolution: {integrity: sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==}
@@ -2422,10 +2596,6 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.23:
-    resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.24:
     resolution: {integrity: sha512-8RyVklq0owXUTa4xlpzu4l9AaVKIdQvAcOHZWaMh98HgySsUtxRVf/chRe3dsSLqb6i40BzGRzEUddRaI+9TSw==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2486,6 +2656,24 @@ packages:
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  rolldown@1.2.8:
+    resolution: {integrity: sha512-Z67nTmhZe7anqnM/EjI392w5i/ANUinjip7QYsOyN37oayduxt3ksdX0hf5OOamkAd53BiIHfbfSzfUmzKFQqQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+
+  rollup-plugin-visualizer@7.1.1:
+    resolution: {integrity: sha512-ThaGiHTU8XW02OkK80TrTHATraJmM9OAduU4otal+7gyXLpYEtmGBLfx5kW+EHvvLwn03YGW2NnwKUIqsYlJAA==}
+    engines: {node: '>=22'}
+    hasBin: true
+    peerDependencies:
+      rolldown: 1.x || ^1.0.0-beta || ^1.0.0-rc
+      rollup: 2.x || 3.x || 4.x
+    peerDependenciesMeta:
+      rolldown:
+        optional: true
+      rollup:
+        optional: true
 
   rollup@4.60.1:
     resolution: {integrity: sha512-VmtB2rFU/GroZ4oL8+ZqXgSA38O6GR8KSIvWmEFv63pQ0G6KaBH9s07PO8XTXP4vI+3UJUEypOfjkGfmSBBR0w==}
@@ -2559,6 +2747,10 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
+  source-map@0.8.0:
+    resolution: {integrity: sha512-d8EqvL+k/SOXCreS/SUzg2ciyHqBBLcN/yuRjFsbvVhHTE2pgei7oAhmPM7kWFbkX6OSMQfUq4KbkF3au9lhYQ==}
+    engines: {node: '>= 12'}
+
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
@@ -2572,9 +2764,21 @@ packages:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
 
+  string-width@7.2.0:
+    resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
+    engines: {node: '>=18'}
+
+  string-width@8.2.2:
+    resolution: {integrity: sha512-GaPUh5gfdrYzqeVNZvUfT23vYYxXzKYidUcnMtJg/3rxRV63EFZy3k6xfKlmfeJD0176lnUV/Usr3XcwSvFzpg==}
+    engines: {node: '>=20'}
+
   strip-ansi@6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
+
+  strip-ansi@7.2.0:
+    resolution: {integrity: sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==}
+    engines: {node: '>=12'}
 
   style-loader@4.0.0:
     resolution: {integrity: sha512-1V4WqhhZZgjVAVJyt7TdDPZoPBPNHbekX4fWnCJL1yQukhCeZhJySUL+gL9y6sNdN95uEOS83Y55SqHcP7MzLA==}
@@ -2783,6 +2987,10 @@ packages:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
 
+  wrap-ansi@9.0.2:
+    resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
+    engines: {node: '>=18'}
+
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
@@ -2815,9 +3023,17 @@ packages:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
 
+  yargs-parser@22.0.0:
+    resolution: {integrity: sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
+
   yargs@17.7.3:
     resolution: {integrity: sha512-GZtjxm/J/4TSxuL3FNYjCmLktBTnIw/rVmKSIyKeYAZpmJB2ig9VauCC5xsa82GNKVKDAqpOn3KVzNt0zmrU0g==}
     engines: {node: '>=12'}
+
+  yargs@18.1.0:
+    resolution: {integrity: sha512-2rAgRKu54VsHkqI0/tYkmluGXHD4KW7yZoycuqDQ15QOTnc2VVfy0nN/1eMhnQLO00A+dwtK20xuCnc1YGeUyg==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
 
   yauzl@2.10.0:
     resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
@@ -3111,6 +3327,8 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
+  '@oxc-project/types@0.149.0': {}
+
   '@oxlint-tsgolint/darwin-arm64@7.0.2001':
     optional: true
 
@@ -3200,6 +3418,53 @@ snapshots:
       - bare-buffer
       - react-native-b4a
       - supports-color
+
+  '@rolldown/binding-android-arm-eabi@1.2.8':
+    optional: true
+
+  '@rolldown/binding-android-arm64@1.2.8':
+    optional: true
+
+  '@rolldown/binding-darwin-arm64@1.2.8':
+    optional: true
+
+  '@rolldown/binding-darwin-x64@1.2.8':
+    optional: true
+
+  '@rolldown/binding-freebsd-x64@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-arm-gnueabihf@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-arm64-gnu@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-arm64-musl@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-ppc64-gnu@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-s390x-gnu@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-x64-gnu@1.2.8':
+    optional: true
+
+  '@rolldown/binding-linux-x64-musl@1.2.8':
+    optional: true
+
+  '@rolldown/binding-openharmony-arm64@1.2.8':
+    optional: true
+
+  '@rolldown/binding-win32-arm64-msvc@1.2.8':
+    optional: true
+
+  '@rolldown/binding-win32-x64-msvc@1.2.8':
+    optional: true
+
+  '@rolldown/pluginutils@1.0.1': {}
 
   '@rollup/rollup-android-arm-eabi@4.60.1':
     optional: true
@@ -3389,7 +3654,7 @@ snapshots:
     dependencies:
       '@statoscope/stats': 5.28.1
 
-  '@statoscope/webpack-model@5.29.0(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)':
+  '@statoscope/webpack-model@5.29.0':
     dependencies:
       '@statoscope/extensions': 5.28.1
       '@statoscope/helpers': 5.28.1
@@ -3400,7 +3665,7 @@ snapshots:
       '@statoscope/stats-extension-stats-validation-result': 5.28.1
       '@statoscope/types': 5.28.1
       '@types/md5': 2.3.6
-      '@types/webpack': 5.28.5(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      '@types/webpack': 5.28.5
       md5: 2.3.0
     transitivePeerDependencies:
       - '@minify-html/node'
@@ -3417,7 +3682,7 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@statoscope/webpack-plugin@5.29.0(@rspack/core@1.6.5)(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))':
+  '@statoscope/webpack-plugin@5.29.0(@rspack/core@1.6.5)(webpack@5.109.2)':
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@statoscope/report-writer': 5.28.1
@@ -3425,14 +3690,14 @@ snapshots:
       '@statoscope/stats-extension-compressed': 5.28.1
       '@statoscope/stats-extension-custom-reports': 5.28.1
       '@statoscope/types': 5.28.1
-      '@statoscope/webpack-model': 5.29.0(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
-      '@statoscope/webpack-stats-extension-compressed': 5.29.0(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
-      '@statoscope/webpack-stats-extension-package-info': 5.29.0(@rspack/core@1.6.5)(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+      '@statoscope/webpack-model': 5.29.0
+      '@statoscope/webpack-stats-extension-compressed': 5.29.0(webpack@5.109.2)
+      '@statoscope/webpack-stats-extension-package-info': 5.29.0(@rspack/core@1.6.5)(webpack@5.109.2)
       '@statoscope/webpack-ui': 5.29.0
       '@types/node': 18.19.130
-      '@types/webpack': 5.28.5(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      '@types/webpack': 5.28.5
       open: 8.4.2
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      webpack: 5.109.2
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@rspack/core'
@@ -3449,13 +3714,13 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@statoscope/webpack-stats-extension-compressed@5.29.0(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))':
+  '@statoscope/webpack-stats-extension-compressed@5.29.0(webpack@5.109.2)':
     dependencies:
       '@statoscope/stats': 5.28.1
       '@statoscope/stats-extension-compressed': 5.28.1
-      '@statoscope/webpack-model': 5.29.0(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
-      '@types/webpack': 5.28.5(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      '@statoscope/webpack-model': 5.29.0
+      '@types/webpack': 5.28.5
+      webpack: 5.109.2
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -3471,14 +3736,14 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@statoscope/webpack-stats-extension-package-info@5.29.0(@rspack/core@1.6.5)(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))':
+  '@statoscope/webpack-stats-extension-package-info@5.29.0(@rspack/core@1.6.5)(webpack@5.109.2)':
     dependencies:
       '@rspack/core': 1.6.5
       '@statoscope/stats': 5.28.1
       '@statoscope/stats-extension-package-info': 5.28.1
-      '@statoscope/webpack-model': 5.29.0(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
-      '@types/webpack': 5.28.5(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      '@statoscope/webpack-model': 5.29.0
+      '@types/webpack': 5.28.5
+      webpack: 5.109.2
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -3545,11 +3810,11 @@ snapshots:
 
   '@types/semver@7.7.1': {}
 
-  '@types/webpack@5.28.5(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)':
+  '@types/webpack@5.28.5':
     dependencies:
       '@types/node': 26.1.2
       tapable: 2.3.3
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      webpack: 5.109.2
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -3805,9 +4070,13 @@ snapshots:
 
   ansi-regex@5.0.1: {}
 
+  ansi-regex@6.3.0: {}
+
   ansi-styles@4.3.0:
     dependencies:
       color-convert: 2.0.1
+
+  ansi-styles@6.2.3: {}
 
   anymatch@3.1.3:
     dependencies:
@@ -3939,6 +4208,12 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
+  cliui@9.0.1:
+    dependencies:
+      string-width: 7.2.0
+      strip-ansi: 7.2.0
+      wrap-ansi: 9.0.2
+
   color-convert@2.0.1:
     dependencies:
       color-name: 1.1.4
@@ -3965,7 +4240,7 @@ snapshots:
     dependencies:
       postcss: 8.5.24
 
-  css-loader@7.1.4(@rspack/core@1.6.5)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)):
+  css-loader@7.1.4(@rspack/core@1.6.5)(webpack@5.109.2(postcss@8.5.24)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.24)
       postcss: 8.5.24
@@ -3977,9 +4252,9 @@ snapshots:
       semver: 7.8.5
     optionalDependencies:
       '@rspack/core': 1.6.5
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      webpack: 5.109.2(postcss@8.5.24)
 
-  css-minimizer-webpack-plugin@8.0.0(csso@5.0.5)(esbuild@0.28.1)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)):
+  css-minimizer-webpack-plugin@8.0.0(csso@5.0.5)(esbuild@0.28.1)(webpack@5.109.2(postcss@8.5.24)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       cssnano: 7.1.9(postcss@8.5.24)
@@ -3987,7 +4262,7 @@ snapshots:
       postcss: 8.5.24
       schema-utils: 4.3.3
       serialize-javascript: 7.0.7
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      webpack: 5.109.2(postcss@8.5.24)
     optionalDependencies:
       csso: 5.0.5
       esbuild: 0.28.1
@@ -4110,6 +4385,8 @@ snapshots:
   duplexer@0.1.2: {}
 
   electron-to-chromium@1.5.398: {}
+
+  emoji-regex@10.6.0: {}
 
   emoji-regex@8.0.0: {}
 
@@ -4309,6 +4586,8 @@ snapshots:
 
   get-caller-file@2.0.5: {}
 
+  get-east-asian-width@1.6.0: {}
+
   get-stream@5.2.0:
     dependencies:
       pump: 3.0.4
@@ -4335,14 +4614,14 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  http-proxy-agent@7.0.2(supports-color@8.1.1):
+  http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
-  https-proxy-agent@7.0.6(supports-color@8.1.1):
+  https-proxy-agent@7.0.6:
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
@@ -4482,18 +4761,35 @@ snapshots:
 
   mime-db@1.54.0: {}
 
-  minimizer-webpack-plugin@5.6.1(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)):
+  minimizer-webpack-plugin@5.6.1(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.49.0
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      webpack: 5.109.2(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
     optionalDependencies:
-      cssnano: 7.1.9(postcss@8.5.24)
       csso: 5.0.5
       esbuild: 0.28.1
       postcss: 8.5.24
+
+  minimizer-webpack-plugin@5.6.1(postcss@8.5.24)(webpack@5.109.2(postcss@8.5.24)):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      terser: 5.49.0
+      webpack: 5.109.2(postcss@8.5.24)
+    optionalDependencies:
+      postcss: 8.5.24
+
+  minimizer-webpack-plugin@5.6.1(webpack@5.109.2):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      terser: 5.49.0
+      webpack: 5.109.2
 
   mitt@3.0.1: {}
 
@@ -4582,10 +4878,10 @@ snapshots:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
       get-uri: 6.0.5(supports-color@8.1.1)
-      http-proxy-agent: 7.0.2(supports-color@8.1.1)
-      https-proxy-agent: 7.0.6(supports-color@8.1.1)
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
       pac-resolver: 7.0.1
-      socks-proxy-agent: 8.0.5(supports-color@8.1.1)
+      socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
       - supports-color
 
@@ -4789,12 +5085,6 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.23:
-    dependencies:
-      nanoid: 3.3.16
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
   postcss@8.5.24:
     dependencies:
       nanoid: 3.3.16
@@ -4816,12 +5106,12 @@ snapshots:
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
-      http-proxy-agent: 7.0.2(supports-color@8.1.1)
-      https-proxy-agent: 7.0.6(supports-color@8.1.1)
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
       pac-proxy-agent: 7.2.0(supports-color@8.1.1)
       proxy-from-env: 1.1.0
-      socks-proxy-agent: 8.0.5(supports-color@8.1.1)
+      socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
       - supports-color
 
@@ -4868,6 +5158,37 @@ snapshots:
   requireindex@1.2.0: {}
 
   reusify@1.1.0: {}
+
+  rolldown@1.2.8:
+    dependencies:
+      '@oxc-project/types': 0.149.0
+      '@rolldown/pluginutils': 1.0.1
+    optionalDependencies:
+      '@rolldown/binding-android-arm-eabi': 1.2.8
+      '@rolldown/binding-android-arm64': 1.2.8
+      '@rolldown/binding-darwin-arm64': 1.2.8
+      '@rolldown/binding-darwin-x64': 1.2.8
+      '@rolldown/binding-freebsd-x64': 1.2.8
+      '@rolldown/binding-linux-arm-gnueabihf': 1.2.8
+      '@rolldown/binding-linux-arm64-gnu': 1.2.8
+      '@rolldown/binding-linux-arm64-musl': 1.2.8
+      '@rolldown/binding-linux-ppc64-gnu': 1.2.8
+      '@rolldown/binding-linux-s390x-gnu': 1.2.8
+      '@rolldown/binding-linux-x64-gnu': 1.2.8
+      '@rolldown/binding-linux-x64-musl': 1.2.8
+      '@rolldown/binding-openharmony-arm64': 1.2.8
+      '@rolldown/binding-win32-arm64-msvc': 1.2.8
+      '@rolldown/binding-win32-x64-msvc': 1.2.8
+
+  rollup-plugin-visualizer@7.1.1(rolldown@1.2.8)(rollup@4.60.1):
+    dependencies:
+      open: 11.0.0
+      picomatch: 4.0.5
+      source-map: 0.8.0
+      yargs: 18.1.0
+    optionalDependencies:
+      rolldown: 1.2.8
+      rollup: 4.60.1
 
   rollup@4.60.1:
     dependencies:
@@ -4945,7 +5266,7 @@ snapshots:
 
   smart-buffer@4.2.0: {}
 
-  socks-proxy-agent@8.0.5(supports-color@8.1.1):
+  socks-proxy-agent@8.0.5:
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
@@ -4967,6 +5288,8 @@ snapshots:
 
   source-map@0.6.1: {}
 
+  source-map@0.8.0: {}
+
   stackback@0.0.2: {}
 
   std-env@4.2.0: {}
@@ -4986,13 +5309,28 @@ snapshots:
       is-fullwidth-code-point: 3.0.0
       strip-ansi: 6.0.1
 
+  string-width@7.2.0:
+    dependencies:
+      emoji-regex: 10.6.0
+      get-east-asian-width: 1.6.0
+      strip-ansi: 7.2.0
+
+  string-width@8.2.2:
+    dependencies:
+      get-east-asian-width: 1.6.0
+      strip-ansi: 7.2.0
+
   strip-ansi@6.0.1:
     dependencies:
       ansi-regex: 5.0.1
 
-  style-loader@4.0.0(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)):
+  strip-ansi@7.2.0:
     dependencies:
-      webpack: 5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)
+      ansi-regex: 6.3.0
+
+  style-loader@4.0.0(webpack@5.109.2(postcss@8.5.24)):
+    dependencies:
+      webpack: 5.109.2(postcss@8.5.24)
 
   stylehacks@7.0.11(postcss@8.5.24):
     dependencies:
@@ -5122,7 +5460,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.24
       rollup: 4.60.1
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -5168,7 +5506,7 @@ snapshots:
 
   webpack-sources@3.5.1: {}
 
-  webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24):
+  webpack@5.109.2:
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -5184,7 +5522,79 @@ snapshots:
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.6.1(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(cssnano@7.1.9(postcss@8.5.24))(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+      minimizer-webpack-plugin: 5.6.1(webpack@5.109.2)
+      neo-async: 2.6.2
+      schema-utils: 4.3.3
+      tapable: 2.3.3
+      watchpack: 2.5.2
+      webpack-sources: 3.5.1
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@swc/core'
+      - '@swc/css'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+
+  webpack@5.109.2(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24):
+    dependencies:
+      '@types/estree': 1.0.9
+      '@types/json-schema': 7.0.15
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.18.0
+      browserslist: 4.28.7
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.24.4
+      es-module-lexer: 2.3.1
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      graceful-fs: 4.2.11
+      mime-db: 1.54.0
+      minimizer-webpack-plugin: 5.6.1(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.1)(postcss@8.5.24))
+      neo-async: 2.6.2
+      schema-utils: 4.3.3
+      tapable: 2.3.3
+      watchpack: 2.5.2
+      webpack-sources: 3.5.1
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@swc/core'
+      - '@swc/css'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+
+  webpack@5.109.2(postcss@8.5.24):
+    dependencies:
+      '@types/estree': 1.0.9
+      '@types/json-schema': 7.0.15
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.18.0
+      browserslist: 4.28.7
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.24.4
+      es-module-lexer: 2.3.1
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      graceful-fs: 4.2.11
+      mime-db: 1.54.0
+      minimizer-webpack-plugin: 5.6.1(postcss@8.5.24)(webpack@5.109.2(postcss@8.5.24))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
@@ -5219,6 +5629,12 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
+  wrap-ansi@9.0.2:
+    dependencies:
+      ansi-styles: 6.2.3
+      string-width: 7.2.0
+      strip-ansi: 7.2.0
+
   wrappy@1.0.2: {}
 
   ws@8.21.1: {}
@@ -5234,6 +5650,8 @@ snapshots:
 
   yargs-parser@21.1.1: {}
 
+  yargs-parser@22.0.0: {}
+
   yargs@17.7.3:
     dependencies:
       cliui: 8.0.1
@@ -5243,6 +5661,15 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
+
+  yargs@18.1.0:
+    dependencies:
+      cliui: 9.0.1
+      escalade: 3.2.0
+      get-caller-file: 2.0.5
+      string-width: 8.2.2
+      y18n: 5.0.8
+      yargs-parser: 22.0.0
 
   yauzl@2.10.0:
     dependencies:

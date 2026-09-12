@@ -32,10 +32,34 @@ exports[`returns zero for empty file with esbuild 1`] = `
 "
 `;
 
+exports[`returns zero for empty file with rolldown 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  
+"
+`;
+
 exports[`returns zero for empty file with webpack 1`] = `
 "  
   Size limit: [32m[1m0 B[22m[39m
   Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and brotlied[39m
+  
+"
+`;
+
+exports[`returns zero for empty rolldown file and with gzip 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
+exports[`returns zero for empty rolldown file and without compression 1`] = `
+"  
+  Size limit: [32m[1m0 B[22m[39m
+  Size:       [32m[1m0 B[22m[39m [90mwith all dependencies and minified[39m
   
 "
 `;
@@ -369,6 +393,33 @@ exports[`supports import and ignore for esbuild and gzip 1`] = `
 "
 `;
 
+exports[`supports import and ignore for rolldown 1`] = `
+"  
+  [42m[30mPackage size is 39 B less than limit[39m[49m
+  Size limit: [32m[1m100 B[22m[39m
+  Size:       [32m[1m61 B [22m[39m [90mwith all dependencies and minified[39m
+  
+"
+`;
+
+exports[`supports import and ignore for rolldown and brotli 1`] = `
+"  
+  [42m[30mPackage size is 48 B less than limit[39m[49m
+  Size limit: [32m[1m100 B[22m[39m
+  Size:       [32m[1m52 B [22m[39m [90mwith all dependencies, minified and brotlied[39m
+  
+"
+`;
+
+exports[`supports import and ignore for rolldown and gzip 1`] = `
+"  
+  [42m[30mPackage size is 44 B less than limit[39m[49m
+  Size limit: [32m[1m100 B[22m[39m
+  Size:       [32m[1m56 B [22m[39m [90mwith all dependencies, minified and gzipped[39m
+  
+"
+`;
+
 exports[`supports path without dot 1`] = `
 "  
   [42m[30mPackage size is 69 B less than limit[39m[49m
@@ -420,12 +471,18 @@ exports[`throws on --save-bundle argument without DIR parameter 2`] = `
 `;
 
 exports[`throws on --save-bundle argument without webpack 1`] = `
-"[41m[30m ERROR [39m[49m [31mArgument [39m[33m--save-bundle[39m[31m needs [39m[33m@size-limit/webpack[39m[31m or [39m[33m@size-limit/esbuild[39m[31m plugin[39m
+"[41m[30m ERROR [39m[49m [31mArgument [39m[33m--save-bundle[39m[31m needs [39m[33m@size-limit/webpack[39m[31m, [39m[33m@size-limit/esbuild[39m[31m or [39m[33m@size-limit/rolldown[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on --why argument with esbuild but without esbuild-why 1`] = `
 "[41m[30m ERROR [39m[49m [31mArgument [39m[33m--why[39m[31m works only with [39m[33m@size-limit/esbuild[39m[31m plugin and [39m[33m@size-limit/esbuild-why[39m[31m plugin.
+        You can add Bundle Analyzer to you own bundler.[39m
+"
+`;
+
+exports[`throws on --why argument with rolldown but without rolldown-why 1`] = `
+"[41m[30m ERROR [39m[49m [31mArgument [39m[33m--why[39m[31m works only with [39m[33m@size-limit/rolldown[39m[31m plugin and [39m[33m@size-limit/rolldown-why[39m[31m plugin.
         You can add Bundle Analyzer to you own bundler.[39m
 "
 `;
@@ -544,12 +601,12 @@ exports[`throws on webpack option without webpack plugin 1`] = `
 `;
 
 exports[`throws on webpack option without webpack plugin 2`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [39m[33mignore[39m[31m needs [39m[33m@size-limit/webpack[39m[31m or [39m[33m@size-limit/esbuild[39m[31m plugin[39m
+"[41m[30m ERROR [39m[49m [31mConfig option [39m[33mignore[39m[31m needs [39m[33m@size-limit/webpack[39m[31m, [39m[33m@size-limit/esbuild[39m[31m or [39m[33m@size-limit/rolldown[39m[31m plugin[39m
 "
 `;
 
 exports[`throws on webpack option without webpack plugin 3`] = `
-"[41m[30m ERROR [39m[49m [31mConfig option [39m[33mconfig[39m[31m needs [39m[33m@size-limit/webpack[39m[31m or [39m[33m@size-limit/esbuild[39m[31m plugin[39m
+"[41m[30m ERROR [39m[49m [31mConfig option [39m[33mconfig[39m[31m needs [39m[33m@size-limit/webpack[39m[31m, [39m[33m@size-limit/esbuild[39m[31m or [39m[33m@size-limit/rolldown[39m[31m plugin[39m
 "
 `;
 

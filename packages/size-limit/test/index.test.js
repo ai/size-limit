@@ -1,5 +1,6 @@
 import esbuildPlugin from '@size-limit/esbuild'
 import filePlugin from '@size-limit/file'
+import rolldownPlugin from '@size-limit/rolldown'
 import webpackPlugin from '@size-limit/webpack'
 import { join } from 'node:path'
 import { expect, it } from 'vitest'
@@ -21,6 +22,12 @@ it('works with file module only', async () => {
 
 it('works with esbuild module', async () => {
   let result = await sizeLimit([esbuildPlugin, filePlugin], [INTEGRATION])
+  expect(result).toEqual([{ size: expect.anything() }])
+  expect(result[0].size).toBeCloseTo(90, -2)
+})
+
+it('works with rolldown module', async () => {
+  let result = await sizeLimit([rolldownPlugin, filePlugin], [INTEGRATION])
   expect(result).toEqual([{ size: expect.anything() }])
   expect(result[0].size).toBeCloseTo(90, -2)
 })
