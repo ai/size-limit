@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/rolldown-why",
-  "version": "13.0.3",
+  "version": "13.1.0",
   "description": "Rolldown visualizer plugin for Size Limit",
   "keywords": [
     "budget",

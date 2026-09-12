@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/preset-app",
-  "version": "13.0.3",
+  "version": "13.1.0",
   "description": "Size Limit preset for applications",
   "keywords": [
     "budget",

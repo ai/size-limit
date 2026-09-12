@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 13.1.0
+
+- Added `rolldown` & `rolldown-why` plugins (by @dangreen).
+
 ## 13.0.3
 
 - Removed `picocolors` dependencies.
