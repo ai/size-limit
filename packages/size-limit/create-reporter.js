@@ -1,7 +1,7 @@
-import bytes from 'bytes-iec'
 import { join } from 'node:path'
 import readline from 'node:readline'
 
+import { formatBytes } from './bytes.js'
 import color from './colors.js'
 
 let bold = color('bold')
@@ -72,10 +72,6 @@ function createHumanReporter(process, isSilentMode = false) {
     let value = '  ' + lines.join('\n  ') + '\n'
     output += value
     process.stdout.write(value)
-  }
-
-  function formatBytes(size) {
-    return bytes.format(size, { unitSeparator: ' ' })
   }
 
   function formatTime(seconds) {

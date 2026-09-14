@@ -1,10 +1,10 @@
-import bytes from 'bytes-iec'
 import { lilconfig } from 'lilconfig'
 import { glob } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
+import { parseBytes } from './bytes.js'
 import { SizeLimitError } from './size-limit-error.js'
 
 let require = createRequire(import.meta.url)
@@ -225,7 +225,7 @@ export default async function getConfig(plugins, process, args, pkg) {
       } else if (endsWithS(check.limit)) {
         check.timeLimit = parseFloat(check.limit)
       } else {
-        check.sizeLimit = bytes.parse(check.limit)
+        check.sizeLimit = parseBytes(check.limit)
       }
       if (check.timeLimit && !plugins.has('time')) {
         throw new SizeLimitError('timeWithoutPlugin')
@@ -264,7 +264,7 @@ export default async function getConfig(plugins, process, args, pkg) {
         }
       }
       if (networkSpeed) {
-        check.time.networkSpeed = bytes.parse(networkSpeed)
+        check.time.networkSpeed = parseBytes(networkSpeed)
       }
     }
   }
