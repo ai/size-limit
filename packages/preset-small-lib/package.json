@@ -18,8 +18,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@size-limit/esbuild": "workspace:*",
     "@size-limit/file": "workspace:*",
+    "@size-limit/rolldown": "workspace:*",
     "size-limit": "workspace:*"
   },
   "peerDependencies": {

@@ -154,12 +154,12 @@ importers:
 
   packages/preset-small-lib:
     dependencies:
-      '@size-limit/esbuild':
-        specifier: workspace:*
-        version: link:../esbuild
       '@size-limit/file':
         specifier: workspace:*
         version: link:../file
+      '@size-limit/rolldown':
+        specifier: workspace:*
+        version: link:../rolldown
       size-limit:
         specifier: workspace:*
         version: link:../size-limit
