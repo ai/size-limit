@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid/non-secure'
+import { randomUUID } from 'node:crypto'
 import { readdir, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -81,7 +81,7 @@ export default [
       if (check.webpack === false) return
       check.webpackOutput = config.saveBundle
       if (!check.webpackOutput) {
-        check.webpackOutput = join(tmpdir(), `size-limit-${nanoid()}`)
+        check.webpackOutput = join(tmpdir(), `size-limit-${randomUUID()}`)
       }
       if (check.config) {
         let configModule = await import(check.config)

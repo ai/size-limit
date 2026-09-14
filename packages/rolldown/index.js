@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid/non-secure'
+import { randomUUID } from 'node:crypto'
 import { readdir, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join, parse, resolve } from 'node:path'
@@ -101,7 +101,7 @@ export default [
       if (check.rolldown === false) return
       check.rolldownOutput = config.saveBundle
       if (!check.rolldownOutput) {
-        check.rolldownOutput = join(tmpdir(), `size-limit-${nanoid()}`)
+        check.rolldownOutput = join(tmpdir(), `size-limit-${randomUUID()}`)
       }
       if (check.config) {
         let configModule = await import(check.config)

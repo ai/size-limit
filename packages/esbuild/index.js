@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid/non-secure'
+import { randomUUID } from 'node:crypto'
 import { readdir, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, parse, resolve } from 'node:path'
@@ -85,7 +85,7 @@ export default [
       if (check.esbuild === false) return
       check.esbuildOutfile = config.saveBundle
       if (!check.esbuildOutfile) {
-        check.esbuildOutfile = join(tmpdir(), `size-limit-${nanoid()}`)
+        check.esbuildOutfile = join(tmpdir(), `size-limit-${randomUUID()}`)
       }
       if (check.config) {
         check.esbuildConfig = (await import(check.config)).default

@@ -83,9 +83,6 @@ importers:
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
-      nanoid:
-        specifier: ^6.0.1
-        version: 6.0.1
     devDependencies:
       '@size-limit/file':
         specifier: workspace:*
@@ -169,9 +166,6 @@ importers:
 
   packages/rolldown:
     dependencies:
-      nanoid:
-        specifier: ^6.0.1
-        version: 6.0.1
       rolldown:
         specifier: ^1.2.8
         version: 1.2.8
@@ -251,9 +245,6 @@ importers:
 
   packages/webpack:
     dependencies:
-      nanoid:
-        specifier: ^6.0.1
-        version: 6.0.1
       webpack:
         specifier: ^5.110.3
         version: 5.110.3(cssnano@7.1.9(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(svgo@4.1.0)
