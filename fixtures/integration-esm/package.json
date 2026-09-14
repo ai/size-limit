@@ -11,7 +11,7 @@
     },
     {
       "name": "all",
-      "limit": "48 B"
+      "limit": "99 B"
     }
   ]
 }

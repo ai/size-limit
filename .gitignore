@@ -4,4 +4,5 @@ coverage/
 
 .cache
 dist/
+out/
 node-warnings.logs

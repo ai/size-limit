@@ -442,9 +442,9 @@ it('normalizes import', async () => {
       {
         files: [fixture('integration-esm', 'index.js')],
         highlightLess: true,
-        limit: '48 B',
+        limit: '99 B',
         name: 'all',
-        sizeLimit: 48
+        sizeLimit: 99
       }
     ],
     configPath: 'package.json',

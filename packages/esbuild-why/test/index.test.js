@@ -10,7 +10,7 @@ let [esbuild] = esbuildPkg
 vi.mock('open')
 let [esbuildWhy] = esbuildWhyPkg
 
-const DIST = join(process.cwd(), 'out')
+const DIST = join(__dirname, '..', 'out')
 
 function fixture(name) {
   return join(__dirname, 'fixtures', name)

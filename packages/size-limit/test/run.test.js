@@ -316,8 +316,8 @@ it('works in integration test with ESM', async () => {
     {
       name: 'all',
       passed: true,
-      size: 48,
-      sizeLimit: 48
+      size: 99,
+      sizeLimit: 99
     }
   ])
 })
@@ -404,9 +404,9 @@ it('returns zero for empty rolldown file and without compression', async () => {
 
 it('allows to use peer dependencies in import', async () => {
   await checkJson('combine', [
-    { name: 'all', size: 2061 },
+    { name: 'all', size: 1262 },
     { name: 'a', size: 1 },
-    { name: 'redux', size: 2061 }
+    { name: 'redux', size: 1261 }
   ])
 })
 

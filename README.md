@@ -474,7 +474,7 @@ Plugin presets:
 
 - `@size-limit/preset-app` contains `file` and `time` plugins.
 - `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
-- `@size-limit/preset-small-lib` contains `esbuild` and `file` plugins.
+- `@size-limit/preset-small-lib` contains `rolldown` and `file` plugins.
 
 #### Third-Party Plugins
 
@@ -612,7 +612,8 @@ You can run `size-limit --why` to analyze the bundle.
 
 You will need to install `@size-limit/esbuild-why`,
 `@size-limit/rolldown-why` or `@size-limit/webpack-why`
-depends on which bundler you are using (default is `esbuild`).
+depends on which bundler you are using (`preset-small-lib` uses `rolldown`,
+`preset-big-lib` uses `webpack`).
 
 For `@size-limit/esbuild-why`,
 it will generate a `esbuild-why.html` at the current directory & open it in the browser.

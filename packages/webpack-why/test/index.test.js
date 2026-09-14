@@ -10,7 +10,7 @@ let [webpack] = webpackPkg
 let [file] = filePkg
 let [webpackWhy] = webpackWhyPkg
 
-const DIST = join(process.cwd(), 'out')
+const DIST = join(__dirname, '..', 'out')
 
 function fixture(name) {
   return join(__dirname, 'fixtures', name)

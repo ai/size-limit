@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "bump": "./scripts/bump.js",
-    "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs out/ coverage/",
+    "clean": "rm -Rf packages/*/node_modules/ node_modules/ node-warnings.logs packages/*/out/ out/ coverage/",
     "test": "oxlint && vitest run --coverage && sh scripts/max-listeners-check.sh"
   },
   "devDependencies": {

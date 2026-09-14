@@ -1,7 +1,7 @@
 # Size Limit Preset for Small Libraries
 
 The preset for [Size Limit] for libraries < 10 kB. It uses
-esbuild and file plugins to track the size of all files and dependencies.
+rolldown and file plugins to track the size of all files and dependencies.
 
 See Size Limit docs for more details.
 
