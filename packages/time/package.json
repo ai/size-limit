@@ -28,7 +28,7 @@
     "size-limit": "workspace:*"
   },
   "engines": {
-    "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
+    "node": "^22.19.0 || ^24.5.0 || >=26.0.0"
   },
   "preferUnplugged": true
 }

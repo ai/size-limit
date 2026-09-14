@@ -32,7 +32,6 @@ vi.mock('nanospinner', () => {
 
 const TMP_DIR = /size-limit-[\w-]+\/?/g
 const ROOT = join(__dirname, '..', '..', '..')
-const NODE_VERSION = parseInt(process.version.slice(1))
 
 function fixture(...files) {
   return join(ROOT, 'fixtures', ...files)
@@ -403,52 +402,37 @@ it('returns zero for empty rolldown file and without compression', async () => {
   expect(await check('zero-rolldown-non-compression')).toMatchSnapshot()
 })
 
-it.skipIf(NODE_VERSION < 21)(
-  'allows to use peer dependencies in import',
-  async () => {
-    await checkJson('combine', [
-      { name: 'all', size: 2061 },
-      { name: 'a', size: 1 },
-      { name: 'redux', size: 2061 }
-    ])
-  }
-)
+it('allows to use peer dependencies in import', async () => {
+  await checkJson('combine', [
+    { name: 'all', size: 2061 },
+    { name: 'a', size: 1 },
+    { name: 'redux', size: 2061 }
+  ])
+})
 
 it('supports import and ignore for esbuild', async () => {
   expect(clean(await check('peer-esbuild-non-compression'))).toMatchSnapshot()
 })
 
-it.skipIf(NODE_VERSION < 21)(
-  'supports import and ignore for esbuild and brotli',
-  async () => {
-    expect(clean(await check('peer-esbuild'))).toMatchSnapshot()
-  }
-)
+it('supports import and ignore for esbuild and brotli', async () => {
+  expect(clean(await check('peer-esbuild'))).toMatchSnapshot()
+})
 
-it.skipIf(NODE_VERSION < 21)(
-  'supports import and ignore for esbuild and gzip',
-  async () => {
-    expect(clean(await check('peer-esbuild-gzip'))).toMatchSnapshot()
-  }
-)
+it('supports import and ignore for esbuild and gzip', async () => {
+  expect(clean(await check('peer-esbuild-gzip'))).toMatchSnapshot()
+})
 
 it('supports import and ignore for rolldown', async () => {
   expect(clean(await check('peer-rolldown-non-compression'))).toMatchSnapshot()
 })
 
-it.skipIf(NODE_VERSION < 21)(
-  'supports import and ignore for rolldown and brotli',
-  async () => {
-    expect(clean(await check('peer-rolldown'))).toMatchSnapshot()
-  }
-)
+it('supports import and ignore for rolldown and brotli', async () => {
+  expect(clean(await check('peer-rolldown'))).toMatchSnapshot()
+})
 
-it.skipIf(NODE_VERSION < 21)(
-  'supports import and ignore for rolldown and gzip',
-  async () => {
-    expect(clean(await check('peer-rolldown-gzip'))).toMatchSnapshot()
-  }
-)
+it('supports import and ignore for rolldown and gzip', async () => {
+  expect(clean(await check('peer-rolldown-gzip'))).toMatchSnapshot()
+})
 
 it('shows debug', async () => {
   expect(clean(await check('integration', ['--debug']))).toMatchSnapshot()
