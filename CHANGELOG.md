@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 14.0.0
+
+- Moved to `rolldown` by default in `@size-limit/preset-small-lib`.
+- Unified Node.js support accross projects.
+- Removed dependencies.
+
 ## 13.1.1
 
 - Fixed release.
