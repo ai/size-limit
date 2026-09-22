@@ -507,12 +507,12 @@ Size Limits supports three ways to define limits config.
 
 2. or a separate `.size-limit.json` config file:
 
-   ```js
-   ;[
+   ```json
+   [
      {
-       path: 'index.js',
-       import: '{ createStore }',
-       limit: '500 ms'
+       "path": "index.js",
+       "import": "{ createStore }",
+       "limit": "500 ms"
      }
    ]
    ```
@@ -532,7 +532,7 @@ Size Limits supports three ways to define limits config.
 4. or types `.size-limit.ts`:
 
    ```ts
-   import type { SizeLimitConfig } from '../../packages/size-limit'
+   import type { SizeLimitConfig } from 'size-limit'
 
    module.exports = [
      {
