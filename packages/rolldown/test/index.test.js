@@ -1,6 +1,6 @@
 import filePkg from '@size-limit/file'
 import { existsSync } from 'node:fs'
-import { mkdir, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { SizeLimitError } from 'size-limit'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -335,6 +335,14 @@ it('throws on rolldown error', async () => {
     err = e
   }
   expect(err.message).toContain('unknown.js')
+})
+
+it('drops annotation comments but keeps legal comments', async () => {
+  let check = { files: [fixture('esm/annotations.js')], saveBundle: DIST }
+  await run({ checks: [check], saveBundle: DIST })
+  let code = await readFile(check.bundles[0], 'utf8')
+  expect(code).not.toContain('__PURE__')
+  expect(code).toContain('@license MIT')
 })
 
 it('can use `modifyRolldownConfig` for resolution of aliases', async () => {

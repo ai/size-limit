@@ -23,6 +23,7 @@ export async function getConfig(_limitConfig, check, output) {
       }
     },
     output: {
+      comments: { annotation: false },
       dir: output,
       minify: true
     },

@@ -19,14 +19,14 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "open": "^11.0.3",
+    "open": "^11.0.4",
     "rollup-plugin-visualizer": "^7.1.1"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:*",
     "@size-limit/rolldown": "workspace:*",
     "redux": "^4.2.1",
-    "rolldown": "^1.2.8",
+    "rolldown": "^1.2.10",
     "size-limit": "workspace:*"
   },
   "peerDependencies": {
