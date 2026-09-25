@@ -1,6 +1,6 @@
 {
   "name": "@size-limit/rolldown",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "description": "Rolldown plugin for Size Limit",
   "keywords": [
     "budget",

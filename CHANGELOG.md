@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 14.0.1
+
+- Fixed increased size in `rolldown` plugin.
+- Fixed docs (by @Likio3000).
+
 ## 14.0.0
 
 - Moved to `rolldown` by default in `@size-limit/preset-small-lib`.
