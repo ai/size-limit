@@ -597,6 +597,11 @@ npm install --save-dev @size-limit/file
 npx size-limit --limit "10 kB" dist/bundle.js
 ```
 
+If some configured paths are absent because a workspace builds only changed
+projects, pass `--ignore-missing`. Checks with no matching files are skipped;
+checks with matching files still run. Without this flag, missing paths fail as
+before.
+
 Additionally, you can specify a custom path to your configuration file when running the CLI:
 
 ```sh
