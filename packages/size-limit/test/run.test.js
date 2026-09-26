@@ -334,6 +334,35 @@ it('shows error when file not found for simple case', async () => {
   expect(history.stdout).toMatchSnapshot()
 })
 
+it('skips only missing checks with --ignore-missing', async () => {
+  let [process, history] = createProcess('ignore-missing', [
+    '--ignore-missing',
+    '--json'
+  ])
+  await run(process)
+  expect(history.exitCode).toBe(0)
+  expect(JSON.parse(history.stdout)).toEqual([
+    expect.objectContaining({ name: 'present', passed: true })
+  ])
+})
+
+it('keeps the missing-file failure without --ignore-missing', async () => {
+  let [process, history] = createProcess('ignore-missing', ['--json'])
+  await run(process)
+  expect(history.exitCode).toBe(1)
+  expect(JSON.parse(history.stdout)).toHaveLength(2)
+})
+
+it('succeeds with no checks when all paths are missing and ignored', async () => {
+  let [process, history] = createProcess('file-not-found', [
+    '--ignore-missing',
+    '--json'
+  ])
+  await run(process)
+  expect(history.exitCode).toBe(0)
+  expect(JSON.parse(history.stdout)).toEqual([])
+})
+
 it('shows error when file not found for webpack', async () => {
   let [process, history] = createProcess('webpack-no-files')
   await run(process)
