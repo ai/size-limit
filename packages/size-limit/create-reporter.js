@@ -210,6 +210,22 @@ function createHumanReporter(process, isSilentMode = false) {
         print(yellow(fix))
       }
 
+      if (
+        config.saveBundle &&
+        config.checks.length > 1 &&
+        (plugins.has('webpack') ||
+          plugins.has('esbuild') ||
+          plugins.has('rolldown'))
+      ) {
+        print(
+          yellow(
+            'Multiple checks write bundles to the same directory. ' +
+              'Checks may overwrite one another’s output; run each check ' +
+              'separately to inspect its bundle.'
+          )
+        )
+      }
+
       if (plugins.has('webpack') && config.saveBundle) {
         let statsFilepath = join(config.saveBundle, 'stats.json')
         print(`Webpack Stats file was saved to ${statsFilepath}`)
