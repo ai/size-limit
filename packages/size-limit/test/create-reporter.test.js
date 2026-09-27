@@ -366,6 +366,23 @@ it('renders result for file with gzip', () => {
   ).toMatchSnapshot()
 })
 
+it('warns when multiple bundled checks share a saved output directory', () => {
+  for (let bundler of ['webpack', 'esbuild', 'rolldown']) {
+    let output = results([bundler], {
+      checks: [{ name: 'first' }, { name: 'second' }],
+      saveBundle: 'test'
+    })
+    expect(output).toContain('Checks may overwrite one another’s output')
+  }
+})
+
+it('does not warn for one check or JSON output', () => {
+  let config = { checks: [{ name: 'only' }], saveBundle: 'test' }
+  expect(results(['webpack'], config)).not.toContain('overwrite')
+  config.checks.push({ name: 'second' })
+  expect(results(['webpack'], config, true)).not.toContain('overwrite')
+})
+
 it('renders Webpack stats help message', () => {
   expect(
     results(['webpack'], {
