@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 14.1.0
+
+- Added `--ignore-missing` argument (by @DeepanshuPal).
+- Added the warning about check conflict in `--save-bundle` (by @DeepanshuPal).
+
 ## 14.0.1
 
 - Fixed increased size in `rolldown` plugin.
