@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@size-limit/file": ">= 0.0.0",
+    "size-limit": ">= 0.0.0"
+  },
+  "size-limit": [
+    { "name": "present", "path": "present.js", "limit": "10 kB" },
+    { "name": "absent", "path": "absent.js", "limit": "10 kB" }
+  ]
+}

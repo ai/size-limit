@@ -548,3 +548,11 @@ it.each(configFiles)(
     })
   }
 )
+
+it('ignores missing configured paths only when requested', async () => {
+  let config = await check('file-not-found', ['--ignore-missing'])
+  expect(config.checks).toEqual([])
+  expect(await check('glob', ['--ignore-missing'])).toEqual(
+    await check('glob')
+  )
+})

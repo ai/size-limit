@@ -211,6 +211,11 @@ export default async function getConfig(plugins, process, args, pkg) {
         return processed
       })
     )
+    if (args.ignoreMissing) {
+      config.checks = config.checks.filter(
+        check => !check.path || check.files.length > 0
+      )
+    }
   }
 
   let peer = Object.keys(pkg.packageJson.peerDependencies || {})

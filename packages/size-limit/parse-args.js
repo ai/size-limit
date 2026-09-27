@@ -37,6 +37,8 @@ export default function parseArgs(plugins, argv) {
         )
       }
       args.cleanDir = true
+    } else if (arg === '--ignore-missing') {
+      args.ignoreMissing = true
     } else if (arg === '--hide-passed') {
       args.hidePassed = true
     } else if (arg === '--why') {
