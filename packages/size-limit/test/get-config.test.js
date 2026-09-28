@@ -111,6 +111,21 @@ it('uses index.js by default', async () => {
   })
 })
 
+it('uses the root entry of exports without main field', async () => {
+  expect(await check('exports')).toEqual({
+    checks: [
+      {
+        files: [fixture('exports', 'lib', 'index.js')],
+        limit: '1 kB',
+        name: 'index',
+        sizeLimit: 1000
+      }
+    ],
+    configPath: 'package.json',
+    cwd: fixture('exports')
+  })
+})
+
 it('overrides limit by CLI arg', async () => {
   expect(await check('simple', ['--limit', '10 kB'])).toEqual({
     checks: [

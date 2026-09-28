@@ -99,6 +99,20 @@ function toAbsolute(file, cwd) {
   return isAbsolute(file) ? file : join(cwd, file)
 }
 
+// The package root file from `exports`: the field itself when it is a string,
+// otherwise its `.` entry, with conditions resolved in `import`, `default`,
+// `require` order
+function exportsEntry(exports) {
+  if (typeof exports === 'string') return exports
+  if (typeof exports !== 'object' || exports === null) return undefined
+  if ('.' in exports) return exportsEntry(exports['.'])
+  for (let condition of ['import', 'default', 'require']) {
+    let entry = exportsEntry(exports[condition])
+    if (entry) return entry
+  }
+  return undefined
+}
+
 async function findFiles(patterns, cwd) {
   // Node.js `glob` matches a bare directory as a single entry, while
   // `tinyglobby` expanded it to the files inside. Add a `/**` sibling for
@@ -205,7 +219,8 @@ export default async function getConfig(plugins, process, args, pkg) {
               require.resolve(join(dirname(pkg.path), pkg.packageJson.main))
             ]
           } else {
-            processed.files = [join(dirname(pkg.path), 'index.js')]
+            let entry = exportsEntry(pkg.packageJson.exports) || 'index.js'
+            processed.files = [join(dirname(pkg.path), entry)]
           }
         }
         return processed
