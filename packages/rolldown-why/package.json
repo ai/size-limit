@@ -29,7 +29,7 @@
     "@size-limit/file": "workspace:*",
     "@size-limit/rolldown": "workspace:*",
     "redux": "^4.2.1",
-    "rolldown": "^1.2.11",
+    "rolldown": "^1.2.12",
     "size-limit": "workspace:*"
   },
   "peerDependencies": {

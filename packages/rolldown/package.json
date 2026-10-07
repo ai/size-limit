@@ -22,7 +22,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "rolldown": "^1.2.11"
+    "rolldown": "^1.2.12"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:*",
