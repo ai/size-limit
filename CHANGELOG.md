@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 14.2.0
+
+- Use `exports` for the default path on no `main` (by @wahidrizka).
+- Do not lower the process listener limit for small checks (by @DeepanshuPal).
+- Added types for plugins (by @JounQin).
+
 ## 14.1.0
 
 - Added `--ignore-missing` argument (by @DeepanshuPal).
