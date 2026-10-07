@@ -14,6 +14,7 @@
   "author": "Andrey Sitnik <andrey@sitnik.es>",
   "repository": "ai/size-limit",
   "type": "module",
+  "types": "index.d.ts",
   "exports": {
     ".": "./index.js",
     "./package.json": "./package.json"

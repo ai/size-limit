@@ -139,7 +139,7 @@ export interface TimeOptions {
    * Format: `500 ms`, `1 s`.
    * @default: "0"
    */
-  latency: string
+  latency?: string
 
   /**
    * A message for loading time details
@@ -151,19 +151,283 @@ export interface TimeOptions {
 export type SizeLimitConfig = Check[]
 
 /**
- * Any function with any arguments.
+ * A hook called by Size Limit. It is called once per check which has not
+ * disabled the plugin with the `disablePlugins` option.
  */
-type AnyFunction = (...args: unknown[]) => unknown
+export type PluginHook = (
+  config: PluginConfig,
+  check: PluginCheck
+) => Promise<void> | void
+
+/**
+ * Numbers of the steps that Size Limit runs, from `0` to `100` inclusive:
+ * `calc()` calls `step0`, `step1`, … `step100` in order, and `wait0` … `wait100`
+ * name the spinner of the matching step.
+ */
+export type PluginStep =
+  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+  | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+  | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+  | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+  | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+  | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+  | 60 | 61 | 62 | 63 | 64 | 65 | 66 | 67 | 68 | 69
+  | 70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79
+  | 80 | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88 | 89
+  | 90 | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99
+  | 100
+
+type PluginSteps = { [step in `step${PluginStep}`]?: PluginHook }
+type PluginWaits = { [wait in `wait${PluginStep}`]?: string }
+
+/**
+ * Size Limit plugin.
+ *
+ * A plugin package must export an array of plugins as its default export and
+ * have a name starting with `@size-limit/` or `size-limit-` to be loaded.
+ *
+ * ```ts
+ * import type { Plugin } from 'size-limit'
+ *
+ * export default [
+ *   {
+ *     name: 'size-limit-example',
+ *     async step20(config, check) {
+ *       // Measure the check and set `check.size`
+ *     },
+ *     wait20: 'Measuring'
+ *   }
+ * ] satisfies Plugin[]
+ * ```
+ */
+export interface Plugin extends PluginSteps, PluginWaits {
+  /**
+   * NPM package name of the plugin, for example `@size-limit/file`.
+   * It is also the name to use in the `disablePlugins` option.
+   */
+  name: string
+
+  /**
+   * Called before the first step.
+   */
+  before?: PluginHook
+
+  /**
+   * Called after the last step, even when a step has thrown.
+   */
+  finally?: PluginHook
+}
+
+/**
+ * Configuration of the current run, passed to the plugin hooks.
+ */
+export interface PluginConfig {
+  /**
+   * Directory the checks are resolved from. It is set only when the config
+   * comes from a config file.
+   */
+  cwd?: string
+
+  /**
+   * Checks to run.
+   */
+  checks: PluginCheck[]
+
+  /**
+   * Path to the config file relative to `cwd`. It is set only when the config
+   * comes from a config file.
+   */
+  configPath?: string
+
+  /**
+   * Absolute path to the directory from the `--save-bundle` argument.
+   */
+  saveBundle?: string
+
+  /**
+   * With `true` the `saveBundle` directory will be cleaned before the build,
+   * set by the `--clean-dir` argument.
+   */
+  cleanDir?: boolean
+
+  /**
+   * Absolute path to `stats.json` from another build to compare,
+   * set by the `--compare-with` argument.
+   */
+  compareWith?: string
+
+  /**
+   * Package name, set by the `--why` argument.
+   */
+  project?: string
+
+  /**
+   * With `true` it will open the bundle analyzer, set by the `--why` argument.
+   */
+  why?: boolean
+
+  /**
+   * With `true` at least one check has failed. It is set after the last step.
+   */
+  failed?: boolean
+
+  /**
+   * With `true` at least one check has missed all of its files. It is set after
+   * the last step.
+   */
+  missed?: boolean
+}
+
+/**
+ * The check passed to the plugin hooks: the check from the config after Size
+ * Limit has resolved it, together with the fields added by the plugins which
+ * have already run.
+ */
+export interface PluginCheck
+  extends Omit<Check, 'entry' | 'import' | 'path' | 'time'> {
+  /**
+   * Path of the check before it was resolved into `files`. It is not set when
+   * the check is defined by `entry`.
+   */
+  path?: string | string[]
+
+  /**
+   * Absolute paths of the files to measure, after globbing. It is not set when
+   * the check is defined by `entry` and a bundler plugin provides `bundles`.
+   */
+  files?: string[]
+
+  /**
+   * Entry points, normalized into an array.
+   */
+  entry?: string[]
+
+  /**
+   * Partial imports to test tree-shaking, keyed by the absolute path of a file.
+   */
+  import?: Record<string, string>
+
+  /**
+   * Options of `@size-limit/time` after normalization: `latency` in seconds and
+   * `networkSpeed` in bytes.
+   */
+  time?: Omit<TimeOptions, 'latency' | 'networkSpeed'> & {
+    latency?: number
+    networkSpeed?: number
+  }
+
+  /**
+   * Size limit in bytes, parsed from the `limit` option.
+   */
+  sizeLimit?: number
+
+  /**
+   * Time limit in seconds, parsed from the `limit` option.
+   */
+  timeLimit?: number
+
+  /**
+   * With `false` the check has failed. It is set after the last step.
+   */
+  passed?: boolean
+
+  /**
+   * With `true` the check has missed all of its files. It is set after the last
+   * step.
+   */
+  missed?: boolean
+
+  /**
+   * With `false` it will disable esbuild.
+   */
+  esbuild?: boolean
+
+  /**
+   * Total size of `bundles` or `files` in bytes, set by `@size-limit/file`.
+   */
+  size?: number
+
+  /**
+   * Built files to measure instead of `files`, set by a bundler plugin.
+   */
+  bundles?: string[]
+
+  /**
+   * esbuild build options, set by `@size-limit/esbuild`.
+   * Use `esbuild` types for its exact shape.
+   */
+  esbuildConfig?: Record<string, unknown>
+
+  /**
+   * esbuild build metadata, set by `@size-limit/esbuild`.
+   * Use `esbuild` types for its exact shape.
+   */
+  esbuildMetafile?: Record<string, unknown>
+
+  /**
+   * Directory with the esbuild output, set by `@size-limit/esbuild`.
+   */
+  esbuildOutfile?: string
+
+  /**
+   * Path to the esbuild bundle analyzer report,
+   * set by `@size-limit/esbuild-why`.
+   */
+  esbuildVisualizerFile?: string
+
+  /**
+   * webpack configuration, set by `@size-limit/webpack`.
+   * Use `webpack` types for its exact shape.
+   */
+  webpackConfig?: Record<string, unknown>
+
+  /**
+   * Directory with the webpack output, set by `@size-limit/webpack`.
+   */
+  webpackOutput?: string
+
+  /**
+   * rolldown configuration, set by `@size-limit/rolldown`.
+   * Use `rolldown` types for its exact shape.
+   */
+  rolldownConfig?: Record<string, unknown>
+
+  /**
+   * Directory with the rolldown output, set by `@size-limit/rolldown`.
+   */
+  rolldownOutput?: string
+
+  /**
+   * Path to the rolldown bundle analyzer report,
+   * set by `@size-limit/rolldown-why`.
+   */
+  rolldownVisualizerFile?: string
+
+  /**
+   * Time to load the files, in seconds, set by `@size-limit/time`.
+   */
+  loadTime?: number
+
+  /**
+   * Time to execute the files, in seconds, set by `@size-limit/time`.
+   */
+  runTime?: number
+
+  /**
+   * Total time of the check, in seconds, set by `@size-limit/time`.
+   */
+  totalTime?: number
+}
 
 /**
  * Run Size Limit and return the result.
  *
- * @param plugins   The list of plugins like `@size-limit/time`
- * @param  files Path to files or internal config
+ * @param plugins The list of plugins like `@size-limit/time`
+ * @param files Path to files or internal config
  * @return Project size
  */
 declare function sizeLimitAPI(
-  plugins: AnyFunction[],
+  plugins: readonly (Plugin | readonly Plugin[])[],
   files: string[] | object
 ): Promise<object>
 
