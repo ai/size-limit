@@ -15,7 +15,10 @@
   "repository": "ai/size-limit",
   "type": "module",
   "exports": {
-    ".": "./index.js",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
     "./package.json": "./package.json"
   },
   "dependencies": {
