@@ -574,7 +574,7 @@ Each section in the config can have these options:
 - **modifyWebpackConfig**: (.size-limit.js only) function that can be used
   to do last-minute changes to the webpack config, like adding a plugin.
 - **modifyEsbuildConfig**: (.size-limit.js only) function that can be used
-  to do last-minute changes to the webpack config, like adding a plugin.
+  to do last-minute changes to the esbuild config, like adding a plugin.
 - **modifyRolldownConfig**: (.size-limit.js only) function that can be used
   to do last-minute changes to the rolldown config, like adding a plugin.
 - **compareWith**: path to `stats.json` from another build to compare
