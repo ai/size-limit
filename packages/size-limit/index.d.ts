@@ -62,19 +62,26 @@ export interface Check {
    */
   limit?: string
 
-  modifyEsbuildConfig?: <T extends object>(config?: T) => T
+  /**
+   * (`.size-limit.js` only) Function that can be used to do last-minute
+   * changes to the esbuild config, like adding a plugin. Annotate the
+   * parameter with `BuildOptions` to read properties.
+   */
+  modifyEsbuildConfig?: (config: object) => object
 
   /**
    * (`.size-limit.js` only) Function that can be used to do last-minute
-   * changes to the rolldown config, like adding a plugin.
+   * changes to the rolldown config, like adding a plugin. Annotate the
+   * parameter with `RolldownOptions` to read properties.
    */
-  modifyRolldownConfig?: <T extends object>(config?: T) => T
+  modifyRolldownConfig?: (config: object) => object
 
   /**
    * (`.size-limit.js` only) Function that can be used to do last-minute
-   * changes to the webpack config, like adding a plugin.
+   * changes to the webpack config, like adding a plugin. Annotate the
+   * parameter with `Configuration` to read properties.
    */
-  modifyWebpackConfig?: <T extends object>(config?: T) => T
+  modifyWebpackConfig?: (config: object) => object
 
   module?: boolean
 
