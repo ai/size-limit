@@ -316,6 +316,20 @@ it('works with .ts config file and `export default` without "type": "module"', a
   })
 })
 
+it('works with .jsonc config file', async () => {
+  expect(await check('jsonc-config-file')).toEqual({
+    checks: [
+      {
+        files: [fixture('jsonc-config-file', 'index.js')],
+        name: 'index.js // "main"',
+        path: 'index.js'
+      }
+    ],
+    configPath: '.size-limit.jsonc',
+    cwd: fixture('jsonc-config-file')
+  })
+})
+
 it('works with .ts config file', async () => {
   expect(await check('ts-config-file')).toEqual({
     checks: [
@@ -553,7 +567,9 @@ it.each(configFiles)(
     expect(await check(`${extension}-config-file-${moduleType}`)).toEqual({
       checks: [
         {
-          files: [fixture(`${extension}-config-file-${moduleType}`, 'index.js')],
+          files: [
+            fixture(`${extension}-config-file-${moduleType}`, 'index.js')
+          ],
           name: 'index.js',
           path: 'index.js'
         }
@@ -567,7 +583,5 @@ it.each(configFiles)(
 it('ignores missing configured paths only when requested', async () => {
   let config = await check('file-not-found', ['--ignore-missing'])
   expect(config.checks).toEqual([])
-  expect(await check('glob', ['--ignore-missing'])).toEqual(
-    await check('glob')
-  )
+  expect(await check('glob', ['--ignore-missing'])).toEqual(await check('glob'))
 })

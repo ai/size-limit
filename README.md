@@ -505,10 +505,11 @@ Size Limits supports three ways to define limits config.
      ]
    ```
 
-2. or a separate `.size-limit.json` config file:
+2. or a separate `.size-limit.jsonc`:
 
-   ```json
+   ```jsonc
    [
+     // Main entry point
      {
        "path": "index.js",
        "import": "{ createStore }",

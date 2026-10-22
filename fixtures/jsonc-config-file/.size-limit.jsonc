@@ -1,0 +1,7 @@
+[
+  // Main entry point
+  {
+    "name": "index.js // \"main\"",
+    "path": "index.js" /* block comment */
+  }
+]

@@ -136,7 +136,12 @@ async function globFiles(patterns, cwd) {
     cwd
   )
   if (ignore.length === 0) return files
-  let ignored = new Set(await findFiles(ignore.map(i => i.slice(1)), cwd))
+  let ignored = new Set(
+    await findFiles(
+      ignore.map(i => i.slice(1)),
+      cwd
+    )
+  )
   return files.filter(i => !ignored.has(i))
 }
 
@@ -146,6 +151,36 @@ function toName(files, cwd) {
 
 async function dynamicImport(filePath) {
   return (await import(pathToFileURL(filePath).href)).default
+}
+
+function stripJsonComments(source) {
+  let result = ''
+  let i = 0
+  while (i < source.length) {
+    let char = source[i]
+    if (char === '"') {
+      let end = i + 1
+      while (end < source.length && source[end] !== '"') {
+        if (source[end] === '\\') end += 1
+        end += 1
+      }
+      result += source.slice(i, end + 1)
+      i = end + 1
+    } else if (char === '/' && source[i + 1] === '/') {
+      while (i < source.length && source[i] !== '\n') i += 1
+    } else if (char === '/' && source[i + 1] === '*') {
+      let end = source.indexOf('*/', i + 2)
+      i = end === -1 ? source.length : end + 2
+    } else {
+      result += char
+      i += 1
+    }
+  }
+  return result
+}
+
+function jsoncLoader(filePath, content) {
+  return JSON.parse(stripJsonComments(content))
 }
 
 export default async function getConfig(plugins, process, args, pkg) {
@@ -182,6 +217,7 @@ export default async function getConfig(plugins, process, args, pkg) {
         '.cjs': dynamicImport,
         '.cts': dynamicImport,
         '.js': dynamicImport,
+        '.jsonc': jsoncLoader,
         '.mjs': dynamicImport,
         '.mts': dynamicImport,
         '.ts': dynamicImport
@@ -189,6 +225,7 @@ export default async function getConfig(plugins, process, args, pkg) {
       searchPlaces: [
         'package.json',
         '.size-limit.json',
+        '.size-limit.jsonc',
         '.size-limit',
         '.size-limit.js',
         '.size-limit.mjs',
