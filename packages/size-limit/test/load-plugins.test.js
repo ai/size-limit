@@ -21,9 +21,9 @@ describe(`load-plugins`, () => {
     let result = await loadPlugins(await readPkgUp(cwd))
     expect(result.isEmpty).toBe(false)
     expect(result.list.length).toBe(1)
-    expect(result.has('esbuild')).toBe(false)
+    expect(result.has('esbuild')).toBe(true)
     expect(result.has('file')).toBe(false)
-    expect(result.has('node-esbuild')).toBe(true)
+    expect(result.has('node-esbuild')).toBe(false)
   })
 
   it('plugins should be empty if no package.json was found', async () => {

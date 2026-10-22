@@ -22,7 +22,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "webpack": "^5.111.1"
+    "webpack": "^5.112.0"
   },
   "devDependencies": {
     "@size-limit/file": "workspace:*",

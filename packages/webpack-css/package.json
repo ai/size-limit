@@ -30,7 +30,7 @@
     "@size-limit/file": "workspace:*",
     "@size-limit/webpack": "workspace:*",
     "size-limit": "workspace:*",
-    "webpack": "^5.111.1"
+    "webpack": "^5.112.0"
   },
   "peerDependencies": {
     "size-limit": "workspace:*"
