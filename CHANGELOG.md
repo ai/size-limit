@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 14.3.0
+
+- Added `.jsonc` config support with comments.
+
 ## 14.2.0
 
 - Use `exports` for the default path on no `main` (by @wahidrizka).
