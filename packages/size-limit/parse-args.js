@@ -6,7 +6,11 @@ export default function parseArgs(plugins, argv) {
     let arg = argv[i]
 
     if (arg === '--limit') {
-      args.limit = argv[++i]
+      let nextArg = argv[++i]
+      if (!nextArg || nextArg.startsWith('--')) {
+        throw new SizeLimitError('argWithoutParameter', 'limit', 'LIMIT')
+      }
+      args.limit = nextArg
     } else if (arg === '--debug') {
       args.debug = true
     } else if (arg === '--save-bundle') {

@@ -201,6 +201,12 @@ it("throws on --compare-with argument without value", async () => {
   expect(await error("webpack", ["--why", "--compare-with"])).toMatchSnapshot();
 });
 
+it("throws on --limit argument without LIMIT parameter", async () => {
+  for (let args of [["--limit"], ["--limit", "--hide-passed"], ["--limit", ""]]) {
+    expect(await error("simple", args)).toContain("Missing parameter");
+  }
+});
+
 it("throws on --config argument without FILE parameter", async () => {
   expect(await error("file", ["--config"])).toMatchSnapshot();
   expect(await error("file", ["--config", "--why"])).toMatchSnapshot();
