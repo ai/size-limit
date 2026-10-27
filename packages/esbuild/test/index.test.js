@@ -336,3 +336,22 @@ it('supports wildcard imports', async () => {
     })
   ).toBeCloseTo(167, -1)
 })
+
+it.each([false, true])(
+  'supports multiple wildcard imports (named: %s)',
+  async named => {
+    let imports = {
+      [fixture('esm/module.js')]: '*',
+      [fixture('esm/module2.js')]: '*'
+    }
+    if (named) imports[fixture('cjs/big.js')] = 'all'
+    let config = {
+      checks: [{ import: imports }]
+    }
+    await run(config)
+    let inputs = Object.keys(config.checks[0].esbuildMetafile.inputs)
+    expect(inputs.some(i => i.endsWith('module.js'))).toBe(true)
+    expect(inputs.some(i => i.endsWith('module2.js'))).toBe(true)
+    expect(config.checks[0].size).toBeGreaterThan(167)
+  }
+)

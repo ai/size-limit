@@ -7,13 +7,17 @@ export async function processImport(check, output) {
   }
 
   let loader = ''
+  let namespace = 'all'
+  let importNames = Object.values(check.import).join(' ')
   for (let i in check.import) {
     let imports = `${check.import[i]}`
     let list = check.import[i].replace(/}|{/g, '').trim()
 
     if (check.import[i] === '*') {
-      imports = `${check.import[i]} as all`
-      list = `all`
+      while (importNames.includes(namespace)) namespace += '_'
+      imports = `* as ${namespace}`
+      list = namespace
+      namespace += '_'
     }
 
     loader += `import ${imports} from ${JSON.stringify(i)}\nconsole.log(${list})\n`
