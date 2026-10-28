@@ -68,3 +68,16 @@ it('calculates file size without compression', async () => {
   await file.step60(config, config.checks[0])
   expect(config.checks[0].size).toBe(144)
 })
+
+it.each([{}, { gzip: true }, { brotli: false }])(
+  'rejects missing files with options %j',
+  async options => {
+    let path = fixture('missing.txt')
+    await expect(
+      file.step60({}, { files: [path], ...options })
+    ).rejects.toMatchObject({
+      code: 'ENOENT',
+      path
+    })
+  }
+)
