@@ -1,43 +1,32 @@
 import { createReadStream } from 'node:fs'
 import { stat } from 'node:fs/promises'
+import { pipeline } from 'node:stream/promises'
 import { constants, createBrotliCompress, createGzip } from 'node:zlib'
 
 async function sum(array, fn) {
   return (await Promise.all(array.map(fn))).reduce((all, i) => all + i, 0)
 }
 
-function brotliSize(path) {
-  return new Promise((resolve, reject) => {
-    let size = 0
-    let pipe = createReadStream(path).pipe(
-      createBrotliCompress({
-        params: {
-          [constants.BROTLI_PARAM_QUALITY]: 11
-        }
-      })
-    )
-    pipe.on('error', reject)
-    pipe.on('data', buf => {
-      size += buf.length
-    })
-    pipe.on('end', () => {
-      resolve(size)
-    })
+async function brotliSize(path) {
+  let size = 0
+  let pipe = createBrotliCompress({
+    params: {
+      [constants.BROTLI_PARAM_QUALITY]: 11
+    }
   })
+  await pipeline(createReadStream(path), pipe, async source => {
+    for await (let buf of source) size += buf.length
+  })
+  return size
 }
 
-function gzipSize(path) {
-  return new Promise((resolve, reject) => {
-    let size = 0
-    let pipe = createReadStream(path).pipe(createGzip({ level: 9 }))
-    pipe.on('error', reject)
-    pipe.on('data', buf => {
-      size += buf.length
-    })
-    pipe.on('end', () => {
-      resolve(size)
-    })
+async function gzipSize(path) {
+  let size = 0
+  let pipe = createGzip({ level: 9 })
+  await pipeline(createReadStream(path), pipe, async source => {
+    for await (let buf of source) size += buf.length
   })
+  return size
 }
 
 export default [
