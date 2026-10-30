@@ -170,7 +170,7 @@ it('normalizes bundle and webpack arguments', async () => {
   })
 })
 
-it('normalizes bundle and webpack arguments with --why and compare-with', async () => {
+it.each([false, true])('normalizes comparison arguments with --why last: %s', async whyLast => {
   let args = [
     '--why',
     '--save-bundle',
@@ -181,6 +181,7 @@ it('normalizes bundle and webpack arguments with --why and compare-with', async 
     '--hide-passed',
     '--highlight-less'
   ]
+  if (whyLast) args.push(args.shift())
   expect(await check('webpack', args)).toEqual({
     checks: [
       {
