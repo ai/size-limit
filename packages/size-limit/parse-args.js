@@ -70,7 +70,7 @@ export default function parseArgs(plugins, argv) {
           'webpack-why'
         )
       }
-      if (!args.why) {
+      if (!argv.includes('--why')) {
         throw new SizeLimitError('argWithoutAnotherArg', 'compare-with', 'why')
       }
       let nextArg = argv[++i]
