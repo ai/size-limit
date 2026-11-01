@@ -20,6 +20,13 @@ it('works with file module only', async () => {
   expect(result).toEqual([{ size: 21 }])
 })
 
+it('measures prebuilt bundles without source files', async () => {
+  let result = await sizeLimit([filePlugin], {
+    checks: [{ bundles: [INTEGRATION] }]
+  })
+  expect(result).toEqual([{ size: 21 }])
+})
+
 it('works with esbuild module', async () => {
   let result = await sizeLimit([esbuildPlugin, filePlugin], [INTEGRATION])
   expect(result).toEqual([{ size: expect.anything() }])

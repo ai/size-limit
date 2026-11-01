@@ -4,7 +4,7 @@ function isPluginDisabled(plugin, check) {
 }
 
 export default async function calc(plugins, config, createSpinner) {
-  let listeners = config.checks.reduce((a, i) => a + i.files.length, 1)
+  let listeners = config.checks.reduce((a, i) => a + (i.files?.length ?? 0), 1)
   if (listeners > process.getMaxListeners()) process.setMaxListeners(listeners)
 
   async function step(number) {
