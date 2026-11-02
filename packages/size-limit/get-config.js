@@ -1,5 +1,5 @@
 import { lilconfig } from 'lilconfig'
-import { glob } from 'node:fs/promises'
+import { glob, stat } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -121,11 +121,19 @@ async function findFiles(patterns, cwd) {
   let found = await Array.fromAsync(
     glob(expanded, { cwd, withFileTypes: true })
   )
-  let files = new Set(
-    found
-      .filter(i => i.isFile())
-      .map(i => relative(cwd, join(i.parentPath, i.name)))
-  )
+  let files = new Set()
+  for (let entry of found) {
+    let file = join(entry.parentPath, entry.name)
+    if (entry.isSymbolicLink()) {
+      try {
+        entry = await stat(file)
+      } catch (error) {
+        if (['ENOENT', 'ENOTDIR', 'ELOOP'].includes(error.code)) continue
+        throw error
+      }
+    }
+    if (entry.isFile()) files.add(relative(cwd, file))
+  }
   return [...files]
 }
 

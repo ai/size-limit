@@ -1,4 +1,5 @@
-import { dirname, join } from 'node:path'
+import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises'
+import { basename, dirname, join } from 'node:path'
 import { beforeEach, expect, it, vi } from 'vitest'
 
 import calc from '../calc'
@@ -94,6 +95,34 @@ it('ignores a whole directory by its name', async () => {
     configPath: 'package.json',
     cwd: fixture('glob-dir')
   })
+})
+
+it('includes file symlinks in configured paths and applies exclusions', async () => {
+  let cwd = await mkdtemp(fixture('symlinks-'))
+  try {
+    await writeFile(join(cwd, 'real.js'), 'export default 42\n')
+    await mkdir(join(cwd, 'empty'))
+    await symlink('real.js', join(cwd, 'linked.js'), 'file')
+    await symlink('missing.js', join(cwd, 'broken.js'), 'file')
+    await symlink(join(cwd, 'empty'), join(cwd, 'directory.js'), 'junction')
+    await writeFile(join(cwd, 'package.json'), JSON.stringify({
+      devDependencies: { '@size-limit/file': '>= 0.0.0' },
+      'size-limit': [
+        { path: 'linked.js' },
+        { path: '*.js' },
+        { path: ['*.js', '!linked.js'] }
+      ]
+    }))
+
+    let config = await check(basename(cwd))
+    expect(config.checks.map(i => i.files.map(file => basename(file)).toSorted())).toEqual([
+      ['linked.js'],
+      ['linked.js', 'real.js'],
+      ['real.js']
+    ])
+  } finally {
+    await rm(cwd, { recursive: true, force: true })
+  }
 })
 
 it('uses index.js by default', async () => {
