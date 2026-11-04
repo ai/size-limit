@@ -41,6 +41,26 @@ beforeEach(() => {
   calc.mockReset()
 })
 
+it.each([null, [], ['index.js']].map(value => ({ value })))(
+  'rejects non-object config entries: $value',
+  async ({ value }) => {
+    let cwd = await mkdtemp(fixture('invalid-check-'))
+    try {
+      await writeFile(join(cwd, 'index.js'), 'export default 42\n')
+      await writeFile(join(cwd, 'package.json'), JSON.stringify({
+        devDependencies: { '@size-limit/file': '>= 0.0.0' },
+        'size-limit': [value]
+      }))
+      await expect(check(basename(cwd))).rejects.toThrow(
+        'Size Limit config array should contain *only objects*'
+      )
+      expect(calc).not.toHaveBeenCalled()
+    } finally {
+      await rm(cwd, { recursive: true, force: true })
+    }
+  }
+)
+
 it('creates config by CLI arguments', async () => {
   expect(await check('file', ['--limit', '10', 'a.js', '/b.js'])).toEqual({
     checks: [

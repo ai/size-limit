@@ -66,7 +66,7 @@ function checkChecks(plugins, checks) {
     throw new SizeLimitError('emptyConfig')
   }
   for (let check of checks) {
-    if (typeof check !== 'object') {
+    if (check === null || typeof check !== 'object' || Array.isArray(check)) {
       throw new SizeLimitError('noObjectCheck')
     }
     if (!isStringsOrUndefined(check.path)) {
