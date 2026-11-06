@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { readdir, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, parse, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { SizeLimitError } from 'size-limit'
 
 import { convertConfig } from './convert-config.js'
@@ -88,7 +89,8 @@ export default [
         check.esbuildOutfile = join(tmpdir(), `size-limit-${randomUUID()}`)
       }
       if (check.config) {
-        check.esbuildConfig = (await import(check.config)).default
+        let configModule = await import(pathToFileURL(check.config).href)
+        check.esbuildConfig = configModule.default
         convertConfig(check.esbuildConfig, config.configPath)
       } else {
         check.esbuildConfig = await getConfig(
