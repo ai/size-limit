@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { readdir, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join, parse, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { SizeLimitError } from 'size-limit'
 
 import { convertConfig } from './convert-config.js'
@@ -104,7 +105,7 @@ export default [
         check.rolldownOutput = join(tmpdir(), `size-limit-${randomUUID()}`)
       }
       if (check.config) {
-        let configModule = await import(check.config)
+        let configModule = await import(pathToFileURL(check.config).href)
         check.rolldownConfig = await loadConfig(configModule.default)
         convertConfig(check.rolldownConfig, config.configPath)
       } else {
