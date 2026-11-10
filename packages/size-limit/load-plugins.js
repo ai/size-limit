@@ -1,3 +1,6 @@
+import { createRequire } from 'node:module'
+import { pathToFileURL } from 'node:url'
+
 function toArray(obj) {
   return typeof obj === 'object' ? Object.keys(obj) : []
 }
@@ -15,6 +18,28 @@ export class Plugins {
   }
 }
 
+const NOT_FOUND = new Set(['ERR_MODULE_NOT_FOUND', 'MODULE_NOT_FOUND'])
+
+async function importPlugin(name, pkgPath) {
+  try {
+    let module = await import(name)
+    return module.default
+  } catch (error) {
+    // Strict installs (pnpm without hoisting, Yarn PnP) hide packages that
+    // Size Limit does not depend on, so look where the plugin is declared.
+    // Yarn PnP reports the CommonJS code even for import().
+    if (!NOT_FOUND.has(error.code)) throw error
+    let file
+    try {
+      file = createRequire(pkgPath).resolve(name)
+    } catch {
+      throw error
+    }
+    let module = await import(pathToFileURL(file).href)
+    return module.default
+  }
+}
+
 export default async function loadPlugins(pkg) {
   if (!pkg || !pkg.packageJson) return new Plugins([])
 
@@ -23,7 +48,7 @@ export default async function loadPlugins(pkg) {
       .concat(toArray(pkg.packageJson.devDependencies))
       .concat(toArray(pkg.packageJson.optionalDependencies))
       .filter(i => i.startsWith('@size-limit/') || i.startsWith('size-limit-'))
-      .map(i => import(i).then(module => module.default))
+      .map(i => importPlugin(i, pkg.path))
   ).then(arr => arr.flat())
 
   return new Plugins(list)
