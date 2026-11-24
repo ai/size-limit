@@ -609,6 +609,13 @@ Additionally, you can specify a custom path to your configuration file when runn
 npx size-limit --config configs/size-limit.json
 ```
 
+With webpack, esbuild, or rolldown, pass a directory to `--save-bundle`
+to keep the generated bundle for manual inspection instead of removing it after the check:
+
+```sh
+npx size-limit --save-bundle .size-limit-build
+```
+
 [Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
 [pattern]: https://nodejs.org/api/fs.html#fspromisesglobpattern-options
 
